@@ -16,6 +16,13 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 
 ## Ementa Detalhada do Curso
 
+### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
+3.1 Vetores bi, tri e n–dimensionais
+3.2 Norma, produto escalar e distância em R^n
+3.3 Ortogonalidade
+3.4 A geometria de sistemas lineares
+3.5 Produto vetorial
+
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
 1.1 Introdução aos sistemas de equações lineares
 1.2 Eliminação gaussiana
@@ -31,12 +38,6 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 2.2 Calculando determinantes por meio de redução por linhas
 2.3 Propriedades dos determinantes; regra de Cramer
 
-### CAPÍTULO 3: Espaços Vetoriais Euclidianos
-3.1 Vetores bi, tri e n–dimensionais
-3.2 Norma, produto escalar e distância em R^n
-3.3 Ortogonalidade
-3.4 A geometria de sistemas lineares
-3.5 Produto vetorial
 
 ### CAPÍTULO 4: Espaços Vetoriais Arbitrários
 4.1 Espaços vetoriais reais
