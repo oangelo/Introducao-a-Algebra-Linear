@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução à Álgebra Linear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Introdução à Álgebra Linear</h1>
+                <h3>Desvendando os Mistérios dos Números e Equações</h3>
+                <p>Uma jornada fascinante pelo mundo da matemática aplicada</p>
+            </section>
+
+            <section>
+                <h2>Capítulo 1: Sistemas de Equações Lineares e Matrizes</h2>
+                <p>Descobrindo o poder das equações trabalhando juntas</p>
+            </section>
+
+            <section>
+                <h3>1.1 Introdução aos sistemas de equações lineares</h3>
+                <p>Onde a matemática encontra o mundo real de maneiras surpreendentes</p>
+            </section>
+
+            <section>
+                <h3>O que é um sistema de equações lineares?</h3>
+                <p>Imagine que você está resolvendo um quebra-cabeça matemático, onde cada peça se encaixa perfeitamente com as outras.</p>
+                <div class="fragment">
+                    <p>Bem-vindo ao intrigante mundo dos sistemas de equações lineares!</p>
+                </div>
+            </section>
+
+            <section data-transition="slide">
+                <h3>Exemplo: O Desafio do Estudante Energizado</h3>
+                <div class="fragment">
+                    <p>Segunda-feira: 2 cafés + 1 energético + 1 chocolate = R$ 15</p>
+                </div>
+                <div class="fragment">
+                    <p>Terça-feira: 1 café + 2 energéticos + 1 chocolate = R$ 14</p>
+                </div>
+                <div class="fragment">
+                    <p>Quarta-feira: 3 cafés + 1 energético + 2 chocolates = R$ 20</p>
+                </div>
+            </section>
+
+            <section data-transition="slide">
+                <h3>Traduzindo para a linguagem matemática</h3>
+                <p>Transformando situações cotidianas em elegantes expressões matemáticas</p>
+                <div class="fragment">
+                    \[
+                    \begin{cases}
+                    2x + y + z = 15 \\
+                    x + 2y + z = 14 \\
+                    3x + y + 2z = 20
+                    \end{cases}
+                    \]
+                </div>
+                <p class="fragment">Onde x = café, y = energético, z = chocolate</p>
+            </section>
+
+            <section>
+                <h3>Componentes de um Sistema Linear</h3>
+                <ul>
+                    <li class="fragment"><strong>Variáveis:</strong> As incógnitas que vamos descobrir (x, y, z)</li>
+                    <li class="fragment"><strong>Coeficientes:</strong> Os números que acompanham as variáveis</li>
+                    <li class="fragment"><strong>Termos independentes:</strong> Os valores do lado direito da igualdade</li>
+                </ul>
+                <p class="fragment">Juntos, esses elementos formam uma sinfonia matemática que chamamos de sistema linear!</p>
+            </section>
+
+            <section>
+                <h3>Por que isso é emocionante?</h3>
+                <p class="fragment">Porque os sistemas lineares nos permitem modelar e resolver problemas complexos do mundo real</p>
+                <ul>
+                    <li class="fragment">Engenharia: Otimização de estruturas, análise de circuitos</li>
+                    <li class="fragment">Economia: Previsão de tendências de mercado</li>
+                    <li class="fragment">Física: Compreensão de fenômenos quânticos</li>
+                    <li class="fragment">Vida cotidiana: Planejamento financeiro pessoal</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>1.2 Eliminação Gaussiana</h3>
+                <p>Uma técnica poderosa que simplifica problemas complexos</p>
+            </section>
+
+            <section>
+                <h3>O que é Eliminação Gaussiana?</h3>
+                <p>É um método elegante e eficiente para resolver sistemas de equações lineares</p>
+                <div class="fragment">
+                    <p>Imagine organizar suas ideias de forma sistemática até chegar à solução</p>
+                    <p>É exatamente isso que faremos com nossas equações!</p>
+                </div>
+            </section>
+
+            <section>
+                <h3>Passos da Eliminação Gaussiana</h3>
+                <ol>
+                    <li class="fragment">Representar o sistema como uma matriz aumentada</li>
+                    <li class="fragment">Transformar a matriz em forma escalonada reduzida</li>
+                    <li class="fragment">Interpretar a solução diretamente da matriz resultante</li>
+                </ol>
+                <p class="fragment">Com prática, você dominará essa técnica e a aplicará com confiança!</p>
+            </section>
+
+            <section>
+                <h3>Exemplo: Resolvendo o Desafio do Estudante Energizado</h3>
+                <p>Vamos aplicar a Eliminação Gaussiana ao nosso problema</p>
+                <div class="fragment">
+                    \[
+                    \begin{bmatrix}
+                    2 & 1 & 1 & 15 \\
+                    1 & 2 & 1 & 14 \\
+                    3 & 1 & 2 & 20
+                    \end{bmatrix}
+                    \]
+                </div>
+                <p class="fragment">Esta é nossa matriz aumentada inicial - o ponto de partida da nossa jornada!</p>
+            </section>
+
+            <section>
+                <h3>Passo 1: Simplificando a segunda linha</h3>
+                <div class="fragment">
+                    \[
+                    \begin{bmatrix}
+                    2 & 1 & 1 & 15 \\
+                    0 & \frac{3}{2} & \frac{1}{2} & \frac{13}{2} \\
+                    3 & 1 & 2 & 20
+                    \end{bmatrix}
+                    \]
+                </div>
+                <p class="fragment">Usamos a primeira linha para eliminar o primeiro termo da segunda linha</p>
+            </section>
+
+            <section>
+                <h3>Passo 2: Simplificando a terceira linha</h3>
+                <div class="fragment">
+                    \[
+                    \begin{bmatrix}
+                    2 & 1 & 1 & 15 \\
+                    0 & \frac{3}{2} & \frac{1}{2} & \frac{13}{2} \\
+                    0 & -\frac{1}{2} & \frac{1}{2} & -\frac{5}{2}
+                    \end{bmatrix}
+                    \]
+                </div>
+                <p class="fragment">Agora, usamos a primeira linha para simplificar a terceira</p>
+            </section>
+
+            <section>
+                <h3>Passo 3: Finalizando a simplificação</h3>
+                <div class="fragment">
+                    \[
+                    \begin{bmatrix}
+                    2 & 1 & 1 & 15 \\
+                    0 & \frac{3}{2} & \frac{1}{2} & \frac{13}{2} \\
+                    0 & 0 & \frac{5}{6} & \frac{5}{3}
+                    \end{bmatrix}
+                    \]
+                </div>
+                <p class="fragment">Usamos a segunda linha para simplificar ainda mais a terceira</p>
+            </section>
+
+            <section>
+                <h3>Passo 4: Revelando a solução</h3>
+                <p class="fragment">z = 2 (preço do chocolate)</p>
+                <p class="fragment">y = 3 (preço do energético)</p>
+                <p class="fragment">x = 4 (preço do café)</p>
+            </section>
+
+            <section>
+                <h3>Conclusão</h3>
+                <p>Parabéns! Você acaba de dominar a Eliminação Gaussiana!</p>
+                <div class="fragment">
+                    <p>Agora você sabe que:</p>
+                    <ul>
+                        <li>Café = R$ 4</li>
+                        <li>Energético = R$ 3</li>
+                        <li>Chocolate = R$ 2</li>
+                    </ul>
+                </div>
+                <p class="fragment">Com esse conhecimento, você pode otimizar seus gastos e até mesmo ajudar seus amigos a fazerem o mesmo!</p>
+            </section>
+
+            <section>
+                <h3>Reflexão Final</h3>
+                <p>A Álgebra Linear é como uma aventura:</p>
+                <ul>
+                    <li class="fragment">Cheia de descobertas emocionantes</li>
+                    <li class="fragment">Cada desafio é uma oportunidade de crescimento</li>
+                    <li class="fragment">Com persistência e método, você supera qualquer obstáculo</li>
+                    <li class="fragment">E no final, você ganha ferramentas poderosas para entender o mundo</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            plugins: [RevealMath.KaTeX],
+            transition: 'slide',
+            slideNumber: true,
+            overview: true
+        });
+    </script>
+</body>
+</html>
