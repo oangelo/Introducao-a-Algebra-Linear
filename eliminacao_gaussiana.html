@@ -10,16 +10,6 @@
 <body>
     <div class="reveal">
         <div class="slides">
-            <section>
-                <h1>Introdução à Álgebra Linear</h1>
-                <h3>Desvendando os Mistérios dos Números e Equações</h3>
-                <p>Uma jornada fascinante pelo mundo da matemática aplicada</p>
-            </section>
-
-            <section>
-                <h2>Capítulo 1: Sistemas de Equações Lineares e Matrizes</h2>
-                <p>Descobrindo o poder das equações trabalhando juntas</p>
-            </section>
 
             <section>
                 <h3>1.1 Introdução aos sistemas de equações lineares</h3>
@@ -107,9 +97,32 @@
                 <p class="fragment">Com prática, você dominará essa técnica e a aplicará com confiança!</p>
             </section>
 
+	               <section>
+                <h3>Operações Elementares na Eliminação de Gauss</h3>
+                <p>As ferramentas que fazem a magia acontecer!</p>
+                <ul>
+                    <li class="fragment"><strong>Troca de linhas:</strong> Trocar a posição de duas linhas</li>
+                    <li class="fragment"><strong>Multiplicação de linha:</strong> Multiplicar uma linha por um escalar não-nulo</li>
+                    <li class="fragment"><strong>Adição de linhas:</strong> Somar uma linha multiplicada por um escalar a outra linha</li>
+                </ul>
+                <p class="fragment">Com estas operações, podemos transformar qualquer matriz em sua forma mais simples!</p>
+            </section>
+
+            <section>
+                <h3>Estratégia para Simplificar uma Matriz</h3>
+                <ol>
+                    <li class="fragment">Comece pela coluna mais à esquerda</li>
+                    <li class="fragment">Escolha um pivô não-nulo (geralmente o primeiro elemento não-nulo da coluna)</li>
+                    <li class="fragment">Use a adição de linhas para zerar todos os elementos abaixo do pivô</li>
+                    <li class="fragment">Repita o processo para a próxima coluna, ignorando as linhas já utilizadas como pivô</li>
+                    <li class="fragment">Continue até que a matriz esteja na forma escalonada</li>
+                </ol>
+                <p class="fragment">Com prática, você se tornará um mestre nesta técnica!</p>
+            </section>
+
             <section>
                 <h3>Exemplo: Resolvendo o Desafio do Estudante Energizado</h3>
-                <p>Vamos aplicar a Eliminação Gaussiana ao nosso problema</p>
+                <p>Vamos aplicar a Eliminação Gaussiana ao nosso problema, passo a passo</p>
                 <div class="fragment">
                     \[
                     \begin{bmatrix}
@@ -119,57 +132,123 @@
                     \end{bmatrix}
                     \]
                 </div>
-                <p class="fragment">Esta é nossa matriz aumentada inicial - o ponto de partida da nossa jornada!</p>
+                <p class="fragment">Esta é nossa matriz aumentada inicial - vamos transformá-la!</p>
             </section>
 
             <section>
-                <h3>Passo 1: Simplificando a segunda linha</h3>
+                <h3>Passo 1: trocando as linhas</h3>
                 <div class="fragment">
                     \[
                     \begin{bmatrix}
+                    1 & 2 & 1 & 14 \\
                     2 & 1 & 1 & 15 \\
-                    0 & \frac{3}{2} & \frac{1}{2} & \frac{13}{2} \\
                     3 & 1 & 2 & 20
                     \end{bmatrix}
                     \]
                 </div>
-                <p class="fragment">Usamos a primeira linha para eliminar o primeiro termo da segunda linha</p>
+		<p class="fragment">Operação: L2 ⇌ L1 e </p>
+                <p class="fragment">Trocar a linha 1 com a linha 2.</p>
             </section>
 
             <section>
-                <h3>Passo 2: Simplificando a terceira linha</h3>
+                <h3>Passo 2: Simplificando a segunda linha</h3>
                 <div class="fragment">
                     \[
                     \begin{bmatrix}
-                    2 & 1 & 1 & 15 \\
-                    0 & \frac{3}{2} & \frac{1}{2} & \frac{13}{2} \\
-                    0 & -\frac{1}{2} & \frac{1}{2} & -\frac{5}{2}
+                    1 & 2 & 1 & 14 \\
+                    0 & -3 & -1 & -13 \\
+                    3 & 1 & 2 & 20
                     \end{bmatrix}
                     \]
                 </div>
-                <p class="fragment">Agora, usamos a primeira linha para simplificar a terceira</p>
+                <p class="fragment">Operação: L2 → L2 - 2 L1</p>
+                <p class="fragment">Subtrair da segunda linha 2 vezes a primeira linha.</p>
             </section>
 
             <section>
-                <h3>Passo 3: Finalizando a simplificação</h3>
+                <h3>Passo 3: Simplificando a terceira linha</h3>
                 <div class="fragment">
                     \[
                     \begin{bmatrix}
-                    2 & 1 & 1 & 15 \\
-                    0 & \frac{3}{2} & \frac{1}{2} & \frac{13}{2} \\
-                    0 & 0 & \frac{5}{6} & \frac{5}{3}
+                    1 & 2 & 1 & 14 \\
+                    0 & -3 & -1 & -13 \\
+                    0 & -5 & 5 & 59 
                     \end{bmatrix}
                     \]
                 </div>
-                <p class="fragment">Usamos a segunda linha para simplificar ainda mais a terceira</p>
+                <p class="fragment">Operação: L3 → L3 - 3 L1</p>
+                <p class="fragment">Subtrair da terceira linha 3 vezes a primeira linha.</p>
+            </section>
+
+	    <section>
+                <h3>Passo 4: Simplificando mais a terceira linha</h3>
+                <div class="fragment">
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & 1 & 14 \\
+                    0 & -3 & -1 & -13 \\
+                    0 & -20 & 0 & -6 
+                    \end{bmatrix}
+                    \]
+                </div>
+                <p class="fragment">Operação: L3 → L3 + 5 L2</p>
+                <p class="fragment">Somar a terceira linha 3 vezes a primeira linha.</p>
+            </section>
+
+
+            <section>
+                <h3>Passo 5: mais simplificações...</h3>
+                <div class="fragment">
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & 1 & 14 \\
+                    0 & 3 & 1 & 13 \\
+                    0 & 1 & 0 & 3/10 
+                    \end{bmatrix}
+                    \]
+                </div>
+                <p class="fragment">Operação: L2 → -L2 </p>
+                <p class="fragment">Operação: L3 → L3 / -20 </p>
             </section>
 
             <section>
-                <h3>Passo 4: Revelando a solução</h3>
-                <p class="fragment">z = 2 (preço do chocolate)</p>
-                <p class="fragment">y = 3 (preço do energético)</p>
-                <p class="fragment">x = 4 (preço do café)</p>
+                <h3>Passo 6: mais simplificações ainda... calma que uma hora acaba!</h3>
+                <div class="fragment">
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & 1 & 14 \\
+                    0 & 0 & 1 & 121/10 \\
+                    0 & 1 & 0 & 3/10 
+                    \end{bmatrix}
+                    \]
+                </div>
+                <p class="fragment">Operação: L2 → L2 -3L3 </p>
             </section>
+
+            <section data-transition="slide">
+                <h3>Voltando para o sistema!</h3>
+                <p>Lembra de quando transformamos o sistema em matriz? Agora faremos o inverso!</p>
+                <div class="fragment">
+                    \[
+                    \begin{cases}
+                    1x + 2y + z = 14 \\
+                    z = 121/10 \\
+                    y = 3/10 
+                    \end{cases}
+                    \]
+                </div>
+                <p class="fragment">Onde x = café, y = energético, z = chocolate</p>
+                <p class="fragment">Agora podemos substituir os valores de trás para frente para encontrar todas as variáveis!</p>
+            </section>
+
+
+            <section>
+                <h3>Passo 6: Resolvendo o sistema</h3>
+                <p class="fragment">x = 14 - 2y -z = 14 - 6/10 - 121/10 = 13/10 = 1,3 (preço do café)</p>
+                <p class="fragment">y = 0,3 (preço do energético)</p>
+                <p class="fragment">z = 12,1 (preço do chocolate)</p>
+            </section>
+
 
             <section>
                 <h3>Conclusão</h3>
@@ -177,12 +256,46 @@
                 <div class="fragment">
                     <p>Agora você sabe que:</p>
                     <ul>
-                        <li>Café = R$ 4</li>
-                        <li>Energético = R$ 3</li>
-                        <li>Chocolate = R$ 2</li>
+                        <li>Café = R$ 1,30</li>
+                        <li>Energético = R$ 0,3</li>
+                        <li>Chocolate = R$ 12,1</li>
                     </ul>
                 </div>
                 <p class="fragment">Com esse conhecimento, você pode otimizar seus gastos e até mesmo ajudar seus amigos a fazerem o mesmo!</p>
+                <p class="fragment">Mas esses números estão meios estranhos... energético está muito barato! Verifique se esse número atendem as equações originais.</p>
+            </section>
+
+            <section data-transition="slide">
+                <h3>Vamos praticar!</h3>
+                <p>Calcule a matriz estendida de:</p>
+                <div class="fragment">
+                    \[
+		    \left\{\begin{array}{c}
+		    x_1 + x_2 + 2x_3 = 9\\
+		    2x_1 + 4x_2 - 3x_3 = 1\\
+		    3x_1 + 6x_2 - 5x_3 = 0
+		    \end{array}\right.
+                    \]
+                </div>
+            </section>
+
+            <section data-transition="slide">
+                <h3>Vamos praticar mais!</h3>
+                <p>Resolta o sistema:</p>
+                <div class="fragment">
+                    \[
+		    x+y+2z=9\\
+		    2x+4y-3z=1\\
+		    3x+6y-5z=0
+                    \]
+                </div>
+                <p>Lemrando as operações possíveis:</p>
+		     <ul>
+                        <li>Multiplicar uma linha por uma constante não nula</li>
+                        <li>Trocar duas linhas</li>
+                        <li>Somar o múltiplo de uma linha com outra</li>
+                    </ul>
+                <p>Preciso falar que no final é para conferir o resultado?</p>
             </section>
 
             <section>
