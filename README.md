@@ -19,17 +19,18 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 ### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
 (Este tema, supostamente, vocẽ já estoudou na escola ou/e em Introduação à Geometria Analítica. Só precisamos fazer uma revisão rápida dos temas mais complexos, certo?)
 - Vetores bi, tri e n–dimensionais
-- Norma, produto escalar e distância em R^n
+- Norma, produto escalar e distância em $R^n$
 - Ortogonalidade
 - A geometria de sistemas lineares
 - Produto vetorial
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
-- Introdução aos sistemas de equações lineares
-- Eliminação gaussiana
+(Neste capítulo vou abordar em aula os temas mais complexos, mas, alguns temas fáceis, deixo para você ler no livro texto, blz?)
+- [Introdução aos sistemas de equações lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
+- [Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html#14)
 - Matrizes e operações matriciais
 - Inversas; propriedades algébricas das matrizes
-- Matrizes elementares e um método para encontrar A^(-1)
+- Matrizes elementares e um método para encontrar $A^(-1)$
 - Mais sobre sistemas lineares e matrizes invertíveis
 - Matrizes diagonais, triangulares e simétricas
 - Aplicações de sistemas lineares
@@ -49,9 +50,9 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Mudança de bases
 - Espaço linha, espaço coluna e espaço nulo
 - Posto, nulidade e os espaços matriciais fundamentais
-- Transformações matriciais de R^n em R^m
+- Transformações matriciais de $R^n$ em $R^m$
 - Propriedades das transformações matriciais
-- A geometria de operadores matriciais de R^2
+- A geometria de operadores matriciais de $R^2$
 
 ### CAPÍTULO 5: Autovalores e Autovetores
 - Autovalores e autovetores
