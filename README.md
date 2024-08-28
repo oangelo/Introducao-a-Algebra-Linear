@@ -30,10 +30,10 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - [Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html#14)
 - Matrizes e operações matriciais
 - Inversas; propriedades algébricas das matrizes
-- Matrizes elementares e um método para encontrar $A^(-1)$
+- [Matrizes elementares e um método para encontrar $A^(-1)$](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades_e_inversas.html)
+
 - Mais sobre sistemas lineares e matrizes invertíveis
 - Matrizes diagonais, triangulares e simétricas
-- Aplicações de sistemas lineares
 
 ### CAPÍTULO 2: Determinantes
 - Determinantes por expansão em cofatores
