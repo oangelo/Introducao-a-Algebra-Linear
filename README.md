@@ -17,7 +17,7 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 ## Ementa Detalhada do Curso
 
 ### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
-(Este tema, supostamente, vocẽ já estoudou na escola ou/e em Introduação à Geometria Analítica. Só precisamos fazer uma revisão rápida dos temas mais complexos, certo?)
+(Este tema, supostamente, vocẽ já estudou na escola ou/e em Introduação à Geometria Analítica. Só precisamos fazer uma revisão rápida dos temas mais complexos, certo?)
 - Vetores bi, tri e n–dimensionais
 - Norma, produto escalar e distância em $R^n$
 - Ortogonalidade
@@ -25,7 +25,7 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Produto vetorial
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
-(Neste capítulo vou abordar em aula os temas mais complexos, mas, alguns temas fáceis, deixo para você ler no livro texto, blz?)
+(Neste capítulo vou abordar em aula os temas mais complexos, alguns temas deixo para você ler no livro texto, blz?)
 - [Introdução aos sistemas de equações lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
 - [Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html#14)
 - Matrizes e operações matriciais
