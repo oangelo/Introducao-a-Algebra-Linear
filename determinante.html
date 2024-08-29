@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Determinantes em Álgebra Linear</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/moon.css">
+
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+        <style>
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» ";}
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+        .reveal .slides {
+                width: 90% !important;
+                max-width: none !important;
+                max-height: none !important;
+        }
+    </style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section>
+					<h1>Determinantes em Álgebra Linear</h1>
+					<h3>Uma Jornada para Engenheiros</h3>
+				</section>
+
+				<section>
+					<h2>Introdução aos Determinantes</h2>
+					<p class="fragment">Imagine que você está construindo uma estrutura...</p>
+					<p class="fragment">Os determinantes são como a "assinatura" única dessa estrutura!</p>
+					<p class="fragment">Eles nos ajudam a entender propriedades cruciais de sistemas lineares.</p>
+					<aside class="notes">
+						Dica: Use a analogia da construção para conectar com experiências familiares aos estudantes de engenharia.
+						Possível pergunta: "Por que precisamos estudar determinantes na engenharia?"
+					</aside>
+				</section>
+
+				<section>
+					<h2>O que é um Determinante?</h2>
+					<ul>
+						<li class="fragment">Um número escalar associado a uma matriz quadrada</li>
+						<li class="fragment">Representa uma propriedade fundamental da matriz</li>
+						<li class="fragment">Notação: det(A) ou |A|</li>
+					</ul>
+					<p class="fragment">Para uma matriz 2x2:</p>
+					<div class="fragment">
+						\[
+						A = \begin{pmatrix}
+						a & b \\
+						c & d
+						\end{pmatrix}
+						\]
+						\[
+						det(A) = ad - bc
+						\]
+					</div>
+					<aside class="notes">
+						Enfatize que o determinante é um único número, não outra matriz.
+						Possível pergunta: "Como calculamos o determinante de matrizes maiores?"
+					</aside>
+				</section>
+
+        				<!-- Novo slide: Introdução às Inversões -->
+				<section>
+					<h2>Inversões: Uma Nova Perspectiva</h2>
+					<p class="fragment">Antes de mergulharmos na definição formal de determinantes, precisamos entender o conceito de inversões.</p>
+					<ul>
+						<li class="fragment">Inversões são como "desarranjos" em uma sequência de números</li>
+						<li class="fragment">Elas nos ajudam a entender a "desordem" em uma permutação</li>
+					</ul>
+					<p class="fragment">Imagine uma fila de pessoas que decidem trocar de lugar...</p>
+					<aside class="notes">
+						Use a analogia da fila para tornar o conceito mais tangível.
+						Possível pergunta: "Alguém pode pensar em um exemplo do dia-a-dia onde a ordem é importante?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Definição de Inversão -->
+				<section>
+					<h2>O que é uma Inversão?</h2>
+					<p class="fragment">Em uma permutação de números (1, 2, ..., n):</p>
+					<p class="fragment">Uma inversão ocorre quando um número maior precede um número menor.</p>
+					<div class="example fragment">
+						<p>Exemplo: Na permutação (3, 1, 4, 2)</p>
+						<ul>
+							<li>3 antes de 1 e 2 (duas inversões)</li>
+							<li>4 antes de 2 (uma inversão)</li>
+							<li>Total: 3 inversões</li>
+						</ul>
+					</div>
+					<aside class="notes">
+						Enfatize que o número de inversões é uma medida de quão "desordenada" está a permutação.
+						Possível pergunta: "Como o número de inversões se relaciona com a ideia de 'ordem' em engenharia?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Cálculo do Número de Inversões -->
+				<section>
+					<h2>Contando Inversões</h2>
+					<p class="fragment">Para cada número na permutação:</p>
+					<ol>
+						<li class="fragment">Conte quantos números menores aparecem depois dele</li>
+						<li class="fragment">Some esses valores para todos os números</li>
+					</ol>
+					<div class="example fragment">
+						<p>Exemplo: (3, 1, 4, 2)</p>
+						<ul>
+							<li>3: dois números menores após (1, 2) → 2 inversões</li>
+							<li>1: nenhum número menor após → 0 inversões</li>
+							<li>4: um número menor após (2) → 1 inversão</li>
+							<li>2: nenhum número menor após → 0 inversões</li>
+							<li>Total: 2 + 0 + 1 + 0 = 3 inversões</li>
+						</ul>
+					</div>
+					<aside class="notes">
+						Incentive os alunos a praticarem com diferentes permutações.
+						Dica: Relacione com algoritmos de ordenação em ciência da computação.
+					</aside>
+				</section>
+
+				<!-- Novo slide: Paridade de Permutações -->
+				<section>
+					<h2>Paridade de Permutações</h2>
+					<ul>
+						<li class="fragment">Permutação par: número par de inversões</li>
+						<li class="fragment">Permutação ímpar: número ímpar de inversões</li>
+					</ul>
+					<p class="fragment">A paridade é importante na definição de determinantes!</p>
+					<div class="example fragment">
+						<p>Exemplos:</p>
+						<ul>
+							<li>(1, 2, 3, 4) → 0 inversões (par)</li>
+							<li>(2, 1, 4, 3) → 2 inversões (par)</li>
+							<li>(3, 1, 4, 2) → 3 inversões (ímpar)</li>
+						</ul>
+					</div>
+					<aside class="notes">
+						Explique como a paridade se relaciona com o sinal do determinante.
+						Possível pergunta: "Como você acha que a paridade afeta o cálculo do determinante?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Definição Formal de Determinante -->
+				<section>
+					<h2>Definição Formal de Determinante</h2>
+					<p class="fragment">Agora, vamos usar inversões para definir determinantes formalmente:</p>
+					<div class="fragment">
+						Para uma matriz \(A = (a_{ij})\) de ordem n:
+						\[
+						det(A) = \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i=1}^n a_{i,\sigma(i)}
+						\]
+					</div>
+					<p class="fragment">Onde:</p>
+					<ul>
+						<li class="fragment">\(S_n\) é o conjunto de todas as permutações de (1, 2, ..., n)</li>
+						<li class="fragment">\(sgn(\sigma)\) é o sinal da permutação (+1 se par, -1 se ímpar)</li>
+					</ul>
+					<aside class="notes">
+						Explique que esta definição, embora pareça complexa, resume tudo o que aprendemos sobre inversões.
+						Dica: Relacione com a expansão de Laplace vista anteriormente.
+					</aside>
+				</section>
+
+				<!-- Novo slide: Entendendo a Definição Formal -->
+				<section>
+					<h2>Decodificando a Definição</h2>
+					<ol>
+						<li class="fragment">Considere todas as permutações possíveis dos índices das colunas</li>
+						<li class="fragment">Para cada permutação:
+							<ul>
+								<li>Multiplique os elementos correspondentes da matriz</li>
+								<li>Determine o sinal com base na paridade da permutação</li>
+							</ul>
+						</li>
+						<li class="fragment">Some todos esses produtos com seus respectivos sinais</li>
+					</ol>
+					<p class="fragment">Esta definição captura a essência do que um determinante representa!</p>
+					<aside class="notes">
+						Enfatize que esta definição generaliza o conceito para matrizes de qualquer tamanho.
+						Possível pergunta: "Como esta definição se relaciona com o método de cálculo que vimos antes?"
+					</aside>
+				</section>
+
+
+				<section>
+					<h2>Exercício: Produtos Elementares (2x2)</h2>
+					<div class="exercise fragment">
+						<p>Encontre todos os produtos elementares com sinal da matriz:</p>
+						\[
+						A = \begin{bmatrix}
+						a_{11} & a_{12} \\
+						a_{21} & a_{22} 
+						\end{bmatrix}
+						\]
+					</div>
+					<p class="fragment">Dica: Lembre-se das permutações possíveis para uma matriz 2x2.</p>
+					<div class="solution fragment">
+						<p>Solução:</p>
+						<ul>
+							<li>Permutação (1,2): (+1) * a_{11} * a_{22}</li>
+							<li>Permutação (2,1): (-1) * a_{12} * a_{21}</li>
+						</ul>
+						<p>Portanto, Det(A) = a_{11}a_{22} - a_{12}a_{21}</p>
+					</div>
+					<aside class="notes">
+						Explique como isso se relaciona com a fórmula do determinante 2x2 que eles já conhecem.
+						Possível pergunta: "Como essa abordagem se compara com o método que vocês usavam antes?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Exercício 2 - Produtos Elementares (Matriz 3x3) -->
+				<section>
+					<h2>Exercício: Produtos Elementares (3x3)</h2>
+					<div class="exercise fragment">
+						<p>Encontre todos os produtos elementares com sinal da matriz:</p>
+						\[
+						B = \begin{bmatrix}
+						a_{11} & a_{12} & a_{13} \\
+						a_{21} & a_{22} & a_{23} \\
+						a_{31} & a_{32} & a_{33} 
+						\end{bmatrix}
+						\]
+					</div>
+					<p class="fragment">Dica: Há 3! = 6 permutações possíveis para uma matriz 3x3.</p>
+				</section>
+				<section>
+					<h2>Exercício: Produtos Elementares (3x3)</h2>
+					<div class="solution fragment">
+						<p>Solução:</p>
+							\[
+              (+1)  a_{11}a_{22}a_{33} \\ 
+							(+1)  a_{12}a_{23}a_{31} \\
+							(+1)  a_{13}a_{21}a_{32} \\
+							(-1)  a_{13}a_{22}a_{31} \\
+							(-1)  a_{11}a_{23}a_{32} \\
+							(-1)  a_{12}a_{21}a_{33} 
+              \]
+					</div>
+					<aside class="notes">
+						Explique como isso se relaciona com a regra de Sarrus para determinantes 3x3.
+						Desafie os alunos a identificarem padrões nos termos positivos e negativos.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Resumo: Pontos-Chave</h2>
+					<ul>
+						<li class="fragment">Inversões medem a "desordem" em uma permutação</li>
+						<li class="fragment">A paridade das permutações (par/ímpar) afeta o sinal no cálculo do determinante</li>
+						<li class="fragment">A definição formal de determinante usa todas as permutações possíveis</li>
+						<li class="fragment">Esta definição generaliza o conceito para matrizes de qualquer tamanho</li>
+						<li class="fragment">Determinantes continuam sendo ferramentas poderosas em álgebra linear e engenharia</li>
+					</ul>
+					<p class="fragment">Lembre-se: Por trás da complexidade matemática, há sempre uma intuição prática!</p>
+					<aside class="notes">
+						Reforce a importância de entender tanto o aspecto formal quanto o intuitivo dos determinantes.
+						Encoraje os alunos a praticarem o cálculo de determinantes usando diferentes métodos.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Teoremas Básicos sobre Determinantes</h2>
+					<p class="fragment">Agora que entendemos o conceito de determinantes, vamos explorar alguns teoremas fundamentais.</p>
+					<ul>
+						<li class="fragment">Estes teoremas nos ajudam a calcular determinantes mais facilmente</li>
+						<li class="fragment">Fornecem insights sobre as propriedades das matrizes</li>
+						<li class="fragment">São ferramentas poderosas para análise em engenharia</li>
+					</ul>
+					<aside class="notes">
+						Enfatize que estes teoremas simplificam muitos cálculos complexos.
+						Possível pergunta: "Como você acha que estes teoremas podem ser úteis na prática de engenharia?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Teorema sobre Linhas/Colunas de Zeros -->
+				<section>
+					<h2>Teorema: Linhas ou Colunas de Zeros</h2>
+					<div class="theorem fragment">
+						<p>Se uma matriz A tem uma linha de zeros ou uma coluna de zeros, então Det(A) = 0.</p>
+					</div>
+					<div class="example fragment">
+						<p>Exemplo:</p>
+						\[
+						A = \begin{pmatrix}
+						1 & 2 & 3 \\
+						0 & 0 & 0 \\
+						4 & 5 & 6
+						\end{pmatrix} \quad \text{Det(A) = 0}
+						\]
+					</div>
+					<p class="fragment">Interpretação: Uma linha ou coluna de zeros indica "informação perdida" ou "dependência linear".</p>
+					<aside class="notes">
+						Relacione este teorema com sistemas de equações sem solução única.
+						Dica: Peça aos alunos para pensarem em situações de engenharia onde ter "informação zero" leva a resultados nulos.
+					</aside>
+				</section>
+
+				<!-- Novo slide: Teorema sobre Transposição -->
+				<section>
+					<h2>Teorema: Determinante da Transposta</h2>
+					<div class="theorem fragment">
+            <p>\[Det(A) = Det(A^T)\text{, onde }A^T\text{ é a transposta de A.}\]</p>
+					</div>
+					<div class="example fragment">
+						<p>Exemplo:</p>
+						\[
+						A = \begin{pmatrix}
+						1 & 2 \\
+						3 & 4
+						\end{pmatrix} \quad
+						A^T = \begin{pmatrix}
+						1 & 3 \\
+						2 & 4
+						\end{pmatrix}
+						\]
+						\[ Det(A) = Det(A^T) = 1(4) - 2(3) = -2 \]
+					</div>
+					<p class="fragment">Implicação: Propriedades de linhas e colunas são intercambiáveis para determinantes.</p>
+					<aside class="notes">
+						Explique como isso simplifica certos cálculos e análises.
+						Possível pergunta: "Como isso poderia ser útil ao analisar estruturas simétricas em engenharia?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Teorema sobre Matrizes Triangulares e Diagonais -->
+				<section>
+					<h2>Teorema: Matrizes Triangulares e Diagonais</h2>
+					<div class="theorem fragment">
+						<p>Se uma matriz A é triangular ou diagonal, então o determinante é o produto dos elementos da diagonal principal.</p>
+					</div>
+					<div class="example fragment">
+						<p>Exemplo:</p>
+						\[
+						A = \begin{pmatrix}
+						2 & 0 & 0 \\
+						1 & 3 & 0 \\
+						4 & 5 & 1
+						\end{pmatrix} \quad \text{Det(A) = 2 * 3 * 1 = 6}
+						\]
+					</div>
+					<p class="fragment">Aplicação: Simplifica muito o cálculo para certas classes de matrizes!</p>
+					<aside class="notes">
+						Relacione com sistemas de equações facilmente solucionáveis.
+						Dica: Mencione como isso se aplica em análise estrutural de treliças ou circuitos em série.
+					</aside>
+				</section>
+
+				<!-- Novo slide: Teorema sobre Operações com Linhas/Colunas (Parte 1) -->
+				<section>
+					<h2>Teorema: Operações com Linhas/Colunas (1)</h2>
+					<div class="theorem fragment">
+						<p>Se B é uma matriz onde uma linha ou coluna de A foi multiplicada por uma constante k, então Det(B) = k * Det(A).</p>
+					</div>
+					<div class="example fragment">
+						<p>Exemplo:</p>
+						\[
+						A = \begin{pmatrix}
+						1 & 2 \\
+						3 & 4
+						\end{pmatrix} \quad
+						B = \begin{pmatrix}
+						2 & 4 \\
+						3 & 4
+						\end{pmatrix}
+						\]
+						\[
+						\text{Det(B) = 2 * Det(A)}
+						\]
+					</div>
+					<p class="fragment">Implicação: Multiplicar uma linha/coluna por k multiplica o determinante por k.</p>
+					<aside class="notes">
+						Relacione com o conceito de escala em engenharia.
+						Possível pergunta: "Como isso poderia ser útil ao analisar o impacto de aumentar ou diminuir uma dimensão em um projeto?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Teorema sobre Operações com Linhas/Colunas (Parte 2) -->
+				<section>
+					<h2>Teorema: Operações com Linhas/Colunas (2)</h2>
+					<div class="theorem fragment">
+						<p>Se B é uma matriz onde uma linha ou coluna de A foi trocada, então Det(B) = -Det(A).</p>
+					</div>
+					<div class="example fragment">
+						<p>Exemplo:</p>
+						\[
+						A = \begin{pmatrix}
+						1 & 2 \\
+						3 & 4
+						\end{pmatrix} \quad
+						B = \begin{pmatrix}
+						3 & 4 \\
+						1 & 2
+						\end{pmatrix}
+						\]
+						\[
+						\text{Det(B) = -Det(A)}
+						\]
+					</div>
+					<p class="fragment">Interpretação: Trocar linhas/colunas inverte o sinal do determinante.</p>
+					<aside class="notes">
+						Relacione com o conceito de orientação em geometria.
+						Dica: Mencione como isso pode ser relevante em análise de tensões em diferentes direções.
+					</aside>
+				</section>
+
+				<!-- Novo slide: Teorema sobre Operações com Linhas/Colunas (Parte 3) -->
+				<section>
+					<h2>Teorema: Operações com Linhas/Colunas (3)</h2>
+					<div class="theorem fragment">
+						<p>Se B é uma matriz onde uma linha ou coluna de A foi multiplicada por uma constante e somada a outra, então Det(B) = Det(A).</p>
+					</div>
+					<div class="example fragment">
+						<p>Exemplo:</p>
+						\[
+						A = \begin{pmatrix}
+						1 & 2 \\
+						3 & 4
+						\end{pmatrix} \quad
+						B = \begin{pmatrix}
+						1 & 2 \\
+						5 & 8
+						\end{pmatrix} \text{ (L2 + 2*L1)}
+						\]
+						\[
+						\text{Det(B) = Det(A)}
+						\]
+					</div>
+					<p class="fragment">Implicação: Operações elementares de linha não afetam o determinante.</p>
+					<aside class="notes">
+						Explique como isso é útil em métodos de resolução de sistemas lineares.
+						Possível pergunta: "Como isso poderia ser aplicado na análise de circuitos elétricos?"
+					</aside>
+				</section>
+
+				<!-- Novo slide: Teorema sobre Linhas/Colunas Proporcionais -->
+				<section>
+					<h2>Teorema: Linhas ou Colunas Proporcionais</h2>
+					<div class="theorem fragment">
+						<p>Se uma matriz A tem duas linhas ou colunas proporcionais, então Det(A) = 0.</p>
+					</div>
+					<div class="example fragment">
+						<p>Exemplo:</p>
+						\[
+						A = \begin{pmatrix}
+						1 & 2 & 3 \\
+						2 & 4 & 6 \\
+						7 & 8 & 9
+						\end{pmatrix} \quad \text{Det(A) = 0}
+						\]
+					</div>
+					<p class="fragment">Interpretação: Linhas/colunas proporcionais indicam dependência linear.</p>
+					<aside class="notes">
+						Relacione com o conceito de redundância em sistemas de engenharia.
+						Dica: Peça aos alunos para pensarem em situações onde ter componentes redundantes não adiciona nova informação ao sistema.
+					</aside>
+				</section>
+
+				<!-- Slide de Resumo Atualizado -->
+				<section>
+					<h2>Resumo: Teoremas Básicos</h2>
+					<ul>
+						<li class="fragment">Linhas/colunas de zeros → Det = 0</li>
+						<li class="fragment">\[Det(A) = Det(A^T)\]</li>
+						<li class="fragment">Matrizes triangulares/diagonais → Det = produto da diagonal</li>
+						<li class="fragment">Multiplicar linha/coluna por k → Det multiplica por k</li>
+						<li class="fragment">Trocar linhas/colunas → Det muda de sinal</li>
+						<li class="fragment">Operações elementares de linha → Det não muda</li>
+						<li class="fragment">Linhas/colunas proporcionais → Det = 0</li>
+					</ul>
+					<p class="fragment">Estes teoremas são ferramentas poderosas para análise e cálculo em álgebra linear!</p>
+					<aside class="notes">
+						Encoraje os alunos a praticarem a aplicação destes teoremas em problemas reais de engenharia.
+						Reforce a importância de entender não apenas como aplicar, mas também por que estes teoremas funcionam.
+					</aside>
+				</section>
+
+        
+
+				<section>
+					<h2>Exercício: Redução por Linha</h2>
+					<div class="exercise fragment">
+						<p>Usando redução por linha, encontre o determinante de:</p>
+						\[
+						\begin{bmatrix}
+						0 & 1 & 5\\
+						3 & -6 & 9\\
+						2 & 6 & 1
+						\end{bmatrix}
+						\]
+					</div>
+					<p class="fragment">Dica: Comece eliminando o zero na primeira posição.</p>
+					<div class="solution fragment">
+						<p>Solução:</p>
+						<ol>
+							<li>Troque L1 com L2: Det = -1 * Det original</li>
+							<li>Use L1 para zerar elementos abaixo dele</li>
+							<li>Continue o processo de eliminação</li>
+							<li>Multiplique os elementos da diagonal principal</li>
+						</ol>
+						<p>Det = -1 * 3 * (-8) * (-14/3) = 112</p>
+					</div>
+					<aside class="notes">
+						Enfatize como a redução por linha simplifica o cálculo.
+						Lembre os alunos de acompanhar as mudanças no sinal do determinante durante as operações.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Exercício 4: Redução por Coluna</h2>
+					<div class="exercise fragment">
+						<p>Usando redução por coluna, encontre o determinante de:</p>
+						\[
+						\begin{bmatrix}
+						1 & 0 & 0 & 3\\
+						2 & 7 & 0 & 6\\
+						0 & 6 & 3 & 0\\
+						7 & 3 & 1 & 5 
+						\end{bmatrix}
+						\]
+					</div>
+					<p class="fragment">Dica: Aproveite os zeros já presentes na matriz.</p>
+					<div class="solution fragment">
+						<p>Solução:</p>
+						<ol>
+							<li>Use C1 para zerar elementos à sua direita</li>
+							<li>Use C2 para zerar elementos à sua direita</li>
+							<li>Continue o processo de eliminação</li>
+							<li>Multiplique os elementos da diagonal principal</li>
+						</ol>
+						<p>Det = 1 * 7 * 3 * (-22) = -462</p>
+					</div>
+					<aside class="notes">
+						Mostre como a redução por coluna é similar à redução por linha.
+						Discuta as vantagens de escolher entre redução por linha ou coluna dependendo da estrutura inicial da matriz.
+					</aside>
+				</section>
+
+				<!-- Slide de Resumo dos Exercícios -->
+				<section>
+					<h2>Resumo dos Exercícios Práticos</h2>
+					<ul>
+						<li class="fragment">Produtos elementares: base para entender determinantes</li>
+						<li class="fragment">Matriz 2x2: dois termos, fácil de calcular mentalmente</li>
+						<li class="fragment">Matriz 3x3: seis termos, regra de Sarrus é útil</li>
+						<li class="fragment">Redução por linha/coluna: eficiente para matrizes maiores</li>
+						<li class="fragment">Escolha do método depende da estrutura da matriz</li>
+					</ul>
+					<p class="fragment">Praticar esses métodos tornará você proficiente em cálculos de determinantes!</p>
+					<aside class="notes">
+						Encoraje os alunos a praticarem mais exercícios por conta própria.
+						Sugira que eles criem suas próprias matrizes e calculem os determinantes usando diferentes métodos.
+					</aside>
+				</section>
+
+        		<!-- Novo slide: Propriedades Adicionais dos Determinantes -->
+				<section>
+					<h2>Propriedades Adicionais dos Determinantes</h2>
+					<ul>
+						<li class="fragment">Para matriz A de ordem n e constante k: 
+							\[ det(kA) = k^n det(A) \]</li>
+						<li class="fragment">A soma de determinantes não é o determinante da soma:
+							\[ det(A + B) \ne det(A) + det(B) \]</li>
+						<li class="fragment">O determinante do produto é o produto dos determinantes:
+							\[ det(AB) = det(A)det(B) \]</li>
+          </ul>
+
+					<aside class="notes">
+						Explique cada propriedade com um exemplo simples.
+						Destaque a importância da última propriedade para sistemas lineares.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Propriedades Adicionais dos Determinantes</h2>
+					<ul>
+            <li class="fragment">O determinante da inversa:
+							\[ det(A^{-1}) = \frac{1}{det(A)} \]</li>
+						<li class="fragment">Condição para inversibilidade:
+							\[ \text{A é inversível} \iff det(A) \ne 0 \]</li>
+					</ul>
+
+					<aside class="notes">
+						Explique cada propriedade com um exemplo simples.
+						Destaque a importância da última propriedade para sistemas lineares.
+					</aside>
+				</section>
+
+
+				<!-- Novo slide: Sistemas Lineares da Forma Ax = λx (Parte 1) -->
+				<section>
+					<h2>Sistemas Lineares: Ax = λx</h2>
+					<p class="fragment">Consideremos o sistema: Ax = λx</p>
+					<p class="fragment">Podemos reescrever como:</p>
+					<div class="fragment">
+						\[ Ax - λIx = 0 \]
+						\[ (A - λI)x = 0 \]
+					</div>
+					<p class="fragment">Para soluções não triviais, precisamos:</p>
+					<div class="fragment">
+						\[ det(A - λI) = 0 \]
+					</div>
+					<p class="fragment">Esta é a equação característica da matriz A.</p>
+					<aside class="notes">
+						Explique o significado de λ (autovalores) e x (autovetores).
+						Mencione aplicações em física e engenharia (ex: vibrações, estabilidade).
+					</aside>
+				</section>
+
+				<section>
+					<h2>Exemplo: Resolvendo Ax = λx</h2>
+					<div class="exercise fragment">
+						<p>Para a matriz:</p>
+						\[
+						A = \begin{bmatrix}
+						1 & 3 \\
+						4 & 2
+						\end{bmatrix}
+						\]
+						<p>Encontre os valores de λ e as soluções associadas.</p>
+					</div>
+				</section>
+
+				<section>
+					<h2>Exemplo: Resolvendo Ax = λx</h2>
+						<p>1. Equação característica:</p>
+						\[ det(A - λI) = \begin{vmatrix}
+						1-λ & 3 \\
+						4 & 2-λ
+						\end{vmatrix} = 0 \]
+						\[ (1-λ)(2-λ) - 12 = 0 \]
+						\[ λ^2 - 3λ - 10 = 0 \]
+						<p>2. Resolvendo: λ = 5 ou λ = -2</p>
+						<p>3. Encontre os autovetores para cada λ...</p>
+        </section>
+
+				<!-- Slide de Resumo das Novas Propriedades e Aplicações -->
+				<section>
+					<h2>Resumo: Propriedades e Aplicações Avançadas</h2>
+					<ul>
+						<li class="fragment">Determinantes têm propriedades algebricas específicas (ex: det(AB) = det(A)det(B))</li>
+						<li class="fragment">Sistemas Ax = λx levam ao conceito de autovalores e autovetores</li>
+						<li class="fragment">A inversibilidade de uma matriz está ligada a várias propriedades equivalentes</li>
+						<li class="fragment">Determinantes são cruciais para entender a solubilidade de sistemas lineares</li>
+					</ul>
+					<p class="fragment">Estas ideias são fundamentais em álgebra linear avançada e suas aplicações!</p>
+					<aside class="notes">
+						Encoraje os alunos a explorarem as conexões entre esses conceitos.
+						Sugira recursos adicionais para aprofundamento nos tópicos discutidos.
+					</aside>
+				</section>
+
+<section>
+					<h2>Expansão em Cofatores</h2>
+					<p class="fragment">A expansão em cofatores é um método poderoso para calcular determinantes.</p>
+					<ul>
+						<li class="fragment">Usa submatrizes menores</li>
+						<li class="fragment">Permite cálculo recursivo</li>
+						<li class="fragment">Especialmente útil para matrizes grandes</li>
+					</ul>
+					<p class="fragment">Vamos explorar como isso funciona!</p>
+					<aside class="notes">
+						Explique que este método é uma generalização da regra de Sarrus.
+						Mencione que é particularmente útil quando a matriz tem muitos zeros.
+					</aside>
+				</section>
+
+				<section>
+					<h2>O que é um Cofator?</h2>
+					<div class="definition fragment">
+						<p>Para um elemento \(a_{ij}\) de uma matriz A:</p>
+						<ul>
+							<li>\(M_{ij}\): determinante da submatriz após remover a linha i e coluna j</li>
+							<li>\(C_{ij} = (-1)^{i+j} * M_{ij}\): cofator do elemento \(a_{ij}\)</li>
+						</ul>
+					</div>
+        </section>
+
+				<section>
+					<h2>O que é um Cofator?</h2>
+						<p>Para uma matriz 3x3:</p>
+						\[
+						A = \begin{bmatrix}
+						a_{11} & a_{12} & a_{13} \\
+						a_{21} & a_{22} & a_{23} \\
+						a_{31} & a_{32} & a_{33}
+						\end{bmatrix}
+						\]
+						\[
+						M_{11} = \begin{vmatrix}
+						a_{22} & a_{23} \\
+						a_{32} & a_{33}
+						\end{vmatrix}, \quad
+						C_{11} = (-1)^{1+1} * M_{11} = M_{11}
+						\]
+				</section>
+
+				<section>
+					<h2>Expansão em Cofatores</h2>
+					<p class="fragment">O determinante pode ser calculado usando qualquer linha ou coluna:</p>
+					<div class="fragment">
+						\[
+						det(A) = \sum_{j=1}^n a_{ij} C_{ij} \quad \text{(expansão pela i-ésima linha)}
+						\]
+						\[
+						det(A) = \sum_{i=1}^n a_{ij} C_{ij} \quad \text{(expansão pela j-ésima coluna)}
+						\]
+					</div>
+					<p class="fragment">Geralmente, escolhemos a linha ou coluna com mais zeros para simplificar o cálculo.</p>
+					<aside class="notes">
+						Mostre como esta fórmula geral se reduz à fórmula familiar para matrizes 2x2.
+						Discuta a escolha estratégica da linha ou coluna para expansão.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Exemplo: Expansão em Cofatores</h2>
+					<div class="exercise fragment">
+						<p>Calcule o determinante usando a primeira linha:</p>
+						\[
+						A = \begin{bmatrix}
+						3 & 1 & 0 \\
+						-2 & -4 & 3 \\
+						5 & 4 & -2
+						\end{bmatrix}
+						\]
+					</div>
+        </section>
+
+				<section>
+					<h2>Exemplo: Expansão em Cofatores</h2>
+									<div class="solution fragment">
+						<p>\(det(A) = 3C_{11} + 1C_{12} + 0C_{13}\)</p>
+						<p>\(C_{11} = (-1)^{1+1} \begin{vmatrix} -4 & 3 \\ 4 & -2 \end{vmatrix} = 8 - 12 = -4\)</p>
+						<p>\(C_{12} = (-1)^{1+2} \begin{vmatrix} -2 & 3 \\ 5 & -2 \end{vmatrix} = -(4 - 15) = 11\)</p>
+						<p>\(det(A) = 3(-4) + 1(11) + 0 = -12 + 11 = -1\)</p>
+					</div>
+        </section>
+
+
+				<section>
+					<h2>Exemplo Passo a Passo</h2>
+					<p>Calcule o determinante da seguinte matriz:</p>
+					<div class="two-column">
+						<div>
+							\[
+							A = \begin{pmatrix}
+							3 & 1 & -2 \\
+							2 & -1 & 4 \\
+							-1 & 5 & 3
+							\end{pmatrix}
+							\]
+						</div>
+						<div>
+							<ol>
+								<li class="fragment">Escolha a primeira linha para expandir</li>
+								<li class="fragment">Calcule os cofatores</li>
+								<li class="fragment">Aplique a fórmula de expansão</li>
+							</ol>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>Matriz dos Cofatores</h2>
+					<div class="definition fragment">
+						<p>A matriz dos cofatores C de uma matriz A é formada pelos cofatores de A:</p>
+						\[
+						C = \begin{bmatrix}
+						C_{11} & C_{12} & \cdots & C_{1n} \\
+						C_{21} & C_{22} & \cdots & C_{2n} \\
+						\vdots & \vdots & \ddots & \vdots \\
+						C_{n1} & C_{n2} & \cdots & C_{nn}
+						\end{bmatrix}
+						\]
+					</div>
+					<p class="fragment">A matriz adjunta é a transposta da matriz dos cofatores:</p>
+					<div class="fragment">
+						\[ adj(A) = C^T \]
+					</div>
+					<aside class="notes">
+						Explique como a matriz dos cofatores relaciona-se com a expansão em cofatores.
+						Mencione que a matriz adjunta será útil para calcular a inversa de uma matriz.
+					</aside>
+				</section>
+
+				<!-- Novo slide: Inversa usando a Matriz Adjunta -->
+				<section>
+					<h2>Inversa usando a Matriz Adjunta</h2>
+					<div class="theorem fragment">
+						<p>Para uma matriz inversível A:</p>
+						\[ A^{-1} = \frac{1}{det(A)} adj(A) \]
+					</div>
+					<p class="fragment">Este método é especialmente útil para matrizes 3x3 ou menores.</p>
+					<div class="exercise fragment">
+						<p>Encontre a inversa de:</p>
+						\[
+						A = \begin{bmatrix}
+						2 & 2 & -1 \\
+						1 & 6 & 3 \\
+						2 & -4 & 0
+						\end{bmatrix}
+						\]
+					</div>
+					<aside class="notes">
+						Guie os alunos através do processo de cálculo da matriz adjunta e do determinante.
+						Compare este método com outros métodos de inversão de matrizes que os alunos já conhecem.
+					</aside>
+				</section>
+
+
+				<!-- Novo slide: Regra de Cramer (Introdução) -->
+				<section>
+					<h2>Regra de Cramer</h2>
+					<p class="fragment">A Regra de Cramer é um método para resolver sistemas de equações lineares usando determinantes.</p>
+					<div class="theorem fragment">
+						<p>Para um sistema Ax = b com det(A) ≠ 0, a solução é dada por:</p>
+						\[
+						x_i = \frac{det(A_i)}{det(A)}
+						\]
+						<p>onde \(A_i\) é a matriz A com a i-ésima coluna substituída por b.</p>
+					</div>
+					<p class="fragment">Esta regra é eficiente para sistemas pequenos, mas não é prática para sistemas grandes.</p>
+					<aside class="notes">
+						Explique as vantagens e desvantagens da Regra de Cramer.
+						Mencione que ela fornece uma fórmula explícita para as soluções.
+					</aside>
+				</section>
+
+				<!-- Novo slide: Exemplo da Regra de Cramer -->
+				<section>
+					<h2>Exemplo: Regra de Cramer</h2>
+					<div class="exercise fragment">
+						<p>Resolva o sistema usando a Regra de Cramer:</p>
+						\[
+						\begin{cases}
+						x_1 + 2x_3 = 6 \\
+						-3x_1 + 4x_2 + 6x_3 = 30 \\
+						-x_1 - 2x_2 + 3x_3 = 8
+						\end{cases}
+						\]
+					</div>
+					<div class="solution fragment">
+						<p>1. Calcule det(A)</p>
+						<p>2. Forme \(A_1, A_2, A_3\) substituindo colunas por b</p>
+						<p>3. Calcule \(det(A_1), det(A_2), det(A_3)\)</p>
+						<p>4. Use a fórmula \(x_i = det(A_i) / det(A)\)</p>
+					</div>
+					<aside class="notes">
+						Guie os alunos através do processo passo a passo.
+						Destaque como a Regra de Cramer utiliza os conceitos de determinantes que aprendemos.
+					</aside>
+				</section>
+
+				<!-- Slide de Resumo -->
+				<section>
+					<h2>Resumo: Cofatores e Regra de Cramer</h2>
+					<ul>
+						<li class="fragment">Expansão em cofatores: método poderoso para calcular determinantes</li>
+						<li class="fragment">Matriz dos cofatores e adjunta: úteis para calcular inversas</li>
+						<li class="fragment">Regra de Cramer: resolve sistemas lineares usando determinantes</li>
+						<li class="fragment">Estes métodos conectam determinantes, inversas e sistemas lineares</li>
+					</ul>
+					<p class="fragment">Estas técnicas ampliam nossa compreensão e aplicação dos determinantes!</p>
+					<aside class="notes">
+						Encoraje os alunos a praticarem estes métodos com diferentes exemplos.
+						Discuta como esses conceitos se relacionam com outros tópicos em álgebra linear.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Afirmações Equivalentes: Matrizes Inversíveis</h2>
+					<p class="fragment">Para uma matriz A de ordem n, as seguintes afirmações são equivalentes:</p>
+					<ul>
+						<li class="fragment">A é inversível</li>
+						<li class="fragment">Ax = 0 tem apenas a solução trivial</li>
+						<li class="fragment">A forma escalonada reduzida de A é \(I_n\)</li>
+						<li class="fragment">A pode ser expressa como produto de matrizes elementares</li>
+					</ul>
+					<aside class="notes">
+						Explique o significado de cada afirmação.
+						Destaque como essas equivalências conectam diferentes conceitos em álgebra linear.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Afirmações Equivalentes: Matrizes Inversíveis (cont.)</h2>
+					<ul>
+						<li class="fragment">Ax = b é consistente para toda matriz \(b_{nx1}\)</li>
+						<li class="fragment">Ax = b tem solução única para toda matriz \(b_{nx1}\)</li>
+						<li class="fragment">det(A) ≠ 0</li>
+					</ul>
+					<p class="fragment">Estas condições são poderosas ferramentas para análise de sistemas lineares!</p>
+					<div class="example fragment">
+						<p>Exemplo: Se soubermos que det(A) ≠ 0, podemos concluir que o sistema Ax = b tem solução única para qualquer b.</p>
+					</div>
+					<aside class="notes">
+						Discuta as implicações práticas dessas equivalências.
+						Sugira aos alunos que pensem em situações onde cada condição seria útil.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Resumo: Pontos-Chave</h2>
+					<ul>
+						<li class="fragment">Determinantes são escalares únicos associados a matrizes quadradas</li>
+						<li class="fragment">Fornecem informações cruciais sobre sistemas lineares</li>
+						<li class="fragment">Propriedades importantes incluem efeitos de operações com linhas/colunas</li>
+						<li class="fragment">Cálculo envolve expansão por cofatores (para matrizes pequenas)</li>
+						<li class="fragment">Aplicações abrangem desde análise de sistemas até computação gráfica</li>
+					</ul>
+					<p class="fragment">Lembre-se: Os determinantes são ferramentas poderosas em álgebra linear e engenharia!</p>
+					<aside class="notes">
+						Reforce a importância dos determinantes como uma ferramenta fundamental em álgebra linear.
+						Encoraje os alunos a praticarem o cálculo de determinantes e a explorarem mais aplicações.
+					</aside>
+				</section>
+
+			</div>
+		</div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+    <script>
+      Reveal.initialize({
+        plugins: [RevealMath.KaTeX],
+        transition: 'slide',
+        slideNumber: true,
+        overview: true
+      });
+    </script>
+
+
+	</body>
+</html>
+
+		</div>
+	</div>
+</body>
+</html>
