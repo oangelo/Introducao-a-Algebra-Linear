@@ -35,7 +35,7 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Mais sobre sistemas lineares e matrizes invertíveis
 - Matrizes diagonais, triangulares e simétricas
 
-### CAPÍTULO 2: Determinantes
+### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
 - Determinantes por expansão em cofatores
 - Calculando determinantes por meio de redução por linhas
 - Propriedades dos determinantes; regra de Cramer
