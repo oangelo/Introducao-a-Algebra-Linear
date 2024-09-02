@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<title>Determinantes em Álgebra Linear</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+		.reveal ul { list-style-type: none; }
+		.reveal ul li::before { content: "» ";}
+		.two-columns { display: flex; justify-content: space-between; }
+		.two-columns > * { flex: 1; }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                <h1>Introdução à Álgebra Linear</h1>
+                <h3>Uma abordagem formal e aplicada</h3>
+            </section>
+
+            <section>
+                <h2>Espaços Vetoriais</h2>
+                <p>Definição formal de um espaço vetorial:</p>
+                <p>Um conjunto V com operações de adição e multiplicação por escalar que satisfazem certos axiomas.</p>
+            </section>
+
+            <section>
+                <h2>Axiomas de um Espaço Vetorial (1/2)</h2>
+                <p>Para objetos u, v e w, que pertencem a um dado conjunto V, V é um espaço vetorial se:</p>
+                <ul>
+                    <li>\(u + v \in V\)</li>
+                    <li>\(u + v = v + u\)</li>
+                    <li>\(u + (v + w) = (u + v) + w\)</li>
+                    <li>Existe um objeto 0 tal que \(0 + u = u\)</li>
+                    <li>Existe um objeto -u tal que \(u + (-u) = 0\)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Axiomas de um Espaço Vetorial (2/2)</h2>
+                <ul>
+                    <li>Para um escalar k temos que \(ku \in V\)</li>
+                    <li>\(k(u + v) = ku + kv\)</li>
+                    <li>\((k + l)u = ku + lu\)</li>
+                    <li>\(k(lu) = (kl)u\)</li>
+                    <li>\(1u = u\)</li>
+                </ul>
+                <p>onde \(k, l \in \mathbb{R}\).</p>
+            </section>
+
+            <section>
+                <h2>Espaços Vetoriais Reais</h2>
+                <p>\(\mathbb{R}^n\): O espaço dos vetores com n componentes reais</p>
+                <ul>
+                    <li>Exemplo: \(\mathbb{R}^2\) (plano cartesiano)</li>
+                    <li>Exemplo: \(\mathbb{R}^3\) (espaço tridimensional)</li>
+                </ul>
+                <p>Aplicação: Em \(\mathbb{R}^3\), podemos descrever a posição de um objeto no espaço.</p>
+            </section>
+
+            <section>
+                <h2>Reconhecendo Espaços Vetoriais</h2>
+                <p>São espaços vetoriais?</p>
+                <ul>
+                    <li>\(\mathbb{R}^n\)</li>
+                    <li>Matrizes 2x2</li>
+                    <li>Vetores da forma (a, b, 1) com \(a, b \in \mathbb{R}\)</li>
+                    <li>Planos que passem pela origem</li>
+                    <li>Polinômios de segunda ordem</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Subespaços Vetoriais</h2>
+                <p><strong>Definição:</strong> Um subconjunto W de um espaço vetorial V será chamado de subespaço vetorial se W formar um espaço vetorial.</p>
+            </section>
+
+            <section>
+                <h2>Verificação de Subespaços</h2>
+                <p>Precisamos verificar todas as 10 propriedades para W?</p>
+                <p>Não, W já herda várias propriedades de V!</p>
+            </section>
+
+            <section>
+                <h2>Teorema de Subespaços</h2>
+                <p>Se W é um subconjunto de objetos de V, então W será um subespaço de V se:</p>
+                <ul>
+                    <li>Se u e v forem vetores de W, então \(u + v \in W\)</li>
+                    <li>Para um escalar k e um vetor \(u \in W\), temos que \(ku \in W\)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Reconhecendo Subespaços Vetoriais</h2>
+                <ul>
+                    <li>Retas que passam pela origem são subespaços de \(\mathbb{R}^2\)?</li>
+                    <li>Quais são os subespaços de \(\mathbb{R}^3\)?</li>
+                    <li>Cite um subespaço das matrizes 2x2.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Espaço Solução de um Sistema Homogêneo</h2>
+                <p><strong>Teorema:</strong> Para um sistema linear homogêneo de m equações e n incógnitas, o conjunto de vetores solução é um subespaço de \(\mathbb{R}^n\).</p>
+                <p>Prova: Exercício para o leitor (dica: use o teorema de subespaços).</p>
+            </section>
+
+            <section>
+                <h2>Independência Linear</h2>
+                <p>Definição: Vetores \(v_1, ..., v_n\) são linearmente independentes se:</p>
+                <p>\(a_1v_1 + a_2v_2 + ... + a_nv_n = 0\) implica \(a_1 = a_2 = ... = a_n = 0\)</p>
+            </section>
+
+            <section>
+                <h2>Exemplos de Independência Linear</h2>
+                <ul>
+                    <li>Em \(\mathbb{R}^2\): Os vetores (1,0) e (0,1) são linearmente independentes</li>
+                    <li>Em \(\mathbb{R}^3\): Os vetores (1,0,0), (0,1,0), e (1,1,0) são linearmente dependentes</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Bases e Dimensão</h2>
+                <p><strong>Base:</strong> Conjunto de vetores linearmente independentes que geram todo o espaço</p>
+                <p><strong>Dimensão:</strong> Número de vetores em uma base do espaço vetorial</p>
+            </section>
+
+            <section>
+                <h2>Exemplos de Bases</h2>
+                <ul>
+                    <li>Base canônica de \(\mathbb{R}^3\): \(\{(1,0,0), (0,1,0), (0,0,1)\}\)</li>
+                    <li>Uma base alternativa para \(\mathbb{R}^2\): \(\{(1,1), (1,-1)\}\)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Teorema da Dimensão</h2>
+                <p>Todas as bases de um espaço vetorial têm o mesmo número de elementos</p>
+                <ul>
+                    <li>\(\mathbb{R}^2\): dimensão 2</li>
+                    <li>\(\mathbb{R}^3\): dimensão 3</li>
+                    <li>Espaço das matrizes 2x2: dimensão 4</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Aplicações Práticas</h2>
+                <ul>
+                    <li>Computação Gráfica: Transformações em 2D e 3D</li>
+                    <li>Física: Descrição de forças e movimentos</li>
+                    <li>Engenharia Elétrica: Análise de circuitos</li>
+                    <li>Machine Learning: Processamento de grandes conjuntos de dados</li>
+                </ul>
+            </section>
+
+	    
+            <section>
+                <h2>Combinação Linear</h2>
+                <p><strong>Definição:</strong> Um vetor w é chamado de combinação linear dos vetores \(v_1, v_2, ..., v_n\) se ele pode ser expresso como:</p>
+                <p>\[ w = k_1v_1 + k_2v_2 + ... + k_rv_r \]</p>
+                <p>onde \(k_1, k_2, ..., k_r\) são escalares.</p>
+            </section>
+
+            <section>
+                <h2>Exemplo de Combinação Linear</h2>
+                <p>Dado \(u = (1,2,-1)\) e \(v = (6,4,2)\).</p>
+                <p>Determine se \(w = (9,2,7)\) e \(w' = (4,-1,8)\) podem ser escritos como combinação linear de u e v.</p>
+            </section>
+
+            <section>
+                <h2>Vetores Geradores (Spanning) de um Espaço</h2>
+                <p><strong>Teorema:</strong> Para vetores \(v_1, v_2, ..., v_n\) em um espaço vetorial V:</p>
+                <ul>
+                    <li>O espaço W constituído de combinações lineares de \(v_1, v_2, ..., v_n\) é um subespaço de V.</li>
+                    <li>W é o menor subespaço de V de maneira que qualquer subespaço que contenha \(v_1, v_2, ..., v_n\) também contém W.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Espaço Gerado (Span)</h2>
+                <p><strong>Definição:</strong> Se \(S = \{v_1, v_2, ..., v_r\}\) é um conjunto de vetores em um espaço vetorial V, então o espaço vetorial W constituído de todas as combinações lineares dos vetores de S é chamado de espaço vetorial gerado por \(v_1, v_2, ..., v_r\).</p>
+                <p>Notação: \(W = span(S)\) ou \(W = span\{v_1, v_2, ..., v_r\}\)</p>
+            </section>
+
+            <section>
+                <h2>Exemplo de Span</h2>
+                <p>Determine se os vetores \(v_1 = (1,1,2), v_2 = (1,0,1)\) e \(v_3 = (2,1,3)\) geram o \(\mathbb{R}^3\).</p>
+            </section>
+
+            <section>
+                <h2>Problemas de Espaço Solução</h2>
+                <p>Encontre os vetores que geram os espaços soluções dos sistemas homogêneos com matriz dos coeficientes dadas por:</p>
+                <p>\[
+                \begin{bmatrix}
+                1 & -2 & 3 \\
+                2 & -4 & 6 \\
+                3 & -6 & 9 
+                \end{bmatrix}
+                \begin{bmatrix}
+                1 & -2 & 3 \\
+                -3 & 7 & -8 \\
+                -2 & 4 & -6 
+                \end{bmatrix}
+                \begin{bmatrix}
+                1 & -2 & 3 \\
+                -3 & 7 & -8 \\
+                4 & 1 & 2 
+                \end{bmatrix}
+                \begin{bmatrix}
+                0 & 0 & 0 \\
+                0 & 0 & 0 \\
+                0 & 0 & 0 
+                \end{bmatrix}
+                \]</p>
+            </section>
+
+            <section>
+                <h2>Combinação Linear Dependente e Independente</h2>
+                <p>Considere uma coleção de vetores \(S = \{v_1, v_2, ..., v_n\}\).</p>
+                <p>Se \(k_1v_1 + k_2v_2 + ... + k_nv_n = \vec{0}\),</p>
+                <ul>
+                    <li>A combinação é independente apenas quando \(k_1 = k_2 = ... = k_n = 0\)</li>
+                    <li>Caso contrário, o conjunto é dito linearmente dependente</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Teoremas de Dependência Linear</h2>
+                <ul>
+                    <li>Um conjunto é linearmente dependente se qualquer um vetor puder ser escrito como combinação linear dos outros.</li>
+                    <li>Um conjunto é linearmente independente se nenhum vetor pode ser escrito como combinação linear dos outros.</li>
+                    <li>Um conjunto finito de vetores que contém o vetor zero é linearmente dependente.</li>
+                    <li>Um conjunto de dois vetores é linearmente independente se, e somente se, os vetores não puderem ser escritos um como o múltiplo do outro.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Problemas de Independência Linear</h2>
+                <ul>
+                    <li>Os vetores \(v_1 = (2,-1,0,3)\), \(v_2 = (1,2,5,-1)\), \(v_3 = (7,-1,5,8)\) são linearmente independentes?</li>
+                    <li>Os polinômios \(p_1 = 1-x\), \(p_2 = 5 + 3x - 2x^2\) e \(p_3 = 1 + 3x - x^2\) formam um conjunto linearmente independente?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Independência Linear de Funções</h2>
+                <p>Podemos verificar se funções são linearmente independentes/dependentes?</p>
+                <ul>
+                    <li>seno e cosseno são LI?</li>
+                    <li>x e seno são LI?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Bases</h2>
+                <p><strong>Definição:</strong> Se V é qualquer espaço vetorial e \(S = \{v_1, v_2, ..., v_n\}\) é um conjunto de elementos (vetores), S é uma base se:</p>
+                <ol>
+                    <li>S é linearmente independente.</li>
+                    <li>S gera V.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Teorema de Unicidade da Base</h2>
+                <p>Se \(S = \{v_1, v_2, ..., v_n\}\) é uma base para o espaço vetorial V, então qualquer vetor \(v \in V\) pode ser escrito como uma combinação linear, \(v = c_1v_1 + c_2v_2 + ... + c_nv_n\), de apenas uma maneira!</p>
+                <p>(Os \(c_i\)'s são as coordenadas do vetor v na base V.)</p>
+            </section>
+
+            <section>
+                <h2>Problemas de Bases</h2>
+                <ol>
+                    <li>Mostre que os vetores \(v_1 = (1,2,1)\), \(v_2 = (2,9,0)\) e \(v_3 = (3,3,4)\) formam uma base para o \(\mathbb{R}^3\). Vamos chamar esta base de S.</li>
+                    <li>Encontre o vetor de coordenadas de \(v = (5,-1,9)\) na base acima.</li>
+                    <li>Dado os vetores na base S, \(v_S = (-1,3,2)\), encontre o vetor na base canônica do \(\mathbb{R}^3\).</li>
+                    <li>Mostre que a base canônica das matrizes 2x2 formam uma base.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Dimensões</h2>
+                <p><strong>Definição:</strong> Um espaço vetorial V não nulo é dito de dimensão finita se um conjunto finito de vetores formam uma base para ele. Se tal conjunto não existe, V é chamado de conjunto de dimensão infinita.</p>
+            </section>
+
+            <section>
+                <h2>Teoremas de Dimensão</h2>
+                <p>Seja V um espaço vetorial de dimensão finita e seja \(\{v_1, v_2, ..., v_n\}\) uma base qualquer, temos:</p>
+                <ol>
+                    <li>Se um conjunto tem mais que n vetores, ele é linearmente dependente.</li>
+                    <li>Se um conjunto tem menos que n vetores, ele não gera V.</li>
+                </ol>
+                <p><strong>Teorema:</strong> Todas as bases para um espaço vetorial de dimensão finita têm o mesmo número de vetores.</p>
+            </section>
+
+            <section>
+                <h2>Definição de Dimensão</h2>
+                <p>A dimensão de um espaço vetorial de dimensão finita, denotado por dim(V), é definida como o número de vetores da base de V.</p>
+                <p>Adicionalmente, definimos o espaço vetorial do vetor nulo como tendo dimensão nula.</p>
+            </section>
+
+            <section>
+                <h2>Problema de Dimensão</h2>
+                <p>Encontre a base e a dimensão do espaço solução do sistema:</p>
+                <p>\[
+                \begin{array}{l}
+                2x_1 + 2x_2 - x_3 + x_5 = 0 \\
+                -x_1 - x_2 + 2x_3 - 3x_4 + x_5 = 0 \\
+                x_1 + x_2 - 2x_3 - x_5 = 0 \\
+                x_3 + x_4 + x_5 = 0 
+                \end{array}
+                \]</p>
+            </section>
+
+            <section>
+                <h2>Teoremas Adicionais</h2>
+                <p><strong>Teorema mais/menos:</strong> Considere um conjunto S de vetores de um espaço vetorial V.</p>
+                <ul>
+                    <li>Dado um \(v \in V\) tal que \(v \not\in span(S)\), então, o conjunto \(S \cup \{v\}\) é também linearmente independente.</li>
+                    <li>Dado um \(v \in V\) tal que \(v \in span(S)\), então, o conjunto \(S - \{v\}\) gera o mesmo espaço que S, ou seja, \(span(S) = span(S - \{v\})\)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Teorema de Geração ou Dependência</h2>
+                <p>Considere um conjunto S de n vetores de um espaço vetorial V de dimensão n. Ou S gera V ou os vetores de S são linearmente dependentes.</p>
+                <p>Como gerar bases?</p>
+            </section>
+
+            <section>
+                <h2>Conclusão</h2>
+                <p>A Álgebra Linear fornece uma estrutura formal para:</p>
+                <ul>
+                    <li>Entender relações entre vetores e espaços</li>
+                    <li>Analisar dependência e independência linear</li>
+                    <li>Determinar bases e dimensões de espaços vetoriais</li>
+                    <li>Resolver sistemas de equações lineares</li>
+                    <li>Aplicar conceitos em diversas áreas da ciência e engenharia</li>
+                </ul>
+            </section>
+			</div>
+		</div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+		<script>
+			Reveal.initialize({
+				width: 1200,
+				height: 720,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+			});
+		</script>
+	</body>
+</html>
+</body>
+</html>
