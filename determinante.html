@@ -2,7 +2,6 @@
 <html lang="pt-BR">
     <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Determinantes em Álgebra Linear</title>
 
     <link rel="stylesheet" href="dist/reset.css">
@@ -16,11 +15,6 @@
         .reveal ul li::before { content: "» ";}
         .two-columns { display: flex; justify-content: space-between; }
         .two-columns > * { flex: 1; }
-        .reveal .slides {
-                width: 90% !important;
-                max-width: none !important;
-                max-height: none !important;
-        }
     </style>
 
 	</head>
@@ -468,7 +462,7 @@
 					<h2>Resumo: Teoremas Básicos</h2>
 					<ul>
 						<li class="fragment">Linhas/colunas de zeros → Det = 0</li>
-						<li class="fragment">\[Det(A) = Det(A^T)\]</li>
+						<li class="fragment">\(Det(A) = Det(A^T)\)</li>
 						<li class="fragment">Matrizes triangulares/diagonais → Det = produto da diagonal</li>
 						<li class="fragment">Multiplicar linha/coluna por k → Det multiplica por k</li>
 						<li class="fragment">Trocar linhas/colunas → Det muda de sinal</li>
@@ -926,15 +920,18 @@
 			</div>
 		</div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
-    <script>
-      Reveal.initialize({
-        plugins: [RevealMath.KaTeX],
-        transition: 'slide',
-        slideNumber: true,
-        overview: true
-      });
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+		<script>
+            Reveal.initialize({
+                    width: 1200,
+                    height: 720,
+                    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+            });
     </script>
 
 
