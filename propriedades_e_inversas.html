@@ -1,342 +1,401 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introdução à Álgebra Linear</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
-</head>
-<body>
-    <div class="reveal">
-        <div class="slides">
-                    <section>
-                <h2>Propriedades da Aritmética de Matrizes</h2>
-                <p>As regras do jogo matricial!</p>
-            </section>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Introdução à Álgebra Linear</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section>
+						<h2>Propriedades da Aritmética de Matrizes</h2>
+						<p>As regras do jogo matricial!</p>
+					</section>
 
-            <section>
-                <h3>Propriedades Fundamentais</h3>
-                <ul>
-                    <li class="fragment">$A + B = B + A$ (Comutatividade da adição)</li>
-                    <li class="fragment">$A + (B + C) = (A + B) + C$ (Associatividade da adição)</li>
-                    <li class="fragment">$(AB)C = A(BC)$ (Associatividade da multiplicação)</li>
-                    <li class="fragment">$A(B + C) = AB + AC$ (Distributividade à esquerda)</li>
-                    <li class="fragment">$(B + C)A = BA + CA$ (Distributividade à direita)</li>
-                </ul>
-            </section>
+					<section>
+						<h3>Propriedades Fundamentais</h3>
+						<ul>
+							<li class="fragment">$A + B = B + A$ (Comutatividade da adição)</li>
+							<li class="fragment">$A + (B + C) = (A + B) + C$ (Associatividade da adição)</li>
+							<li class="fragment">$(AB)C = A(BC)$ (Associatividade da multiplicação)</li>
+							<li class="fragment">$A(B + C) = AB + AC$ (Distributividade à esquerda)</li>
+							<li class="fragment">$(B + C)A = BA + CA$ (Distributividade à direita)</li>
+						</ul>
+					</section>
 
-            <section>
-                <h3>Mais Propriedades</h3>
-                <ul>
-                    <li class="fragment">$A(B - C) = AB - AC$</li>
-                    <li class="fragment">$(B - C)A = BA - CA$</li>
-                    <li class="fragment">$a(B + C) = aB + aC$ (a é um escalar)</li>
-                    <li class="fragment">$a(B - C) = aB - aC$</li>
-                    <li class="fragment">$(a+b)C = aC + bC$</li>
-                    <li class="fragment">$(a-b)C = aC - bC$</li>
-                    <li class="fragment">$(ab)C = a(bC)$</li>
-                    <li class="fragment">$a(BC) = (aB)C = B(aC)$</li>
-                </ul>
-            </section>
+					<section>
+						<h3>Mais Propriedades</h3>
+						<ul>
+							<li class="fragment">$A(B - C) = AB - AC$</li>
+							<li class="fragment">$(B - C)A = BA - CA$</li>
+							<li class="fragment">$a(B + C) = aB + aC$ (a é um escalar)</li>
+							<li class="fragment">$a(B - C) = aB - aC$</li>
+							<li class="fragment">$(a+b)C = aC + bC$</li>
+							<li class="fragment">$(a-b)C = aC - bC$</li>
+							<li class="fragment">$(ab)C = a(bC)$</li>
+							<li class="fragment">$a(BC) = (aB)C = B(aC)$</li>
+						</ul>
+					</section>
 
-            <section>
-                <h2>A Lei do Cancelamento Não Vale</h2>
-                <p>Quando 1 + 1 não é necessariamente 2 no mundo das matrizes!</p>
-            </section>
+					<section>
+						<h2>A Lei do Cancelamento Não Vale</h2>
+						<p>Quando 1 + 1 não é necessariamente 2 no mundo das matrizes!</p>
+					</section>
 
-            <section>
-                <h3>Um Exemplo Intrigante</h3>
-                <p>Considere estas matrizes:</p>
-                <div class="fragment">
-                    \[
-                    A = \begin{bmatrix}
-                    0 & 1 \\
-                    0 & 2
-                    \end{bmatrix},
-                    B = \begin{bmatrix}
-                    1 & 1 \\
-                    3 & 4 
-                    \end{bmatrix},
-                    C = \begin{bmatrix}
-                    2 & 5 \\
-                    3 & 4 
-                    \end{bmatrix},
-                    D = \begin{bmatrix}
-                    3 & 7 \\
-                    0 & 0 
-                    \end{bmatrix}
-                    \]
-                </div>
-            </section>
+					<section>
+						<h3>Um Exemplo Intrigante</h3>
+						<p>Considere estas matrizes:</p>
+						<div class="fragment">
+							\[
+							A = \begin{bmatrix}
+							0 & 1 \\
+							0 & 2
+							\end{bmatrix},
+							B = \begin{bmatrix}
+							1 & 1 \\
+							3 & 4 
+							\end{bmatrix},
+							C = \begin{bmatrix}
+							2 & 5 \\
+							3 & 4 
+							\end{bmatrix},
+							D = \begin{bmatrix}
+							3 & 7 \\
+							0 & 0 
+							\end{bmatrix}
+							\]
+						</div>
+					</section>
 
-            <section>
-                <h3>Calculando AB, AC e AD</h3>
-                <div class="fragment">
-                    \[
-                    AB = \begin{bmatrix}
-                    3 & 4 \\
-                    6 & 8
-                    \end{bmatrix}
-                    \]
-                </div>
-                <div class="fragment">
-                    \[
-                    AC = \begin{bmatrix}
-                    3 & 4 \\
-                    6 & 8
-                    \end{bmatrix}
-                    \]
-                </div>
-                <div class="fragment">
-                    \[
-                    AD = \begin{bmatrix}
-                    0 & 0 \\
-                    0 & 0
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Observe que AB = AC, mas B ≠ C. A lei do cancelamento não se aplica!</p>
-            </section>
+					<section>
+						<h3>Calculando AB, AC e AD</h3>
+						<div class="fragment">
+							\[
+							AB = \begin{bmatrix}
+							3 & 4 \\
+							6 & 8
+							\end{bmatrix}
+							\]
+						</div>
+						<div class="fragment">
+							\[
+							AC = \begin{bmatrix}
+							3 & 4 \\
+							6 & 8
+							\end{bmatrix}
+							\]
+						</div>
+						<div class="fragment">
+							\[
+							AD = \begin{bmatrix}
+							0 & 0 \\
+							0 & 0
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Observe que AB = AC, mas B ≠ C. A lei do cancelamento não se aplica!</p>
+					</section>
 
-            <section>
-                <h3>Propriedades da Matriz Zero</h3>
-                <ul>
-                    <li class="fragment">A + 0 = A (Elemento neutro da adição)</li>
-                    <li class="fragment">A · 0 = 0 · A = 0 (Absorção na multiplicação)</li>
-                    <li class="fragment">0A = A0 = 0 (Multiplicação por zero)</li>
-                </ul>
-                <p class="fragment">A matriz zero é como o coringa das matrizes!</p>
-            </section>
+					<section>
+						<h3>Propriedades da Matriz Zero</h3>
+						<ul>
+							<li class="fragment">A + 0 = A (Elemento neutro da adição)</li>
+							<li class="fragment">A · 0 = 0 · A = 0 (Absorção na multiplicação)</li>
+							<li class="fragment">0A = A0 = 0 (Multiplicação por zero)</li>
+						</ul>
+						<p class="fragment">A matriz zero é como o coringa das matrizes!</p>
+					</section>
 
-            <section>
-                <h2>Matriz Identidade</h2>
-                <p>A estrela do show matricial!</p>
-            </section>
+					<section>
+						<h2>Matriz Identidade</h2>
+						<p>A estrela do show matricial!</p>
+					</section>
 
-            <section>
-                <h3>O que é a Matriz Identidade?</h3>
-                <p>É uma matriz quadrada com 1's na diagonal principal e 0's em todas as outras posições.</p>
-                <div class="fragment">
-                    \[
-                    I_3 = \begin{bmatrix}
-                    1 & 0 & 0 \\
-                    0 & 1 & 0 \\
-                    0 & 0 & 1 
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Uma matriz identidade n x n é representada por I<sub>n</sub>.</p>
-            </section>
+					<section>
+						<h3>O que é a Matriz Identidade?</h3>
+						<p>É uma matriz quadrada com 1's na diagonal principal e 0's em todas as outras posições.</p>
+						<div class="fragment">
+							\[
+							I_3 = \begin{bmatrix}
+							1 & 0 & 0 \\
+							0 & 1 & 0 \\
+							0 & 0 & 1 
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Uma matriz identidade n x n é representada por I<sub>n</sub>.</p>
+					</section>
 
-            <section>
-                <h3>Propriedades da Matriz Identidade</h3>
-                <p>Para uma matriz A<sub>m×n</sub>:</p>
-                <div class="fragment">
-                    \[
-                    AI_n = A \text{ e } I_mA = A
-                    \]
-                </div>
-                <p class="fragment">A matriz identidade é como o número 1 na multiplicação de números reais!</p>
-            </section>
+					<section>
+						<h3>Propriedades da Matriz Identidade</h3>
+						<p>Para uma matriz A<sub>m×n</sub>:</p>
+						<div class="fragment">
+							\[
+							AI_n = A \text{ e } I_mA = A
+							\]
+						</div>
+						<p class="fragment">A matriz identidade é como o número 1 na multiplicação de números reais!</p>
+					</section>
 
-            <section>
-                <h3>Teorema Interessante</h3>
-                <p>Se uma matriz R<sub>n×n</sub> está na forma de Echelon, então:</p>
-                <ul>
-                    <li class="fragment">Ou ela é uma matriz identidade</li>
-                    <li class="fragment">Ou ela tem uma linha de zeros</li>
-                </ul>
-                <p class="fragment">Desafio: Tente demonstrar este teorema!</p>
-            </section>
+					<section>
+						<h3>Teorema Interessante</h3>
+						<p>Se uma matriz R<sub>n×n</sub> está na forma de Echelon, então:</p>
+						<ul>
+							<li class="fragment">Ou ela é uma matriz identidade</li>
+							<li class="fragment">Ou ela tem uma linha de zeros</li>
+						</ul>
+						<p class="fragment">Desafio: Tente demonstrar este teorema!</p>
+					</section>
+				</section>
 
-            <section>
-                <h2>Matriz Inversa</h2>
-                <p>O yin e o yang do mundo matricial!</p>
-            </section>
+				<section>
+					<section>
+						<h2>Matriz Inversa</h2>
+						<p>O yin e o yang do mundo matricial!</p>
+					</section>
 
-            <section>
-                <h3>Definição de Matriz Inversa</h3>
-                <p>Se A é uma matriz quadrada, e existe uma matriz B do mesmo tamanho tal que:</p>
-                <div class="fragment">
-                    \[
-                    AB = BA = I
-                    \]
-                </div>
-                <p class="fragment">Então A é inversível e B é chamada de inversa de A, denotada por A<sup>-1</sup>.</p>
-                <p class="fragment">Se não existir tal B, A é chamada de singular.</p>
-            </section>
+					<section>
+						<h3>Definição de Matriz Inversa</h3>
+						<p>Se A é uma matriz quadrada, e existe uma matriz B do mesmo tamanho tal que:</p>
+						<div class="fragment">
+							\[
+							AB = BA = I
+							\]
+						</div>
+						<p class="fragment">Então A é inversível e B é chamada de inversa de A, denotada por A<sup>-1</sup>.</p>
+						<p class="fragment">Se não existir tal B, A é chamada de singular.</p>
+					</section>
 
-            <section>
-                <h3>Exemplo: Verificando uma Inversa</h3>
-                <p>Verifique se B é a inversa de A:</p>
-                <div class="fragment">
-                    \[
-                    B = \begin{bmatrix}
-                    3 & 5 \\
-                    1 & 2
-                    \end{bmatrix},
-                    A = \begin{bmatrix}
-                    2 & -5 \\
-                    -1 & 3
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Dica: Multiplique AB e BA. Se ambos resultarem na matriz identidade, B é a inversa de A!</p>
-            </section>
+					<section>
+						<h3>Exemplo: Verificando uma Inversa</h3>
+						<p>Verifique se B é a inversa de A:</p>
+						<div class="fragment">
+							\[
+							B = \begin{bmatrix}
+							3 & 5 \\
+							1 & 2
+							\end{bmatrix},
+							A = \begin{bmatrix}
+							2 & -5 \\
+							-1 & 3
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Dica: Multiplique AB e BA. Se ambos resultarem na matriz identidade, B é a inversa de A!</p>
+					</section>
 
-            <section>
-                <h3>Teoremas Importantes sobre Inversas</h3>
-                <ul>
-                    <li class="fragment">Se B e C são inversas de A, então B = C (A inversa é única!)</li>
-                    <li class="fragment">Se A e B são inversíveis, então AB é inversível e (AB)<sup>-1</sup> = B<sup>-1</sup>A<sup>-1</sup></li>
-                </ul>
-                <p class="fragment">Desafio: Tente provar esses teoremas!</p>
-            </section>
+					<section>
+						<h3>Teoremas Importantes sobre Inversas</h3>
+						<ul>
+							<li class="fragment">Se B e C são inversas de A, então B = C (A inversa é única!)</li>
+							<li class="fragment">Se A e B são inversíveis, então AB é inversível e (AB)<sup>-1</sup> = B<sup>-1</sup>A<sup>-1</sup></li>
+						</ul>
+						<p class="fragment">Desafio: Tente provar esses teoremas!</p>
+					</section>
 
-            <section>
-                <h2>Método para Encontrar a Inversa</h2>
-                <p>Transformando o impossível em possível!</p>
-            </section>
+					<section>
+						<h2>Método para Encontrar a Inversa</h2>
+						<p>Transformando o impossível em possível!</p>
+					</section>
 
-            <section>
-                <h3>Exemplo: Encontrando uma Inversa</h3>
-                <p>Vamos encontrar a inversa desta matriz:</p>
-                <div class="fragment">
-                    \[
-                    A = \begin{bmatrix}
-                    1 & 2 & 3 \\
-                    2 & 5 & 3 \\
-                    1 & 0 & 8 
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Dica: Use o método da matriz aumentada [A|I] e aplique operações elementares!</p>
-            </section>
 
-            <section>
-                <h2>Operações Elementares</h2>
-                <p>As ferramentas mágicas da álgebra linear!</p>
-            </section>
+					<section>
+						<h2>Operações Elementares</h2>
+						<p>As ferramentas mágicas da álgebra linear!</p>
+					</section>
 
-            <section>
-                <h3>Exemplo de Operação Elementar</h3>
-                <p>Dadas as matrizes E e A:</p>
-                <div class="fragment">
-                    \[
-                    E = \begin{bmatrix}
-                    1 & 0 & 0 \\
-                    0 & 1 & 0 \\
-                    3 & 0 & 1 
-                    \end{bmatrix},
-                    A = \begin{bmatrix}
-                    1 & 0 & 2 & 3 \\
-                    2 & -1 & 3 & 6 \\
-                    1 & 4 & 4 & 0 
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Encontre EA. O que esta operação representa?</p>
-            </section>
+					<section>
+						<h3>Exemplo de Operação Elementar</h3>
+						<p>Dadas as matrizes E e A:</p>
+						<div class="fragment">
+							\[
+							E = \begin{bmatrix}
+							1 & 0 & 0 \\
+							0 & 1 & 0 \\
+							3 & 0 & 1 
+							\end{bmatrix},
+							A = \begin{bmatrix}
+							1 & 0 & 2 & 3 \\
+							2 & -1 & 3 & 6 \\
+							1 & 4 & 4 & 0 
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Encontre EA. O que esta operação representa?</p>
+					</section>
 
-            <section>
-                <h2>Teorema Fundamental da Inversibilidade</h2>
-                <p>O grande unificador da álgebra linear!</p>
-            </section>
+					<section>
+						<h2>Matrizes elementares e um método para encontrar \(A^{-1}\)</h2>
+						<li>Cada operação elementar pode ser representada por uma matriz elementar</li>
+						<ul>
+							<li>Tipos de matrizes elementares:
+								<ul>
+									<li>Troca de linhas</li>
+									<li>Multiplicação de uma linha por um escalar não-nulo</li>
+									<li>Adição de um múltiplo de uma linha a outra</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
 
-            <section>
-                <h3>Afirmações Equivalentes</h3>
-                <p>Para uma matriz A n×n, as seguintes afirmações são equivalentes:</p>
-                <ul>
-                    <li class="fragment">A é inversível</li>
-                    <li class="fragment">Ax = 0 só tem a solução trivial</li>
-                    <li class="fragment">A forma reduzida de Echelon de A é I<sub>n</sub></li>
-                    <li class="fragment">A pode ser representada como um produto de matrizes elementares</li>
-                </ul>
-                <p class="fragment">Desafio: Tente entender por que essas afirmações são equivalentes!</p>
-            </section>
+					<section>
+						<h2>Operações Elementares e Matrizes Inversas</h2>
+						<ul>
+							<li>A inversa de A pode ser expressa como o produto de matrizes elementares:
+								<p>\(A^{-1} = E_n * E_{n-1} * ... * E_2 * E_1\)</p>
+								<p>Onde \(E_i\) são as matrizes elementares correspondentes às operações realizadas</p>
+							</li>
+							<li>Isso fornece um método alternativo para calcular \(A^{-1}\)</li>
+						</ul>
+					</section>
 
-            <section>
-                <h2>Matrizes Especiais</h2>
-                <p>As celebridades do mundo matricial!</p>
-            </section>
+					<section>
+						<h2>Teorema Fundamental da Inversibilidade</h2>
+						<p>O grande unificador da álgebra linear!</p>
+					</section>
 
-            <section>
-                <h3>Tipos de Matrizes Especiais</h3>
-                <ul>
-                    <li class="fragment">Matrizes Diagonais: Só têm elementos não-nulos na diagonal principal</li>
-                    <li class="fragment">Matrizes Triangulares: Todos os elementos acima ou abaixo da diagonal principal são zero</li>
-                    <li class="fragment">Matrizes Simétricas: A<sup>T</sup> = A, onde A<sup>T</sup> é a transposta de A</li>
-                </ul>
-                <p class="fragment">Cada uma dessas matrizes tem propriedades únicas e fascinantes!</p>
-            </section>
-                        <section>
-                <h2>Resumo: Propriedades de Matrizes e Inversa</h2>
-                <p>O guia rápido para dominar o universo matricial!</p>
-            </section>
+					<section>
+						<h3>Afirmações Equivalentes</h3>
+						<p>Para uma matriz A n×n, as seguintes afirmações são equivalentes:</p>
+						<ul>
+							<li class="fragment">A é inversível</li>
+							<li class="fragment">Ax = 0 só tem a solução trivial</li>
+							<li class="fragment">A forma reduzida de Echelon de A é I<sub>n</sub></li>
+							<li class="fragment">A pode ser representada como um produto de matrizes elementares</li>
+						</ul>
+						<p class="fragment">Desafio: Tente entender por que essas afirmações são equivalentes!</p>
+					</section>
+					<section>
+						<h3>Exemplo: Encontrando uma Inversa</h3>
+						<p>Vamos encontrar a inversa desta matriz:</p>
+						<div class="fragment">
+							\[
+							A = \begin{bmatrix}
+							1 & 2 & 3 \\
+							2 & 5 & 3 \\
+							1 & 0 & 8 
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Dica: Use o método da matriz aumentada [A|I] e aplique operações elementares!</p>
+					</section>
+					<section>
+						<h3>Prove que não tem inversa.</h3>
+						<div class="fragment">
+							\[
+							A = \begin{bmatrix}
+							1 & 4 & 0 \\
+							2 & 5 & 0 \\
+							3 & 6 & 0 
+							\end{bmatrix}
+							\]
+						</div>
+					</section>
+					<section>
+						<p>Vamos encontrar a inversa desta matriz:</p>
+						<div class="fragment">
+							\[
+							A = \begin{bmatrix}
+							1 & 6 & 4 \\
+							2 & 4 & -1 \\
+							-1 & 2 & 5 
+							\end{bmatrix}
+							\]
+						</div>
+					</section>
 
-            <section>
-                <h3>Propriedades Fundamentais</h3>
-                <div style="font-size: 0.8em;">
-                    <ul>
-                        <li class="fragment">Adição: A + B = B + A (Comutativa)</li>
-                        <li class="fragment">Multiplicação: (AB)C = A(BC) (Associativa)</li>
-                        <li class="fragment">Distributiva: A(B + C) = AB + AC</li>
-                        <li class="fragment">Matriz Zero: A + 0 = A, A · 0 = 0</li>
-                        <li class="fragment">Matriz Identidade: AI = IA = A</li>
-                    </ul>
-                </div>
-            </section>
 
-            <section>
-                <h3>Matriz Inversa</h3>
-                <div style="font-size: 0.8em;">
-                    <ul>
-                        <li class="fragment">Definição: AA<sup>-1</sup> = A<sup>-1</sup>A = I</li>
-                        <li class="fragment">Unicidade: Se existe, a inversa é única</li>
-                        <li class="fragment">(AB)<sup>-1</sup> = B<sup>-1</sup>A<sup>-1</sup></li>
-                        <li class="fragment">Método: Use [A|I] e operações elementares</li>
-                    </ul>
-                </div>
-            </section>
+				</section>
 
-            <section>
-                <h3>Teorema da Inversibilidade</h3>
-                <div style="font-size: 0.8em;">
-                    <p>Para uma matriz A n×n, são equivalentes:</p>
-                    <ul>
-                        <li class="fragment">A é inversível</li>
-                        <li class="fragment">Ax = 0 só tem solução trivial</li>
-                        <li class="fragment">Forma reduzida de Echelon de A é I<sub>n</sub></li>
-                        <li class="fragment">A = produto de matrizes elementares</li>
-                    </ul>
-                </div>
-            </section>
+				<section>
+					<section>
+						<h2>Matrizes Especiais</h2>
+						<p>As celebridades do mundo matricial!</p>
+					</section>
 
-            <section>
-                <h3>Dicas para Lembrar</h3>
-                <div style="font-size: 0.8em;">
-                    <ul>
-                        <li class="fragment">Lei do cancelamento não vale para matrizes</li>
-                        <li class="fragment">Matriz identidade é o "1" das matrizes</li>
-                        <li class="fragment">Nem toda matriz tem inversa (singulares)</li>
-                        <li class="fragment">Operações elementares são suas melhores amigas</li>
-                    </ul>
-                </div>
-            </section>
+					<section>
+						<h3>Tipos de Matrizes Especiais</h3>
+						<ul>
+							<li class="fragment">Matrizes Diagonais: Só têm elementos não-nulos na diagonal principal</li>
+							<li class="fragment">Matrizes Triangulares: Todos os elementos acima ou abaixo da diagonal principal são zero</li>
+							<li class="fragment">Matrizes Simétricas: A<sup>T</sup> = A, onde A<sup>T</sup> é a transposta de A</li>
+						</ul>
+						<p class="fragment">Cada uma dessas matrizes tem propriedades únicas e fascinantes!</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Resumo: Propriedades de Matrizes e Inversa</h2>
+						<p>O guia rápido para dominar o universo matricial!</p>
+					</section>
 
-        </div>
-    </div>
+					<section>
+						<h3>Propriedades Fundamentais</h3>
+						<div style="font-size: 0.8em;">
+							<ul>
+								<li class="fragment">Adição: A + B = B + A (Comutativa)</li>
+								<li class="fragment">Multiplicação: (AB)C = A(BC) (Associativa)</li>
+								<li class="fragment">Distributiva: A(B + C) = AB + AC</li>
+								<li class="fragment">Matriz Zero: A + 0 = A, A · 0 = 0</li>
+								<li class="fragment">Matriz Identidade: AI = IA = A</li>
+							</ul>
+						</div>
+					</section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
-    <script>
-        Reveal.initialize({
-            plugins: [RevealMath.KaTeX],
-            transition: 'slide',
-            slideNumber: true,
-            overview: true
-        });
-    </script>
-</body>
+					<section>
+						<h3>Matriz Inversa</h3>
+						<div style="font-size: 0.8em;">
+							<ul>
+								<li class="fragment">Definição: AA<sup>-1</sup> = A<sup>-1</sup>A = I</li>
+								<li class="fragment">Unicidade: Se existe, a inversa é única</li>
+								<li class="fragment">(AB)<sup>-1</sup> = B<sup>-1</sup>A<sup>-1</sup></li>
+								<li class="fragment">Método: Use [A|I] e operações elementares</li>
+							</ul>
+						</div>
+					</section>
+
+					<section>
+						<h3>Teorema da Inversibilidade</h3>
+						<div style="font-size: 0.8em;">
+							<p>Para uma matriz A n×n, são equivalentes:</p>
+							<ul>
+								<li class="fragment">A é inversível</li>
+								<li class="fragment">Ax = 0 só tem solução trivial</li>
+								<li class="fragment">Forma reduzida de Echelon de A é I<sub>n</sub></li>
+								<li class="fragment">A = produto de matrizes elementares</li>
+							</ul>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<h3>Dicas para Lembrar</h3>
+					<div style="font-size: 0.8em;">
+						<ul>
+							<li class="fragment">Lei do cancelamento não vale para matrizes</li>
+							<li class="fragment">Matriz identidade é o "1" das matrizes</li>
+							<li class="fragment">Nem toda matriz tem inversa (singulares)</li>
+							<li class="fragment">Operações elementares são suas melhores amigas</li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+		<script>
+			Reveal.initialize({
+				plugins: [RevealMath.KaTeX],
+				transition: 'slide',
+				slideNumber: true,
+				overview: true
+			});
+		</script>
+	</body>
 </html>
