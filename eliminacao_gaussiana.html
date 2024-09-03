@@ -1,639 +1,660 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introdução à Álgebra Linear</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
-</head>
-<body>
-    <div class="reveal">
-        <div class="slides">
+	<head>
+		<meta charset="UTF-8">
+		<title>Introdução aos sistemas de equações lineares</title>
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+.reveal h1, .reveal h2 { color: #58a6ff; }
+.reveal h3 { color: #79c0ff; }
+.reveal pre { background-color: #0d1117; }
+.reveal code { color: #ff7b72; }
+.reveal ul { list-style-type: none; }
+.reveal ul li::before { content: "» "; color: #58a6ff; }
+.reveal .highlight { color: #ffa657; font-weight: bold; }
+.two-columns { display: flex; justify-content: space-between; }
+.two-columns > * { flex: 1; }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
 
-            <section>
-                <h3>1.1 Introdução aos sistemas de equações lineares</h3>
-                <p>Onde a matemática encontra o mundo real de maneiras surpreendentes</p>
-            </section>
+				<section>
+					<h3>Introdução aos sistemas de equações lineares</h3>
+					<p>Onde a matemática encontra o mundo real de maneiras surpreendentes</p>
+				</section>
 
-            <section>
-                <h3>O que é um sistema de equações lineares?</h3>
-                <p>Imagine que você está resolvendo um quebra-cabeça matemático, onde cada peça se encaixa perfeitamente com as outras.</p>
-                <div class="fragment">
-                    <p>Bem-vindo ao intrigante mundo dos sistemas de equações lineares!</p>
-                </div>
-            </section>
+				<section>
+					<section>
+						<h3>O que é um sistema de equações lineares?</h3>
+						<p>Imagine que você está resolvendo um quebra-cabeça matemático, onde cada peça se encaixa perfeitamente com as outras.</p>
+						<div class="fragment">
+							<p>Bem-vindo ao intrigante mundo dos sistemas de equações lineares!</p>
+						</div>
+					</section>
 
-            <section data-transition="slide">
-                <h3>Exemplo: O Desafio do Estudante Energizado</h3>
-                <div class="fragment">
-                    <p>Segunda-feira: 2 cafés + 1 energético + 1 chocolate = R$ 15</p>
-                </div>
-                <div class="fragment">
-                    <p>Terça-feira: 1 café + 2 energéticos + 1 chocolate = R$ 14</p>
-                </div>
-                <div class="fragment">
-                    <p>Quarta-feira: 3 cafés + 1 energético + 2 chocolates = R$ 20</p>
-                </div>
-            </section>
+					<section data-transition="slide">
+						<h3>Exemplo: O Desafio do Estudante Energizado</h3>
+						<div class="fragment">
+							<p>Segunda-feira: 2 cafés + 1 energético + 1 chocolate = R$ 15</p>
+						</div>
+						<div class="fragment">
+							<p>Terça-feira: 1 café + 2 energéticos + 1 chocolate = R$ 14</p>
+						</div>
+						<div class="fragment">
+							<p>Quarta-feira: 3 cafés + 1 energético + 2 chocolates = R$ 20</p>
+						</div>
+					</section>
 
-            <section data-transition="slide">
-                <h3>Traduzindo para a linguagem matemática</h3>
-                <p>Transformando situações cotidianas em elegantes expressões matemáticas</p>
-                <div class="fragment">
-                    \[
-                    \begin{cases}
-                    2x + y + z = 15 \\
-                    x + 2y + z = 14 \\
-                    3x + y + 2z = 20
-                    \end{cases}
-                    \]
-                </div>
-                <p class="fragment">Onde x = café, y = energético, z = chocolate</p>
-            </section>
+					<section data-transition="slide">
+						<h3>Traduzindo para a linguagem matemática</h3>
+						<p>Transformando situações cotidianas em elegantes expressões matemáticas</p>
+						<div class="fragment">
+							\[
+							\begin{cases}
+							2x + y + z = 15 \\
+							x + 2y + z = 14 \\
+							3x + y + 2z = 20
+							\end{cases}
+							\]
+						</div>
+						<p class="fragment">Onde x = café, y = energético, z = chocolate</p>
+					</section>
 
-            <section>
-                <h3>Componentes de um Sistema Linear</h3>
-                <ul>
-                    <li class="fragment"><strong>Variáveis:</strong> As incógnitas que vamos descobrir (x, y, z)</li>
-                    <li class="fragment"><strong>Coeficientes:</strong> Os números que acompanham as variáveis</li>
-                    <li class="fragment"><strong>Termos independentes:</strong> Os valores do lado direito da igualdade</li>
-                </ul>
-                <p class="fragment">Juntos, esses elementos formam uma sinfonia matemática que chamamos de sistema linear!</p>
-            </section>
+					<section>
+						<h3>Componentes de um Sistema Linear</h3>
+						<ul>
+							<li class="fragment"><strong>Variáveis:</strong> As incógnitas que vamos descobrir (x, y, z)</li>
+							<li class="fragment"><strong>Coeficientes:</strong> Os números que acompanham as variáveis</li>
+							<li class="fragment"><strong>Termos independentes:</strong> Os valores do lado direito da igualdade</li>
+						</ul>
+						<p class="fragment">Juntos, esses elementos formam uma sinfonia matemática que chamamos de sistema linear!</p>
+					</section>
 
-            <section>
-                <h3>Por que isso é emocionante?</h3>
-                <p class="fragment">Porque os sistemas lineares nos permitem modelar e resolver problemas complexos do mundo real</p>
-                <ul>
-                    <li class="fragment">Engenharia: Otimização de estruturas, análise de circuitos</li>
-                    <li class="fragment">Economia: Previsão de tendências de mercado</li>
-                    <li class="fragment">Física: Compreensão de fenômenos quânticos</li>
-                    <li class="fragment">Vida cotidiana: Planejamento financeiro pessoal</li>
-                </ul>
-            </section>
-  <section>
-                <h2>Matriz Estendida</h2>
-                <p>Uma ferramenta poderosa para simplificar nossos sistemas lineares!</p>
-            </section>
+					<section>
+						<h3>Por que isso é emocionante?</h3>
+						<p class="fragment">Porque os sistemas lineares nos permitem modelar e resolver problemas complexos do mundo real</p>
+						<ul>
+							<li class="fragment">Engenharia: Otimização de estruturas, análise de circuitos</li>
+							<li class="fragment">Economia: Previsão de tendências de mercado</li>
+							<li class="fragment">Física: Compreensão de fenômenos quânticos</li>
+							<li class="fragment">Vida cotidiana: Planejamento financeiro pessoal</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Matriz Estendida</h2>
+						<p>Uma ferramenta poderosa para simplificar nossos sistemas lineares!</p>
+					</section>
 
-            <section>
-                <h3>Sistema Linear: O Ponto de Partida</h3>
-                <p>Vamos começar com um sistema linear geral:</p>
-                <div class="fragment">
-                    \[
-                    \begin{cases}
-                    a_{1,1} x_1 + a_{1,2} x_2 + ... + a_{1,n} x_n = b_1 \\
-                    a_{2,1} x_1 + a_{2,2} x_2 + ... + a_{2,n} x_n = b_2 \\
-                    \vdots \\
-                    a_{d,1} x_1 + a_{d,2} x_2 + ... + a_{d,n} x_n = b_d
-                    \end{cases}
-                    \]
-                </div>
-                <p class="fragment">Parece complicado? Não se preocupe, vamos simplificar!</p>
-            </section>
+					<section>
+						<h3>Sistema Linear: O Ponto de Partida</h3>
+						<p>Vamos começar com um sistema linear geral:</p>
+						<div class="fragment">
+							\[
+							\begin{cases}
+							a_{1,1} x_1 + a_{1,2} x_2 + ... + a_{1,n} x_n = b_1 \\
+							a_{2,1} x_1 + a_{2,2} x_2 + ... + a_{2,n} x_n = b_2 \\
+							\vdots \\
+							a_{d,1} x_1 + a_{d,2} x_2 + ... + a_{d,n} x_n = b_d
+							\end{cases}
+							\]
+						</div>
+						<p class="fragment">Parece complicado? Não se preocupe, vamos simplificar!</p>
+					</section>
 
-            <section>
-                <h3>Decodificando o Sistema</h3>
-                <ul>
-                    <li class="fragment"><strong>a<sub>i,j</sub>:</strong> Coeficientes das variáveis</li>
-                    <li class="fragment"><strong>x<sub>j</sub>:</strong> Variáveis que queremos encontrar</li>
-                    <li class="fragment"><strong>b<sub>i</sub>:</strong> Termos independentes (resultados de cada equação)</li>
-                    <li class="fragment"><strong>d:</strong> Número de equações</li>
-                    <li class="fragment"><strong>n:</strong> Número de variáveis</li>
-                </ul>
-            </section>
+					<section>
+						<h3>Decodificando o Sistema</h3>
+						<ul>
+							<li class="fragment"><strong>a<sub>i,j</sub>:</strong> Coeficientes das variáveis</li>
+							<li class="fragment"><strong>x<sub>j</sub>:</strong> Variáveis que queremos encontrar</li>
+							<li class="fragment"><strong>b<sub>i</sub>:</strong> Termos independentes (resultados de cada equação)</li>
+							<li class="fragment"><strong>d:</strong> Número de equações</li>
+							<li class="fragment"><strong>n:</strong> Número de variáveis</li>
+						</ul>
+					</section>
 
-            <section>
-                <h3>Transformando em Matriz</h3>
-                <p>Agora, vamos organizar esses elementos em uma estrutura mais compacta:</p>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
-                    a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
-                    \vdots & \vdots & \ddots & \vdots \\
-                    a_{d,1} & a_{d,2} & \cdots & a_{d,n}
-                    \end{bmatrix}
-                    \begin{bmatrix}
-                    x_1 \\ x_2 \\ \vdots \\ x_n
-                    \end{bmatrix}
-                    =
-                    \begin{bmatrix}
-                    b_1 \\ b_2 \\ \vdots \\ b_d
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Muito mais organizado, não é?</p>
-            </section>
+					<section>
+						<h3>Transformando em Matriz</h3>
+						<p>Agora, vamos organizar esses elementos em uma estrutura mais compacta:</p>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+							a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+							\vdots & \vdots & \ddots & \vdots \\
+							a_{d,1} & a_{d,2} & \cdots & a_{d,n}
+							\end{bmatrix}
+							\begin{bmatrix}
+							x_1 \\ x_2 \\ \vdots \\ x_n
+							\end{bmatrix}
+							=
+							\begin{bmatrix}
+							b_1 \\ b_2 \\ \vdots \\ b_d
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Muito mais organizado, não é?</p>
+					</section>
 
-            <section>
-                <h3>Apresentando: A Matriz Estendida!</h3>
-                <p>E agora, o grande final: juntamos tudo em uma única matriz!</p>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    a_{1,1} & a_{1,2} & \cdots & a_{1,n} & b_1 \\
-                    a_{2,1} & a_{2,2} & \cdots & a_{2,n} & b_2 \\
-                    \vdots & \vdots & \ddots & \vdots & \vdots \\
-                    a_{d,1} & a_{d,2} & \cdots & a_{d,n} & b_d
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Voilà! Esta é nossa matriz estendida!</p>
-            </section>
+					<section>
+						<h3>Apresentando: A Matriz Estendida!</h3>
+						<p>E agora, o grande final: juntamos tudo em uma única matriz!</p>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							a_{1,1} & a_{1,2} & \cdots & a_{1,n} & b_1 \\
+							a_{2,1} & a_{2,2} & \cdots & a_{2,n} & b_2 \\
+							\vdots & \vdots & \ddots & \vdots & \vdots \\
+							a_{d,1} & a_{d,2} & \cdots & a_{d,n} & b_d
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Voilà! Esta é nossa matriz estendida!</p>
+					</section>
 
-            <section>
-                <h3>Por que a Matriz Estendida é Incrível?</h3>
-                <ul>
-                    <li class="fragment">Simplifica a visualização do sistema</li>
-                    <li class="fragment">Facilita a aplicação de operações elementares</li>
-                    <li class="fragment">Reduz a quantidade de símbolos para manipular</li>
-                    <li class="fragment">Torna o processo de resolução mais intuitivo</li>
-                </ul>
-                <p class="fragment">Com a matriz estendida, resolver sistemas lineares se torna uma tarefa muito mais agradável!</p>
-            </section>
+					<section>
+						<h3>Por que a Matriz Estendida é Incrível?</h3>
+						<ul>
+							<li class="fragment">Simplifica a visualização do sistema</li>
+							<li class="fragment">Facilita a aplicação de operações elementares</li>
+							<li class="fragment">Reduz a quantidade de símbolos para manipular</li>
+							<li class="fragment">Torna o processo de resolução mais intuitivo</li>
+						</ul>
+						<p class="fragment">Com a matriz estendida, resolver sistemas lineares se torna uma tarefa muito mais agradável!</p>
+					</section>
+				</section>
 
-            <section>
-                <h3>Exemplo Prático</h3>
-                <p>Lembra do nosso Desafio do Estudante Energizado?</p>
-                <div class="fragment">
-                    \[
-                    \begin{cases}
-                    2x + y + z = 15 \\
-                    x + 2y + z = 14 \\
-                    3x + y + 2z = 20
-                    \end{cases}
-                    \]
-                </div>
-                <p class="fragment">Agora podemos representá-lo como uma matriz estendida:</p>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    2 & 1 & 1 & 15 \\
-                    1 & 2 & 1 & 14 \\
-                    3 & 1 & 2 & 20
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Muito mais compacto e fácil de manipular!</p>
-            </section>
-            <section>
-                <h3>1.2 Eliminação Gaussiana</h3>
-                <p>Uma técnica poderosa que simplifica problemas complexos</p>
-            </section>
+				<section>
+					<section>
+						<h3>Eliminação Gaussiana - Exemplo Prático</h3>
+						<p>Lembra do nosso Desafio do Estudante Energizado?</p>
+						<div class="fragment">
+							\[
+							\begin{cases}
+							2x + y + z = 15 \\
+							x + 2y + z = 14 \\
+							3x + y + 2z = 20
+							\end{cases}
+							\]
+						</div>
+					</section>
+					<section>
+						<p class="fragment">Agora podemos representá-lo como uma matriz estendida:</p>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							2 & 1 & 1 & 15 \\
+							1 & 2 & 1 & 14 \\
+							3 & 1 & 2 & 20
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Muito mais compacto e fácil de manipular!</p>
+					</section>
+					<section>
+						<h3>Eliminação Gaussiana</h3>
+						<p>Uma técnica poderosa que simplifica problemas complexos</p>
+					</section>
 
-            <section>
-                <h3>O que é Eliminação Gaussiana?</h3>
-                <p>É um método elegante e eficiente para resolver sistemas de equações lineares</p>
-                <div class="fragment">
-                    <p>Imagine organizar suas ideias de forma sistemática até chegar à solução</p>
-                    <p>É exatamente isso que faremos com nossas equações!</p>
-                </div>
-            </section>
+					<section>
+						<h3>O que é Eliminação Gaussiana?</h3>
+						<p>É um método elegante e eficiente para resolver sistemas de equações lineares</p>
+						<div class="fragment">
+							<p>Imagine organizar suas ideias de forma sistemática até chegar à solução</p>
+							<p>É exatamente isso que faremos com nossas equações!</p>
+						</div>
+					</section>
 
-            <section>
-                <h3>Passos da Eliminação Gaussiana</h3>
-                <ol>
-                    <li class="fragment">Representar o sistema como uma matriz aumentada</li>
-                    <li class="fragment">Transformar a matriz em forma escalonada reduzida</li>
-                    <li class="fragment">Interpretar a solução diretamente da matriz resultante</li>
-                </ol>
-                <p class="fragment">Com prática, você dominará essa técnica e a aplicará com confiança!</p>
-            </section>
+					<section>
+						<h3>Passos da Eliminação Gaussiana</h3>
+						<ol>
+							<li class="fragment">Representar o sistema como uma matriz aumentada</li>
+							<li class="fragment">Transformar a matriz em forma escalonada reduzida</li>
+							<li class="fragment">Interpretar a solução diretamente da matriz resultante</li>
+						</ol>
+						<p class="fragment">Com prática, você dominará essa técnica e a aplicará com confiança!</p>
+					</section>
 
-	               <section>
-                <h3>Operações Elementares na Eliminação de Gauss</h3>
-                <p>As ferramentas que fazem a magia acontecer!</p>
-                <ul>
-                    <li class="fragment"><strong>Troca de linhas:</strong> Trocar a posição de duas linhas</li>
-                    <li class="fragment"><strong>Multiplicação de linha:</strong> Multiplicar uma linha por um escalar não-nulo</li>
-                    <li class="fragment"><strong>Adição de linhas:</strong> Somar uma linha multiplicada por um escalar a outra linha</li>
-                </ul>
-                <p class="fragment">Com estas operações, podemos transformar qualquer matriz em sua forma mais simples!</p>
-            </section>
+					<section>
+						<h3>Operações Elementares na Eliminação de Gauss</h3>
+						<p>As ferramentas que fazem a magia acontecer!</p>
+						<ul>
+							<li class="fragment"><strong>Troca de linhas:</strong> Trocar a posição de duas linhas</li>
+							<li class="fragment"><strong>Multiplicação de linha:</strong> Multiplicar uma linha por um escalar não-nulo</li>
+							<li class="fragment"><strong>Adição de linhas:</strong> Somar uma linha multiplicada por um escalar a outra linha</li>
+						</ul>
+						<p class="fragment">Com estas operações, podemos transformar qualquer matriz em sua forma mais simples!</p>
+					</section>
 
-            <section>
-                <h3>Estratégia para Simplificar uma Matriz</h3>
-                <ol>
-                    <li class="fragment">Comece pela coluna mais à esquerda</li>
-                    <li class="fragment">Escolha um pivô não-nulo (geralmente o primeiro elemento não-nulo da coluna)</li>
-                    <li class="fragment">Use a adição de linhas para zerar todos os elementos abaixo do pivô</li>
-                    <li class="fragment">Repita o processo para a próxima coluna, ignorando as linhas já utilizadas como pivô</li>
-                    <li class="fragment">Continue até que a matriz esteja na forma escalonada</li>
-                </ol>
-                <p class="fragment">Com prática, você se tornará um mestre nesta técnica!</p>
-            </section>
+					<section>
+						<h3>Estratégia para Simplificar uma Matriz</h3>
+						<ol>
+							<li class="fragment">Comece pela coluna mais à esquerda</li>
+							<li class="fragment">Escolha um pivô não-nulo (geralmente o primeiro elemento não-nulo da coluna)</li>
+							<li class="fragment">Use a adição de linhas para zerar todos os elementos abaixo do pivô</li>
+							<li class="fragment">Repita o processo para a próxima coluna, ignorando as linhas já utilizadas como pivô</li>
+							<li class="fragment">Continue até que a matriz esteja na forma escalonada</li>
+						</ol>
+						<p class="fragment">Com prática, você se tornará um mestre nesta técnica!</p>
+					</section>
 
-            <section>
-                <h3>Exemplo: Resolvendo o Desafio do Estudante Energizado</h3>
-                <p>Vamos aplicar a Eliminação Gaussiana ao nosso problema, passo a passo</p>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    2 & 1 & 1 & 15 \\
-                    1 & 2 & 1 & 14 \\
-                    3 & 1 & 2 & 20
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Esta é nossa matriz aumentada inicial - vamos transformá-la!</p>
-            </section>
+					<section>
+						<h3>Exemplo: Resolvendo o Desafio do Estudante Energizado</h3>
+						<p>Vamos aplicar a Eliminação Gaussiana ao nosso problema, passo a passo</p>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							2 & 1 & 1 & 15 \\
+							1 & 2 & 1 & 14 \\
+							3 & 1 & 2 & 20
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Esta é nossa matriz aumentada inicial - vamos transformá-la!</p>
+					</section>
 
-            <section>
-                <h3>Passo 1: trocando as linhas</h3>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    1 & 2 & 1 & 14 \\
-                    2 & 1 & 1 & 15 \\
-                    3 & 1 & 2 & 20
-                    \end{bmatrix}
-                    \]
-                </div>
-		<p class="fragment">Operação: L2 ⇌ L1 e </p>
-                <p class="fragment">Trocar a linha 1 com a linha 2.</p>
-            </section>
+					<section>
+						<h3>Passo 1: trocando as linhas</h3>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							1 & 2 & 1 & 14 \\
+							2 & 1 & 1 & 15 \\
+							3 & 1 & 2 & 20
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Operação: L2 ⇌ L1 e </p>
+						<p class="fragment">Trocar a linha 1 com a linha 2.</p>
+					</section>
 
-            <section>
-                <h3>Passo 2: Simplificando a segunda linha</h3>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    1 & 2 & 1 & 14 \\
-                    0 & -3 & -1 & -13 \\
-                    3 & 1 & 2 & 20
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Operação: L2 → L2 - 2 L1</p>
-                <p class="fragment">Subtrair da segunda linha 2 vezes a primeira linha.</p>
-            </section>
+					<section>
+						<h3>Passo 2: Simplificando a segunda linha</h3>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							1 & 2 & 1 & 14 \\
+							0 & -3 & -1 & -13 \\
+							3 & 1 & 2 & 20
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Operação: L2 → L2 - 2 L1</p>
+						<p class="fragment">Subtrair da segunda linha 2 vezes a primeira linha.</p>
+					</section>
 
-            <section>
-                <h3>Passo 3: Simplificando a terceira linha</h3>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    1 & 2 & 1 & 14 \\
-                    0 & -3 & -1 & -13 \\
-                    0 & -5 & 5 & 59 
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Operação: L3 → L3 - 3 L1</p>
-                <p class="fragment">Subtrair da terceira linha 3 vezes a primeira linha.</p>
-            </section>
+					<section>
+						<h3>Passo 3: Simplificando a terceira linha</h3>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							1 & 2 & 1 & 14 \\
+							0 & -3 & -1 & -13 \\
+							0 & -5 & 5 & 59 
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Operação: L3 → L3 - 3 L1</p>
+						<p class="fragment">Subtrair da terceira linha 3 vezes a primeira linha.</p>
+					</section>
 
-	    <section>
-                <h3>Passo 4: Simplificando mais a terceira linha</h3>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    1 & 2 & 1 & 14 \\
-                    0 & -3 & -1 & -13 \\
-                    0 & -20 & 0 & -6 
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Operação: L3 → L3 + 5 L2</p>
-                <p class="fragment">Somar a terceira linha 3 vezes a primeira linha.</p>
-            </section>
-
-
-            <section>
-                <h3>Passo 5: mais simplificações...</h3>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    1 & 2 & 1 & 14 \\
-                    0 & 3 & 1 & 13 \\
-                    0 & 1 & 0 & 3/10 
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Operação: L2 → -L2 </p>
-                <p class="fragment">Operação: L3 → L3 / -20 </p>
-            </section>
-
-            <section>
-                <h3>Passo 6: mais simplificações ainda... calma que uma hora acaba!</h3>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    1 & 2 & 1 & 14 \\
-                    0 & 0 & 1 & 121/10 \\
-                    0 & 1 & 0 & 3/10 
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Operação: L2 → L2 -3L3 </p>
-            </section>
-
-            <section data-transition="slide">
-                <h3>Voltando para o sistema!</h3>
-                <p>Lembra de quando transformamos o sistema em matriz? Agora faremos o inverso!</p>
-                <div class="fragment">
-                    \[
-                    \begin{cases}
-                    1x + 2y + z = 14 \\
-                    z = 121/10 \\
-                    y = 3/10 
-                    \end{cases}
-                    \]
-                </div>
-                <p class="fragment">Onde x = café, y = energético, z = chocolate</p>
-                <p class="fragment">Agora podemos substituir os valores de trás para frente para encontrar todas as variáveis!</p>
-            </section>
+					<section>
+						<h3>Passo 4: Simplificando mais a terceira linha</h3>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							1 & 2 & 1 & 14 \\
+							0 & -3 & -1 & -13 \\
+							0 & -20 & 0 & -6 
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Operação: L3 → L3 + 5 L2</p>
+						<p class="fragment">Somar a terceira linha 3 vezes a primeira linha.</p>
+					</section>
 
 
-            <section>
-                <h3>Passo 6: Resolvendo o sistema</h3>
-                <p class="fragment">x = 14 - 2y -z = 14 - 6/10 - 121/10 = 13/10 = 1,3 (preço do café)</p>
-                <p class="fragment">y = 0,3 (preço do energético)</p>
-                <p class="fragment">z = 12,1 (preço do chocolate)</p>
-            </section>
+					<section>
+						<h3>Passo 5: mais simplificações...</h3>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							1 & 2 & 1 & 14 \\
+							0 & 3 & 1 & 13 \\
+							0 & 1 & 0 & 3/10 
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Operação: L2 → -L2 </p>
+						<p class="fragment">Operação: L3 → L3 / -20 </p>
+					</section>
+
+					<section>
+						<h3>Passo 6: mais simplificações ainda... calma que uma hora acaba!</h3>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							1 & 2 & 1 & 14 \\
+							0 & 0 & 1 & 121/10 \\
+							0 & 1 & 0 & 3/10 
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Operação: L2 → L2 -3L3 </p>
+					</section>
+
+					<section data-transition="slide">
+						<h3>Voltando para o sistema!</h3>
+						<p>Lembra de quando transformamos o sistema em matriz? Agora faremos o inverso!</p>
+						<div class="fragment">
+							\[
+							\begin{cases}
+							1x + 2y + z = 14 \\
+							z = 121/10 \\
+							y = 3/10 
+							\end{cases}
+							\]
+						</div>
+						<p class="fragment">Onde x = café, y = energético, z = chocolate</p>
+						<p class="fragment">Agora podemos substituir os valores de trás para frente para encontrar todas as variáveis!</p>
+					</section>
 
 
-            <section>
-                <h3>Conclusão</h3>
-                <p>Parabéns! Você acaba de dominar a Eliminação Gaussiana!</p>
-                <div class="fragment">
-                    <p>Agora você sabe que:</p>
-                    <ul>
-                        <li>Café = R$ 1,30</li>
-                        <li>Energético = R$ 0,3</li>
-                        <li>Chocolate = R$ 12,1</li>
-                    </ul>
-                </div>
-                <p class="fragment">Com esse conhecimento, você pode otimizar seus gastos e até mesmo ajudar seus amigos a fazerem o mesmo!</p>
-                <p class="fragment">Mas esses números estão meios estranhos... energético está muito barato! Verifique se esse número atendem as equações originais.</p>
-            </section>
-
-            <section data-transition="slide">
-                <h3>Vamos praticar!</h3>
-                <p>Calcule a matriz estendida de:</p>
-                <div class="fragment">
-                    \[
-		    \left\{\begin{array}{c}
-		    x_1 + x_2 + 2x_3 = 9\\
-		    2x_1 + 4x_2 - 3x_3 = 1\\
-		    3x_1 + 6x_2 - 5x_3 = 0
-		    \end{array}\right.
-                    \]
-                </div>
-            </section>
-
-            <section data-transition="slide">
-                <h3>Vamos praticar mais!</h3>
-                <p>Resolta o sistema:</p>
-                <div class="fragment">
-                    \[
-		    x+y+2z=9\\
-		    2x+4y-3z=1\\
-		    3x+6y-5z=0
-                    \]
-                </div>
-                <p>Lemrando as operações possíveis:</p>
-		     <ul>
-                        <li>Multiplicar uma linha por uma constante não nula</li>
-                        <li>Trocar duas linhas</li>
-                        <li>Somar o múltiplo de uma linha com outra</li>
-                    </ul>
-                <p>Preciso falar que no final é para conferir o resultado?</p>
-            </section>
-
-  <section>
-        <p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-        <p>
-          \[
-          \begin{pmatrix}
-          2 & 0 & 0 \\
-          3 & -4 & 0 \\
-          0 & 1 & 1
-          \end{pmatrix}
-          \]
-        </p>
-      </section>
-
-      <section>
-        <p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-        <p>
-          \[
-          \begin{pmatrix}
-          3 & 0 & -2 & 5 \\
-          7 & 1 & 4 & -3 \\
-          0 & -2 & 1 & 7
-          \end{pmatrix}
-          \]
-        </p>
-      </section>
-
-      <section>
-        <p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-        <p>
-          \[
-          \begin{pmatrix}
-          7 & 2 & 1 & -3 & 5 \\
-          1 & 2 & 4 & 0 & 1
-          \end{pmatrix}
-          \]
-        </p>
-      </section>
-
-      <section>
-        <p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-        <p>
-          \[
-          \begin{pmatrix}
-          1 & 0 & 0 & 0 & 7 \\
-          0 & 1 & 0 & 0 & -2 \\
-          0 & 0 & 1 & 0 & 3 \\
-          0 & 0 & 0 & 1 & 4
-          \end{pmatrix}
-          \]
-        </p>
-      </section>
-
-      <section>
-        <p>(a) Encontre uma equação linear nas variáveis \(x\) e \(y\) que tenha a solução geral \(x = 5 + 2t\), \(y = t\).</p>
-        <p>(b) Mostre que \(x = t\), \(y = \frac{1}{2}t - \frac{5}{2}\) também é a solução geral da equação na parte (a).</p>
-      </section>
-
-      <section>
-        <p>A curva \(y = ax^2 + bx + c\) passa pelos pontos \((x_1, y_1)\), \((x_2, y_2)\), e \((x_3, y_3)\). Mostre que os coeficientes \(a\), \(b\), e \(c\) são uma solução do sistema de equações lineares cuja matriz aumentada é:</p>
-        <p>
-          \[
-          \begin{pmatrix}
-          x_1^2 & x_1 & 1 & y_1 \\
-          x_2^2 & x_2 & 1 & y_2 \\
-          x_3^2 & x_3 & 1 & y_3
-          \end{pmatrix}
-          \]
-        </p>
-      </section>
-
-      <section>
-        <p>Considere o sistema de equações:</p>
-        <p>
-          \[
-          \begin{aligned}
-          x + y + 2z &= a \\
-          x + z &= b \\
-          2x + y + 3z &= c
-          \end{aligned}
-          \]
-        </p>
-        <p>Mostre que, para este sistema ser consistente, as constantes \(a\), \(b\) e \(c\) devem satisfazer \(c = a + b\).</p>
-      </section>
-
-      <section>
-        <p>Mostre que, se as equações lineares \(x_1 + kx_2 = c\) e \(x_1 + l x_2 = d\) têm o mesmo conjunto solução, então as equações são idênticas.</p>
-      </section>
+					<section>
+						<h3>Passo 6: Resolvendo o sistema</h3>
+						<p class="fragment">x = 14 - 2y -z = 14 - 6/10 - 121/10 = 13/10 = 1,3 (preço do café)</p>
+						<p class="fragment">y = 0,3 (preço do energético)</p>
+						<p class="fragment">z = 12,1 (preço do chocolate)</p>
+					</section>
 
 
-            <section>
-                <h2>Forma de Echelon</h2>
-                <p>Transformando nossa matriz em uma obra de arte matemática!</p>
-            </section>
+					<section>
+						<h3>Conclusão</h3>
+						<p>Parabéns! Você acaba de dominar a Eliminação Gaussiana!</p>
+						<div class="fragment">
+							<p>Agora você sabe que:</p>
+							<ul>
+								<li>Café = R$ 1,30</li>
+								<li>Energético = R$ 0,3</li>
+								<li>Chocolate = R$ 12,1</li>
+							</ul>
+						</div>
+						<p class="fragment">Com esse conhecimento, você pode otimizar seus gastos e até mesmo ajudar seus amigos a fazerem o mesmo!</p>
+						<p class="fragment">Mas esses números estão meios estranhos... energético está muito barato! Verifique se esse número atendem as equações originais.</p>
+					</section>
+				</section>
 
-            <section>
-                <h3>Características da Forma de Echelon</h3>
-                <ul>
-                    <li class="fragment">O primeiro elemento não nulo de cada linha é 1 (chamado de pivô)</li>
-                    <li class="fragment">Linhas com todos os elementos zero ficam no final da matriz</li>
-                    <li class="fragment">Em cada linha subsequente, o pivô aparece mais à direita</li>
-                    <li class="fragment">Abaixo e acima de cada pivô, todos os elementos são zero</li>
-                </ul>
-            </section>
+				<section>
+					<section>
+						<h3>Vamos praticar!</h3>
+					</section>
+					<section data-transition="slide">
+						<p>Calcule a matriz estendida de:</p>
+						<div class="fragment">
+							\[
+							\left\{\begin{array}{c}
+							x_1 + x_2 + 2x_3 = 9\\
+							2x_1 + 4x_2 - 3x_3 = 1\\
+							3x_1 + 6x_2 - 5x_3 = 0
+							\end{array}\right.
+							\]
+						</div>
+					</section>
 
-            <section>
-                <h3>Visualizando a Forma de Echelon</h3>
-                <p>Imagine uma escada descendo da esquerda para a direita:</p>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    \color{red}{1} & 0 & 0 & * \\
-                    0 & \color{red}{1} & 0 & * \\
-                    0 & 0 & \color{red}{1} & * \\
-                    0 & 0 & 0 & 0
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Os elementos em vermelho são os pivôs, e os * podem ser qualquer número.</p>
-            </section>
+					<section data-transition="slide">
+						<p>Resolta o sistema:</p>
+						<div class="fragment">
+							\[
+							x+y+2z=9\\
+							2x+4y-3z=1\\
+							3x+6y-5z=0
+							\]
+						</div>
+						<p>Lemrando as operações possíveis:</p>
+						<ul>
+							<li>Multiplicar uma linha por uma constante não nula</li>
+							<li>Trocar duas linhas</li>
+							<li>Somar o múltiplo de uma linha com outra</li>
+						</ul>
+						<p>Preciso falar que no final é para conferir o resultado?</p>
+					</section>
 
-            <section>
-                <h3>Exemplo: Transformando em Forma de Echelon</h3>
-                <p>Vamos transformar estas matrizes em forma de Echelon:</p>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    1 & 4 & -3 & 7 \\
-                    0 & 1 & 6 & 2 \\
-                    0 & 0 & 1 & 5
-                    \end{bmatrix}
-                    \quad
-                    \begin{bmatrix}
-                    1 & 1 & 0 \\
-                    0 & 1 & 0 \\
-                    0 & 0 & 1 
-                    \end{bmatrix}
-                    \quad
-                    \begin{bmatrix}
-                    0 & 1 & 2 & 6 & 0 \\
-                    0 & 0 & 1 & -1 & 0 \\
-                    0 & 0 & 0 & 0 & 1
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Elas já estão quase na forma de Echelon!</p>
-            </section>
+					<section>
+						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
+						<p>
+						\[
+						\begin{pmatrix}
+						2 & 0 & 0 \\
+						3 & -4 & 0 \\
+						0 & 1 & 1
+						\end{pmatrix}
+						\]
+						</p>
+					</section>
 
-            <section>
-                <h2>Método da Eliminação</h2>
-                <p>Transformando problemas complexos em soluções elegantes!</p>
-            </section>
+					<section>
+						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
+						<p>
+						\[
+						\begin{pmatrix}
+						3 & 0 & -2 & 5 \\
+						7 & 1 & 4 & -3 \\
+						0 & -2 & 1 & 7
+						\end{pmatrix}
+						\]
+						</p>
+					</section>
 
-            <section>
-                <h3>Desafio: Resolver este Sistema</h3>
-                <p>Vamos colocar este sistema na forma de Echelon e resolvê-lo:</p>
-                <div class="fragment">
-                    \[
-                    \begin{bmatrix}
-                    0 & 0 & -2 & 0 & 7 & 12 \\
-                    2 & 4 & -10 & 6 & 12 & 28 \\
-                    2 & 4 & -5 & 6 & -5 & -1
-                    \end{bmatrix}
-                    \]
-                </div>
-                <p class="fragment">Parece assustador? Não se preocupe, vamos resolver passo a passo!</p>
-            </section>
+					<section>
+						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
+						<p>
+						\[
+						\begin{pmatrix}
+						7 & 2 & 1 & -3 & 5 \\
+						1 & 2 & 4 & 0 & 1
+						\end{pmatrix}
+						\]
+						</p>
+					</section>
+
+					<section>
+						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
+						<p>
+						\[
+						\begin{pmatrix}
+						1 & 0 & 0 & 0 & 7 \\
+						0 & 1 & 0 & 0 & -2 \\
+						0 & 0 & 1 & 0 & 3 \\
+						0 & 0 & 0 & 1 & 4
+						\end{pmatrix}
+						\]
+						</p>
+					</section>
+
+					<section>
+						<p>(a) Encontre uma equação linear nas variáveis \(x\) e \(y\) que tenha a solução geral \(x = 5 + 2t\), \(y = t\).</p>
+						<p>(b) Mostre que \(x = t\), \(y = \frac{1}{2}t - \frac{5}{2}\) também é a solução geral da equação na parte (a).</p>
+					</section>
+
+					<section>
+						<p>A curva \(y = ax^2 + bx + c\) passa pelos pontos \((x_1, y_1)\), \((x_2, y_2)\), e \((x_3, y_3)\). Mostre que os coeficientes \(a\), \(b\), e \(c\) são uma solução do sistema de equações lineares cuja matriz aumentada é:</p>
+						<p>
+						\[
+						\begin{pmatrix}
+						x_1^2 & x_1 & 1 & y_1 \\
+						x_2^2 & x_2 & 1 & y_2 \\
+						x_3^2 & x_3 & 1 & y_3
+						\end{pmatrix}
+						\]
+						</p>
+					</section>
+
+					<section>
+						<p>Considere o sistema de equações:</p>
+						<p>
+						\[
+						\begin{aligned}
+						x + y + 2z &= a \\
+						x + z &= b \\
+						2x + y + 3z &= c
+						\end{aligned}
+						\]
+						</p>
+						<p>Mostre que, para este sistema ser consistente, as constantes \(a\), \(b\) e \(c\) devem satisfazer \(c = a + b\).</p>
+					</section>
+
+					<section>
+						<p>Mostre que, se as equações lineares \(x_1 + kx_2 = c\) e \(x_1 + l x_2 = d\) têm o mesmo conjunto solução, então as equações são idênticas.</p>
+					</section>
+				</section>
 
 
-            <section>
-                <h2>Sistemas Homogêneos</h2>
-                <p>Quando zero é mais interessante do que parece!</p>
-            </section>
+				<section>
+					<section>
+						<h2>Forma de Echelon</h2>
+						<p>Transformando nossa matriz em uma obra de arte matemática!</p>
+					</section>
 
-            <section>
-                <h3>O que são Sistemas Homogêneos?</h3>
-                <p>São sistemas onde todos os termos constantes são zero:</p>
-                <div class="fragment">
-                    \[
-                    \begin{cases}
-                    a_{1,1} x_1 + a_{1,2} x_2 + ... + a_{1,n} x_n = 0 \\
-                    a_{2,1} x_1 + a_{2,2} x_2 + ... + a_{2,n} x_n = 0 \\
-                    \vdots \\
-                    a_{d,1} x_1 + a_{d,2} x_2 + ... + a_{d,n} x_n = 0
-                    \end{cases}
-                    \]
-                </div>
-                <p class="fragment">Parece simples, mas esconde muitos segredos!</p>
-            </section>
+					<section>
+						<h3>Características da Forma de Echelon</h3>
+						<ul>
+							<li class="fragment">O primeiro elemento não nulo de cada linha é 1 (chamado de pivô)</li>
+							<li class="fragment">Linhas com todos os elementos zero ficam no final da matriz</li>
+							<li class="fragment">Em cada linha subsequente, o pivô aparece mais à direita</li>
+							<li class="fragment">Abaixo e acima de cada pivô, todos os elementos são zero</li>
+						</ul>
+					</section>
 
-            <section>
-                <h3>Soluções de Sistemas Homogêneos</h3>
-                <p>Existem duas possibilidades fascinantes:</p>
-                <ul>
-                    <li class="fragment">Solução Trivial: Apenas o vetor nulo (0, 0, ..., 0)</li>
-                    <li class="fragment">Sistema Indeterminado: Infinitas soluções, incluindo a trivial</li>
-                </ul>
-                <p class="fragment">Nunca teremos um sistema homogêneo impossível. Incrível, não?</p>
-            </section>
+					<section>
+						<h3>Visualizando a Forma de Echelon</h3>
+						<p>Imagine uma escada descendo da esquerda para a direita:</p>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							\color{red}{1} & 0 & 0 & * \\
+							0 & \color{red}{1} & 0 & * \\
+							0 & 0 & \color{red}{1} & * \\
+							0 & 0 & 0 & 0
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Os elementos em vermelho são os pivôs, e os * podem ser qualquer número.</p>
+					</section>
 
-            <section>
-                <h3>Sistemas Homogêneos vs. Não Homogêneos</h3>
-                <ul>
-                    <li class="fragment">Sistemas Homogêneos: Sempre têm pelo menos uma solução (a trivial)</li>
-                    <li class="fragment">Sistemas Não Homogêneos: Podem ser impossíveis!</li>
-                </ul>
+					<section>
+						<h3>Exemplo: Transformando em Forma de Echelon</h3>
+						<p>Vamos transformar estas matrizes em forma de Echelon:</p>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							1 & 4 & -3 & 7 \\
+							0 & 1 & 6 & 2 \\
+							0 & 0 & 1 & 5
+							\end{bmatrix}
+							\quad
+							\begin{bmatrix}
+							1 & 1 & 0 \\
+							0 & 1 & 0 \\
+							0 & 0 & 1 
+							\end{bmatrix}
+							\quad
+							\begin{bmatrix}
+							0 & 1 & 2 & 6 & 0 \\
+							0 & 0 & 1 & -1 & 0 \\
+							0 & 0 & 0 & 0 & 1
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Elas já estão quase na forma de Echelon!</p>
+					</section>
 
-            </section>
+					<section>
+						<p>Vamos colocar este sistema na forma de Echelon e resolvê-lo:</p>
+						<div class="fragment">
+							\[
+							\begin{bmatrix}
+							0 & 0 & -2 & 0 & 7 & 12 \\
+							2 & 4 & -10 & 6 & 12 & 28 \\
+							2 & 4 & -5 & 6 & -5 & -1
+							\end{bmatrix}
+							\]
+						</div>
+						<p class="fragment">Parece assustador? Não se preocupe, vamos resolver passo a passo!</p>
+					</section>
+				</section>
 
-            <section>
-                <h3>Reflexão Final</h3>
-                <p>A Álgebra Linear é como a vida:</p>
-                <ul>
-                    <li class="fragment">Cheia de incógnitas</li>
-                    <li class="fragment">Às vezes, parece não ter solução</li>
-                    <li class="fragment">Mas com método e perseverança, chegamos lá</li>
-                    <li class="fragment">E no final, descobrimos que ficamos preocupados demais sem necessidade.</li>
-                </ul>
-            </section>
 
-        </div>
-    </div>
+				<section>
+					<section>
+						<h2>Sistemas Homogêneos</h2>
+						<p>Quando zero é mais interessante do que parece!</p>
+					</section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
-    <script>
-        Reveal.initialize({
-            plugins: [RevealMath.KaTeX],
-            transition: 'slide',
-            slideNumber: true,
-            overview: true
-        });
-    </script>
-</body>
+					<section>
+						<h3>O que são Sistemas Homogêneos?</h3>
+						<p>São sistemas onde todos os termos constantes são zero:</p>
+						<div class="fragment">
+							\[
+							\begin{cases}
+							a_{1,1} x_1 + a_{1,2} x_2 + ... + a_{1,n} x_n = 0 \\
+							a_{2,1} x_1 + a_{2,2} x_2 + ... + a_{2,n} x_n = 0 \\
+							\vdots \\
+							a_{d,1} x_1 + a_{d,2} x_2 + ... + a_{d,n} x_n = 0
+							\end{cases}
+							\]
+						</div>
+						<p class="fragment">Parece simples, mas esconde muitos segredos!</p>
+					</section>
+
+					<section>
+						<h3>Soluções de Sistemas Homogêneos</h3>
+						<p>Existem duas possibilidades fascinantes:</p>
+						<ul>
+							<li class="fragment">Solução Trivial: Apenas o vetor nulo (0, 0, ..., 0)</li>
+							<li class="fragment">Sistema Indeterminado: Infinitas soluções, incluindo a trivial</li>
+						</ul>
+						<p class="fragment">Nunca teremos um sistema homogêneo impossível. Incrível, não?</p>
+					</section>
+
+					<section>
+						<h3>Sistemas Homogêneos vs. Não Homogêneos</h3>
+						<ul>
+							<li class="fragment">Sistemas Homogêneos: Sempre têm pelo menos uma solução (a trivial)</li>
+							<li class="fragment">Sistemas Não Homogêneos: Podem ser impossíveis!</li>
+						</ul>
+
+					</section>
+				</section>
+
+				<section>
+					<h3>Reflexão Final</h3>
+					<p>A Álgebra Linear é como a vida:</p>
+					<ul>
+						<li class="fragment">Cheia de incógnitas</li>
+						<li class="fragment">Às vezes, parece não ter solução</li>
+						<li class="fragment">Mas com método e perseverança, chegamos lá</li>
+						<li class="fragment">E no final, descobrimos que ficamos preocupados demais sem necessidade.</li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+		<script>
+			Reveal.initialize({
+				plugins: [RevealMath.KaTeX],
+				width: 1200,
+				height: 720,
+				transition: 'slide',
+				slideNumber: true,
+				overview: true
+			});
+		</script>
+	</body>
 </html>
