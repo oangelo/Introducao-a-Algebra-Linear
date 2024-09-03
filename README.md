@@ -58,4 +58,8 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Autovalores e autovetores
 - Diagonalização
 
+### Monitoria 2024 - 2
+- Segunda-feira, T2 e T3, na sala 203.
+- Monitor: Arthur Tavares 
+
 Bons estudos!
