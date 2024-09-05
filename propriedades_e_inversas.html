@@ -6,6 +6,41 @@
     <title>Introdução à Álgebra Linear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+  <style>
+    .matrix-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .matrix {
+      display: inline-grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 0 10px;
+    }
+    .cell {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+    .highlight {
+      background-color: #0505FE;
+    }
+    .calculation {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+
 </head>
 <body>
     <div class="reveal">
@@ -14,6 +49,78 @@
                 <h2>Propriedades da Aritmética de Matrizes</h2>
                 <p>As regras do jogo matricial!</p>
             </section>
+<section>
+  <h2>Multiplicação de Matrizes</h2>
+  <div class="matrix-container">
+    <div id="matrixA" class="matrix"></div>
+    <span>×</span>
+    <div id="matrixB" class="matrix"></div>
+    <span>=</span>
+    <div id="matrixC" class="matrix"></div>
+  </div>
+  <div id="calculation" class="calculation"></div>
+  <p>Selecione um elemento da matriz mais a direita (resultado) para entender como foi gerado.</p>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const matrixA = [[1, 2], [3, 4]];
+      const matrixB = [[5, 6], [7, 8]];
+      const matrixC = [[19, 22], [43, 50]];
+
+      function createMatrix(matrixId, matrix, isResult = false) {
+        const matrixElement = document.getElementById(matrixId);
+        matrix.forEach((row, i) => {
+          row.forEach((value, j) => {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.textContent = value;
+            if (isResult) {
+              cell.onclick = () => highlightAndCalculate(i, j);
+            }
+            matrixElement.appendChild(cell);
+          });
+        });
+      }
+
+      function highlightAndCalculate(row, col) {
+        clearHighlights();
+        highlightCells(row, col);
+        showCalculation(row, col);
+      }
+
+      function clearHighlights() {
+        document.querySelectorAll('.cell').forEach(cell => cell.classList.remove('highlight'));
+      }
+
+      function highlightCells(row, col) {
+        const cellsA = document.querySelectorAll('#matrixA .cell');
+        const cellsB = document.querySelectorAll('#matrixB .cell');
+        const cellsC = document.querySelectorAll('#matrixC .cell');
+
+        cellsA[row * 2].classList.add('highlight');
+        cellsA[row * 2 + 1].classList.add('highlight');
+        cellsB[col].classList.add('highlight');
+        cellsB[col + 2].classList.add('highlight');
+        cellsC[row * 2 + col].classList.add('highlight');
+      }
+
+      function showCalculation(row, col) {
+        const calc = document.getElementById('calculation');
+        calc.style.display = 'block';
+        calc.innerHTML = `
+          <p>Cálculo para o elemento (${row + 1}, ${col + 1}):</p>
+          <p>(${matrixA[row][0]} × ${matrixB[0][col]}) + (${matrixA[row][1]} × ${matrixB[1][col]}) =</p>
+          <p><strong>${matrixA[row][0] * matrixB[0][col]} + ${matrixA[row][1] * matrixB[1][col]} = ${matrixC[row][col]}</strong></p>
+        `;
+      }
+
+      createMatrix('matrixA', matrixA);
+      createMatrix('matrixB', matrixB);
+      createMatrix('matrixC', matrixC, true);
+    });
+  </script>
+</section>
 
             <section>
                 <h3>Propriedades Fundamentais</h3>
