@@ -41,7 +41,7 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Propriedades dos determinantes; regra de Cramer
 
 
-### CAPÍTULO 4: Espaços Vetoriais Arbitrários
+### [CAPÍTULO 4: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
 - Espaços vetoriais reais
 - Subespaços
 - Independência linear
@@ -57,5 +57,9 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 ### CAPÍTULO 5: Autovalores e Autovetores
 - Autovalores e autovetores
 - Diagonalização
+
+### Monitoria 2024 - 2
+- Segunda-feira, T2 e T3, na sala 203.
+- Monitor: Arthur Tavares 
 
 Bons estudos!

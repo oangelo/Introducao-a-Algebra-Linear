@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<title>Espaços Vetoriais</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+.reveal ul { list-style-type: none; }
+.reveal ul li::before { content: "» ";}
+.two-columns { display: flex; justify-content: space-between; }
+.two-columns > * { flex: 1; }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Transformações Lineares</h2>
+					<p>Uma introdução às funções do ℝⁿ para o ℝᵐ</p>
+				</section>
+
+				<section>
+					<h3>Função do ℝⁿ para o ℝᵐ</h3>
+					<p>Uma função geral pode ser representada como:</p>
+					<div class="katex-display">
+						\(
+						\begin{array}{c}
+						w_1 = f_1(x_1, x_2, ..., x_n) \\
+						\vdots \\
+						w_m = f_m(x_1, x_2, ..., x_n)
+						\end{array}
+						\)
+					</div>
+				</section>
+
+				<section>
+					<h3>Função Linear</h3>
+					<p>Nesta apresentação, focaremos em funções lineares, que têm a forma:</p>
+					<div class="katex-display">
+						\(
+						\left\{ \begin{array}{l}
+						w_1 = a_{1,1} x_1 + a_{1,2} x_2 + ... + a_{1,n} x_n\\
+						... = ...         + ...         +  ...+ ...        \\
+						w_m = a_{m,1} x_1 + a_{m,2} x_2 + ... + a_{m,n} x_n
+						\end{array}\right.
+						\)
+					</div>
+				</section>
+
+				<section>
+					<h3>Representação Matricial</h3>
+					<p>Podemos representar o sistema como uma multiplicação de matrizes:</p>
+					<div class="katex-display">
+						\(w = Ax\)
+					</div>
+					<p>onde:</p>
+					<ul>
+						<li>x é o vetor com as variáveis do domínio</li>
+						<li>w é o vetor com os valores do contradomínio</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Alcance da Transformação</h3>
+					<p>O conjunto de todos os possíveis valores de w é chamado de alcance da transformação.</p>
+				</section>
+
+				<section>
+					<h3>Notação</h3>
+					<p>Podemos mencionar uma transformação T de forma genérica como:</p>
+					<div class="katex-display">
+						\(T: \mathbb{R}^n \rightarrow \mathbb{R}^m\)
+					</div>
+				</section>
+
+				<section>
+					<section>
+						<h3>Geometria e Transformações Lineares</h3>
+						<p>Vamos explorar algumas transformações comuns no ℝ² e ℝ³:</p>
+					</section>
+
+					<section>
+						<h4>Transformação Identidade</h4>
+						<p>Para ℝ²:</p>
+						<div class="katex-display">
+
+							\(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\)
+
+						</div>
+						<p>Para ℝ³:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Transformação Nula</h4>
+						<p>Para ℝ²:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}\)
+						</div>
+						<p>Para ℝ³:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Reflexão em torno de um eixo</h4>
+						<p>Reflexão em torno do eixo x no ℝ²:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\)
+						</div>
+						<p>Reflexão em torno do eixo x no ℝ³:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & -1 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Projeção ortogonal em um eixo</h4>
+						<p>Projeção no eixo x no ℝ²:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\)
+						</div>
+						<p>Projeção no eixo x no ℝ³:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Rotação em torno de um eixo</h4>
+						<p>Rotação de θ no ℝ² (anti-horário):</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} \cos θ & -\sin θ \\ \sin θ & \cos θ \end{pmatrix}\)
+						</div>
+						<p>Rotação de θ em torno do eixo z no ℝ³ (anti-horário):</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} \cos θ & -\sin θ & 0 \\ \sin θ & \cos θ & 0 \\ 0 & 0 & 1 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Dilatação e contração</h4>
+						<p>Dilatação/contração no ℝ²:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix}\)
+						</div>
+						<p>Dilatação/contração no ℝ³:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} k & 0 & 0 \\ 0 & k & 0 \\ 0 & 0 & k \end{pmatrix}\)
+						</div>
+						<p>onde k > 1 para dilatação e 0 < k < 1 para contração</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Composição de Transformações</h3>
+						<p>Podemos compor transformações lineares, assim como fazemos com funções.</p>
+					</section>
+
+					<section>
+						<h4>Exemplo de Composição</h4>
+						<p>Vamos encontrar a transformação que é:</p>
+						<ol>
+							<li>Uma rotação anti-horária em torno do eixo-z</li>
+							<li>Seguida de uma reflexão no plano-yz</li>
+							<li>E por fim, uma projeção ortogonal no plano-xy</li>
+						</ol>
+					</section>
+
+					<section>
+						<h4>Passo 1: Rotação anti-horária em torno do eixo-z</h4>
+						<div class="katex-display">
+							\(R_z(θ) = \begin{pmatrix} \cos θ & -\sin θ & 0 \\ \sin θ & \cos θ & 0 \\ 0 & 0 & 1 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Passo 2: Reflexão no plano-yz</h4>
+						<div class="katex-display">
+							\(M_{yz} = \begin{pmatrix} -1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Passo 3: Projeção ortogonal no plano-xy</h4>
+						<div class="katex-display">
+							\(P_{xy} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Composição Final</h4>
+						<p>A transformação composta é:</p>
+						<div class="katex-display">
+							\(T = P_{xy} \cdot M_{yz} \cdot R_z(θ)\)
+						</div>
+						<p>Multiplicando as matrizes, obtemos:</p>
+						<div class="katex-display">
+							\(T = \begin{pmatrix} -\cos θ & \sin θ & 0 \\ \sin θ & \cos θ & 0 \\ 0 & 0 & 0 \end{pmatrix}\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Ordem das Operações</h4>
+						<p>A ordem das operações é importante em composições de transformações lineares.</p>
+						<p>Em geral, mudar a ordem das operações resultará em uma transformação diferente.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Propriedades das Transformações Lineares</h3>
+					</section>
+
+
+					<section>
+						<h2>Definição de Transformação Linear</h2>
+						<p>Uma transformação \(T:I\!R^n \rightarrow I\!R^m\) é dita linear se, e somente se, satisfaz duas propriedades fundamentais.</p>
+					</section>
+
+					<section>
+						<h3>Propriedade 1: Aditividade</h3>
+						<p>Para quaisquer vetores \(u\) e \(v\):</p>
+						<p>\[T(u + v) = T(u) + T(v)\]</p>
+					</section>
+
+					<section>
+						<h3>Propriedade 2: Homogeneidade</h3>
+						<p>Para qualquer escalar \(c\) e vetor \(u\):</p>
+						<p>\[T(cu) = cT(u)\]</p>
+					</section>
+
+
+					<section>
+						<h4>Definição: Transformação Um-para-Um</h4>
+						<p>Transformações T: ℝⁿ → ℝᵐ são ditas um-para-um se vetores distintos em ℝⁿ são mapeados em vetores distintos em ℝᵐ.</p>
+					</section>
+
+					<section>
+						<h4>Afirmações Equivalentes</h4>
+						<p>As seguintes afirmações são equivalentes:</p>
+						<ul>
+							<li>A é invertível</li>
+							<li>O alcance ("imagem") de T_A é ℝᵐ</li>
+							<li>T_A é um-para-um</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>Inversa de uma Operação Linear</h4>
+						<p>A inversa de uma operação linear é outra operação linear que "desfaz" a transformação original.</p>
+						<p>Se T(x) = Ax, então T⁻¹(w) = A⁻¹w</p>
+					</section>
+
+					<section>
+						<h4>Exemplo: Transformação Um-para-Um</h4>
+						<p>Considere a transformação:</p>
+						<div class="katex-display">
+							\(\left\{\begin{array}{c}
+							w_1 = 2x_1 + x_2 \\
+							w_2 = 3x_1 + 4x_2
+							\end{array}\right.\)
+						</div>
+					</section>
+
+					<section>
+						<h4>Prova: Transformação Um-para-Um</h4>
+						<p>Para mostrar que é um-para-um, precisamos provar que:</p>
+						<div class="katex-display">
+							\(A\mathbf{x}_1 = A\mathbf{x}_2 \implies \mathbf{x}_1 = \mathbf{x}_2\)
+						</div>
+						<p>Ou, equivalentemente, que o núcleo da transformação contém apenas o vetor nulo.</p>
+						<p>Resolvendo o sistema homogêneo:</p>
+						<div class="katex-display">
+							\(\begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\)
+						</div>
+						<p>A única solução é x₁ = x₂ = 0, portanto a transformação é um-para-um.</p>
+					</section>
+
+
+					<section>
+						<h2>Matriz de uma Transformação Linear</h2>
+						<p>Para uma transformação \(T:I\!R^n \rightarrow I\!R^m\) e uma base canônica de vetores \(e_1, e_2, e_3, ..., e_n\), a matriz que representa \(T\) será:</p>
+					</section>
+
+					<section>
+						<p>\[[T] = [T(e_1)|T(e_2)|...|T(e_n)]\]</p>
+						<p>Onde cada coluna representa a transformação aplicada a um vetor da base canônica.</p>
+					</section>
+
+					<section>
+						<h2>Exercícios</h2>
+						<ol>
+							<li>Encontre a matriz de projeção padrão para uma reta de ângulo \(\theta\).</li>
+							<li>Encontre a projeção do vetor (1,5) na reta que faz um ângulo de \(\pi/6\) com a diagonal.</li>
+						</ol>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Transformações e Autovetores</h2>
+					</section>
+
+					<section>
+						<h3>Rotação no plano-xy</h3>
+						<p>Discuta os autovetores de uma rotação no plano-xy.</p>
+					</section>
+
+					<section>
+						<h3>Autovetores de uma Matriz</h3>
+						<p>Encontre os autovetores da matriz:</p>
+						<p>\[\begin{bmatrix}
+						1 & 0 & 0 \\
+						0 & 1 & 0 \\
+						0 & 0 & 0 
+						\end{bmatrix}\]</p>
+					</section>
+				</section>
+
+
+				<section>
+					<h3>Conclusão</h3>
+					<p>As transformações lineares são ferramentas poderosas em álgebra linear e têm diversas aplicações práticas.</p>
+					<p>Compreender suas propriedades e como compô-las é fundamental para muitos campos da matemática e da ciência aplicada.</p>
+				</section>
+			</div>
+		</div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+		<script>
+			Reveal.initialize({
+				width: 1200,
+				height: 720,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+			});
+		</script>
+	</body>
+</html>
+</body>
+</html>
