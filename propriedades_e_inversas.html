@@ -57,6 +57,10 @@
 					<p>As regras do jogo matricial!</p>
 				</section>
 				<section>
+				<section>
+					<h2>Multiplicação de Matrizes</h2>
+				</section>
+				<section>
 					<h2>Multiplicação de Matrizes</h2>
 					<div class="matrix-container">
 						<div id="matrixA" class="matrix"></div>
@@ -128,6 +132,111 @@
 						});
 					</script>
 				</section>
+
+				<section>
+  <h2>Multiplicação de Matrizes 3x2 por 2x3</h2>
+  <div class="matrix-container-3x2">
+    <div id="matrixA_3x2" class="matrix matrix-3x2"></div>
+    <span>×</span>
+    <div id="matrixB_2x3" class="matrix matrix-2x3"></div>
+    <span>=</span>
+    <div id="matrixC_3x3" class="matrix matrix-3x3"></div>
+  </div>
+  <div id="calculation_3x2_2x3" class="calculation"></div>
+
+  <style>
+    .matrix-container-3x2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .matrix-3x2 { grid-template-columns: repeat(2, 1fr); }
+    .matrix-2x3 { grid-template-columns: repeat(3, 1fr); }
+    .matrix-3x3 { grid-template-columns: repeat(3, 1fr); }
+    .cell-3x2 {
+      width: 75px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+    .highlight-3x2 { background-color: #0505FE;}
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const matrixA_3x2 = [[1, 2], [3, 4], [5, 6]];
+      const matrixB_2x3 = [[7, 8, 9], [10, 11, 12]];
+      const matrixC_3x3 = [
+        [27, 30, 33],
+        [61, 68, 75],
+        [95, 106, 117]
+      ];
+
+      function createMatrix_3x2(matrixId, matrix, isResult = false) {
+        const matrixElement = document.getElementById(matrixId);
+        matrix.forEach((row, i) => {
+          row.forEach((value, j) => {
+            const cell = document.createElement('div');
+            cell.className = 'cell-3x2';
+            cell.textContent = value;
+            if (isResult) {
+              cell.onclick = () => highlightAndCalculate_3x2(i, j);
+            }
+            matrixElement.appendChild(cell);
+          });
+        });
+      }
+
+      function highlightAndCalculate_3x2(row, col) {
+        clearHighlights_3x2();
+        highlightCells_3x2(row, col);
+        showCalculation_3x2(row, col);
+      }
+
+      function clearHighlights_3x2() {
+        document.querySelectorAll('.cell-3x2').forEach(cell => cell.classList.remove('highlight-3x2'));
+      }
+
+      function highlightCells_3x2(row, col) {
+        const cellsA = document.querySelectorAll('#matrixA_3x2 .cell-3x2');
+        const cellsB = document.querySelectorAll('#matrixB_2x3 .cell-3x2');
+        const cellsC = document.querySelectorAll('#matrixC_3x3 .cell-3x2');
+
+        // Highlight row in A
+        cellsA[row * 2].classList.add('highlight-3x2');
+        cellsA[row * 2 + 1].classList.add('highlight-3x2');
+
+        // Highlight column in B
+        cellsB[col].classList.add('highlight-3x2');
+        cellsB[col + 3].classList.add('highlight-3x2');
+
+        // Highlight result cell in C
+        cellsC[row * 3 + col].classList.add('highlight-3x2');
+      }
+
+      function showCalculation_3x2(row, col) {
+        const calc = document.getElementById('calculation_3x2_2x3');
+        calc.style.display = 'block';
+        calc.innerHTML = `
+          <p>Cálculo para o elemento (${row + 1}, ${col + 1}):</p>
+          <p>(${matrixA_3x2[row][0]} × ${matrixB_2x3[0][col]}) + (${matrixA_3x2[row][1]} × ${matrixB_2x3[1][col]}) =</p>
+          <p><strong>${matrixA_3x2[row][0] * matrixB_2x3[0][col]} + ${matrixA_3x2[row][1] * matrixB_2x3[1][col]} = ${matrixC_3x3[row][col]}</strong></p>
+        `;
+      }
+
+      createMatrix_3x2('matrixA_3x2', matrixA_3x2);
+      createMatrix_3x2('matrixB_2x3', matrixB_2x3);
+      createMatrix_3x2('matrixC_3x3', matrixC_3x3, true);
+    });
+  </script>
+</section>
+</section>
+
+
 
 				<section>
 					<h3>Propriedades Fundamentais</h3>
@@ -500,15 +609,20 @@
 			</div>
 		</div>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
-		<script>
-			Reveal.initialize({
-				plugins: [RevealMath.KaTeX],
-				transition: 'slide',
-				slideNumber: true,
-				overview: true
-			});
-		</script>
-	</body>
+		                <script src="dist/reveal.js"></script>
+                <script src="plugin/notes/notes.js"></script>
+                <script src="plugin/markdown/markdown.js"></script>
+                <script src="plugin/highlight/highlight.js"></script>
+                <script src="reveal.js"></script>
+                <script src="plugin/math/math.js"></script>
+
+		               <script>
+                        Reveal.initialize({
+                                width: 1200,
+                                height: 720,
+                                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+                        });
+                </script>
+
+		</body>
 </html>
