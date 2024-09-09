@@ -512,19 +512,108 @@
 				<section>
 					<section>
 						<h2>Matrizes Especiais</h2>
-						<p>As celebridades do mundo matricial!</p>
+					</section>
+					<section>
+						<h2>Tipos de Matrizes Especiais</h2>
+						<ul>
+							<li>Matrizes Diagonais</li>
+							<li>Matrizes Triangulares</li>
+							<li>Matrizes Simétricas</li>
+						</ul>
+						<p>Cada uma dessas matrizes tem propriedades únicas e fascinantes!</p>
 					</section>
 
 					<section>
-						<h3>Tipos de Matrizes Especiais</h3>
+						<h3>Matrizes Diagonais</h3>
 						<ul>
-							<li class="fragment">Matrizes Diagonais: Só têm elementos não-nulos na diagonal principal</li>
-							<li class="fragment">Matrizes Triangulares: Todos os elementos acima ou abaixo da diagonal principal são zero</li>
-							<li class="fragment">Matrizes Simétricas: A<sup>T</sup> = A, onde A<sup>T</sup> é a transposta de A</li>
+							<li>Só têm elementos não-nulos na diagonal principal</li>
+							<li>Todos os outros elementos são zero</li>
 						</ul>
-						<p class="fragment">Cada uma dessas matrizes tem propriedades únicas e fascinantes!</p>
+						<div class="matrix-container">
+							\[
+							\begin{bmatrix}
+							a & 0 & 0 \\
+							0 & b & 0 \\
+							0 & 0 & c
+							\end{bmatrix}
+							\]
+						</div>
+						<p>Onde \(a\), \(b\), \(c\) são números reais não-nulos</p>
 					</section>
+
+					<section>
+						<h3>Propriedades das Matrizes Diagonais</h3>
+						<ul>
+							<li>Fáceis de multiplicar: multiplique os elementos diagonais correspondentes</li>
+							<li>A inversa de uma matriz diagonal é outra matriz diagonal</li>
+							<li>Determinante: produto dos elementos da diagonal</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Matrizes Triangulares</h3>
+						<h4>Dois tipos principais:</h4>
+						<ul>
+							<li>Triangular Superior: todos os elementos abaixo da diagonal principal são zero</li>
+							<li>Triangular Inferior: todos os elementos acima da diagonal principal são zero</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Exemplos de Matrizes Triangulares</h3>
+						<div class="matrix-container">
+							Triangular Superior:
+							\[
+							\begin{bmatrix}
+							a & b & c \\
+							0 & d & e \\
+							0 & 0 & f
+							\end{bmatrix}
+							\]
+						</div>
+						<div class="matrix-container">
+							Triangular Inferior:
+							\[
+							\begin{bmatrix}
+							g & 0 & 0 \\
+							h & i & 0 \\
+							j & k & l
+							\end{bmatrix}
+							\]
+						</div>
+						<p>Onde as letras representam números reais não-nulos</p>
+					</section>
+
+					<section>
+						<h3>Propriedades das Matrizes Triangulares</h3>
+						<ul>
+							<li>O produto de duas matrizes triangulares superiores (ou inferiores) é triangular superior (ou inferior)</li>
+							<li>Determinante: produto dos elementos da diagonal principal</li>
+							<li>Sistemas de equações com matrizes triangulares são fáceis de resolver por substituição</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Matrizes Simétricas</h3>
+						<ul>
+							<li>\(A^T = A\), onde \(A^T\) é a transposta de \(A\)</li>
+							<li>Os elementos são simétricos em relação à diagonal principal</li>
+						</ul>
+						<div class="matrix-container">
+							\[
+							\begin{bmatrix}
+							a & b & c \\
+							b & d & e \\
+							c & e & f
+							\end{bmatrix}
+							\]
+						</div>
+						<p>Onde \(a\), \(b\), \(c\), \(d\), \(e\), \(f\) são números reais</p>
+					</section>
+
+
 				</section>
+
 
 				<section>
 					<h3>Propriedades Fundamentais</h3>
