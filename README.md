@@ -26,14 +26,10 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
 (Neste capítulo vou abordar em aula os temas mais complexos, alguns temas deixo para você ler no livro texto, blz?)
-- [Introdução aos sistemas de equações lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
-- [Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html#14)
-- [Matrizes e operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
-- Inversas; propriedades algébricas das matrizes
-- [Matrizes elementares e um método para encontrar $A^(-1)$](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
-
-- Mais sobre sistemas lineares e matrizes invertíveis
-- Matrizes diagonais, triangulares e simétricas
+- [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
+- [](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html#14)
+- [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
+- [Inversas; propriedades algébricas das matrizes](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
 - Determinantes por expansão em cofatores
