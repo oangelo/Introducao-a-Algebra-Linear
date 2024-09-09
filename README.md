@@ -28,7 +28,7 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 (Neste capítulo vou abordar em aula os temas mais complexos, alguns temas deixo para você ler no livro texto, blz?)
 - [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
 - [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
-- [Inversas; propriedades algébricas das matrizes](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
+- [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
 - Determinantes por expansão em cofatores
