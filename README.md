@@ -35,8 +35,18 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Calculando determinantes por meio de redução por linhas
 - Propriedades dos determinantes; regra de Cramer
 
+### [CAPÍTULO 4: ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
+- Espaço Euclidiano n-dimensional
+- Transformações Lineares de $R^n$ em $R^m$
+- Propriedades das Transformações Lineares de $R^n$ em $R^m$
 
-### [CAPÍTULO 4: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
+## 👆 A matéria da prova vai até aqui! 📚✅
+🎉 Lembre-se: O importante é praticar! 💪
+📝 Faça os exercícios do livro recomendado 📘
+🧠 Isso ajudará a fixar o conteúdo 🌟
+
+
+### [CAPÍTULO 5: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
 - Espaços vetoriais reais
 - Subespaços
 - Independência linear
@@ -49,7 +59,7 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Propriedades das transformações matriciais
 - A geometria de operadores matriciais de $R^2$
 
-### CAPÍTULO 5: Autovalores e Autovetores
+### CAPÍTULO 7: Autovalores e Autovetores
 - Autovalores e autovetores
 - Diagonalização
 
