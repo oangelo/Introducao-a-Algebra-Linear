@@ -40,10 +40,10 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Transformações Lineares de $R^n$ em $R^m$
 - Propriedades das Transformações Lineares de $R^n$ em $R^m$
 
-## 👆 A matéria da prova vai até aqui! 📚✅
-🎉 Lembre-se: O importante é praticar! 💪
-📝 Faça os exercícios do livro recomendado 📘
-🧠 Isso ajudará a fixar o conteúdo 🌟
+## 👆 A matéria da primeira prova vai até aqui! 📚✅
+- 🎉 Lembre-se: O importante é praticar! 💪
+- 📝 Faça os exercícios do livro recomendado 📘
+- 🧠 Isso ajudará a fixar o conteúdo 🌟
 
 
 ### [CAPÍTULO 5: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
