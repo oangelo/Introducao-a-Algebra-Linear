@@ -12,12 +12,14 @@ O curso é baseado no livro:
 
 **"Álgebra Linear com Aplicações"** de Howard Anton
 
-Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos tópicos de álgebra linear.
+- 📢 Atenção, alunos! 📢
+- 📖 LEITURA OBRIGATÓRIA do livro texto! 🔍
+- 🎓 Em aula, abordaremos os temas mais complexos.
+- 🏠 Outros tópicos importantes são para estudo individual no livro.
 
 ## Ementa Detalhada do Curso
 
 ### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
-(Este tema, supostamente, vocẽ já estudou na escola ou/e em Introduação à Geometria Analítica. Só precisamos fazer uma revisão rápida dos temas mais complexos, certo?)
 - Vetores bi, tri e n–dimensionais
 - Norma, produto escalar e distância em $R^n$
 - Ortogonalidade
@@ -25,7 +27,6 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - Produto vetorial
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
-(Neste capítulo vou abordar em aula os temas mais complexos, alguns temas deixo para você ler no livro texto, blz?)
 - [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
 - [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
 - [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
@@ -44,7 +45,6 @@ Este livro é amplamente reconhecido por sua abordagem clara e abrangente dos t�
 - 🎉 Lembre-se: O importante é praticar! 💪
 - 📝 Faça os exercícios do livro recomendado 📘
 - 🧠 Isso ajudará a fixar o conteúdo 🌟
-
 
 ### [CAPÍTULO 5: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
 - Espaços vetoriais reais
