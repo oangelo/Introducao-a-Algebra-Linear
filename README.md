@@ -67,4 +67,4 @@ O curso é baseado no livro:
 - Segunda-feira, T2 e T3, na sala 203.
 - Monitor: Arthur Tavares 
 
-Bons estudos!
+📝 Bons estudos e boa sorte! 🍀📐🔢
