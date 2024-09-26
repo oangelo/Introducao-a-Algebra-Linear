@@ -65,6 +65,7 @@ O curso é baseado no livro:
 - [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
 - [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
 - [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
+- [Quiz](quiz/matrizes_e_sitemas.md)
 <details>
 <summary>Glossário de Termos Chave</summary>
 
