@@ -39,7 +39,7 @@ Este curso aborda os princípios básicos da álgebra linear, uma área fundamen
 </details>
 
 
-</details>
+<details>
   <summary>Livro Adotado</summary>
 ## Livro Adotado
 
