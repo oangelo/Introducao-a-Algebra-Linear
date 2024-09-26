@@ -88,17 +88,6 @@ O curso é baseado no livro:
 * **Matriz Triangular Superior:** Matriz quadrada onde os elementos abaixo da diagonal principal são nulos.
 * **Matriz Triangular Inferior:** Matriz quadrada onde os elementos acima da diagonal principal são nulos.
 * **Matriz Identidade:** Matriz diagonal onde os elementos da diagonal principal são iguais a 1.
-* **Rede:** Conjunto de pontos (nós) interligados por linhas (ramos).
-* **Análise de Redes:** Estudo de fluxos em redes.
-* **Circuito Elétrico:** Conjunto de componentes elétricos interligados.
-* **Lei de Ohm:** Relação entre tensão, corrente e resistência em um circuito elétrico.
-* **Leis de Kirchhoff:** Leis que descrevem o comportamento da corrente e da tensão em um circuito elétrico.
-* **Equação Química Balanceada:** Equação química que representa a conservação de átomos em uma reação química.
-* **Interpolação Polinomial:** Encontrar um polinômio que passa por um conjunto de pontos dados.
-* **Modelo Econômico de Leontief:** Modelo que descreve as relações intersetoriais em uma economia.
-* **Matriz de Consumo:** Matriz que representa a quantidade de insumos necessários para produzir uma unidade de produto em cada setor da economia.
-* **Vetor de Produção:** Vetor que representa a quantidade de produto produzido em cada setor da economia.
-* **Vetor Demanda:** Vetor que representa a demanda por cada produto da economia.
 
 </details>
 
