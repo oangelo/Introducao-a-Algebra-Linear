@@ -1,5 +1,4 @@
 # Quiz sobre Propriedades da Aritmética de Matrizes e Sistemas Lineares
-
 1. Qual a diferença entre um sistema linear possível e determinado (SPD) e um sistema linear possível e indeterminado (SPI)?
 
 <details>
@@ -24,12 +23,12 @@ O método da adição consiste em somar as equações do sistema, após multipli
 A matriz aumentada de um sistema linear é formada pelos coeficientes das variáveis e pelos termos independentes das equações. Ela é útil pois permite aplicar o método de Gauss ou Gauss-Jordan para encontrar a solução do sistema.
 </details>
 
-4. Defina matriz identidade e explique qual a sua função na multiplicação de matrizes.
+4. Como a matriz identidade se relaciona com o número 1 na aritmética comum? Explique sua importância na álgebra matricial.
 
 <details>
 <summary>Ver resposta</summary>
 
-A matriz identidade é uma matriz quadrada onde todos os elementos da diagonal principal são iguais a 1 e os demais são nulos. Sua função na multiplicação de matrizes é análoga à do número 1 na multiplicação de números reais, ou seja, AI = IA = A para qualquer matriz A compatível.
+A matriz identidade funciona como o número 1 na multiplicação. Multiplicar qualquer matriz por ela não altera a matriz original (AI = IA = A). Ela é crucial em conceitos como inversão de matrizes e transformações lineares que preservam vetores.
 </details>
 
 5. Qual a condição para que o produto de duas matrizes esteja definido?
@@ -97,15 +96,7 @@ Uma matriz simétrica é igual à sua transposta. Visualmente, ela é simétrica
 Matrizes diagonais têm elementos não-nulos apenas na diagonal principal, enquanto matrizes triangulares têm elementos não-nulos na diagonal principal e acima (superiores) ou abaixo (inferiores) dela. Ambas são úteis para simplificar cálculos e aparecem em decomposições matriciais importantes.
 </details>
 
-13. Como a matriz identidade se relaciona com o número 1 na aritmética comum? Explique sua importância na álgebra matricial.
-
-<details>
-<summary>Ver resposta</summary>
-
-A matriz identidade funciona como o número 1 na multiplicação. Multiplicar qualquer matriz por ela não altera a matriz original (AI = IA = A). Ela é crucial em conceitos como inversão de matrizes e transformações lineares que preservam vetores.
-</details>
-
-14. Por que a comutatividade vale para a adição de matrizes, mas não para a multiplicação? Dê um exemplo intuitivo.
+13. Por que a comutatividade vale para a adição de matrizes, mas não para a multiplicação? Dê um exemplo intuitivo.
 
 <details>
 <summary>Ver resposta</summary>
