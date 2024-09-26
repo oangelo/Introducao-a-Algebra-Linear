@@ -65,6 +65,42 @@ O curso é baseado no livro:
 - [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
 - [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
 - [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
+- <details>
+<summary>Glossário de Termos Chave</summary>
+
+# Glossário de Termos Chave
+
+* **Sistema Linear:** Conjunto de equações lineares com as mesmas variáveis.
+* **Matriz:** Tabela retangular de elementos dispostos em linhas e colunas.
+* **Vetor:** Matriz com apenas uma linha ou uma coluna.
+* **Matriz Aumentada:** Matriz que representa um sistema linear, contendo os coeficientes das variáveis e os termos independentes.
+* **Operações Elementares com Linhas:** Operações que podem ser aplicadas a uma matriz para transformá-la em uma forma equivalente, sem alterar a solução do sistema linear associado.
+* **Forma Escalonada:** Uma matriz está na forma escalonada quando:
+  1. O primeiro elemento não nulo de cada linha (pivô) é igual a 1;
+  2. Os pivôs de linhas consecutivas estão em colunas diferentes e cada pivô está à direita do pivô da linha anterior;
+  3. As linhas nulas estão abaixo das linhas não nulas.
+* **Forma Escalonada Reduzida por Linhas:** Uma matriz está na forma escalonada reduzida por linhas quando está na forma escalonada e:
+  4. Cada pivô é o único elemento não nulo da sua coluna.
+* **Variável Livre:** Variável que pode assumir qualquer valor real na solução de um sistema linear indeterminado.
+* **Matriz Inversa:** Matriz que, quando multiplicada pela matriz original, resulta na matriz identidade.
+* **Matriz Transposta:** Matriz obtida trocando as linhas pelas colunas da matriz original.
+* **Matriz Diagonal:** Matriz quadrada onde os elementos fora da diagonal principal são nulos.
+* **Matriz Triangular Superior:** Matriz quadrada onde os elementos abaixo da diagonal principal são nulos.
+* **Matriz Triangular Inferior:** Matriz quadrada onde os elementos acima da diagonal principal são nulos.
+* **Matriz Identidade:** Matriz diagonal onde os elementos da diagonal principal são iguais a 1.
+* **Rede:** Conjunto de pontos (nós) interligados por linhas (ramos).
+* **Análise de Redes:** Estudo de fluxos em redes.
+* **Circuito Elétrico:** Conjunto de componentes elétricos interligados.
+* **Lei de Ohm:** Relação entre tensão, corrente e resistência em um circuito elétrico.
+* **Leis de Kirchhoff:** Leis que descrevem o comportamento da corrente e da tensão em um circuito elétrico.
+* **Equação Química Balanceada:** Equação química que representa a conservação de átomos em uma reação química.
+* **Interpolação Polinomial:** Encontrar um polinômio que passa por um conjunto de pontos dados.
+* **Modelo Econômico de Leontief:** Modelo que descreve as relações intersetoriais em uma economia.
+* **Matriz de Consumo:** Matriz que representa a quantidade de insumos necessários para produzir uma unidade de produto em cada setor da economia.
+* **Vetor de Produção:** Vetor que representa a quantidade de produto produzido em cada setor da economia.
+* **Vetor Demanda:** Vetor que representa a demanda por cada produto da economia.
+
+</details>
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
 - Determinantes por expansão em cofatores
