@@ -41,7 +41,6 @@ Este curso aborda os princípios básicos da álgebra linear, uma área fundamen
 
 <details>
   <summary>Livro Adotado</summary>
-## Livro Adotado
 
 O curso é baseado no livro:
 
