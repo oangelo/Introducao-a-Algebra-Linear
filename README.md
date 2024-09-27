@@ -94,6 +94,24 @@ O curso é baseado no livro:
 - [Quiz](quiz/matrizes_e_sitemas.md)
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
+<details>
+<summary>Glossário de Termos Chave</summary>
+
+# Glossário de Termos Chave
+
+* **Determinante:** Função que associa um número real a uma matriz quadrada, sendo útil para determinar propriedades da matriz, como invertibilidade.
+* **Menor:** Determinante da submatriz obtida ao remover uma linha e uma coluna de uma matriz quadrada.
+* **Cofator:** Produto do menor pelo fator (-1)^(i+j), levando em consideração a posição (i, j) do elemento na matriz.
+* **Expansão em cofatores:** Método para calcular o determinante de uma matriz utilizando os cofatores de uma linha ou coluna.
+* **Matriz triangular:** Matriz quadrada onde os elementos acima ou abaixo da diagonal principal são todos zero (superior ou inferior, respectivamente).
+* **Matriz elementar:** Matriz obtida aplicando-se uma única operação elementar com linhas à matriz identidade.
+* **Operações elementares com linhas:** Operações que modificam uma matriz sem alterar suas soluções (trocar linhas, multiplicar linha por escalar, somar múltiplo de linha a outra).
+* **Matriz de cofatores:** Matriz onde cada elemento é o cofator correspondente da matriz original.
+* **Adjunta:** Matriz transposta da matriz de cofatores, utilizada no cálculo da inversa da matriz original.
+* **Regra de Cramer:** Fórmula que utiliza determinantes para solucionar sistemas de equações lineares com 'n' equações e 'n' incógnitas, quando a matriz de coeficientes é invertível.
+
+</details>
+
 - Determinantes por expansão em cofatores
 - Calculando determinantes por meio de redução por linhas
 - Propriedades dos determinantes; regra de Cramer
