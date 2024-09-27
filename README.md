@@ -54,18 +54,12 @@ O curso é baseado no livro:
 
 ## Ementa Detalhada do Curso
 
-### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
-- Vetores bi, tri e n–dimensionais
-- Norma, produto escalar e distância em $R^n$
-- Ortogonalidade
-- A geometria de sistemas lineares
-- Produto vetorial
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
 <details>
 <summary>Glossário de Termos Chave</summary>
 
-# Glossário de Termos Chave
+### Glossário de Termos Chave
 
 * **Sistema Linear:** Conjunto de equações lineares com as mesmas variáveis.
 * **Matriz:** Tabela retangular de elementos dispostos em linhas e colunas.
@@ -97,7 +91,7 @@ O curso é baseado no livro:
 <details>
 <summary>Glossário de Termos Chave</summary>
 
-# Glossário de Termos Chave
+### Glossário de Termos Chave
 
 * **Determinante:** Função que associa um número real a uma matriz quadrada, sendo útil para determinar propriedades da matriz, como invertibilidade.
 * **Menor:** Determinante da submatriz obtida ao remover uma linha e uma coluna de uma matriz quadrada.
@@ -117,15 +111,49 @@ O curso é baseado no livro:
 - Propriedades dos determinantes; regra de Cramer
 - [Quiz](quiz/determinantes.md)
 
-### [CAPÍTULO 4: ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
-- Espaço Euclidiano n-dimensional
-- Transformações Lineares de $R^n$ em $R^m$
-- Propriedades das Transformações Lineares de $R^n$ em $R^m$
+### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
+
+<details>
+<summary>Glossário de Termos Chave</summary>
+
+### Glossário de Termos Chave
+
+* **Vetor geométrico:** Um segmento de reta orientado, caracterizado por seu comprimento, direção e sentido.
+* **Direção e sentido:** A direção de um vetor é dada pela reta que o contém, e o sentido é determinado pela orientação da seta.
+* **Comprimento (ou magnitude):** A medida do vetor, representando a distância entre seu ponto inicial e final.
+* **Ponto inicial:** O ponto de onde o vetor se origina.
+* **Ponto final:** O ponto onde o vetor termina.
+* **Vetores equivalentes:** Vetores com o mesmo comprimento, direção e sentido, independentemente de sua posição no espaço.
+* **Vetor zero:** O vetor com comprimento zero, sem direção ou sentido definido.
+* **Adição vetorial, regra do paralelogramo e regra do triângulo:** Métodos geométricos para somar vetores.
+* **Subtração vetorial:** A operação de encontrar a diferença entre dois vetores.
+* **Negativo de um vetor:** O vetor com o mesmo comprimento e direção, mas sentido oposto ao vetor original.
+* **Multiplicação por escalar:** A operação de multiplicar um vetor por um número real (escalar), alterando seu comprimento e/ou sentido.
+* **Vetores colineares:** Vetores que possuem a mesma direção, podendo ter o mesmo sentido ou sentidos opostos (também chamados de vetores paralelos).
+* **Componentes de um vetor:** As coordenadas do ponto final do vetor quando seu ponto inicial está na origem de um sistema de coordenadas.
+* **Coordenadas de um ponto:** Um conjunto de números que identificam a posição de um ponto em um sistema de coordenadas.
+* **Ênupla:** Uma sequência ordenada de números reais, utilizada para representar pontos ou vetores em espaços de dimensão n.
+* **Espaço de dimensão n (Rn):** O conjunto de todas as ênuplas ordenadas com n componentes.
+* **Operações vetoriais no espaço de dimensão n:** Adição, subtração e multiplicação por escalar, realizadas componente a componente.
+
+</details>
+
+- Vetores bi, tri e n–dimensionais
+- Norma, produto escalar e distância em $R^n$
+- Ortogonalidade
+- A geometria de sistemas lineares
+- Produto vetorial
 
 ## 👆 A matéria da primeira prova vai até aqui! 📚✅
 - 🎉 Lembre-se: O importante é praticar! 💪
 - 📝 Faça os exercícios do livro recomendado 📘
 - 🧠 Isso ajudará a fixar o conteúdo 🌟
+
+### [CAPÍTULO 4: ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
+- Espaço Euclidiano n-dimensional
+- Transformações Lineares de $R^n$ em $R^m$
+- Propriedades das Transformações Lineares de $R^n$ em $R^m$
+
 
 ### [CAPÍTULO 5: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
 - Espaços vetoriais reais
