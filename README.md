@@ -62,10 +62,6 @@ O curso é baseado no livro:
 - Produto vetorial
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
-- [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
-- [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
-- [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
-- [Quiz](quiz/matrizes_e_sitemas.md)
 <details>
 <summary>Glossário de Termos Chave</summary>
 
@@ -91,6 +87,10 @@ O curso é baseado no livro:
 * **Matriz Identidade:** Matriz diagonal onde os elementos da diagonal principal são iguais a 1.
 
 </details>
+- [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
+- [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
+- [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
+- [Quiz](quiz/matrizes_e_sitemas.md)
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
 - Determinantes por expansão em cofatores
