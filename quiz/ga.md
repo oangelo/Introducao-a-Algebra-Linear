@@ -1,75 +1,88 @@
-## Quiz sobre Vetores e Geometria Analítica
+# Quiz sobre Vetores e Geometria Analítica
 
-Explique a diferença entre vetores equivalentes e vetores iguais.
+1. Explique a diferença entre vetores equivalentes e vetores iguais.
 
 <details>
 <summary>Ver resposta</summary>
+
 Vetores equivalentes possuem o mesmo comprimento, direção e sentido, mas podem ter diferentes pontos iniciais. Vetores iguais são equivalentes e possuem o mesmo ponto inicial.
 </details>
 
-Descreva geometricamente a adição de vetores usando a regra do paralelogramo.
+2. Descreva geometricamente a adição de vetores usando a regra do paralelogramo.
 
 <details>
 <summary>Ver resposta</summary>
+
 Para somar dois vetores geometricamente usando a regra do paralelogramo, posicione os vetores de forma que seus pontos iniciais coincidam. Em seguida, construa um paralelogramo usando esses vetores como lados adjacentes. A diagonal do paralelogramo que se origina no ponto inicial comum dos vetores representa a soma vetorial.
 </details>
 
-O que acontece com o comprimento e o sentido de um vetor quando ele é multiplicado por um escalar negativo?
+3. O que acontece com o comprimento e o sentido de um vetor quando ele é multiplicado por um escalar negativo?
 
 <details>
 <summary>Ver resposta</summary>
-Quando um vetor é multiplicado por um escalar negativo, seu comprimento é multiplicado pelo valor absoluto do escalar, e seu sentido é invertido.
+
+Quando um vetor $\vec{v}$ é multiplicado por um escalar negativo $k$, seu comprimento é multiplicado pelo valor absoluto do escalar $|k|$, e seu sentido é invertido. Matematicamente: $k\vec{v} = (k\vec{v}_x, k\vec{v}_y, k\vec{v}_z)$.
 </details>
 
-Como você pode determinar se dois vetores em Rn são colineares?
+4. Como você pode determinar se dois vetores em $\mathbb{R}^n$ são colineares?
 
 <details>
 <summary>Ver resposta</summary>
-Dois vetores em Rn são colineares se um for um múltiplo escalar do outro. Isso significa que as componentes correspondentes dos vetores serão proporcionais.
+
+Dois vetores $\vec{u}$ e $\vec{v}$ em $\mathbb{R}^n$ são colineares se um for um múltiplo escalar do outro. Isso significa que existe um escalar $k$ tal que $\vec{u} = k\vec{v}$ ou $\vec{v} = k\vec{u}$.
 </details>
 
-Qual é a relação entre as coordenadas de um ponto e os componentes de um vetor que vai da origem até esse ponto?
+5. Qual é a relação entre as coordenadas de um ponto e os componentes de um vetor que vai da origem até esse ponto?
 
 <details>
 <summary>Ver resposta</summary>
-As coordenadas de um ponto e os componentes do vetor que vai da origem até esse ponto são numericamente iguais.
+
+As coordenadas de um ponto $P(x, y, z)$ e os componentes do vetor $\vec{OP}$ que vai da origem $O(0, 0, 0)$ até esse ponto são numericamente iguais: $\vec{OP} = (x, y, z)$.
 </details>
 
-Como os vetores unitários canônicos são definidos em Rn?
+6. Como os vetores unitários canônicos são definidos em $\mathbb{R}^n$?
 
 <details>
 <summary>Ver resposta</summary>
-Os vetores unitários canônicos em Rn são denotados por e1, e2, ..., en, onde cada ei possui um 1 na i-ésima posição e 0 nas demais.
+
+Os vetores unitários canônicos em $\mathbb{R}^n$ são denotados por $\vec{e}_1, \vec{e}_2, ..., \vec{e}_n$, onde cada $\vec{e}_i$ possui um 1 na $i$-ésima posição e 0 nas demais. Por exemplo, em $\mathbb{R}^3$: $\vec{e}_1 = (1,0,0)$, $\vec{e}_2 = (0,1,0)$, $\vec{e}_3 = (0,0,1)$.
 </details>
 
-Explique como a distância entre dois pontos em Rn é calculada.
+7. Explique como a distância entre dois pontos em $\mathbb{R}^n$ é calculada.
 
 <details>
 <summary>Ver resposta</summary>
-A distância entre dois pontos em Rn é calculada usando a fórmula da distância euclidiana, que é a raiz quadrada da soma dos quadrados das diferenças entre as componentes correspondentes dos pontos.
+
+A distância $d$ entre dois pontos $P_1(x_1, y_1, ..., z_1)$ e $P_2(x_2, y_2, ..., z_2)$ em $\mathbb{R}^n$ é calculada usando a fórmula da distância euclidiana:
+
+$d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + ... + (z_2-z_1)^2}$
 </details>
 
-O que significa dizer que dois vetores não nulos em Rn são ortogonais?
+8. O que significa dizer que dois vetores não nulos em $\mathbb{R}^n$ são ortogonais?
 
 <details>
 <summary>Ver resposta</summary>
-Dois vetores não nulos em Rn são ortogonais se o produto escalar entre eles for igual a zero. Geometricamente, isso significa que os vetores formam um ângulo reto entre si.
+
+Dois vetores não nulos $\vec{u}$ e $\vec{v}$ em $\mathbb{R}^n$ são ortogonais se o produto escalar entre eles for igual a zero: $\vec{u} \cdot \vec{v} = 0$. Geometricamente, isso significa que os vetores formam um ângulo reto entre si.
 </details>
 
-Escreva a fórmula para o produto escalar de dois vetores em Rn, tanto em termos de seus componentes quanto em termos de seus comprimentos e do ângulo entre eles.
+9. Escreva a fórmula para o produto escalar de dois vetores em $\mathbb{R}^n$, tanto em termos de seus componentes quanto em termos de seus comprimentos e do ângulo entre eles.
 
 <details>
 <summary>Ver resposta</summary>
-O produto escalar de dois vetores u = (u1, u2, ..., un) e v = (v1, v2, ..., vn) em Rn pode ser calculado de duas maneiras:
 
-Componentes: u · v = u1v1 + u2v2 + ... + unvn
-Comprimentos e ângulo: u · v = ||u|| ||v|| cos θ, onde θ é o ângulo entre u e v.
+O produto escalar de dois vetores $\vec{u} = (u_1, u_2, ..., u_n)$ e $\vec{v} = (v_1, v_2, ..., v_n)$ em $\mathbb{R}^n$ pode ser calculado de duas maneiras:
 
+* Componentes: $\vec{u} \cdot \vec{v} = u_1v_1 + u_2v_2 + ... + u_nv_n$
+* Comprimentos e ângulo: $\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos \theta$, onde $\theta$ é o ângulo entre $\vec{u}$ e $\vec{v}$.
 </details>
 
-Qual é a relação geométrica entre um vetor u, um vetor não nulo a e a projeção ortogonal de u sobre a?
+10. Qual é a relação geométrica entre um vetor $\vec{u}$, um vetor não nulo $\vec{a}$ e a projeção ortogonal de $\vec{u}$ sobre $\vec{a}$?
 
 <details>
 <summary>Ver resposta</summary>
-A projeção ortogonal de u sobre a é um vetor w1 que é um múltiplo escalar de a e é paralelo a a. O vetor diferença w2 = u - w1 é ortogonal a a. Em outras palavras, a projeção ortogonal decompõe u em duas componentes: uma paralela a a e outra ortogonal a a.
+
+A projeção ortogonal de $\vec{u}$ sobre $\vec{a}$ é um vetor $\vec{w}_1$ que é um múltiplo escalar de $\vec{a}$ e é paralelo a $\vec{a}$. O vetor diferença $\vec{w}_2 = \vec{u} - \vec{w}_1$ é ortogonal a $\vec{a}$. Matematicamente, a projeção é dada por:
+
+$\vec{w}_1 = \text{proj}_{\vec{a}}\vec{u} = \frac{\vec{u} \cdot \vec{a}}{\|\vec{a}\|^2}\vec{a}$
 </details>
