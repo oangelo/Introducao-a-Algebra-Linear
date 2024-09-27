@@ -115,6 +115,7 @@ O curso é baseado no livro:
 - Determinantes por expansão em cofatores
 - Calculando determinantes por meio de redução por linhas
 - Propriedades dos determinantes; regra de Cramer
+- [Quiz](quiz/determinantes.md)
 
 ### [CAPÍTULO 4: ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
 - Espaço Euclidiano n-dimensional
