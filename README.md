@@ -149,7 +149,7 @@ O curso é baseado no livro:
 - 📝 Faça os exercícios do livro recomendado 📘
 - 🧠 Isso ajudará a fixar o conteúdo 🌟
 
-### [CAPÍTULO 4: ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
+### [CAPÍTULO 4: TRANSFORMAÇÕES EM ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
 - Espaço Euclidiano n-dimensional
 - Transformações Lineares de $R^n$ em $R^m$
 - Propriedades das Transformações Lineares de $R^n$ em $R^m$
