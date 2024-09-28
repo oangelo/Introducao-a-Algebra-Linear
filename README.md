@@ -220,6 +220,7 @@ _________
 - Transformações matriciais de $R^n$ em $R^m$
 - Propriedades das transformações matriciais
 - A geometria de operadores matriciais de $R^2$
+- [Quiz](quiz/espaco_linear.md)
 
 ### CAPÍTULO 7: Autovalores e Autovetores
 - Autovalores e autovetores
