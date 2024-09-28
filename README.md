@@ -9,6 +9,7 @@ Este curso aborda os princípios básicos da álgebra linear, uma área fundamen
 <details>
   <summary>Como não passar nesta matéria</summary>
 
+_________
   # Como não passar nesta matéria
 
   Olá, queridos alunos! Vamos falar sobre como ter sucesso neste curso? Não? Ah, você quer saber como não passar?
@@ -35,6 +36,7 @@ Este curso aborda os princípios básicos da álgebra linear, uma área fundamen
   ## Conclusão
 
   Seguindo essas dicas, você estará no caminho certo para não passar nesta matéria. Mas hey, se por algum motivo você decidir fazer o oposto do que foi sugerido aqui - estudar consistentemente, dormir bem e respeitar os processos de aprendizagem do seu cérebro - bem, aí a responsabilidade é toda sua se acabar passando com louvor!
+_________
 
 </details>
 
@@ -42,6 +44,7 @@ Este curso aborda os princípios básicos da álgebra linear, uma área fundamen
 <details>
   <summary>Livro Adotado</summary>
 
+_________
 O curso é baseado no livro:
 
 **"Álgebra Linear com Aplicações"** de Howard Anton
@@ -50,6 +53,7 @@ O curso é baseado no livro:
 - 📖 LEITURA OBRIGATÓRIA do livro texto! 🔍
 - 🎓 Em aula, abordaremos os temas mais complexos.
 - 🏠 Outros tópicos importantes são para estudo individual no livro.
+_________
 </details>
 
 ## Ementa Detalhada do Curso
@@ -59,6 +63,7 @@ O curso é baseado no livro:
 <details>
 <summary>Glossário de Termos Chave</summary>
 
+_________
 ### Glossário de Termos Chave
 
 * **Sistema Linear:** Conjunto de equações lineares com as mesmas variáveis.
@@ -79,6 +84,7 @@ O curso é baseado no livro:
 * **Matriz Triangular Superior:** Matriz quadrada onde os elementos abaixo da diagonal principal são nulos.
 * **Matriz Triangular Inferior:** Matriz quadrada onde os elementos acima da diagonal principal são nulos.
 * **Matriz Identidade:** Matriz diagonal onde os elementos da diagonal principal são iguais a 1.
+_________
 
 </details>
 
@@ -92,6 +98,7 @@ O curso é baseado no livro:
 <details>
 <summary>Glossário de Termos Chave</summary>
 
+_________
 ### Glossário de Termos Chave
 
 * **Determinante:** Função que associa um número real a uma matriz quadrada, sendo útil para determinar propriedades da matriz, como invertibilidade.
@@ -104,6 +111,7 @@ O curso é baseado no livro:
 * **Matriz de cofatores:** Matriz onde cada elemento é o cofator correspondente da matriz original.
 * **Adjunta:** Matriz transposta da matriz de cofatores, utilizada no cálculo da inversa da matriz original.
 * **Regra de Cramer:** Fórmula que utiliza determinantes para solucionar sistemas de equações lineares com 'n' equações e 'n' incógnitas, quando a matriz de coeficientes é invertível.
+_________
 
 </details>
 
@@ -117,6 +125,7 @@ O curso é baseado no livro:
 <details>
 <summary>Glossário de Termos Chave</summary>
 
+_________
 ### Glossário de Termos Chave
 
 * **Vetor geométrico:** Um segmento de reta orientado, caracterizado por seu comprimento, direção e sentido.
@@ -136,6 +145,7 @@ O curso é baseado no livro:
 * **Ênupla:** Uma sequência ordenada de números reais, utilizada para representar pontos ou vetores em espaços de dimensão n.
 * **Espaço de dimensão n (Rn):** O conjunto de todas as ênuplas ordenadas com n componentes.
 * **Operações vetoriais no espaço de dimensão n:** Adição, subtração e multiplicação por escalar, realizadas componente a componente.
+_________
 
 </details>
 
@@ -162,6 +172,7 @@ O curso é baseado no livro:
 <details>
 <summary>Glossário de Termos-Chave</summary>
 
+_________
 ### Glossário de Termos-Chave
 
 #### Axiomas de Espaço Vetorial
