@@ -88,7 +88,7 @@ O curso é baseado no livro:
 - [Quiz](quiz/matrizes_e_sitemas.md)
 
 <audio controls>
-  <source src="audio/matrizes_sistemas_bill.mp3" type="audio/mpeg">
+  <source src="https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3" type="audio/mpeg">
   Seu navegador não suporta o elemento de áudio.
 </audio>
 
