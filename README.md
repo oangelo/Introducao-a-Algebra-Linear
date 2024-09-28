@@ -225,6 +225,7 @@ _________
 ### CAPÍTULO 7: Autovalores e Autovetores
 - Autovalores e autovetores
 - Diagonalização
+- [Quiz](quiz/auto_valores_vetores.md)
 
 ### Monitoria 2024 - 2
 - Segunda-feira, T2 e T3, na sala 203.
