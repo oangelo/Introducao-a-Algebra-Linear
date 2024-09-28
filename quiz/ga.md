@@ -85,4 +85,6 @@ O produto escalar de dois vetores $\vec{u} = (u_1, u_2, ..., u_n)$ e $\vec{v} = 
 A projeção ortogonal de $\vec{u}$ sobre $\vec{a}$ é um vetor $\vec{w}_1$ que é um múltiplo escalar de $\vec{a}$ e é paralelo a $\vec{a}$. O vetor diferença $\vec{w}_2 = \vec{u} - \vec{w}_1$ é ortogonal a $\vec{a}$. Matematicamente, a projeção é dada por:
 
 $\vec{w}_1 = \text{proj}_{\vec{a}}\vec{u} = \frac{\vec{u} \cdot \vec{a}}{\|\vec{a}\|^2}\vec{a}$
+
+
 </details>
