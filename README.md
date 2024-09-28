@@ -86,11 +86,7 @@ O curso é baseado no livro:
 - [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
 - [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
 - [Quiz](quiz/matrizes_e_sitemas.md)
-
-<audio controls>
-  <source src="https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3" type="audio/mpeg">
-  Seu navegador não suporta o elemento de áudio.
-</audio>
+- [RPG - Áudio](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3)
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
 <details>
