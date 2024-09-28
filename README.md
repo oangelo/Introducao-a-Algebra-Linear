@@ -144,6 +144,7 @@ O curso é baseado no livro:
 - Ortogonalidade
 - A geometria de sistemas lineares
 - Produto vetorial
+- [Quiz](quiz/ga.md)
 
 ## 👆 A matéria da primeira prova vai até aqui! 📚✅
 - 🎉 Lembre-se: O importante é praticar! 💪
