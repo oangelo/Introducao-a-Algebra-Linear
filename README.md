@@ -158,6 +158,45 @@ O curso é baseado no livro:
 
 
 ### [CAPÍTULO 5: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
+
+<details>
+<summary>Glossário de Termos-Chave</summary>
+
+### Glossário de Termos-Chave
+
+## Axiomas de Espaço Vetorial
+
+1. **Fechamento sob Adição:** Se $u$ e $v$ pertencem a $V$, então $u + v$ também pertence a $V$.
+2. **Comutatividade da Adição:** $u + v = v + u$
+3. **Associatividade da Adição:** $(u + v) + w = u + (v + w)$
+4. **Existência do Vetor Nulo:** Existe um vetor $0$ em $V$ tal que $0 + u = u$ para todo $u$ em $V$.
+5. **Existência do Inverso Aditivo:** Para cada $u$ em $V$, existe um vetor $-u$ em $V$ tal que $u + (-u) = 0$.
+6. **Fechamento sob Multiplicação por Escalar:** Se $a$ é um escalar e $u$ pertence a $V$, então $au$ também pertence a $V$.
+7. **Distributividade da Multiplicação por Escalar em relação à Adição de Vetores:** $a(u + v) = au + av$
+8. **Distributividade da Multiplicação por Escalar em relação à Adição de Escalares:** $(a + b)u = au + bu$
+9. **Associatividade da Multiplicação por Escalar:** $a(bu) = (ab)u$
+10. **Identidade da Multiplicação por Escalar:** $1u = u$
+
+## Outros Termos
+
+* **$\mathbb{R}^n$:** O espaço vetorial de todas as n-tuplas de números reais.
+* **Sequência Infinita:** Uma lista ordenada de números reais que continua indefinidamente.
+* **Vetor Nulo (ou Vetor Zero):** O vetor em um espaço vetorial que, quando adicionado a qualquer outro vetor, não o altera.
+* **Linearmente Independente:** Um conjunto de vetores em que nenhum vetor pode ser escrito como uma combinação linear dos outros vetores do conjunto.
+* **Linearmente Dependente:** Um conjunto de vetores em que pelo menos um vetor pode ser escrito como uma combinação linear dos outros vetores do conjunto.
+* **Wronskiano:** Um determinante usado para determinar a independência linear de um conjunto de funções.
+* **Coordenadas de um Vetor:** Os escalares que multiplicam os vetores de base na representação única de um vetor como combinação linear dos vetores de base.
+* **Vetor de Coordenadas:** O vetor formado pelas coordenadas de um vetor em relação a uma base específica.
+* **Dimensão Finita:** Um espaço vetorial que possui uma base finita.
+* **Dimensão Infinita:** Um espaço vetorial que não possui uma base finita.
+* **Operador Linear (ou Transformação Linear):** Uma função $T: V \to W$ entre espaços vetoriais que preserva as operações de adição e multiplicação por escalar:
+  * $T(u + v) = T(u) + T(v)$
+  * $T(au) = aT(u)$
+* **Nulidade:** A dimensão do núcleo de uma transformação linear.
+* **Posto:** A dimensão da imagem de uma transformação linear.
+
+</details>
+
 - Espaços vetoriais reais
 - Subespaços
 - Independência linear
