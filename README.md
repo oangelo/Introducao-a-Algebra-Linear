@@ -164,7 +164,7 @@ O curso é baseado no livro:
 
 ### Glossário de Termos-Chave
 
-## Axiomas de Espaço Vetorial
+#### Axiomas de Espaço Vetorial
 
 1. **Fechamento sob Adição:** Se $u$ e $v$ pertencem a $V$, então $u + v$ também pertence a $V$.
 2. **Comutatividade da Adição:** $u + v = v + u$
@@ -177,7 +177,7 @@ O curso é baseado no livro:
 9. **Associatividade da Multiplicação por Escalar:** $a(bu) = (ab)u$
 10. **Identidade da Multiplicação por Escalar:** $1u = u$
 
-## Outros Termos
+#### Outros Termos
 
 * **$\mathbb{R}^n$:** O espaço vetorial de todas as n-tuplas de números reais.
 * **Sequência Infinita:** Uma lista ordenada de números reais que continua indefinidamente.
@@ -194,6 +194,7 @@ O curso é baseado no livro:
   * $T(au) = aT(u)$
 * **Nulidade:** A dimensão do núcleo de uma transformação linear.
 * **Posto:** A dimensão da imagem de uma transformação linear.
+_________
 
 </details>
 
