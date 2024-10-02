@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolução Detalhada do Sistema Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .matrix {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resolução Detalhada do Sistema Linear Dependendo dos Parâmetros \( a \) e \( b \)</h1>
+
+    <p>Vamos analisar o sistema linear representado pela matriz aumentada:</p>
+
+    <div class="matrix">
+    \[
+    A = \begin{bmatrix}
+    a & 0 & b & | & 2 \\
+    a & a & 4 & | & 4 \\
+    0 & a & 2 & | & b
+    \end{bmatrix}
+    \]
+    </div>
+
+    <p>Nosso objetivo é determinar para quais valores de \( a \) e \( b \) o sistema tem:</p>
+
+    <ol type="a">
+        <li>Uma solução única</li>
+        <li>Infinitas soluções dependendo de um parâmetro</li>
+        <li>Infinitas soluções dependendo de dois parâmetros</li>
+        <li>Nenhuma solução</li>
+    </ol>
+
+    <h2>Passo 1: Escrever o Sistema de Equações</h2>
+
+    <p>A matriz aumentada representa o seguinte sistema de equações:</p>
+
+    <ol>
+        <li>\( a x + 0 y + b z = 2 \) &nbsp;&nbsp; (Equação 1)</li>
+        <li>\( a x + a y + 4 z = 4 \) &nbsp;&nbsp; (Equação 2)</li>
+        <li>\( 0 x + a y + 2 z = b \) &nbsp;&nbsp; (Equação 3)</li>
+    </ol>
+
+    <h2>Passo 2: Realizar Operações Elementares de Linha</h2>
+
+    <p>Vamos escalonar a matriz para facilitar a análise das soluções.</p>
+
+    <h3>Suposição Inicial: \( a \neq 0 \)</h3>
+
+    <p>Assumimos inicialmente que \( a \) não é zero, permitindo-nos dividir por \( a \) quando necessário.</p>
+
+    <h3><strong>Operação 1:</strong> \( L2 = L2 - L1 \)</h3>
+
+    <p>Subtraímos a primeira linha da segunda para eliminar o termo \( a x \) em \( L2 \):</p>
+
+    \[
+    \begin{align*}
+    L2 &= L2 - L1 \\
+    &= (a - a, \ a - 0, \ 4 - b, \ 4 - 2) \\
+    &= (0, \ a, \ 4 - b, \ 2)
+    \end{align*}
+    \]
+
+    <p>A matriz fica:</p>
+
+    <div class="matrix">
+    \[
+    \begin{bmatrix}
+    a & 0 & b & | & 2 \\
+    0 & a & 4 - b & | & 2 \\
+    0 & a & 2 & | & b
+    \end{bmatrix}
+    \]
+    </div>
+
+    <h3><strong>Operação 2:</strong> \( L3 = L3 - L2 \)</h3>
+
+    <p>Subtraímos a nova segunda linha da terceira para eliminar o termo \( a y \) em \( L3 \):</p>
+
+    \[
+    \begin{align*}
+    L3 &= L3 - L2 \\
+    &= (0 - 0, \ a - a, \ 2 - (4 - b), \ b - 2) \\
+    &= (0, \ 0, \ b - 2, \ b - 2)
+    \end{align*}
+    \]
+
+    <p>A matriz fica:</p>
+
+    <div class="matrix">
+    \[
+    \begin{bmatrix}
+    a & 0 & b & | & 2 \\
+    0 & a & 4 - b & | & 2 \\
+    0 & 0 & b - 2 & | & b - 2
+    \end{bmatrix}
+    \]
+    </div>
+
+    <h2>Passo 3: Analisar as Equações Resultantes</h2>
+
+    <p>A matriz escalonada corresponde ao sistema:</p>
+
+    <ol>
+        <li>\( a x + b z = 2 \) &nbsp;&nbsp; (Equação 1)</li>
+        <li>\( a y + (4 - b) z = 2 \) &nbsp;&nbsp; (Equação 2)</li>
+        <li>\( (b - 2) z = b - 2 \) &nbsp;&nbsp; (Equação 3)</li>
+    </ol>
+
+    <h3>Caso 1: \( b - 2 \neq 0 \)</h3>
+
+    <p>Se \( b - 2 \neq 0 \), então podemos dividir a Equação 3 por \( b - 2 \):</p>
+
+    \[
+    (b - 2) z = b - 2 \implies z = 1
+    \]
+
+    <h4><strong>Encontrando \( y \):</strong></h4>
+
+    <p>Substituímos \( z = 1 \) na Equação 2:</p>
+
+    \[
+    a y + (4 - b)(1) = 2 \implies a y = 2 - (4 - b) \implies a y = b - 2 \implies y = \frac{b - 2}{a}
+    \]
+
+    <h4><strong>Encontrando \( x \):</strong></h4>
+
+    <p>Substituímos \( z = 1 \) na Equação 1:</p>
+
+    \[
+    a x + b(1) = 2 \implies a x = 2 - b \implies x = \frac{2 - b}{a}
+    \]
+
+    <p><strong>Conclusão:</strong> Para \( a \neq 0 \) e \( b \neq 2 \), o sistema tem uma solução única:</p>
+
+    \[
+    x = \frac{2 - b}{a}, \quad y = \frac{b - 2}{a}, \quad z = 1
+    \]
+
+    <h3>Caso 2: \( b - 2 = 0 \implies b = 2 \)</h3>
+
+    <p>A Equação 3 se torna:</p>
+
+    \[
+    0 \cdot z = 0 \implies 0 = 0
+    \]
+
+    <p>Esta é uma identidade verdadeira, indicando que a terceira equação não fornece nova informação.</p>
+
+    <h4><strong>Simplificando as Equações:</strong></h4>
+
+    <p>Com \( b = 2 \), as Equações 1 e 2 tornam-se:</p>
+
+    <ol>
+        <li>\( a x + 2 z = 2 \)</li>
+        <li>\( a y + (4 - 2) z = 2 \implies a y + 2 z = 2 \)</li>
+    </ol>
+
+    <h4><strong>Expressando \( x \) e \( y \) em termos de \( z \):</strong></h4>
+
+    <ul>
+        <li>Da Equação 1:
+        \[
+        a x = 2 - 2 z \implies x = \frac{2 - 2 z}{a}
+        \]
+        </li>
+        <li>Da Equação 2:
+        \[
+        a y = 2 - 2 z \implies y = \frac{2 - 2 z}{a}
+        \]
+        </li>
+    </ul>
+
+    <p><strong>Conclusão:</strong> Para \( a \neq 0 \) e \( b = 2 \), o sistema tem infinitas soluções dependentes de um parâmetro \( z \):</p>
+
+    \[
+    x = y = \frac{2 - 2 z}{a}, \quad z \text{ é um parâmetro livre}
+    \]
+
+    <h3>Caso 3: \( a = 0 \)</h3>
+
+    <p>Se \( a = 0 \), as Equações 1, 2 e 3 tornam-se:</p>
+
+    <ol>
+        <li>\( 0 x + 0 y + b z = 2 \implies b z = 2 \) &nbsp;&nbsp; (Equação 1)</li>
+        <li>\( 0 x + 0 y + 4 z = 4 \implies 4 z = 4 \) &nbsp;&nbsp; (Equação 2)</li>
+        <li>\( 0 x + 0 y + 2 z = b \implies 2 z = b \) &nbsp;&nbsp; (Equação 3)</li>
+    </ol>
+
+    <h4><strong>Analisando as Equações:</strong></h4>
+
+    <ul>
+        <li>Da Equação 2: \( 4 z = 4 \implies z = 1 \)</li>
+        <li>Substituindo \( z = 1 \) na Equação 1: \( b \cdot 1 = 2 \implies b = 2 \)</li>
+        <li>Da Equação 3 com \( z = 1 \): \( 2 \cdot 1 = b \implies b = 2 \)</li>
+    </ul>
+
+    <p><strong>Conclusão:</strong> Para \( a = 0 \) e \( b = 2 \), o sistema tem infinitas soluções dependentes de dois parâmetros \( x \) e \( y \):</p>
+
+    \[
+    x \text{ é um parâmetro livre}, \quad y \text{ é um parâmetro livre}, \quad z = 1
+    \]
+
+    <h3>Caso 4: \( a = 0 \) e \( b \neq 2 \)</h3>
+
+    <ul>
+        <li>Da Equação 2: \( 4 z = 4 \implies z = 1 \)</li>
+        <li>Substituindo \( z = 1 \) na Equação 1: \( b \cdot 1 = 2 \implies b = 2 \)</li>
+    </ul>
+
+    <p>Isto contradiz a suposição de que \( b \neq 2 \). Portanto, não há solução neste caso.</p>
+
+    <h2>Resumo dos Resultados</h2>
+
+    <ul>
+        <li><strong>(a) Uma solução única:</strong> Quando \( a \neq 0 \) e \( b \neq 2 \).</li>
+        <li><strong>(b) Infinitas soluções dependentes de um parâmetro:</strong> Quando \( a \neq 0 \) e \( b = 2 \).</li>
+        <li><strong>(c) Infinitas soluções dependentes de dois parâmetros:</strong> Quando \( a = 0 \) e \( b = 2 \).</li>
+        <li><strong>(d) Nenhuma solução:</strong> Quando \( a = 0 \) e \( b \neq 2 \).</li>
+    </ul>
+
+    <h1>Resposta Final</h1>
+
+    <p>Para os valores de \( a \) e \( b \):</p>
+
+    <ul>
+        <li><strong>(a)</strong> O sistema tem <strong>uma solução</strong> quando \( a \neq 0 \) e \( b \neq 2 \).</li>
+        <li><strong>(b)</strong> O sistema tem <strong>infinitas soluções dependentes de um parâmetro</strong> quando \( a \neq 0 \) e \( b = 2 \).</li>
+        <li><strong>(c)</strong> O sistema tem <strong>infinitas soluções dependentes de dois parâmetros</strong> quando \( a = 0 \) e \( b = 2 \).</li>
+        <li><strong>(d)</strong> O sistema tem <strong>nenhuma solução</strong> quando \( a = 0 \) e \( b \neq 2 \).</li>
+    </ul>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolução Detalhada do Sistema Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .matrix {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resolução Detalhada do Sistema Linear Dependendo dos Parâmetros \( a \) e \( b \)</h1>
+
+    <p>Vamos analisar o sistema linear representado pela matriz aumentada:</p>
+
+    <div class="matrix">
+    \[
+    A = \begin{bmatrix}
+    a & 0 & b & | & 2 \\
+    a & a & 4 & | & 4 \\
+    0 & a & 2 & | & b
+    \end{bmatrix}
+    \]
+    </div>
+
+    <p>Nosso objetivo é determinar para quais valores de \( a \) e \( b \) o sistema tem:</p>
+
+    <ol type="a">
+        <li>Uma solução única</li>
+        <li>Infinitas soluções dependendo de um parâmetro</li>
+        <li>Infinitas soluções dependendo de dois parâmetros</li>
+        <li>Nenhuma solução</li>
+    </ol>
+
+    <h2>Passo 1: Escrever o Sistema de Equações</h2>
+
+    <p>A matriz aumentada representa o seguinte sistema de equações:</p>
+
+    <ol>
+        <li>\( a x + 0 y + b z = 2 \) &nbsp;&nbsp; (Equação 1)</li>
+        <li>\( a x + a y + 4 z = 4 \) &nbsp;&nbsp; (Equação 2)</li>
+        <li>\( 0 x + a y + 2 z = b \) &nbsp;&nbsp; (Equação 3)</li>
+    </ol>
+
+    <h2>Passo 2: Realizar Operações Elementares de Linha</h2>
+
+    <p>Vamos escalonar a matriz para facilitar a análise das soluções.</p>
+
+    <h3>Suposição Inicial: \( a \neq 0 \)</h3>
+
+    <p>Assumimos inicialmente que \( a \) não é zero, permitindo-nos dividir por \( a \) quando necessário.</p>
+
+    <h3><strong>Operação 1:</strong> \( L2 = L2 - L1 \)</h3>
+
+    <p>Subtraímos a primeira linha da segunda para eliminar o termo \( a x \) em \( L2 \):</p>
+
+    \[
+    \begin{align*}
+    L2 &= L2 - L1 \\
+    &= (a - a, \ a - 0, \ 4 - b, \ 4 - 2) \\
+    &= (0, \ a, \ 4 - b, \ 2)
+    \end{align*}
+    \]
+
+    <p>A matriz fica:</p>
+
+    <div class="matrix">
+    \[
+    \begin{bmatrix}
+    a & 0 & b & | & 2 \\
+    0 & a & 4 - b & | & 2 \\
+    0 & a & 2 & | & b
+    \end{bmatrix}
+    \]
+    </div>
+
+    <h3><strong>Operação 2:</strong> \( L3 = L3 - L2 \)</h3>
+
+    <p>Subtraímos a nova segunda linha da terceira para eliminar o termo \( a y \) em \( L3 \):</p>
+
+    \[
+    \begin{align*}
+    L3 &= L3 - L2 \\
+    &= (0 - 0, \ a - a, \ 2 - (4 - b), \ b - 2) \\
+    &= (0, \ 0, \ b - 2, \ b - 2)
+    \end{align*}
+    \]
+
+    <p>A matriz fica:</p>
+
+    <div class="matrix">
+    \[
+    \begin{bmatrix}
+    a & 0 & b & | & 2 \\
+    0 & a & 4 - b & | & 2 \\
+    0 & 0 & b - 2 & | & b - 2
+    \end{bmatrix}
+    \]
+    </div>
+
+    <h2>Passo 3: Analisar as Equações Resultantes</h2>
+
+    <p>A matriz escalonada corresponde ao sistema:</p>
+
+    <ol>
+        <li>\( a x + b z = 2 \) &nbsp;&nbsp; (Equação 1)</li>
+        <li>\( a y + (4 - b) z = 2 \) &nbsp;&nbsp; (Equação 2)</li>
+        <li>\( (b - 2) z = b - 2 \) &nbsp;&nbsp; (Equação 3)</li>
+    </ol>
+
+    <h3>Caso 1: \( b - 2 \neq 0 \)</h3>
+
+    <p>Se \( b - 2 \neq 0 \), então podemos dividir a Equação 3 por \( b - 2 \):</p>
+
+    \[
+    (b - 2) z = b - 2 \implies z = 1
+    \]
+
+    <h4><strong>Encontrando \( y \):</strong></h4>
+
+    <p>Substituímos \( z = 1 \) na Equação 2:</p>
+
+    \[
+    a y + (4 - b)(1) = 2 \implies a y = 2 - (4 - b) \implies a y = b - 2 \implies y = \frac{b - 2}{a}
+    \]
+
+    <h4><strong>Encontrando \( x \):</strong></h4>
+
+    <p>Substituímos \( z = 1 \) na Equação 1:</p>
+
+    \[
+    a x + b(1) = 2 \implies a x = 2 - b \implies x = \frac{2 - b}{a}
+    \]
+
+    <p><strong>Conclusão:</strong> Para \( a \neq 0 \) e \( b \neq 2 \), o sistema tem uma solução única:</p>
+
+    \[
+    x = \frac{2 - b}{a}, \quad y = \frac{b - 2}{a}, \quad z = 1
+    \]
+
+    <h3>Caso 2: \( b - 2 = 0 \implies b = 2 \)</h3>
+
+    <p>A Equação 3 se torna:</p>
+
+    \[
+    0 \cdot z = 0 \implies 0 = 0
+    \]
+
+    <p>Esta é uma identidade verdadeira, indicando que a terceira equação não fornece nova informação.</p>
+
+    <h4><strong>Simplificando as Equações:</strong></h4>
+
+    <p>Com \( b = 2 \), as Equações 1 e 2 tornam-se:</p>
+
+    <ol>
+        <li>\( a x + 2 z = 2 \)</li>
+        <li>\( a y + (4 - 2) z = 2 \implies a y + 2 z = 2 \)</li>
+    </ol>
+
+    <h4><strong>Expressando \( x \) e \( y \) em termos de \( z \):</strong></h4>
+
+    <ul>
+        <li>Da Equação 1:
+        \[
+        a x = 2 - 2 z \implies x = \frac{2 - 2 z}{a}
+        \]
+        </li>
+        <li>Da Equação 2:
+        \[
+        a y = 2 - 2 z \implies y = \frac{2 - 2 z}{a}
+        \]
+        </li>
+    </ul>
+
+    <p><strong>Conclusão:</strong> Para \( a \neq 0 \) e \( b = 2 \), o sistema tem infinitas soluções dependentes de um parâmetro \( z \):</p>
+
+    \[
+    x = y = \frac{2 - 2 z}{a}, \quad z \text{ é um parâmetro livre}
+    \]
+
+    <h3>Caso 3: \( a = 0 \)</h3>
+
+    <p>Se \( a = 0 \), as Equações 1, 2 e 3 tornam-se:</p>
+
+    <ol>
+        <li>\( 0 x + 0 y + b z = 2 \implies b z = 2 \) &nbsp;&nbsp; (Equação 1)</li>
+        <li>\( 0 x + 0 y + 4 z = 4 \implies 4 z = 4 \) &nbsp;&nbsp; (Equação 2)</li>
+        <li>\( 0 x + 0 y + 2 z = b \implies 2 z = b \) &nbsp;&nbsp; (Equação 3)</li>
+    </ol>
+
+    <h4><strong>Analisando as Equações:</strong></h4>
+
+    <ul>
+        <li>Da Equação 2: \( 4 z = 4 \implies z = 1 \)</li>
+        <li>Substituindo \( z = 1 \) na Equação 1: \( b \cdot 1 = 2 \implies b = 2 \)</li>
+        <li>Da Equação 3 com \( z = 1 \): \( 2 \cdot 1 = b \implies b = 2 \)</li>
+    </ul>
+
+    <p><strong>Conclusão:</strong> Para \( a = 0 \) e \( b = 2 \), o sistema tem infinitas soluções dependentes de dois parâmetros \( x \) e \( y \):</p>
+
+    \[
+    x \text{ é um parâmetro livre}, \quad y \text{ é um parâmetro livre}, \quad z = 1
+    \]
+
+    <h3>Caso 4: \( a = 0 \) e \( b \neq 2 \)</h3>
+
+    <ul>
+        <li>Da Equação 2: \( 4 z = 4 \implies z = 1 \)</li>
+        <li>Substituindo \( z = 1 \) na Equação 1: \( b \cdot 1 = 2 \implies b = 2 \)</li>
+    </ul>
+
+    <p>Isto contradiz a suposição de que \( b \neq 2 \). Portanto, não há solução neste caso.</p>
+
+    <h2>Resumo dos Resultados</h2>
+
+    <ul>
+        <li><strong>(a) Uma solução única:</strong> Quando \( a \neq 0 \) e \( b \neq 2 \).</li>
+        <li><strong>(b) Infinitas soluções dependentes de um parâmetro:</strong> Quando \( a \neq 0 \) e \( b = 2 \).</li>
+        <li><strong>(c) Infinitas soluções dependentes de dois parâmetros:</strong> Quando \( a = 0 \) e \( b = 2 \).</li>
+        <li><strong>(d) Nenhuma solução:</strong> Quando \( a = 0 \) e \( b \neq 2 \).</li>
+    </ul>
+
+    <h1>Resposta Final</h1>
+
+    <p>Para os valores de \( a \) e \( b \):</p>
+
+    <ul>
+        <li><strong>(a)</strong> O sistema tem <strong>uma solução</strong> quando \( a \neq 0 \) e \( b \neq 2 \).</li>
+        <li><strong>(b)</strong> O sistema tem <strong>infinitas soluções dependentes de um parâmetro</strong> quando \( a \neq 0 \) e \( b = 2 \).</li>
+        <li><strong>(c)</strong> O sistema tem <strong>infinitas soluções dependentes de dois parâmetros</strong> quando \( a = 0 \) e \( b = 2 \).</li>
+        <li><strong>(d)</strong> O sistema tem <strong>nenhuma solução</strong> quando \( a = 0 \) e \( b \neq 2 \).</li>
+    </ul>
+</body>
+</html>
