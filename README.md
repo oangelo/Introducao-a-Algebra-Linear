@@ -92,7 +92,7 @@ _________
 - [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
 - [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
 - [Quiz](quiz/matrizes_e_sitemas.md)
-- [RPG - Áudio](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3)
+- [D&D - Áudio](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3)
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
 <details>
