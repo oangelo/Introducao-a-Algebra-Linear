@@ -16,8 +16,6 @@ Vamos analisar para quais valores de \( a \) e \( b \) o sistema tem:
 (c) uma solução a dois parâmetros,
 (d) nenhuma solução.
 
-<details>
-<summary>Resolução passo-a-passo</summary>
 
 ## Passo 1: Entendendo o problema
 
@@ -138,5 +136,3 @@ A matriz torna-se:
 ## Conclusão
 
 Este problema ilustra como os valores dos parâmetros em uma matriz podem afetar drasticamente a natureza das soluções de um sistema linear. A técnica de escalonamento e a análise do determinante são ferramentas fundamentais para entender essas relações.
-
-</details>
