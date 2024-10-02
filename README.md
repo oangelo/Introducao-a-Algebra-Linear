@@ -120,6 +120,17 @@ _________
 - Propriedades dos determinantes; regra de Cramer
 - [Quiz](quiz/determinantes.md)
 
+<details>
+<summary>Áudio Cyberpunk: Desvendando Determinantes</summary>
+
+Antes de continuarmos, é importante compreender um pouco sobre o cyberpunk, um gênero de ficção científica que emergiu nas últimas décadas do século XX. O cyberpunk retrata sociedades futuristas onde a tecnologia avançada coexiste com uma deterioração social, destacando temas como a concentração de renda, corporações dominantes e a marginalização dos indivíduos. Surgiu durante a era do neoliberalismo, servindo como uma crítica aos perigos da rápida evolução tecnológica aliada à desigualdade econômica, apontando para um futuro onde uma tecnocracia poderia controlar os rumos da humanidade.
+
+Utilizar elementos do cyberpunk para explicar conceitos matemáticos pode ser enriquecedor para aqueles que apreciam essa temática, pois adiciona uma narrativa envolvente e contemporânea ao aprendizado. No entanto, reconhecemos que essa abordagem pode não agradar a todos. Nosso objetivo é tornar a exploração dos determinantes mais dinâmica e interessante, sem sacrificar a clareza e a precisão dos conceitos matemáticos fundamentais.
+
+- [Áudio](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/determinants_bill.mp3)
+
+</details>
+
 ### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
 
 <details>
