@@ -19,17 +19,18 @@ Vamos analisar para quais valores de a e b o sistema tem:
 <details>
 <summary>Resolução passo-a-passo</summary>
 
+
 ## Passo 1: Entendendo o problema
 
 O sistema linear correspondente a esta matriz aumentada é:
 
-$$
+$
 \begin{cases}
 ax_1 + 0x_2 + bx_3 = 2 \\
 ax_1 + ax_2 + 4x_3 = 4 \\
 0x_1 + ax_2 + 2x_3 = b
 \end{cases}
-$$
+$
 
 Para entender os diferentes tipos de soluções, precisamos analisar como os valores de a e b afetam a resolução deste sistema.
 
