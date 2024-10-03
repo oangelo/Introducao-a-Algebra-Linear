@@ -167,6 +167,8 @@ _________
 - Produto vetorial
 - [Quiz](quiz/ga.md)
 
+## Prova adiada em fução da SEnIP
+Aproveito para compartilhar a [solução](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/sistemas.html) do problema de uma prova
 ## 👆 A matéria da primeira prova vai até aqui! 📚✅
 - 🎉 Lembre-se: O importante é praticar! 💪
 - 📝 Faça os exercícios do livro recomendado 📘
@@ -245,7 +247,7 @@ _________
 <details>
   <summary>Calendário de Provas</summary>
   <ul>
-    <li>P1: 08/10/09</li>
+    <li>P1: 15/10/09</li>
     <li>PF: 17/12/24</li>
   </ul>
   <img src="img/prova.png" alt="meme cachorro">
