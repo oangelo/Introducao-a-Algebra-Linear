@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Algebra Exercises</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            color: #333;
+        }
+        details {
+            background: #f5f5f5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        .matrix {
+            margin: 1rem 0;
+        }
+        p {
+            margin: 1rem 0;
+        }
+        strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Questão 1</h2>
+    <p>Encontre os autovalores e bases dos autoespaços de:</p>
+    
+    \[
+    A = \begin{bmatrix}
+    -2 & 2 & 3 \\
+    -2 & 3 & 2 \\
+    -4 & 2 & 5
+    \end{bmatrix}
+    \]
+    
+    <details>
+        <summary>Gabarito</summary>
+<p>Para encontrar os autovalores e bases dos autoespaços da matriz \( A \), precisamos resolver a equação característica \(\det(A - \lambda I) = 0\), onde \( \lambda \) são os autovalores e \( I \) é a matriz identidade.</p>
+
+<p><strong>Passo 1: Calcular \( A - \lambda I \)</strong></p>
+
+<div class="matrix">
+\[
+A - \lambda I = \begin{bmatrix}
+-2 - \lambda & 2 & 3 \\
+-2 & 3 - \lambda & 2 \\
+-4 & 2 & 5 - \lambda
+\end{bmatrix}
+\]
+</div>
+
+<p><strong>Passo 2: Calcular o determinante \(\det(A - \lambda I)\)</strong></p>
+
+<p>Vamos calcular o determinante usando operações elementares para simplificar a matriz.</p>
+
+<p>Primeiro, escrevemos o determinante:</p>
+
+<div class="matrix">
+\[
+\det(A - \lambda I) = \begin{vmatrix}
+-2 - \lambda & 2 & 3 \\
+-2 & 3 - \lambda & 2 \\
+-4 & 2 & 5 - \lambda
+\end{vmatrix}
+\]
+</div>
+
+<p><strong>Passo 3: Simplificar o determinante usando operações elementares</strong></p>
+
+<p><strong>Operação 1: Subtrair a primeira linha multiplicada por \(\frac{-2}{-2 - \lambda}\) da segunda linha</strong></p>
+
+<p>Como o elemento \( a_{11} = -2 - \lambda \) é variável, evitaremos operações que introduzam frações complicadas. Em vez disso, expandiremos o determinante usando cofactores.</p>
+
+<p><strong>Passo 4: Expandir o determinante usando a primeira linha</strong></p>
+
+<p>Calculamos o determinante usando a expansão em cofactores na primeira linha:</p>
+
+<div class="matrix">
+\[
+\det(A - \lambda I) = (-2 - \lambda) \cdot \begin{vmatrix}
+3 - \lambda & 2 \\
+2 & 5 - \lambda
+\end{vmatrix} - 2 \cdot \begin{vmatrix}
+-2 & 2 \\
+-4 & 5 - \lambda
+\end{vmatrix} + 3 \cdot \begin{vmatrix}
+-2 & 3 - \lambda \\
+-4 & 2
+\end{vmatrix}
+\]
+</div>
+
+<p><strong>Passo 5: Calcular os determinantes menores</strong></p>
+
+<ol>
+    <li>\( D_1 = \begin{vmatrix}
+    3 - \lambda & 2 \\
+    2 & 5 - \lambda
+    \end{vmatrix} = (3 - \lambda)(5 - \lambda) - (2)(2) = \lambda^2 - 8\lambda + 11 \)</li>
+
+    <li>\( D_2 = \begin{vmatrix}
+    -2 & 2 \\
+    -4 & 5 - \lambda
+    \end{vmatrix} = (-2)(5 - \lambda) - (2)(-4) = 2\lambda - 2 \)</li>
+
+    <li>\( D_3 = \begin{vmatrix}
+    -2 & 3 - \lambda \\
+    -4 & 2
+    \end{vmatrix} = (-2)(2) - (3 - \lambda)(-4) = 8 - 4\lambda \)</li>
+</ol>
+
+<p><strong>Passo 6: Substituir os menores na expansão</strong></p>
+
+<div class="matrix">
+\[
+\det(A - \lambda I) = (-2 - \lambda)(\lambda^2 - 8\lambda + 11) - 2(2\lambda - 2) + 3(8 - 4\lambda)
+\]
+</div>
+
+<p><strong>Passo 7: Expandir e simplificar a expressão</strong></p>
+
+<p>Expandindo:</p>
+
+<div class="matrix">
+\[
+\begin{align*}
+\det(A - \lambda I) &= (-2 - \lambda)(\lambda^2 - 8\lambda + 11) - 4\lambda + 4 + 24 - 12\lambda \\
+&= -\lambda^3 + 6\lambda^2 - 11\lambda + 6 \\
+&= 0
+\end{align*}
+\]
+</div>
+
+<p><strong>Passo 8: Encontrar os autovalores resolvendo a equação característica</strong></p>
+
+<div class="matrix">
+\[
+\lambda^3 - 6\lambda^2 + 11\lambda - 6 = 0
+\]
+</div>
+
+<p>Fatorando:</p>
+
+<div class="matrix">
+\[
+(\lambda - 1)(\lambda - 2)(\lambda - 3) = 0
+\]
+</div>
+
+<p>Portanto, os autovalores são \( \lambda_1 = 1 \), \( \lambda_2 = 2 \) e \( \lambda_3 = 3 \).</p>
+
+<p><strong>Passo 9: Encontrar os autovetores associados a cada autovalor</strong></p>
+
+<p><strong>Para \( \lambda = 1 \):</strong></p>
+
+<p>Calcular \( A - I \):</p>
+
+<div class="matrix">
+\[
+A - I = \begin{bmatrix}
+-3 & 2 & 3 \\
+-2 & 2 & 2 \\
+-4 & 2 & 4
+\end{bmatrix}
+\]
+</div>
+
+<p>Resolver \( (A - I)\mathbf{v} = \mathbf{0} \):</p>
+
+<p>Sistema de equações:</p>
+
+<ol>
+    <li>\(-3x + 2y + 3z = 0\)</li>
+    <li>\(-2x + 2y + 2z = 0\)</li>
+    <li>\(-4x + 2y + 4z = 0\)</li>
+</ol>
+
+<p>Simplificando, encontramos:</p>
+
+<ul>
+    <li>De \( y = 0 \)</li>
+    <li>Então \( x = z \)</li>
+</ul>
+
+<p><strong>Base do autoespaço para \( \lambda = 1 \):</strong></p>
+
+<div class="matrix">
+\[
+\mathbf{v} = \begin{bmatrix}
+x \\
+0 \\
+x
+\end{bmatrix} = x \begin{bmatrix}
+1 \\
+0 \\
+1
+\end{bmatrix}
+\]
+</div>
+
+<p>Portanto, a base é \( \left\{ \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \right\} \).</p>
+
+<p><strong>Para \( \lambda = 2 \):</strong></p>
+
+<p>Calcular \( A - 2I \):</p>
+
+<div class="matrix">
+\[
+A - 2I = \begin{bmatrix}
+-4 & 2 & 3 \\
+-2 & 1 & 2 \\
+-4 & 2 & 3
+\end{bmatrix}
+\]
+</div>
+
+<p>Sistema de equações:</p>
+
+<ol>
+    <li>\(-4x + 2y + 3z = 0\)</li>
+    <li>\(-2x + y + 2z = 0\)</li>
+</ol>
+
+<p>Simplificando, encontramos:</p>
+
+<ul>
+    <li>De \( z = 0 \)</li>
+    <li>Então \( y = 2x \)</li>
+</ul>
+
+<p><strong>Base do autoespaço para \( \lambda = 2 \):</strong></p>
+
+<div class="matrix">
+\[
+\mathbf{v} = \begin{bmatrix}
+x \\
+2x \\
+0
+\end{bmatrix} = x \begin{bmatrix}
+1 \\
+2 \\
+0
+\end{bmatrix}
+\]
+</div>
+
+<p>Portanto, a base é \( \left\{ \begin{bmatrix} 1 \\ 2 \\ 0 \end{bmatrix} \right\} \).</p>
+
+<p><strong>Para \( \lambda = 3 \):</strong></p>
+
+<p>Calcular \( A - 3I \):</p>
+
+<div class="matrix">
+\[
+A - 3I = \begin{bmatrix}
+-5 & 2 & 3 \\
+-2 & 0 & 2 \\
+-4 & 2 & 2
+\end{bmatrix}
+\]
+</div>
+
+<p>Sistema de equações:</p>
+
+<ol>
+    <li>\(-5x + 2y + 3z = 0\)</li>
+    <li>\(-2x + 0y + 2z = 0\)</li>
+</ol>
+
+<p>Simplificando, encontramos:</p>
+
+<ul>
+    <li>De \( y = z \)</li>
+    <li>Então \( x = z \)</li>
+</ul>
+
+<p><strong>Base do autoespaço para \( \lambda = 3 \):</strong></p>
+
+<div class="matrix">
+\[
+\mathbf{v} = \begin{bmatrix}
+x \\
+x \\
+x
+\end{bmatrix} = x \begin{bmatrix}
+1 \\
+1 \\
+1
+\end{bmatrix}
+\]
+</div>
+
+<p>Portanto, a base é \( \left\{ \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \right\} \).</p>
+
+<p><strong>Resposta Final:</strong></p>
+
+<ul>
+    <li><strong>Autovalores:</strong>
+        <ul>
+            <li>\( \lambda_1 = 1 \)</li>
+            <li>\( \lambda_2 = 2 \)</li>
+            <li>\( \lambda_3 = 3 \)</li>
+        </ul>
+    </li>
+    <li><strong>Bases dos autoespaços:</strong>
+        <ul>
+            <li>Para \( \lambda = 1 \): \( \left\{ \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \right\} \)</li>
+            <li>Para \( \lambda = 2 \): \( \left\{ \begin{bmatrix} 1 \\ 2 \\ 0 \end{bmatrix} \right\} \)</li>
+            <li>Para \( \lambda = 3 \): \( \left\{ \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \right\} \)</li>
+        </ul>
+    </li>
+</ul>
+    </details>
+
+    <h2>Questão 2</h2>
+    <p>Determine se o espaço solução do sistema \(Ax = 0\) é uma reta pela origem, um plano pela origem ou somente a origem. Se for um plano, obtenha uma equação desse plano; se for uma reta, obtenha equações paramétricas dessa reta.</p>
+
+    <p>(a)</p>
+    \[
+    A = \begin{bmatrix}
+    -1 & 1 & 1 \\
+    3 & -1 & 0 \\
+    2 & -4 & -5
+    \end{bmatrix}
+    \]
+
+    <p>(b)</p>
+    \[
+    A = \begin{bmatrix}
+    1 & -2 & 3 \\
+    -3 & 6 & 9 \\
+    -2 & 4 & -6
+    \end{bmatrix}
+    \]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+    </details>
+
+    <h2>Questão 3</h2>
+    <p>Mostre que \( \{A_1, A_2, A_3, A_4\} \) é uma base de \(M_{22}\) e expresse \(A\) como uma combinação linear dos vetores da base.</p>
+
+    \[A_1 = \begin{bmatrix} 1 & 0 \\ 1 & 0 \end{bmatrix}, \quad 
+    A_2 = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}, \quad 
+    A_3 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad 
+    A_4 = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}; \quad 
+    A = \begin{bmatrix} 6 & 2 \\ 5 & 3 \end{bmatrix}\]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+    </details>
+
+    <h2>Questão 4</h2>
+    <p>Encontre o vetor de coordenadas de \(A\) em relação à base \(S = \{A_1, A_2, A_3, A_4\}\) de \(M_{22}\).</p>
+
+    \[
+    A = \begin{bmatrix} 2 & 0 \\ -1 & 3 \end{bmatrix}, \quad 
+    A_1 = \begin{bmatrix} -1 & 1 \\ 0 & 0 \end{bmatrix}, \quad 
+    A_2 = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}, \quad 
+    A_3 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}, \quad 
+    A_4 = \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}
+    \]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+    </details>
+
+    <h2>Questão 5</h2>
+    <p>Encontre um subconjunto dos vetores dados que forma uma base do espaço gerado pelos vetores; em seguida, expresse cada vetor que não está na base como uma combinação linear dos vetores da base.</p>
+
+    <p>(c)</p>
+    \[
+    \mathbf{v}_1 = (1, -1, 5, 2), \quad \mathbf{v}_2 = (-2, 3, 1, 0), \quad \mathbf{v}_3 = (4, -5, 9, 4), \quad \mathbf{v}_4 = (0, 4, 2, -3), \quad \mathbf{v}_5 = (-7, 18, 2, -8)
+    \]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+    </details>
+
+    <script>
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        });
+    </script>
+</body>
+</html>
