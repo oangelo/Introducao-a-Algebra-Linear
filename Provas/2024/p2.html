@@ -502,6 +502,80 @@ x
     <details>
         <summary>Gabarito</summary>
         <!-- Solution content -->
+         <div class="section">
+        <p>Para mostrar que $$\{A_1, A_2, A_3, A_4\}$$ é uma base de $$M_{22}$$, precisamos verificar que esses vetores são linearmente independentes e que geram $$M_{22}$$.</p>
+        
+        <p>Primeiro, representamos cada matriz como um vetor em $$\mathbb{R}^4$$:</p>
+        <div class="proof-step">
+            <p>$$A_1 \rightarrow (1, 0, 1, 0)$$</p>
+            <p>$$A_2 \rightarrow (1, 1, 0, 0)$$</p>
+            <p>$$A_3 \rightarrow (1, 0, 0, 1)$$</p>
+            <p>$$A_4 \rightarrow (0, 0, 1, 0)$$</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Linear Independência:</h3>
+        <p>Consideremos a combinação linear:</p>
+        <p>$$c_1A_1 + c_2A_2 + c_3A_3 + c_4A_4 = 0$$</p>
+        
+        <p>Convertendo para vetores:</p>
+        <p>$$c_1(1, 0, 1, 0) + c_2(1, 1, 0, 0) + c_3(1, 0, 0, 1) + c_4(0, 0, 1, 0) = (0, 0, 0, 0)$$</p>
+        
+        <p>Isto nos dá o sistema:</p>
+        <div class="proof-step">
+            <p>1. $$c_1 + c_2 + c_3 = 0$$</p>
+            <p>2. $$c_2 = 0$$</p>
+            <p>3. $$c_1 + c_4 = 0$$</p>
+            <p>4. $$c_3 = 0$$</p>
+        </div>
+
+        <p>Resolvendo:</p>
+        <div class="proof-step">
+            <p>- De (2): $$c_2 = 0$$</p>
+            <p>- De (4): $$c_3 = 0$$</p>
+            <p>- De (1): $$c_1 = 0$$</p>
+            <p>- De (3): $$c_4 = 0$$</p>
+        </div>
+        
+        <p>Todos os coeficientes são zero, portanto, os vetores são linearmente independentes.</p>
+    </div>
+
+    <div class="section">
+        <h3>Geração de $$M_{22}$$:</h3>
+        <p>Como $$M_{22}$$ é um espaço vetorial de dimensão 4 e temos 4 vetores linearmente independentes, eles formam uma base.</p>
+    </div>
+
+    <div class="section">
+        <h3>Expressando $$A$$ como combinação linear:</h3>
+        <p>Queremos encontrar escalares $$k_1, k_2, k_3, k_4$$ tais que:</p>
+        <p>$$A = k_1A_1 + k_2A_2 + k_3A_3 + k_4A_4$$</p>
+        
+        <p>Escrevendo em termos de vetores:</p>
+        <p>$$(6, 2, 5, 3) = k_1(1, 0, 1, 0) + k_2(1, 1, 0, 0) + k_3(1, 0, 0, 1) + k_4(0, 0, 1, 0)$$</p>
+        
+        <p>Isto resulta no sistema:</p>
+        <div class="proof-step">
+            <p>1. $$k_1 + k_2 + k_3 = 6$$</p>
+            <p>2. $$k_2 = 2$$</p>
+            <p>3. $$k_1 + k_4 = 5$$</p>
+            <p>4. $$k_3 = 3$$</p>
+        </div>
+
+        <p>Resolvendo:</p>
+        <div class="proof-step">
+            <p>- De (2): $$k_2 = 2$$</p>
+            <p>- De (4): $$k_3 = 3$$</p>
+            <p>- De (1): $$k_1 = 6 - k_2 - k_3 = 6 - 2 - 3 = 1$$</p>
+            <p>- De (3): $$k_4 = 5 - k_1 = 5 - 1 = 4$$</p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusão:</h3>
+        <p>A base $$\{A_1, A_2, A_3, A_4\}$$ gera $$M_{22}$$, e podemos expressar $$A$$ como:</p>
+        <p>$$A = 1\cdot A_1 + 2\cdot A_2 + 3\cdot A_3 + 4\cdot A_4$$</p>
+    </div>
     </details>
 
     <h2>Questão 4</h2>
@@ -518,6 +592,80 @@ x
     <details>
         <summary>Gabarito</summary>
         <!-- Solution content -->
+         <div class="section">
+        <p>Para mostrar que $$\{A_1, A_2, A_3, A_4\}$$ é uma base de $$M_{22}$$, precisamos verificar que esses vetores são linearmente independentes e que geram $$M_{22}$$.</p>
+        
+        <p>Primeiro, representamos cada matriz como um vetor em $$\mathbb{R}^4$$:</p>
+        <div class="proof-step">
+            <p>$$A_1 \rightarrow (1, 0, 1, 0)$$</p>
+            <p>$$A_2 \rightarrow (1, 1, 0, 0)$$</p>
+            <p>$$A_3 \rightarrow (1, 0, 0, 1)$$</p>
+            <p>$$A_4 \rightarrow (0, 0, 1, 0)$$</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Linear Independência:</h3>
+        <p>Consideremos a combinação linear:</p>
+        <p>$$c_1A_1 + c_2A_2 + c_3A_3 + c_4A_4 = 0$$</p>
+        
+        <p>Convertendo para vetores:</p>
+        <p>$$c_1(1, 0, 1, 0) + c_2(1, 1, 0, 0) + c_3(1, 0, 0, 1) + c_4(0, 0, 1, 0) = (0, 0, 0, 0)$$</p>
+        
+        <p>Isto nos dá o sistema:</p>
+        <div class="proof-step">
+            <p>1. $$c_1 + c_2 + c_3 = 0$$</p>
+            <p>2. $$c_2 = 0$$</p>
+            <p>3. $$c_1 + c_4 = 0$$</p>
+            <p>4. $$c_3 = 0$$</p>
+        </div>
+
+        <p>Resolvendo:</p>
+        <div class="proof-step">
+            <p>- De (2): $$c_2 = 0$$</p>
+            <p>- De (4): $$c_3 = 0$$</p>
+            <p>- De (1): $$c_1 = 0$$</p>
+            <p>- De (3): $$c_4 = 0$$</p>
+        </div>
+        
+        <p>Todos os coeficientes são zero, portanto, os vetores são linearmente independentes.</p>
+    </div>
+
+    <div class="section">
+        <h3>Geração de $$M_{22}$$:</h3>
+        <p>Como $$M_{22}$$ é um espaço vetorial de dimensão 4 e temos 4 vetores linearmente independentes, eles formam uma base.</p>
+    </div>
+
+    <div class="section">
+        <h3>Expressando $$A$$ como combinação linear:</h3>
+        <p>Queremos encontrar escalares $$k_1, k_2, k_3, k_4$$ tais que:</p>
+        <p>$$A = k_1A_1 + k_2A_2 + k_3A_3 + k_4A_4$$</p>
+        
+        <p>Escrevendo em termos de vetores:</p>
+        <p>$$(6, 2, 5, 3) = k_1(1, 0, 1, 0) + k_2(1, 1, 0, 0) + k_3(1, 0, 0, 1) + k_4(0, 0, 1, 0)$$</p>
+        
+        <p>Isto resulta no sistema:</p>
+        <div class="proof-step">
+            <p>1. $$k_1 + k_2 + k_3 = 6$$</p>
+            <p>2. $$k_2 = 2$$</p>
+            <p>3. $$k_1 + k_4 = 5$$</p>
+            <p>4. $$k_3 = 3$$</p>
+        </div>
+
+        <p>Resolvendo:</p>
+        <div class="proof-step">
+            <p>- De (2): $$k_2 = 2$$</p>
+            <p>- De (4): $$k_3 = 3$$</p>
+            <p>- De (1): $$k_1 = 6 - k_2 - k_3 = 6 - 2 - 3 = 1$$</p>
+            <p>- De (3): $$k_4 = 5 - k_1 = 5 - 1 = 4$$</p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusão:</h3>
+        <p>A base $$\{A_1, A_2, A_3, A_4\}$$ gera $$M_{22}$$, e podemos expressar $$A$$ como:</p>
+        <p>$$A = 1\cdot A_1 + 2\cdot A_2 + 3\cdot A_3 + 4\cdot A_4$$</p>
+    </div>
     </details>
 
     <h2>Questão 5</h2>
