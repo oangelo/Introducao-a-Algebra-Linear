@@ -88,9 +88,7 @@ A - \lambda I = \begin{bmatrix}
 
 <p><strong>Passo 3: Simplificar o determinante usando operações elementares</strong></p>
 
-<p><strong>Operação 1: Subtrair a primeira linha multiplicada por \(\frac{-2}{-2 - \lambda}\) da segunda linha</strong></p>
-
-<p>Como o elemento \( a_{11} = -2 - \lambda \) é variável, evitaremos operações que introduzam frações complicadas. Em vez disso, expandiremos o determinante usando cofactores.</p>
+Desta vez, expandiremos o determinante usando cofactores.</p>
 
 <p><strong>Passo 4: Expandir o determinante usando a primeira linha</strong></p>
 
@@ -357,6 +355,139 @@ x
     <details>
         <summary>Gabarito</summary>
         <!-- Solution content -->
+           <h3><strong>(a)</strong></h3>
+    <p>Dado o sistema homogêneo $$Ax=0$$ com a matriz:</p>
+    <div class="matrix">
+        $$A = \begin{bmatrix} -1 & 1 & 1 \\ 3 & -1 & 0 \\ 2 & -4 & -5 \end{bmatrix}$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 1: Escrever a matriz aumentada</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} -1 & 1 & 1 & 0 \\ 3 & -1 & 0 & 0 \\ 2 & -4 & -5 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 2: Multiplicar a Linha 1 por $$-1$$ para facilitar os cálculos</strong>
+        <div class="matrix">
+            $$R1 = -R1 \quad \Rightarrow \quad \left[\begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 3 & -1 & 0 & 0 \\ 2 & -4 & -5 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 3: Eliminar $$x_1$$ das Linhas 2 e 3</strong>
+        <ul>
+            <li>Para a Linha 2:<br>
+                $$R2 = R2 - 3 \cdot R1$$<br>
+                $$R2 = [3, -1, 0] - 3 \cdot [1, -1, -1] = [0, 2, 3]$$
+            </li>
+            <li>Para a Linha 3:<br>
+                $$R3 = R3 - 2 \cdot R1$$<br>
+                $$R3 = [2, -4, -5] - 2 \cdot [1, -1, -1] = [0, -2, -3]$$
+            </li>
+        </ul>
+        <strong>A matriz fica assim:</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 0 & 2 & 3 & 0 \\ 0 & -2 & -3 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 4: Eliminar $$x_2$$ da Linha 3</strong>
+        $$R3 = R3 + R2$$<br>
+        $$R3 = [0, -2, -3] + [0, 2, 3] = [0, 0, 0]$$
+        <div class="matrix">
+            <strong>A matriz agora é:</strong><br>
+            $$\left[\begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 0 & 2 & 3 & 0 \\ 0 & 0 & 0 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 5: Resolver para as variáveis</strong>
+        <p>Da Linha 2:</p>
+        $$2x_2 + 3x_3 = 0 \quad \Rightarrow \quad x_2 = -\dfrac{3}{2}x_3$$
+        <p>Da Linha 1:</p>
+        $$x_1 - x_2 - x_3 = 0$$
+        <p>Substituindo $$x_2$$:</p>
+        $$x_1 - \left(-\dfrac{3}{2}x_3\right) - x_3 = 0 \quad \Rightarrow \quad x_1 + \dfrac{3}{2}x_3 - x_3 = 0$$
+        <p>Simplificando:</p>
+        $$x_1 + \dfrac{1}{2}x_3 = 0 \quad \Rightarrow \quad x_1 = -\dfrac{1}{2}x_3$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 6: Parametrizar a solução</strong>
+        <p>Seja $$x_3 = t$$, então:</p>
+        $$\begin{cases} x_1 = -\dfrac{1}{2}t \\ x_2 = -\dfrac{3}{2}t \\ x_3 = t \\ \end{cases}$$
+        <p><strong>Multiplicando por 2 para eliminar frações:</strong></p>
+        $$\begin{cases} x_1 = -t \\ x_2 = -3t \\ x_3 = 2t \\ \end{cases}$$
+    </div>
+
+    <div class="step">
+        <strong>Conclusão:</strong>
+        <p>O espaço solução é uma <strong>reta passando pela origem</strong> com as equações paramétricas:</p>
+        $$x = t \begin{bmatrix} -1 \\ -3 \\ 2 \\ \end{bmatrix}$$
+    </div>
+
+    <h3><strong>(b)</strong></h3>
+    <p>Dado o sistema homogêneo $$Ax=0$$ com a matriz:</p>
+    <div class="matrix">
+        $$A = \begin{bmatrix} 1 & -2 & 3 \\ -3 & 6 & 9 \\ -2 & 4 & -6 \\ \end{bmatrix}$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 1: Escrever a matriz aumentada</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} 1 & -2 & 3 & 0 \\ -3 & 6 & 9 & 0 \\ -2 & 4 & -6 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 2: Eliminar $$x_1$$ das Linhas 2 e 3</strong>
+        <ul>
+            <li>Para a Linha 2:<br>
+                $$R2 = R2 + 3 \cdot R1$$<br>
+                $$R2 = [-3, 6, 9] + 3 \cdot [1, -2, 3] = [0, 0, 18]$$
+            </li>
+            <li>Para a Linha 3:<br>
+                $$R3 = R3 + 2 \cdot R1$$<br>
+                $$R3 = [-2, 4, -6] + 2 \cdot [1, -2, 3] = [0, 0, 0]$$
+            </li>
+        </ul>
+        <strong>A matriz agora é:</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} 1 & -2 & 3 & 0 \\ 0 & 0 & 18 & 0 \\ 0 & 0 & 0 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 3: Resolver para $$x_3$$</strong>
+        $$18x_3 = 0 \quad \Rightarrow \quad x_3 = 0$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 4: Encontrar $$x_1$$ e $$x_2$$</strong>
+        <p>Da Linha 1:</p>
+        $$x_1 - 2x_2 + 3x_3 = 0$$
+        <p>Como $$x_3 = 0$$, temos:</p>
+        $$x_1 - 2x_2 = 0 \quad \Rightarrow \quad x_1 = 2x_2$$
+        <p>Seja $$x_2 = t$$, então:</p>
+        $$\begin{cases} x_1 = 2t \\ x_2 = t \\ x_3 = 0 \\ \end{cases}$$
+    </div>
+
+    <div class="step">
+        <strong>Conclusão:</strong>
+        <p>O espaço solução é uma <strong>reta passando pela origem</strong> com as equações paramétricas:</p>
+        $$x = t \begin{bmatrix} 2 \\ 1 \\ 0 \\ \end{bmatrix}$$
+    </div>
+
+    <div class="step">
+        <strong>Resposta Final:</strong>
+        <p><strong>(a)</strong> O espaço solução é uma <strong>reta passando pela origem</strong> com equações paramétricas:</p>
+        $$x = t \begin{bmatrix} -1 \\ -3 \\ 2 \\ \end{bmatrix}$$
+        <p><strong>(b)</strong> O espaço solução é uma <strong>reta passando pela origem</strong> com equações paramétricas:</p>
+        $$x = t \begin{bmatrix} 2 \\ 1 \\ 0 \\ \end{bmatrix}$$
+    </div>
     </details>
 
     <h2>Questão 3</h2>
