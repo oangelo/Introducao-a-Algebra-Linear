@@ -167,12 +167,7 @@ _________
 - Produto vetorial
 - [Quiz](quiz/ga.md)
 
-## Prova adiada em fução da SEnIP
 Aproveito para compartilhar a [solução](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/sistemas.html) do problema de uma prova
-## 👆 A matéria da primeira prova vai até aqui! 📚✅
-- 🎉 Lembre-se: O importante é praticar! 💪
-- 📝 Faça os exercícios do livro recomendado 📘
-- 🧠 Isso ajudará a fixar o conteúdo 🌟
 
 ### [CAPÍTULO 4: TRANSFORMAÇÕES EM ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
 - Espaço Euclidiano n-dimensional
@@ -236,6 +231,43 @@ _________
 - [Quiz](quiz/espaco_linear.md)
 
 ### CAPÍTULO 7: Autovalores e Autovetores
+<details>
+<summary>Glossário de Termos Chave</summary>
+
+_________
+### Glossário de Termos Chave
+
+* **Autovalor ($\lambda$):** Um escalar que, quando multiplicado por um autovetor, resulta em um múltiplo escalar desse autovetor.
+
+* **Autovetor ($\mathbf{x}$):** Um vetor não nulo que, ao ser multiplicado por uma matriz, resulta em um múltiplo escalar de si mesmo.
+ * $A\mathbf{x} = \lambda\mathbf{x}$, onde $A$ é uma matriz, $\lambda$ é o autovalor e $\mathbf{x}$ é o autovetor.
+
+* **Equação Característica:** Uma equação polinomial obtida a partir do determinante $\det(\lambda I - A) = 0$, cujas raízes são os autovalores da matriz $A$.
+
+* **Polinômio Característico:** O polinômio obtido ao calcular o determinante $\det(\lambda I - A)$.
+
+* **Autoespaço:** O conjunto de todos os autovetores associados a um determinado autovalor, juntamente com o vetor nulo.
+ * $E_\lambda = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \lambda\mathbf{x}\}$
+
+* **Matriz Diagonalizável:** Uma matriz que pode ser escrita na forma $P^{-1}AP = D$, onde $P$ é uma matriz invertível e $D$ é uma matriz diagonal.
+
+* **Matriz Diagonal:** Uma matriz quadrada em que todos os elementos fora da diagonal principal são zero.
+ * $D = \begin{bmatrix} \lambda_1 & 0 & \cdots & 0 \\ 0 & \lambda_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda_n \end{bmatrix}$
+
+* **Multiplicidade Algébrica:** O número de vezes que um autovalor aparece como raiz da equação característica.
+
+* **Multiplicidade Geométrica:** A dimensão do autoespaço associado a um autovalor.
+ * $\dim(E_\lambda)$
+
+* **Autovalores Complexos:** Autovalores que são números complexos ($a + bi$), ocorrendo quando a equação característica possui raízes complexas.
+
+* **Sistema de Equações Diferenciais Lineares:** Um sistema de equações que envolvem as derivadas de várias funções desconhecidas.
+ * $\frac{d\mathbf{x}}{dt} = A\mathbf{x}$, onde $A$ é uma matriz constante.
+
+_________
+
+</details>
+
 - Autovalores e autovetores
 - Diagonalização
 - [Quiz](quiz/auto_valores_vetores.md)
@@ -243,6 +275,10 @@ _________
 ### Monitoria 2024 - 2
 - Segunda-feira, T2 e T3, na sala 203.
 - Monitor: Arthur Tavares 
+
+- 🎉 Lembre-se: O importante é praticar! 💪
+- 📝 Faça os exercícios do livro recomendado 📘
+- 🧠 Isso ajudará a fixar o conteúdo 🌟
 
 <details>
   <summary>Calendário de Provas</summary>
