@@ -5,8 +5,8 @@ Bem-vindo ao repositório do curso de Introdução à Álgebra Linear! Este curs
 
 ## Notas e Gabaritos
 
-[P2](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/p2.html)
-[Notas](Provas/2024/notas.md)
+ - [P2](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/p2.html)
+ - [Notas](Provas/2024/notas.md)
 
 ## Sobre o Curso
 
