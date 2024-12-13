@@ -6,6 +6,8 @@ Bem-vindo ao repositório do curso de Introdução à Álgebra Linear! Este curs
 ## Notas e Gabaritos
 
  - [Notas](Provas/2024/notas.md)
+ - [PS - Gabarito](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/PS.html)
+ - [P2 - Gabarito](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/p2.html)
  - Revisão de prova sexta (13) e segunda (16) das 10:30h-12:00h no lab de robótica
 
 ## Sobre o Curso
