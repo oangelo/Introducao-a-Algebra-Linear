@@ -160,30 +160,97 @@ Estes vetores formam a base do espaço nulo, pois qualquer solução do sistema 
     
     <h3>(a)</h3>
     <p>O plano \(3x - 2y + 5z = 0\).</p>
-    <details>
-        <summary>Solução</summary>
-        <!-- Solução da questão 2a aqui -->
-    </details>
-
     <h3>(b)</h3>
     <p>O plano \(x - y = 0\).</p>
-    <details>
-        <summary>Solução</summary>
-        <!-- Solução da questão 2b aqui -->
-    </details>
-
     <h3>(c)</h3>
     <p>A reta \(x = 2t\), \(y = -t\), \(z = 4t\).</p>
-    <details>
-        <summary>Solução</summary>
-        <!-- Solução da questão 2c aqui -->
-    </details>
-
     <h3>(d)</h3>
     <p>Todos os vetores da forma \((a, b, c)\) com \(b = a + c\).</p>
     <details>
         <summary>Solução</summary>
-        <!-- Solução da questão 2d aqui -->
+	<p>
+Para cada subespaço, precisamos encontrar um conjunto de vetores linearmente independentes que o gerem.
+
+### (a) 
+O plano é dado por 
+$$3x - 2y + 5z = 0.$$
+
+Podemos escolher, por exemplo, \(y\) e \(z\) como variáveis livres. Assim, a partir da equação:
+\[
+3x = 2y - 5z \implies x = \frac{2}{3}y - \frac{5}{3}z.
+\]
+
+Definindo \(y = s\) e \(z = t\), obtemos:
+\[
+(x,y,z) = \left(\frac{2}{3}s - \frac{5}{3}t, s, t\right) = s\left(\frac{2}{3}, 1, 0\right) + t\left(-\frac{5}{3}, 0, 1\right).
+\]
+
+Para evitar frações, multiplicamos por 3:
+\[
+(x,y,z) = s(2,3,0) + t(-5,0,3).
+\]
+
+Uma base para o plano é, portanto:
+\[
+\{(2,3,0), (-5,0,3)\}.
+\]
+
+### (b)
+O plano é dado por 
+$$x - y = 0 \implies x = y.$$
+
+Podemos parametrizar \(x = y = s\) e deixar \(z\) livre como \(t\):
+\[
+(x,y,z) = (s,s,t) = s(1,1,0) + t(0,0,1).
+\]
+
+Assim, uma base é:
+\[
+\{(1,1,0), (0,0,1)\}.
+\]
+
+### (c)
+A reta é dada por:
+\[
+x = 2t, \quad y = -t, \quad z = 4t.
+\]
+
+Podemos escrever:
+\[
+(x,y,z) = t(2,-1,4).
+\]
+
+Uma base para a reta é:
+\[
+\{(2,-1,4)\}.
+\]
+
+### (d)
+Temos todos os vetores \((a,b,c)\) tais que \(b = a + c\).
+
+Substituindo \(b\):
+\[
+(a,b,c) = (a,a+c,c).
+\]
+
+Podemos parametrizar por \(a\) e \(c\):
+\[
+(a,b,c) = a(1,1,0) + c(0,1,1).
+\]
+
+Uma base é, portanto:
+\[
+\{(1,1,0), (0,1,1)\}.
+\]
+
+Resumindo:
+
+- (a) Base: \(\{(2,3,0), (-5,0,3)\}\).
+- (b) Base: \(\{(1,1,0), (0,0,1)\}\).
+- (c) Base: \(\{(2,-1,4)\}\).
+- (d) Base: \(\{(1,1,0), (0,1,1)\}\).
+</p>
+
     </details>
 
     <h2>Questão 3</h2>
