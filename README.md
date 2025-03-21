@@ -287,5 +287,6 @@ _________
  - [P2 - 2024 - Gabarito](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/p2.html)
 </details>
 
+[Roleta](https://oangelo.github.io/Introducao-a-Algebra-Linear/roleta.html)
 
 📝 Bons estudos e boa sorte! 🍀📐🔢
