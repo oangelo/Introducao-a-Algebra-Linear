@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Dimensões Digitais: Uma Jornada pela Álgebra Linear</title>
+  <!-- Importando CSS do reveal.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+  
+  <!-- Importando fontes -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap">
+  
+  <!-- Importando plugins CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css">
+  
+  <style>
+    /* Estilos Base */
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      color: #fff;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    
+    /* Canvas para o efeito Matrix */
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    
+    .reveal {
+      font-family: 'Source Sans Pro', sans-serif;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .reveal h1 {
+      font-family: 'Source Code Pro', monospace;
+      text-transform: none;
+      color: #0f0;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      font-size: 2.2rem;
+    }
+
+    .reveal h2 {
+      font-family: 'Source Code Pro', monospace;
+      text-transform: none;
+      color: #0f0;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    
+    .reveal h3 {
+      font-family: 'Source Code Pro', monospace;
+      text-transform: none;
+      color: #0f0;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      font-size: 1.4rem;
+    }
+    
+    .reveal p, .reveal li {
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+    
+    /* Container de matriz para exemplos */
+    .matrix {
+      font-family: 'Source Code Pro', monospace;
+      color: #0f0;
+      font-size: 1em;
+      background-color: rgba(0, 20, 0, 0.3);
+      border: 1px solid #0f0;
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 8px;
+      max-width: 90%;
+    }
+    
+    .reveal .katex {
+      font-size: 1.1em;
+    }
+    
+    /* Estilo para código */
+    pre.code {
+      background-color: rgba(0, 20, 0, 0.3);
+      border: 1px solid #0f0;
+      border-radius: 5px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    }
+    
+    /* Container para problema */
+    .problem {
+      background-color: rgba(0, 0, 40, 0.3);
+      border: 1px solid #00f;
+      border-radius: 5px;
+      padding: 15px;
+      margin-top: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 255, 0.2);
+      font-size: 0.9em;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Container para solução */
+    .solution {
+      background-color: rgba(40, 0, 40, 0.3);
+      border: 1px solid #f0f;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+    }
+    
+    /* Classe para imagens (com tamanho limitado) */
+    .concept-image {
+      max-width: 500px;
+      max-height: 400px;
+      margin: 0 auto;
+      display: block;
+      border: 1px solid #0f0;
+      border-radius: 5px;
+    }
+
+    /* Estilos adicionais para equações */
+    .equation {
+      font-family: 'Source Code Pro', monospace;
+      color: #0f0;
+      background-color: rgba(0, 20, 0, 0.2);
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+    
+    /* Destacar termos importantes */
+    .highlight {
+      color: #0f0;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    }
+    
+    /* Estilo para listas */
+    .reveal ul {
+      list-style-type: none;
+    }
+    
+    .reveal ul li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 25px;
+    }
+    
+    .reveal ul li:before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: #0f0;
+      font-family: 'Source Code Pro', monospace;
+    }
+  </style>
+</head>
+<body>
+  <!-- Canvas para o efeito Matrix -->
+  <canvas id="matrix-canvas"></canvas>
+  
+  <div class="reveal">
+    <div class="slides">
+    
+      <!-- SLIDE DE TÍTULO PRINCIPAL -->
+      <section data-background-color="#000">
+        <h1>Dimensões Digitais</h1>
+        <h2>Inicialização do Sistema: Álgebra Linear</h2>
+        <p>
+          <small>Uma Jornada pela Matemática que Sustenta a Realidade Digital</small>
+        </p>
+        <p class="fragment" style="margin-top: 40px; color: #0f0;">
+          <span style="font-family: 'Source Code Pro', monospace;">> Acesso concedido: Preparando módulos fundamentais...</span>
+        </p>
+      </section>
+      
+      <!-- SLIDE DE INTRODUÇÃO AO MENTOR -->
+      <section data-background-color="#000">
+        <h2>Transmissão do Mentor</h2>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="width: 100%;">
+            <p>Bem-vindo ao portal de acesso à <span class="highlight">Matrix Matemática</span>.</p>
+            <p>Sou seu guia nesta jornada para <span class="highlight">hackear a realidade</span> através da Álgebra Linear.</p>
+            <p>Para dominar este sistema, precisamos primeiro recuperar alguns <span class="highlight">protocolos básicos</span> da Geometria Analítica.</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE REVISÃO: GEOMETRIA ANALÍTICA -->
+      <section data-background-color="#000">
+        <h2>Recuperando Dados: Geometria Analítica</h2>
+        <p>Para acessar níveis avançados, você precisa lembrar destes <span class="highlight">códigos fundamentais</span>:</p>
+        <ul>
+          <li>Equação da reta: seu primeiro <span class="highlight">caminho unidimensional</span></li>
+          <li>Posições relativas entre retas: <span class="highlight">caminhos que se cruzam ou correm em paralelo</span></li>
+          <li>Equação do plano: <span class="highlight">superfícies bidimensionais</span> no espaço</li>
+          <li>Posições relativas entre planos: <span class="highlight">dimensões que se interceptam</span></li>
+          <li>Intersecção entre retas e planos: <span class="highlight">pontos de convergência</span> entre dimensões</li>
+        </ul>
+        <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
+          > Estes conceitos são chaves de acesso para álgebra linear
+        </p>
+      </section>
+      
+      <!-- SLIDE DE CONCEITO: EQUAÇÃO DA RETA - PARTE 1 -->
+      <section data-background-color="#000">
+        <h2>Caminhos Lineares: Equação da Reta</h2>
+        <div class="matrix">
+          <p>Equação vetorial: <span class="highlight">caminho com ponto inicial e direção</span></p>
+          $\vec{x} = A + t \vec{v}$
+        </div>
+        
+        <div class="matrix">
+          <p>Equação paramétrica: <span class="highlight">coordenadas explícitas</span></p>
+          $(x,y,z) = (x_0, y_0, z_0) + t(a,b,c)$
+        </div>
+      </section>
+      
+      <!-- SLIDE DE CONCEITO: EQUAÇÃO DA RETA - PARTE 2 -->
+      <section data-background-color="#000">
+        <h2>Caminhos Lineares: Equação da Reta</h2>
+        <div class="matrix">
+          <p>Ou na forma de sistema:</p>
+          $\left\{ \begin{array}{c}
+            x = x_0 + at \\
+            y = y_0 + bt \\
+            z = z_0 + ct 
+          \end{array}
+          \right. \quad t \in \mathbb{R}$
+        </div>
+        
+        <div class="matrix">
+          <p>Equação simétrica: <span class="highlight">razões igualadas</span></p>
+          $\frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}$
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: EQUAÇÃO DA RETA -->
+      <section data-background-color="#000">
+        <h2>Desafio: Hackear a Reta</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 1:</span> Encontre a equação vetorial da reta que passa por A e tem direção do vetor v:</p>
+          <ul>
+            <li>$A = (3,2,5)$, $v = (7,1,-4)$</li>
+            <li>$A = (0,0,0)$, $v = (a,b,c)$</li>
+          </ul>
+          
+          <p><span class="highlight">Missão 2:</span> Transforme as equações vetoriais em equações paramétricas.</p>
+          
+          <p><span class="highlight">Missão 3:</span> Converta para a forma simétrica e desbloqueie o acesso completo.</p>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE CONCEITO: EQUAÇÃO DO PLANO -->
+      <section data-background-color="#000">
+        <h2>Superfícies Digitais: Equação do Plano</h2>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="width: 100%;">
+            <p>Um plano é definido por um ponto $A=(x_0, y_0, z_0)$ e um <span class="highlight">vetor normal</span> $\vec{n} = (a, b, c)$</p>
+            
+            <div class="matrix">
+              $$ax+by+cz+d= 0$$
+            </div>
+            
+            <p>onde $a$, $b$ e $c$ não podem ser todos simultaneamente zero.</p>
+            
+            <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
+              > Planos são barreiras bidimensionais no espaço tridimensional
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: EQUAÇÃO DO PLANO -->
+      <section data-background-color="#000">
+        <h2>Desafio: Manipular Planos</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 1:</span> Determine a equação do plano que passa pelo ponto $A=(0,1,-1)$ e é paralelo aos vetores $u=(1,1,2)$ e $v=(2,3,1)$.</p>
+          
+          <p><span class="highlight">Missão 2:</span> A equação $2x+z=0$ é a equação de um plano ou de uma reta no $\mathbb{R}^3$? Se for um plano(reta), como fazemos para transformar numa equação de reta(plano)?</p>
+          
+          <p><span class="highlight">Missão 3:</span> Qual a equação do plano paralelo a $\alpha: 3x+4y-z+7=0$ e que passa pela origem?</p>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: RELAÇÕES ENTRE PLANOS - PARTE 1 -->
+      <section data-background-color="#000">
+        <h2>Desafio: Relações Entre Planos</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão:</span> Determine se os planos são paralelos, perpendiculares ou concorrentes não perpendiculares:</p>
+          
+          <ul>
+            <li>$\alpha: 2x+3y+z-1=0$ e $\alpha': 2x+3y+z+7=0$</li>
+            <li>$\alpha: x-2y+2z+2=0$ e $\alpha': 2x-4y+4z+9=0$</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: RELAÇÕES ENTRE PLANOS - PARTE 2 -->
+      <section data-background-color="#000">
+        <h2>Desafio: Relações Entre Planos</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão (continuação):</span> Determine se os planos são paralelos, perpendiculares ou concorrentes não perpendiculares:</p>
+          
+          <ul>
+            <li>$\alpha: 3x-y+z-1=0$ e $\alpha': 2x+5y-z-1=0$</li>
+            <li>$\alpha: 3x+2y=0$ e $\alpha': 2x-4z+1=0$</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: RELAÇÕES ENTRE PLANOS - PARTE 3 -->
+      <section data-background-color="#000">
+        <h2>Desafio: Relações Entre Planos</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão Extra:</span> Determine $a$ e $b$ para que os planos $\alpha: ax+by+4z =3$ e $\alpha':3x -2y+2z=5$ sejam paralelos.</p>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: RELAÇÕES ENTRE PLANOS - PARTE 4 -->
+      <section data-background-color="#000">
+        <h2>Desafio: Relações Entre Planos</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão Suprema:</span> Determine $k$ para que os planos $\alpha: x+ky+z =1$ e $\alpha':kx +y-z=-1$ sejam perpendiculares.</p>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: PLANOS E RETAS - PARTE 1 -->
+      <section data-background-color="#000">
+        <h2>Desafio: Interseção de Dimensões</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 1:</span> Determine o plano que passa por $P(1,1,2)$ e é paralelo às retas $\frac{x}{2}=\frac{y}{3}=\frac{z}{4}$ e $\frac{x}{4}=\frac{y}{1}=\frac{z}{3}$.</p>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: PLANOS E RETAS - PARTE 2 -->
+      <section data-background-color="#000">
+        <h2>Desafio: Interseção de Dimensões</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 2:</span> Determine o plano que passa por $P(2,2,4)$ e é perpendicular à reta $\frac{x-1}{2}=\frac{y}{3}=\frac{z+1}{7}$.</p>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: PLANOS E RETAS - PARTE 3 -->
+      <section data-background-color="#000">
+        <h2>Desafio: Interseção de Dimensões</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 3:</span> Determine a interseção da reta:</p>
+          
+          <div class="matrix">
+          $r = \left\{ \begin{array}{c} 
+            x= 1+t \\ 
+            y = 2 - t \\ 
+            z = -1 + 2t 
+          \end{array}\right.$
+          </div>
+          
+          <p>com o plano $\alpha: 2x - y +3z -15 = 0$.</p>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE INTRODUÇÃO: SISTEMAS DE EQUAÇÕES LINEARES -->
+      <section data-background-color="#000">
+        <h2>Protocolos Interconectados: Sistemas Lineares</h2>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="width: 100%;">
+            <p>Sistemas de Equações Lineares a três incógnitas representam <span class="highlight">múltiplos planos</span> que podem se interceptar de diferentes formas:</p>
+            
+            <div class="matrix fragment">
+              $$S = \left\{ \begin{array}{c} 
+                a_0 x + b_0 y + c_0 z = d_0 
+                \\ a_1 x + b_1 y + c_1 z = d_1 
+                \\ a_2 x + b_2 y + c_2 z = d_2 
+              \end{array}\right.$$
+            </div>
+            
+            <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
+              > Cada equação é um plano. A solução é a interseção dos planos.
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE CONCEITO: DETERMINANTE E SOLUÇÕES -->
+      <section data-background-color="#000">
+        <h2>O Código de Autenticação: Determinantes</h2>
+        <p>Como saber rapidamente qual tipo de solução é possível para um sistema?</p>
+        
+        <div class="matrix">
+          <p><span class="highlight">Verificar o determinante da matriz de coeficientes:</span></p>
+          <ul>
+            <li>Se $\det(A) \neq 0$ → sistema determinado (solução única - um ponto)</li>
+            <li>Se $\det(A) = 0$ → sistema indeterminado (infinitas soluções - reta ou plano) ou impossível (sem solução)</li>
+          </ul>
+        </div>
+        
+        <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
+          > O determinante é o primeiro "hack" para analisar sistemas
+        </p>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: SISTEMAS LINEARES - PARTE 1 -->
+      <section data-background-color="#000">
+        <h2>Desafio Final: Sistemas e Interseções</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 1:</span> Determine a condição sobre $k$ e $m$ para que o sistema tenha solução:</p>
+          <div class="matrix">
+          $S = \left\{ \begin{array}{c} 
+            x +2y -2z =m\\
+            2x +4y +kz =10
+          \end{array}\right.$
+          </div>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: SISTEMAS LINEARES - PARTE 2 -->
+      <section data-background-color="#000">
+        <h2>Desafio Final: Sistemas e Interseções</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 2:</span> Para que valores de $k$ o sistema abaixo admite uma única solução?</p>
+          <div class="matrix">
+          $S = \left\{ \begin{array}{c} 
+            x -3y +2z =1\\
+            2x +ky -z =0\\
+            3x +5y -4z =k
+          \end{array}\right.$
+          </div>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: SISTEMAS LINEARES - PARTE 3 -->
+      <section data-background-color="#000">
+        <h2>Desafio Final: Sistemas e Interseções</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 3A:</span> Determine a interseção dos planos:</p>
+          <ul>
+            <li>$\alpha: 3x +1y -2z = 4$</li>
+            <li>$\beta: 2y +1z = 3/2$</li>
+            <li>$\gamma : 2y =3$</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: SISTEMAS LINEARES - PARTE 4 -->
+      <section data-background-color="#000">
+        <h2>Desafio Final: Sistemas e Interseções</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 3B:</span> Determine a interseção dos planos:</p>
+          <ul>
+            <li>$\alpha: x +y +z = 7$</li>
+            <li>$\beta: x+2y +3z = 12$</li>
+            <li>$\gamma : 2x+4y+9z=33$</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE PROBLEMA: SISTEMAS LINEARES - PARTE 5 -->
+      <section data-background-color="#000">
+        <h2>Desafio Final: Sistemas e Interseções</h2>
+        <div class="problem">
+          <p><span class="highlight">Missão 3C:</span> Determine a interseção dos planos:</p>
+          <ul>
+            <li>$\alpha: x +y +2z = 0$</li>
+            <li>$\beta: x+3y +z = -2$</li>
+            <li>$\gamma : 4x-y+z=3$</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- SLIDE DE ENCERRAMENTO -->
+      <section data-background-color="#000">
+        <h2>Código Desbloqueado</h2>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="width: 100%;">
+            <p>Você agora possui as <span class="highlight">chaves fundamentais</span> para acessar o primeiro nível da Matrix Matemática.</p>
+            
+            <p>Próximo módulo: <span class="highlight">Códigos da Realidade - Sistemas e Matrizes</span></p>
+            
+            <div class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace; margin-top: 30px;">
+              <p>> Status: Fundamentos carregados</p>
+              <p>> Preparando para inicialização completa...</p>
+              <p>> Sistemas lineares prontos para exploração</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+
+  <!-- Script para criar efeito Matrix -->
+  <script>
+    // Script para o efeito Matrix com canvas
+    document.addEventListener('DOMContentLoaded', function() {
+      // Inicializando o canvas
+      var canvas = document.getElementById('matrix-canvas');
+      var ctx = canvas.getContext('2d');
+      
+      // Definindo largura e altura do canvas
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      // Ajustar o canvas quando a janela for redimensionada
+      window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        columns = canvas.width / fontSize;
+        // Reiniciar as gotas
+        drops = [];
+        for (var i = 0; i < columns; i++) {
+          drops[i] = 1;
+        }
+      });
+      
+      // Configurando os caracteres (letras e símbolos matemáticos)
+      var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZαβγδεζηθικλμνξπρστυφχψω∑∆∇∈≠∞∫∬∭∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟≠≡≢≣≤≥≦≧≨≩≪≫≬≭≮≯≰≱0123456789';
+      letters = letters.split('');
+      
+      // Configurando as colunas
+      var fontSize = 10,
+          columns = canvas.width / fontSize;
+      
+      // Configurando as gotas
+      var drops = [];
+      for (var i = 0; i < columns; i++) {
+        drops[i] = 1;
+      }
+      
+      // Função de desenho
+      function draw() {
+        // Criar um efeito de transparência (rastro)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Cor e estilo do texto
+        ctx.fillStyle = 'rgba(0, 255, 0, 0.17)'; // Verde bem suave para não interferir
+        ctx.font = fontSize + 'px monospace';
+        
+        // Loop através de cada gota
+        for (var i = 0; i < drops.length; i++) {
+          // Caractere aleatório
+          var text = letters[Math.floor(Math.random() * letters.length)];
+          
+          // Posição x e y para o texto
+          var x = i * fontSize;
+          var y = drops[i] * fontSize;
+          
+          // Desenhar o texto
+          ctx.fillText(text, x, y);
+          
+          // Enviar a gota de volta ao topo após atingir o limite
+          // Adicionar randomização para o efeito parecer mais natural
+          if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          // Mover a gota
+          drops[i]++;
+        }
+      }
+      
+      // Loop da animação (30 FPS)
+      setInterval(draw, 33);
+    });
+  </script>
+  
+  <!-- Scripts do reveal.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/zoom/zoom.min.js"></script>
+  
+  <!-- Inicialização do reveal.js -->
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      
+      // Plugins
+      plugins: [
+        RevealMarkdown,
+        RevealHighlight,
+        RevealNotes,
+        RevealMath.KaTeX,
+        RevealZoom
+      ],
+      
+      // Configuração do MathJax para fórmulas matemáticas
+      math: {
+        mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+        config: 'TeX-AMS_HTML-full',
+        TeX: { Macros: {} }
+      }
+    });
+  </script>
+</body>
+</html>

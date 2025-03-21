@@ -58,6 +58,7 @@ _________
 
 ## Ementa Detalhada do Curso
 
+### [CAPÍTULO 0: Revisão Geometria Analítica](https://oangelo.github.io/Introducao-a-Algebra-Linear/revisao.html)
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
 <details>
