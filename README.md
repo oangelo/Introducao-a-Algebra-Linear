@@ -2,14 +2,6 @@
 
 Bem-vindo ao repositório do curso de Introdução à Álgebra Linear! Este curso foi desenvolvido para fornecer aos alunos uma base sólida nos conceitos fundamentais da álgebra linear.
 
-
-## Notas e Gabaritos
-
- - [Notas](Provas/2024/notas.md)
- - [PS - Gabarito](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/PS.html)
- - [P2 - Gabarito](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/p2.html)
- - Revisão de prova sexta (13) e segunda (16) das 10:30h-12:00h no lab de robótica
-
 ## Sobre o Curso
 
 Este curso aborda os princípios básicos da álgebra linear, uma área fundamental da matemática com aplicações em diversas disciplinas, incluindo física, engenharia, economia e ciência da computação.
@@ -280,21 +272,19 @@ _________
 - Diagonalização
 - [Quiz](quiz/auto_valores_vetores.md)
 
-### Monitoria 2024 - 2
-- Segunda-feira, T2 e T3, na sala 203.
-- Monitor: Arthur Tavares 
-
-- 🎉 Lembre-se: O importante é praticar! 💪
-- 📝 Faça os exercícios do livro recomendado 📘
-- 🧠 Isso ajudará a fixar o conteúdo 🌟
-
 <details>
   <summary>Calendário de Provas</summary>
   <ul>
-    <li>P1: 15/10/09</li>
-    <li>PF: 17/12/24</li>
+    <li>P1: </li>
+    <li>PF: </li>
   </ul>
   <img src="img/prova.png" alt="meme cachorro">
+</details>
+
+<details>
+  <summary>Gabaritos</summary>
+ - [PS - 2024 - Gabarito](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/PS.html)
+ - [P2 - 2024 - Gabarito](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2024/p2.html)
 </details>
 
 
