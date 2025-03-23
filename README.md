@@ -131,7 +131,7 @@ Utilizar elementos do cyberpunk para explicar conceitos matemáticos pode ser en
 
 </details>
 
-### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/slide-decks/Introducao-a-Algebra-Linear/slide-decks/espacos-vetoriais-euclidianos.html)
+### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos-vetoriais-euclidianos.html)
 
 <details>
 <summary>Glossário de Termos Chave</summary>
