@@ -1,4 +1,5 @@
-# Curso de Introdução à Álgebra Linear
+![Introdução à Álgebra Linear](img/title.svg)
+
 
 Bem-vindo ao repositório do curso de Introdução à Álgebra Linear! Este curso foi desenvolvido para fornecer aos alunos uma base sólida nos conceitos fundamentais da álgebra linear.
 
