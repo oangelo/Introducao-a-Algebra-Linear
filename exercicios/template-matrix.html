@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+    </script>
+    <title>ZION_TEC | [TÓPICO ESPECÍFICO]</title>
+    <style>
+        /* Estilo inspirado no tema Matrix */
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes matrix-code {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 0.99; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+
+        @font-face {
+            font-family: 'Matrix Code';
+            src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        }
+
+        body {
+            background-color: #000000;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #33ff33;
+            max-width: 800px;
+            margin: auto;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');
+            animation: matrix-code 120s linear infinite;
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+            position: relative;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 10, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        h1, h2, h3 {
+            color: #33ff33;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.7);
+        }
+
+        .exercise {
+            background-color: rgba(0, 20, 0, 0.7);
+            padding: 15px;
+            border: 1px solid #33ff33;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        details {
+            background-color: rgba(0, 10, 0, 0.8);
+            padding: 10px;
+            border: 1px solid #33ff33;
+            margin-top: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #33ff33;
+        }
+
+        summary:hover {
+            text-shadow: 0 0 5px #33ff33;
+        }
+
+        code {
+            background-color: #001a00;
+            padding: 3px 5px;
+            color: #ffffff;
+            border: 1px solid #001f00;
+        }
+
+        .hint {
+            background-color: rgba(0, 20, 0, 0.7);
+            border-left: 4px solid #33ff33;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .hint:before {
+            content: "DICA DO ORÁCULO: ";
+            color: #33ff33;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .solution-steps {
+            margin-left: 20px;
+            counter-reset: step-counter;
+        }
+
+        .solution-steps li {
+            list-style-type: none;
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+        }
+
+        .solution-steps li::before {
+            content: "> EXECUÇÃO_" counter(step-counter) ": ";
+            color: #33ff33;
+            font-weight: bold;
+        }
+
+        .formula {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #001500;
+            border-left: 4px solid #33ff33;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-frame {
+            padding: 10px;
+            background-color: #000500;
+            margin-bottom: 20px;
+            border: 1px solid #33ff33;
+            color: #33ff33;
+            box-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-header {
+            margin: 0;
+            padding: 3px 10px;
+            background-color: #003300;
+            color: #33ff33;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border: 1px solid #33ff33;
+        }
+
+        .terminal-content {
+            padding: 5px;
+            white-space: pre-wrap;
+            font-size: 1em;
+            line-height: 1.2;
+        }
+
+        .cursor:after {
+            content: "_";
+            animation: blink 1s step-end infinite;
+        }
+
+        .terminal-line {
+            color: #33ff33;
+            text-shadow: 0 0 3px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-border {
+            border: 1px solid #33ff33;
+            padding: 5px;
+            background-color: #001000;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .mission-counter {
+            counter-reset: mission;
+        }
+        
+        .mission-counter .exercise h3:before {
+            content: "PROGRAMA " counter(mission) ": ";
+            counter-increment: mission;
+        }
+
+        .warning {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #33ff33;
+            border-top: 1px solid #33ff33;
+            padding-top: 10px;
+        }
+        
+        a {
+            color: #33ff33;
+            text-decoration: none;
+            border-bottom: 1px dashed #33ff33;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 5px #33ff33;
+            border-bottom: 1px solid #33ff33;
+        }
+    </style>
+</head>
+<body>
+    <!-- TÍTULO E INTRODUÇÃO -->
+    <div class="terminal-frame">
+        <div class="terminal-header">TERMINAL ZION_TEC</div>
+        <div class="terminal-content">
+┌───────────────────────────────────────────────────┐
+│ MÓDULO: [TÓPICO ESPECÍFICO]                       │
+└───────────────────────────────────────────────────┘
+
+> INICIANDO CONEXÃO...
+> BUSCANDO ENTRADA SEGURA NA MATRIX...
+> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
+        </div>
+    </div>
+
+    <div class="terminal-border">
+        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: [TÓPICO ESPECÍFICO]</h2>
+    
+    <p>[INTRODUÇÃO AO TEMA - Breve explicação do tópico e sua importância para hackear a Matrix]</p>
+    
+    <p>[CONCEITOS BÁSICOS - Fórmulas principais, definições e propriedades importantes]</p>
+    
+    <div class="formula">
+    [FÓRMULA PRINCIPAL DO TÓPICO]
+    </div>
+    
+    <p>[TÉCNICAS/MÉTODOS - Lista das principais técnicas para resolver problemas deste tipo]</p>
+
+    <!-- PROGRAMAS (EXERCÍCIOS) -->
+    <div class="mission-counter">
+        <!-- PROGRAMA 1 (BÁSICO) -->
+        <div class="exercise">
+            <h3>[TÍTULO DO PROGRAMA]</h3>
+            <p>[ENUNCIADO DO PROBLEMA]</p>
+            
+            <div class="hint">
+                <p>[DICA PARA RESOLVER O PROBLEMA]</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>[PASSO 1 DA SOLUÇÃO]</li>
+                    <li>[PASSO 2 DA SOLUÇÃO]</li>
+                    <!-- Mais passos conforme necessário -->
+                </ol>
+                
+                <div class="formula">
+                    [FÓRMULA OU CÁLCULO PRINCIPAL DA SOLUÇÃO]
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> [CONEXÃO ENTRE O PROBLEMA E O UNIVERSO DE MATRIX]</p>
+            </details>
+        </div>
+        
+        <!-- Adicione mais programas conforme necessário -->
+    </div>
+
+    <!-- RODAPÉ DO DOCUMENTO -->
+    <div class="footer">
+        ZION_TEC | [TÓPICO ESPECÍFICO]: Hackeamento da Matrix - [FRASE MOTIVACIONAL RELACIONADA AO TEMA]
+    </div>
+</body>
+</html>
