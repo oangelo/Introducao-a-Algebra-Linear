@@ -59,7 +59,7 @@ _________
 
 ## Ementa Detalhada do Curso
 
-### [CAPÍTULO 0: Revisão Geometria Analítica](https://oangelo.github.io/Introducao-a-Algebra-Linear/revisao.html)
+### [CAPÍTULO 0: Revisão Geometria Analítica](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/revisao.html)
 
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
 <details>
@@ -90,13 +90,13 @@ _________
 
 </details>
 
-- [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/eliminacao_gaussiana.html)
-- [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/propriedades.html)
-- [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/inversas.html)
+- [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/eliminacao_gaussiana.html)
+- [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/propriedades.html)
+- [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/inversas.html)
 - [Quiz](quiz/matrizes_e_sitemas.md)
 - [D&D - Áudio](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3)
 
-### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/determinante.html)
+### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/determinante.html)
 <details>
 <summary>Glossário de Termos Chave</summary>
 
@@ -133,7 +133,7 @@ Utilizar elementos do cyberpunk para explicar conceitos matemáticos pode ser en
 
 </details>
 
-### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear)
+### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/slide-decks/Introducao-a-Algebra-Linear)
 
 <details>
 <summary>Glossário de Termos Chave</summary>
@@ -171,13 +171,13 @@ _________
 
 Aproveito para compartilhar a [solução](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/sistemas.html) do problema de uma prova
 
-### [CAPÍTULO 4: TRANSFORMAÇÕES EM ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/transformacoes.html)
+### [CAPÍTULO 4: TRANSFORMAÇÕES EM ESPAÇOS VETORIAIS EUCLIDIANOS](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/transformacoes.html)
 - Espaço Euclidiano n-dimensional
 - Transformações Lineares de $R^n$ em $R^m$
 - Propriedades das Transformações Lineares de $R^n$ em $R^m$
 
 
-### [CAPÍTULO 5: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/espacos.html)
+### [CAPÍTULO 5: Espaços Vetoriais Arbitrários](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos.html)
 
 <details>
 <summary>Glossário de Termos-Chave</summary>
