@@ -59,8 +59,6 @@ _________
 
 ## Ementa Detalhada do Curso
 
-### [CAPÍTULO 0: Revisão Geometria Analítica](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/revisao.html)
-
 ### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
 <details>
 <summary>Glossário de Termos Chave</summary>
@@ -133,7 +131,7 @@ Utilizar elementos do cyberpunk para explicar conceitos matemáticos pode ser en
 
 </details>
 
-### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/slide-decks/Introducao-a-Algebra-Linear)
+### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/slide-decks/Introducao-a-Algebra-Linear/slide-decks/espacos-vetoriais-euclidianos.html)
 
 <details>
 <summary>Glossário de Termos Chave</summary>
