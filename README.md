@@ -61,10 +61,10 @@ _________
 
 ### CAPÍTULO 1: Códigos da Realidade: Sistemas e Matrizes [🎧](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3)
 
-- Introdução aos sistemas de equações lineares
-- Eliminação Gaussiana: o primeiro "hack" [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/eliminacao_gaussiana.html)
-- Matrizes e propriedades das operações matriciais [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/propriedades.html)
-- Matrizes Inversas: "desfazer operações" [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/inversas.html)
+- [Introdução aos sistemas de equações lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-1/sistemas-lineares.html)
+- [Eliminação Gaussiana: o primeiro "hack"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-1/eliminacao-gaussiana.html) [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/eliminacao_gaussiana.html)
+- [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-1/propriedades-matriciais.html) [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/propriedades.html)
+- [Matrizes Inversas: "desfazer operações"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-1/matrizes-inversas.html) [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/inversas.html)
 - [Quiz do Capítulo](quiz/matrizes_e_sitemas.md)
 
 <details>

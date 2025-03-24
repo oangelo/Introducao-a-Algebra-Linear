@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$","$"],["\\(","\\)"]],
+        displayMath: [["$$","$$"],["\\[","\\]"]],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"]
+      }
+    };
+    </script>
+    <title>ZION_TEC | Eliminação Gaussiana</title>
+    <style>
+        /* Estilo inspirado no tema Matrix */
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes matrix-code {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 0.99; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+
+        @font-face {
+            font-family: 'Matrix Code';
+            src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        }
+
+        body {
+            background-color: #000000;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #33ff33;
+            max-width: 800px;
+            margin: auto;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');
+            animation: matrix-code 120s linear infinite;
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+            position: relative;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 10, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        h1, h2, h3 {
+            color: #33ff33;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.7);
+        }
+
+        .exercise {
+            background-color: rgba(0, 20, 0, 0.7);
+            padding: 15px;
+            border: 1px solid #33ff33;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        details {
+            background-color: rgba(0, 10, 0, 0.8);
+            padding: 10px;
+            border: 1px solid #33ff33;
+            margin-top: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #33ff33;
+        }
+
+        summary:hover {
+            text-shadow: 0 0 5px #33ff33;
+        }
+
+        code {
+            background-color: #001a00;
+            padding: 3px 5px;
+            color: #ffffff;
+            border: 1px solid #001f00;
+        }
+
+        .hint {
+            background-color: rgba(0, 20, 0, 0.7);
+            border-left: 4px solid #33ff33;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .hint:before {
+            content: "DICA DO ORÁCULO: ";
+            color: #33ff33;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .solution-steps {
+            margin-left: 20px;
+            counter-reset: step-counter;
+        }
+
+        .solution-steps li {
+            list-style-type: none;
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+        }
+
+        .solution-steps li::before {
+            content: "> EXECUÇÃO_" counter(step-counter) ": ";
+            color: #33ff33;
+            font-weight: bold;
+        }
+
+        .formula {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #001500;
+            border-left: 4px solid #33ff33;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-frame {
+            padding: 10px;
+            background-color: #000500;
+            margin-bottom: 20px;
+            border: 1px solid #33ff33;
+            color: #33ff33;
+            box-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-header {
+            margin: 0;
+            padding: 3px 10px;
+            background-color: #003300;
+            color: #33ff33;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border: 1px solid #33ff33;
+        }
+
+        .terminal-content {
+            padding: 5px;
+            white-space: pre-wrap;
+            font-size: 1em;
+            line-height: 1.2;
+        }
+
+        .cursor:after {
+            content: "_";
+            animation: blink 1s step-end infinite;
+        }
+
+        .terminal-line {
+            color: #33ff33;
+            text-shadow: 0 0 3px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-border {
+            border: 1px solid #33ff33;
+            padding: 5px;
+            background-color: #001000;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .mission-counter {
+            counter-reset: mission;
+        }
+        
+        .mission-counter .exercise h3:before {
+            content: "PROGRAMA " counter(mission) ": ";
+            counter-increment: mission;
+        }
+
+        .warning {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #33ff33;
+            border-top: 1px solid #33ff33;
+            padding-top: 10px;
+        }
+        
+        a {
+            color: #33ff33;
+            text-decoration: none;
+            border-bottom: 1px dashed #33ff33;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 5px #33ff33;
+            border-bottom: 1px solid #33ff33;
+        }
+    </style>
+</head>
+<body>
+    <!-- TÍTULO E INTRODUÇÃO -->
+    <div class="terminal-frame">
+        <div class="terminal-header">TERMINAL ZION_TEC</div>
+        <div class="terminal-content">
+┌───────────────────────────────────────────────────┐
+│ MÓDULO: Eliminação Gaussiana                     │
+└───────────────────────────────────────────────────┘
+
+> INICIANDO CONEXÃO...
+> BUSCANDO ENTRADA SEGURA NA MATRIX...
+> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
+        </div>
+    </div>
+
+    <div class="terminal-border">
+        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: Eliminação Gaussiana</h2>
+    
+    <p>Operador, bem-vindo a esta missão de decodificação da Matrix. Hoje, investigaremos a técnica conhecida como Eliminação Gaussiana, uma das chaves para resolver Sistemas Lineares de modo rápido e eficiente. Em nossas operações de resgate em Zion, substituir passo a passo as variáveis pode ser muito demorado, e por isso usamos códigos matriciais para otimizar o processo.</p>
+    
+    <p>A Eliminação Gaussiana nos permite reescrever o conjunto de equações de maneira escalonada, empregando operações elementares que simplificam todo o construto de equações. Esses movimentos são comparáveis a hacks direcionados, em que manipulamos cada linha (ou “linha de código”) para isolar variáveis e reduzir o volume de informação desnecessária.</p>
+    
+    <p>Ao aplicar essas operações, usamos a <em>matriz estendida</em>, representada por <span class="formula">$$(A | b)$$</span>, que condensa o conjunto de equações em um único bloco de dados. A cada passo, neutralizamos uma anomalia do construto, movendo-nos para mais perto de desvendar todas as variáveis do sistema.</p>
+    
+    <p>Esta técnica é menos propensa a anomalias repetitivas e, por isso, reduz o risco de contradição no processo de hackeamento. Em suma, a Eliminação Gaussiana permite um acesso mais direto ao núcleo da Matrix, revelando de forma clara as soluções que sustentam a sua realidade simulada.</p>
+    
+    <p>Prepare-se, então, para ingressar nesta jornada: um caminho que transformará sistemas complexos em linhas simplificadas de código. Com foco, disciplina e as ferramentas corretas, você será capaz de efetuar alterações estratégicas na Matrix – garantindo mais um passo rumo à liberdade de Zion.</p>
+
+    <div class="formula">
+    $$
+    \textbf{Matriz Estendida:}\quad (A|b)
+    $$
+    $$
+    \textbf{Operações Elementares de Eliminação:}
+    $$
+    $$
+    \begin{cases}
+    L_i \leftrightarrow L_j & (\text{troca de linhas}),\\
+    k \cdot L_i & (\text{multiplicação de uma linha por } k \neq 0),\\
+    L_i + m\,L_j & (\text{somar a } L_i \text{ o múltiplo } m \text{ de } L_j)
+    \end{cases}
+    $$
+    </div>
+
+    <p>O objetivo é converter gradualmente a matriz em uma <em>forma escada</em> (<strong>row echelon form</strong>), em que cada pivô fique à direita do pivô da linha acima e todos os elementos abaixo dos pivôs sejam zero. Nessa forma, a solução do Sistema Linear se torna muito mais aparente.</p>
+
+    <!-- PROGRAMAS (EXERCÍCIOS) -->
+    <div class="mission-counter">
+
+        <!-- PROGRAMA 1 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Iniciando o Hack: Reduzindo um Sistema Simples</h3>
+            <p>Considere o seguinte Sistema Linear no construto da Matrix:<br>
+            <span class="formula">$$
+            \begin{cases}
+            x + y = 5 \\
+            x - y = 1
+            \end{cases}
+            $$</span>
+            Utilize a Eliminação Gaussiana, escrevendo a matriz estendida e aplicando operações elementares para encontrar $x$ e $y$.</p>
+            
+            <div class="hint">
+                <p>Pense em alinhar as equações na matriz estendida $(A|b)$ e tente anular uma das variáveis somando ou subtraindo as linhas apropriadas.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a matriz estendida inicial: $\left[\begin{array}{cc|c} 1 & 1 & 5 \\ 1 & -1 & 1 \end{array}\right]$.</li>
+                    <li>Subtraia a segunda linha da primeira (ou vice-versa) para eliminar $y$ ou $x$. Por exemplo: $L_2 \leftarrow L_2 - L_1$.</li>
+                    <li>A partir do escalonamento, resolva primeiro uma variável e depois substitua para achar a outra.</li>
+                </ol>
+                
+                <div class="formula">
+                $$
+                \left[\begin{array}{cc|c}
+                1 & 1 & 5 \\
+                1 & -1 & 1
+                \end{array}\right]
+                \xrightarrow{L_2 - L_1}
+                \left[\begin{array}{cc|c}
+                1 & 1 & 5 \\
+                0 & -2 & -4
+                \end{array}\right]
+                $$
+                </div>
+                
+                <p>Resolvendo, obtemos $y = 2$ e $x = 3$.</p>
+
+                <p><strong>Reflexão sobre a Matrix:</strong> Cada operação elementar é como se estivéssemos removendo camadas desnecessárias de código, revelando a estrutura fundamental de uma realidade aparentemente complexa.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 2 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Escalonamento em 2 Variáveis</h3>
+            <p>Agora, tente escalonar o sistema:<br>
+            <span class="formula">$$
+            \begin{cases}
+            2x + 3y = 8 \\
+            x - y = 1
+            \end{cases}
+            $$</span>
+            usando a matriz estendida e operações elementares. Qual o valor de $x$ e $y$?</p>
+            
+            <div class="hint">
+                <p>Tente transformar o primeiro elemento da matriz em 1 antes de eliminar a segunda variável. A troca de linhas ou a multiplicação de uma linha por um escalar são ações válidas.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz estendida: $\left[\begin{array}{cc|c} 2 & 3 & 8 \\ 1 & -1 & 1 \end{array}\right]$.</li>
+                    <li>Troque as linhas se quiser iniciar com a linha cujo coeficiente de $x$ seja 1. $L_1 \leftrightarrow L_2$.</li>
+                    <li>Elimine a variável $x$ na segunda linha aplicando: $L_2 \leftarrow L_2 - 2L_1$, ou similar.</li>
+                </ol>
+                
+                <div class="formula">
+                $$
+                \left[\begin{array}{cc|c}
+                1 & -1 & 1 \\
+                2 & 3 & 8
+                \end{array}\right]
+                \xrightarrow{L_2 - 2L_1}
+                \left[\begin{array}{cc|c}
+                1 & -1 & 1 \\
+                0 & 5 & 6
+                \end{array}\right]
+                $$
+                </div>
+                
+                <p>Da forma escalonada, obtemos $y = \frac{6}{5} = 1.2$. Substituindo em $x - y = 1$, encontra-se $x = 2.2$.</p>
+
+                <p><strong>Reflexão sobre a Matrix:</strong> Pequenos ajustes em cada linha podem gerar grandes saltos de clareza em um construto aparentemente caótico.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 3 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Eliminando Passo a Passo</h3>
+            <p>Dado o sistema:<br>
+            <span class="formula">$$
+            \begin{cases}
+            3x + 2y = 10 \\
+            6x + 4y = 24
+            \end{cases}
+            $$</span>
+            use a Eliminação Gaussiana para encontrar as variáveis. Faça cada operação elementar de forma explícita.</p>
+            
+            <div class="hint">
+                <p>Observe que a segunda linha pode ser um múltiplo da primeira. Isso pode simplificar rapidamente o resultado.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a forma estendida: $\left[\begin{array}{cc|c} 3 & 2 & 10 \\ 6 & 4 & 24 \end{array}\right]$.</li>
+                    <li>Compare as linhas: a segunda é o dobro da primeira? Se sim, subtraí-la adequadamente pode levar a um caminho mais simples para observar possíveis soluções ou inconsistências.</li>
+                    <li>Proceda com $L_2 \leftarrow L_2 - 2L_1$ para verificar o que resta.</li>
+                </ol>
+                
+                <div class="formula">
+                $$
+                \left[\begin{array}{cc|c}
+                3 & 2 & 10 \\
+                6 & 4 & 24
+                \end{array}\right]
+                \xrightarrow{L_2 - 2L_1}
+                \left[\begin{array}{cc|c}
+                3 & 2 & 10 \\
+                0 & 0 & 4
+                \end{array}\right]
+                $$
+                </div>
+                
+                <p>Nesse caso, a forma resultante mostra $0x + 0y = 4$, o que é impossível. Logo, não há solução (sistema inconsistente).</p>
+
+                <p><strong>Reflexão sobre a Matrix:</strong> Algumas vezes, um construto pode aparentar consistência, mas as operações elementares expõem a ilusão, mostrando que certas realidades não podem coexistir.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 4 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Escalonando Três Variáveis (I)</h3>
+            <p>Resgate o sistema a seguir usando a matriz estendida e aplique a Eliminação Gaussiana:<br>
+            <span class="formula">$$
+            \begin{cases}
+            x + 2y + z = 4 \\
+            2x - y + z = 5 \\
+            x + y + 2z = 6
+            \end{cases}
+            $$</span></p>
+            
+            <div class="hint">
+                <p>Elimine primeiro $x$ das linhas 2 e 3 usando a linha 1 como base.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Comece com $\left[\begin{array}{ccc|c} 1 & 2 & 1 & 4 \\ 2 & -1 & 1 & 5 \\ 1 & 1 & 2 & 6 \end{array}\right]$.</li>
+                    <li>Use $L_2 \leftarrow L_2 - 2L_1$ e $L_3 \leftarrow L_3 - L_1$ para eliminar $x$.</li>
+                    <li>Depois, escalone a parte inferior para eliminar $y$ ou $z$, resolvendo gradativamente o sistema.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Tratar uma linha como referência e “desativar” outras variáveis é semelhante a ganhar vantagem estratégica em um hack, desativando ameaças secundárias para alcançar o núcleo.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 5 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Sistema Homogêneo e Gauss</h3>
+            <p>Considere o sistema homogêneo (quando todas as constantes são zero):<br>
+            <span class="formula">$$
+            \begin{cases}
+            x + y + 2z = 0 \\
+            2x + 3y + 7z = 0 \\
+            -x + y + 3z = 0
+            \end{cases}
+            $$</span>
+            Use a Eliminação Gaussiana para encontrar as soluções possíveis. Lembre-se de que sistemas homogêneos podem ter soluções não triviais.</p>
+            
+            <div class="hint">
+                <p>Se sobrar mais variáveis do que equações independentes, haverá parâmetros livres que levam a soluções infinitas.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Montar a matriz estendida: $\left[\begin{array}{ccc|c} 1 & 1 & 2 & 0 \\ 2 & 3 & 7 & 0 \\ -1 & 1 & 3 & 0 \end{array}\right]$.</li>
+                    <li>Elimine $x$ das linhas 2 e 3, e prossiga o escalonamento para identificar quantas equações independentes restam.</li>
+                    <li>Determine as variáveis que ficarão livres e expresse as variáveis dependentes em função delas.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> No espaço vazio das equações homogêneas, surgem caminhos infinitos – como se fossem dobras na realidade, permitindo multiplas possibilidades de resultados.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 6 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Sistema em Escada de 3x3</h3>
+            <p>Dado o sistema:<br>
+            <span class="formula">$$
+            \begin{cases}
+            3x + y + z = 5 \\
+            0x + 2y - z = 1 \\
+            4x + 2y + 2z = 10
+            \end{cases}
+            $$</span>
+            reduza-o a uma forma escalonada, explicitando cada passo. Qual a solução final?</p>
+            
+            <div class="hint">
+                <p>Atenção às linhas que já tenham zeros. Elas podem facilitar o processo de anular variáveis em outra linha.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Inicie com $\left[\begin{array}{ccc|c} 3 & 1 & 1 & 5 \\ 0 & 2 & -1 & 1 \\ 4 & 2 & 2 & 10 \end{array}\right]$.</li>
+                    <li>Elimine $x$ da terceira linha usando a primeira, depois elimine $z$ ou $y$ conforme necessário.</li>
+                    <li>Resolva as variáveis passo a passo após a forma escalonada.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Quando parte do código já está “limpa” (com zeros), a ação de hackear a realidade torna-se mais rápida, otimizando o uso dos recursos de Zion.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 7 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Sistema com Troca de Linhas Essencial</h3>
+            <p>Aplique Eliminação Gaussiana ao sistema:<br>
+            <span class="formula">$$
+            \begin{cases}
+            0x + 2y + z = 3 \\
+            x + 2y + 3z = 9 \\
+            3x + y + z = 4
+            \end{cases}
+            $$</span>
+            tendo em mente que pode ser necessário reorganizar a matriz para não perder o pivô adequado.</p>
+            
+            <!-- DICA MÍNIMA -->
+            <div class="hint">
+                <p>Lembre-se: se o coeficiente do pivô for 0, a troca de linhas é sua melhor aliada.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte $\left[\begin{array}{ccc|c} 0 & 2 & 1 & 3 \\ 1 & 2 & 3 & 9 \\ 3 & 1 & 1 & 4 \end{array}\right]$.</li>
+                    <li>Faça $L_1 \leftrightarrow L_2$ para ter um pivô não-nulo na primeira linha.</li>
+                    <li>Proceda com a eliminação usando $L_3 \leftarrow L_3 - 3L_1$, entre outros passos.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Adaptar-se às condições iniciais do construto é vital. A simples troca de linhas redefine a estratégia e evita que uma anomalia impeça o avanço.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 8 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Sistema 3x3 com Parâmetros Livres</h3>
+            <p>Considere:<br>
+            <span class="formula">$$
+            \begin{cases}
+            x + 2y - z = 2 \\
+            2x + 4y - 2z = 4 \\
+            3x + 4y - z = 5
+            \end{cases}
+            $$</span>
+            Faça a Eliminação Gaussiana e interprete o resultado, apontando se há incógnitas livres.</p>
+            
+            <!-- DICA MÍNIMA -->
+            <div class="hint">
+                <p>Analise se a segunda linha é múltiplo da primeira e como isso afeta a rank do construto.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Inicie com $\left[\begin{array}{ccc|c} 1 & 2 & -1 & 2 \\ 2 & 4 & -2 & 4 \\ 3 & 4 & -1 & 5 \end{array}\right]$.</li>
+                    <li>Observe que $L_2$ é o dobro de $L_1$. Ajuste e reduza para verificar se sobra alguma variável livre.</li>
+                    <li>Escalone até obter a forma final e conclua a solução.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Parâmetros livres representam possibilidades dentro do construto. Nem sempre a Matrix é rígida; há pontos de flexibilidade que podemos explorar a nosso favor.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 9 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Sistema Inconsistente em 3 Dimensões</h3>
+            <p>Identifique se o sistema<br>
+            <span class="formula">$$
+            \begin{cases}
+            2x + 3y + z = 10 \\
+            4x + 6y + 2z = 20 \\
+            4x + 6y + 3z = 21
+            \end{cases}
+            $$</span>
+            é consistente ou não, usando Eliminação Gaussiana. Justifique sua resposta.</p>
+            
+            <!-- DICA MÍNIMA -->
+            <div class="hint">
+                <p>Preste atenção se as duas primeiras linhas são múltiplos perfeitos e compare cuidadosamente com a terceira linha.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte $\left[\begin{array}{ccc|c} 2 & 3 & 1 & 10 \\ 4 & 6 & 2 & 20 \\ 4 & 6 & 3 & 21 \end{array}\right]$.</li>
+                    <li>Se $L_2$ for múltiplo de $L_1$, mas $L_3$ introduzir uma nova condição incompatível, o sistema pode ser inconsistente.</li>
+                    <li>Verifique o resultado final após subtrair linhas de forma apropriada.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> O construto pode parecer coerente até o momento em que as manipulações revelam a contradição. Essa descoberta é a base da resistência: expor a falha oculta.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 10 (DESAFIADOR) -->
+        <div class="exercise">
+            <h3>Enigma da Linha Oculta</h3>
+            <p>Resolva o sistema abaixo via Eliminação Gaussiana, sem dicas externas. Verifique se há uma linha que pode ser completamente zerada e como isso afeta o resultado:<br>
+            <span class="formula">$$
+            \begin{cases}
+            x - y + 2z = 4 \\
+            2x - 2y + 4z = 8 \\
+            3x + 0y + 6z = 12
+            \end{cases}
+            $$</span></p>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Inicie com $\left[\begin{array}{ccc|c} 1 & -1 & 2 & 4 \\ 2 & -2 & 4 & 8 \\ 3 & 0 & 6 & 12 \end{array}\right]$.</li>
+                    <li>Realize as operações elementares na matriz estendida até chegar à forma escalonada.</li>
+                    <li>Avalie se as linhas resultam em variáveis livres ou se há apenas uma solução específica.</li>
+                </ol>
+                
+                <div class="formula">
+                $$
+                \text{Possibilidade de obter linhas equivalentes, como } L_2 - 2L_1 \text{ e } L_3 - 3L_1.
+                $$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Uma linha completamente zerada reflete um caminho ocioso na realidade simulada. Seu surgimento indica redundância dentro do construto.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 11 (DESAFIADOR) -->
+        <div class="exercise">
+            <h3>Sistema em 3 Variáveis com Parametrização Completa</h3>
+            <p>Dada a matriz estendida inicial<br>
+            <span class="formula">$$
+            \left[\begin{array}{ccc|c}
+            1 & 3 & -1 & 2 \\
+            0 & 0 & 1 & 4 \\
+            2 & 6 & -2 & 3
+            \end{array}\right]
+            $$</span>,
+            conclua a Eliminação Gaussiana, encontre a solução e discuta a parametrização.</p>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Observe que a segunda linha já tem dois zeros. Utilize isso como base para eliminar a variável $z$ nas outras linhas.</li>
+                    <li>Reorganize a terceira linha usando a primeira, se necessário, para escalonar completamente.</li>
+                    <li>Identifique quais variáveis podem se tornar parâmetros livres ao final do processo.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Nem todo código revela uma única resposta. Às vezes, há múltiplos caminhos, cada um abrindo um tipo diferente de brecha na simulação.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 12 (DESAFIADOR) -->
+        <div class="exercise">
+            <h3>Combinação de Três Sistemas</h3>
+            <p>Considere que você tem três pequenas listas de equações, cada uma dependendo das outras. Combine-as em uma única matriz estendida de 3 variáveis e resolva por Eliminação Gaussiana:<br>
+            <span class="formula">$$
+            (1)\, x + y = 3 \quad\quad
+            (2)\, y + z = 5 \quad\quad
+            (3)\, x + z = 4
+            $$</span></p>
+
+            <p>Reescreva tudo como sistema de 3 equações em $(x, y, z)$, monte a matriz estendida, e proceda com as operações elementares para obter as variáveis.</p>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte a forma estendida $\left[\begin{array}{ccc|c} 1 & 1 & 0 & 3 \\ 0 & 1 & 1 & 5 \\ 1 & 0 & 1 & 4 \end{array}\right]$.</li>
+                    <li>Use a linha (2) para eliminar $y$ na linha (1), depois trabalhe na linha (3) para isolar $x$ ou $z$.</li>
+                    <li>A forma escalonada final permitirá ler facilmente os valores das três variáveis.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Unir sistemas distintos em um só construto permite visualizar padrões de maneira global. Cada pequena parte do código se encaixa, revelando a coerência ou a dissonância no todo.</p>
+            </details>
+        </div>
+    </div>
+
+    <!-- RODAPÉ DO DOCUMENTO -->
+    <div class="footer">
+        ZION_TEC | Eliminação Gaussiana: Hackeamento da Matrix - Apenas aquele que enxerga além das linhas poderá reescrever seu destino
+    </div>
+</body>
+</html>

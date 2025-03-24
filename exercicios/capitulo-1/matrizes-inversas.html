@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$","$"],["\\(","\\)"]],
+        displayMath: [["$$","$$"],["\\[","\\]"]],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+    </script>
+    <title>ZION_TEC | Matrizes Inversas</title>
+    <style>
+        /* Estilo inspirado no tema Matrix */
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes matrix-code {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 0.99; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+
+        @font-face {
+            font-family: 'Matrix Code';
+            src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        }
+
+        body {
+            background-color: #000000;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #33ff33;
+            max-width: 800px;
+            margin: auto;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');
+            animation: matrix-code 120s linear infinite;
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+            position: relative;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 10, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        h1, h2, h3 {
+            color: #33ff33;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.7);
+        }
+
+        .exercise {
+            background-color: rgba(0, 20, 0, 0.7);
+            padding: 15px;
+            border: 1px solid #33ff33;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        details {
+            background-color: rgba(0, 10, 0, 0.8);
+            padding: 10px;
+            border: 1px solid #33ff33;
+            margin-top: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #33ff33;
+        }
+
+        summary:hover {
+            text-shadow: 0 0 5px #33ff33;
+        }
+
+        code {
+            background-color: #001a00;
+            padding: 3px 5px;
+            color: #ffffff;
+            border: 1px solid #001f00;
+        }
+
+        .hint {
+            background-color: rgba(0, 20, 0, 0.7);
+            border-left: 4px solid #33ff33;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .hint:before {
+            content: "DICA DO ORÁCULO: ";
+            color: #33ff33;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .solution-steps {
+            margin-left: 20px;
+            counter-reset: step-counter;
+        }
+
+        .solution-steps li {
+            list-style-type: none;
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+        }
+
+        .solution-steps li::before {
+            content: "> EXECUÇÃO_" counter(step-counter) ": ";
+            color: #33ff33;
+            font-weight: bold;
+        }
+
+        .formula {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #001500;
+            border-left: 4px solid #33ff33;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-frame {
+            padding: 10px;
+            background-color: #000500;
+            margin-bottom: 20px;
+            border: 1px solid #33ff33;
+            color: #33ff33;
+            box-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-header {
+            margin: 0;
+            padding: 3px 10px;
+            background-color: #003300;
+            color: #33ff33;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border: 1px solid #33ff33;
+        }
+
+        .terminal-content {
+            padding: 5px;
+            white-space: pre-wrap;
+            font-size: 1em;
+            line-height: 1.2;
+        }
+
+        .cursor:after {
+            content: "_";
+            animation: blink 1s step-end infinite;
+        }
+
+        .terminal-line {
+            color: #33ff33;
+            text-shadow: 0 0 3px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-border {
+            border: 1px solid #33ff33;
+            padding: 5px;
+            background-color: #001000;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .mission-counter {
+            counter-reset: mission;
+        }
+        
+        .mission-counter .exercise h3:before {
+            content: "PROGRAMA " counter(mission) ": ";
+            counter-increment: mission;
+        }
+
+        .warning {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #33ff33;
+            border-top: 1px solid #33ff33;
+            padding-top: 10px;
+        }
+        
+        a {
+            color: #33ff33;
+            text-decoration: none;
+            border-bottom: 1px dashed #33ff33;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 5px #33ff33;
+            border-bottom: 1px solid #33ff33;
+        }
+    </style>
+</head>
+<body>
+    <!-- TÍTULO E INTRODUÇÃO -->
+    <div class="terminal-frame">
+        <div class="terminal-header">TERMINAL ZION_TEC</div>
+        <div class="terminal-content">
+┌───────────────────────────────────────────────────┐
+│ MÓDULO: MATRIZES INVERSAS                         │
+└───────────────────────────────────────────────────┘
+
+> INICIANDO CONEXÃO...
+> BUSCANDO ENTRADA SEGURA NA MATRIX...
+> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
+        </div>
+    </div>
+
+    <div class="terminal-border">
+        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: MATRIZES INVERSAS</h2>
+    
+    <p>
+        O estudo das matrizes inversas é uma das portas de acesso para se compreender como 
+        reverter operações dentro da Matrix. Quando se fala em “inverter” uma matriz, estamos 
+        falando em anular comandos existentes no código de modo a restaurar condições iniciais.
+    </p>
+    <p>
+        Ao compreender como “desfazer” cada transformação, o Operador passa a controlar de forma 
+        mais sutil os caminhos entre o que é escrito no código da Matrix e o que de fato é executado. 
+        Sem a capacidade de reverter essas instruções, ficaríamos presos às imposições criadas 
+        pelos Agentes.
+    </p>
+    <p>
+        Saber calcular a inversa de uma matriz permite manipular sistemas de equações de forma eficiente, 
+        reescrevendo o código da Matrix sem precisar executar novamente cada passo de substituição. 
+        Nesse capítulo, usamos operações elementares de linha para encontrar a matriz inversa, já que 
+        métodos baseados em chaves secretas de autenticação (proibidos por agora) não serão abordados.
+    </p>
+    <p>
+        Lembre-se de que, em certas situações, a matriz não terá inversa caso não seja possível “retornar 
+        ao estado original” por meio de ajustes e correções no construto. Quando isso acontece, precisamos 
+        reconhecer que não há reversão — é como um caminho da Matrix que se fecha para sempre.
+    </p>
+    <p>
+        Prepare-se para decifrar e reprogramar blocos de dados por meio do método de escalonamento. 
+        Esta é uma das habilidades mais valiosas para qualquer Operador que queira moldar a realidade 
+        simulada a seu favor.
+    </p>
+
+    <div class="formula">
+    $$ A \cdot A^{-1} = I $$
+    </div>
+
+    <p>
+        A principal técnica envolvida neste processo consiste em unir a matriz que se deseja 
+        reverter a uma matriz identidade e aplicar operações de linha (o mesmo tipo de hack 
+        usado em escalonamento de sistemas). Ao final, se for possível chegar à forma 
+        identidade na parte original, teremos a matriz inversa no outro lado.
+    </p>
+
+    <p><strong>Resumo:</strong> A matriz identidade, representada por 
+    <span class="formula">$$I = \begin{pmatrix} 1 & 0 & \dots & 0 \\ 0 & 1 & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & 1 \end{pmatrix}$$</span>,
+    é o "elemento neutro" da multiplicação de matrizes: qualquer matriz $A$ multiplicada por $I$ permanece inalterada. 
+    Para resolver um sistema linear $Ax = b$ usando a inversa, podemos multiplicar ambos os lados por $A^{-1}$ e obter 
+    $x = A^{-1} b$, desde que $A$ seja invertível. Esse método mostra como desfazer comandos na Matrix 
+    e recuperar variáveis de interesse sem refazer toda a sequência de operações.</p>
+
+    <!-- PROGRAMAS (EXERCÍCIOS) -->
+    <div class="mission-counter">
+        
+        <!-- =========================== PROGRAMA 1 (BÁSICO) =========================== -->
+        <div class="exercise">
+            <h3>Invertendo uma Matriz 2x2 com Operações Elementares (Fase Inicial)</h3>
+            <p>
+                Considere a matriz 
+                <span class="formula">
+                    $$A = \begin{pmatrix}
+                    1 & 2 \\
+                    0 & 1
+                    \end{pmatrix}.$$</span>
+                Use o método de escalonamento em 
+                <span class="formula">
+                    $$[A \mid I]$$
+                </span>
+                para encontrar a inversa de $A$.
+            </p>
+            
+            <div class="hint">
+                <p>Comece montando a matriz estendida e tente zerar partes indesejadas. Observar que a segunda linha já está quase na forma adequada pode facilitar.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz estendida $\bigl[A \mid I\bigr]$ = $\begin{pmatrix}
+                    1 & 2 & | & 1 & 0 \\
+                    0 & 1 & | & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Use operações de linha para transformar a primeira linha, eliminando o 2 acima do 1 da segunda coluna:</li>
+                    <li>R1 ← R1 - 2·R2: $\begin{pmatrix}
+                    1 & 0 & | & 1 & -2 \\
+                    0 & 1 & | & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Observe que a parte à esquerda agora é a matriz identidade. A parte à direita é a inversa:
+                        $\begin{pmatrix}
+                        1 & -2\\
+                        0 & 1
+                        \end{pmatrix}$.</li>
+                </ol>
+                
+                <div class="formula">
+                    $$A^{-1} = \begin{pmatrix}
+                    1 & -2 \\
+                    0 & 1
+                    \end{pmatrix}.$$</div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Assim como remover linhas desnecessárias do código, a inversa mostra que podemos reverter certas manipulações da Matrix sem deixar rastros.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 2 (BÁSICO) =========================== -->
+        <div class="exercise">
+            <h3>Revertendo um Código 2x2: Ajuste de Parâmetros</h3>
+            <p>
+                Dada a matriz 
+                <span class="formula">
+                    $$B = \begin{pmatrix}
+                    2 & 1 \\
+                    0 & 1
+                    \end{pmatrix},$$
+                </span>
+                recupere sua forma inversa por meio de operações elementares, usando o construto 
+                $\bigl[B \mid I\bigr]$.
+            </p>
+            
+            <div class="hint">
+                <p>Certifique-se de tornar o elemento pivô da primeira linha igual a 1 antes de prosseguir.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Inicie com $\bigl[B \mid I\bigr] = \begin{pmatrix}
+                    2 & 1 & | & 1 & 0\\
+                    0 & 1 & | & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Normalize a primeira linha para obter pivô 1: R1 ← (1/2)·R1, resultando em 
+                        $\begin{pmatrix}
+                        1 & 0.5 & | & 0.5 & 0\\
+                        0 & 1 & | & 0 & 1
+                        \end{pmatrix}$.</li>
+                    <li>Zere o 0.5 usando a segunda linha: R1 ← R1 - 0.5·R2, ficando 
+                        $\begin{pmatrix}
+                        1 & 0 & | & 0.5 & -0.5\\
+                        0 & 1 & | & 0 & 1
+                        \end{pmatrix}$.</li>
+                    <li>A parte direita é a matriz inversa de $B$:
+                        $\begin{pmatrix}
+                        0.5 & -0.5\\
+                        0 & 1
+                        \end{pmatrix}$.</li>
+                </ol>
+                
+                <div class="formula">
+                    $$B^{-1} = \begin{pmatrix}
+                    0.5 & -0.5 \\
+                    0 & 1
+                    \end{pmatrix}.$$</div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Ajustar fatores críticos é como manipular o código-fonte da realidade: pequenos coeficientes podem mudar o rumo dos acontecimentos na simulação.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 3 (BÁSICO) =========================== -->
+        <div class="exercise">
+            <h3>Correção de Código 2x2: Blocos de Efeitos Sucessivos</h3>
+            <p>
+                A matriz 
+                <span class="formula">
+                    $$C = \begin{pmatrix}
+                    1 & -1 \\
+                    2 & 1
+                    \end{pmatrix}$$
+                </span>
+                foi usada para criar um efeito de deslocamento na Matrix. Reescreva a matriz com a identidade ao lado e encontre $C^{-1}$ por escalonamento.
+            </p>
+            
+            <div class="hint">
+                <p>Mantenha atenção aos sinais negativos. Eliminar o 2 da segunda linha pode ser mais fácil se você trocar as linhas no início.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Forme $\bigl[C \mid I\bigr] = \begin{pmatrix}
+                    1 & -1 & | & 1 & 0\\
+                    2 & 1 & | & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Elimine o 2 abaixo do pivô da primeira linha: R2 ← R2 - 2·R1 
+                        $\begin{pmatrix}
+                        1 & -1 & | & 1 & 0\\
+                        0 & 3 & | & -2 & 1
+                        \end{pmatrix}$.</li>
+                    <li>Normalize a segunda linha: R2 ← (1/3)·R2 
+                        $\begin{pmatrix}
+                        1 & -1 & | & 1 & 0\\
+                        0 & 1 & | & -2/3 & 1/3
+                        \end{pmatrix}$.</li>
+                    <li>Elimine o -1 acima desse pivô: R1 ← R1 + R2 
+                        $\begin{pmatrix}
+                        1 & 0 & | & (1 - 2/3) & (0 + 1/3)\\
+                        0 & 1 & | & -2/3 & 1/3
+                        \end{pmatrix}$, ou seja,
+                        $\begin{pmatrix}
+                        1 & 0 & | & 1/3 & 1/3\\
+                        0 & 1 & | & -2/3 & 1/3
+                        \end{pmatrix}$.</li>
+                </ol>
+                
+                <div class="formula">
+                    $$C^{-1} = \begin{pmatrix}
+                    \tfrac{1}{3} & \tfrac{1}{3}\\
+                    -\tfrac{2}{3} & \tfrac{1}{3}
+                    \end{pmatrix}.$$</div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Entender a manipulação dos sinais é como interpretar linhas de código cifrado: cada mudança aparente pode esconder grandes transformações no plano da realidade.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 4 (INTERMEDIÁRIO) =========================== -->
+        <div class="exercise">
+            <h3>Primeira Investida 3x3: Análise de Estabilidade</h3>
+            <p>
+                Encontre a inversa da matriz 
+                <span class="formula">
+                    $$D = \begin{pmatrix}
+                    1 & 0 & 1\\
+                    0 & 1 & 2\\
+                    0 & 0 & 1
+                    \end{pmatrix}$$
+                </span>
+                usando apenas escalonamento da forma 
+                $\bigl[D \mid I\bigr]$.
+            </p>
+            
+            <div class="hint">
+                <p>Observe que a parte triangular inferior é quase toda zero. Fique de olho na terceira linha para ver se ela já está no formato ideal.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte $\bigl[D \mid I\bigr] = \begin{pmatrix}
+                        1 & 0 & 1 & | & 1 & 0 & 0\\
+                        0 & 1 & 2 & | & 0 & 1 & 0\\
+                        0 & 0 & 1 & | & 0 & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>A terceira linha já possui pivô 1. Atue nas linhas acima para eliminar o valor acima desse pivô.</li>
+                    <li>R2 ← R2 - 2·R3 $\to \begin{pmatrix}
+                        1 & 0 & 1 & | & 1 & 0 & 0\\
+                        0 & 1 & 0 & | & 0 & 1 & -2\\
+                        0 & 0 & 1 & | & 0 & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>R1 ← R1 - R3 $\to \begin{pmatrix}
+                        1 & 0 & 0 & | & 1 & 0 & -1\\
+                        0 & 1 & 0 & | & 0 & 1 & -2\\
+                        0 & 0 & 1 & | & 0 & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Observe agora que a parte esquerda é a identidade e a parte direita é $D^{-1}$.</li>
+                </ol>
+                
+                <div class="formula">
+                    $$D^{-1} = \begin{pmatrix}
+                    1 & 0 & -1\\
+                    0 & 1 & -2\\
+                    0 & 0 & 1
+                    \end{pmatrix}.$$</div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Em algumas configurações, a realidade quase não precisa de correções para retornar ao estado inicial. Pequenas intervenções podem restaurar o equilíbrio do construto.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 5 (INTERMEDIÁRIO) =========================== -->
+        <div class="exercise">
+            <h3>Desfazendo um Deslocamento 3x3 Diagonal Suave</h3>
+            <p>
+                Dada a matriz 
+                <span class="formula">
+                    $$E = \begin{pmatrix}
+                    2 & 0 & 0\\
+                    0 & 1 & 1\\
+                    0 & 1 & 2
+                    \end{pmatrix},$$
+                </span>
+                encontre a sua inversa via $\bigl[E \mid I\bigr]$.
+            </p>
+            
+            <div class="hint">
+                <p>Verifique se o pivô da primeira linha precisa ser normalizado. Depois, elimine os valores na parte inferior ou superior conforme necessário.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte $\bigl[E \mid I\bigr] = \begin{pmatrix}
+                        2 & 0 & 0 & | & 1 & 0 & 0\\
+                        0 & 1 & 1 & | & 0 & 1 & 0\\
+                        0 & 1 & 2 & | & 0 & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Normalize a primeira linha: R1 ← (1/2)·R1 $\to \begin{pmatrix}
+                        1 & 0 & 0 & | & 0.5 & 0 & 0\\
+                        0 & 1 & 1 & | & 0 & 1 & 0\\
+                        0 & 1 & 2 & | & 0 & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Elimine o 1 abaixo do pivô da segunda linha: R3 ← R3 - R2 $\to \begin{pmatrix}
+                        1 & 0 & 0 & | & 0.5 & 0 & 0\\
+                        0 & 1 & 1 & | & 0 & 1 & 0\\
+                        0 & 0 & 1 & | & 0 & -1 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Ajuste a segunda linha para eliminar o 1 acima do pivô da terceira linha: R2 ← R2 - R3 
+                        $\to \begin{pmatrix}
+                        1 & 0 & 0 & | & 0.5 & 0   & 0\\
+                        0 & 1 & 0 & | & 0   & 2   & -1\\
+                        0 & 0 & 1 & | & 0   & -1  & 1
+                    \end{pmatrix}$.</li>
+                    <li>Agora a parte esquerda é a identidade, e a parte direita representa $E^{-1}$.</li>
+                </ol>
+                
+                <div class="formula">
+                    $$E^{-1} = \begin{pmatrix}
+                    0.5 & 0 & 0\\
+                    0 & 2 & -1\\
+                    0 & -1 & 1
+                    \end{pmatrix}.$$</div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Às vezes, basta dividir um pequeno fator e remover alguns resíduos para reverter grandes transformações, mostrando como a codificação da realidade pode ser maleável.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 6 (INTERMEDIÁRIO) =========================== -->
+        <div class="exercise">
+            <h3>Inversão 3x3 com Correção de Pivôs</h3>
+            <p>
+                Suponha que a matriz 
+                <span class="formula">
+                    $$F = \begin{pmatrix}
+                    1 & 2 & 0\\
+                    0 & 1 & 1\\
+                    1 & 0 & 1
+                    \end{pmatrix}$$
+                </span>
+                represente um código que mistura valores. Determine $F^{-1}$ utilizando escalonamento.
+            </p>
+            
+            <div class="hint">
+                <p>Cuidado ao lidar com o 1 da terceira linha, primeira coluna. Pode ser útil trocar linhas para evitar complicações no escalonamento.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Crie $\bigl[F \mid I\bigr]$ = $\begin{pmatrix}
+                        1 & 2 & 0 & | & 1 & 0 & 0\\
+                        0 & 1 & 1 & | & 0 & 1 & 0\\
+                        1 & 0 & 1 & | & 0 & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Elimine o 1 da terceira linha (primeira coluna): R3 ← R3 - R1 
+                        $\begin{pmatrix}
+                        1 & 2 & 0 & | & 1 & 0 & 0\\
+                        0 & 1 & 1 & | & 0 & 1 & 0\\
+                        0 & -2 & 1 & | & -1 & 0 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Atue na segunda linha (pivô em -2 da terceira linha): R3 ← R3 + 2·R2 
+                        $\begin{pmatrix}
+                        1 & 2 & 0 & | & 1 & 0 & 0\\
+                        0 & 1 & 1 & | & 0 & 1 & 0\\
+                        0 & 0 & 3 & | & -1 & 2 & 1
+                    \end{pmatrix}$.</li>
+                    <li>Normalize a terceira linha: R3 ← (1/3)·R3 
+                        $\begin{pmatrix}
+                        1 & 2 & 0 & | & 1 & 0 & 0\\
+                        0 & 1 & 1 & | & 0 & 1 & 0\\
+                        0 & 0 & 1 & | & -1/3 & 2/3 & 1/3
+                    \end{pmatrix}$.</li>
+                    <li>Elimine o 1 na segunda linha, terceira coluna: R2 ← R2 - R3 
+                        $\begin{pmatrix}
+                        1 & 2 & 0 & | & 1 & 0 & 0\\
+                        0 & 1 & 0 & | & 1/3 & 1/3 & -1/3\\
+                        0 & 0 & 1 & | & -1/3 & 2/3 & 1/3
+                    \end{pmatrix}$.</li>
+                    <li>Elimine o 2 da primeira linha, segunda coluna: R1 ← R1 - 2·R2 
+                        $\begin{pmatrix}
+                        1 & 0 & 0 & | & 1 - 2*(1/3) & - 2*(1/3) & 2*(1/3)\\
+                        0 & 1 & 0 & | & 1/3 & 1/3 & -1/3\\
+                        0 & 0 & 1 & | & -1/3 & 2/3 & 1/3
+                    \end{pmatrix}$.</li>
+                    <li>Isso resulta em:
+                        $\begin{pmatrix}
+                        1 & 0 & 0 & | & 1 - 2/3 & -2/3 & 2/3\\
+                        0 & 1 & 0 & | & 1/3 & 1/3 & -1/3\\
+                        0 & 0 & 1 & | & -1/3 & 2/3 & 1/3
+                        \end{pmatrix} = 
+                        \begin{pmatrix}
+                        1 & 0 & 0 & | & 1/3 & -2/3 & 2/3\\
+                        0 & 1 & 0 & | & 1/3 & 1/3 & -1/3\\
+                        0 & 0 & 1 & | & -1/3 & 2/3 & 1/3
+                        \end{pmatrix}$.</li>
+                </ol>
+                
+                <div class="formula">
+                    $$F^{-1} = \begin{pmatrix}
+                    \tfrac{1}{3} & -\tfrac{2}{3} & \tfrac{2}{3}\\
+                    \tfrac{1}{3} & \tfrac{1}{3} & -\tfrac{1}{3}\\
+                    -\tfrac{1}{3} & \tfrac{2}{3} & \tfrac{1}{3}
+                    \end{pmatrix}.$$</div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Cada passo de escalonamento é como um hack que purifica instruções redundantes do código. Trocar linhas e normalizar valores permite ver a realidade de outro ângulo.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 7 (AVANÇADO) =========================== -->
+        <div class="exercise">
+            <h3>3x3 Triangular Parcial com Ajuste de Linhas</h3>
+            <p>
+                Calcule a inversa da matriz 
+                <span class="formula">
+                    $$G = \begin{pmatrix}
+                    0 & 1 & 1\\
+                    1 & 1 & 0\\
+                    1 & 0 & 1
+                    \end{pmatrix}.$$</span>
+            </p>
+            
+            <div class="hint">
+                <p>Não esqueça de rearranjar as linhas se o primeiro elemento pivô não estiver na posição desejada.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Verifique que o (1,1) é zero. Troque R1 ↔ R2 para facilitar.</li>
+                    <li>Prossiga com a eliminação gaussiana, normalizando pivôs e zerando elementos fora da diagonal principal.</li>
+                    <li>Ao final, a parte direita de $\bigl[G \mid I\bigr]$ será $G^{-1}$, caso não haja anomalias.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Trocar linhas iniciais é como redefinir prioridades em um código extenso. Colocamos o pivô certo na posição certa para descobrir o caminho de volta.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 8 (AVANÇADO) =========================== -->
+        <div class="exercise">
+            <h3>Aplicando Escalonamento Total 3x3 com Zeros Estratégicos</h3>
+            <p>
+                Dada a matriz 
+                <span class="formula">
+                    $$H = \begin{pmatrix}
+                    3 & 0 & 1\\
+                    0 & 1 & 0\\
+                    1 & 0 & 2
+                    \end{pmatrix},$$</span>
+                realize as operações necessárias para obter $H^{-1}$.
+            </p>
+            
+            <div class="hint">
+                <p>Observe se é vantajoso normalizar primeiro o pivô 3 ou se é melhor realizar trocas de linha para agilizar o processo.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Escolha a melhor linha para servir como pivô principal e inicie o escalonamento.</li>
+                    <li>Use operações para zerar os elementos fora da diagonal, lembrando de normalizar os pivôs ao término de cada etapa.</li>
+                    <li>Verifique se a parte esquerda se transformou na matriz identidade. Se sim, a parte direita contém a inversa.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Escolher a estratégia de pivôs na hora certa é como decidir qual fio desconectar numa bomba lógica: a ordem das ações determina o sucesso ou o fracasso.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 9 (AVANÇADO) =========================== -->
+        <div class="exercise">
+            <h3>Trabalhando com Blocos Nulos em 3x3</h3>
+            <p>
+                Construa a inversa da matriz 
+                <span class="formula">
+                    $$J = \begin{pmatrix}
+                    1 & 1 & 1\\
+                    1 & 0 & 1\\
+                    0 & 1 & 1
+                    \end{pmatrix}.$$</span>
+                Atenção especial aos zeros nas posições intermediárias.
+            </p>
+            
+            <div class="hint">
+                <p>Ao encontrar um 0 no lugar de pivô, tente trocar linhas ou colunas (se permitido) para prosseguir. Lembre-se de que só as trocas de linha fazem parte do “hack” básico de escalonamento.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Tente manter a primeira linha como pivô inicial se possível. Caso o meio do escalonamento trave, considere uma troca de linha estratégica.</li>
+                    <li>Elimine termos acima e abaixo de cada pivô sucessivamente.</li>
+                    <li>Ajuste possíveis frações ao final para obter a identidade do lado esquerdo.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Às vezes, para revelar os caminhos de volta, precisamos mover as peças certas. Um zero no lugar errado pode ser a anomalia que torna o sistema invencível — até corrigirmos seu posicionamento.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 10 (DESAFIADOR) =========================== -->
+        <div class="exercise">
+            <h3>Matriz 3x3 Combinada: Controles Binários e Fatores Maiores</h3>
+            <p>
+                Calcule a inversa da matriz 
+                <span class="formula">
+                    $$K = \begin{pmatrix}
+                    2 & 1 & 1\\
+                    1 & 2 & 1\\
+                    0 & 1 & 2
+                    \end{pmatrix}.$$</span>
+            </p>
+            
+            <!-- Sem dica, pois é nível desafiador -->
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Monte $\bigl[K \mid I\bigr]$ e verifique se o pivô inicial é adequado.</li>
+                    <li>Execute as operações elementares de linha para escalonar a parte esquerda em identidade.</li>
+                    <li>Ao final, a matriz da direita será $K^{-1}$.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Pequenos acréscimos de valores inteiros podem gerar efeitos complexos. O Operador que domina a inversão ganha a capacidade de reverter manipulações minuciosas do construto.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 11 (DESAFIADOR) =========================== -->
+        <div class="exercise">
+            <h3>3x3 com Coeficientes Altos: Rastreio de Inconsistências</h3>
+            <p>
+                A matriz 
+                <span class="formula">
+                    $$L = \begin{pmatrix}
+                    4 & 2 & 2\\
+                    2 & 4 & 2\\
+                    2 & 2 & 4
+                    \end{pmatrix}$$</span>
+                conduz grandes variações numéricas durante o escalonamento. Obtenha $L^{-1}$ se for possível.
+            </p>
+            
+            <!-- Sem dica, pois é nível desafiador -->
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Inicie com a matriz estendida $\bigl[L \mid I\bigr]$.</li>
+                    <li>Faça trocas de linha se necessário e normalize os pivôs antes de eliminar os demais elementos na coluna.</li>
+                    <li>Persistir nos passos de escalonamento revelará a inversa, caso não existam anomalias irreversíveis.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Quando os números aumentam, os desvios e erros podem se tornar evidentes. Porém, assim como nas defesas de Zion, a precisão e a técnica correta vencem qualquer escala.</p>
+            </details>
+        </div>
+
+        <!-- =========================== PROGRAMA 12 (DESAFIADOR) =========================== -->
+        <div class="exercise">
+            <h3>Sistema 3x3 Irregular: Bloqueios e Reestruturação</h3>
+            <p>
+                Verifique se a matriz 
+                <span class="formula">
+                    $$M = \begin{pmatrix}
+                    1 & 1 & 2\\
+                    1 & 2 & 3\\
+                    2 & 3 & 5
+                    \end{pmatrix}$$</span>
+                pode ou não ser invertida, utilizando o processo de escalonamento. Caso seja possível, encontre $M^{-1}$.
+            </p>
+            
+            <!-- Sem dica, pois é nível desafiador -->
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Construa $\bigl[M \mid I\bigr]$ e aplique escalonamento. Se em algum momento ficar impossível avançar para a forma de identidade, considere a possibilidade de a matriz não possuir inversa.</li>
+                    <li>Caso consiga chegar à identidade do lado esquerdo, registre a matriz da direita como $M^{-1}$.</li>
+                </ol>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Em alguns casos, não há retorno. Se o caminho não puder ser invertido, a distorção no código é permanente. Saber reconhecer essa limitação é tão crucial quanto saber contorná-la.</p>
+            </details>
+        </div>
+    </div>
+
+    <!-- RODAPÉ DO DOCUMENTO -->
+    <div class="footer">
+        ZION_TEC | Matrizes Inversas: Hackeamento da Matrix - “O poder de reverter é o poder de controlar.”
+    </div>
+</body>
+</html>
