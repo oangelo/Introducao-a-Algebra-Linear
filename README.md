@@ -59,40 +59,26 @@ _________
 
 ## Ementa Detalhada do Curso
 
-### CAPÍTULO 1: Sistemas de Equações Lineares e Matrizes
-<details>
-<summary>Glossário de Termos Chave</summary>
+### CAPÍTULO 1: Códigos da Realidade: Sistemas e Matrizes [🎧](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3)
 
-_________
-### Glossário de Termos Chave
+- Introdução aos sistemas de equações lineares
+- Eliminação Gaussiana: o primeiro "hack" [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/eliminacao_gaussiana.html)
+- Matrizes e propriedades das operações matriciais [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/propriedades.html)
+- Matrizes Inversas: "desfazer operações" [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/inversas.html)
+- [Quiz do Capítulo](quiz/matrizes_e_sitemas.md)
+
+<details>
+<summary>🔍 Glossário de Termos-Chave</summary>
 
 * **Sistema Linear:** Conjunto de equações lineares com as mesmas variáveis.
-* **Matriz:** Tabela retangular de elementos dispostos em linhas e colunas.
+* **Matriz:** "Grid de Dados" - Tabela retangular de elementos dispostos em linhas e colunas.
 * **Vetor:** Matriz com apenas uma linha ou uma coluna.
 * **Matriz Aumentada:** Matriz que representa um sistema linear, contendo os coeficientes das variáveis e os termos independentes.
-* **Operações Elementares com Linhas:** Operações que podem ser aplicadas a uma matriz para transformá-la em uma forma equivalente, sem alterar a solução do sistema linear associado.
-* **Forma Escalonada:** Uma matriz está na forma escalonada quando:
-  1. O primeiro elemento não nulo de cada linha (pivô) é igual a 1;
-  2. Os pivôs de linhas consecutivas estão em colunas diferentes e cada pivô está à direita do pivô da linha anterior;
-  3. As linhas nulas estão abaixo das linhas não nulas.
-* **Forma Escalonada Reduzida por Linhas:** Uma matriz está na forma escalonada reduzida por linhas quando está na forma escalonada e:
-  4. Cada pivô é o único elemento não nulo da sua coluna.
-* **Variável Livre:** Variável que pode assumir qualquer valor real na solução de um sistema linear indeterminado.
-* **Matriz Inversa:** Matriz que, quando multiplicada pela matriz original, resulta na matriz identidade.
-* **Matriz Transposta:** Matriz obtida trocando as linhas pelas colunas da matriz original.
-* **Matriz Diagonal:** Matriz quadrada onde os elementos fora da diagonal principal são nulos.
-* **Matriz Triangular Superior:** Matriz quadrada onde os elementos abaixo da diagonal principal são nulos.
-* **Matriz Triangular Inferior:** Matriz quadrada onde os elementos acima da diagonal principal são nulos.
-* **Matriz Identidade:** Matriz diagonal onde os elementos da diagonal principal são iguais a 1.
-_________
-
+* **Operações Elementares com Linhas:** "Hacks básicos" - Operações que podem ser aplicadas para transformar uma matriz sem alterar a solução.
+* **Forma Escalonada:** Estado da matriz após simplificação parcial.
+* **Forma Escalonada Reduzida:** O estado mais simplificado de uma matriz.
+* **Matriz Inversa:** "Ctrl+Z da matriz" - Matriz que desfaz a operação da matriz original.
 </details>
-
-- [Introdução aos sistemas de equações lineares e Eliminação gaussiana](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/eliminacao_gaussiana.html)
-- [Matrizes e propriedades das operações matriciais](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/propriedades.html)
-- [Matrizes Inversas](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/inversas.html)
-- [Quiz](quiz/matrizes_e_sitemas.md)
-- [D&D - Áudio](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/matrizes_sistemas_bill.mp3)
 
 ### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/determinante.html)
 <details>
