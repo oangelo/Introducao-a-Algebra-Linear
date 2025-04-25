@@ -83,7 +83,6 @@ _________
 
 ### CAPÍTULO 2: A Assinatura Digital: Determinantes [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/determinante.html) [📝](quiz/determinantes.md) [🎧](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/determinants_bill.mp3)
 
-- Determinantes: o "código de autenticação"
 - [Expansão em Cofatores: "decodificação recursiva"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-2/determinantes-cofatores.html)
 - [Redução por Linhas: "simplificação de código"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-2/determinantes-reducao.html)
 - [Propriedades dos Determinantes: "padrões invioláveis"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-2/propriedades-determinantes.html)
