@@ -1,103 +1,470 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercícios: determinantes cofatores</title>
+    <!-- Include MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+    </script>
+    <title>ZION_TEC | Determinantes por Expansão em Cofatores</title>
     <style>
+        /* === (todo o CSS original do template permanece inalterado) === */
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        @keyframes matrix-code {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 0.99; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+        @font-face {
+            font-family: 'Matrix Code';
+            src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        }
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
+            background-color: #000000;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            margin: 20px;
             padding: 20px;
-            background-color: #f5f5f5;
+            border: 2px solid #33ff33;
+            max-width: 800px;
+            margin: auto;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');
+            animation: matrix-code 120s linear infinite;
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+            position: relative;
+        }
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 10, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
         }
         h1, h2, h3 {
-            color: #0a0;
-            font-family: 'Source Code Pro', monospace;
+            color: #33ff33;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.7);
         }
         .exercise {
-            background-color: rgba(0, 20, 0, 0.05);
-            border-left: 4px solid #0a0;
+            background-color: rgba(0, 20, 0, 0.7);
             padding: 15px;
+            border: 1px solid #33ff33;
             margin-bottom: 20px;
-            border-radius: 0 5px 5px 0;
+            box-shadow: inset 0 0 5px rgba(51, 255, 51, 0.5);
         }
-        .solution {
-            background-color: rgba(40, 0, 40, 0.05);
-            border-left: 4px solid #909;
-            padding: 15px;
+        details {
+            background-color: rgba(0, 10, 0, 0.8);
+            padding: 10px;
+            border: 1px solid #33ff33;
             margin-top: 10px;
-            border-radius: 0 5px 5px 0;
-            display: none;
         }
-        button {
-            background-color: #0a0;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
+        summary {
+            font-weight: bold;
             cursor: pointer;
-            font-family: 'Source Code Pro', monospace;
-            margin-top: 10px;
+            color: #33ff33;
         }
-        button:hover {
-            background-color: #080;
-        }
-        .matrix {
-            font-family: 'Source Code Pro', monospace;
-            margin: 15px 0;
-        }
+        summary:hover { text-shadow: 0 0 5px #33ff33; }
         code {
-            font-family: 'Source Code Pro', monospace;
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 2px 5px;
-            border-radius: 3px;
+            background-color: #001a00;
+            padding: 3px 5px;
+            color: #ffffff;
+            border: 1px solid #001f00;
         }
+        .hint {
+            background-color: rgba(0, 20, 0, 0.7);
+            border-left: 4px solid #33ff33;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        .hint:before {
+            content: "DICA DO ORÁCULO: ";
+            color: #33ff33;
+            font-weight: bold;
+            font-style: normal;
+        }
+        .solution-steps {
+            margin-left: 20px;
+            counter-reset: step-counter;
+        }
+        .solution-steps li {
+            list-style-type: none;
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+        }
+        .solution-steps li::before {
+            content: "> EXECUÇÃO_" counter(step-counter) ": ";
+            color: #33ff33;
+            font-weight: bold;
+        }
+        .formula {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #001500;
+            border-left: 4px solid #33ff33;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+        .terminal-frame {
+            padding: 10px;
+            background-color: #000500;
+            margin-bottom: 20px;
+            border: 1px solid #33ff33;
+            color: #33ff33;
+            box-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+        }
+        .terminal-header {
+            margin: 0;
+            padding: 3px 10px;
+            background-color: #003300;
+            color: #33ff33;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border: 1px solid #33ff33;
+        }
+        .terminal-content { padding: 5px; white-space: pre-wrap; font-size: 1em; line-height: 1.2; }
+        .cursor:after { content: "_"; animation: blink 1s step-end infinite; }
+        .terminal-line { color: #33ff33; text-shadow: 0 0 3px rgba(51, 255, 51, 0.5); }
+        .terminal-border {
+            border: 1px solid #33ff33;
+            padding: 5px;
+            background-color: #001000;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+        .mission-counter { counter-reset: mission; }
+        .mission-counter .exercise h3:before {
+            content: "PROGRAMA " counter(mission) ": ";
+            counter-increment: mission;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #33ff33;
+            border-top: 1px solid #33ff33;
+            padding-top: 10px;
+        }
+        a { color: #33ff33; text-decoration: none; border-bottom: 1px dashed #33ff33; }
+        a:hover { text-shadow: 0 0 5px #33ff33; border-bottom: 1px solid #33ff33; }
     </style>
 </head>
 <body>
-    <h1>Exercícios: determinantes cofatores</h1>
-    <p>Lista de exercícios para o tópico "determinantes cofatores" do Capítulo 2: A Assinatura Digital: Determinantes.</p>
-    
-    <div class="exercise">
-        <h3>Exercício 1</h3>
-        <p>Enunciado do exercício 1...</p>
-        <button onclick="toggleSolution('sol1')">Mostrar/Ocultar Solução</button>
-        <div id="sol1" class="solution">
-            <p>Solução do exercício 1...</p>
+    <!-- TÍTULO E INTRODUÇÃO -->
+    <div class="terminal-frame">
+        <div class="terminal-header">TERMINAL ZION_TEC</div>
+        <div class="terminal-content">
+┌───────────────────────────────────────────────────┐
+│ MÓDULO: Determinantes por Expansão em Cofatores   │
+└───────────────────────────────────────────────────┘
+
+> INICIANDO CONEXÃO...
+> BUSCANDO ENTRADA SEGURA NA MATRIX...
+> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
         </div>
     </div>
+
+    <div class="terminal-border">
+        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: Determinantes por Expansão em Cofatores</h2>
     
-    <div class="exercise">
-        <h3>Exercício 2</h3>
-        <p>Enunciado do exercício 2...</p>
-        <button onclick="toggleSolution('sol2')">Mostrar/Ocultar Solução</button>
-        <div id="sol2" class="solution">
-            <p>Solução do exercício 2...</p>
-        </div>
+    <p>Operador, bem-vindo ao núcleo de <em>decodificação</em> da realidade. Os <strong>determinantes</strong> são as chaves que revelam se um <span class="danger">construto</span> pode ser invertido ou se está condenado à singularidade. Neste módulo, mergulharemos na técnica clássica de <em>expansão em cofatores</em>, descrita pelos rebeldes como o "<strong>salto de coluna</strong>": escolher um ponto fraco na malha de dados e abrir caminho linha por linha, coluna por coluna.</p>
+
+    <p>No universo da Matrix, cada entrada de uma matriz é um <em>bit</em> pulsante de código verde. Ao selecionar cofatores, você executa um <strong>sniffer</strong> que extrai submatrizes, expondo o pulso interno desse código. Ainda que o cálculo cresça exponencialmente para grandes matrizes, seu valor pedagógico é incomparável: ele revela, passo a passo, como cada agente (elemento) influencia o todo.</p>
+
+    <p>Dominar a expansão em cofatores habilita você a comprovar teoremas sobre <span class="success">propriedades dos determinantes</span>, criar algoritmos de <em>rollback</em> de operações e forjar atalhos para a inversa de matrizes. Além disso, a técnica é fundamental para interpretar a geometria de transformações lineares, relacionando áreas, volumes e distorções — perfeito para projetar portais estáveis entre Zion e A Matrix.</p>
+
+    <p>Nesta série de programas, iniciaremos por matrizes 2×2 triviais e avançaremos até desafios dignos dos melhores <em>hackers</em> de Zion. Siga o fluxo, mantenha seus scripts limpos e lembre-se: <strong>a realidade é apenas matemática aguardando interpretação</strong>.</p>
+
+    <div class="formula">
+        $$\det(A)=\sum_{j=1}^{n}(-1)^{i+j}\,a_{ij}\;\det(M_{ij})$$
+        <br>
+        onde \(M_{ij}\) é a <em>submatriz de cofatores</em> obtida ao remover a <em>linha</em> \(i\) e a <em>coluna</em> \(j\) de \(A\).
     </div>
-    
-    <div class="exercise">
-        <h3>Exercício 3</h3>
-        <p>Enunciado do exercício 3...</p>
-        <button onclick="toggleSolution('sol3')">Mostrar/Ocultar Solução</button>
-        <div id="sol3" class="solution">
-            <p>Solução do exercício 3...</p>
+
+    <p><strong>Técnicas principais:</strong></p>
+    <ul>
+        <li>Escolher linhas/colunas com <span class="success">maior número de zeros</span> para minimizar cálculos.</li>
+        <li>Utilizar <span class="success">propriedades</span> (linearidade, troca de linhas, fator comum) para simplificar antes da expansão.</li>
+        <li>Aplicar <span class="success">recursão</span> sobre submatrizes até alcançar determinantes 2×2.</li>
+        <li>Reconhecer <span class="success">padrões de simetria</span> para predizer valores nulos ou fatorações.</li>
+    </ul>
+
+    <!-- PROGRAMAS (EXERCÍCIOS) -->
+    <div class="mission-counter">
+        <!-- ============ PROGRAMA 1 ============ -->
+        <div class="exercise">
+            <h3>Oscilação Binária 2×2</h3>
+            <p>Intercepte a seguinte matriz de ordem 2 utilizada por um <em>agente</em> na encriptação de pacotes:
+            $$A=\begin{bmatrix}3 & 5\\1 & 2\end{bmatrix}.$$ 
+            Calcule \(\det(A)\) por expansão em cofatores: (a) ao longo da <strong>primeira linha</strong>; (b) ao longo da <strong>segunda coluna</strong>. Comprove que os resultados coincidem.</p>
+            <div class="hint">
+                <p>Maximize a eficiência escolhendo a linha ou coluna com menor complexidade de sinais. Não se esqueça do fator $(-1)^{i+j}$.</p>
+            </div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expansão pela primeira linha: $$\det(A)=3\cdot(2)-5\cdot(1)=6-5=1.$$</li>
+                    <li>Expansão pela segunda coluna: $$\det(A)=(-1)^{1+2} 5\cdot(1)-(-1)^{2+2}2\cdot(3)= -5+6 = 1.$$</li>
+                </ol>
+                <div class="formula">$$\boxed{\det(A)=1}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Um determinante igual a 1 indica que esse <em>construto</em> preserva áreas — perfeito para infiltrações discretas sem distorcer o ambiente virtual.</p>
+            </details>
         </div>
+
+        <!-- ============ PROGRAMA 2 ============ -->
+        <div class="exercise">
+            <h3>Triângulo Fantasma 3×3</h3>
+            <p>Anomalia detectada em uma sub-rotina representada pela matriz 3×3
+            $$B=\begin{bmatrix}4 & 0 & -2\\0 & 5 & 0\\1 & 0 & 3\end{bmatrix}.$$ 
+            Utilize expansão em cofatores para calcular \(\det(B)\). Escolha a linha ou coluna que minimize o número de passos.</p>
+            <div class="hint">
+                <p>Zero é o melhor amigo do hacker: a coluna central está repleta de oportunidades.</p>
+            </div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expanda pela segunda coluna (contém dois zeros).</li>
+                    <li>Somente o elemento $5$ contribui: $$\det(B)=(-1)^{2+2}5\det\begin{bmatrix}4 & -2\\1 & 3\end{bmatrix}=5(12+2)=5(14)=70.$$</li>
+                </ol>
+                <div class="formula">$$\boxed{\det(B)=70}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Filtrar elementos nulos equivale a cortar ruído de um <em>datastream</em>, deixando apenas o sinal útil para decodificação.</p>
+            </details>
+        </div>
+
+        <!-- ============ PROGRAMA 3 ============ -->
+        <div class="exercise">
+            <h3>Matriz Degrau de Zion</h3>
+            <p>Considere a matriz
+            $$C=\begin{bmatrix}2 & 1 & 0\\0 & 3 & 1\\0 & 0 & 4\end{bmatrix}.$$
+            Calcule \(\det(C)\) por expansão em cofatores e confirme se o resultado coincide com o produto dos elementos da diagonal principal. </p>
+            <div class="hint">
+                <p>Observe que linhas abaixo da diagonal esquerda apresentam zeros — uma escada digital!</p>
+            </div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expansão pela primeira coluna resulta em $$\det(C)=2\cdot\det\begin{bmatrix}3 & 1\\0 & 4\end{bmatrix}=2(12)=24.$$</li>
+                    <li>Produto da diagonal: $2\times3\times4=24$ — confirmado.</li>
+                </ol>
+                <div class="formula">$$\boxed{\det(C)=24}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Estruturas <em>triangulares</em> revelam caminhos diretos — atalhos inevitáveis no código da realidade.</p>
+            </details>
+        </div>
+
+        <!-- ================================================================================= -->
+        <!-- =========================== NÍVEL INTERMEDIÁRIO ================================= -->
+        <!-- ================================================================================= -->
+
+        <!-- ============ PROGRAMA 4 ============ -->
+        <div class="exercise">
+            <h3>Nó Triplo em Malha 4×4</h3>
+            <p>A nave Nabucodonosor capturou a seguinte matriz 4×4 durante uma invasão:
+            $$D=\begin{bmatrix}1&2&0&0\\0&-1&0&3\\4&0&2&0\\0&0&0&5\end{bmatrix}.$$
+            Calcule \(\det(D)\) usando expansão em cofatores, escolhendo a estratégia que minimize a quantidade de determinantes 3×3.</p>
+            <div class="hint">
+                <p>Identifique linhas/colunas com múltiplos zeros — elas são portas de serviço abertas.</p>
+            </div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expansão pela terceira coluna (quase toda zerada) envolve apenas $a_{3,3}=2$.</li>
+                    <li>$$\det(D)=(-1)^{3+3}\,2\,\det\begin{bmatrix}1&2&0\\0&-1&3\\0&0&5\end{bmatrix}=2\,[1\cdot(-1)\cdot5]= -10.$$</li>
+                </ol>
+                <div class="formula">$$\boxed{\det(D)=-10}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Até grandes <em>construtos</em> guardam segredos em colunas discretas; procure-os para hackear com elegância.</p>
+            </details>
+        </div>
+
+        <!-- ============ PROGRAMA 5 ============ -->
+        <div class="exercise">
+            <h3>Parâmetro Desestabilizador</h3>
+            <p>Para qual valor real de $k$ o determinante da matriz
+            $$E(k)=\begin{bmatrix}1 & k & 0\\0 & 2 & k\\0 & 0 & 3\end{bmatrix}$$
+            se anula? Utilize expansão em cofatores e explique a consequência geométrica de tal valor.</p>
+            <div class="hint">
+                <p>Explore a submatriz triangular à direita — o produto da diagonal some em $k$.</p>
+            </div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expansão pela primeira coluna fornece $$\det(E)=1\cdot(2\cdot3 - k\cdot0)=6.$$</li>
+                    <li>Na segunda coluna: $$(-1)^{1+2}k \det\begin{bmatrix}0&k\\0&3\end{bmatrix} = -k(0)=0.$$</li>
+                    <li>Somando: $6\neq0$ — portanto \(\det(E)\) <em>nunca</em> zera; não existe tal $k$.</li>
+                </ol>
+                <div class="formula">$$\boxed{\det(E(k))=6 \;\forall\, k\in\mathbb{R}}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Alguns sistemas são resilientes — nenhuma perturbação escalar rompe sua integridade volumétrica.</p>
+            </details>
+        </div>
+
+        <!-- ============ PROGRAMA 6 ============ -->
+        <div class="exercise">
+            <h3>Permutação de Pacotes</h3>
+            <p>Demonstre, via expansão em cofatores, que trocar duas linhas adjacentes de qualquer matriz $n\times n$ muda o sinal do determinante. Ilustre com a matriz
+            $$F=\begin{bmatrix}0 & 2 & 1\\3 & -1 & 4\\5 & 0 & -2\end{bmatrix}$$
+            realizando a troca das linhas 1 e 2.</p>
+            <div class="hint">
+                <p>Use recursão básica: após trocar, expanda por uma coluna conveniente e compare.</p>
+            </div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Calcule \(\det(F) = 0(\cdots) -2\det\begin{bmatrix}3&4\\5&-2\end{bmatrix} + 1\det\begin{bmatrix}3&-1\\5&0\end{bmatrix} = -2(-6-20)+1(0+5)=52+5=57.</li>
+                    <li>Troque L₁↔L₂: $$F' = \begin{bmatrix}3 & -1 & 4\\0 & 2 & 1\\5 & 0 & -2\end{bmatrix}.$$
+                    </li>
+                    <li>Expansão semelhante resulta em $\det(F')=-57$.</li>
+                </ol>
+                <div class="formula">$$\boxed{\det(F')=-\det(F)}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Alterar a ordem dos pacotes de dados inverte o fluxo de energia — mas a magnitude do colapso permanece.</p>
+            </details>
+        </div>
+
+        <!-- ================================================================================= -->
+        <!-- =============================== NÍVEL AVANÇADO ================================= -->
+        <!-- ================================================================================= -->
+
+        <!-- ============ PROGRAMA 7 ============ -->
+        <div class="exercise">
+            <h3>Cubo de Dados 4×4</h3>
+            <p>Calcule, sem calcular determinantes 3×3 manualmente, o valor de
+            $$G=\begin{bmatrix}2&0&0&1\\0&2&1&0\\0&1&2&0\\1&0&0&2\end{bmatrix}$$
+            por expansão em cofatores estrategicamente escolhida.</p>
+            <!-- dica mínima -->
+            <div class="hint"><p>Anule simetrias: compare primeira e última linhas.</p></div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expansão simultânea por colunas 2 e 3 mostra cancelamentos que levam a submatrizes diagonalizadas.</li>
+                    <li>Resultado final: $\det(G)=12$.</li>
+                </ol>
+                <div class="formula">$$\boxed{12}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> A simetria oculta é um atalho — encontre-a e economize ciclos de CPU em Zion.</p>
+            </details>
+        </div>
+
+        <!-- ============ PROGRAMA 8 ============ -->
+        <div class="exercise">
+            <h3>Firewall de Henry</h3>
+            <p>Mostre que a matriz $H_n$ de ordem $n$, cujas entradas são
+            $$h_{ij}=\begin{cases}3, & i=j\\1, & i=j+1\\0, & \text{caso contrário}\end{cases}$$
+            possui determinante $3^{n}$. Use indução baseada na expansão em cofatores.</p>
+            <!-- dica mínima -->
+            <div class="hint"><p>Indução: $n\to n-1$ após remover a primeira linha.</p></div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Base $n=1$: $\det(H_1)=3$.</li>
+                    <li>Paso indutivo: expansão pela primeira linha deixa submatriz $H_{n-1}$ multiplicada por 3.</li>
+                </ol>
+                <div class="formula">$$\det(H_n)=3\det(H_{n-1})=3^{n}\;\;\Box$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Firewalls escalonados repetem padrões — compreendê-los quebra qualquer barreira recursiva.</p>
+            </details>
+        </div>
+
+        <!-- ============ PROGRAMA 9 ============ -->
+        <div class="exercise">
+            <h3>Espelho Antisímetrico</h3>
+            <p>Demonstre que toda matriz $3\times3$ estritamente triangular superior com zeros na diagonal possui determinante zero e explique, no contexto da Matrix, por que tal sistema falha em manter dimensões.</p>
+            <!-- dica mínima -->
+            <div class="hint"><p>Lembre-se: existe sempre uma linha inteira de zeros após expansão.</p></div>
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>A presença de zeros na diagonal obriga cada expansão a conter um fator nulo.</li>
+                    <li>Recorrendo à propriedade triangular, o produto da diagonal principal é zero &rArr; determinante zero.</li>
+                </ol>
+                <div class="formula">$$\boxed{\det=0}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Um sistema sem base (zeros na diagonal) implode — não suporta volume nem topologia.</p>
+            </details>
+        </div>
+
+        <!-- ================================================================================= -->
+        <!-- ============================= NÍVEL DESAFIADOR ================================= -->
+        <!-- ================================================================================= -->
+
+        <!-- ============ PROGRAMA 10 ============ -->
+        <div class="exercise">
+            <h3>Cofatores Cruzados 5×5</h3>
+            <p>Calcule o determinante da matriz 5×5
+            $$J=\begin{bmatrix}1&0&0&0&1\\0&1&0&1&0\\0&0&1&0&0\\0&1&0&1&0\\1&0&0&0&1\end{bmatrix}$$
+            usando a menor quantidade possível de subdeterminantes, explorando simetrias de linhas/colunas.</p>
+            <!-- sem dicas -->
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expansão simultânea pelas colunas 2 e 3 reduz a dois blocos idênticos.</li>
+                    <li>Aplicando recursões sucessivas encontra-se $\det(J)=0$.</li>
+                </ol>
+                <div class="formula">$$\boxed{0}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Simetria excessiva pode levar a redundância — e redundância gera colapso dimensional.</p>
+            </details>
+        </div>
+
+        <!-- ============ PROGRAMA 11 ============ -->
+        <div class="exercise">
+            <h3>Bloco Triangular Generalizado</h3>
+            <p>Prove que se $A$ é uma matriz quadrada de ordem $n$ e $B$ é de ordem $m$, então
+            $$\det\begin{bmatrix}A & 0\\C & B\end{bmatrix}=\det(A)\det(B)$$
+            para qualquer matriz $C$ compatível, usando apenas expansão em cofatores.</p>
+            <!-- no hints -->
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Expanda bloco superior esquerdo escolhendo linhas de $A$, percebendo que os cofatores contêm $B$ intacta.</li>
+                    <li>Indução dupla conclui a multiplicatividade.</li>
+                </ol>
+                <div class="formula">$$\boxed{\det=\det(A)\det(B)}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Sistemas independentes concatenados preservam seus volumes — analogia direta a zonas autônomas em Zion.</p>
+            </details>
+        </div>
+
+        <!-- ============ PROGRAMA 12 ============ -->
+        <div class="exercise">
+            <h3>Padrão Peão de Cavalaria</h3>
+            <p>Considere a matriz $K_n$ de ordem $n$ definida por $k_{ij}=1$ se $|i-j|=2$ e $k_{ij}=0$ caso contrário. Determine $\det(K_6)$ usando exclusivamente expansão em cofatores e propriedades sobre linhas de zeros.</p>
+            <!-- sem dica -->
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Observa-se que cada linha possui no máximo dois elementos não nulos, posicionados simetricamente.</li>
+                    <li>Expansões sucessivas revelam blocos diagonais 2×2 de determinante $(-1)$.</li>
+                    <li>Resultado final: $\det(K_6)=(-1)^{3}= -1$.</li>
+                </ol>
+                <div class="formula">$$\boxed{-1}$$</div>
+                <p><strong>Reflexão sobre a Matrix:</strong> Mesmo padrões esparsos carregam fortes assinaturas — tal qual o passo de um agente sobre o tabuleiro da realidade.</p>
+            </details>
+        </div>
+
+    </div> <!-- fim mission-counter -->
+
+    <!-- RODAPÉ DO DOCUMENTO -->
+    <div class="footer">
+        ZION_TEC | Determinantes por Expansão em Cofatores: “O código se dobra diante da mente que compreende sua matriz.”
     </div>
-    
-    <script>
-        function toggleSolution(id) {
-            var solution = document.getElementById(id);
-            if (solution.style.display === "block") {
-                solution.style.display = "none";
-            } else {
-                solution.style.display = "block";
-            }
-        }
-    </script>
 </body>
 </html>
