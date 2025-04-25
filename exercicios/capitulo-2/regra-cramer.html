@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios: regra cramer</title>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2, h3 {
+            color: #0a0;
+            font-family: 'Source Code Pro', monospace;
+        }
+        .exercise {
+            background-color: rgba(0, 20, 0, 0.05);
+            border-left: 4px solid #0a0;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .solution {
+            background-color: rgba(40, 0, 40, 0.05);
+            border-left: 4px solid #909;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 0 5px 5px 0;
+            display: none;
+        }
+        button {
+            background-color: #0a0;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Source Code Pro', monospace;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #080;
+        }
+        .matrix {
+            font-family: 'Source Code Pro', monospace;
+            margin: 15px 0;
+        }
+        code {
+            font-family: 'Source Code Pro', monospace;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercícios: regra cramer</h1>
+    <p>Lista de exercícios para o tópico "regra cramer" do Capítulo 2: A Assinatura Digital: Determinantes.</p>
+    
+    <div class="exercise">
+        <h3>Exercício 1</h3>
+        <p>Enunciado do exercício 1...</p>
+        <button onclick="toggleSolution('sol1')">Mostrar/Ocultar Solução</button>
+        <div id="sol1" class="solution">
+            <p>Solução do exercício 1...</p>
+        </div>
+    </div>
+    
+    <div class="exercise">
+        <h3>Exercício 2</h3>
+        <p>Enunciado do exercício 2...</p>
+        <button onclick="toggleSolution('sol2')">Mostrar/Ocultar Solução</button>
+        <div id="sol2" class="solution">
+            <p>Solução do exercício 2...</p>
+        </div>
+    </div>
+    
+    <div class="exercise">
+        <h3>Exercício 3</h3>
+        <p>Enunciado do exercício 3...</p>
+        <button onclick="toggleSolution('sol3')">Mostrar/Ocultar Solução</button>
+        <div id="sol3" class="solution">
+            <p>Solução do exercício 3...</p>
+        </div>
+    </div>
+    
+    <script>
+        function toggleSolution(id) {
+            var solution = document.getElementById(id);
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+            } else {
+                solution.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

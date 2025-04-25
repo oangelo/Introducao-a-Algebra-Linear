@@ -80,41 +80,24 @@ _________
 * **Matriz Inversa:** "Ctrl+Z da matriz" - Matriz que desfaz a operação da matriz original.
 </details>
 
-### [CAPÍTULO 2: Determinantes](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/determinante.html)
+
+### CAPÍTULO 2: A Assinatura Digital: Determinantes [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/determinante.html) [📝](quiz/determinantes.md) [🎧](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/determinants_bill.mp3)
+
+- Determinantes: o "código de autenticação"
+- [Expansão em Cofatores: "decodificação recursiva"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-2/determinantes-cofatores.html)
+- [Redução por Linhas: "simplificação de código"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-2/determinantes-reducao.html)
+- [Propriedades dos Determinantes: "padrões invioláveis"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-2/propriedades-determinantes.html)
+- [Regra de Cramer: a "chave mestra"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-2/regra-cramer.html)
+
 <details>
-<summary>Glossário de Termos Chave</summary>
+<summary>🔍 Glossário de Termos-Chave</summary>
 
-_________
-### Glossário de Termos Chave
-
-* **Determinante:** Função que associa um número real a uma matriz quadrada, sendo útil para determinar propriedades da matriz, como invertibilidade.
-* **Menor:** Determinante da submatriz obtida ao remover uma linha e uma coluna de uma matriz quadrada.
-* **Cofator:** Produto do menor pelo fator (-1)^(i+j), levando em consideração a posição (i, j) do elemento na matriz.
-* **Expansão em cofatores:** Método para calcular o determinante de uma matriz utilizando os cofatores de uma linha ou coluna.
-* **Matriz triangular:** Matriz quadrada onde os elementos acima ou abaixo da diagonal principal são todos zero (superior ou inferior, respectivamente).
-* **Matriz elementar:** Matriz obtida aplicando-se uma única operação elementar com linhas à matriz identidade.
-* **Operações elementares com linhas:** Operações que modificam uma matriz sem alterar suas soluções (trocar linhas, multiplicar linha por escalar, somar múltiplo de linha a outra).
+* **Determinante:** "Assinatura digital" - Função que associa um número real a uma matriz quadrada.
+* **Menor:** Determinante da submatriz obtida ao remover uma linha e uma coluna.
+* **Cofator:** Produto do menor pelo fator (-1)^(i+j).
 * **Matriz de cofatores:** Matriz onde cada elemento é o cofator correspondente da matriz original.
-* **Adjunta:** Matriz transposta da matriz de cofatores, utilizada no cálculo da inversa da matriz original.
-* **Regra de Cramer:** Fórmula que utiliza determinantes para solucionar sistemas de equações lineares com 'n' equações e 'n' incógnitas, quando a matriz de coeficientes é invertível.
-_________
-
-</details>
-
-- Determinantes por expansão em cofatores
-- Calculando determinantes por meio de redução por linhas
-- Propriedades dos determinantes; regra de Cramer
-- [Quiz](quiz/determinantes.md)
-
-<details>
-<summary>Áudio Cyberpunk: Desvendando Determinantes</summary>
-
-Antes de continuarmos, é importante compreender um pouco sobre o cyberpunk, um gênero de ficção científica que emergiu nas últimas décadas do século XX. O cyberpunk retrata sociedades futuristas onde a tecnologia avançada coexiste com uma deterioração social, destacando temas como a concentração de renda, corporações dominantes e a marginalização dos indivíduos. Surgiu durante a era do neoliberalismo, servindo como uma crítica aos perigos da rápida evolução tecnológica aliada à desigualdade econômica, apontando para um futuro onde uma tecnocracia poderia controlar os rumos da humanidade.
-
-Utilizar elementos do cyberpunk para explicar conceitos matemáticos pode ser enriquecedor para aqueles que apreciam essa temática, pois adiciona uma narrativa envolvente e contemporânea ao aprendizado. No entanto, reconhecemos que essa abordagem pode não agradar a todos. Nosso objetivo é tornar a exploração dos determinantes mais dinâmica e interessante, sem sacrificar a clareza e a precisão dos conceitos matemáticos fundamentais.
-
-- [Áudio](https://oangelo.github.io/Introducao-a-Algebra-Linear/audio/determinants_bill.mp3)
-
+* **Adjunta:** Matriz transposta da matriz de cofatores.
+* **Regra de Cramer:** "Chave mestra" - Fórmula que utiliza determinantes para solucionar sistemas.
 </details>
 
 ### [CAPÍTULO 3: Espaços Vetoriais Euclidianos](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos-vetoriais-euclidianos.html)
