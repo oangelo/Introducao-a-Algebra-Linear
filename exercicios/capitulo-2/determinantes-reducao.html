@@ -1,103 +1,290 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercícios: determinantes reducao</title>
+    <!-- Include MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+    </script>
+    <title>ZION_TEC | Determinantes por Redução por Linhas</title>
     <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        h1, h2, h3 {
-            color: #0a0;
-            font-family: 'Source Code Pro', monospace;
-        }
-        .exercise {
-            background-color: rgba(0, 20, 0, 0.05);
-            border-left: 4px solid #0a0;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 0 5px 5px 0;
-        }
-        .solution {
-            background-color: rgba(40, 0, 40, 0.05);
-            border-left: 4px solid #909;
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 0 5px 5px 0;
-            display: none;
-        }
-        button {
-            background-color: #0a0;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Source Code Pro', monospace;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #080;
-        }
-        .matrix {
-            font-family: 'Source Code Pro', monospace;
-            margin: 15px 0;
-        }
-        code {
-            font-family: 'Source Code Pro', monospace;
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
+        /* Estilo inspirado no tema Matrix */
+        @keyframes blink {0%,49%{opacity:1;}50%,100%{opacity:0;}}
+        @keyframes matrix-code {0%{background-position:0% 0%;}100%{background-position:0% 100%;}}
+        @font-face {font-family:'Matrix Code';src:url('https://fonts.googleapis.com/css2?family=VT323&display=swap');}
+        body{background:#000;color:#33ff33;font-family:'Courier New',monospace;margin:auto;padding:20px;border:2px solid #33ff33;max-width:800px;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');animation:matrix-code 120s linear infinite;box-shadow:0 0 10px rgba(51,255,51,.5);position:relative;}
+        body::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,10,0,.1)50%,rgba(0,0,0,.1)50%);background-size:100% 4px;pointer-events:none;z-index:999;}
+        h1,h2,h3{color:#33ff33;text-shadow:0 0 5px rgba(51,255,51,.7);}
+        .exercise{background:rgba(0,20,0,.7);padding:15px;border:1px solid #33ff33;margin-bottom:20px;box-shadow:inset 0 0 5px rgba(51,255,51,.5);} 
+        details{background:rgba(0,10,0,.8);padding:10px;border:1px solid #33ff33;margin-top:10px;}
+        summary{font-weight:bold;cursor:pointer;color:#33ff33;}summary:hover{text-shadow:0 0 5px #33ff33;}
+        .hint{background:rgba(0,20,0,.7);border-left:4px solid #33ff33;padding:10px;margin:10px 0;font-style:italic;}
+        .hint:before{content:"DICA DO ORÁCULO: ";color:#33ff33;font-weight:bold;font-style:normal;}
+        .solution-steps{margin-left:20px;counter-reset:step-counter;}
+        .solution-steps li{list-style:none;counter-increment:step-counter;margin-bottom:10px;}
+        .solution-steps li::before{content:"> EXECUÇÃO_" counter(step-counter) ": ";color:#33ff33;font-weight:bold;}
+        .formula{display:block;margin:15px 0;padding:10px;background:#001500;border-left:4px solid #33ff33;box-shadow:0 0 5px rgba(51,255,51,.5);}
+        .terminal-frame{padding:10px;background:#000500;margin-bottom:20px;border:1px solid #33ff33;color:#33ff33;box-shadow:0 0 8px rgba(51,255,51,.5);} 
+        .terminal-header{margin:0;padding:3px 10px;background:#003300;color:#33ff33;font-weight:bold;text-align:center;letter-spacing:1px;margin-bottom:10px;border:1px solid #33ff33;}
+        .terminal-content{padding:5px;white-space:pre-wrap;font-size:1em;line-height:1.2;}
+        .cursor:after{content:"_";animation:blink 1s step-end infinite;}
+        .terminal-border{border:1px solid #33ff33;padding:5px;background:#001000;margin-bottom:20px;box-shadow:0 0 5px rgba(51,255,51,.5);}
+        .mission-counter{counter-reset:mission;}
+        .mission-counter .exercise h3:before{content:"PROGRAMA " counter(mission) ": ";counter-increment:mission;}
+        .footer{text-align:center;margin-top:30px;font-size:.9em;color:#33ff33;border-top:1px solid #33ff33;padding-top:10px;}
+        a{color:#33ff33;text-decoration:none;border-bottom:1px dashed #33ff33;}a:hover{text-shadow:0 0 5px #33ff33;border-bottom:1px solid #33ff33;}
     </style>
 </head>
 <body>
-    <h1>Exercícios: determinantes reducao</h1>
-    <p>Lista de exercícios para o tópico "determinantes reducao" do Capítulo 2: A Assinatura Digital: Determinantes.</p>
-    
-    <div class="exercise">
-        <h3>Exercício 1</h3>
-        <p>Enunciado do exercício 1...</p>
-        <button onclick="toggleSolution('sol1')">Mostrar/Ocultar Solução</button>
-        <div id="sol1" class="solution">
-            <p>Solução do exercício 1...</p>
+    <div class="terminal-frame">
+        <div class="terminal-header">TERMINAL ZION_TEC</div>
+        <div class="terminal-content">
+┌───────────────────────────────────────────────────┐
+│ MÓDULO: DETERMINANTES – REDUÇÃO POR LINHAS       │
+└───────────────────────────────────────────────────┘
+
+> INICIANDO CONEXÃO...
+> BUSCANDO ENTRADA SEGURA NA MATRIX...
+> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
         </div>
     </div>
-    
-    <div class="exercise">
-        <h3>Exercício 2</h3>
-        <p>Enunciado do exercício 2...</p>
-        <button onclick="toggleSolution('sol2')">Mostrar/Ocultar Solução</button>
-        <div id="sol2" class="solution">
-            <p>Solução do exercício 2...</p>
+
+    <div class="terminal-border">
+        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: DETERMINANTE POR REDUÇÃO POR LINHAS</h2>
+
+        <p>Operador, neste módulo aprenderemos a desvendar o <em>código de autenticação</em> de uma matriz&nbsp;$A$ calculando seu determinante via <strong>operações elementares (OE)</strong> de linha. Ao simplificar gradualmente a matriz até uma configuração triangular&nbsp;— enquanto rastreamos cada <em>hack</em> feito no construto&nbsp;— revelamos a verdadeira assinatura digital&nbsp;$\det(A)$.</p>
+
+        <p>Por que isso importa em Zion? Porque entender como as OEs afetam o determinante permite que transitemos entre diferentes representações de uma mesma realidade <strong>sem perder informação vital</strong>. Cada troca de linha, multiplicação por escalar ou combinação linear carrega um preço, e dominá‑lo é dominar a própria Matrix.</p>
+
+        <p>As regras de influência das OEs sobre o determinante são:</p>
+        <ul>
+            <li><strong>OE‑T1</strong>: Trocar duas linhas muda o sinal de $\det(A)$.</li>
+            <li><strong>OE‑T2</strong>: Multiplicar uma linha por $k \neq 0$ multiplica $\det(A)$ por $k$.</li>
+            <li><strong>OE‑T3</strong>: Somar a uma linha um múltiplo de outra <em>não</em> altera $\det(A)$.</li>
+        </ul>
+
+        <p>Aplicaremos essas táticas em <strong>12 programas</strong> de dificuldade crescente, do básico ao nível “agente”.</p>
+
+        <div class="mission-counter">
+            <!-- ================== PROGRAMAS 1–3 (BÁSICO) ================== -->
+            <div class="exercise">
+                <h3>Reconhecimento de Assinatura 2×2</h3>
+                <p>Considere a matriz
+                    <div class="formula">$$A = \begin{pmatrix} 3 & 1 \\ 4 & 2 \end{pmatrix}. $$</div>
+                    Use OEs para reduzi‑la a uma forma triangular superior e deduzir $\det(A)$.
+                </p>
+                <div class="hint"><p>Subtraia um múltiplo da primeira linha da segunda antes de expandir.</p></div>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>OE‑T3: $L_2 \leftarrow L_2 - \tfrac43 L_1 \;\Rightarrow\; A' = \begin{pmatrix} 3 & 1 \\ 0 & \tfrac23 \end{pmatrix}$.</li>
+                        <li>Produto da diagonal: $3 \cdot \tfrac23 = 2$.</li>
+                    </ol>
+                    <div class="formula">$$\boxed{\det(A)=2}. $$</div>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Padrões simples ocultam chaves mestras.</p>
+                </details>
+            </div>
+
+            <div class="exercise">
+                <h3>Identificação de Anomalia 3×3</h3>
+                <p>Dada a matriz
+                    <div class="formula">$$B = \begin{pmatrix} 1 & -2 & 3 \\ 2 & 0 & 1 \\ 4 & -4 & 9 \end{pmatrix}, $$</div>
+                    determine $\det(B)$ por OEs.
+                </p>
+                <div class="hint"><p>Neutralize a primeira coluna com OE‑T3 antes de triangularizar.</p></div>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>$L_2 \leftarrow L_2 - 2L_1$ ; $L_3 \leftarrow L_3 - 4L_1$.</li>
+                        <li>Matriz triangular superior resultante possui diagonal $(1,4,2)$.</li>
+                        <li>$\det(B)=1\times4\times2 = 8$. Sinais permanecem pois nenhuma OE‑T1 executada.</li>
+                    </ol>
+                    <div class="formula">$$\boxed{\det(B)=8}. $$</div>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Camadas supostamente complicadas cedem a subtrações estratégicas.</p>
+                </details>
+            </div>
+
+            <div class="exercise">
+                <h3>Sinal de Overwrite 3×3</h3>
+                <p>Mostre que a troca de $L_1$ com $L_3$ em
+                    <div class="formula">$$C = \begin{pmatrix} 0 & 1 & 2 \\ 3 & 4 & 5 \\ 6 & 7 & 8 \end{pmatrix} $$</div>
+                    altera apenas o sinal de $\det(C)$. Em seguida, calcule seu valor.
+                </p>
+                <div class="hint"><p>Trocar linhas primeiro e depois aplicar OE‑T3 é mais rápido.</p></div>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>OE‑T1: Troca $L_1 \leftrightarrow L_3$ torna $C'$ com diagonal fácil de zerar.</li>
+                        <li>Reduza $C'$ a forma triangular; produto da diagonal $= -3$. Então $\det(C')=-3$.</li>
+                        <li>Como uma troca de linhas foi feita: $\det(C)= -\det(C') = 3$.</li>
+                    </ol>
+                    <div class="formula">$$\boxed{\det(C)=3}. $$</div>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Cada troca é uma inversão de polaridade — o universo revira mas a essência permanece.</p>
+                </details>
+            </div>
+
+            <!-- ================== PROGRAMAS 4–6 (INTERMEDIÁRIO) ================== -->
+            <div class="exercise">
+                <h3>Mapa de Resiliência 4×4</h3>
+                <p>Calcule $\det(D)$ onde
+                    <div class="formula">$$D = \begin{pmatrix} 1 & 0 & 2 & -1 \\ 0 & 1 & -3 & 4 \\ 2 & 0 & 5 & -2 \\ -1 & 1 & -4 & 7 \end{pmatrix}. $$</div>
+                </p>
+                <div class="hint"><p>Use a identidade como âncora: elimine a coluna 1 abaixo da diagonal.</p></div>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>$L_3 \leftarrow L_3 - 2L_1$, $L_4 \leftarrow L_4 + L_1$.</li>
+                        <li>$L_4 \leftarrow L_4 - L_2$ para anular entrada (4,2).</li>
+                        <li>Diagonal final $(1,1,11,3)$; logo $\det(D)=33$.</li>
+                    </ol>
+                    <div class="formula">$$\boxed{\det(D)=33}. $$</div>
+                    <p><strong>Reflexão sobre a Matrix:</strong> A identidade serve de farol em mares caóticos.</p>
+                </details>
+            </div>
+
+            <div class="exercise">
+                <h3>Checksum de Zion 4×4</h3>
+                <p>Mostre que $\det(E)=0$ para
+                    <div class="formula">$$E = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \\ -1 & -2 & -3 & -4 \\ 0 & 1 & 1 & 0 \end{pmatrix}. $$</div>
+                </p>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>Observação inicial: $L_2 = 2L_1$ e $L_3 = -L_1$.</li>
+                        <li>Três linhas colineares $\Rightarrow$ matriz é singular.</li>
+                        <li>Portanto $\det(E)=0$ sem cálculos adicionais.</li>
+                    </ol>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Redundância excessiva gera vulnerabilidade total.</p>
+                </details>
+            </div>
+
+            <div class="exercise">
+                <h3>Filtragem de Ruído 5×5</h3>
+                <p>Encontre $\det(F)$ para a matriz tridiagonal
+                    <div class="formula">$$F = \begin{pmatrix}
+1 & -1 & 0 & 0 & 0\\
+-1 & 2 & -1 & 0 & 0\\
+0 & -1 & 2 & -1 & 0\\
+0 & 0 & -1 & 2 & -1\\
+0 & 0 & 0 & -1 & 2
+\end{pmatrix}. $$</div>
+                </p>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>Aplicar OE‑T3 descendente para zerar subdiagonal inferior produz diagonal $(1,1,\tfrac32,\tfrac43,\tfrac54)$.</li>
+                        <li>Multiplicação: $\det(F)=\tfrac{5}{4}\cdot\tfrac{4}{3}\cdot\tfrac{3}{2}\cdot1\cdot1 = 5$.</li>
+                    </ol>
+                    <div class="formula">$$\boxed{\det(F)=5}. $$</div>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Estruturas locais propagam‑se globalmente; um ruído controlado molda todo o canal.</p>
+                </details>
+            </div>
+
+            <!-- ================== PROGRAMAS 7–9 (AVANÇADO) ================== -->
+<div class="exercise">
+    <h3>Espelho de Zion 6×6</h3>
+    <p>Considere a matriz de permutação
+        <div class="formula">$$
+        P=\begin{pmatrix}
+            0&0&0&0&0&1\\
+            0&0&0&0&1&0\\
+            0&0&0&1&0&0\\
+            0&0&1&0&0&0\\
+            0&1&0&0&0&0\\
+            1&0&0&0&0&0
+        \end{pmatrix}.
+        $$</div>
+        Essa matriz inverte a ordem das linhas da identidade $\,I_6$. Determine $\det(P)$ usando <strong>operações elementares (OE)</strong> ou a contagem de inversões da permutação.
+    </p>
+
+    <div class="hint">
+        <p>Quantas trocas de linhas (OE-T1) são necessárias para transformar $\,I_6\,$ em $P$?</p>
+    </div>
+
+    <details>
+        <summary>ACESSO NÍVEL: OPERADOR</summary>
+        <ol class="solution-steps">
+            <li>A permutação reversa contém $\binom{6}{2}=15$ inversões.</li>
+            <li>Cada OE-T1 troca o sinal do determinante; logo $\det(P)=(-1)^{15}=-1$.</li>
+        </ol>
+        <p><strong>Reflexão sobre a Matrix:</strong> Inverter a sequência altera a polaridade, mas conserva a energia — lembrando que ordem e caos são faces do mesmo código.</p>
+    </details>
+</div>
+
+            <div class="exercise">
+                <h3>Criptografia de Blocos 5×5</h3>
+                <p>Considere $G = \begin{pmatrix} I_2 & 0 \\ M & I_3 \end{pmatrix}$, onde $I_k$ é identidade e $M$ qualquer matriz 3×2. Use OEs para mostrar que $\det(G)=1$ sem computar determinante diretamente.</p>
+                <div class="hint"><p>Elimine bloco $M$ pela combinação de linhas.</p></div>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>OE‑T3: Para cada linha de $M$, subtraia combinação de linhas superiores para zerar o bloco.</li>
+                        <li>Matriz torna‑se identidade 5×5, determinante 1.</li>
+                    </ol>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Blocos extras podem ser anulados sem alterar a essência.</p>
+                </details>
+            </div>
+
+            <div class="exercise">
+                <h3>Verificação de Integridade n×n</h3>
+                <p>Mostre que a matriz triangular superior com diagonal principal $(d_1,\ldots,d_n)$ possui determinante $\prod_{i=1}^{n} d_i$ aplicando apenas OEs conceituais.</p>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>Nenhuma OE necessária: produto da diagonal é resiliente a OE‑T3.</li>
+                        <li>Qualquer tentativa de torná‑la identidade exigiria OE‑T2 ajustando por $d_i$ — acumulando o produto.</li>
+                    </ol>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Triângulos guardam o segredo no próprio horizonte.</p>
+                </details>
+            </div>
+
+            <!-- ================== PROGRAMAS 10–12 (DESAFIADOR) ================== -->
+            <div class="exercise">
+                <h3>Alvo Fantasma 7×7</h3>
+                <p>Determine $\det(H)$ para $H = I_7 + uv^T$, onde $u,v \in \mathbb{R}^7$ com $v^T u = -1$.</p>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>Aplicar <em>teorema de Sherman–Morrison</em>: $\det(I+uv^T)=1+v^Tu$.</li>
+                        <li>Como $v^Tu=-1$, segue $\det(H)=0$.</li>
+                    </ol>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Uma perturbação perfeitamente oposta anula todo o sistema — hack supremo.</p>
+                </details>
+            </div>
+
+            <div class="exercise">
+                <h3>Nó Quântico n×n</h3>
+                <p>Para $J_n$ matriz toda de uns ($j_{ij}=1$), prove que $\det(J_n)=0$ para $n>1$ aplicando OEs.</p>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>OE‑T3: $L_i \leftarrow L_i-L_1$ para $i=2,\dots,n$ cria linhas nulas exceto coluna 1.</li>
+                        <li>Determinante de matriz com coluna repetida é 0.</li>
+                    </ol>
+                    <p><strong>Reflexão sobre a Matrix:</strong> Uniformidade excessiva destrói toda singularidade.</p>
+                </details>
+            </div>
+
+            <div class="exercise">
+                <h3>Protocolo Omega n×n</h3>
+                <p>Seja $P$ matriz ortogonal com $\det(P)=-1$. Demonstre que quaisquer OEs que convertem $P$ em $I_n$ requerem número ímpar de OE‑T1.</p>
+                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
+                    <ol class="solution-steps">
+                        <li>OE‑T2 altera magnitude; OE‑T3 mantém determinante; apenas OE‑T1 muda sinal.</li>
+                        <li>Para passar de $\det(P)=-1$ até $\det(I)=1$ é necessário multiplicar por $-1$, implicando número ímpar de inversões de sinal (OE‑T1).</li>
+                    </ol>
+                    <p><strong>Reflexão sobre the Matrix:</strong> Mesmo operações legítimas precisam respeitar leis de paridade profunda.</p>
+                </details>
+            </div>
         </div>
     </div>
-    
-    <div class="exercise">
-        <h3>Exercício 3</h3>
-        <p>Enunciado do exercício 3...</p>
-        <button onclick="toggleSolution('sol3')">Mostrar/Ocultar Solução</button>
-        <div id="sol3" class="solution">
-            <p>Solução do exercício 3...</p>
-        </div>
+
+    <div class="footer">
+        ZION_TEC | Determinantes por Redução por Linhas: “O <em>código</em> só é inquebrável até você compreender cada OE.”
     </div>
-    
-    <script>
-        function toggleSolution(id) {
-            var solution = document.getElementById(id);
-            if (solution.style.display === "block") {
-                solution.style.display = "none";
-            } else {
-                solution.style.display = "block";
-            }
-        }
-    </script>
 </body>
 </html>
