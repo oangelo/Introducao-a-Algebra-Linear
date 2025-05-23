@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+    </script>
+    <title>ZION_TEC | Sistemas Lineares</title>
+    <style>
+        /* Estilo inspirado no tema Matrix */
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes matrix-code {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 0.99; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+
+        @font-face {
+            font-family: 'Matrix Code';
+            src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        }
+
+        body {
+            background-color: #000000;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #33ff33;
+            max-width: 800px;
+            margin: auto;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');
+            animation: matrix-code 120s linear infinite;
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+            position: relative;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 10, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        h1, h2, h3 {
+            color: #33ff33;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.7);
+        }
+
+        .exercise {
+            background-color: rgba(0, 20, 0, 0.7);
+            padding: 15px;
+            border: 1px solid #33ff33;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        details {
+            background-color: rgba(0, 10, 0, 0.8);
+            padding: 10px;
+            border: 1px solid #33ff33;
+            margin-top: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #33ff33;
+        }
+
+        summary:hover {
+            text-shadow: 0 0 5px #33ff33;
+        }
+
+        code {
+            background-color: #001a00;
+            padding: 3px 5px;
+            color: #ffffff;
+            border: 1px solid #001f00;
+        }
+
+        .hint {
+            background-color: rgba(0, 20, 0, 0.7);
+            border-left: 4px solid #33ff33;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .hint:before {
+            content: "DICA DO ORÁCULO: ";
+            color: #33ff33;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .solution-steps {
+            margin-left: 20px;
+            counter-reset: step-counter;
+        }
+
+        .solution-steps li {
+            list-style-type: none;
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+        }
+
+        .solution-steps li::before {
+            content: "> EXECUÇÃO_" counter(step-counter) ": ";
+            color: #33ff33;
+            font-weight: bold;
+        }
+
+        .formula {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #001500;
+            border-left: 4px solid #33ff33;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-frame {
+            padding: 10px;
+            background-color: #000500;
+            margin-bottom: 20px;
+            border: 1px solid #33ff33;
+            color: #33ff33;
+            box-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-header {
+            margin: 0;
+            padding: 3px 10px;
+            background-color: #003300;
+            color: #33ff33;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border: 1px solid #33ff33;
+        }
+
+        .terminal-content {
+            padding: 5px;
+            white-space: pre-wrap;
+            font-size: 1em;
+            line-height: 1.2;
+        }
+
+        .cursor:after {
+            content: "_";
+            animation: blink 1s step-end infinite;
+        }
+
+        .terminal-line {
+            color: #33ff33;
+            text-shadow: 0 0 3px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-border {
+            border: 1px solid #33ff33;
+            padding: 5px;
+            background-color: #001000;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .mission-counter {
+            counter-reset: mission;
+        }
+        
+        .mission-counter .exercise h3:before {
+            content: "PROGRAMA " counter(mission) ": ";
+            counter-increment: mission;
+        }
+
+        .warning {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #33ff33;
+            border-top: 1px solid #33ff33;
+            padding-top: 10px;
+        }
+        
+        a {
+            color: #33ff33;
+            text-decoration: none;
+            border-bottom: 1px dashed #33ff33;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 5px #33ff33;
+            border-bottom: 1px solid #33ff33;
+        }
+    </style>
+</head>
+<body>
+    <!-- TÍTULO E INTRODUÇÃO -->
+    <div class="terminal-frame">
+        <div class="terminal-header">TERMINAL ZION_TEC</div>
+        <div class="terminal-content">
+┌───────────────────────────────────────────────────┐
+│ MÓDULO: Sistemas Lineares                         │
+└───────────────────────────────────────────────────┘
+
+> INICIANDO CONEXÃO...
+> BUSCANDO ENTRADA SEGURA NA MATRIX...
+> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
+        </div>
+    </div>
+
+    <div class="terminal-border">
+        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: Sistemas Lineares</h2>
+    
+    <p>Uma equação linear, no sentido mais geral, é aquela em que cada variável aparece apenas com expoente 1, sem produtos entre variáveis ou termos elevados a potências maiores. Na linguagem da Matrix, isso significa que o "código" é mantido em sua forma mais simples, representando relações que não se curvam ou dobram no espaço. Se temos uma ou mais variáveis (digamos, \( x, y, z, \dots \)), então uma equação linear pode ser escrita na forma:</p>
+
+    <div class="formula">
+    \( a_1 x + a_2 y + a_3 z + \cdots = b \)
+    </div>
+
+    <p>Por exemplo, \( x + 2y = 5 \) é linear, pois cada variável tem grau 1 e não há multiplicação entre elas. Já \( x^2 + y = 7 \) não é linear, porque \( x^2 \) tem expoente 2. Vale notar que, em 2 variáveis, essa equação linear representa uma reta na Matrix; em 3 variáveis, ela representa um plano; e em dimensões superiores, podemos pensar em "hiperplanos" análogos. Ou seja, retas e planos são casos particulares de uma equação linear quando restringimos o número de variáveis a 2 (para retas) e 3 (para planos).</p>
+
+    <p>Quando agrupamos diversas equações lineares formando um sistema, queremos encontrar valores de \( x, y, z, \dots \) que satisfaçam a todos os enunciados simultaneamente. No universo da Matrix, isso corresponde a descobrir as coordenadas exatas onde diferentes "linhas de código" (retas, planos) se cruzam, revelando pontos críticos usados para hackear ou manipular a realidade simulada.</p>
+
+    <p>Nesta missão, focaremos em estratégias essenciais de resolução, como somar equações, isolar variáveis (substituição) e identificar quando não há ponto de intersecção. Cada Anomalia resolvida é um passo rumo ao controle do Construto, pois permite decifrar padrões e explorar brechas na programação da Matrix. Sigamos adiante, Operador, rumo à libertação.</p>
+
+    <p>
+    Técnicas elementares permitidas neste estágio:
+    <br>- Verificar se uma equação é linear (grau 1 de cada variável).
+    <br>- Interpretar a forma geométrica (reta em 2D, plano em 3D).
+    <br>- Resolver sistemas de poucas equações por soma ou substituição.
+    <br>- Reconhecer situações de inconsistência (linhas paralelas) ou infinitas soluções (linhas sobrepostas ou parâmetros livres).
+    </p>
+
+    <!-- PROGRAMAS (EXERCÍCIOS) -->
+    <div class="mission-counter">
+
+        <!-- PROGRAMA 1 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Identificando Equações Lineares</h3>
+            <p>Analise cada uma das seguintes expressões e determine se ela representa (ou não) uma equação linear no Construto da Matrix:
+            <br>1) $x + 2y = 5$
+            <br>2) $4x^2 + y = 7$
+            <br>3) $z + 3y - w = 10$
+            <br>4) $x + \frac{1}{y} = 6$
+            </p>
+            
+            <div class="hint">
+                <p>Verifique se todas as variáveis aparecem apenas com expoente 1 (grau 1). Termos como $x^2$ ou $1/y$ indicam que não é linear.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Para ser linear, cada variável deve ter grau 1. Cheque cada termo cuidadosamente.</li>
+                    <li>Na expressão $x + 2y = 5$, todas as variáveis estão elevadas ao primeiro grau. Logo, é linear.</li>
+                    <li>Em $4x^2 + y = 7$, o termo $x^2$ não está em grau 1, deixando de ser linear.</li>
+                    <li>Na expressão $z + 3y - w = 10$, $z, y$ e $w$ têm grau 1, portanto é linear.</li>
+                    <li>No caso de $x + \frac{1}{y} = 6$, a variável $y$ está no denominador, não sendo grau 1. Assim, não é linear.</li>
+                </ol>
+                
+                <div class="formula">
+                    Linear: $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Assim como apenas expoentes 1 mantêm a linearidade, precisamos manter a clareza da missão para não distorcer a percepção da Realidade Simulada.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 2 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Retas na Matrix</h3>
+            <p>Considere a equação linear $x - 3y = 6$. Explique por que ela representa uma reta na dimensão 2 da Matrix e encontre dois pontos (soluções) que pertencem a ela.</p>
+            
+            <div class="hint">
+                <p>Escolha valores simples para $x$ ou $y$ para descobrir coordenadas inteiras fáceis de calcular.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Lembre que no plano 2D, uma equação do tipo $a x + b y = c$ representa uma reta.</li>
+                    <li>Atribua um valor para $x$, por exemplo $x = 0$, para achar um ponto: $0 - 3y = 6 \implies y = -2$.</li>
+                    <li>Atribua agora um valor para $y$, por exemplo $y = 0$, para achar outro ponto: $x - 0 = 6 \implies x = 6$.</li>
+                    <li>Assim, os pontos $(0, -2)$ e $(6, 0)$ estão na mesma reta.</li>
+                </ol>
+                
+                <div class="formula">
+                    Reta no plano: $x - 3y = 6$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Cada ponto na reta é como uma coordenada segura de fuga — cada escolha de $x$ e $y$ que satisfaz a equação abre uma passagem na simulação.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 3 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Planos na Matrix</h3>
+            <p>A equação $x + 2y - z = 0$ representa um plano em três dimensões. Explique por que, analisando o grau de cada variável e considerando a interpretação geométrica no Construto 3D.</p>
+            
+            <div class="hint">
+                <p>Lembre-se: em 3D, uma equação linear de três variáveis define um plano; o grau deve ser 1.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Observe que $x, y$ e $z$ aparecem em primeiro grau (sem expoentes maiores que 1 ou termos fracionários).</li>
+                    <li>Em três variáveis, $a x + b y + c z = d$ define um plano no espaço 3D.</li>
+                    <li>Portanto, $x + 2y - z = 0$ é a equação de um plano.</li>
+                </ol>
+                
+                <div class="formula">
+                    Forma geral 3D: $a x + b y + c z = d$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Na dimensão 3, cada plano é como uma camada de código, uma parede invisível que delimita a realidade simulada.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 4 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Soma de Equações sem Perturbar o Construto</h3>
+            <p>Dado o seguinte sistema no plano 2D:
+            <br>$\begin{cases}
+            x + y = 4 \\
+            x - y = 2
+            \end{cases}$
+            Use a soma das equações para encontrar $(x, y)$.</p>
+            
+            <div class="hint">
+                <p>Some as duas equações e veja qual variável pode ser eliminada imediatamente.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Somando as equações: $(x + y) + (x - y) = 4 + 2$.</li>
+                    <li>Observe que $y$ e $-y$ se cancelam, resultando em $2x = 6$.</li>
+                    <li>Logo, $x = 3$.</li>
+                    <li>Substituindo em $x + y = 4$, obtemos $3 + y = 4 \implies y = 1$.</li>
+                </ol>
+                
+                <div class="formula">
+                    Solução: $(x, y) = (3, 1)$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Ao somar os códigos, você alinha informações redundantes para revelar o ponto de intersecção — o elo de acesso entre duas “linhas de programação” da Matrix.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 5 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Substituição em Sistemas Lineares</h3>
+            <p>Considere o sistema:
+            <br>$\begin{cases}
+            2x + 3y = 12 \\
+            x - y = 1
+            \end{cases}$
+            Use a técnica de substituição (isolar uma variável e substituir na outra) para encontrar a solução.</p>
+            
+            <div class="hint">
+                <p>Na segunda equação, isole $x$ ou $y$ e depois substitua na primeira.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Isolando $x$ na equação $x - y = 1$: $x = 1 + y$.</li>
+                    <li>Substitua em $2x + 3y = 12$: $2(1 + y) + 3y = 12$.</li>
+                    <li>Isso gera $2 + 2y + 3y = 12 \implies 5y = 10 \implies y = 2$.</li>
+                    <li>Logo, $x = 1 + 2 = 3$.</li>
+                </ol>
+                
+                <div class="formula">
+                    Solução: $(x, y) = (3, 2)$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Isolar uma variável é como seguir um fio do código até o ponto exato em que ele se conecta a outro trecho do Construto.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 6 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Interseção entre Retas</h3>
+            <p>Mostre que as retas definidas por $3x + y = 9$ e $2x - y = 1$ se intersectam em exatamente um ponto. Encontre esse ponto utilizando qualquer método permitido (soma ou substituição).</p>
+            
+            <div class="hint">
+                <p>Experimente somar as equações após rearranjar os termos.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Somando as equações diretamente: $(3x + y) + (2x - y) = 9 + 1$.</li>
+                    <li>Isso resulta em $5x = 10 \implies x = 2$.</li>
+                    <li>Substitua $x = 2$ em $3x + y = 9$: $3(2) + y = 9 \implies 6 + y = 9 \implies y = 3$.</li>
+                    <li>Portanto, o ponto de intersecção é $(2, 3)$.</li>
+                </ol>
+                
+                <div class="formula">
+                    Ponto de intersecção: $(x, y) = (2, 3)$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Onde as retas se cruzam, formam uma porta de acesso única — prova de que a Realidade Simulada tem pontos fixos que podemos explorar.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 7 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Verificando Consistência de um Sistema</h3>
+            <p>Analise o sistema abaixo e determine se há solução ou se ele apresenta alguma inconsistência na Matrix:
+            <br>$\begin{cases}
+            x + 2y = 8 \\
+            2x + 4y = 18
+            \end{cases}$
+            Justifique sua conclusão.</p>
+            
+            <div class="hint">
+                <p>Compare a segunda equação com a primeira e veja se há contradição quando tenta resolver.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Observe que multiplicando a primeira equação por 2, teríamos $2x + 4y = 16$.</li>
+                    <li>No entanto, a segunda equação real é $2x + 4y = 18$.</li>
+                    <li>Temos uma contradição: se as equações fossem múltiplas exatas, teriam o mesmo valor final, mas não têm.</li>
+                    <li>Isso indica que não existe ponto comum — o sistema é inconsistente.</li>
+                </ol>
+                
+                <div class="formula">
+                    Sem solução: retas paralelas
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Certas linhas de código estão em conflito irreconciliável, como retas paralelas — não há interseção, como se fossem realidades que não se tocam.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 8 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Reescrita Criativa de Equações</h3>
+            <p>Dado o sistema:
+            <br>$\begin{cases}
+            x + y = 2 \\
+            3x - y = -4
+            \end{cases}$
+            Reescreva cada equação de pelo menos duas formas equivalentes, mostrando que a essência do código (a reta) não se altera, mas sim a apresentação. Em seguida, resolva o sistema para confirmar o ponto de intersecção.</p>
+            
+            <div class="hint">
+                <p>Você pode deslocar termos, multiplicar toda a equação por constantes, etc., desde que não transforme o grau de cada variável.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Primeira equação $x + y = 2$: é equivalente a $x + y - 2 = 0$ ou $2x + 2y = 4$, etc.</li>
+                    <li>Segunda equação $3x - y = -4$: é equivalente a $3x - y + 4 = 0$ ou $6x - 2y = -8$, etc.</li>
+                    <li>Para resolver, some as formas originais: $(x + y) + (3x - y) = 2 + (-4)$, resultando em $4x = -2 \implies x = -\frac{1}{2}$.</li>
+                    <li>Substitua em $x + y = 2$: $-\tfrac{1}{2} + y = 2 \implies y = 2.5$.</li>
+                </ol>
+                
+                <div class="formula">
+                    Solução: $x = -\frac{1}{2},\; y = 2.5$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Mudar a “forma” de uma equação é como mudar a aparência de um agente na simulação: a essência continua a mesma, mas a capa (ou apresentação) se altera.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 9 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Interpretação Geométrica em 3D</h3>
+            <p>Considere o sistema:
+            <br>$\begin{cases}
+            x + y + z = 3 \\
+            x + y - z = 1
+            \end{cases}$
+            Qual a figura geométrica resultante da interseção desses “planos” no espaço 3D?</p>
+            
+            <div class="hint">
+                <p>Sugestão: Some ou subtraia as equações para enxergar a relação entre x, y e z.</p>
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Somando: $(x + y + z) + (x + y - z) = 3 + 1 \implies 2x + 2y = 4$.</li>
+                    <li>Assim, $x + y = 2$.</li>
+                    <li>Isso não fixa $z$ em um único valor; $z$ fica livre, pois as equações diferem apenas pela parcela $z$.</li>
+                    <li>Logo, a interseção é uma reta em 3D (todos os pontos com $x + y = 2$ formam uma linha, e $z$ pode variar livremente para satisfazer cada equação).</li>
+                </ol>
+                
+                <div class="formula">
+                    Interseção = reta (conjunto infinito de soluções)
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Dois planos podem se cruzar em uma linha de código contínuo — um canal de passagem que se estende por múltiplas possibilidades.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 10 (DESAFIADOR, SEM DICA) -->
+        <div class="exercise">
+            <h3>Sistema 2D de Solução Fracionária</h3>
+            <p>Resolva o sistema a seguir somente por técnicas permitidas (soma ou substituição) e apresente o resultado em frações, se necessário:
+            <br>$\begin{cases}
+            5x - 2y = 1 \\
+            3x + 4y = 14
+            \end{cases}$</p>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Multiplique a primeira equação por 2: $10x - 4y = 2$.</li>
+                    <li>Some com a segunda equação $3x + 4y = 14$: $(10x - 4y) + (3x + 4y) = 2 + 14$, resultando em $13x = 16$.</li>
+                    <li>Logo, $x = \tfrac{16}{13}$.</li>
+                    <li>Substitua em $5x - 2y = 1$: $5 \cdot \tfrac{16}{13} - 2y = 1 \implies \tfrac{80}{13} - 2y = 1$.</li>
+                    <li>Converta 1 para a forma de fração: $1 = \tfrac{13}{13}$. Então $\tfrac{80}{13} - 2y = \tfrac{13}{13}$.</li>
+                    <li>Logo, $-2y = \tfrac{13}{13} - \tfrac{80}{13} = -\tfrac{67}{13} \implies y = \tfrac{67}{26}$.</li>
+                </ol>
+                
+                <div class="formula">
+                    Solução: $x = \tfrac{16}{13}, \quad y = \tfrac{67}{26}$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Nem sempre o Construto se revela em números inteiros; às vezes, as frações são as chaves precisas para decifrar brechas na simulação.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 11 (DESAFIADOR, SEM DICA) -->
+        <div class="exercise">
+            <h3>Determinação de Parâmetros em 3D</h3>
+            <p>O sistema
+            <br>$\begin{cases}
+            x + 2y = 4 \\
+            x + 2y - z = 1
+            \end{cases}$
+            não fixa valores únicos para $x$ e $y$, mas adiciona uma variável $z$. Encontre a descrição completa das soluções, indicando como $z$ atua como parâmetro livre.</p>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Da primeira equação: $x + 2y = 4$. Da segunda: $x + 2y - z = 1$.</li>
+                    <li>Compare as duas: subtraindo a segunda da primeira, obtemos $z = 3$.</li>
+                    <li>Mas observe que isto contraria a ideia de $z$ livre; cheque novamente. Na verdade, a segunda equação sozinha diz: $x + 2y = 1 + z$.</li>
+                    <li>Sabemos que $x + 2y = 4$ (primeira equação), portanto $4 = 1 + z \implies z = 3$.</li>
+                    <li>Assim, $z$ não é parâmetro livre neste caso; ele é fixo em 3. Agora substitua $z = 3$ na primeira equação e resolva $x + 2y = 4$.</li>
+                    <li>Existem infinitas possibilidades se estivéssemos em falta de equações, mas aqui fica claro que o sistema não “usa” a segunda equação de modo independente — as duas juntas resultam em $z=3$ e $x + 2y = 4$. Assim, $x$ e $y$ são livres somente se não houvesse outra condição, mas aqui não há equação adicional para $y$. Ao tentarmos resolver, veremos que de fato precisamos de uma equação a mais para amarrar $x$ e $y$.</li>
+                    <li>Concluindo, há infinitos pares $(x, y)$ que satisfazem $x + 2y = 4$, mas $z$ é fixado em 3. As soluções podem ser escritas como $(x, y, z) = (x, 2, 3)$ quando $2y = 4 - x$, etc. Reescreva $y$ em função de $x$: $y = 2 - \tfrac{x}{2}$, por exemplo.</li>
+                </ol>
+                
+                <div class="formula">
+                    Solução: $(x, y, z) = \Bigl(x,\; 2 - \tfrac{x}{2},\; 3\Bigr)$, para qualquer $x \in \mathbb{R}
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> A liberdade de $x$ e $y$ indica caminhos múltiplos que permanecem abertos, mas $z$ travado em 3 revela um limite imposto pelo Construto — parte do código não pode ser alterada.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 12 (DESAFIADOR, SEM DICA) -->
+        <div class="exercise">
+            <h3>Sistema Misturado: Linhas e Planos</h3>
+            <p>Suponha que no Construto 3D tenhamos três equações:
+            <br>$\begin{cases}
+            x - y = 2 \\
+            x + z = 1 \\
+            2x - y - z = 1
+            \end{cases}$
+            Resolva esse sistema usando apenas operações de soma ou substituição e descreva se a solução é única, múltipla ou inexistente.</p>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Da primeira equação: $x - y = 2$. Isolando, $x = 2 + y$.</li>
+                    <li>Da segunda equação: $x + z = 1$. Substituindo $x = 2 + y$, obtemos $(2 + y) + z = 1 \implies y + z = -1$.</li>
+                    <li>Terceira equação: $2x - y - z = 1$. Substituindo $x = 2 + y$, fica $2(2 + y) - y - z = 1 \implies 4 + 2y - y - z = 1 \implies y - z = -3$.</li>
+                    <li>Agora temos o sistema em $y$ e $z$: \(i\) $y + z = -1$, \(ii\) $y - z = -3$.</li>
+                    <li>Somando (i) e (ii): $2y = -4 \implies y = -2$.</li>
+                    <li>Substitua em $y + z = -1$: $-2 + z = -1 \implies z = 1$.</li>
+                    <li>Por fim, $x = 2 + y = 2 + (-2) = 0$.</li>
+                    <li>Solução única: $(x, y, z) = (0, -2, 1)$.</li>
+                </ol>
+                
+                <div class="formula">
+                    Solução única: (0, -2, 1)
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Mesmo em três equações, a interseção pode ser um ponto único — um ponto fixo no código onde todas as linhas e planos se tocam, selando o destino da simulação naquele local.</p>
+            </details>
+        </div>
+    </div>
+
+    <!-- RODAPÉ DO DOCUMENTO -->
+    <div class="footer">
+        ZION_TEC | Sistemas Lineares: Hackeamento da Matrix - Quanto mais entendemos os códigos, mais livres nos tornamos.
+    </div>
+</body>
+</html>
