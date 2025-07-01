@@ -3,6 +3,8 @@
 
 Bem-vindo ao repositório do curso de Introdução à Álgebra Linear! Este curso foi desenvolvido para fornecer aos alunos uma base sólida nos conceitos fundamentais da álgebra linear.
 
+# [Notas 2025-1](notas/2025.md)
+
 ## Sobre o Curso
 
 Este curso aborda os princípios básicos da álgebra linear, uma área fundamental da matemática com aplicações em diversas disciplinas, incluindo física, engenharia, economia e ciência da computação.
