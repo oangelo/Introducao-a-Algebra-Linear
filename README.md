@@ -4,6 +4,7 @@
 Bem-vindo ao repositório do curso de Introdução à Álgebra Linear! Este curso foi desenvolvido para fornecer aos alunos uma base sólida nos conceitos fundamentais da álgebra linear.
 
 # [Notas 2025-1](notas/2025.md)
+Vista da PS dia 15/07 a partir das 13:00h até às 15h, ou dia 17/07 das 10:40 até 12h.
 
 ## Sobre o Curso
 
