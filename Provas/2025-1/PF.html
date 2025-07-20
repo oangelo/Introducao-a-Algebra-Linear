@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito - Prova Final de Álgebra Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'details']
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+        
+        .question-header {
+            font-weight: bold;
+            font-size: 13pt;
+            color: #000;
+            border-left: 4px solid #000;
+            padding-left: 10px;
+            margin-bottom: 12px;
+            background-color: #f0f0f0;
+            padding: 8px 10px;
+        }
+        
+        .subquestion {
+            margin: 10px 0 10px 20px;
+        }
+        
+        .subquestion strong {
+            font-weight: bold;
+        }
+        
+        .question p {
+            margin: 10px 0;
+        }
+        
+        details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        summary {
+            font-weight: bold;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #e9e9e9;
+            border-radius: 3px;
+            font-size: 10pt;
+        }
+        .answer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .answer p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gabarito - Prova Final de Álgebra Linear</h1>
+        </div>
+        
+        <div class="content">
+            
+            <div class="question">
+                <div class="question-header">Questão 1 - Os Quatro Subespaços Fundamentais</div>
+                <p>Considere a matriz \(A = \begin{pmatrix} 1 & 2 & 3 & 5 \\ 2 & 4 & 8 & 12 \\ 0 & 0 & 2 & 2 \end{pmatrix}\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre a forma escalonada reduzida por linhas (RREF) de A.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>\(\begin{pmatrix} 1 & 2 & 3 & 5 \\ 2 & 4 & 8 & 12 \\ 0 & 0 & 2 & 2 \end{pmatrix} \xrightarrow{L_2 \leftarrow L_2 - 2L_1} \begin{pmatrix} 1 & 2 & 3 & 5 \\ 0 & 0 & 2 & 2 \\ 0 & 0 & 2 & 2 \end{pmatrix} \xrightarrow{L_3 \leftarrow L_3 - L_2} \begin{pmatrix} 1 & 2 & 3 & 5 \\ 0 & 0 & 2 & 2 \\ 0 & 0 & 0 & 0 \end{pmatrix}\)</p>
+                            <p>\(\xrightarrow{L_2 \leftarrow L_2/2} \begin{pmatrix} 1 & 2 & 3 & 5 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix} \xrightarrow{L_1 \leftarrow L_1 - 3L_2} \begin{pmatrix} 1 & 2 & 0 & 2 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix}\)</p>
+                            <p><strong>A RREF de A é \(\begin{pmatrix} 1 & 2 & 0 & 2 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix}\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Determine uma base para o Espaço Coluna de A e o posto da matriz.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>As colunas pivô na RREF são a primeira e a terceira. Portanto, a base para Col(A) é formada pelas colunas correspondentes da matriz **original** A.</p>
+                            <p><strong>Base para Col(A): \(\left\{ \begin{pmatrix} 1 \\ 2 \\ 0 \end{pmatrix}, \begin{pmatrix} 3 \\ 8 \\ 2 \end{pmatrix} \right\}\).</strong></p>
+                            <p>O posto é a dimensão do Espaço Coluna. <strong>Posto(A) = 2.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Determine uma base para o Espaço Nulo de A e a nulidade da matriz.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Da RREF, temos o sistema: \(x_1+2x_2+2x_4=0\) e \(x_3+x_4=0\). As variáveis livres são \(x_2\) e \(x_4\).</p>
+                           <p>Sejam \(x_2=s\) e \(x_4=t\). Então \(x_1=-2s-2t\) e \(x_3=-t\).</p>
+                           <p>A solução é \(\begin{pmatrix} -2s-2t \\ s \\ -t \\ t \end{pmatrix} = s\begin{pmatrix} -2 \\ 1 \\ 0 \\ 0 \end{pmatrix} + t\begin{pmatrix} -2 \\ 0 \\ -1 \\ 1 \end{pmatrix}\).</p>
+                           <p><strong>Base para Nul(A): \(\left\{ \begin{pmatrix} -2 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -2 \\ 0 \\ -1 \\ 1 \end{pmatrix} \right\}\).</strong></p>
+                           <p>A nulidade é a dimensão do Espaço Nulo. <strong>Nulidade(A) = 2.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Verifique o Teorema do Posto-Nulidade.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>O teorema afirma que Posto(A) + Nulidade(A) = número de colunas.</p>
+                            <p>\(2 + 2 = 4\). O teorema é verificado.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>e)</strong> O Espaço Coluna é um subespaço de qual espaço? E o Espaço Nulo? Justifique.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>O **Espaço Coluna**, Col(A), é um subespaço de \(\mathbb{R}^3\), porque as colunas da matriz A têm 3 entradas (3 linhas).</p>
+                             <p>O **Espaço Nulo**, Nul(A), é um subespaço de \(\mathbb{R}^4\), porque os vetores solução \(\vec{x}\) têm 4 entradas (4 colunas).</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 2 - O Teorema da Matriz Invertível</div>
+                <p>Considere a matriz \(A = \begin{pmatrix} 1 & 0 & 2 \\ 2 & 1 & 1 \\ 1 & 0 & 3 \end{pmatrix}\).</p>
+                 <div class="subquestion">
+                    <strong>a)</strong> Calcule o determinante de A.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Expandindo pela segunda coluna:</p>
+                           <p>\(\det(A) = (-1)^{2+2} \cdot 1 \cdot \det\begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix} = 1 \cdot (1(3) - 2(1)) = 3 - 2 = 1\)</p>
+                           <p><strong>\(\det(A) = 1\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> As colunas de A formam uma base para o \(\mathbb{R}^3\)? Justifique.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p><strong>Sim.</strong> Como o determinante de A é diferente de zero, as colunas da matriz são linearmente independentes. Um conjunto de 3 vetores LI em \(\mathbb{R}^3\) forma uma base para \(\mathbb{R}^3\).</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> O sistema homogêneo \(A\vec{x} = \vec{0}\) possui apenas a solução trivial? Justifique.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p><strong>Sim.</strong> Como \(\det(A) \neq 0\), a matriz A é invertível. Isso implica que o sistema homogêneo \(A\vec{x} = \vec{0}\) tem apenas a solução trivial, \(\vec{x} = \vec{0}\).</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> O sistema linear \(A\vec{x} = \vec{b}\) possui solução para *qualquer* vetor \(\vec{b} \in \mathbb{R}^3\)? Se sim, essa solução é única? Justifique.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p><strong>Sim, para ambas as perguntas.</strong> Como A é invertível (\(\det(A) \neq 0\)), o sistema \(A\vec{x} = \vec{b}\) tem uma solução única para qualquer \(\vec{b}\) em \(\mathbb{R}^3\), dada por \(\vec{x} = A^{-1}\vec{b}\).</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>e)</strong> Podemos afirmar que \(\lambda = 0\) não é um autovalor de A? Explique.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p><strong>Sim, podemos afirmar.</strong> Uma matriz tem um autovalor \(\lambda=0\) se e somente se ela não for invertível (\(\det(A)=0\)). Como \(\det(A)=1\), a matriz é invertível, e portanto \(\lambda=0\) não pode ser um de seus autovalores.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 3 - A Linguagem das Bases</div>
+                <p>Sejam as bases \(B=\{\vec{b_1}, \vec{b_2}, \vec{b_3}\} = \{(1,0,0), (1,1,0), (1,1,1)\}\) e \(C=\{\vec{c_1}, \vec{c_2}, \vec{c_3}\} = \{(1,0,1), (0,1,1), (0,0,1)\}\) do \(\mathbb{R}^3\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Dado um vetor \(\vec{v}\) com coordenadas \([\vec{v}]_B = \begin{pmatrix} 1 \\ 2 \\ -1 \end{pmatrix}\), encontre as coordenadas de \(\vec{v}\) na base canônica.
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>\(\vec{v} = 1\vec{b_1} + 2\vec{b_2} - 1\vec{b_3} = 1(1,0,0) + 2(1,1,0) - 1(1,1,1)\)</p>
+                            <p>\(= (1,0,0) + (2,2,0) - (1,1,1) = (1+2-1, 0+2-1, 0+0-1) = (2,1,-1)\).</p>
+                            <p><strong>\(\vec{v} = (2,1,-1)\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> Encontre as coordenadas do vetor \(\vec{v}=(2,1,-1)\) na base C.
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Buscamos \(k_1,k_2,k_3\) tais que \(k_1\vec{c_1} + k_2\vec{c_2} + k_3\vec{c_3} = \vec{v}\). Sistema:</p>
+                            <p>\(k_1(1,0,1) + k_2(0,1,1) + k_3(0,0,1) = (2,1,-1) \implies \begin{cases} k_1 = 2 \\ k_2 = 1 \\ k_1+k_2+k_3=-1 \end{cases}\)</p>
+                            <p>\(2+1+k_3=-1 \implies k_3=-4\). <strong>As coordenadas são \([\vec{v}]_C = \begin{pmatrix} 2 \\ 1 \\ -4 \end{pmatrix}\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Construa a matriz de mudança de base \(P_{C \leftarrow B}\). (Dica: A j-ésima coluna de \(P_{C \leftarrow B}\) é o vetor de coordenadas \([\vec{b_j}]_C\)).
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Precisamos encontrar as coordenadas de cada vetor de B na base C.</p>
+                            <p>\([\vec{b_1}]_C\): \(k_1(1,0,1)+k_2(0,1,1)+k_3(0,0,1)=(1,0,0) \implies (1,0,-1)^T\)</p>
+                            <p>\([\vec{b_2}]_C\): \(k_1(1,0,1)+k_2(0,1,1)+k_3(0,0,1)=(1,1,0) \implies (1,1,-2)^T\)</p>
+                            <p>\([\vec{b_3}]_C\): \(k_1(1,0,1)+k_2(0,1,1)+k_3(0,0,1)=(1,1,1) \implies (1,1,-1)^T\)</p>
+                            <p><strong>\(P_{C \leftarrow B} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ -1 & -2 & -1 \end{pmatrix}\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> Multiplique a matriz \(P_{C \leftarrow B}\) pelo vetor \([\vec{v}]_B\) e verifique se o resultado é \([\vec{v}]_C\).
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p>\(P_{C \leftarrow B} \cdot [\vec{v}]_B = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ -1 & -2 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ 2 \\ -1 \end{pmatrix} = \begin{pmatrix} 1+2-1 \\ 0+2-1 \\ -1-4+1 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \\ -4 \end{pmatrix}\)</p>
+                             <p>O resultado é idêntico ao encontrado no item (b). A verificação foi bem-sucedida.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>e)</strong> Qual seria a utilidade da matriz inversa, \(P_{B \leftarrow C}\)?
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>A matriz inversa \(P_{B \leftarrow C}\) serviria para fazer a tradução na direção oposta: converter um vetor de coordenadas na base C para suas coordenadas na base B.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="question">
+                <div class="question-header">Questão 4 - Análise de Autovalores e Autoespaços</div>
+                <p>Considere a matriz \(A = \begin{pmatrix} 2 & 1 & 1 \\ 0 & 3 & 1 \\ 0 & 0 & 2 \end{pmatrix}\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre o polinômio característico e os autovalores de A.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>O polinômio é \(\det(A - \lambda I) = \det\begin{pmatrix} 2-\lambda & 1 & 1 \\ 0 & 3-\lambda & 1 \\ 0 & 0 & 2-\lambda \end{pmatrix}\).</p>
+                            <p>Para uma matriz triangular, o determinante é o produto da diagonal: \(p(\lambda) = (2-\lambda)(3-\lambda)(2-\lambda) = (2-\lambda)^2(3-\lambda)\).</p>
+                            <p>Os autovalores são as raízes: <strong>\(\lambda_1 = 2\) e \(\lambda_2 = 3\)</strong>.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> Para cada autovalor, encontre uma base para o autoespaço correspondente.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p><strong>Para \(\lambda=2\):</strong> \((A-2I)\vec{x}=\vec{0} \implies \begin{pmatrix} 0&1&1\\0&1&1\\0&0&0 \end{pmatrix}\vec{x}=\vec{0}\). Equação: \(y+z=0 \implies y=-z\). A variável \(x\) é livre. Solução: \((x, -z, z) = x(1,0,0) + z(0,-1,1)\). <strong>Base para \(E_2\): \(\{(1,0,0), (0,-1,1)\}\).</strong></p>
+                             <p><strong>Para \(\lambda=3\):</strong> \((A-3I)\vec{x}=\vec{0} \implies \begin{pmatrix} -1&1&1\\0&0&1\\0&0&-1 \end{pmatrix}\vec{x}=\vec{0}\). Equações: \(z=0\) e \(-x+y+z=0 \implies -x+y=0 \implies x=y\). Solução: \((y,y,0) = y(1,1,0)\). <strong>Base para \(E_3\): \(\{(1,1,0)\}\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Qual é a multiplicidade algébrica de cada autovalor? (Dica: É o número de vezes que o autovalor aparece como raiz do polinômio característico).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>O polinômio é \(p(\lambda) = (2-\lambda)^2(3-\lambda)\).</p>
+                            <p>A multiplicidade algébrica de \(\lambda=2\) é <strong>2</strong>.</p>
+                            <p>A multiplicidade algébrica de \(\lambda=3\) é <strong>1</strong>.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Qual é a multiplicidade geométrica de cada autovalor? (Dica: É a dimensão do autoespaço correspondente).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A dimensão de cada autoespaço é o número de vetores em sua base, encontrada no item (b).</p>
+                             <p>A multiplicidade geométrica de \(\lambda=2\) é <strong>2</strong> (a base para \(E_2\) tem dois vetores).</p>
+                             <p>A multiplicidade geométrica de \(\lambda=3\) é <strong>1</strong> (a base para \(E_3\) tem um vetor).</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
