@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <title>ÁLGEBRA ARCADE | [TÓPICO ESPECÍFICO]</title>
+    <style>
+        :root {
+            --background-color: #1a1a2d;
+            --main-font: 'VT323', monospace;
+            --heading-font: 'Press Start 2P', sans-serif;
+            --text-color: #e0e0e0;
+            --cyan: #00ffff;
+            --magenta: #ff00ff;
+            --yellow: #ffff00;
+            --green: #00ff00;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--main-font);
+            font-size: 1.5rem;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            border: 4px solid var(--cyan);
+            box-shadow: 0 0 15px var(--cyan);
+        }
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+            color: var(--yellow);
+            text-shadow: 2px 2px 0px var(--magenta);
+        }
+        .console-header {
+            text-align: center;
+            border: 2px solid var(--yellow);
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+        .console-header h1 { font-size: 2em; }
+        .mission {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--cyan);
+            padding: 20px;
+            margin-bottom: 25px;
+            counter-increment: mission-counter;
+        }
+        .mission h3::before {
+            content: "MISSÃO #" counter(mission-counter) ": ";
+            color: var(--yellow);
+        }
+        .hint {
+            border-left: 4px solid var(--yellow);
+            padding: 10px;
+            margin: 15px 0;
+            background: rgba(255, 255, 0, 0.05);
+            font-style: italic;
+        }
+        .hint::before {
+            content: "DICA DO MESTRE DO JOGO: ";
+            color: var(--yellow);
+            font-weight: bold;
+            font-style: normal;
+        }
+        details {
+            border: 2px dashed var(--green);
+            padding: 15px;
+            margin-top: 20px;
+            background-color: rgba(0, 255, 0, 0.05);
+        }
+        summary {
+            font-family: var(--heading-font);
+            color: var(--green);
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .solution-steps li { list-style-type: '» '; margin-bottom: 10px; }
+        .formula {
+            display: block;
+            margin: 15px 0;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--magenta);
+            color: var(--text-color);
+            text-align: center;
+        }
+        .game-connection {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--text-color);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase X: [TÍTULO DA FASE]</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: [TÓPICO ESPECÍFICO]</h3>
+        <p>[INTRODUÇÃO AO TEMA - Breve explicação do tópico e sua importância no jogo.]</p>
+        <p>[CONCEITOS BÁSICOS - Fórmulas principais, definições e propriedades importantes.]</p>
+        <div class="formula">[FÓRMULA PRINCIPAL DO TÓPICO]</div>
+    </div>
+
+    <main id="mission-board">
+        <!-- MISSÃO 1 (BÁSICO) -->
+        <div class="mission">
+            <h3>[TÍTULO DA MISSÃO]</h3>
+            <p>[ENUNCIADO DO PROBLEMA]</p>
+            <div class="hint">
+                <p>[Dica para resolver a missão.]</p>
+            </div>
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>[Passo 1 da solução]</li>
+                    <li>[Passo 2 da solução]</li>
+                </ol>
+                <div class="formula">[Fórmula ou cálculo principal da solução]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> [Conexão entre o problema e o universo de jogos.]</p>
+            </details>
+        </div>
+        <!-- Adicione mais missões conforme necessário -->
+    </main>
+    <script>
+        // Adiciona o contador CSS ao body para que as missões sejam numeradas
+        document.body.style.counterReset = 'mission-counter';
+    </script>
+</body>
+</html>
