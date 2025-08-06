@@ -1,0 +1,173 @@
+Criar slides interativos para um curso de Introdução à Álgebra Linear usando o tema de jornada do jogador/videogame retrô. A estrutura deve ter navegação horizontal entre Fases (capítulos) e navegação vertical para aprofundamento em cada Quest (tópico). O conteúdo deve apresentar uma separação clara entre o conteúdo matemático formal e a "lore" (contextualização). O foco da prática será em apresentar três níveis de desafios e um guia de estratégia que descreve o plano para a solução, sem resolvê-la de fato.
+
+Princípio do Conteúdo Atômico: Um Conceito por Slide
+
+Para garantir clareza, legibilidade e evitar que o conteúdo exceda o espaço da tela, cada slide deve focar em uma única ideia central.
+
+EVITE: Agrupar múltiplos problemas ou múltiplos roteiros de solução em um único slide. Um slide que tenta mostrar três estratégias de uma vez e tem o conteúdo cortado é um exemplo a ser evitado.
+
+PREFIRA: Dividir listas e conceitos complexos em uma sequência de slides verticais. Por exemplo:
+
+Um slide para apresentar o Desafio Fácil.
+
+Um slide (vertical) para apresentar o Desafio Médio.
+
+Um slide (vertical) para apresentar o Desafio Difícil.
+
+O mesmo se aplica aos respectivos Guias de Estratégia.
+
+Estrutura de Navegação
+
+A apresentação utiliza uma organização hierárquica em dois níveis, seguindo o Princípio do Conteúdo Atômico.
+
+Navegação Horizontal: Entre diferentes Quests (tópicos principais) dentro de uma Fase (capítulo).
+
+Navegação Vertical: Para aprofundar cada Quest com slides atômicos.
+
+Cada Fase (capítulo) deve seguir esta estrutura:
+
+Generated code
+Slide de Título da Fase
+    ↓
+Slide de Lore da Fase (Contexto)
+    ↓
+Quest 1 (Horizontal →)
+    ↓ (Vertical ↓)
+    - Slide 1.1: Mecânica Principal (Conceito)
+    - Slide 1.2: Demo da Habilidade (Visualização)
+    - Slide 1.3: Regra Especial (Teorema)
+    
+    // Desafios divididos em slides atômicos
+    - Slide 1.4: Desafio: Quest de Treinamento (Fácil)
+    - Slide 1.5: Desafio: Missão Principal (Médio)
+    - Slide 1.6: Desafio: Desafio Lendário (Difícil)
+
+    // Guias de Estratégia divididos em slides atômicos
+    - Slide 1.7: Guia de Estratégia (Fácil)
+    - Slide 1.8: Guia de Estratégia (Médio)
+    - Slide 1.9: Guia de Estratégia (Difícil)
+
+    - Slide 1.10: Recompensa (Síntese dos Conceitos)
+        
+Quest 2 (→)
+    ↓ (↓)
+    - Slides 2.x: ...
+
+...
+    
+Slides Finais: Easter Eggs (→)
+    ↓ (↓)
+    - Slide A.1: Aplicação em Computação Gráfica/Jogos
+    - Slide A.2: Aplicação em Ciência de Dados/Engenharia
+
+Estrutura Sugerida dos Slides
+
+Slide de título da Fase:
+
+Título principal centralizado (ex: "Fase 1: As Regras do Jogo").
+
+Subtítulo temático (ex: "Dominando o inventário e as mecânicas básicas").
+
+Slide de Lore da Fase (Contexto):
+
+Contexto sobre a importância da "mecânica" a ser aprendida.
+
+Pode mencionar figuras históricas (Gauss, Cramer) como os "Desenvolvedores Originais".
+
+Para cada Quest (tópico principal), seguir a sequência vertical detalhada acima. Por exemplo:
+
+Slide de Mecânica Principal (Conceito): Definição formal e interpretação no jogo.
+
+Slide de Demo da Habilidade (Visualização): Canvas interativo com controles.
+
+Slide de Regra Especial (Teorema/Propriedade): Um teorema ou propriedade chave.
+
+Slides de Desafio (Fácil, Médio, Difícil): Cada um em seu próprio slide vertical, contendo apenas um enunciado.
+
+Slides de Guia de Estratégia (Fácil, Médio, Difícil): Cada um em seu próprio slide vertical, descrevendo o roteiro para a solução, sem resolvê-la.
+
+Slide de Recompensa (Síntese): Resumo dos conceitos-chave aprendidos na Quest.
+
+Classes CSS Obrigatórias
+
+Você DEVE usar estas classes CSS específicas:
+
+math-section: Para todo conteúdo matemático formal.
+
+lore-section: Para a contextualização temática (a "lore" do jogo).
+
+problem-section: Para enunciados de desafios/problemas.
+
+compact-solution: Para os Guias de Estratégia ("Detonados").
+
+visualization-canvas, controls-container, dual-panel: Conforme definido no template.
+
+Notação Matemática
+
+A notação deve seguir estritamente as convenções:
+
+Equações inline: \( ... \)
+
+Equações em destaque: \[ ... \]
+
+Vetores: \vec{v} para vetores geométricos, \mathbf{x} para vetores coluna. Seja consistente.
+
+Matrizes: Letras maiúsculas, como A, B.
+
+Escalares: Letras minúsculas, como a, b, \lambda.
+
+Limites de Conteúdo (por slide)
+
+Títulos: Máximo de 60 caracteres.
+
+Conteúdo matemático: Máximo de 150 palavras.
+
+Lore/Contexto: Máximo de 150 palavras.
+
+Fórmulas: No máximo 1-2 fórmulas complexas por slide.
+
+Padrões de Código JavaScript
+
+(A seção de JS do prompt original de Cálculo Vetorial é excelente e deve ser mantida, adaptando nomes de funções).
+
+Encapsulamento rigoroso com IIFE.
+
+Gerenciamento do ciclo de vida com Reveal.on('slidechanged', ...) para init e cleanup de visualizações.
+
+Uso de seletores DOM nativos (document.getElementById).
+
+Preferência por Canvas 2D, usando Three.js apenas quando estritamente necessário.
+
+Cancelamento de animações (cancelAnimationFrame) na função de limpeza.
+
+Paleta de Cores para Visualizações
+
+Vetores de Base (i, j, k): #E53935 (vermelho), #43A047 (verde), #1E88E5 (azul).
+
+Vetor/Objeto Original: #FFFFFF (branco) ou #BDBDBD (cinza claro).
+
+Vetor/Objeto Transformado: #FFB300 (amarelo/ouro).
+
+Autovetores (Eigenvectors): #9C27B0 (roxo).
+
+Espaço Nulo (Nullspace): Área sombreada com opacidade, cor #424242.
+
+Espaço Coluna (Column Space/Image): Área sombreada com opacidade, cor #1E88E5.
+
+Progressão Temática (Lore do Jogo)
+
+Fase 1 (Sistemas e Matrizes): O Tutorial.
+
+Fase 2 (Determinantes): A Chave Secreta.
+
+Fase 3 (Espaços Vetoriais Euclidianos): Explorando o Mundo.
+
+Fase 4 (Transformações Lineares): Portais e Habilidades.
+
+Fase 5 (Espaços Vetoriais Arbitrários): As Leis do Universo do Jogo.
+
+Fase Final (Autovalores/Autovetores): O Código-Fonte.
+
+Foco dos Exemplos
+
+O tema de jogo serve para emoldurar e motivar. Os desafios matemáticos devem ser clássicos e fundamentais. As conexões diretas com o tema devem aparecer nos slides de Lore e Easter Eggs (aplicações em computação gráfica, IA, etc.).
