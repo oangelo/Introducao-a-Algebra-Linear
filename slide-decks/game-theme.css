@@ -1,0 +1,270 @@
+/*
+ * Game Theme for Reveal.js
+ * Inspirado em jogos clássicos de 8-bit e arcades.
+ */
+
+:root {
+  --background-color: #1a1a2d;
+  --main-font: 'VT323', monospace;
+  --heading-font: 'Press Start 2P', sans-serif;
+  --text-color: #e0e0e0;
+  --cyan: #00ffff;
+  --magenta: #ff00ff;
+  --yellow: #ffff00;
+  --green: #00ff00;
+  --red: #ff5555;
+  --border-color: var(--cyan);
+}
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+.reveal {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--main-font);
+  font-size: 2rem; /* VT323 é uma fonte menor, então aumentamos o tamanho base */
+}
+
+.reveal ::selection {
+  color: var(--background-color);
+  background: var(--yellow);
+  text-shadow: none;
+}
+
+/*********************************************
+ * HEADINGS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: var(--heading-font);
+  color: var(--yellow);
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0px var(--magenta);
+  letter-spacing: 0.05em;
+  margin-bottom: 30px;
+}
+
+.reveal h1 {
+  font-size: 3em;
+}
+
+.reveal h2 {
+  font-size: 2.2em;
+}
+
+/*********************************************
+ * TEXT & LINKS
+ *********************************************/
+.reveal p, .reveal li, .reveal ol, .reveal ul {
+  line-height: 1.4;
+}
+
+.reveal a {
+  color: var(--cyan);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.reveal a:hover {
+  color: var(--yellow);
+  text-shadow: 0 0 5px var(--yellow);
+}
+
+.reveal .press-start {
+    font-family: var(--heading-font);
+    color: var(--green);
+    animation: blink 1.5s infinite step-end;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/*********************************************
+ * THEMED SECTIONS
+ *********************************************/
+.lore-section,
+.math-section,
+.problem-section,
+.compact-solution {
+  border: 3px solid var(--border-color);
+  padding: 20px;
+  margin-top: 20px;
+  background-color: rgba(0, 255, 255, 0.05);
+  box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.lore-label {
+    font-family: var(--heading-font);
+    color: var(--yellow);
+    background-color: var(--border-color);
+    color: var(--background-color);
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.problem-section h4 {
+    color: var(--cyan);
+    font-size: 1.2em;
+    text-shadow: 2px 2px 0px var(--magenta);
+}
+
+.compact-solution h4 {
+    color: var(--green);
+    font-size: 1.1em;
+    text-shadow: none;
+}
+
+.game-interp {
+    margin-top: 20px;
+    border-left: 4px solid var(--yellow);
+    padding-left: 15px;
+    font-style: italic;
+}
+
+/*********************************************
+ * BACKGROUND EFFECTS
+ *********************************************/
+.background-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.ghost {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background-color: var(--magenta);
+    border-radius: 15px 15px 0 0;
+    opacity: 0.2;
+    z-index: -1;
+    animation: float-across 20s linear infinite;
+}
+
+.ghost:nth-of-type(2) {
+    background-color: var(--cyan);
+    animation-duration: 30s;
+    animation-delay: -10s;
+    top: 60%;
+}
+
+.ghost::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: var(--magenta);
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    transform: rotate(-45deg);
+    box-shadow: 12px 0 0 var(--magenta), -12px 0 0 var(--magenta);
+}
+.ghost:nth-of-type(2)::after {
+    background-color: var(--cyan);
+    box-shadow: 12px 0 0 var(--cyan), -12px 0 0 var(--cyan);
+}
+
+
+@keyframes float-across {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+
+/*********************************************
+ * CONTROLS
+ *********************************************/
+.controls-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.control-button {
+    font-family: var(--heading-font);
+    background-color: transparent;
+    border: 3px solid var(--yellow);
+    color: var(--yellow);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.control-button:hover {
+    background-color: var(--yellow);
+    color: var(--background-color);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 200px;
+  height: 10px;
+  background: var(--background-color);
+  border: 2px solid var(--border-color);
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--yellow);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--yellow);
+  cursor: pointer;
+  border: none;
+}
+
+/*********************************************
+ * REVEAL.JS CONTROLS OVERRIDE
+ *********************************************/
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-down {
+  color: var(--cyan);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.reveal .controls .navigate-left:hover,
+.reveal .controls .navigate-right:hover,
+.reveal .controls .navigate-up:hover,
+.reveal .controls .navigate-down:hover {
+  opacity: 1;
+}
+
+.reveal .progress {
+  color: var(--cyan);
+  height: 5px;
+}
