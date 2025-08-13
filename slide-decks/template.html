@@ -4,25 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Álgebra Linear: [TÍTULO DA FASE]</title>
-
-    <!-- Links para CDNs -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css"
-    />
-    <!-- Carregando a fonte pixelada do Google Fonts -->
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Carregando o estilo game-theme -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="game-theme.css" />
-    <!-- Alternativa usando URL pública (se você hospedar o CSS) -->
-    <!-- <link rel="stylesheet" href="https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/game-theme.css"> -->
-
     <!-- Scripts para Reveal.js e MathJax -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
@@ -31,7 +18,6 @@
 
   <body>
     <div class="reveal">
-      <!-- Efeito de fundo temático -->
       <div class="background-grid"></div>
       <div class="ghost"></div>
       <div class="ghost"></div>
@@ -47,24 +33,32 @@
         </section>
 
         <!-- =========================== -->
-        <!-- SLIDE DE LORE DA FASE -->
+        <!-- SLIDES DE LORE (DIVIDIDOS)-->
         <!-- =========================== -->
         <section>
-          <h2>Lore da Fase</h2>
-          <div class="lore-section">
-            <div class="lore-label">DEV LOG</div>
-            <p><strong>Desenvolvedor Original: [Nome do Matemático] (Ano)</strong></p>
-            <p>
-              Descrição do contexto da "mecânica" do jogo. Apresente o matemático como o "programador" original que descobriu/criou esta regra fundamental.
-            </p>
-          </div>
-          <div class="lore-section">
-            <div class="lore-label">A MECÂNICA</div>
-            <p><strong>Desafio do Jogo</strong></p>
-            <p>
-              Explicação de qual "problema de design" no jogo (ou seja, que tipo de problema matemático) esta nova mecânica veio para resolver.
-            </p>
-          </div>
+            <!-- Slide de Lore 1: Dev Log -->
+            <section>
+                <h2>Lore da Fase: Dev Log</h2>
+                <div class="lore-section">
+                    <div class="lore-label">DEV LOG</div>
+                    <p><strong>Desenvolvedor Original: [Nome do Matemático] (Ano)</strong></p>
+                    <p>
+                    Descrição do contexto da "mecânica" do jogo. Apresente o matemático como o "programador" original que descobriu/criou esta regra fundamental.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide de Lore 2: A Mecânica -->
+            <section>
+                <h2>Lore da Fase: A Mecânica</h2>
+                <div class="lore-section">
+                    <div class="lore-label">A MECÂNICA</div>
+                    <p><strong>Desafio do Jogo</strong></p>
+                    <p>
+                    Explicação de qual "problema de design" no jogo (ou seja, que tipo de problema matemático) esta nova mecânica veio para resolver.
+                    </p>
+                </div>
+            </section>
         </section>
 
         <!-- ============================================== -->
@@ -180,10 +174,9 @@
             </div>
             <p>Você agora pode usar essas ferramentas para enfrentar desafios mais complexos!</p>
           </section>
-
         </section>
 
-        <!-- (Seção de Easter Eggs e Scripts permanecem os mesmos) -->
+        <!-- Slide Final: Easter Egg -->
         <section>
             <h2>Easter Egg: Aplicações</h2>
             <div class="lore-section">
@@ -205,7 +198,7 @@
     </div>
     
     <script>
-      // (Todo o código JS do template anterior permanece o mesmo)
+      // Inicialização do Reveal.js
       window.onload = function () {
         Reveal.initialize({
           controls: true,
