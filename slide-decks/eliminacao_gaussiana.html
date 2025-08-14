@@ -1,660 +1,412 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8">
-		<title>Introdução aos sistemas de equações lineares</title>
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		<style>
-.reveal h1, .reveal h2 { color: #58a6ff; }
-.reveal h3 { color: #79c0ff; }
-.reveal pre { background-color: #0d1117; }
-.reveal code { color: #ff7b72; }
-.reveal ul { list-style-type: none; }
-.reveal ul li::before { content: "» "; color: #58a6ff; }
-.reveal .highlight { color: #ffa657; font-weight: bold; }
-.two-columns { display: flex; justify-content: space-between; }
-.two-columns > * { flex: 1; }
-		</style>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Álgebra Linear: Fase 1 - Eliminação Gaussiana</title>
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game-theme.css" />
+    <!-- Scripts para Reveal.js e MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
 
-				<section>
-					<h3>Introdução aos sistemas de equações lineares</h3>
-					<p>Onde a matemática encontra o mundo real de maneiras surpreendentes</p>
-				</section>
+  <body>
+    <div class="reveal">
+      <div class="background-grid"></div>
+      <div class="ghost"></div>
+      <div class="ghost"></div>
 
-				<section>
-					<section>
-						<h3>O que é um sistema de equações lineares?</h3>
-						<p>Imagine que você está resolvendo um quebra-cabeça matemático, onde cada peça se encaixa perfeitamente com as outras.</p>
-						<div class="fragment">
-							<p>Bem-vindo ao intrigante mundo dos sistemas de equações lineares!</p>
-						</div>
-					</section>
+      <div class="slides">
+        <!-- =========================== -->
+        <!-- SLIDE DE TÍTULO DA FASE -->
+        <!-- =========================== -->
+        <section>
+            <section>
+              <h1>Fase 1: As Regras do Jogo</h1>
+              <h3>Eliminação Gaussiana</h3>
+              <p class="press-start">Pressione Enter para começar</p>
+            </section>
+            <section>
+                <h2>Lore da Fase: Dev Log</h2>
+                <div class="lore-section">
+                    <div class="lore-label">DEV LOG</div>
+                    <p><strong>Desenvolvedor Original: Carl Friedrich Gauss (c. 1810)</strong></p>
+                    <p>
+                    Considerado o "Mestre das Runas" da matemática, Gauss não inventou as equações, mas criou uma das primeiras e mais poderosas "sequências de comando" para decifrá-las. Ele percebeu que qualquer puzzle linear, não importa quão complexo, poderia ser simplificado sistematicamente até sua solução se tornar óbvia.
+                    </p>
+                </div>
+            </section>
+            <section>
+                <h2>Lore da Fase: A Mecânica</h2>
+                <div class="lore-section">
+                    <div class="lore-label">A MECÂNICA</div>
+                    <p><strong>Desafio do Jogo: Puzzles com Múltiplas Regras</strong></p>
+                    <p>
+                    Resolver uma equação é fácil. Duas? É possível. Mas e quando temos dezenas de regras interconectadas? A Eliminação Gaussiana é a mecânica universal que nos permite pegar um "pergaminho arcano" (um sistema complexo) e reescrevê-lo, passo a passo, em uma linguagem tão simples que a resposta se revela sozinha.
+                    </p>
+                </div>
+            </section>
+        </section>
 
-					<section data-transition="slide">
-						<h3>Exemplo: O Desafio do Estudante Energizado</h3>
-						<div class="fragment">
-							<p>Segunda-feira: 2 cafés + 1 energético + 1 chocolate = R$ 15</p>
-						</div>
-						<div class="fragment">
-							<p>Terça-feira: 1 café + 2 energéticos + 1 chocolate = R$ 14</p>
-						</div>
-						<div class="fragment">
-							<p>Quarta-feira: 3 cafés + 1 energético + 2 chocolates = R$ 20</p>
-						</div>
-					</section>
+        <!-- ============================================== -->
+        <!-- QUEST 1: A Receita Secreta -->
+        <!-- ============================================== -->
+        <section>
+          <section>
+            <h2>Mecânica: O Puzzle da Poção</h2>
+            <div class="math-section">
+              <p>Para criar a Poção da Clareza, a receita exige 3 ingredientes: Raiz de Dragão (x), Orvalho Lunar (y) e Pó de Estrela (z). O pergaminho antigo contém três regras que devem ser satisfeitas:</p>
+              <p>\[
+              \begin{cases}
+              x + y + z = 6 \\
+              x - y + 2z = 5 \\
+              2x + y - z = 1
+              \end{cases}
+              \]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Este é o nosso puzzle inicial. As variáveis são os itens que precisamos encontrar, e as equações são as condições para a vitória.
+            </p>
+          </section>
+          <section>
+            <h2>Mecânica: O Pergaminho de Ingredientes</h2>
+            <div class="math-section">
+              <p>Trabalhar com as variáveis repetidamente é ineficiente. Vamos extrair apenas os números (coeficientes) para o nosso "Grid de Jogo", a Matriz Aumentada:</p>
+              <p>\[
+              \left[
+              \begin{array}{ccc|c}
+              1 & 1 & 1 & 6 \\
+              1 & -1 & 2 & 5 \\
+              2 & 1 & -1 & 1
+              \end{array}
+              \right]
+              \]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Essa é a interface simplificada do puzzle. Cada linha é uma regra, e cada coluna corresponde a um ingrediente. A última coluna é o resultado esperado.
+            </p>
+          </section>
+          <section>
+            <h2>Guia: A Estratégia de Simplificação</h2>
+            <div class="compact-solution">
+              <h4>Estratégia Geral para Decifrar o Pergaminho:</h4>
+              <p>Não importa o quão complexo seja o puzzle, a sequência de comandos (o algoritmo) é sempre a mesma:</p>
+              <ol>
+                <li><strong>Escolha um Pivô:</strong> Pegue o primeiro número não-nulo da primeira linha.</li>
+                <li><strong>Zere a Coluna:</strong> Use as operações elementares para transformar todos os números abaixo do pivô em zero.</li>
+                <li><strong>Avance e Repita:</strong> Ignore a linha e a coluna do pivô atual. Repita o processo para a sub-matriz restante.</li>
+                <li><strong>Decifre o Resultado:</strong> Quando a matriz estiver na "forma de escada", traduza-a de volta para equações e resolva de baixo para cima.</li>
+              </ol>
+            </div>
+          </section>
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Parabéns, jogador!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Habilidade de traduzir um sistema para uma Matriz Aumentada.</li>
+                    <li>O mapa da estratégia geral (Algoritmo de Eliminação).</li>
+                </ul>
+            </div>
+            <p>Você agora está pronto para aprender a ler os resultados de suas simplificações!</p>
+          </section>
+        </section>
 
-					<section data-transition="slide">
-						<h3>Traduzindo para a linguagem matemática</h3>
-						<p>Transformando situações cotidianas em elegantes expressões matemáticas</p>
-						<div class="fragment">
-							\[
-							\begin{cases}
-							2x + y + z = 15 \\
-							x + 2y + z = 14 \\
-							3x + y + 2z = 20
-							\end{cases}
-							\]
-						</div>
-						<p class="fragment">Onde x = café, y = energético, z = chocolate</p>
-					</section>
+        <!-- ============================================== -->
+        <!-- QUEST 2: Interpretando os Sinais Arcanos -->
+        <!-- ============================================== -->
+        <section>
+            <section>
+                <h2>Mecânica: O Objetivo - A Forma de Escada</h2>
+                <div class="math-section">
+                  <p>O objetivo da Eliminação Gaussiana não é chegar à resposta final diretamente. É reorganizar o puzzle até ele se parecer com uma escada.</p>
+                   <p>\[ \begin{bmatrix} \blacksquare & * & * & * \\ 0 & \blacksquare & * & * \\ 0 & 0 & \blacksquare & * \end{bmatrix} \]</p>
+                </div>
+                <p class="game-interp">
+                  <strong>Interpretação no Jogo:</strong> Pense nisso como organizar seu inventário. Uma vez que tudo está em seu devido lugar (a forma de escada), encontrar o que você precisa (a solução) se torna trivial. Cada degrau da escada resolve uma parte do puzzle.
+                </p>
+            </section>
+            <section>
+                <h2>Mecânica: As Regras do Pergaminho</h2>
+                <div class="math-section">
+                  <p>Um pergaminho (matriz) é considerado "decifrado" (em <strong>Forma Escalonada</strong>) quando segue estas duas regras simples:</p>
+                  <ol>
+                      <li>Qualquer linha que contenha apenas zeros deve estar na base do pergaminho.</li>
+                      <li>O primeiro número não-nulo de uma linha (o "pivô") está sempre à direita do pivô da linha de cima.</li>
+                  </ol>
+                </div>
+            </section>
+            <section>
+                <h2>Mecânica: Galeria de Pergaminhos</h2>
+                <p>Qual destes está na Forma Escalonada?</p>
+                <p>1. SIM: \( \begin{bmatrix} 1 & 4 & 2 \\ 0 & 2 & 6 \\ 0 & 0 & 3 \end{bmatrix} \)</p>
+                <p class="fragment">2. NÃO: \( \begin{bmatrix} 1 & 2 & 3 \\ 0 & 0 & 5 \\ 0 & 1 & 4 \end{bmatrix} \) (O pivô da linha 3 está à esquerda do pivô da linha 2)</p>
+                <p class="fragment">3. SIM: \( \begin{bmatrix} 1 & -2 & 0 & 1 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & 0 & 0 \end{bmatrix} \)</p>
+                <p class="fragment">4. NÃO: \( \begin{bmatrix} 0 & 1 & 2 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix} \) (O pivô da linha 2 não está à direita do pivô da linha 1)</p>
+            </section>
+            <section>
+              <h2>Regra Especial: A Receita Perfeita</h2>
+              <div class="problem-section">
+                <h4>Caso 1: Solução Única (SPD)</h4>
+                <p>Após o escalonamento, sua matriz se parece com uma escada perfeita, sem degraus faltando. O número de pivôs é igual ao número de variáveis.</p>
+                <p>\[ \left[ \begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & -2 & 1 & -1 \\ 0 & 0 & -4 & -12 \end{array} \right] \]</p>
+                <p>Isso significa que há um e somente um conjunto de ingredientes que funciona. A receita é exata!</p>
+              </div>
+            </section>
+            <section>
+              <h2>Regra Especial: A Receita Flexível</h2>
+              <div class="problem-section">
+                <h4>Caso 2: Infinitas Soluções (SPI)</h4>
+                <p>Sua matriz escalonada tem uma linha de zeros `(0 0 0 | 0)`. Isso significa que uma das regras era redundante.</p>
+                <p>\[ \left[ \begin{array}{ccc|c} 1 & -2 & 3 & 9 \\ 0 & 1 & 3 & 5 \\ 0 & 0 & 0 & 0 \end{array} \right] \]</p>
+                <p>Isso cria uma "variável livre". Você pode escolher o valor de um ingrediente, e os outros se ajustarão. A receita tem infinitas variações!</p>
+              </div>
+            </section>
+            <section>
+              <h2>Regra Especial: A Receita Impossível</h2>
+              <div class="problem-section">
+                <h4>Caso 3: Nenhuma Solução (SI)</h4>
+                <p>Sua matriz escalonada tem uma linha que é uma contradição, como `0x + 0y + 0z = 5`.</p>
+                <p>\[ \left[ \begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 1 & 2 & 1 \\ 0 & 0 & 0 & 5 \end{array} \right] \]</p>
+                <p>Isso é um "glitch" no sistema, uma regra impossível de satisfazer (0 não pode ser igual a 5). A receita não funciona, não importa o que você faça!</p>
+              </div>
+            </section>
+             <section>
+                <h2>Recompensa da Quest</h2>
+                <p>Você dominou a arte da interpretação!</p>
+                <div class="math-section">
+                    <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                    <ul>
+                        <li>Definição de Forma Escalonada (Row Echelon Form).</li>
+                        <li>Habilidade de identificar se uma solução é Única, Infinita ou Inexistente.</li>
+                    </ul>
+                </div>
+                <p>Agora você pode ler a história que qualquer sistema linear tem para contar.</p>
+            </section>
+        </section>
 
-					<section>
-						<h3>Componentes de um Sistema Linear</h3>
-						<ul>
-							<li class="fragment"><strong>Variáveis:</strong> As incógnitas que vamos descobrir (x, y, z)</li>
-							<li class="fragment"><strong>Coeficientes:</strong> Os números que acompanham as variáveis</li>
-							<li class="fragment"><strong>Termos independentes:</strong> Os valores do lado direito da igualdade</li>
-						</ul>
-						<p class="fragment">Juntos, esses elementos formam uma sinfonia matemática que chamamos de sistema linear!</p>
-					</section>
+        <!-- ============================================== -->
+        <!-- QUEST 3: Pergaminhos de Formatos Incomuns -->
+        <!-- ============================================== -->
+        <section>
+            <section>
+              <h2>Desafio: Mais Regras que Ingredientes</h2>
+              <div class="problem-section">
+                <h4>⚔️ Sistema 3x2 (Alto e Magro)</h4>
+                <p>Aqui temos 3 regras para apenas 2 ingredientes. É um sistema "sobredeterminado".</p>
+                <p>\[ \left[ \begin{array}{cc|c} 1 & 2 & 4 \\ 1 & -1 & 1 \\ 2 & 3 & 7 \end{array} \right] \]</p>
+                <p class="game-interp">É muito provável que uma das regras entre em conflito com as outras, resultando em um sistema impossível (SI). É preciso sorte para que sejam consistentes.</p>
+              </div>
+            </section>
+            <section>
+              <h2>Desafio: Mais Ingredientes que Regras</h2>
+              <div class="problem-section">
+                <h4>⚔️ Sistema 2x4 (Baixo e Largo)</h4>
+                <p>Aqui temos 4 ingredientes, mas apenas 2 regras para guiá-los. É um sistema "subdeterminado".</p>
+                <p>\[ \left[ \begin{array}{cccc|c} 1 & 2 & -1 & 3 & 5 \\ 0 & 1 & 2 & -1 & 2 \end{array} \right] \]</p>
+                <p class="game-interp">Se houver uma solução, certamente haverá infinitas. Você sempre terá pelo menos duas "variáveis livres" para escolher como quiser.</p>
+              </div>
+            </section>
+            <section>
+                <h2>Recompensa da Quest</h2>
+                <p>Os formatos não te assustam mais!</p>
+                <div class="math-section">
+                    <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                    <ul>
+                        <li>Compreensão de sistemas sobredeterminados (altos).</li>
+                        <li>Compreensão de sistemas subdeterminados (largos).</li>
+                    </ul>
+                </div>
+                <p>Você entende como a própria forma do puzzle já dá pistas sobre seu resultado.</p>
+            </section>
+        </section>
 
-					<section>
-						<h3>Por que isso é emocionante?</h3>
-						<p class="fragment">Porque os sistemas lineares nos permitem modelar e resolver problemas complexos do mundo real</p>
-						<ul>
-							<li class="fragment">Engenharia: Otimização de estruturas, análise de circuitos</li>
-							<li class="fragment">Economia: Previsão de tendências de mercado</li>
-							<li class="fragment">Física: Compreensão de fenômenos quânticos</li>
-							<li class="fragment">Vida cotidiana: Planejamento financeiro pessoal</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Matriz Estendida</h2>
-						<p>Uma ferramenta poderosa para simplificar nossos sistemas lineares!</p>
-					</section>
+        <!-- ============================================== -->
+        <!-- QUEST 4: O Puzzle do Ponto Zero -->
+        <!-- ============================================== -->
+        <section>
+            <section>
+              <h2>Mecânica: O Pergaminho do Equilíbrio</h2>
+              <div class="math-section">
+                <p>Um <strong>Sistema Homogêneo</strong> é um tipo especial de puzzle onde o resultado de todas as regras é zero. O objetivo é encontrar o equilíbrio perfeito.</p>
+                <p>\[ A\mathbf{x} = \mathbf{0} \quad \Rightarrow \quad \begin{cases} x - 2y + z = 0 \\ 2x - 3y + z = 0 \\ 3x - 5y + 2z = 0 \end{cases} \]</p>
+              </div>
+            </section>
+            <section>
+              <h2>Regra Especial: A Solução Garantida</h2>
+              <div class="problem-section">
+                <h4>A Solução Trivial</h4>
+                <p>Todo sistema homogêneo tem uma solução óbvia e garantida: usar zero de todos os ingredientes.</p>
+                <p>\[ \mathbf{x} = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix} \]</p>
+                <p>Isso é chamado de <strong>Solução Trivial</strong>. Por causa dela, um sistema homogêneo NUNCA pode ser Impossível (SI). Ele é sempre consistente.</p>
+              </div>
+            </section>
+            <section>
+              <h2>Mecânica: Os Dois Destinos do Equilíbrio</h2>
+              <div class="math-section">
+                <p>Um sistema homogêneo só tem dois futuros possíveis:</p>
+                <ol>
+                    <li><strong>Apenas a Solução Trivial:</strong> Se o escalonamento não produzir variáveis livres. O único jeito de equilibrar a poção é não usar nada.</li>
+                    <li><strong>Infinitas Soluções:</strong> Se o escalonamento produzir pelo menos uma variável livre. Existem infinitas combinações não-nulas de ingredientes que se equilibram perfeitamente.</li>
+                </ol>
+              </div>
+            </section>
+            <section>
+                <h2>Recompensa da Quest</h2>
+                <div class="math-section">
+                    <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                    <ul>
+                        <li>Definição de Sistema Homogêneo.</li>
+                        <li>Conceito da Solução Trivial.</li>
+                        <li>Entendimento de que sistemas homogêneos são sempre consistentes.</li>
+                    </ul>
+                </div>
+                <p>Você descobriu um tipo de puzzle com regras próprias e previsíveis!</p>
+            </section>
+        </section>
+        
+        <!-- ============================================== -->
+        <!-- NOVA QUEST: Laboratório de Resolução -->
+        <!-- ============================================== -->
+        <section>
+            <section>
+                <h2>Quest: Laboratório de Resolução</h2>
+                <p>Vamos testar as mecânicas em tempo real! Para cada um dos puzzles a seguir, nosso objetivo é usar a Eliminação Gaussiana para encontrar o conjunto solução e entender sua geometria.</p>
+            </section>
+            <section>
+                <h2>Puzzle 1: A Solução Única (Ponto)</h2>
+                <div class="problem-section">
+                    <h4>🎯 Missão: Encontrar o Ponto de Interseção</h4>
+                    <p>\[ \begin{cases} x + y + z = 6 \\ x - y + z = 2 \\ 2x + y - z = 1 \end{cases} \] </p>
+                </div>
+                <p class="game-interp">
+                    <strong>Dica do Mestre do Jogo:</strong> Espere por uma escada perfeita no final do escalonamento, sem linhas de zeros. Isso indicará que os três planos se cruzam em um único ponto.
+                </p>
+            </section>
+            <section>
+                <h2>Puzzle 2: A Contradição (Impossível)</h2>
+                <div class="problem-section">
+                    <h4>🎯 Missão: Provar a Inconsistência</h4>
+                    <p>\[ \begin{cases} x + y + z = 2 \\ x + 2y + 3z = 3 \\ 2x + 3y + 4z = 6 \end{cases} \] </p>
+                </div>
+                <p class="game-interp">
+                    <strong>Dica do Mestre do Jogo:</strong> Fique de olho em uma linha que se transforma em uma contradição matemática, como `0 = 1`. Este é o sinal de um "glitch" na receita.
+                </p>
+            </section>
+            <section>
+                <h2>Puzzle 3: A Solução Infinita (Reta)</h2>
+                <div class="problem-section">
+                    <h4>🎯 Missão: Encontrar a Reta de Interseção</h4>
+                    <p>\[ \begin{cases} x + y + z = 3 \\ x + 2y + 2z = 4 \\ 2x + 3y + 3z = 7 \end{cases} \] </p>
+                </div>
+                <p class="game-interp">
+                    <strong>Dica do Mestre do Jogo:</strong> O escalonamento revelará uma linha de zeros `(0 0 0 | 0)`. Isso significa que uma equação era redundante e os planos se cruzam ao longo de uma linha inteira. Você precisará de uma variável livre.
+                </p>
+            </section>
+            <section>
+                <h2>Puzzle 4: A Solução Infinita (Plano)</h2>
+                <div class="problem-section">
+                    <h4>🎯 Missão: Descrever o Plano de Soluções</h4>
+                    <p>\[ \begin{cases} x + 2y - z = 3 \\ 2x + 4y - 2z = 6 \\ -x - 2y + z = -3 \end{cases} \] </p>
+                </div>
+                <p class="game-interp">
+                    <strong>Dica do Mestre do Jogo:</strong> O escalonamento fará com que duas linhas desapareçam em zeros `(0 0 0 | 0)`. Isso mostra que todas as equações descreviam o mesmo plano. Você precisará de duas variáveis livres para descrever todas as soluções.
+                </p>
+            </section>
+            <section>
+                <h2>Recompensa da Quest</h2>
+                <p>Você aplicou a teoria na prática!</p>
+                <div class="math-section">
+                    <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                    <ul>
+                        <li>Reconhecimento prático dos quatro cenários de solução para sistemas 3x3.</li>
+                        <li>Conexão entre o resultado algébrico e a interpretação geométrica.</li>
+                    </ul>
+                </div>
+                <p>Seu domínio sobre a Eliminação Gaussiana está quase completo.</p>
+            </section>
+        </section>
 
-					<section>
-						<h3>Sistema Linear: O Ponto de Partida</h3>
-						<p>Vamos começar com um sistema linear geral:</p>
-						<div class="fragment">
-							\[
-							\begin{cases}
-							a_{1,1} x_1 + a_{1,2} x_2 + ... + a_{1,n} x_n = b_1 \\
-							a_{2,1} x_1 + a_{2,2} x_2 + ... + a_{2,n} x_n = b_2 \\
-							\vdots \\
-							a_{d,1} x_1 + a_{d,2} x_2 + ... + a_{d,n} x_n = b_d
-							\end{cases}
-							\]
-						</div>
-						<p class="fragment">Parece complicado? Não se preocupe, vamos simplificar!</p>
-					</section>
+        <!-- ============================================== -->
+        <!-- QUEST 5: Arena de Treinamento -->
+        <!-- ============================================== -->
+        <section>
+            <section>
+              <h2>Desafio: Missão de Consistência</h2>
+              <div class="problem-section">
+                <h4>☠️ Desafio Avançado</h4>
+                <p>Considere o sistema:</p>
+                <p> \[ \begin{aligned} x + y + 2z &= a \\ x + z &= b \\ 2x + y + 3z &= c \end{aligned} \] </p>
+                <p>Mostre que, para este puzzle ter uma solução (ser consistente), os "parâmetros de nível" \(a\), \(b\) e \(c\) devem satisfazer a condição \(c = a + b\).</p>
+              </div>
+            </section>
+            <section>
+              <h2>Desafio: Engenharia Reversa</h2>
+              <div class="problem-section">
+                <h4>☠️ Desafio Avançado</h4>
+                <p>(a) Encontre uma equação linear nas variáveis \(x\) e \(y\) que tenha a solução geral \(x = 5 + 2t\), \(y = t\).</p>
+                <p>(b) Mostre que \(x = t\), \(y = \frac{1}{2}t - \frac{5}{2}\) também é a solução geral da mesma equação.</p>
+              </div>
+            </section>
+            <section>
+              <h2>Desafio: O Oráculo da Curva</h2>
+              <div class="problem-section">
+                <h4>☠️ Desafio Avançado</h4>
+                <p>Uma curva do tipo \(y = ax^2 + bx + c\) passa pelos pontos \((x_1, y_1)\), \((x_2, y_2)\), e \((x_3, y_3)\). Mostre que os coeficientes \(a\), \(b\), e \(c\) são a solução do sistema linear cuja matriz aumentada é:</p>
+                <p> \[ \begin{pmatrix} x_1^2 & x_1 & 1 & y_1 \\ x_2^2 & x_2 & 1 & y_2 \\ x_3^2 & x_3 & 1 & y_3 \end{pmatrix} \] </p>
+              </div>
+            </section>
+        </section>
 
-					<section>
-						<h3>Decodificando o Sistema</h3>
-						<ul>
-							<li class="fragment"><strong>a<sub>i,j</sub>:</strong> Coeficientes das variáveis</li>
-							<li class="fragment"><strong>x<sub>j</sub>:</strong> Variáveis que queremos encontrar</li>
-							<li class="fragment"><strong>b<sub>i</sub>:</strong> Termos independentes (resultados de cada equação)</li>
-							<li class="fragment"><strong>d:</strong> Número de equações</li>
-							<li class="fragment"><strong>n:</strong> Número de variáveis</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Transformando em Matriz</h3>
-						<p>Agora, vamos organizar esses elementos em uma estrutura mais compacta:</p>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
-							a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
-							\vdots & \vdots & \ddots & \vdots \\
-							a_{d,1} & a_{d,2} & \cdots & a_{d,n}
-							\end{bmatrix}
-							\begin{bmatrix}
-							x_1 \\ x_2 \\ \vdots \\ x_n
-							\end{bmatrix}
-							=
-							\begin{bmatrix}
-							b_1 \\ b_2 \\ \vdots \\ b_d
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Muito mais organizado, não é?</p>
-					</section>
-
-					<section>
-						<h3>Apresentando: A Matriz Estendida!</h3>
-						<p>E agora, o grande final: juntamos tudo em uma única matriz!</p>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							a_{1,1} & a_{1,2} & \cdots & a_{1,n} & b_1 \\
-							a_{2,1} & a_{2,2} & \cdots & a_{2,n} & b_2 \\
-							\vdots & \vdots & \ddots & \vdots & \vdots \\
-							a_{d,1} & a_{d,2} & \cdots & a_{d,n} & b_d
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Voilà! Esta é nossa matriz estendida!</p>
-					</section>
-
-					<section>
-						<h3>Por que a Matriz Estendida é Incrível?</h3>
-						<ul>
-							<li class="fragment">Simplifica a visualização do sistema</li>
-							<li class="fragment">Facilita a aplicação de operações elementares</li>
-							<li class="fragment">Reduz a quantidade de símbolos para manipular</li>
-							<li class="fragment">Torna o processo de resolução mais intuitivo</li>
-						</ul>
-						<p class="fragment">Com a matriz estendida, resolver sistemas lineares se torna uma tarefa muito mais agradável!</p>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h3>Eliminação Gaussiana - Exemplo Prático</h3>
-						<p>Lembra do nosso Desafio do Estudante Energizado?</p>
-						<div class="fragment">
-							\[
-							\begin{cases}
-							2x + y + z = 15 \\
-							x + 2y + z = 14 \\
-							3x + y + 2z = 20
-							\end{cases}
-							\]
-						</div>
-					</section>
-					<section>
-						<p class="fragment">Agora podemos representá-lo como uma matriz estendida:</p>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							2 & 1 & 1 & 15 \\
-							1 & 2 & 1 & 14 \\
-							3 & 1 & 2 & 20
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Muito mais compacto e fácil de manipular!</p>
-					</section>
-					<section>
-						<h3>Eliminação Gaussiana</h3>
-						<p>Uma técnica poderosa que simplifica problemas complexos</p>
-					</section>
-
-					<section>
-						<h3>O que é Eliminação Gaussiana?</h3>
-						<p>É um método elegante e eficiente para resolver sistemas de equações lineares</p>
-						<div class="fragment">
-							<p>Imagine organizar suas ideias de forma sistemática até chegar à solução</p>
-							<p>É exatamente isso que faremos com nossas equações!</p>
-						</div>
-					</section>
-
-					<section>
-						<h3>Passos da Eliminação Gaussiana</h3>
-						<ol>
-							<li class="fragment">Representar o sistema como uma matriz aumentada</li>
-							<li class="fragment">Transformar a matriz em forma escalonada reduzida</li>
-							<li class="fragment">Interpretar a solução diretamente da matriz resultante</li>
-						</ol>
-						<p class="fragment">Com prática, você dominará essa técnica e a aplicará com confiança!</p>
-					</section>
-
-					<section>
-						<h3>Operações Elementares na Eliminação de Gauss</h3>
-						<p>As ferramentas que fazem a magia acontecer!</p>
-						<ul>
-							<li class="fragment"><strong>Troca de linhas:</strong> Trocar a posição de duas linhas</li>
-							<li class="fragment"><strong>Multiplicação de linha:</strong> Multiplicar uma linha por um escalar não-nulo</li>
-							<li class="fragment"><strong>Adição de linhas:</strong> Somar uma linha multiplicada por um escalar a outra linha</li>
-						</ul>
-						<p class="fragment">Com estas operações, podemos transformar qualquer matriz em sua forma mais simples!</p>
-					</section>
-
-					<section>
-						<h3>Estratégia para Simplificar uma Matriz</h3>
-						<ol>
-							<li class="fragment">Comece pela coluna mais à esquerda</li>
-							<li class="fragment">Escolha um pivô não-nulo (geralmente o primeiro elemento não-nulo da coluna)</li>
-							<li class="fragment">Use a adição de linhas para zerar todos os elementos abaixo do pivô</li>
-							<li class="fragment">Repita o processo para a próxima coluna, ignorando as linhas já utilizadas como pivô</li>
-							<li class="fragment">Continue até que a matriz esteja na forma escalonada</li>
-						</ol>
-						<p class="fragment">Com prática, você se tornará um mestre nesta técnica!</p>
-					</section>
-
-					<section>
-						<h3>Exemplo: Resolvendo o Desafio do Estudante Energizado</h3>
-						<p>Vamos aplicar a Eliminação Gaussiana ao nosso problema, passo a passo</p>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							2 & 1 & 1 & 15 \\
-							1 & 2 & 1 & 14 \\
-							3 & 1 & 2 & 20
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Esta é nossa matriz aumentada inicial - vamos transformá-la!</p>
-					</section>
-
-					<section>
-						<h3>Passo 1: trocando as linhas</h3>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							1 & 2 & 1 & 14 \\
-							2 & 1 & 1 & 15 \\
-							3 & 1 & 2 & 20
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Operação: L2 ⇌ L1 e </p>
-						<p class="fragment">Trocar a linha 1 com a linha 2.</p>
-					</section>
-
-					<section>
-						<h3>Passo 2: Simplificando a segunda linha</h3>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							1 & 2 & 1 & 14 \\
-							0 & -3 & -1 & -13 \\
-							3 & 1 & 2 & 20
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Operação: L2 → L2 - 2 L1</p>
-						<p class="fragment">Subtrair da segunda linha 2 vezes a primeira linha.</p>
-					</section>
-
-					<section>
-						<h3>Passo 3: Simplificando a terceira linha</h3>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							1 & 2 & 1 & 14 \\
-							0 & -3 & -1 & -13 \\
-							0 & -5 & 5 & 59 
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Operação: L3 → L3 - 3 L1</p>
-						<p class="fragment">Subtrair da terceira linha 3 vezes a primeira linha.</p>
-					</section>
-
-					<section>
-						<h3>Passo 4: Simplificando mais a terceira linha</h3>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							1 & 2 & 1 & 14 \\
-							0 & -3 & -1 & -13 \\
-							0 & -20 & 0 & -6 
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Operação: L3 → L3 + 5 L2</p>
-						<p class="fragment">Somar a terceira linha 3 vezes a primeira linha.</p>
-					</section>
-
-
-					<section>
-						<h3>Passo 5: mais simplificações...</h3>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							1 & 2 & 1 & 14 \\
-							0 & 3 & 1 & 13 \\
-							0 & 1 & 0 & 3/10 
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Operação: L2 → -L2 </p>
-						<p class="fragment">Operação: L3 → L3 / -20 </p>
-					</section>
-
-					<section>
-						<h3>Passo 6: mais simplificações ainda... calma que uma hora acaba!</h3>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							1 & 2 & 1 & 14 \\
-							0 & 0 & 1 & 121/10 \\
-							0 & 1 & 0 & 3/10 
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Operação: L2 → L2 -3L3 </p>
-					</section>
-
-					<section data-transition="slide">
-						<h3>Voltando para o sistema!</h3>
-						<p>Lembra de quando transformamos o sistema em matriz? Agora faremos o inverso!</p>
-						<div class="fragment">
-							\[
-							\begin{cases}
-							1x + 2y + z = 14 \\
-							z = 121/10 \\
-							y = 3/10 
-							\end{cases}
-							\]
-						</div>
-						<p class="fragment">Onde x = café, y = energético, z = chocolate</p>
-						<p class="fragment">Agora podemos substituir os valores de trás para frente para encontrar todas as variáveis!</p>
-					</section>
-
-
-					<section>
-						<h3>Passo 6: Resolvendo o sistema</h3>
-						<p class="fragment">x = 14 - 2y -z = 14 - 6/10 - 121/10 = 13/10 = 1,3 (preço do café)</p>
-						<p class="fragment">y = 0,3 (preço do energético)</p>
-						<p class="fragment">z = 12,1 (preço do chocolate)</p>
-					</section>
-
-
-					<section>
-						<h3>Conclusão</h3>
-						<p>Parabéns! Você acaba de dominar a Eliminação Gaussiana!</p>
-						<div class="fragment">
-							<p>Agora você sabe que:</p>
-							<ul>
-								<li>Café = R$ 1,30</li>
-								<li>Energético = R$ 0,3</li>
-								<li>Chocolate = R$ 12,1</li>
-							</ul>
-						</div>
-						<p class="fragment">Com esse conhecimento, você pode otimizar seus gastos e até mesmo ajudar seus amigos a fazerem o mesmo!</p>
-						<p class="fragment">Mas esses números estão meios estranhos... energético está muito barato! Verifique se esse número atendem as equações originais.</p>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h3>Vamos praticar!</h3>
-					</section>
-					<section data-transition="slide">
-						<p>Calcule a matriz estendida de:</p>
-						<div class="fragment">
-							\[
-							\left\{\begin{array}{c}
-							x_1 + x_2 + 2x_3 = 9\\
-							2x_1 + 4x_2 - 3x_3 = 1\\
-							3x_1 + 6x_2 - 5x_3 = 0
-							\end{array}\right.
-							\]
-						</div>
-					</section>
-
-					<section data-transition="slide">
-						<p>Resolta o sistema:</p>
-						<div class="fragment">
-							\[
-							x+y+2z=9\\
-							2x+4y-3z=1\\
-							3x+6y-5z=0
-							\]
-						</div>
-						<p>Lemrando as operações possíveis:</p>
-						<ul>
-							<li>Multiplicar uma linha por uma constante não nula</li>
-							<li>Trocar duas linhas</li>
-							<li>Somar o múltiplo de uma linha com outra</li>
-						</ul>
-						<p>Preciso falar que no final é para conferir o resultado?</p>
-					</section>
-
-					<section>
-						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-						<p>
-						\[
-						\begin{pmatrix}
-						2 & 0 & 0 \\
-						3 & -4 & 0 \\
-						0 & 1 & 1
-						\end{pmatrix}
-						\]
-						</p>
-					</section>
-
-					<section>
-						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-						<p>
-						\[
-						\begin{pmatrix}
-						3 & 0 & -2 & 5 \\
-						7 & 1 & 4 & -3 \\
-						0 & -2 & 1 & 7
-						\end{pmatrix}
-						\]
-						</p>
-					</section>
-
-					<section>
-						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-						<p>
-						\[
-						\begin{pmatrix}
-						7 & 2 & 1 & -3 & 5 \\
-						1 & 2 & 4 & 0 & 1
-						\end{pmatrix}
-						\]
-						</p>
-					</section>
-
-					<section>
-						<p>Encontre um sistema de equações lineares correspondente à matriz aumentada:</p>
-						<p>
-						\[
-						\begin{pmatrix}
-						1 & 0 & 0 & 0 & 7 \\
-						0 & 1 & 0 & 0 & -2 \\
-						0 & 0 & 1 & 0 & 3 \\
-						0 & 0 & 0 & 1 & 4
-						\end{pmatrix}
-						\]
-						</p>
-					</section>
-
-					<section>
-						<p>(a) Encontre uma equação linear nas variáveis \(x\) e \(y\) que tenha a solução geral \(x = 5 + 2t\), \(y = t\).</p>
-						<p>(b) Mostre que \(x = t\), \(y = \frac{1}{2}t - \frac{5}{2}\) também é a solução geral da equação na parte (a).</p>
-					</section>
-
-					<section>
-						<p>A curva \(y = ax^2 + bx + c\) passa pelos pontos \((x_1, y_1)\), \((x_2, y_2)\), e \((x_3, y_3)\). Mostre que os coeficientes \(a\), \(b\), e \(c\) são uma solução do sistema de equações lineares cuja matriz aumentada é:</p>
-						<p>
-						\[
-						\begin{pmatrix}
-						x_1^2 & x_1 & 1 & y_1 \\
-						x_2^2 & x_2 & 1 & y_2 \\
-						x_3^2 & x_3 & 1 & y_3
-						\end{pmatrix}
-						\]
-						</p>
-					</section>
-
-					<section>
-						<p>Considere o sistema de equações:</p>
-						<p>
-						\[
-						\begin{aligned}
-						x + y + 2z &= a \\
-						x + z &= b \\
-						2x + y + 3z &= c
-						\end{aligned}
-						\]
-						</p>
-						<p>Mostre que, para este sistema ser consistente, as constantes \(a\), \(b\) e \(c\) devem satisfazer \(c = a + b\).</p>
-					</section>
-
-					<section>
-						<p>Mostre que, se as equações lineares \(x_1 + kx_2 = c\) e \(x_1 + l x_2 = d\) têm o mesmo conjunto solução, então as equações são idênticas.</p>
-					</section>
-				</section>
-
-
-				<section>
-					<section>
-						<h2>Forma de Echelon</h2>
-						<p>Transformando nossa matriz em uma obra de arte matemática!</p>
-					</section>
-
-					<section>
-						<h3>Características da Forma de Echelon</h3>
-						<ul>
-							<li class="fragment">O primeiro elemento não nulo de cada linha é 1 (chamado de pivô)</li>
-							<li class="fragment">Linhas com todos os elementos zero ficam no final da matriz</li>
-							<li class="fragment">Em cada linha subsequente, o pivô aparece mais à direita</li>
-							<li class="fragment">Abaixo e acima de cada pivô, todos os elementos são zero</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Visualizando a Forma de Echelon</h3>
-						<p>Imagine uma escada descendo da esquerda para a direita:</p>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							\color{red}{1} & 0 & 0 & * \\
-							0 & \color{red}{1} & 0 & * \\
-							0 & 0 & \color{red}{1} & * \\
-							0 & 0 & 0 & 0
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Os elementos em vermelho são os pivôs, e os * podem ser qualquer número.</p>
-					</section>
-
-					<section>
-						<h3>Exemplo: Transformando em Forma de Echelon</h3>
-						<p>Vamos transformar estas matrizes em forma de Echelon:</p>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							1 & 4 & -3 & 7 \\
-							0 & 1 & 6 & 2 \\
-							0 & 0 & 1 & 5
-							\end{bmatrix}
-							\quad
-							\begin{bmatrix}
-							1 & 1 & 0 \\
-							0 & 1 & 0 \\
-							0 & 0 & 1 
-							\end{bmatrix}
-							\quad
-							\begin{bmatrix}
-							0 & 1 & 2 & 6 & 0 \\
-							0 & 0 & 1 & -1 & 0 \\
-							0 & 0 & 0 & 0 & 1
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Elas já estão quase na forma de Echelon!</p>
-					</section>
-
-					<section>
-						<p>Vamos colocar este sistema na forma de Echelon e resolvê-lo:</p>
-						<div class="fragment">
-							\[
-							\begin{bmatrix}
-							0 & 0 & -2 & 0 & 7 & 12 \\
-							2 & 4 & -10 & 6 & 12 & 28 \\
-							2 & 4 & -5 & 6 & -5 & -1
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Parece assustador? Não se preocupe, vamos resolver passo a passo!</p>
-					</section>
-				</section>
-
-
-				<section>
-					<section>
-						<h2>Sistemas Homogêneos</h2>
-						<p>Quando zero é mais interessante do que parece!</p>
-					</section>
-
-					<section>
-						<h3>O que são Sistemas Homogêneos?</h3>
-						<p>São sistemas onde todos os termos constantes são zero:</p>
-						<div class="fragment">
-							\[
-							\begin{cases}
-							a_{1,1} x_1 + a_{1,2} x_2 + ... + a_{1,n} x_n = 0 \\
-							a_{2,1} x_1 + a_{2,2} x_2 + ... + a_{2,n} x_n = 0 \\
-							\vdots \\
-							a_{d,1} x_1 + a_{d,2} x_2 + ... + a_{d,n} x_n = 0
-							\end{cases}
-							\]
-						</div>
-						<p class="fragment">Parece simples, mas esconde muitos segredos!</p>
-					</section>
-
-					<section>
-						<h3>Soluções de Sistemas Homogêneos</h3>
-						<p>Existem duas possibilidades fascinantes:</p>
-						<ul>
-							<li class="fragment">Solução Trivial: Apenas o vetor nulo (0, 0, ..., 0)</li>
-							<li class="fragment">Sistema Indeterminado: Infinitas soluções, incluindo a trivial</li>
-						</ul>
-						<p class="fragment">Nunca teremos um sistema homogêneo impossível. Incrível, não?</p>
-					</section>
-
-					<section>
-						<h3>Sistemas Homogêneos vs. Não Homogêneos</h3>
-						<ul>
-							<li class="fragment">Sistemas Homogêneos: Sempre têm pelo menos uma solução (a trivial)</li>
-							<li class="fragment">Sistemas Não Homogêneos: Podem ser impossíveis!</li>
-						</ul>
-
-					</section>
-				</section>
-
-				<section>
-					<h3>Reflexão Final</h3>
-					<p>A Álgebra Linear é como a vida:</p>
-					<ul>
-						<li class="fragment">Cheia de incógnitas</li>
-						<li class="fragment">Às vezes, parece não ter solução</li>
-						<li class="fragment">Mas com método e perseverança, chegamos lá</li>
-						<li class="fragment">E no final, descobrimos que ficamos preocupados demais sem necessidade.</li>
-					</ul>
-				</section>
-
-			</div>
-		</div>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
-		<script>
-			Reveal.initialize({
-				plugins: [RevealMath.KaTeX],
-				width: 1200,
-				height: 720,
-				transition: 'slide',
-				slideNumber: true,
-				overview: true
-			});
-		</script>
-	</body>
+        <!-- ============================================== -->
+        <!-- SLIDE FINAL -->
+        <!-- ============================================== -->
+        <section>
+            <h2>Easter Egg: O Motor do Jogo</h2>
+            <div class="lore-section">
+                <div class="lore-label">EASTER EGG</div>
+                <p><strong>Onde a Eliminação Gaussiana é o "Motor do Jogo" no Mundo Real</strong></p>
+                <p>
+                    A mecânica que você aprendeu não serve apenas para puzzles acadêmicos. Ela é executada bilhões de vezes por segundo, todos os dias, em tecnologias que usamos sem perceber.
+                </p>
+            </div>
+            <div class="math-section">
+                <p>Exemplos de aplicação:</p>
+                <ul>
+                    <li><strong>Engenharia Estrutural:</strong> Calcular as forças em vigas de uma ponte.</li>
+                    <li><strong>Economia:</strong> Modelar o fluxo de bens entre indústrias (Modelo de Leontief).</li>
+                    <li><strong>GPS:</strong> Resolver um sistema de equações para triangular sua posição exata na Terra.</li>
+                    <li><strong>Computação Gráfica:</strong> Calcular como a luz reflete em superfícies para criar imagens realistas.</li>
+                </ul>
+            </div>
+        </section>
+      </div>
+    </div>
+    
+    <script>
+      // Inicialização do Reveal.js
+      window.onload = function () {
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          center: true,
+          hash: true,
+          plugins: [RevealMath.MathJax3],
+          width: '90%',
+          height: '100%',
+          margin: 0.02,
+          minScale: 0.45,
+          maxScale: 1.5,
+          transition: 'fade',
+        });
+      };
+    </script>
+  </body>
 </html>
