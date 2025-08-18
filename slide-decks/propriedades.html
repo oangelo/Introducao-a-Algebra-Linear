@@ -90,8 +90,20 @@
                 <p class="game-interp">Essa é a "Mecânica" principal do jogo! A definição de multiplicação foi criada para que isso funcionasse.</p>
             </section>
             <section>
-              <h2>Mecânica: Adição e Escalares</h2>
-              <div class="math-section"><p><strong>Adição:</strong> Some os elementos correspondentes.</p><p><strong>Escalar:</strong> Multiplique cada elemento.</p></div>
+              <h2>Mecânica: Adição de Grids</h2>
+              <div class="math-section">
+                <p>A adição é feita elemento a elemento. Os "Grids" devem ter o mesmo formato.</p>
+                <p>\[ \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} + \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 1+5 & 2+6 \\ 3+7 & 4+8 \end{bmatrix} = \begin{bmatrix} 6 & 8 \\ 10 & 12 \end{bmatrix} \]</p>
+              </div>
+              <p class="game-interp">É como combinar os itens de dois inventários idênticos.</p>
+            </section>
+            <section>
+              <h2>Mecânica: Multiplicação por Escalar</h2>
+              <div class="math-section">
+                <p>Um escalar (um número) amplifica ou reduz cada valor do "Grid".</p>
+                <p>\[ 3 \times \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} 3 \times 1 & 3 \times 2 \\ 3 \times 3 & 3 \times 4 \end{bmatrix} = \begin{bmatrix} 3 & 6 \\ 9 & 12 \end{bmatrix} \]</p>
+              </div>
+              <p class="game-interp">Pense nisso como um "Power-up" que triplica a força de todos os seus itens.</p>
             </section>
             <section>
               <h2>Recompensa da Quest</h2>
@@ -118,7 +130,7 @@
                 <h2>Mecânica: Matrizes Simétricas</h2>
                 <div class="math-section">
                     <p>Uma matriz quadrada é simétrica se ela é igual à sua própria transposta (\(A = A^T\)).</p>
-                    <p>\[ A = \begin{bmatrix} 1 & \textcolor{00FFFF}{7} & \textcolor{FFFF00}{-3} \\ \textcolor{00FFFF}{7} & 2 & \textcolor{FF00FF}{5} \\ \textcolor{FFFF00}{-3} & \textcolor{FF00FF}{5} & 6 \end{bmatrix} \]</p>
+                    <p>\[ A = \begin{bmatrix} 1 & \textcolor{#00FFFF}{7} & \textcolor{#FFFF00}{-3} \\ \textcolor{#00FFFF}{7} & 2 & \textcolor{#FF00FF}{5} \\ \textcolor{#FFFF00}{-3} & \textcolor{#FF00FF}{5} & 6 \end{bmatrix} \]</p>
                 </div>
                 <p class="game-interp">Possui uma "simetria de espelho" através da diagonal principal.</p>
             </section>
@@ -131,13 +143,23 @@
                 <p class="game-interp">Esses "Grids" simplificam muito a resolução de Puzzles.</p>
             </section>
             <section>
+                <h2>Mecânica: As Diagonais do Grid</h2>
+                <div class="math-section">
+                    <p><strong>Diagonal Principal:</strong> Canto superior esquerdo ao inferior direito.</p>
+                    \[ \begin{bmatrix} \textcolor{#FFFF00}{1} & 2 & 3 \\ 4 & \textcolor{#FFFF00}{5} & 6 \\ 7 & 8 & \textcolor{#FFFF00}{9} \end{bmatrix} \]
+                    <p><strong>Diagonal Secundária:</strong> Canto superior direito ao inferior esquerdo.</p>
+                    \[ \begin{bmatrix} 1 & 2 & \textcolor{#00FFFF}{3} \\ 4 & \textcolor{#00FFFF}{5} & 6 \\ \textcolor{#00FFFF}{7} & 8 & 9 \end{bmatrix} \]
+                </div>
+                <p class="game-interp">A diagonal principal é a "espinha dorsal" do Grid.</p>
+            </section>
+            <section>
               <h2>Mecânica: A Matriz Identidade (I)</h2>
-              <div class="math-section"><p>É uma matriz <strong>diagonal</strong> com 1s na diagonal.</p><p>\[ I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} \]</p></div>
+              <div class="math-section"><p>É uma matriz <strong>diagonal</strong> com 1s na diagonal principal.</p><p>\[ I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} \]</p></div>
               <p class="game-interp">É o "item lendário" que funciona como o número 1 na multiplicação.</p>
             </section>
             <section>
               <h2>Recompensa da Quest</h2>
-              <div class="math-section"><p><strong>Itens Adicionados ao Inventário:</strong></p><ul><li>Matriz Transposta \(A^T\)</li><li>Matriz Simétrica</li><li>Matrizes Triangulares</li><li>Matriz Identidade \(I\)</li></ul></div>
+              <div class="math-section"><p><strong>Itens Adicionados ao Inventário:</strong></p><ul><li>Matriz Transposta \(A^T\)</li><li>Matriz Simétrica</li><li>Matrizes Triangulares e Diagonais</li><li>Matriz Identidade \(I\)</li></ul></div>
             </section>
         </section>
 
@@ -246,7 +268,7 @@
         const a = [[1, 7], [2, 4]], b = [[3, 3], [5, 2]], c = [[38, 17], [26, 14]];
         function create(id, data, isResult) { const container = document.getElementById(id); if (!container) return; container.innerHTML = ''; container.style.gridTemplateColumns = `repeat(${data[0].length}, 1fr)`; data.forEach((row, i) => row.forEach((val, j) => { const cell = document.createElement('div'); cell.className = 'cell'; cell.textContent = val; cell.dataset.row = i; cell.dataset.col = j; if (isResult) { cell.classList.add('result-cell'); cell.onclick = () => highlight(i, j); } container.appendChild(cell); })); }
         function highlight(row, col) { document.querySelectorAll('#interactive-multiplication-2x2 .cell').forEach(c => c.classList.remove('highlight-row', 'highlight-col', 'highlight-res')); document.querySelectorAll(`#matrixA_2x2 .cell[data-row="${row}"]`).forEach(c => c.classList.add('highlight-row')); document.querySelectorAll(`#matrixB_2x2 .cell[data-col="${col}"]`).forEach(c => c.classList.add('highlight-col')); document.querySelector(`#matrixC_2x2 .cell[data-row="${row}"][data-col="${col}"]`).classList.add('highlight-res'); showCalc(row, col); }
-        function showCalc(row, col) { const display = document.getElementById('calculation-display'); if (!display) return; display.innerHTML = `<h4>Cálculo (${row+1},${col+1}):</h4><p>(\\( \\color{00FFFF}${a[row][0]} \\)×\\( \\color{FF00FF}${b[0][col]} \\)) + (\\( \\color{00FFFF}${a[row][1]} \\)×\\( \\color{FF00FF}${b[1][col]} \\))</p><p><strong>= ${c[row][col]}</strong></p>`; if (window.MathJax) { MathJax.typesetPromise([display]); } }
+        function showCalc(row, col) { const display = document.getElementById('calculation-display'); if (!display) return; display.innerHTML = `<h4>Cálculo (${row+1},${col+1}):</h4><p>(\\( \\color{#00FFFF}${a[row][0]} \\)×\\( \\color{#FF00FF}${b[0][col]} \\)) + (\\( \\color{#00FFFF}${a[row][1]} \\)×\\( \\color{#FF00FF}${b[1][col]} \\))</p><p><strong>= ${c[row][col]}</strong></p>`; if (window.MathJax) { MathJax.typesetPromise([display]); } }
         return { init: () => { create('matrixA_2x2', a); create('matrixB_2x2', b); create('matrixC_2x2', c, true); } };
       })();
 
@@ -254,7 +276,7 @@
         const a = [[1, 2], [3, 4], [5, 6]], b = [[7, 8, 9], [10, 11, 12]], c = [[27, 30, 33], [61, 68, 75], [95, 106, 117]];
         function create(id, data, isResult) { const container = document.getElementById(id); if (!container) return; container.innerHTML = ''; container.style.gridTemplateColumns = `repeat(${data[0].length}, 1fr)`; data.forEach((row, i) => row.forEach((val, j) => { const cell = document.createElement('div'); cell.className = 'cell'; cell.textContent = val; cell.dataset.row = i; cell.dataset.col = j; if (isResult) { cell.classList.add('result-cell'); cell.onclick = () => highlight(i, j); } container.appendChild(cell); })); }
         function highlight(row, col) { document.querySelectorAll('#interactive-multiplication-non-square .cell').forEach(c => c.classList.remove('highlight-row', 'highlight-col', 'highlight-res')); document.querySelectorAll(`#matrixA_3x2 .cell[data-row="${row}"]`).forEach(c => c.classList.add('highlight-row')); document.querySelectorAll(`#matrixB_2x3 .cell[data-col="${col}"]`).forEach(c => c.classList.add('highlight-col')); document.querySelector(`#matrixC_3x3 .cell[data-row="${row}"][data-col="${col}"]`).classList.add('highlight-res'); showCalc(row, col); }
-        function showCalc(row, col) { const display = document.getElementById('calculation-display-ns'); if (!display) return; display.innerHTML = `<h4>Cálculo (${row+1},${col+1}):</h4><p>(\\( \\color{00FFFF}${a[row][0]} \\)×\\( \\color{FF00FF}${b[0][col]} \\)) + (\\( \\color{00FFFF}${a[row][1]} \\)×\\( \\color{FF00FF}${b[1][col]} \\))</p><p><strong>= ${c[row][col]}</strong></p>`; if (window.MathJax) { MathJax.typesetPromise([display]); } }
+        function showCalc(row, col) { const display = document.getElementById('calculation-display-ns'); if (!display) return; display.innerHTML = `<h4>Cálculo (${row+1},${col+1}):</h4><p>(\\( \\color{#00FFFF}${a[row][0]} \\)×\\( \\color{#FF00FF}${b[0][col]} \\)) + (\\( \\color{#00FFFF}${a[row][1]} \\)×\\( \\color{#FF00FF}${b[1][col]} \\))</p><p><strong>= ${c[row][col]}</strong></p>`; if (window.MathJax) { MathJax.typesetPromise([display]); } }
         return { init: () => { create('matrixA_3x2', a); create('matrixB_2x3', b); create('matrixC_3x3', c, true); } };
       })();
 
