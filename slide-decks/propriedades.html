@@ -1,650 +1,267 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/moon.css">
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		<style>
-.reveal ul { list-style-type: none; }
-.reveal ul li::before { content: "» ";}
-.two-columns { display: flex; justify-content: space-between; }
-.two-columns > * { flex: 1; }
-		</style>
-		<title>Álgebra Linear - Propriedades de matrizes</title>
-		<style>
-.matrix-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 20px;
-}
-    .matrix {
-	    display: inline-grid;
-	    grid-template-columns: repeat(2, 1fr);
-	    gap: 5px;
-	    padding: 10px;
-	    border-radius: 5px;
-	    margin: 0 10px;
-    }
-    .cell {
-	    width: 50px;
-	    height: 50px;
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    border: 1px solid #ddd;
-	    cursor: pointer;
-    }
-    .highlight {
-	    background-color: #0505FE;
-    }
-    .calculation {
-	    margin-top: 20px;
-	    padding: 10px;
-	    border-radius: 5px;
-	    display: none;
-    }
-		</style>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Álgebra Linear: Fase 1 - Aritmética e Propriedades de Matrizes</title>
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game-theme.css" />
+    <!-- Scripts para Reveal.js e MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+      .matrix-demo-container { display: flex; justify-content: center; align-items: center; gap: 20px; font-family: 'VT323', monospace; font-size: 1.5em; margin-bottom: 20px; }
+      .matrix-grid { display: grid; border: 2px solid #00FFFF; padding: 5px; gap: 10px; }
+      .matrix-grid .cell { width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border: 1px solid #555; background-color: #222; transition: all 0.2s ease; }
+      .matrix-grid .cell.result-cell { cursor: pointer; }
+      .matrix-grid .cell.result-cell:hover { background-color: #444; border-color: #FFFF00; }
+      .matrix-grid .cell.highlight-row { background-color: #008888; border-color: #00FFFF; transform: scale(1.1); }
+      .matrix-grid .cell.highlight-col { background-color: #880088; border-color: #FF00FF; transform: scale(1.1); }
+      .matrix-grid .cell.highlight-res { background-color: #888800; border-color: #FFFF00; transform: scale(1.1); }
+      #calculation-display, #calculation-display-ns { padding: 15px; background-color: rgba(0,0,0,0.3); border-left: 5px solid #FFFF00; min-height: 80px; text-align: left; }
+      .dim-viz { font-family: 'Press Start 2P', cursive; font-size: 1.2em; letter-spacing: 2px; }
+      .dim-match { color: #ff00ff; }
+      .dim-result { color: #ffff00; }
+      .solution-box { text-align: left; font-size: 0.8em; }
+    </style>
+  </head>
 
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h2>Propriedades da Aritmética de Matrizes</h2>
-					<p>As regras do jogo matricial!</p>
-				</section>
-				<section>
-					<section>
-						<h2>Multiplicação de Matrizes</h2>
-					</section>
-					<section>
-						<h2>Multiplicação de Matrizes</h2>
-						<div class="matrix-container">
-							<div id="matrixA" class="matrix"></div>
-							<span>×</span>
-							<div id="matrixB" class="matrix"></div>
-							<span>=</span>
-							<div id="matrixC" class="matrix"></div>
-						</div>
-						<div id="calculation" class="calculation"></div>
-						<p>Selecione um elemento da matriz mais a direita (resultado) para entender como foi gerado.</p>
+  <body>
+    <div class="reveal">
+      <div class="background-grid"></div>
+      <div class="ghost"></div>
+      <div class="ghost"></div>
 
+      <div class="slides">
+        <!-- Fase 1 Intro -->
+        <section>
+          <section>
+            <h1>Fase 1: As Regras do Jogo</h1>
+            <h3>Sistemas e Matrizes</h3>
+            <p class="press-start">Pressione Enter para começar</p>
+          </section>
+          <section>
+            <h2>Lore da Fase: Dev Log</h2>
+            <div class="lore-section"><div class="lore-label">DEV LOG</div><p><strong>Desenvolvedor: Arthur Cayley (1858)</strong></p><p>O matemático Arthur Cayley foi um dos "desenvolvedores" originais que estabeleceu as regras do nosso jogo. Ele criou a "mecânica" da álgebra matricial, definindo como os "Grids de Jogo" (matrizes) interagem.</p></div>
+          </section>
+        </section>
 
-						<script>
-							document.addEventListener('DOMContentLoaded', (event) => {
-								const matrixA = [[1, 2], [3, 4]];
-								const matrixB = [[5, 6], [7, 8]];
-								const matrixC = [[19, 22], [43, 50]];
+        <!-- Quest 1: A Mecânica de Combo (Aritmética) -->
+        <section>
+            <section>
+              <h2>Quest 1: A Mecânica de Combo</h2>
+              <h3>(Aritmética de Matrizes)</h3>
+              <p>Vamos aprender as operações básicas para manipular os "Grids".</p>
+            </section>
+            <section>
+              <h2>Mecânica: Multiplicação de Grids</h2>
+              <div class="math-section"><p>O elemento \(c_{ij}\) do produto \(C = AB\) é o produto escalar da <strong>linha i</strong> de A pela <strong>coluna j</strong> de B.</p></div>
+            </section>
+            <section>
+              <h2>Regra Especial: Formatando o Resultado</h2>
+              <div class="math-section">
+                <p>A dimensão do resultado é definida pelas dimensões externas.</p>
+                <p class="dim-viz">A(<span class="dim-result">m</span> x <span class="dim-match">n</span>) * B(<span class="dim-match">n</span> x <span class="dim-result">p</span>) = C(<span class="dim-result">m</span> x <span class="dim-result">p</span>)</p>
+                <p>As dimensões internas (<span class="dim-match">n</span>) devem ser iguais para o "combo" ser possível!</p>
+              </div>
+            </section>
+            <section id="interactive-multiplication-2x2">
+              <h2>Demo 1: O Básico (2x2)</h2>
+              <div class="matrix-demo-container"><div id="matrixA_2x2" class="matrix-grid"></div><span>×</span><div id="matrixB_2x2" class="matrix-grid"></div><span>=</span><div id="matrixC_2x2" class="matrix-grid"></div></div>
+              <div id="calculation-display"><p>Clique em um elemento do resultado para ver a "Sequência de Comandos".</p></div>
+            </section>
+            <section id="interactive-multiplication-non-square">
+              <h2>Demo 2: Combos Não-Quadrados</h2>
+              <p>Grid (3x2) por (2x3) resulta em (3x3).</p>
+              <div class="matrix-demo-container"><div id="matrixA_3x2" class="matrix-grid"></div><span>×</span><div id="matrixB_2x3" class="matrix-grid"></div><span>=</span><div id="matrixC_3x3" class="matrix-grid"></div></div>
+              <div id="calculation-display-ns"><p>Clique em um elemento do resultado para ver o combo.</p></div>
+            </section>
+            <section>
+                <h2>Mecânica Aplicada: Puzzles</h2>
+                <div class="math-section">
+                    <p>Um sistema linear (Puzzle) pode ser escrito como uma multiplicação de matrizes: \(AX=B\).</p>
+                    <p>\[ \begin{cases} 2x + 3y = 7 \\ 1x - 4y = 5 \end{cases} \quad \Rightarrow \quad \begin{bmatrix} 2 & 3 \\ 1 & -4 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 7 \\ 5 \end{bmatrix} \]</p>
+                </div>
+                <p class="game-interp">Essa é a "Mecânica" principal do jogo! A definição de multiplicação foi criada para que isso funcionasse.</p>
+            </section>
+            <section>
+              <h2>Mecânica: Adição e Escalares</h2>
+              <div class="math-section"><p><strong>Adição:</strong> Some os elementos correspondentes.</p><p><strong>Escalar:</strong> Multiplique cada elemento.</p></div>
+            </section>
+            <section>
+              <h2>Recompensa da Quest</h2>
+              <div class="math-section"><p><strong>Habilidades Desbloqueadas:</strong></p><ul><li>Somar e Multiplicar Matrizes.</li><li>Prever o tamanho do Grid resultante.</li><li>Converter "Puzzles" para a forma \(AX=B\).</li></ul></div>
+            </section>
+        </section>
 
-								function createMatrix(matrixId, matrix, isResult = false) {
-									const matrixElement = document.getElementById(matrixId);
-									matrix.forEach((row, i) => {
-										row.forEach((value, j) => {
-											const cell = document.createElement('div');
-											cell.className = 'cell';
-											cell.textContent = value;
-											if (isResult) {
-												cell.onclick = () => highlightAndCalculate(i, j);
-											}
-											matrixElement.appendChild(cell);
-										});
-									});
-								}
+        <!-- Quest 2: O Catálogo de Grids (Matrizes Especiais) -->
+        <section>
+            <section>
+              <h2>Quest 2: O Catálogo de Grids</h2>
+              <h3>(Matrizes Especiais)</h3>
+              <p>Conheça os "itens" especiais do universo das matrizes.</p>
+            </section>
+            <section>
+                <h2>Mecânica: A Matriz Transposta (\(A^T\))</h2>
+                <div class="math-section">
+                    <p>A transposta de uma matriz é obtida trocando suas linhas por colunas.</p>
+                    <p>\[ A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \quad \Rightarrow \quad A^T = \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix} \]</p>
+                </div>
+                <p class="game-interp">É como girar o "Grid de Jogo" sobre sua diagonal.</p>
+            </section>
+            <section>
+                <h2>Mecânica: Matrizes Simétricas</h2>
+                <div class="math-section">
+                    <p>Uma matriz quadrada é simétrica se ela é igual à sua própria transposta (\(A = A^T\)).</p>
+                    <p>\[ A = \begin{bmatrix} 1 & \textcolor{00FFFF}{7} & \textcolor{FFFF00}{-3} \\ \textcolor{00FFFF}{7} & 2 & \textcolor{FF00FF}{5} \\ \textcolor{FFFF00}{-3} & \textcolor{FF00FF}{5} & 6 \end{bmatrix} \]</p>
+                </div>
+                <p class="game-interp">Possui uma "simetria de espelho" através da diagonal principal.</p>
+            </section>
+            <section>
+                <h2>Mecânica: Matrizes Triangulares</h2>
+                <div class="math-section">
+                    <p><strong>Superior:</strong> Zeros abaixo da diagonal. <strong>Inferior:</strong> Zeros acima da diagonal.</p>
+                    <p>\[ \text{Superior} = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 4 & 5 \\ 0 & 0 & 6 \end{bmatrix} \quad \text{Inferior} = \begin{bmatrix} 1 & 0 & 0 \\ 2 & 3 & 0 \\ 4 & 5 & 6 \end{bmatrix} \]</p>
+                </div>
+                <p class="game-interp">Esses "Grids" simplificam muito a resolução de Puzzles.</p>
+            </section>
+            <section>
+              <h2>Mecânica: A Matriz Identidade (I)</h2>
+              <div class="math-section"><p>É uma matriz <strong>diagonal</strong> com 1s na diagonal.</p><p>\[ I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} \]</p></div>
+              <p class="game-interp">É o "item lendário" que funciona como o número 1 na multiplicação.</p>
+            </section>
+            <section>
+              <h2>Recompensa da Quest</h2>
+              <div class="math-section"><p><strong>Itens Adicionados ao Inventário:</strong></p><ul><li>Matriz Transposta \(A^T\)</li><li>Matriz Simétrica</li><li>Matrizes Triangulares</li><li>Matriz Identidade \(I\)</li></ul></div>
+            </section>
+        </section>
 
-								function highlightAndCalculate(row, col) {
-									clearHighlights();
-									highlightCells(row, col);
-									showCalculation(row, col);
-								}
+        <!-- Quest 3: As Regras do Universo (Propriedades) -->
+        <section>
+            <section>
+              <h2>Quest 3: As Regras do Universo</h2>
+              <h3>(Propriedades e Glitches)</h3>
+              <p>Conheça as leis que governam a interação dos "Grids".</p>
+            </section>
+            <section>
+              <h2>Regra Especial: O "Glitch" da Ordem</h2>
+              <div class="math-section"><p>A multiplicação <strong>NÃO</strong> é comutativa: \( AB \neq BA \)</p></div>
+            </section>
+            <section>
+              <h2>Regra Especial: O Poder da Associação</h2>
+              <div class="math-section"><p>A multiplicação <strong>É</strong> associativa: \( A(BC) = (AB)C \)</p></div>
+            </section>
+            <section>
+              <h2>Regra Especial: Cancelamento Proibido!</h2>
+              <div class="math-section">
+                <p>Se \(AB = AC\), não podemos concluir que \(B=C\).</p>
+                <p>Exemplo: Se \( A = \begin{bmatrix} 1&1\\1&1 \end{bmatrix}, B = \begin{bmatrix} 1&0\\0&2 \end{bmatrix}, C = \begin{bmatrix} 0&2\\1&0 \end{bmatrix} \)</p>
+                <p>\[ AB = AC = \begin{bmatrix} 1 & 2 \\ 1 & 2 \end{bmatrix}, \text{ mas } B \neq C \]</p>
+              </div>
+            </section>
+            <section>
+                <h2>Regras Especiais: Transposta e Identidade</h2>
+                <div class="math-section">
+                    <ul>
+                        <li>Propriedade da Identidade: \( AI = IA = A \)</li>
+                        <li>\((A^T)^T = A\) (Transpor duas vezes volta ao original)</li>
+                        <li>\((A+B)^T = A^T + B^T\)</li>
+                        <li>\((AB)^T = B^T A^T\) (A ordem do combo inverte!)</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+              <h2>Recompensa da Quest</h2>
+              <div class="math-section"><p><strong>Conhecimento Adquirido:</strong></p><ul><li>Glitch #1: A ordem da multiplicação importa.</li><li>Glitch #2: Não se pode cancelar.</li><li>Regra de Ouro: A multiplicação é associativa.</li><li>Regras dos Itens Especiais (Transposta, Identidade).</li></ul></div>
+            </section>
+        </section>
 
-								function clearHighlights() {
-									document.querySelectorAll('.cell').forEach(cell => cell.classList.remove('highlight'));
-								}
+        <!-- Quest 4: Missões de Prática (Exercícios) -->
+        <section>
+            <section>
+              <h2>Quest 4: Missões de Prática</h2>
+              <p>Teste suas novas habilidades para ganhar XP!</p>
+            </section>
+            <section>
+              <h2>Desafio (Fácil)</h2>
+              <div class="problem-section">
+                <h4>🎯 Quest de Treinamento</h4>
+                <p>Dadas \( A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \) e \( B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} \), calcule \(A + B\) e \(3A\).</p>
+              </div>
+            </section>
+            <section>
+              <h2>Desafio (Médio)</h2>
+              <div class="problem-section">
+                <h4>⚔️ Missão Principal</h4>
+                <p>Calcule \(CD\), onde \( C = \begin{bmatrix} 1 & -1 & 0 \\ 2 & 0 & 3 \end{bmatrix} \) e \( D = \begin{bmatrix} 1 \\ 5 \\ -2 \end{bmatrix} \).</p>
+              </div>
+            </section>
+            <section>
+              <h2>Desafio (Avançado)</h2>
+              <div class="problem-section">
+                <h4>☠️ Desafio Avançado</h4>
+                <p>Para números, \((x+y)^2 = x^2+2xy+y^2\). Mostre que para matrizes, \((X+Y)^2 \neq X^2 + 2XY + Y^2\). Qual "glitch" causa isso?</p>
+              </div>
+            </section>
+            <section>
+                <h2>Desafio (Especialista)</h2>
+                <div class="problem-section">
+                    <h4>✨ Missão Especialista</h4>
+                    <p>Dada a matriz \( M = \begin{bmatrix} 5 & -2 \\ 1 & 0 \end{bmatrix} \). Encontre \(M^T\). A matriz \(M\) é simétrica?</p>
+                </div>
+            </section>
+            <section>
+              <h2>Detonado (Soluções)</h2>
+              <div class="solution-box">
+                <p><strong>🎯 Fácil:</strong> \( A+B = \begin{bmatrix} 6 & 8 \\ 10 & 12 \end{bmatrix} \); \( 3A = \begin{bmatrix} 3 & 6 \\ 9 & 12 \end{bmatrix} \)</p><hr/>
+                <p><strong>⚔️ Médio:</strong> \( CD = \begin{bmatrix} -4 \\ -4 \end{bmatrix} \)</p><hr/>
+                <p><strong>☠️ Avançado:</strong> \((X+Y)^2 = X^2+XY+YX+Y^2\). O "glitch" é a <strong>não-comutatividade</strong> (\(XY \neq YX\)).</p><hr/>
+                <p><strong>✨ Especialista:</strong> \( M^T = \begin{bmatrix} 5 & 1 \\ -2 & 0 \end{bmatrix} \). Não é simétrica, pois \(M \neq M^T\).</p>
+              </div>
+            </section>
+        </section>
 
-								function highlightCells(row, col) {
-									const cellsA = document.querySelectorAll('#matrixA .cell');
-									const cellsB = document.querySelectorAll('#matrixB .cell');
-									const cellsC = document.querySelectorAll('#matrixC .cell');
+        <!-- Easter Egg -->
+        <section>
+            <h2>Easter Egg: Aplicações</h2>
+            <div class="lore-section"><div class="lore-label">EASTER EGG</div><p>Em computação gráfica 3D, cada movimento (rotação, translação) é uma matriz. A ordem das matrizes é crucial. O "Glitch" \(AB \neq BA\) é uma lei fundamental dos universos 3D.</p></div>
+        </section>
+      </div>
+    </div>
+    
+    <script>
+      Reveal.initialize({
+        controls: true, progress: true, center: true, hash: true,
+        plugins: [RevealMath.MathJax3],
+        width: '90%', height: '100%', margin: 0.02,
+        minScale: 0.45, maxScale: 1.5, transition: 'fade',
+      });
+      
+      const matrixDemo2x2 = (function() {
+        const a = [[1, 7], [2, 4]], b = [[3, 3], [5, 2]], c = [[38, 17], [26, 14]];
+        function create(id, data, isResult) { const container = document.getElementById(id); if (!container) return; container.innerHTML = ''; container.style.gridTemplateColumns = `repeat(${data[0].length}, 1fr)`; data.forEach((row, i) => row.forEach((val, j) => { const cell = document.createElement('div'); cell.className = 'cell'; cell.textContent = val; cell.dataset.row = i; cell.dataset.col = j; if (isResult) { cell.classList.add('result-cell'); cell.onclick = () => highlight(i, j); } container.appendChild(cell); })); }
+        function highlight(row, col) { document.querySelectorAll('#interactive-multiplication-2x2 .cell').forEach(c => c.classList.remove('highlight-row', 'highlight-col', 'highlight-res')); document.querySelectorAll(`#matrixA_2x2 .cell[data-row="${row}"]`).forEach(c => c.classList.add('highlight-row')); document.querySelectorAll(`#matrixB_2x2 .cell[data-col="${col}"]`).forEach(c => c.classList.add('highlight-col')); document.querySelector(`#matrixC_2x2 .cell[data-row="${row}"][data-col="${col}"]`).classList.add('highlight-res'); showCalc(row, col); }
+        function showCalc(row, col) { const display = document.getElementById('calculation-display'); if (!display) return; display.innerHTML = `<h4>Cálculo (${row+1},${col+1}):</h4><p>(\\( \\color{00FFFF}${a[row][0]} \\)×\\( \\color{FF00FF}${b[0][col]} \\)) + (\\( \\color{00FFFF}${a[row][1]} \\)×\\( \\color{FF00FF}${b[1][col]} \\))</p><p><strong>= ${c[row][col]}</strong></p>`; if (window.MathJax) { MathJax.typesetPromise([display]); } }
+        return { init: () => { create('matrixA_2x2', a); create('matrixB_2x2', b); create('matrixC_2x2', c, true); } };
+      })();
 
-									cellsA[row * 2].classList.add('highlight');
-									cellsA[row * 2 + 1].classList.add('highlight');
-									cellsB[col].classList.add('highlight');
-									cellsB[col + 2].classList.add('highlight');
-									cellsC[row * 2 + col].classList.add('highlight');
-								}
+      const matrixDemo3x2 = (function() {
+        const a = [[1, 2], [3, 4], [5, 6]], b = [[7, 8, 9], [10, 11, 12]], c = [[27, 30, 33], [61, 68, 75], [95, 106, 117]];
+        function create(id, data, isResult) { const container = document.getElementById(id); if (!container) return; container.innerHTML = ''; container.style.gridTemplateColumns = `repeat(${data[0].length}, 1fr)`; data.forEach((row, i) => row.forEach((val, j) => { const cell = document.createElement('div'); cell.className = 'cell'; cell.textContent = val; cell.dataset.row = i; cell.dataset.col = j; if (isResult) { cell.classList.add('result-cell'); cell.onclick = () => highlight(i, j); } container.appendChild(cell); })); }
+        function highlight(row, col) { document.querySelectorAll('#interactive-multiplication-non-square .cell').forEach(c => c.classList.remove('highlight-row', 'highlight-col', 'highlight-res')); document.querySelectorAll(`#matrixA_3x2 .cell[data-row="${row}"]`).forEach(c => c.classList.add('highlight-row')); document.querySelectorAll(`#matrixB_2x3 .cell[data-col="${col}"]`).forEach(c => c.classList.add('highlight-col')); document.querySelector(`#matrixC_3x3 .cell[data-row="${row}"][data-col="${col}"]`).classList.add('highlight-res'); showCalc(row, col); }
+        function showCalc(row, col) { const display = document.getElementById('calculation-display-ns'); if (!display) return; display.innerHTML = `<h4>Cálculo (${row+1},${col+1}):</h4><p>(\\( \\color{00FFFF}${a[row][0]} \\)×\\( \\color{FF00FF}${b[0][col]} \\)) + (\\( \\color{00FFFF}${a[row][1]} \\)×\\( \\color{FF00FF}${b[1][col]} \\))</p><p><strong>= ${c[row][col]}</strong></p>`; if (window.MathJax) { MathJax.typesetPromise([display]); } }
+        return { init: () => { create('matrixA_3x2', a); create('matrixB_2x3', b); create('matrixC_3x3', c, true); } };
+      })();
 
-								function showCalculation(row, col) {
-									const calc = document.getElementById('calculation');
-									calc.style.display = 'block';
-									calc.innerHTML = `
-	  <p>Cálculo para o elemento (${row + 1}, ${col + 1}):</p>
-	  <p>(${matrixA[row][0]} × ${matrixB[0][col]}) + (${matrixA[row][1]} × ${matrixB[1][col]}) =</p>
-	  <p><strong>${matrixA[row][0] * matrixB[0][col]} + ${matrixA[row][1] * matrixB[1][col]} = ${matrixC[row][col]}</strong></p>
-	`;
-								}
-
-								createMatrix('matrixA', matrixA);
-								createMatrix('matrixB', matrixB);
-								createMatrix('matrixC', matrixC, true);
-							});
-						</script>
-					</section>
-
-					<section>
-						<h2>Multiplicação de Matrizes 3x2 por 2x3</h2>
-						<div class="matrix-container-3x2">
-							<div id="matrixA_3x2" class="matrix matrix-3x2"></div>
-							<span>×</span>
-							<div id="matrixB_2x3" class="matrix matrix-2x3"></div>
-							<span>=</span>
-							<div id="matrixC_3x3" class="matrix matrix-3x3"></div>
-						</div>
-						<div id="calculation_3x2_2x3" class="calculation"></div>
-
-						<style>
-.matrix-container-3x2 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 20px;
-}
-    .matrix-3x2 { grid-template-columns: repeat(2, 1fr); }
-    .matrix-2x3 { grid-template-columns: repeat(3, 1fr); }
-    .matrix-3x3 { grid-template-columns: repeat(3, 1fr); }
-    .cell-3x2 {
-	    width: 75px;
-	    height: 50px;
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    border: 1px solid #ddd;
-	    cursor: pointer;
-    }
-    .highlight-3x2 { background-color: #0505FE;}
-						</style>
-
-						<script>
-							document.addEventListener('DOMContentLoaded', (event) => {
-								const matrixA_3x2 = [[1, 2], [3, 4], [5, 6]];
-								const matrixB_2x3 = [[7, 8, 9], [10, 11, 12]];
-								const matrixC_3x3 = [
-									[27, 30, 33],
-									[61, 68, 75],
-									[95, 106, 117]
-								];
-
-								function createMatrix_3x2(matrixId, matrix, isResult = false) {
-									const matrixElement = document.getElementById(matrixId);
-									matrix.forEach((row, i) => {
-										row.forEach((value, j) => {
-											const cell = document.createElement('div');
-											cell.className = 'cell-3x2';
-											cell.textContent = value;
-											if (isResult) {
-												cell.onclick = () => highlightAndCalculate_3x2(i, j);
-											}
-											matrixElement.appendChild(cell);
-										});
-									});
-								}
-
-								function highlightAndCalculate_3x2(row, col) {
-									clearHighlights_3x2();
-									highlightCells_3x2(row, col);
-									showCalculation_3x2(row, col);
-								}
-
-								function clearHighlights_3x2() {
-									document.querySelectorAll('.cell-3x2').forEach(cell => cell.classList.remove('highlight-3x2'));
-								}
-
-								function highlightCells_3x2(row, col) {
-									const cellsA = document.querySelectorAll('#matrixA_3x2 .cell-3x2');
-									const cellsB = document.querySelectorAll('#matrixB_2x3 .cell-3x2');
-									const cellsC = document.querySelectorAll('#matrixC_3x3 .cell-3x2');
-
-									// Highlight row in A
-									cellsA[row * 2].classList.add('highlight-3x2');
-									cellsA[row * 2 + 1].classList.add('highlight-3x2');
-
-									// Highlight column in B
-									cellsB[col].classList.add('highlight-3x2');
-									cellsB[col + 3].classList.add('highlight-3x2');
-
-									// Highlight result cell in C
-									cellsC[row * 3 + col].classList.add('highlight-3x2');
-								}
-
-								function showCalculation_3x2(row, col) {
-									const calc = document.getElementById('calculation_3x2_2x3');
-									calc.style.display = 'block';
-									calc.innerHTML = `
-	  <p>Cálculo para o elemento (${row + 1}, ${col + 1}):</p>
-	  <p>(${matrixA_3x2[row][0]} × ${matrixB_2x3[0][col]}) + (${matrixA_3x2[row][1]} × ${matrixB_2x3[1][col]}) =</p>
-	  <p><strong>${matrixA_3x2[row][0] * matrixB_2x3[0][col]} + ${matrixA_3x2[row][1] * matrixB_2x3[1][col]} = ${matrixC_3x3[row][col]}</strong></p>
-	`;
-								}
-
-								createMatrix_3x2('matrixA_3x2', matrixA_3x2);
-								createMatrix_3x2('matrixB_2x3', matrixB_2x3);
-								createMatrix_3x2('matrixC_3x3', matrixC_3x3, true);
-							});
-						</script>
-					</section>
-
-					<section>
-						<h2>Sistema Linear como Multiplicação de Matrizes</h2>
-						<div class="system-container">
-							<div id="equation-system" class="equation-system"></div>
-							<span>=</span>
-							<div id="matrix-form" class="matrix-form">
-								<div id="coefficient-matrix" class="matrix matrix-3x3"></div>
-								<div id="variable-vector" class="matrix matrix-3x1"></div>
-								<span>=</span>
-								<div id="constant-vector" class="matrix matrix-3x1"></div>
-							</div>
-						</div>
-						<p class="instruction">Clique em uma equação para ver os detalhes da multiplicação correspondente.</p>
-
-						<style>
-.system-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 20px;
-	flex-wrap: wrap;
-}
-    .equation-system {
-	    font-size: 1.2em;
-	    margin-right: 20px;
-	    text-align: left;
-    }
-    .matrix-form {
-	    display: flex;
-	    align-items: center;
-    }
-    .matrix-3x3 { grid-template-columns: repeat(3, 1fr); }
-    .matrix-3x1 { grid-template-columns: repeat(1, 1fr); }
-    .cell-system {
-	    width: 40px;
-	    height: 40px;
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    border: 1px solid #ddd;
-    }
-    .equation {
-	    cursor: pointer;
-	    padding: 5px;
-	    border-radius: 5px;
-    }
-    .equation:hover {
-	    background-color: #e6e6e6;
-    }
-    .instruction {
-	    margin-top: 20px;
-	    font-style: italic;
-    }
-						</style>
-
-						<script>
-							document.addEventListener('DOMContentLoaded', (event) => {
-								const coefficientMatrix = [
-									[2, -1, 1],
-									[1, 2, -1],
-									[-1, 1, 2]
-								];
-								const constantVector = [8, 10, 3];
-								const variables = ['x', 'y', 'z'];
-
-								function createMatrix(matrixId, matrix, isVector = false) {
-									const matrixElement = document.getElementById(matrixId);
-									matrix.forEach((row, i) => {
-										row.forEach((value, j) => {
-											const cell = document.createElement('div');
-											cell.className = 'cell-system';
-											cell.textContent = isVector ? variables[i] : value;
-											cell.dataset.row = i;
-											cell.dataset.col = j;
-											matrixElement.appendChild(cell);
-										});
-									});
-								}
-
-								function createEquationSystem() {
-									const systemElement = document.getElementById('equation-system');
-									coefficientMatrix.forEach((row, i) => {
-										const equation = document.createElement('div');
-										equation.className = 'equation';
-										equation.textContent = `${row[0]}x ${row[1] >= 0 ? '+' : ''} ${row[1]}y ${row[2] >= 0 ? '+' : ''} ${row[2]}z = ${constantVector[i]}`;
-										equation.onclick = () => highlightMultiplication(i);
-										systemElement.appendChild(equation);
-									});
-								}
-
-								function highlightMultiplication(row) {
-									clearHighlights();
-
-									// Highlight the equation
-									document.querySelectorAll('.equation')[row].classList.add('highlight');
-
-									// Highlight the corresponding row in the coefficient matrix
-									document.querySelectorAll(`#coefficient-matrix .cell-system[data-row="${row}"]`)
-										.forEach(cell => cell.classList.add('highlight'));
-
-									// Highlight the entire variable vector
-									document.querySelectorAll('#variable-vector .cell-system')
-										.forEach(cell => cell.classList.add('highlight'));
-
-									// Highlight the corresponding element in the constant vector
-									document.querySelector(`#constant-vector .cell-system[data-row="${row}"]`)
-										.classList.add('highlight');
-
-									// Store the selected row in localStorage for the next slide
-									localStorage.setItem('selectedEquation', row);
-								}
-
-								function clearHighlights() {
-									document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
-								}
-
-								createEquationSystem();
-								createMatrix('coefficient-matrix', coefficientMatrix);
-								createMatrix('variable-vector', [['x'], ['y'], ['z']], true);
-								createMatrix('constant-vector', constantVector.map(v => [v]));
-							});
-						</script>
-					</section>
-
-					<section>
-						<h2>Explicação da Multiplicação de Matrizes</h2>
-						<div id="explanation" class="explanation">
-							<p>O sistema de equações lineares pode ser representado como uma multiplicação de matrizes:</p>
-							<p><strong>AX = B</strong></p>
-							<p>Onde:</p>
-							<ul>
-								<li><strong>A</strong> é a matriz de coeficientes</li>
-								<li><strong>X</strong> é o vetor de variáveis (x, y, z)</li>
-								<li><strong>B</strong> é o vetor de constantes</li>
-							</ul>
-						</div>
-					</section>
-
-				</section>
-
-
-
-				<section>
-					<section>
-						<h3>Propriedades Fundamentais</h3>
-					</section>
-					<section>
-						<h3>Propriedades Fundamentais 1/2</h3>
-						<ul>
-							<li class="fragment">$A + B = B + A$ (Comutatividade da adição)</li>
-							<li class="fragment">$A + (B + C) = (A + B) + C$ (Associatividade da adição)</li>
-							<li class="fragment">$(AB)C = A(BC)$ (Associatividade da multiplicação)</li>
-							<li class="fragment">$A(B + C) = AB + AC$ (Distributividade à esquerda)</li>
-							<li class="fragment">$(B + C)A = BA + CA$ (Distributividade à direita)</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Propriedades Fundamentais 2/2</h3>
-						<ul>
-							<li class="fragment">$A(B - C) = AB - AC$</li>
-							<li class="fragment">$(B - C)A = BA - CA$</li>
-							<li class="fragment">$a(B + C) = aB + aC$ (a é um escalar)</li>
-							<li class="fragment">$a(B - C) = aB - aC$</li>
-							<li class="fragment">$(a+b)C = aC + bC$</li>
-							<li class="fragment">$(a-b)C = aC - bC$</li>
-							<li class="fragment">$(ab)C = a(bC)$</li>
-							<li class="fragment">$a(BC) = (aB)C = B(aC)$</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2>A Lei do Cancelamento Não Vale</h2>
-						<h3>Um Exemplo Intrigante</h3>
-						<p>Considere estas matrizes:</p>
-						<div class="fragment">
-							\[
-							A = \begin{bmatrix}
-							0 & 1 \\
-							0 & 2
-							\end{bmatrix},
-							B = \begin{bmatrix}
-							1 & 1 \\
-							3 & 4 
-							\end{bmatrix},
-							C = \begin{bmatrix}
-							2 & 5 \\
-							3 & 4 
-							\end{bmatrix},
-							D = \begin{bmatrix}
-							3 & 7 \\
-							0 & 0 
-							\end{bmatrix}
-							\]
-						</div>
-					</section>
-
-					<section>
-						<h3>Calculando AB, AC e AD</h3>
-						<div class="fragment">
-							\[
-							AB = \begin{bmatrix}
-							3 & 4 \\
-							6 & 8
-							\end{bmatrix}
-							\]
-						</div>
-						<div class="fragment">
-							\[
-							AC = \begin{bmatrix}
-							3 & 4 \\
-							6 & 8
-							\end{bmatrix}
-							\]
-						</div>
-						<div class="fragment">
-							\[
-							AD = \begin{bmatrix}
-							0 & 0 \\
-							0 & 0
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Observe que AB = AC, mas B ≠ C. A lei do cancelamento não se aplica!</p>
-					</section>
-
-					<section>
-						<h3>Propriedades da Matriz Zero</h3>
-						<ul>
-							<li class="fragment">A + 0 = A (Elemento neutro da adição)</li>
-							<li class="fragment">A · 0 = 0 · A = 0 (Absorção na multiplicação)</li>
-							<li class="fragment">0A = A0 = 0 (Multiplicação por zero)</li>
-						</ul>
-						<p class="fragment">A matriz zero é como o coringa das matrizes!</p>
-					</section>
-
-
-					<section>
-						<h2>Matriz Identidade</h2>
-						<h3>O que é a Matriz Identidade?</h3>
-						<p>É uma matriz quadrada com 1's na diagonal principal e 0's em todas as outras posições.</p>
-						<div class="fragment">
-							\[
-							I_3 = \begin{bmatrix}
-							1 & 0 & 0 \\
-							0 & 1 & 0 \\
-							0 & 0 & 1 
-							\end{bmatrix}
-							\]
-						</div>
-						<p class="fragment">Uma matriz identidade n x n é representada por I<sub>n</sub>.</p>
-					</section>
-
-					<section>
-						<h3>Propriedades da Matriz Identidade</h3>
-						<p>Para uma matriz A<sub>m×n</sub>:</p>
-						<div class="fragment">
-							\[
-							AI_n = A \text{ e } I_mA = A
-							\]
-						</div>
-						<p class="fragment">A matriz identidade é como o número 1 na multiplicação de números reais!</p>
-					</section>
-
-					<section>
-						<h3>Teorema Interessante</h3>
-						<p>Se uma matriz R<sub>n×n</sub> está na forma de Echelon, então:</p>
-						<ul>
-							<li class="fragment">Ou ela é uma matriz identidade</li>
-							<li class="fragment">Ou ela tem uma linha de zeros</li>
-						</ul>
-						<p class="fragment">Desafio: Tente demonstrar este teorema!</p>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Matrizes Especiais</h2>
-					</section>
-					<section>
-						<h2>Tipos de Matrizes Especiais</h2>
-						<ul>
-							<li>Matrizes Diagonais</li>
-							<li>Matrizes Triangulares</li>
-							<li>Matrizes Simétricas</li>
-						</ul>
-						<p>Cada uma dessas matrizes tem propriedades únicas e fascinantes!</p>
-					</section>
-
-					<section>
-						<h3>Matrizes Diagonais</h3>
-						<ul>
-							<li>Só têm elementos não-nulos na diagonal principal</li>
-							<li>Todos os outros elementos são zero</li>
-						</ul>
-						<div class="matrix-container">
-							\[
-							\begin{bmatrix}
-							a & 0 & 0 \\
-							0 & b & 0 \\
-							0 & 0 & c
-							\end{bmatrix}
-							\]
-						</div>
-						<p>Onde \(a\), \(b\), \(c\) são números reais não-nulos</p>
-					</section>
-
-					<section>
-						<h3>Propriedades das Matrizes Diagonais</h3>
-						<ul>
-							<li>Fáceis de multiplicar: multiplique os elementos diagonais correspondentes</li>
-							<li>A inversa de uma matriz diagonal é outra matriz diagonal</li>
-							<li>Determinante: produto dos elementos da diagonal</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Matrizes Triangulares</h3>
-						<h4>Dois tipos principais:</h4>
-						<ul>
-							<li>Triangular Superior: todos os elementos abaixo da diagonal principal são zero</li>
-							<li>Triangular Inferior: todos os elementos acima da diagonal principal são zero</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Exemplos de Matrizes Triangulares</h3>
-						<div class="matrix-container">
-							Triangular Superior:
-							\[
-							\begin{bmatrix}
-							a & b & c \\
-							0 & d & e \\
-							0 & 0 & f
-							\end{bmatrix}
-							\]
-						</div>
-						<div class="matrix-container">
-							Triangular Inferior:
-							\[
-							\begin{bmatrix}
-							g & 0 & 0 \\
-							h & i & 0 \\
-							j & k & l
-							\end{bmatrix}
-							\]
-						</div>
-						<p>Onde as letras representam números reais não-nulos</p>
-					</section>
-
-					<section>
-						<h3>Propriedades das Matrizes Triangulares</h3>
-						<ul>
-							<li>O produto de duas matrizes triangulares superiores (ou inferiores) é triangular superior (ou inferior)</li>
-							<li>Determinante: produto dos elementos da diagonal principal</li>
-							<li>Sistemas de equações com matrizes triangulares são fáceis de resolver por substituição</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Matrizes Simétricas</h3>
-						<ul>
-							<li>\(A^T = A\), onde \(A^T\) é a transposta de \(A\)</li>
-							<li>Os elementos são simétricos em relação à diagonal principal</li>
-						</ul>
-						<div class="matrix-container">
-							\[
-							\begin{bmatrix}
-							a & b & c \\
-							b & d & e \\
-							c & e & f
-							\end{bmatrix}
-							\]
-						</div>
-						<p>Onde \(a\), \(b\), \(c\), \(d\), \(e\), \(f\) são números reais</p>
-					</section>
-
-
-				</section>
-
-
-				<section>
-					<h3>Propriedades Fundamentais</h3>
-					<div style="font-size: 0.8em;">
-						<ul>
-							<li class="fragment">Adição: A + B = B + A (Comutativa)</li>
-							<li class="fragment">Multiplicação: (AB)C = A(BC) (Associativa)</li>
-							<li class="fragment">Distributiva: A(B + C) = AB + AC</li>
-							<li class="fragment">Matriz Zero: A + 0 = A, A · 0 = 0</li>
-							<li class="fragment">Matriz Identidade: AI = IA = A</li>
-						</ul>
-					</div>
-				</section>
-
-			</div>
-		</div>
-
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script src="reveal.js"></script>
-		<script src="plugin/math/math.js"></script>
-
-		<script>
-			Reveal.initialize({
-				width: 1200,
-				height: 720,
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
-			});
-		</script>
-
-	</body>
+      Reveal.on('slidechanged', event => {
+        if (event.currentSlide.id === 'interactive-multiplication-2x2') { matrixDemo2x2.init(); }
+        if (event.currentSlide.id === 'interactive-multiplication-non-square') { matrixDemo3x2.init(); }
+      });
+    </script>
+  </body>
 </html>
