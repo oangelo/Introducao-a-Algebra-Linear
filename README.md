@@ -1,4 +1,4 @@
-![Introdução à Álgebra Linear: Pronto Jogador 1?](img/title_rpo.svg)
+![Introdução à Álgebra Linear: Pronto Jogador 1?](img/title.svg)
 
 Bem-vindo, Jogador! Você está prestes a iniciar uma jornada pelo universo da Álgebra Linear. Este é um mundo vasto, cheio de desafios, segredos e ferramentas poderosas. Sua missão, caso decida aceitar, é dominar suas regras, coletar seus artefatos e provar sua maestria. Que comecem os jogos!
 
