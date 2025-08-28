@@ -3,101 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercícios: propriedades determinantes</title>
-    <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        h1, h2, h3 {
-            color: #0a0;
-            font-family: 'Source Code Pro', monospace;
-        }
-        .exercise {
-            background-color: rgba(0, 20, 0, 0.05);
-            border-left: 4px solid #0a0;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 0 5px 5px 0;
-        }
-        .solution {
-            background-color: rgba(40, 0, 40, 0.05);
-            border-left: 4px solid #909;
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 0 5px 5px 0;
-            display: none;
-        }
-        button {
-            background-color: #0a0;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Source Code Pro', monospace;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #080;
-        }
-        .matrix {
-            font-family: 'Source Code Pro', monospace;
-            margin: 15px 0;
-        }
-        code {
-            font-family: 'Source Code Pro', monospace;
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-    </style>
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Propriedades dos Determinantes</title>
 </head>
 <body>
-    <h1>Exercícios: propriedades determinantes</h1>
-    <p>Lista de exercícios para o tópico "propriedades determinantes" do Capítulo 2: A Assinatura Digital: Determinantes.</p>
-    
-    <div class="exercise">
-        <h3>Exercício 1</h3>
-        <p>Enunciado do exercício 1...</p>
-        <button onclick="toggleSolution('sol1')">Mostrar/Ocultar Solução</button>
-        <div id="sol1" class="solution">
-            <p>Solução do exercício 1...</p>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 2.3: As Regras Secretas</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Propriedades dos Determinantes</h3>
+        <p>Parabéns, jogador! Você dominou os cálculos. Agora é hora de aprender os "cheat codes" da Álgebra Linear. Em vez de calcular determinantes pela força bruta, usaremos suas propriedades para deduzir respostas de forma inteligente e rápida. Conhecer essas regras é o que diferencia um novato de um pro-gamer.</p>
+        <p>As regras secretas mais importantes no seu grimório são:</p>
+        <ul>
+            <li>\(\det(AB) = \det(A)\det(B)\) &mdash; O combo de efeitos é o produto dos efeitos.</li>
+            <li>\(\det(A^T) = \det(A)\) &mdash; Transpor a engine não muda sua essência.</li>
+            <li>\(\det(A^{-1}) = 1/\det(A)\) &mdash; O efeito "desfazer" é o inverso do efeito original.</li>
+            <li>\(\det(kA) = k^n \det(A)\) &mdash; Escalar o mundo por \(k\) muda o volume por \(k^n\).</li>
+            <li>\(\det(A) = 0\) &mdash; Se a matriz tem um "glitch" (é singular), seu poder de transformação colapsa.</li>
+        </ul>
+        <div class="formula">
+        $$ \text{Use a lógica, não a força!} $$
         </div>
     </div>
-    
-    <div class="exercise">
-        <h3>Exercício 2</h3>
-        <p>Enunciado do exercício 2...</p>
-        <button onclick="toggleSolution('sol2')">Mostrar/Ocultar Solução</button>
-        <div id="sol2" class="solution">
-            <p>Solução do exercício 2...</p>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1 (BÁSICO) -->
+        <div class="mission">
+            <h3>Combo de Power-Ups (Propriedade Multiplicativa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a propriedade multiplicativa para encontrar o efeito combinado de duas transformações sem calcular a matriz produto.
+            </div>
+            <p>Seu personagem ativa um power-up de "Crescimento", cuja matriz de transformação \(A\) tem \(\det(A)=2\). Logo em seguida, ele pisa em uma armadilha de "Compressão", com matriz \(B\) e \(\det(B)=0.5\). Qual o fator de mudança de volume total, dado por \(\det(BA)\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você não precisa saber como são as matrizes \(A\) e \(B\). A propriedade do determinante de um produto é a chave aqui.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se da propriedade multiplicativa dos determinantes: \(\det(BA) = \det(B) \cdot \det(A)\).</li>
+                    <li>Substitua os valores conhecidos na fórmula.</li>
+                    <li>Calcule o produto para encontrar o fator de escala final.</li>
+                </ol>
+                <div class="formula">$$ \det(BA) = \det(B) \cdot \det(A) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Motores de jogo aplicam múltiplas transformações em sequência (translação, rotação, escala). A propriedade multiplicativa permite calcular o efeito líquido de forma eficiente, sem precisar combinar todas as matrizes primeiro.</p>
+            </details>
         </div>
-    </div>
-    
-    <div class="exercise">
-        <h3>Exercício 3</h3>
-        <p>Enunciado do exercício 3...</p>
-        <button onclick="toggleSolution('sol3')">Mostrar/Ocultar Solução</button>
-        <div id="sol3" class="solution">
-            <p>Solução do exercício 3...</p>
+
+        <!-- MISSÃO 2 (BÁSICO) -->
+        <div class="mission">
+            <h3>Upgrade Inútil (Determinante Nulo e Singularidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a informação de que uma matriz não é invertível para concluir imediatamente que seu determinante é zero.
+            </div>
+            <p>Um ferreiro oferece um upgrade para sua espada. No entanto, o item está "bugado": a nota de desenvolvimento diz que a matriz de transformação de dano \(C\) associada a ele "não é invertível". O que isso significa para o valor de \(\det(C)\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Existe uma relação direta entre a invertibilidade de uma matriz e o valor de seu determinante. Se uma matriz não pode ser invertida, ela causa um tipo de "colapso".</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se do teorema fundamental que conecta invertibilidade e determinantes.</li>
+                    <li>Uma matriz \(A\) é invertível se, e somente se, \(\det(A) \neq 0\).</li>
+                    <li>Como a matriz \(C\) não é invertível, seu determinante deve ser necessariamente zero.</li>
+                </ol>
+                <div class="formula">$$ \text{C não é invertível} \iff \det(C) = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma transformação não-invertível significa que informação é perdida. Um upgrade com \(\det(C)=0\) poderia, por exemplo, zerar todos os tipos de dano de uma arma, tornando-a inútil – uma transformação que não pode ser "desfeita".</p>
+            </details>
         </div>
-    </div>
-    
-    <script>
-        function toggleSolution(id) {
-            var solution = document.getElementById(id);
-            if (solution.style.display === "block") {
-                solution.style.display = "none";
-            } else {
-                solution.style.display = "block";
-            }
-        }
-    </script>
+
+        <!-- MISSÃO 3 (BÁSICO) -->
+        <div class="mission">
+            <h3>Renderização de Normais (Propriedade da Transposta)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar que a transposição de uma matriz não altera seu determinante.
+            </div>
+            <p>Em uma engine gráfica, a matriz \(A\) é usada para transformar os vértices de um modelo 3D. Para que a iluminação funcione corretamente, a mesma engine usa a matriz transposta, \(A^T\), para transformar os vetores normais. Se \(\det(A) = 3\), qual é o valor de \(\det(A^T)\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Qual é a regra que relaciona o determinante de uma matriz com o de sua transposta?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se da propriedade da transposta: o determinante de uma matriz é igual ao determinante de sua transposta.</li>
+                    <li>Aplique esta propriedade diretamente: \(\det(A^T) = \det(A)\).</li>
+                    <li>Como \(\det(A) = 3\), então \(\det(A^T)\) também deve ser 3.</li>
+                </ol>
+                <div class="formula">$$ \det(A^T) = \det(A) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta propriedade garante que a transformação aplicada à geometria de um objeto e a transformação aplicada à sua iluminação têm o mesmo "fator de distorção de volume/área", mantendo a consistência visual da cena renderizada.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>O Feitiço "Desfazer" (Propriedade da Inversa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o determinante da transformação inversa, dado o determinante da transformação original.
+            </div>
+            <p>Um mago lança um feitiço de "Gigantismo" em um golem. A matriz de transformação \(A\) do feitiço tem \(\det(A)=8\), o que significa que o volume do golem se torna 8 vezes maior. Para retorná-lo ao normal, você precisa lançar o feitiço "Encolher", cuja transformação é a inversa, \(A^{-1}\). Qual é o valor de \(\det(A^{-1})\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Se \(\det(A)\) multiplica o volume, \(\det(A^{-1})\) deve fazer a operação oposta. Como isso se expressa matematicamente?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se da propriedade do determinante da matriz inversa: \(\det(A^{-1}) = 1 / \det(A)\).</li>
+                    <li>Isso decorre de \(A A^{-1} = I\), aplicando determinantes em ambos os lados: \(\det(A)\det(A^{-1}) = \det(I) = 1\).</li>
+                    <li>Substitua o valor dado: \(\det(A^{-1}) = 1 / 8\).</li>
+                </ol>
+                <div class="formula">$$ \det(A^{-1}) = \frac{1}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Cada ação em um jogo (mover, pular, usar item) pode ser vista como uma transformação. A capacidade de "desfazer" uma ação (como voltar no tempo ou usar um antídoto) é representada pela matriz inversa.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 5 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Glitch no Mapa do Nível (Determinante Nulo por Linhas Proporcionais)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar que uma matriz tem linhas/colunas proporcionais e concluir que seu determinante é zero sem cálculo.
+            </div>
+            <p>A matriz \(B\) representa os vetores de deslocamento para três portais de teletransporte em um nível. Um programador novato cometeu um erro: o vetor para o portal 3 é exatamente o dobro do vetor para o portal 1. Sem fazer nenhum cálculo, qual o valor de \(\det(B)\)?
+            $$ B = \begin{pmatrix} 1 & 5 & -2 \\ 0 & 3 & 3 \\ 2 & 10 & -4 \end{pmatrix} $$</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe a primeira e a terceira linha. O que uma linha ser um múltiplo de outra significa em termos de dependência linear?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique que a Linha 3 é um múltiplo da Linha 1: \(L_3 = 2 \cdot L_1\).</li>
+                    <li>Uma das propriedades dos determinantes afirma que se uma linha (ou coluna) de uma matriz é um múltiplo de outra, suas linhas são linearmente dependentes.</li>
+                    <li>Matrizes com linhas ou colunas linearmente dependentes são singulares (não-invertíveis).</li>
+                    <li>Portanto, o determinante da matriz é obrigatoriamente zero.</li>
+                </ol>
+                <div class="formula">$$ L_j = k \cdot L_i \implies \det(B) = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em um sistema de navegação de I.A., se dois destinos são colineares a partir da origem, o sistema perde uma "dimensão" de escolha. Isso pode causar glitches onde os NPCs não conseguem decidir entre dois caminhos, ficando presos em um loop.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 6 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Combo de Efeitos Especiais (Combinação de Propriedades)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular `det(2AB)` dadas as matrizes `A` (2x2) e `B` (2x2) e seus determinantes, sem calcular o produto `2AB`.
+            </div>
+            <p>Um efeito de shader (matriz \(A\), 2x2, com \(\det(A)=3\)) é combinado com um efeito de lente de câmera (matriz \(B\), 2x2, com \(\det(B)=-1\)). Além disso, a intensidade geral da cena é dobrada, o que corresponde a multiplicar a matriz de transformação final por 2. Qual é o valor de \(\det(2AB)\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você precisará combinar duas propriedades: a do produto e a da multiplicação por escalar. Lembre-se que a dimensão da matriz (\(n\)) é importante na regra do escalar!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Aplique a propriedade da multiplicação por escalar: \(\det(2AB) = 2^n \det(AB)\), onde \(n\) é a ordem das matrizes.</li>
+                    <li>Neste caso, as matrizes são 2x2, então \(n=2\). A expressão se torna \(2^2 \det(AB) = 4 \det(AB)\).</li>
+                    <li>Agora, aplique a propriedade do produto: \(4 \det(AB) = 4 \cdot \det(A) \cdot \det(B)\).</li>
+                    <li>Substitua os valores dados: \(4 \cdot (3) \cdot (-1)\).</li>
+                </ol>
+                <div class="formula">$$ \det(k \cdot M) = k^n \det(M) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Pipelines de renderização gráfica são exatamente isso: uma longa cadeia de multiplicações de matrizes e escalares. Entender essas propriedades permite que os desenvolvedores prevejam o resultado final sem simular cada passo, otimizando a performance.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 7 (AVANÇADO) -->
+        <div class="mission">
+            <h3>Pipeline de Shaders Complexo (Combinação Avançada)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular `det(2A⁻¹B^T)` dado que `A` e `B` são matrizes 3x3 com determinantes conhecidos.
+            </div>
+            <p>Um pipeline de renderização complexo aplica os seguintes efeitos em um objeto 3D: primeiro, uma transformação de textura (matriz \(B\)), depois desfaz uma rotação de câmera anterior (matriz \(A^{-1}\)) e, finalmente, duplica a intensidade da luz (escalar 2). Sabendo que \(A\) e \(B\) são matrizes 3x3, com \(\det(A)=4\) e \(\det(B)=5\), calcule o determinante da transformação total, \(\det(2A^{-1}B^T)\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Desmembre o problema usando as propriedades uma de cada vez. Comece com o escalar, depois o produto, depois a inversa e a transposta. A ordem da matriz (\(n=3\)) é crucial.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a propriedade do escalar: \(\det(2A^{-1}B^T) = 2^3 \det(A^{-1}B^T)\).</li>
+                    <li>Use a propriedade do produto: \(8 \cdot \det(A^{-1}) \cdot \det(B^T)\).</li>
+                    <li>Use a propriedade da inversa: \(8 \cdot (1/\det(A)) \cdot \det(B^T)\).</li>
+                    <li>Use a propriedade da transposta: \(8 \cdot (1/\det(A)) \cdot \det(B)\).</li>
+                    <li>Substitua os valores conhecidos: \(8 \cdot (1/4) \cdot 5\).</li>
+                </ol>
+                <div class="formula">$$ \det(k A^{-1} B^T) = k^n \cdot \frac{1}{\det(A)} \cdot \det(B) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este tipo de cálculo é a base do funcionamento dos shaders programáveis modernos, onde artistas e programadores podem construir pipelines de efeitos visuais complexos combinando transformações matemáticas em tempo real.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 8 (AVANÇADO) -->
+        <div class="mission">
+            <h3>O Efeito Aniquilador (Matrizes Nilpotentes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar as propriedades para provar que se `A²=0`, então `det(A)=0`.
+            </div>
+            <p>Em um jogo, um artefato mágico possui um efeito tão poderoso que, se for ativado duas vezes seguidas, ele aniquila o alvo, transformando-o em nada. Matematicamente, a matriz de transformação \(A\) do artefato tem a propriedade \(A^2 = \mathbf{0}\) (a matriz nula). Prove que tal transformação deve ser singular, ou seja, \(\det(A)=0\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Aplique a função determinante em ambos os lados da equação \(A^2 = \mathbf{0}\). Use a propriedade do produto no lado esquerdo.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a equação dada: \(A^2 = \mathbf{0}\).</li>
+                    <li>Aplique o determinante em ambos os lados: \(\det(A^2) = \det(\mathbf{0})\).</li>
+                    <li>O determinante da matriz nula é sempre 0, então \(\det(A^2) = 0\).</li>
+                    <li>Use a propriedade do produto no lado esquerdo: \(\det(A^2) = \det(A \cdot A) = \det(A) \cdot \det(A) = (\det(A))^2\).</li>
+                    <li>Juntando tudo, temos \((\det(A))^2 = 0\). A única solução para esta equação é \(\det(A) = 0\).</li>
+                </ol>
+                <div class="formula">$$ A^k = \mathbf{0} \implies \det(A) = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma transformação com este tipo de propriedade (nilpotente) representa um colapso fundamental do espaço. É o equivalente matemático de um feitiço de "desintegração" ou um buraco negro que comprime dimensões até o nada.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 9 (AVANÇADO) -->
+        <div class="mission">
+            <h3>O Vórtice Instável (Matrizes Anti-simétricas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Mostrar que o determinante de uma matriz anti-simétrica de ordem ímpar (3x3) é sempre zero.
+            </div>
+            <p>A matriz de um feitiço de "Vórtice" é anti-simétrica, o que significa que \(A^T = -A\). Prove que, para qualquer matriz \(A\) 3x3 com essa propriedade, o determinante é sempre zero. Isso explica por que o vórtice sempre tem um "olho" calmo no centro (uma singularidade).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Comece com \(\det(A^T) = \det(-A)\). Use as propriedades da transposta e da multiplicação por escalar para criar uma equação envolvendo apenas \(\det(A)\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a propriedade da transposta: \(\det(A) = \det(A^T)\).</li>
+                    <li>Substitua a propriedade anti-simétrica: \(\det(A) = \det(-A)\).</li>
+                    <li>Use a propriedade da multiplicação por escalar: \(\det(-A) = \det((-1)A) = (-1)^n \det(A)\), onde \(n\) é a ordem da matriz.</li>
+                    <li>Como a matriz é 3x3, \(n=3\) (ímpar), então \((-1)^3 = -1\). A equação se torna \(\det(A) = -\det(A)\).</li>
+                    <li>A única maneira de um número ser igual ao seu oposto é se ele for zero. Portanto, \(2\det(A)=0\), o que implica \(\det(A)=0\).</li>
+                </ol>
+                <div class="formula">$$ A^T = -A, n \text{ ímpar} \implies \det(A) = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Matrizes anti-simétricas em 3D estão relacionadas a rotações e vetores de rotação (produto vetorial). O fato de seu determinante ser zero em dimensões ímpares está ligado a teoremas que garantem a existência de um eixo de rotação fixo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 10 (BOSS) -->
+        <div class="mission">
+            <h3>Mudança de Perspectiva da Câmera (Determinante de Matrizes Similares)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que `det(P⁻¹AP) = det(A)` (invariância do determinante sob mudança de base).
+            </div>
+            <p>Em um jogo 3D, uma animação é definida por uma matriz de transformação \(A\). O jogador pode mudar a câmera, o que corresponde a uma mudança de base (matriz \(P\)). A transformação da animação no novo sistema de coordenadas é \(B = P^{-1}AP\). Prove que o fator de distorção de volume da animação, \(\det(B)\), é o mesmo que o original, \(\det(A)\), não importando a perspectiva da câmera.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a expressão \(B = P^{-1}AP\) e aplique o determinante em ambos os lados: \(\det(B) = \det(P^{-1}AP)\).</li>
+                    <li>Use a propriedade multiplicativa para separar os termos: \(\det(P^{-1}) \cdot \det(A) \cdot \det(P)\).</li>
+                    <li>Use a propriedade da inversa: \((1/\det(P)) \cdot \det(A) \cdot \det(P)\).</li>
+                    <li>Como a multiplicação de escalares é comutativa, reorganize os termos: \((\det(P)/\det(P)) \cdot \det(A)\).</li>
+                    <li>O termo \(\det(P)/\det(P)\) se cancela e se torna 1, deixando \(\det(B) = \det(A)\).</li>
+                </ol>
+                <div class="formula">$$ \det(P^{-1}AP) = \det(A) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é uma propriedade matemática fundamental. Ela significa que certas propriedades de uma transformação (como o quanto ela expande/contrai o espaço) são intrínsecas a ela e não dependem do "ponto de vista" (sistema de coordenadas) a partir do qual você a observa. Isso garante que a física e os efeitos do jogo sejam consistentes, independentemente da posição da câmera.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 11 (BOSS) -->
+        <div class="mission">
+            <h3>A Física da Rotação Pura (Matrizes Ortogonais)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que se uma matriz `Q` é ortogonal (`Q^T Q = I`), então `det(Q)` só pode ser 1 ou -1.
+            </div>
+            <p>Motores de física de jogos usam matrizes ortogonais para representar rotações puras de corpos rígidos, pois elas preservam distâncias e ângulos. Uma matriz \(Q\) é ortogonal se \(Q^T Q = I\). Prove, usando as propriedades dos determinantes, que qualquer transformação de rotação pura só pode ter um determinante igual a 1 ou -1, significando que ela nunca altera o volume do objeto.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a definição de matriz ortogonal: \(Q^T Q = I\).</li>
+                    <li>Aplique o determinante em ambos os lados da equação: \(\det(Q^T Q) = \det(I)\).</li>
+                    <li>O determinante da matriz identidade é 1. Portanto, \(\det(Q^T Q) = 1\).</li>
+                    <li>Use a propriedade do produto: \(\det(Q^T) \cdot \det(Q) = 1\).</li>
+                    <li>Use a propriedade da transposta: \(\det(Q) \cdot \det(Q) = 1\), ou seja, \((\det(Q))^2 = 1\).</li>
+                    <li>A única solução para \(x^2 = 1\) é \(x = 1\) ou \(x = -1\). Portanto, \(\det(Q) = \pm 1\).</li>
+                </ol>
+                <div class="formula">$$ Q^T Q = I \implies (\det(Q))^2 = 1 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este resultado é a base matemática da física de corpos rígidos. Ele garante que quando um objeto simplesmente gira, seu volume não muda. Um \(\det(Q)=1\) representa uma rotação própria (como girar uma chave de fenda), enquanto \(\det(Q)=-1\) representa uma rotação imprópria (uma rotação seguida por uma reflexão, como olhar no espelho).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 12 (BOSS) -->
+        <div class="mission">
+            <h3>A Singularidade Anti-Comutativa (Propriedades Abstratas com Produtos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que se `A` e `B` são matrizes `n x n` (com `n` ímpar) tais que `AB = -BA`, então `A` ou `B` deve ser singular.
+            </div>
+            <p>Em um jogo de ficção científica, dois campos de força, representados por matrizes \(A\) e \(B\) de ordem 3x3, interagem de forma que ativar um e depois o outro é o oposto de ativá-los na ordem inversa (\(AB = -BA\)). Prove que, sob esta regra, é impossível que ambos os campos de força sejam totalmente estáveis. Pelo menos um deles deve ter um ponto de colapso (ser singular).</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a equação dada: \(AB = -BA\).</li>
+                    <li>Aplique o determinante em ambos os lados: \(\det(AB) = \det(-BA)\).</li>
+                    <li>Use a propriedade do produto em ambos os lados: \(\det(A)\det(B) = \det(-I \cdot B \cdot A) = \det(-I)\det(B)\det(A)\).</li>
+                    <li>Calcule \(\det(-I)\). Como a matriz é \(n \times n\), \(\det(-I) = (-1)^n\).</li>
+                    <li>Como \(n=3\) (ímpar), \((-1)^3 = -1\). A equação se torna \(\det(A)\det(B) = -\det(B)\det(A)\).</li>
+                    <li>Mova todos os termos para um lado: \(2\det(A)\det(B) = 0\).</li>
+                    <li>Esta equação implica que o produto \(\det(A)\det(B)\) deve ser zero. Portanto, ou \(\det(A)=0\), ou \(\det(B)=0\) (ou ambos).</li>
+                </ol>
+                <div class="formula">$$ \det(A)\det(B) = -\det(A)\det(B) \implies 2\det(A)\det(B)=0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é um exemplo profundo de como regras de interação aparentemente simples podem ter consequências inevitáveis. A regra "anti-comutativa" impõe uma restrição fundamental ao universo do jogo: não se pode ter dois campos de força totalmente estáveis e invertíveis que obedeçam a esta lei em um espaço 3D.</p>
+            </details>
+        </div>
+    </main>
 </body>
 </html>
