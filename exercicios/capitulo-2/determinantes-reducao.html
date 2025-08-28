@@ -1,290 +1,405 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include MathJax -->
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      }
-    };
-    </script>
-    <title>ZION_TEC | Determinantes por Redução por Linhas</title>
-    <style>
-        /* Estilo inspirado no tema Matrix */
-        @keyframes blink {0%,49%{opacity:1;}50%,100%{opacity:0;}}
-        @keyframes matrix-code {0%{background-position:0% 0%;}100%{background-position:0% 100%;}}
-        @font-face {font-family:'Matrix Code';src:url('https://fonts.googleapis.com/css2?family=VT323&display=swap');}
-        body{background:#000;color:#33ff33;font-family:'Courier New',monospace;margin:auto;padding:20px;border:2px solid #33ff33;max-width:800px;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');animation:matrix-code 120s linear infinite;box-shadow:0 0 10px rgba(51,255,51,.5);position:relative;}
-        body::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,10,0,.1)50%,rgba(0,0,0,.1)50%);background-size:100% 4px;pointer-events:none;z-index:999;}
-        h1,h2,h3{color:#33ff33;text-shadow:0 0 5px rgba(51,255,51,.7);}
-        .exercise{background:rgba(0,20,0,.7);padding:15px;border:1px solid #33ff33;margin-bottom:20px;box-shadow:inset 0 0 5px rgba(51,255,51,.5);} 
-        details{background:rgba(0,10,0,.8);padding:10px;border:1px solid #33ff33;margin-top:10px;}
-        summary{font-weight:bold;cursor:pointer;color:#33ff33;}summary:hover{text-shadow:0 0 5px #33ff33;}
-        .hint{background:rgba(0,20,0,.7);border-left:4px solid #33ff33;padding:10px;margin:10px 0;font-style:italic;}
-        .hint:before{content:"DICA DO ORÁCULO: ";color:#33ff33;font-weight:bold;font-style:normal;}
-        .solution-steps{margin-left:20px;counter-reset:step-counter;}
-        .solution-steps li{list-style:none;counter-increment:step-counter;margin-bottom:10px;}
-        .solution-steps li::before{content:"> EXECUÇÃO_" counter(step-counter) ": ";color:#33ff33;font-weight:bold;}
-        .formula{display:block;margin:15px 0;padding:10px;background:#001500;border-left:4px solid #33ff33;box-shadow:0 0 5px rgba(51,255,51,.5);}
-        .terminal-frame{padding:10px;background:#000500;margin-bottom:20px;border:1px solid #33ff33;color:#33ff33;box-shadow:0 0 8px rgba(51,255,51,.5);} 
-        .terminal-header{margin:0;padding:3px 10px;background:#003300;color:#33ff33;font-weight:bold;text-align:center;letter-spacing:1px;margin-bottom:10px;border:1px solid #33ff33;}
-        .terminal-content{padding:5px;white-space:pre-wrap;font-size:1em;line-height:1.2;}
-        .cursor:after{content:"_";animation:blink 1s step-end infinite;}
-        .terminal-border{border:1px solid #33ff33;padding:5px;background:#001000;margin-bottom:20px;box-shadow:0 0 5px rgba(51,255,51,.5);}
-        .mission-counter{counter-reset:mission;}
-        .mission-counter .exercise h3:before{content:"PROGRAMA " counter(mission) ": ";counter-increment:mission;}
-        .footer{text-align:center;margin-top:30px;font-size:.9em;color:#33ff33;border-top:1px solid #33ff33;padding-top:10px;}
-        a{color:#33ff33;text-decoration:none;border-bottom:1px dashed #33ff33;}a:hover{text-shadow:0 0 5px #33ff33;border-bottom:1px solid #33ff33;}
-    </style>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Determinantes por Redução por Linhas</title>
 </head>
 <body>
-    <div class="terminal-frame">
-        <div class="terminal-header">TERMINAL ZION_TEC</div>
-        <div class="terminal-content">
-┌───────────────────────────────────────────────────┐
-│ MÓDULO: DETERMINANTES – REDUÇÃO POR LINHAS       │
-└───────────────────────────────────────────────────┘
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 2.2: Simplificando o Código</h2>
+    </header>
 
-> INICIANDO CONEXÃO...
-> BUSCANDO ENTRADA SEGURA NA MATRIX...
-> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
-        </div>
-    </div>
-
-    <div class="terminal-border">
-        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: DETERMINANTE POR REDUÇÃO POR LINHAS</h2>
-
-        <p>Operador, neste módulo aprenderemos a desvendar o <em>código de autenticação</em> de uma matriz&nbsp;$A$ calculando seu determinante via <strong>operações elementares (OE)</strong> de linha. Ao simplificar gradualmente a matriz até uma configuração triangular&nbsp;— enquanto rastreamos cada <em>hack</em> feito no construto&nbsp;— revelamos a verdadeira assinatura digital&nbsp;$\det(A)$.</p>
-
-        <p>Por que isso importa em Zion? Porque entender como as OEs afetam o determinante permite que transitemos entre diferentes representações de uma mesma realidade <strong>sem perder informação vital</strong>. Cada troca de linha, multiplicação por escalar ou combinação linear carrega um preço, e dominá‑lo é dominar a própria Matrix.</p>
-
-        <p>As regras de influência das OEs sobre o determinante são:</p>
+    <div class="mission-intro">
+        <h3>Manual da Fase: Determinantes por Redução por Linhas</h3>
+        <p>Jogador, bem-vindo à sala de otimização da engine! A expansão em cofatores é poderosa, mas lenta. Para um desempenho de elite, os programadores usam um "cheat code" muito mais rápido: a redução por linhas. A estratégia é simplificar uma matriz complexa até sua forma triangular, onde o determinante é apenas o produto da diagonal.</p>
+        <p>Para isso, usamos as <strong>Operações Elementares (OE)</strong>, mas com uma condição: devemos registrar o efeito de cada uma no placar do determinante!</p>
         <ul>
-            <li><strong>OE‑T1</strong>: Trocar duas linhas muda o sinal de $\det(A)$.</li>
-            <li><strong>OE‑T2</strong>: Multiplicar uma linha por $k \neq 0$ multiplica $\det(A)$ por $k$.</li>
-            <li><strong>OE‑T3</strong>: Somar a uma linha um múltiplo de outra <em>não</em> altera $\det(A)$.</li>
+            <li><strong>OE-T1 (Troca de Linhas):</strong> Trocar duas linhas ↔ Inverte o sinal do determinante. (\(\det \to -\det\))</li>
+            <li><strong>OE-T2 (Multiplicação por Escalar):</strong> Multiplicar uma linha por \(k \neq 0\) ↔ Multiplica o determinante por \(k\). (\(\det \to k \cdot \det\))</li>
+            <li><strong>OE-T3 (Soma de Linhas):</strong> Somar um múltiplo de uma linha a outra ↔ **Não altera** o determinante. (O "movimento grátis"!)</li>
         </ul>
-
-        <p>Aplicaremos essas táticas em <strong>12 programas</strong> de dificuldade crescente, do básico ao nível “agente”.</p>
-
-        <div class="mission-counter">
-            <!-- ================== PROGRAMAS 1–3 (BÁSICO) ================== -->
-            <div class="exercise">
-                <h3>Reconhecimento de Assinatura 2×2</h3>
-                <p>Considere a matriz
-                    <div class="formula">$$A = \begin{pmatrix} 3 & 1 \\ 4 & 2 \end{pmatrix}. $$</div>
-                    Use OEs para reduzi‑la a uma forma triangular superior e deduzir $\det(A)$.
-                </p>
-                <div class="hint"><p>Subtraia um múltiplo da primeira linha da segunda antes de expandir.</p></div>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>OE‑T3: $L_2 \leftarrow L_2 - \tfrac43 L_1 \;\Rightarrow\; A' = \begin{pmatrix} 3 & 1 \\ 0 & \tfrac23 \end{pmatrix}$.</li>
-                        <li>Produto da diagonal: $3 \cdot \tfrac23 = 2$.</li>
-                    </ol>
-                    <div class="formula">$$\boxed{\det(A)=2}. $$</div>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Padrões simples ocultam chaves mestras.</p>
-                </details>
-            </div>
-
-            <div class="exercise">
-                <h3>Identificação de Anomalia 3×3</h3>
-                <p>Dada a matriz
-                    <div class="formula">$$B = \begin{pmatrix} 1 & -2 & 3 \\ 2 & 0 & 1 \\ 4 & -4 & 9 \end{pmatrix}, $$</div>
-                    determine $\det(B)$ por OEs.
-                </p>
-                <div class="hint"><p>Neutralize a primeira coluna com OE‑T3 antes de triangularizar.</p></div>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>$L_2 \leftarrow L_2 - 2L_1$ ; $L_3 \leftarrow L_3 - 4L_1$.</li>
-                        <li>Matriz triangular superior resultante possui diagonal $(1,4,2)$.</li>
-                        <li>$\det(B)=1\times4\times2 = 8$. Sinais permanecem pois nenhuma OE‑T1 executada.</li>
-                    </ol>
-                    <div class="formula">$$\boxed{\det(B)=8}. $$</div>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Camadas supostamente complicadas cedem a subtrações estratégicas.</p>
-                </details>
-            </div>
-
-            <div class="exercise">
-                <h3>Sinal de Overwrite 3×3</h3>
-                <p>Mostre que a troca de $L_1$ com $L_3$ em
-                    <div class="formula">$$C = \begin{pmatrix} 0 & 1 & 2 \\ 3 & 4 & 5 \\ 6 & 7 & 8 \end{pmatrix} $$</div>
-                    altera apenas o sinal de $\det(C)$. Em seguida, calcule seu valor.
-                </p>
-                <div class="hint"><p>Trocar linhas primeiro e depois aplicar OE‑T3 é mais rápido.</p></div>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>OE‑T1: Troca $L_1 \leftrightarrow L_3$ torna $C'$ com diagonal fácil de zerar.</li>
-                        <li>Reduza $C'$ a forma triangular; produto da diagonal $= -3$. Então $\det(C')=-3$.</li>
-                        <li>Como uma troca de linhas foi feita: $\det(C)= -\det(C') = 3$.</li>
-                    </ol>
-                    <div class="formula">$$\boxed{\det(C)=3}. $$</div>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Cada troca é uma inversão de polaridade — o universo revira mas a essência permanece.</p>
-                </details>
-            </div>
-
-            <!-- ================== PROGRAMAS 4–6 (INTERMEDIÁRIO) ================== -->
-            <div class="exercise">
-                <h3>Mapa de Resiliência 4×4</h3>
-                <p>Calcule $\det(D)$ onde
-                    <div class="formula">$$D = \begin{pmatrix} 1 & 0 & 2 & -1 \\ 0 & 1 & -3 & 4 \\ 2 & 0 & 5 & -2 \\ -1 & 1 & -4 & 7 \end{pmatrix}. $$</div>
-                </p>
-                <div class="hint"><p>Use a identidade como âncora: elimine a coluna 1 abaixo da diagonal.</p></div>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>$L_3 \leftarrow L_3 - 2L_1$, $L_4 \leftarrow L_4 + L_1$.</li>
-                        <li>$L_4 \leftarrow L_4 - L_2$ para anular entrada (4,2).</li>
-                        <li>Diagonal final $(1,1,11,3)$; logo $\det(D)=33$.</li>
-                    </ol>
-                    <div class="formula">$$\boxed{\det(D)=33}. $$</div>
-                    <p><strong>Reflexão sobre a Matrix:</strong> A identidade serve de farol em mares caóticos.</p>
-                </details>
-            </div>
-
-            <div class="exercise">
-                <h3>Checksum de Zion 4×4</h3>
-                <p>Mostre que $\det(E)=0$ para
-                    <div class="formula">$$E = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \\ -1 & -2 & -3 & -4 \\ 0 & 1 & 1 & 0 \end{pmatrix}. $$</div>
-                </p>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>Observação inicial: $L_2 = 2L_1$ e $L_3 = -L_1$.</li>
-                        <li>Três linhas colineares $\Rightarrow$ matriz é singular.</li>
-                        <li>Portanto $\det(E)=0$ sem cálculos adicionais.</li>
-                    </ol>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Redundância excessiva gera vulnerabilidade total.</p>
-                </details>
-            </div>
-
-            <div class="exercise">
-                <h3>Filtragem de Ruído 5×5</h3>
-                <p>Encontre $\det(F)$ para a matriz tridiagonal
-                    <div class="formula">$$F = \begin{pmatrix}
-1 & -1 & 0 & 0 & 0\\
--1 & 2 & -1 & 0 & 0\\
-0 & -1 & 2 & -1 & 0\\
-0 & 0 & -1 & 2 & -1\\
-0 & 0 & 0 & -1 & 2
-\end{pmatrix}. $$</div>
-                </p>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>Aplicar OE‑T3 descendente para zerar subdiagonal inferior produz diagonal $(1,1,\tfrac32,\tfrac43,\tfrac54)$.</li>
-                        <li>Multiplicação: $\det(F)=\tfrac{5}{4}\cdot\tfrac{4}{3}\cdot\tfrac{3}{2}\cdot1\cdot1 = 5$.</li>
-                    </ol>
-                    <div class="formula">$$\boxed{\det(F)=5}. $$</div>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Estruturas locais propagam‑se globalmente; um ruído controlado molda todo o canal.</p>
-                </details>
-            </div>
-
-            <!-- ================== PROGRAMAS 7–9 (AVANÇADO) ================== -->
-<div class="exercise">
-    <h3>Espelho de Zion 6×6</h3>
-    <p>Considere a matriz de permutação
-        <div class="formula">$$
-        P=\begin{pmatrix}
-            0&0&0&0&0&1\\
-            0&0&0&0&1&0\\
-            0&0&0&1&0&0\\
-            0&0&1&0&0&0\\
-            0&1&0&0&0&0\\
-            1&0&0&0&0&0
-        \end{pmatrix}.
-        $$</div>
-        Essa matriz inverte a ordem das linhas da identidade $\,I_6$. Determine $\det(P)$ usando <strong>operações elementares (OE)</strong> ou a contagem de inversões da permutação.
-    </p>
-
-    <div class="hint">
-        <p>Quantas trocas de linhas (OE-T1) são necessárias para transformar $\,I_6\,$ em $P$?</p>
-    </div>
-
-    <details>
-        <summary>ACESSO NÍVEL: OPERADOR</summary>
-        <ol class="solution-steps">
-            <li>A permutação reversa contém $\binom{6}{2}=15$ inversões.</li>
-            <li>Cada OE-T1 troca o sinal do determinante; logo $\det(P)=(-1)^{15}=-1$.</li>
-        </ol>
-        <p><strong>Reflexão sobre a Matrix:</strong> Inverter a sequência altera a polaridade, mas conserva a energia — lembrando que ordem e caos são faces do mesmo código.</p>
-    </details>
-</div>
-
-            <div class="exercise">
-                <h3>Criptografia de Blocos 5×5</h3>
-                <p>Considere $G = \begin{pmatrix} I_2 & 0 \\ M & I_3 \end{pmatrix}$, onde $I_k$ é identidade e $M$ qualquer matriz 3×2. Use OEs para mostrar que $\det(G)=1$ sem computar determinante diretamente.</p>
-                <div class="hint"><p>Elimine bloco $M$ pela combinação de linhas.</p></div>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>OE‑T3: Para cada linha de $M$, subtraia combinação de linhas superiores para zerar o bloco.</li>
-                        <li>Matriz torna‑se identidade 5×5, determinante 1.</li>
-                    </ol>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Blocos extras podem ser anulados sem alterar a essência.</p>
-                </details>
-            </div>
-
-            <div class="exercise">
-                <h3>Verificação de Integridade n×n</h3>
-                <p>Mostre que a matriz triangular superior com diagonal principal $(d_1,\ldots,d_n)$ possui determinante $\prod_{i=1}^{n} d_i$ aplicando apenas OEs conceituais.</p>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>Nenhuma OE necessária: produto da diagonal é resiliente a OE‑T3.</li>
-                        <li>Qualquer tentativa de torná‑la identidade exigiria OE‑T2 ajustando por $d_i$ — acumulando o produto.</li>
-                    </ol>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Triângulos guardam o segredo no próprio horizonte.</p>
-                </details>
-            </div>
-
-            <!-- ================== PROGRAMAS 10–12 (DESAFIADOR) ================== -->
-            <div class="exercise">
-                <h3>Alvo Fantasma 7×7</h3>
-                <p>Determine $\det(H)$ para $H = I_7 + uv^T$, onde $u,v \in \mathbb{R}^7$ com $v^T u = -1$.</p>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>Aplicar <em>teorema de Sherman–Morrison</em>: $\det(I+uv^T)=1+v^Tu$.</li>
-                        <li>Como $v^Tu=-1$, segue $\det(H)=0$.</li>
-                    </ol>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Uma perturbação perfeitamente oposta anula todo o sistema — hack supremo.</p>
-                </details>
-            </div>
-
-            <div class="exercise">
-                <h3>Nó Quântico n×n</h3>
-                <p>Para $J_n$ matriz toda de uns ($j_{ij}=1$), prove que $\det(J_n)=0$ para $n>1$ aplicando OEs.</p>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>OE‑T3: $L_i \leftarrow L_i-L_1$ para $i=2,\dots,n$ cria linhas nulas exceto coluna 1.</li>
-                        <li>Determinante de matriz com coluna repetida é 0.</li>
-                    </ol>
-                    <p><strong>Reflexão sobre a Matrix:</strong> Uniformidade excessiva destrói toda singularidade.</p>
-                </details>
-            </div>
-
-            <div class="exercise">
-                <h3>Protocolo Omega n×n</h3>
-                <p>Seja $P$ matriz ortogonal com $\det(P)=-1$. Demonstre que quaisquer OEs que convertem $P$ em $I_n$ requerem número ímpar de OE‑T1.</p>
-                <details><summary>ACESSO NÍVEL: OPERADOR</summary>
-                    <ol class="solution-steps">
-                        <li>OE‑T2 altera magnitude; OE‑T3 mantém determinante; apenas OE‑T1 muda sinal.</li>
-                        <li>Para passar de $\det(P)=-1$ até $\det(I)=1$ é necessário multiplicar por $-1$, implicando número ímpar de inversões de sinal (OE‑T1).</li>
-                    </ol>
-                    <p><strong>Reflexão sobre the Matrix:</strong> Mesmo operações legítimas precisam respeitar leis de paridade profunda.</p>
-                </details>
-            </div>
+        <div class="formula">
+        $$ \det(A_{\text{triangular}}) = \text{produto dos elementos da diagonal} $$
         </div>
     </div>
 
-    <div class="footer">
-        ZION_TEC | Determinantes por Redução por Linhas: “O <em>código</em> só é inquebrável até você compreender cada OE.”
-    </div>
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1 (BÁSICO) -->
+        <div class="mission">
+            <h3>Otimização de Sprite 2x2 (Aplicação da OE-T3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a operação elementar que não altera o determinante para criar um zero e simplificar o cálculo.
+            </div>
+            <p>Para otimizar o cálculo do fator de escala de um sprite, sua matriz de transformação \(A\) precisa ser triangularizada. Use a operação de soma de linhas (OE-T3) para transformar \(A\) em uma matriz triangular superior e, em seguida, calcule seu determinante.
+            $$ A = \begin{pmatrix} 2 & 5 \\ 4 & 1 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Qual múltiplo da primeira linha você deve subtrair da segunda para zerar o elemento \(a_{21}\)? Lembre-se, esta operação não muda o valor do determinante.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>O objetivo é zerar o elemento \(a_{21}=4\). Para isso, use o pivô \(a_{11}=2\).</li>
+                    <li>Aplique a operação elementar \(L_2 \leftarrow L_2 - 2 \cdot L_1\).</li>
+                    <li>Calcule a nova segunda linha: \((4, 1) - 2 \cdot (2, 5) = (4-4, 1-10) = (0, -9)\).</li>
+                    <li>A nova matriz triangular \(A'\) é \(\begin{pmatrix} 2 & 5 \\ 0 & -9 \end{pmatrix}\). Como usamos apenas OE-T3, \(\det(A) = \det(A')\).</li>
+                    <li>Calcule o determinante da matriz triangular multiplicando os elementos da diagonal.</li>
+                </ol>
+                <div class="formula">$$ \det(A) = \det(A') = a'_{11} \cdot a'_{22} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Triangularizar matrizes é um passo comum em algoritmos de otimização. É como pré-calcular partes de uma animação para que o jogo não precise fazer todo o trabalho pesado em tempo real.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2 (BÁSICO) -->
+        <div class="mission">
+            <h3>Triangulando o Polígono (Redução Sistemática 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o processo completo de triangularização em uma matriz 3x3, usando o pivô da primeira linha para zerar a primeira coluna.
+            </div>
+            <p>A matriz \(B\) representa os vértices de um polígono em um modelo 3D. Simplifique o cálculo do seu volume (relacionado ao determinante) reduzindo \(B\) à sua forma triangular.
+            $$ B = \begin{pmatrix} 1 & -1 & 2 \\ 2 & 1 & 0 \\ 3 & 0 & 4 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Execute o processo em duas etapas: primeiro, use a linha 1 para zerar os elementos abaixo de \(b_{11}\). Depois, use a nova linha 2 para zerar o elemento abaixo de \(b_{22}\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro passo: zerar a primeira coluna abaixo do pivô. Aplique \(L_2 \leftarrow L_2 - 2L_1\) e \(L_3 \leftarrow L_3 - 3L_1\).</li>
+                    <li>Após o passo 1, a matriz terá a forma \(\begin{pmatrix} 1 & -1 & 2 \\ 0 & \dots & \dots \\ 0 & \dots & \dots \end{pmatrix}\).</li>
+                    <li>Segundo passo: use o novo pivô da segunda linha para zerar o elemento abaixo dele.</li>
+                    <li>A matriz final será triangular. Seu determinante é o produto da diagonal e é igual ao determinante da matriz original \(B\).</li>
+                </ol>
+                <div class="formula">$$ L_2 \leftarrow L_2 - 2L_1, \quad L_3 \leftarrow L_3 - 3L_1 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em modelagem 3D, operações como esta são usadas para alinhar objetos a um sistema de coordenadas local, simplificando cálculos de colisão, iluminação e física.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3 (BÁSICO) -->
+        <div class="mission">
+            <h3>Invertendo a Polaridade (Efeito da OE-T1)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Demonstrar e aplicar a regra de que trocar duas linhas inverte o sinal do determinante.
+            </div>
+            <p>Em uma fase de puzzle, um feitiço inverte o mapa verticalmente, o que equivale a trocar a primeira e a terceira linha da matriz de transformação \(C\). Calcule \(\det(C)\) usando redução por linhas. Dica: para facilitar, troque as linhas primeiro para obter um pivô melhor na posição (1,1).
+            $$ C = \begin{pmatrix} 0 & 1 & 5 \\ 1 & -2 & 3 \\ 2 & 4 & 0 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O pivô \(c_{11}\) é zero, o que impede a eliminação. Troque a linha 1 com a linha 2 (\(L_1 \leftrightarrow L_2\)). Não se esqueça de multiplicar o determinante final por -1 para compensar!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Aplique a operação \(L_1 \leftrightarrow L_2\). A nova matriz é \(C' = \begin{pmatrix} 1 & -2 & 3 \\ 0 & 1 & 5 \\ 2 & 4 & 0 \end{pmatrix}\). Lembre-se que \(\det(C) = -\det(C')\).</li>
+                    <li>Agora, com um pivô 1, proceda com a triangularização de \(C'\) usando OE-T3. Aplique \(L_3 \leftarrow L_3 - 2L_1\).</li>
+                    <li>Continue o processo até \(C'\) se tornar triangular.</li>
+                    <li>Calcule o determinante da matriz triangularizada (\(\det(C'_{\text{triangular}})\)).</li>
+                    <li>O determinante da matriz original \(C\) será o oposto do resultado encontrado.</li>
+                </ol>
+                <div class="formula">$$ \det(C) = -1 \cdot \det(C') $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Trocar linhas corresponde a "espelhar" ou "inverter" um sistema de coordenadas. O sinal negativo no determinante significa que a orientação do mundo do jogo foi invertida (um mundo "destro" virou "canhoto").</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Análise de Estabilidade 4x4 (Redução por Linhas em Matriz 4x4)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o algoritmo de redução de forma sistemática em uma matriz de ordem maior, mantendo o controle das alterações no determinante.
+            </div>
+            <p>A matriz \(D\) descreve a simulação de física de um veículo complexo. Para que a simulação seja estável, \(\det(D)\) não pode ser zero. Calcule o determinante usando redução por linhas.
+            $$ D = \begin{pmatrix} 1 & 0 & 2 & -1 \\ 0 & 1 & -3 & 4 \\ 2 & 0 & 5 & -2 \\ -1 & 1 & -4 & 7 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A matriz já tem uma boa estrutura. Use a primeira linha para zerar \(d_{31}\) e \(d_{41}\). Depois, use a segunda linha para zerar o elemento \(d_{42}\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a linha 1 como pivô. Aplique as operações \(L_3 \leftarrow L_3 - 2L_1\) e \(L_4 \leftarrow L_4 + L_1\).</li>
+                    <li>A primeira coluna (abaixo da diagonal) estará zerada.</li>
+                    <li>Use a linha 2 como pivô. Aplique uma operação para zerar o elemento na posição (4,2) da matriz modificada.</li>
+                    <li>A matriz resultante já estará quase triangular. Use a linha 3 como pivô para zerar o elemento abaixo dela na terceira coluna.</li>
+                    <li>Multiplique os elementos da diagonal da matriz final para obter o determinante. Nenhuma troca foi necessária, então o sinal não muda.</li>
+                </ol>
+                <div class="formula">$$ \text{Triangularizar } D \to \text{ Multiplicar diagonal } $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Motores de física como Havok ou PhysX resolvem sistemas de equações lineares massivos a cada frame para simular colisões e movimentos realistas. Métodos eficientes de manipulação de matrizes, como a redução por linhas, são a base desses motores.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 5 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Detecção de Código Redundante (Identificação de Linhas L.D.)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Reconhecer que uma linha é múltipla de outra, o que leva a uma linha de zeros durante a redução, resultando em determinante nulo.
+            </div>
+            <p>Ao analisar a matriz de atributos de três itens mágicos, você suspeita de uma redundância. Se duas linhas são linearmente dependentes, o determinante é zero, indicando que um item é apenas uma versão mais forte/fraca de outro. Verifique se a matriz \(E\) é singular.
+            $$ E = \begin{pmatrix} 1 & 2 & 3 \\ -1 & 0 & 4 \\ 2 & 4 & 6 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe a primeira e a terceira linha. O que acontece se você aplicar a operação \(L_3 \leftarrow L_3 - 2L_1\)?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Observe que a Linha 3 é exatamente o dobro da Linha 1 (\(L_3 = 2L_1\)). Isso é um forte indicativo de que o determinante será zero.</li>
+                    <li>Para provar via redução, aplique a operação \(L_3 \leftarrow L_3 - 2L_1\).</li>
+                    <li>A nova terceira linha será \((2, 4, 6) - 2 \cdot (1, 2, 3) = (0, 0, 0)\).</li>
+                    <li>A matriz resultante \(E'\) tem uma linha de zeros.</li>
+                    <li>Ao triangularizar uma matriz com uma linha de zeros, um dos elementos da diagonal da forma final será zero. Portanto, o determinante é zero.</li>
+                </ol>
+                <div class="formula">$$ \text{Linha de Zeros } \implies \det = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em design de jogos, é importante que cada item, habilidade ou personagem ofereça uma escolha significativa. Se um item é estritamente melhor ou pior que outro em todos os aspectos (dependência linear), uma das opções se torna irrelevante, empobrecendo o gameplay.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 6 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Ajuste Fino do "Glitch" (Determinante Nulo com Parâmetro)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a redução por linhas para encontrar o valor de um parâmetro `k` que anula o determinante.
+            </div>
+            <p>Uma matriz de câmera \(F\) depende de um parâmetro de zoom \(k\). Existe um valor específico de \(k\) que causa um "colapso de perspectiva" (determinante nulo). Use redução por linhas para encontrar esse valor de \(k\).
+            $$ F = \begin{pmatrix} 1 & 0 & -1 \\ 2 & 1 & 3 \\ 0 & 1 & k \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Comece a triangularizar a matriz. O último elemento da diagonal dependerá de \(k\). O determinante será nulo se qualquer elemento da diagonal for nulo.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Aplique \(L_2 \leftarrow L_2 - 2L_1\) para zerar o elemento \(f_{21}\).</li>
+                    <li>A matriz se torna \(\begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & 5 \\ 0 & 1 & k \end{pmatrix}\).</li>
+                    <li>Agora, aplique \(L_3 \leftarrow L_3 - L_2\) para zerar o elemento \(f_{32}\) da nova matriz.</li>
+                    <li>A nova terceira linha será \((0, 1, k) - (0, 1, 5) = (0, 0, k-5)\).</li>
+                    <li>A matriz triangular é \(\begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & 5 \\ 0 & 0 & k-5 \end{pmatrix}\). O determinante é \(1 \cdot 1 \cdot (k-5)\).</li>
+                    <li>Para que o determinante seja zero, é necessário que \(k-5=0\).</li>
+                </ol>
+                <div class="formula">$$ \det(F) = 0 \implies k-5 = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Parâmetros em shaders (programas que controlam a aparência dos gráficos) podem ser ajustados para criar efeitos visuais. Encontrar valores críticos como este pode ajudar a identificar os limites de um efeito ou a causa de um bug visual.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 7 (AVANÇADO) -->
+        <div class="mission">
+            <h3>Escalonamento Global do Mundo (Efeito da OE-T2)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar operações de linha para provar a propriedade `det(kA) = k^n * det(A)` para uma matriz `n x n`.
+            </div>
+            <p>Seu jogo tem um "cheat" que escala o mundo inteiro por um fator de 2. Isso significa que cada coordenada é multiplicada por 2, então a matriz de transformação \(A\) (3x3) se torna \(2A\). Como isso afeta o determinante (que mede a mudança de volume)? Use as propriedades das operações elementares para mostrar a relação entre \(\det(2A)\) e \(\det(A)\) para uma matriz \(A\) genérica 3x3.
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A matriz \(2A\) é obtida multiplicando-se *cada* linha de \(A\) por 2. Use a regra da OE-T2 repetidamente, uma para cada linha.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Considere a matriz \(B = kA\). Isso significa que cada linha de \(B\) é \(k\) vezes a linha correspondente de \(A\).</li>
+                    <li>Podemos extrair o fator \(k\) de cada uma das \(n\) linhas usando a propriedade da OE-T2.</li>
+                    <li>Extraindo \(k\) da primeira linha: \(\det(B) = k \cdot \det(\dots)\).</li>
+                    <li>Extraindo \(k\) da segunda linha: \(\det(B) = k \cdot k \cdot \det(\dots)\).</li>
+                    <li>Repetindo o processo para todas as \(n\) linhas, o fator \(k\) é extraído \(n\) vezes.</li>
+                    <li>Portanto, \(\det(kA) = k^n \det(A)\). Para o caso do problema, \(\det(2A) = 2^3 \det(A) = 8\det(A)\).</li>
+                </ol>
+                <div class="formula">$$ \det(kA) = k^n \det(A) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Escalar o mundo do jogo por um fator 2 aumenta todas as distâncias por 2, todas as áreas por \(2^2=4\), e todos os volumes por \(2^3=8\). O determinante captura exatamente essa mudança de volume.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 8 (AVANÇADO) -->
+        <div class="mission">
+            <h3>O Atributo Nulo (Matriz com Coluna de Zeros)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Demonstrar, via redução por linhas, que uma matriz com uma coluna (ou linha) de zeros tem determinante nulo.
+            </div>
+            <p>Você está balanceando uma arma e cria sua matriz de dano \(G\). Você percebe que a arma não causa dano de gelo (terceira coluna) contra nenhum tipo de inimigo. Prove que o determinante de qualquer matriz 3x3 com uma coluna de zeros é sempre zero, sem calcular o determinante diretamente.
+            $$ G = \begin{pmatrix} a & b & 0 \\ c & d & 0 \\ e & f & 0 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O que acontece quando você tenta triangularizar esta matriz? É possível obter 3 pivôs não-nulos? O que isso implica para o produto da diagonal?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece o processo de redução por linhas. As operações nas duas primeiras colunas não afetam a terceira coluna de zeros.</li>
+                    <li>Ao final do processo de triangularização, a matriz terá a forma \(\begin{pmatrix} a' & b' & 0 \\ 0 & d' & 0 \\ 0 & 0 & 0 \end{pmatrix}\).</li>
+                    <li>O terceiro elemento da diagonal é necessariamente zero.</li>
+                    <li>O determinante, que é o produto dos elementos da diagonal, será \(a' \cdot d' \cdot 0\), que é zero.</li>
+                    <li>Alternativamente, a propriedade \(\det(A) = \det(A^T)\) implica que uma coluna de zeros leva ao mesmo resultado de uma linha de zeros.</li>
+                </ol>
+                <div class="formula">$$ \det(G_{\text{triangular}}) = g'_{11} \cdot g'_{22} \cdot 0 = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Se uma estatística de uma arma ou personagem é inútil em todas as situações (coluna de zeros), ela não contribui para a "dimensionalidade" ou complexidade do sistema de combate. O sistema se torna "achatado" ou singular, indicando um possível problema de design.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 9 (AVANÇADO) -->
+        <div class="mission">
+            <h3>Desacoplando a Engine (Determinante de Matriz de Blocos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que `det([[A, B], [0, C]]) = det(A)det(C)` usando operações elementares que não misturam os blocos.
+            </div>
+            <p>Sua engine de jogo é modular. O módulo de física (bloco \(A\)) e o de I.A. (bloco \(C\)) são desacoplados, resultando em uma matriz de estado \(H\) triangular por blocos. Prove que o fator de complexidade total, \(\det(H)\), é o produto dos determinantes dos módulos.
+            $$ H = \begin{pmatrix} A & B \\ \mathbf{0} & C \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Realize a redução por linhas dentro do bloco \(A\). As operações \(L_i \leftarrow L_i + kL_j\) onde \(i,j\) são linhas de \(A\) afetarão o bloco \(B\), mas não o bloco \(C\). Depois, faça a redução dentro do bloco \(C\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro, aplique operações elementares nas linhas correspondentes ao bloco \(A\) para triangularizá-lo. O determinante acumulado dessas operações é \(\det(A)\). Essas operações modificarão o bloco \(B\), mas os blocos \(\mathbf{0}\) e \(C\) permanecem inalterados.</li>
+                    <li>A matriz agora tem a forma \(\begin{pmatrix} U_A & B' \\ \mathbf{0} & C \end{pmatrix}\), onde \(U_A\) é a forma triangular de \(A\).</li>
+                    <li>Agora, aplique operações elementares nas linhas correspondentes ao bloco \(C\) para triangularizá-lo. Essas operações não afetam os blocos \(U_A\) e \(B'\) porque o bloco \(\mathbf{0}\) anula qualquer efeito. O determinante acumulado aqui é \(\det(C)\).</li>
+                    <li>A matriz final é triangular por blocos e também totalmente triangular. Seu determinante é o produto da diagonal, que é \(\left(\prod (U_A)_{ii}\right) \cdot \left(\prod (U_C)_{ii}\right) = \det(A)\det(C)\).</li>
+                </ol>
+                <div class="formula">$$ \det(H) = (\text{det da parte de A}) \cdot (\text{det da parte de C}) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Arquitetura de software modular é essencial para grandes projetos. Esta propriedade matemática reflete um princípio de bom design: se os sistemas são bem separados, sua complexidade pode ser analisada de forma independente.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 10 (BOSS) -->
+        <div class="mission">
+            <h3>Quebrando o Firewall Mestre (Redução Inteligente de Matriz 5x5)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o determinante de uma matriz grande e densa que se simplifica drasticamente com uma sequência inteligente de operações de linha.
+            </div>
+            <p>Você precisa quebrar o firewall de um sistema de segurança, representado pela matriz \(J\). A chave é o seu determinante. À primeira vista, a matriz parece complexa, mas um "exploit" (uma operação de linha inteligente) pode trivializar o problema. Calcule \(\det(J)\).
+            $$ J = \begin{pmatrix}
+            1 & 2 & 3 & 4 & 5 \\
+            2 & 3 & 4 & 5 & 6 \\
+            3 & 4 & 5 & 6 & 7 \\
+            4 & 5 & 6 & 7 & 8 \\
+            5 & 6 & 7 & 8 & 1
+            \end{pmatrix} $$
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Observe o padrão aritmético nas linhas. A diferença entre linhas consecutivas é constante.</li>
+                    <li>Aplique as operações \(L_i \leftarrow L_i - L_{i-1}\) de baixo para cima (começando com \(L_5 \leftarrow L_5 - L_4\), depois \(L_4 \leftarrow L_4 - L_3\), etc.).</li>
+                    <li>Por exemplo, \(L_3 - L_2\) resulta em \((1, 1, 1, 1, 1)\). \(L_2 - L_1\) também resulta em \((1, 1, 1, 1, 1)\).</li>
+                    <li>Após as primeiras duas operações (\(L_3 \leftarrow L_3 - L_2\) e \(L_2 \leftarrow L_2 - L_1\)), a nova matriz terá duas linhas idênticas.</li>
+                    <li>Uma matriz com duas linhas idênticas tem determinante zero, pois uma operação \(L_j \leftarrow L_j - L_i\) criaria uma linha de zeros. O cálculo para por aqui.</li>
+                </ol>
+                <div class="formula">$$ \text{Linhas Idênticas} \implies \det = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> "Exploits" em jogos muitas vezes vêm de encontrar padrões não intencionais na lógica do código. Reconhecer o padrão nesta matriz em vez de usar força bruta (cálculo direto) é a marca de um jogador de elite.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 11 (BOSS) -->
+        <div class="mission">
+            <h3>A Fórmula Geral do Balanceamento (Determinante com Entradas Variáveis)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Reduzir uma matriz 3x3 com entradas literais (a, b, c) para encontrar uma fórmula geral para seu determinante em forma fatorada.
+            </div>
+            <p>Para o balanceamento de 3 classes (Guerreiro, Mago, Arqueiro), a matriz de eficácia \(K\) é criada. O sistema é considerado "quebrado" se \(\det(K) = 0\). Encontre a fórmula geral para o determinante em termos de \(a, b, c\) usando redução por linhas.
+            $$ K = \begin{pmatrix} 1 & a & a^2 \\ 1 & b & b^2 \\ 1 & c & c^2 \end{pmatrix} $$
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Para simplificar, aplique as operações \(L_2 \leftarrow L_2 - L_1\) e \(L_3 \leftarrow L_3 - L_1\).</li>
+                    <li>A matriz se torna \(\begin{pmatrix} 1 & a & a^2 \\ 0 & b-a & b^2-a^2 \\ 0 & c-a & c^2-a^2 \end{pmatrix}\).</li>
+                    <li>Lembre-se da fatoração: \(x^2 - y^2 = (x-y)(x+y)\). Use isso nas colunas 2 e 3.</li>
+                    <li>A matriz é \(\begin{pmatrix} 1 & a & a^2 \\ 0 & (b-a) & (b-a)(b+a) \\ 0 & (c-a) & (c-a)(c+a) \end{pmatrix}\).</li>
+                    <li>O determinante desta matriz já é fácil de calcular por expansão de cofatores na primeira coluna, ou continuando a redução. O resultado será \((b-a)(c-a)(c+a) - (c-a)(b-a)(b+a)\).</li>
+                    <li>Fatore os termos comuns \((b-a)(c-a)\) para chegar à forma final \((b-a)(c-a)(c-b)\). O sistema é quebrado se \(a=b\), \(a=c\), ou \(b=c\).</li>
+                </ol>
+                <div class="formula">$$ \det(K) = (b-a)(c-a)(c-b) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a famosa Matriz de Vandermonde. Seu determinante não-nulo garante que é possível criar uma curva de poder (polinômio) única que passe pelos pontos de dados \((a, b, c)\). Se o determinante for zero, os pontos são "redundantes", e o balanceamento é impossível ou trivial.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 12 (BOSS) -->
+        <div class="mission">
+            <h3>O Efeito Acumulativo (Matriz n x n com Padrão)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o determinante da matriz `n x n` onde `a_ij = min(i, j)`, usando operações `L_i <- L_i - L_{i-1}` para simplificá-la.
+            </div>
+            <p>Um sistema de "buffs" cumulativos em um RPG é modelado pela matriz \(M_n\), onde a entrada \(m_{ij} = \min(i, j)\). A estabilidade do sistema de buffs é medida por \(\det(M_n)\). Calcule \(\det(M_4)\) e determine o padrão geral para \(\det(M_n)\).
+            $$ M_4 = \begin{pmatrix}
+            1 & 1 & 1 & 1 \\
+            1 & 2 & 2 & 2 \\
+            1 & 2 & 3 & 3 \\
+            1 & 2 & 3 & 4
+            \end{pmatrix} $$
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>A chave é simplificar a matriz usando operações de linha que exploram o padrão. Comece de baixo para cima.</li>
+                    <li>Aplique \(L_4 \leftarrow L_4 - L_3\). A nova linha 4 será \((0, 0, 0, 1)\).</li>
+                    <li>Aplique \(L_3 \leftarrow L_3 - L_2\). A nova linha 3 será \((0, 0, 1, 1)\).</li>
+                    <li>Aplique \(L_2 \leftarrow L_2 - L_1\). A nova linha 2 será \((0, 1, 1, 1)\).</li>
+                    <li>A matriz resultante após esta primeira passada é \(\begin{pmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 1 \end{pmatrix}\).</li>
+                    <li>Esta é uma matriz triangular superior com todos os elementos da diagonal iguais a 1.</li>
+                    <li>O determinante é o produto da diagonal, que é 1. Este padrão se mantém para qualquer ordem \(n\).</li>
+                </ol>
+                <div class="formula">$$ \det(M_n) = 1, \quad \forall n \ge 1 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este problema mostra como um sistema que parece cada vez mais complexo (os números na matriz aumentam) pode, na verdade, ter uma propriedade fundamental (sua estabilidade/determinante) que é incrivelmente simples e constante. Encontrar essas invariantes é crucial para gerenciar a complexidade no desenvolvimento de jogos.</p>
+            </details>
+        </div>
+    </main>
 </body>
 </html>
