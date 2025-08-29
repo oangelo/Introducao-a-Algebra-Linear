@@ -1,756 +1,502 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Dimensões Digitais: Uma Jornada pela Álgebra Linear</title>
-  <!-- Importando CSS do reveal.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
-  
-  <!-- Importando fontes -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap">
-  
-  <!-- Importando plugins CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css">
-  
-  <style>
-    /* Estilos Base */
-    body {
-      font-family: 'Source Sans Pro', sans-serif;
-      color: #fff;
-      background-color: #000;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-    
-    /* Canvas para o efeito Matrix */
-    #matrix-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    
-    .reveal {
-      font-family: 'Source Sans Pro', sans-serif;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .reveal h1 {
-      font-family: 'Source Code Pro', monospace;
-      text-transform: none;
-      color: #0f0;
-      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-      font-size: 2.2rem;
-    }
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Álgebra Linear: Explorando o Espaço</title>
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game-theme.css" />
+    <!-- Scripts para Reveal.js e MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
 
-    .reveal h2 {
-      font-family: 'Source Code Pro', monospace;
-      text-transform: none;
-      color: #0f0;
-      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-    
-    .reveal h3 {
-      font-family: 'Source Code Pro', monospace;
-      text-transform: none;
-      color: #0f0;
-      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-      font-size: 1.4rem;
-    }
-    
-    .reveal p, .reveal li {
-      font-size: 1.2rem;
-      line-height: 1.3;
-    }
-    
-    /* Container de matriz para exemplos */
-    .matrix {
-      font-family: 'Source Code Pro', monospace;
-      color: #0f0;
-      font-size: 1em;
-      background-color: rgba(0, 20, 0, 0.3);
-      border: 1px solid #0f0;
-      padding: 10px;
-      border-radius: 5px;
-      display: inline-block;
-      margin: 8px;
-      max-width: 90%;
-    }
-    
-    .reveal .katex {
-      font-size: 1.1em;
-    }
-    
-    /* Estilo para código */
-    pre.code {
-      background-color: rgba(0, 20, 0, 0.3);
-      border: 1px solid #0f0;
-      border-radius: 5px;
-      padding: 15px;
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
-    }
-    
-    /* Container para problema */
-    .problem {
-      background-color: rgba(0, 0, 40, 0.3);
-      border: 1px solid #00f;
-      border-radius: 5px;
-      padding: 15px;
-      margin-top: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 255, 0.2);
-      font-size: 0.9em;
-      max-width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    /* Container para solução */
-    .solution {
-      background-color: rgba(40, 0, 40, 0.3);
-      border: 1px solid #f0f;
-      border-radius: 5px;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
-    }
-    
-    /* Classe para imagens (com tamanho limitado) */
-    .concept-image {
-      max-width: 500px;
-      max-height: 400px;
-      margin: 0 auto;
-      display: block;
-      border: 1px solid #0f0;
-      border-radius: 5px;
-      /* TODO: Adicionar imagens temáticas aqui quando disponíveis */
-    }
+  <body>
+    <div class="reveal">
+      <div class="background-grid"></div>
+      <div class="ghost"></div>
+      <div class="ghost"></div>
 
-    /* Estilos adicionais para equações */
-    .equation {
-      font-family: 'Source Code Pro', monospace;
-      color: #0f0;
-      background-color: rgba(0, 20, 0, 0.2);
-      padding: 10px;
-      border-radius: 5px;
-      margin: 10px 0;
-    }
-    
-    /* Destacar termos importantes */
-    .highlight {
-      color: #0f0;
-      font-weight: bold;
-      text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-    }
-    
-    /* Estilo para listas */
-    .reveal ul {
-      list-style-type: none;
-    }
-    
-    .reveal ul li {
-      margin-bottom: 12px;
-      position: relative;
-      padding-left: 25px;
-    }
-    
-    .reveal ul li:before {
-      content: ">";
-      position: absolute;
-      left: 0;
-      color: #0f0;
-      font-family: 'Source Code Pro', monospace;
-    }
-  </style>
-</head>
-<body>
-  <!-- Canvas para o efeito Matrix -->
-  <canvas id="matrix-canvas"></canvas>
-  
-  <div class="reveal">
-    <div class="slides">
-    
-      <!-- SLIDE HORIZONTAL 0 -->
-      <section data-background-color="#000">
-        <h1>Dimensões Digitais</h1>
-        <h2>Inicialização do Sistema: Álgebra Linear</h2>
-        <p>
-          <small>Uma Jornada pela Matemática que Sustenta a Realidade Digital</small>
-        </p>
-        <p class="fragment" style="margin-top: 40px; color: #0f0;">
-          <span style="font-family: 'Source Code Pro', monospace;">> Acesso concedido: Preparando módulos fundamentais...</span>
-        </p>
-      </section>
-      
-      <!-- SLIDE HORIZONTAL 1 -->
-      <section data-background-color="#000">
-        <h2>Transmissão do Mentor</h2>
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="width: 100%;">
-            <p>Bem-vindo ao portal de acesso à <span class="highlight">Matrix Matemática</span>.</p>
-            <p>Sou seu guia nesta jornada para <span class="highlight">hackear a realidade</span> através da Álgebra Linear.</p>
-            <p>Para dominar este sistema, precisamos primeiro carregar os <span class="highlight">protocolos vetoriais</span>, a base de toda navegação dimensional.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 2 (CAPÍTULO) -->
-      <section>
-          <section data-background-color="#000"> <!-- Vertical 2.0 -->
-              <h2>CAPÍTULO 3: Navegando no Multiverso</h2>
-              <h1>Espaços Vetoriais Euclidianos</h1>
-              <p>A arquitetura fundamental da Matrix Matemática.</p>
-              <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-                > Carregando módulo: Euclid_Core.dll
-              </p>
-          </section>
-          <section data-background-color="#000"> <!-- Vertical 2.1 -->
-              <h2>Contexto: As Fundações do Espaço Digital</h2>
-              <p>Os conceitos de <span class="highlight">vetores</span> e <span class="highlight">espaços dimensionais</span> não surgiram do vácuo.</p>
-              <p>Foram séculos de desenvolvimento, desde a geometria de <span class="highlight">Euclides</span>, passando pelas coordenadas de <span class="highlight">Descartes</span>, até as formalizações de <span class="highlight">Hamilton</span> e <span class="highlight">Grassmann</span> no século XIX.</p>
-              <p>Essas ideias pavimentaram o caminho para descrever o espaço físico, a mecânica, o eletromagnetismo e, hoje, são a espinha dorsal da <span class="highlight">computação gráfica, inteligência artificial e toda a realidade digital</span>.</p>
-              <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-                > Histórico de dados carregado. Próximo: Protocolos Vetoriais.
-              </p>
-          </section>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 3 (TÓPICO 1: VETORES) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 3.0 -->
-          <h2>Tópico 1: Agentes da Transformação - Vetores</h2>
-          <p>Vetores são <span class="highlight">"caminhos direcionais"</span> ou <span class="highlight">"quantidades de fluxo"</span> na Matrix. Eles possuem magnitude (intensidade) e direção.</p>
-          <p>Em $\mathbb{R}^n$, um vetor $\vec{v}$ é representado por uma n-upla ordenada:</p>
-          <div class="matrix">
-            $\vec{v} = (v_1, v_2, ..., v_n)$
-          </div>
-          <p>Operações Fundamentais:</p>
-          <ul>
-            <li><span class="highlight">Adição de Vetores (Combinação de Rotas):</span> $\vec{u} + \vec{v} = (u_1+v_1, ..., u_n+v_n)$</li>
-            <li><span class="highlight">Multiplicação por Escalar (Amplificação de Sinal):</span> $k\vec{v} = (kv_1, ..., kv_n)$</li>
-          </ul>
-          <!-- TODO: Adicionar imagem de adição vetorial (regra do paralelogramo) e multiplicação por escalar. -->
+      <div class="slides">
+        <!-- =========================== -->
+        <!-- SLIDE DE TÍTULO DA FASE -->
+        <!-- =========================== -->
+        <section>
+          <h1>Fase 3: Explorando o Espaço</h1>
+          <h3>Avatares e Direções de Movimento</h3>
+          <p class="press-start">Pressione Enter para começar</p>
         </section>
 
-        <section data-background-color="#000"> <!-- Vertical 3.1 -->
-          <h2>Desafio: Manipulando Agentes Vetoriais</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 1.1:</span> Dados os vetores $\vec{u} = (1, -2, 3)$ e $\vec{v} = (4, 0, -1)$ em $\mathbb{R}^3$:</p>
-            <ul>
-              <li>Calcule $\vec{u} + \vec{v}$. Qual o significado geométrico dessa <span class="highlight">"fusão de caminhos"</span>?</li>
-              <li>Calcule $3\vec{u}$. Como a <span class="highlight">"intensidade e direção"</span> de $\vec{u}$ foram alteradas?</li>
-              <li>Calcule $2\vec{u} - \vec{v}$. Esse é um exemplo de <span class="highlight">"combinação linear"</span>.</li>
-            </ul>
-            <p><span class="highlight">Missão 1.2:</span> Se $\vec{w} = (x, y, z)$ e sabemos que $\vec{w} + \vec{u} = \vec{v}$ (com $\vec{u}, \vec{v}$ da missão anterior), quais são as <span class="highlight">"coordenadas secretas"</span> de $\vec{w}$?</p>
-          </div>
-        </section>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 4 (TÓPICO 2: DIMENSÕES) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 4.0 -->
-          <h2>Tópico 2: Decifrando as Dimensões da Matrix</h2>
-          <p>A <span class="highlight">"profundidade"</span> do mundo digital é definida por suas dimensões.</p>
-          <ul>
-            <li>$\mathbb{R}^1$ (ou $\mathbb{R}$): Uma <span class="highlight">linha de código</span> infinita.</li>
-            <li>$\mathbb{R}^2$: Um <span class="highlight">plano de dados</span> (como a tela que você vê).</li>
-            <li>$\mathbb{R}^3$: O <span class="highlight">espaço tridimensional</span> que habitamos (ou simulamos).</li>
-            <li>$\mathbb{R}^n$: Um <span class="highlight">hiperespaço</span> com $n$ coordenadas independentes.</li>
-          </ul>
-          <p>Em cada dimensão, existem <span class="highlight">vetores base canônicos</span> que formam os "eixos principais" do sistema:</p>
-          <div class="matrix">
-            Em $\mathbb{R}^2$: $\vec{i}=(1,0)$, $\vec{j}=(0,1)$ (ou $\vec{e}_1, \vec{e}_2$)<br>
-            Em $\mathbb{R}^3$: $\vec{i}=(1,0,0)$, $\vec{j}=(0,1,0)$, $\vec{k}=(0,0,1)$ (ou $\vec{e}_1, \vec{e}_2, \vec{e}_3$)
-          </div>
-          <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-            > Todo vetor em $\mathbb{R}^n$ é uma combinação linear única dos vetores da base canônica.
-          </p>
-          <!-- TODO: Adicionar imagem dos eixos e vetores base em R2 e R3. -->
-        </section>
-
-        <section data-background-color="#000"> <!-- Vertical 4.1 -->
-          <h2>Desafio: Navegando pelas Dimensões</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 2.1:</span> Em qual <span class="highlight">"sub-rede dimensional"</span> $(\mathbb{R}^2, \mathbb{R}^3, \text{etc.})$ residem os seguintes vetores?</p>
-            <ul>
-              <li>$\vec{a} = (5, -2)$</li>
-              <li>$\vec{b} = (0, 1, 0, 0)$</li>
-              <li>$\vec{c} = (x_1, x_2, ..., x_{10})$</li>
-            </ul>
-            <p><span class="highlight">Missão 2.2:</span> Expresse o vetor $\vec{v} = (3, -4)$ de $\mathbb{R}^2$ como uma <span class="highlight">combinação linear</span> dos vetores da base canônica $\vec{i}$ e $\vec{j}$.</p>
-            <p><span class="highlight">Missão 2.3:</span> É possível representar o vetor $\vec{w} = (2, 5, 1)$ usando apenas os vetores $\vec{i} = (1,0,0)$ e $\vec{j} = (0,1,0)$ de $\mathbb{R}^3$? Por que <span class="highlight">"a profundidade importa"</span>?</p>
-          </div>
-        </section>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 5 (TÓPICO 3: NORMA E DISTÂNCIA) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 5.0 -->
-          <h2>Tópico 3: Métricas da Matrix - Norma e Distância</h2>
-          <p>Para entender a <span class="highlight">"intensidade dos sinais"</span> e a <span class="highlight">"proximidade entre realidades"</span>, usamos:</p>
-          <div class="matrix">
-            <p>Norma (ou Módulo) de um vetor $\vec{v}=(v_1, ..., v_n)$:</p>
-            $\|\vec{v}\| = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}$
-            <p>Representa o <span class="highlight">"comprimento"</span> ou <span class="highlight">"magnitude"</span> do vetor.</p>
-          </div>
-          <div class="matrix">
-            <p>Distância entre dois pontos (ou vetores) $A$ e $B$:</p>
-            $d(A,B) = \|\vec{AB}\| = \|\vec{B} - \vec{A}\|$
-            <p>Mede quão <span class="highlight">"afastados"</span> estão dois locais na Matrix.</p>
-          </div>
-          <!-- TODO: Adicionar imagem de um vetor com seu comprimento (norma) e dois pontos com a distância entre eles. -->
-        </section>
-
-        <section data-background-color="#000"> <!-- Vertical 5.1 -->
-          <h2>Desafio: Calibrando Métricas</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 3.1:</span> Calcule a <span class="highlight">"intensidade do sinal"</span> (norma) dos seguintes vetores:</p>
-            <ul>
-              <li>$\vec{a} = (3, -4)$ em $\mathbb{R}^2$</li>
-              <li>$\vec{b} = (1, 2, -2)$ em $\mathbb{R}^3$</li>
-              <li>$\vec{c} = (0, 0, 0, 5)$ em $\mathbb{R}^4$</li>
-            </ul>
-            <p><span class="highlight">Missão 3.2:</span> Determine a <span class="highlight">"distância de transmissão"</span> entre os pontos $P=(1,0,2)$ e $Q=(4,4,2)$ na sub-rede $\mathbb{R}^3$.</p>
-            <p><span class="highlight">Missão 3.3:</span> Se um vetor $\vec{v}$ em $\mathbb{R}^2$ tem norma $\|\vec{v}\| = 1$, ele é chamado de <span class="highlight">"vetor unitário"</span> ou <span class="highlight">"versor"</span>. Como você transformaria o vetor $\vec{u} = (2,2)$ em um vetor unitário que mantém a mesma <span class="highlight">"direção de propagação"</span>?</p>
-          </div>
-        </section>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 6 (TÓPICO 4: PRODUTO ESCALAR) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 6.0 -->
-          <h2>Tópico 4: Protocolo de Sincronização - Produto Escalar</h2>
-          <p>O Produto Escalar (ou Produto Interno) entre dois vetores $\vec{u}$ e $\vec{v}$ <span class="highlight">mede o "alinhamento" ou "sincronia"</span> entre suas direções. O resultado é um escalar (um número), não um vetor.</p>
-          <div class="matrix">
-            <p>Definição Algébrica: $\vec{u} \cdot \vec{v} = u_1v_1 + u_2v_2 + ... + u_nv_n$</p>
-            <p>Propriedade Geométrica: $\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos \theta$</p>
-            onde $\theta$ é o <span class="highlight">ângulo de fase</span> entre $\vec{u}$ e $\vec{v}$ ($0 \le \theta \le \pi$).
-          </div>
-          <p>Este protocolo nos permite calcular o <span class="highlight">ângulo entre vetores</span> e verificar <span class="highlight">ortogonalidade</span>.</p>
-          <!-- TODO: Adicionar imagem de dois vetores com o ângulo theta entre eles. -->
-        </section>
-
-        <section data-background-color="#000"> <!-- Vertical 6.1 -->
-          <h2>Desafio: Sincronizando Vetores</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 4.1:</span> Calcule o <span class="highlight">"nível de sincronia"</span> (produto escalar) entre os pares de vetores:</p>
-            <ul>
-              <li>$\vec{a} = (1, 2)$, $\vec{b} = (3, -1)$ em $\mathbb{R}^2$</li>
-              <li>$\vec{c} = (1, 0, 1)$, $\vec{d} = (2, 3, -1)$ em $\mathbb{R}^3$</li>
-            </ul>
-            <p><span class="highlight">Missão 4.2:</span> Usando o produto escalar, determine o <span class="highlight">"ângulo de divergência"</span> $\theta$ entre os vetores $\vec{u} = (1, 1)$ e $\vec{v} = (1, 0)$ em $\mathbb{R}^2$.</p>
-            <p><span class="highlight">Missão 4.3:</span> Se $\vec{u} \cdot \vec{v} > 0$, o que isso significa sobre $\theta$? E se $\vec{u} \cdot \vec{v} < 0$?</p>
-          </div>
-        </section>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 7 (TÓPICO 5: ORTOGONALIDADE) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 7.0 -->
-          <h2>Tópico 5: Independência Dimensional - Ortogonalidade</h2>
-          <p>Dois vetores $\vec{u}$ e $\vec{v}$ não nulos são <span class="highlight">ortogonais</span> (ou <span class="highlight">"perpendiculares"</span>) se o ângulo entre eles é $90^\circ$ (ou $\pi/2$ radianos).</p>
-          <p>Isso implica que seus <span class="highlight">"caminhos são independentes"</span> e não se influenciam mutuamente na direção um do outro (em termos de projeção).</p>
-          <div class="matrix">
-            <p>Condição de Ortogonalidade:</p>
-            $\vec{u} \perp \vec{v} \iff \vec{u} \cdot \vec{v} = 0$
-            <p>(Assumindo $\vec{u}, \vec{v} \neq \vec{0}$)</p>
-          </div>
-          <p>Vetores ortogonais formam a base para <span class="highlight">"sistemas de coordenadas desacoplados"</span>.</p>
-          <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-            > Os vetores da base canônica $(\vec{i}, \vec{j}, \vec{k})$ são mutuamente ortogonais.
-          </p>
-          <!-- TODO: Adicionar imagem de dois vetores ortogonais. -->
-        </section>
-
-        <section data-background-color="#000"> <!-- Vertical 7.1 -->
-          <h2>Desafio: Verificando Independência</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 5.1:</span> Verifique se os seguintes pares de vetores são <span class="highlight">"ortogonalmente independentes"</span>:</p>
-            <ul>
-              <li>$\vec{a} = (2, -1)$, $\vec{b} = (1, 2)$ em $\mathbb{R}^2$</li>
-              <li>$\vec{c} = (1, 1, 1)$, $\vec{d} = (1, -1, 0)$ em $\mathbb{R}^3$</li>
-              <li>$\vec{i} = (1,0,0)$, $\vec{k} = (0,0,1)$ em $\mathbb{R}^3$</li>
-            </ul>
-            <p><span class="highlight">Missão 5.2:</span> Encontre um valor para $k_{val}$ tal que o vetor $\vec{u} = (k_{val}, 2)$ seja ortogonal ao vetor $\vec{v} = (1, -3)$ em $\mathbb{R}^2$. Qual a <span class="highlight">"chave de desacoplamento"</span> $k_{val}$?</p>
-            <p><span class="highlight">Missão 5.3:</span> É possível que três vetores em $\mathbb{R}^2$, todos não nulos, sejam mutuamente ortogonais (cada par é ortogonal)? Por que ou por que não, em termos de <span class="highlight">"dimensões disponíveis"</span>?</p>
-          </div>
-        </section>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 8 (TÓPICO 6: PRODUTO VETORIAL R3) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 8.0 -->
-          <h2>Tópico 6: Criando Eixos Perpendiculares - Produto Vetorial (Exclusivo $\mathbb{R}^3$)</h2>
-          <p>O Produto Vetorial é uma operação <span class="highlight">exclusiva do $\mathbb{R}^3$</span> que, dados dois vetores $\vec{u}$ e $\vec{v}$, gera um <span class="highlight">novo vetor $\vec{w} = \vec{u} \times \vec{v}$</span>.</p>
-          <p>Propriedades Chave de $\vec{w}$:</p>
-          <ul>
-            <li>$\vec{w}$ é <span class="highlight">ortogonal</span> a $\vec{u}$ e a $\vec{v}$. (Cria um novo "eixo de acesso")</li>
-            <li>A magnitude $\|\vec{w}\| = \|\vec{u}\| \|\vec{v}\| \sin \theta$, que é igual à <span class="highlight">área do paralelogramo</span> formado por $\vec{u}$ e $\vec{v}$.</li>
-            <li>A direção de $\vec{w}$ é dada pela <span class="highlight">"regra da mão direita"</span>.</li>
-          </ul>
-          <div class="matrix">
-            <p>Cálculo (usando vetores da base canônica $\vec{i}, \vec{j}, \vec{k}$):</p>
-            Se $\vec{u}=(u_1, u_2, u_3)$ e $\vec{v}=(v_1, v_2, v_3)$, então
-            $$ \vec{u} \times \vec{v} = \det \begin{pmatrix} \vec{i} & \vec{j} & \vec{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{pmatrix} $$
-            $$ = (u_2v_3 - u_3v_2)\vec{i} - (u_1v_3 - u_3v_1)\vec{j} + (u_1v_2 - u_2v_1)\vec{k} $$
-          </div>
-          <!-- TODO: Adicionar imagem da regra da mão direita e do paralelogramo. -->
-        </section>
-
-        <section data-background-color="#000"> <!-- Vertical 8.1 -->
-          <h2>Desafio: Forjando Novos Caminhos</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 6.1:</span> Dados os vetores $\vec{u} = (1, 2, 0)$ e $\vec{v} = (0, 1, 3)$ em $\mathbb{R}^3$:</p>
-            <ul>
-              <li>Calcule o <span class="highlight">"vetor de acesso perpendicular"</span> $\vec{w} = \vec{u} \times \vec{v}$.</li>
-              <li>Verifique se $\vec{w}$ é realmente ortogonal a $\vec{u}$ e a $\vec{v}$ usando o <span class="highlight">"protocolo de sincronização"</span> (produto escalar).</li>
-            </ul>
-            <p><span class="highlight">Missão 6.2:</span> Qual a <span class="highlight">"área de influência"</span> (área do paralelogramo) definida pelos vetores $\vec{a} = (1, 0, 0)$ e $\vec{b} = (0, 1, 0)$?</p>
-            <p><span class="highlight">Missão 6.3:</span> O que acontece se você calcular $\vec{u} \times \vec{u}$? E $\vec{u} \times \vec{v}$ comparado a $\vec{v} \times \vec{u}$? Qual a interpretação geométrica para estes <span class="highlight">"produtos vetoriais especiais"</span>?</p>
-            <p><span class="highlight">Missão 6.4:</span> Se $\vec{u} \times \vec{v} = \vec{0}$ (vetor nulo), o que isso nos diz sobre a <span class="highlight">"relação direcional"</span> entre $\vec{u}$ e $\vec{v}$ (assumindo que $\vec{u}, \vec{v} \neq \vec{0}$)?</p>
-          </div>
-        </section>
-      </section>
-
-      <!-- SLIDE HORIZONTAL 9 (TÓPICO 7: GEOMETRIA ANALÍTICA) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 9.0: Introdução ao Tópico 7 -->
-          <h2>Tópico 7: Geometria Analítica - Aplicando Protocolos Vetoriais</h2>
-          <p>Com os <span class="highlight">protocolos vetoriais</span> carregados, podemos agora decifrar e construir as <span class="highlight">estruturas lineares e planares</span> fundamentais da Matrix.</p>
-          <p>Os vetores nos darão a <span class="highlight">direção</span> e a <span class="highlight">orientação</span> necessárias.</p>
-          <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-            > Módulos de Geometria Analítica sendo re-inicializados com base vetorial...
-          </p>
-        </section>
-
-        <!-- SUB-TÓPICO 7.1: RETA (este é o Vertical 9.1, contendo 2 slides internos) -->
-
-            <section data-background-color="#000"> <!-- Vertical 9.1.0: Conceito da Reta -->
-              <h3>7.1 Caminhos Lineares: Equação da Reta</h3>
-              <p>Uma reta no espaço é definida por um <span class="highlight">ponto de passagem</span> $A(x_0, y_0, z_0)$ e um <span class="highlight">vetor diretor</span> $\vec{v}=(a,b,c)$ que indica sua direção.</p>
-              <div class="matrix">
-                <p>Equação vetorial: $\vec{X} = A + t \vec{v}$</p>
-                $(x,y,z) = (x_0, y_0, z_0) + t(a,b,c), \quad t \in \mathbb{R}$
-              </div>
-              <div class="matrix">
-                <p>Equações paramétricas:</p>
-                $\left\{ \begin{array}{c} x = x_0 + at \\ y = y_0 + bt \\ z = z_0 + ct \end{array} \right.$
-              </div>
-              <div class="matrix">
-                <p>Equações simétricas (se $a,b,c \neq 0$):</p>
-                $\frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}$
-              </div>
-            </section>
-            <section data-background-color="#000"> <!-- Vertical 9.1.1: Problema da Reta -->
-              <h2>Desafio: Hackear a Reta</h2>
-              <div class="problem">
-                <p><span class="highlight">Missão 7.1.1:</span> Encontre as equações vetorial e paramétricas da reta que passa por $A=(3,2,5)$ e tem a direção do vetor $\vec{v}=(7,1,-4)$.</p>
-                <p><span class="highlight">Missão 7.1.2:</span> Dada a reta $r: \frac{x-1}{2} = \frac{y}{-1} = \frac{z+3}{4}$, identifique um ponto $P \in r$ e um vetor diretor $\vec{d}$ de $r$.</p>
-                <p><span class="highlight">Missão 7.1.3:</span> Encontre a equação da reta que passa pelos pontos $B=(1,0,1)$ e $C=(2, -1, 3)$. Qual <span class="highlight">"vetor de conexão"</span> você usaria como diretor?</p>
-              </div>
+        <!-- =========================== -->
+        <!-- SLIDES DE LORE (DIVIDIDOS)-->
+        <!-- =========================== -->
+        <section>
+            <section>
+                <h2>Lore da Fase: Dev Log</h2>
+                <div class="lore-section">
+                    <div class="lore-label">DEV LOG</div>
+                    <p><strong>Desenvolvedores Originais: Euclides (c. 300 a.C.), Descartes (séc. XVII), Hamilton & Grassmann (séc. XIX)</strong></p>
+                    <p>
+                    Os "programadores" originais do nosso universo começaram com a geometria pura. Descartes criou o "grid de jogo" (plano cartesiano), permitindo localizar objetos. Mas foram Hamilton e Grassmann que desenvolveram a linguagem dos **vetores**, a "mecânica" essencial para descrever não apenas a localização, mas também o movimento, a força e a direção.
+                    </p>
+                </div>
             </section>
 
-
-        <!-- SUB-TÓPICO 7.2: PLANO (este é o Vertical 9.2, contendo 2 slides internos) -->
-
-            <section> <!-- Vertical 9.2.0: Conceito do Plano -->
-              <h3>7.2 Superfícies Digitais: Equação do Plano</h3>
-              <p>Um plano no espaço $\mathbb{R}^3$ é definido por um <span class="highlight">ponto de passagem</span> $A=(x_0, y_0, z_0)$ e um <span class="highlight">vetor normal</span> $\vec{n}=(a,b,c)$ perpendicular ao plano.</p>
-              <p>Qualquer vetor $\vec{AX} = (x-x_0, y-y_0, z-z_0)$ contido no plano é ortogonal a $\vec{n}$.</p>
-              <div class="matrix">
-                $\vec{n} \cdot \vec{AX} = 0 \implies a(x-x_0) + b(y-y_0) + c(z-z_0) = 0$
-                <p>Equação Geral do Plano:</p>
-                $ax+by+cz+d=0$ (onde $d = -ax_0 -by_0 -cz_0$)
-              </div>
-              <p>$a,b,c$ não podem ser todos nulos.</p>
-              <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-                > O vetor normal é a "chave de orientação" do plano.
-              </p>
-              <!-- TODO: Adicionar imagem de um plano com seu vetor normal e um ponto A. -->
+            <section>
+                <h2>Lore da Fase: A Mecânica</h2>
+                <div class="lore-section">
+                    <div class="lore-label">A MECÂNICA</div>
+                    <p><strong>Desafio do Jogo</strong></p>
+                    <p>
+                    Como podemos descrever o movimento de um "avatar" no espaço do jogo? Precisamos de uma ferramenta que nos diga simultaneamente **para onde** ele está indo (direção) e **com que intensidade** (magnitude). Os números comuns não são suficientes. Esta fase introduz os **Vetores Euclidianos**, a ferramenta definitiva para navegar e interagir com o espaço do jogo.
+                    </p>
+                </div>
             </section>
-            <section> <!-- Vertical 9.2.1: Problema do Plano -->
-              <h2>Desafio: Manipular Planos</h2>
-              <div class="problem">
-                <p><span class="highlight">Missão 7.2.1:</span> Determine a equação geral do plano que passa pelo ponto $A=(1,2,3)$ e tem vetor normal $\vec{n}=(4,5,6)$.</p>
-                <p><span class="highlight">Missão 7.2.2:</span> Determine a equação do plano que passa pelo ponto $A=(0,1,-1)$ e é paralelo aos vetores (contém as direções de) $\vec{u}=(1,1,2)$ e $\vec{v}=(2,3,1)$. Qual <span class="highlight">"operação vetorial"</span> fornece o vetor normal aqui?</p>
-                <p><span class="highlight">Missão 7.2.3:</span> A equação $2x+z=0$ é a equação de um plano ou de uma reta no $\mathbb{R}^3$? Se for um plano, qual seu vetor normal? Se fosse uma reta, como você a representaria parametricamente?</p>
-                <p><span class="highlight">Missão 7.2.4:</span> Qual a equação do plano paralelo a $\alpha: 3x+4y-z+7=0$ e que passa pela origem $O(0,0,0)$?</p>
-              </div>
-            </section>
-
-
-        <!-- SUB-TÓPICO 7.3: RELAÇÕES E INTERSEÇÕES (este é o Vertical 9.3, contendo 2 slides internos) -->
-
-            <section data-background-color="#000"> <!-- Vertical 9.3.0: Conceito de Relações -->
-              <h3>7.3 Relações Entre Planos e Retas</h3>
-              <p>As posições relativas entre planos e retas são determinadas pelos seus <span class="highlight">vetores normais</span> e <span class="highlight">diretores</span>.</p>
-              <ul>
-                <li>Planos Paralelos: Vetores normais $\vec{n_1}, \vec{n_2}$ são <span class="highlight">colineares</span> ($\vec{n_1} = k \vec{n_2}$).</li>
-                <li>Planos Perpendiculares: Vetores normais $\vec{n_1}, \vec{n_2}$ são <span class="highlight">ortogonais</span> ($\vec{n_1} \cdot \vec{n_2} = 0$).</li>
-                <li>Reta Paralela a Plano: Vetor diretor da reta $\vec{v}$ é <span class="highlight">ortogonal</span> ao vetor normal do plano $\vec{n}$ ($\vec{v} \cdot \vec{n} = 0$).</li>
-                <li>Reta Perpendicular a Plano: Vetor diretor da reta $\vec{v}$ é <span class="highlight">colinear</span> ao vetor normal do plano $\vec{n}$ ($\vec{v} = k \vec{n}$).</li>
-              </ul>
-            </section>
-            <section data-background-color="#000"> <!-- Vertical 9.3.1: Problema de Relações -->
-              <h2>Desafio: Relações e Interseções de Dimensões</h2>
-              <div class="problem">
-                <p><span class="highlight">Missão 7.3.1:</span> Determine se os planos $\alpha: 2x+3y+z-1=0$ e $\alpha': 4x+6y+2z+7=0$ são paralelos, perpendiculares ou concorrentes.</p>
-                <p><span class="highlight">Missão 7.3.2:</span> Determine $k_{val}$ para que os planos $\alpha: x+k_{val}y+z =1$ e $\alpha':k_{val}x +y-z=-1$ sejam perpendiculares.</p>
-                <p><span class="highlight">Missão 7.3.3:</span> Determine o plano que passa por $P(1,1,2)$ e é paralelo às retas $r_1: \frac{x}{2}=\frac{y}{3}=\frac{z}{4}$ e $r_2: \frac{x}{4}=\frac{y}{1}=\frac{z}{3}$.</p>
-                <p><span class="highlight">Missão 7.3.4:</span> Determine a interseção da reta $r: (x,y,z) = (1+t, 2-t, -1+2t)$ com o plano $\alpha: 2x - y +3z -15 = 0$. Qual o <span class="highlight">"ponto de convergência"</span>?</p>
-              </div>
-            </section>
-
-      </section> <!-- FIM DO SLIDE HORIZONTAL 9 (TÓPICO 7) -->
-
-      <!-- SLIDE HORIZONTAL 10 (TÓPICO 8: SISTEMAS LINEARES) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 10.0 -->
-          <h2>Tópico 8: Geometria de Sistemas Lineares - Visualizando Interseções</h2>
-          <p>Os <span class="highlight">sistemas de equações lineares</span> que você já começou a decifrar são, na verdade, representações de como <span class="highlight">múltiplos planos (ou hiperplanos) se interceptam</span>.</p>
-          <p>Com nosso conhecimento de vetores, podemos ver isso de uma nova perspectiva:</p>
-          <ul>
-              <li>Cada equação $a_1x_1 + ... + a_nx_n = d$ pode ser vista como $\vec{a} \cdot \vec{x} = d$, onde $\vec{a}=(a_1, ..., a_n)$ é o <span class="highlight">vetor normal</span> ao plano/hiperplano.</li>
-              <li>A solução de um sistema é o conjunto de vetores $\vec{x}$ que satisfazem <span class="highlight">simultaneamente</span> todas as equações.</li>
-              <li>Se um sistema é <span class="highlight">indeterminado</span>, sua solução (uma reta ou plano) pode ser descrita parametricamente usando <span class="highlight">vetores diretores</span>. Esses vetores formam a "espinha dorsal" do conjunto solução.</li>
-          </ul>
-          <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-            > Os vetores nos dão as ferramentas para descrever a forma e direção das soluções.
-          </p>
         </section>
 
-        <section data-background-color="#000"> <!-- Vertical 10.1 -->
-          <h3>Protocolos Interconectados: Sistemas Lineares</h3>
-          <p>Sistemas de Equações Lineares a três incógnitas representam <span class="highlight">múltiplos planos</span> que podem se interceptar de diferentes formas:</p>
-          <div class="matrix fragment">
-            $$S = \left\{ \begin{array}{c} 
-              a_1 x + b_1 y + c_1 z = d_1 
-              \\ a_2 x + b_2 y + c_2 z = d_2 
-              \\ a_3 x + b_3 y + c_3 z = d_3 
-            \end{array}\right.$$
-          </div>
-          <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-            > Cada equação é um plano. A solução é a interseção geométrica dos planos.
-          </p>
-          <!-- TODO: Adicionar imagem de interseção de 3 planos (ponto, reta, plano, ou nenhuma). -->
-        </section>
-
-        <section data-background-color="#000"> <!-- Vertical 10.2 -->
-          <h3>O Código de Autenticação: Determinantes e Soluções</h3>
-          <p>Para um sistema quadrado $n \times n$, $A\vec{x}=\vec{b}$, o determinante da matriz de coeficientes $A$ nos dá uma pista inicial:</p>
-          <div class="matrix">
-            <ul>
-              <li>Se $\det(A) \neq 0$ → sistema possível e determinado (solução única - um ponto de interseção).</li>
-              <li>Se $\det(A) = 0$ → sistema possível e indeterminado (infinitas soluções - uma reta ou plano de interseção) OU sistema impossível (sem solução - planos paralelos distintos ou sem ponto comum).</li>
-            </ul>
-          </div>
-          <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-            > O determinante é o primeiro "hack" para analisar o tipo de interseção.
-          </p>
-        </section>
-
-        <section data-background-color="#000"> <!-- Vertical 10.3 -->
-          <h2>Desafio Final: Sistemas e Interseções Geométricas</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 8.1:</span> Determine a condição sobre $k_{val}$ e $m$ para que o sistema (representando dois planos) tenha solução (seja possível):</p>
-            <div class="matrix">
-            $S = \left\{ \begin{array}{c} 
-              x +2y -2z =m\\
-              2x +4y +k_{val}z =10
-            \end{array}\right.$
+        <!-- ================================================================= -->
+        <!-- QUEST 3.1: O Avatar do Jogo (Vetores e Operações Básicas) -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Vetores (O Avatar)</h2>
+            <div class="math-section">
+              <p>Um <strong>vetor</strong> em \( \mathbb{R}^n \) é um segmento de reta orientado, definido por um conjunto de \(n\) coordenadas (ou componentes).</p>
+              <p>\[\vec{v} = (v_1, v_2, \dots, v_n)\]</p>
             </div>
-            <p>Interprete geometricamente as condições para SPI e SI.</p>
-          </div>
-        </section>
-        <section data-background-color="#000"> <!-- Vertical 10.4 -->
-          <h2>Desafio Final: Sistemas e Interseções Geométricas</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 8.2:</span> Para que valores de $k_{val}$ o sistema abaixo (três planos) admite uma única solução (SPD)?</p>
-            <div class="matrix">
-            $S = \left\{ \begin{array}{c} 
-              x -3y +2z =1\\
-              2x +k_{val}y -z =0\\
-              3x +5y -4z =k_{val}
-            \end{array}\right.$
-            </div>
-            <p>Qual a interpretação geométrica se $\det(A)=0$ neste caso?</p>
-          </div>
-        </section>
-        <section data-background-color="#000"> <!-- Vertical 10.5 -->
-          <h2>Desafio Final: Sistemas e Interseções Geométricas</h2>
-          <div class="problem">
-            <p><span class="highlight">Missão 8.3:</span> Determine a interseção (ponto, reta, plano ou vazia) dos seguintes conjuntos de planos:</p>
-            <ul>
-              <li>A) $\alpha: 3x +y -2z = 4$; $\beta: 2y +z = 3/2$; $\gamma : 2y =3$</li>
-              <li>B) $\alpha: x +y +z = 7$; $\beta: x+2y +3z = 12$; $\gamma : 2x+4y+9z=33$</li>
-              <li>C) $\alpha: x +y +2z = 0$; $\beta: x+3y +z = -2$; $\gamma : 4x-y+z=3$</li>
-            </ul>
-            <p>Descreva a <span class="highlight">"configuração geométrica"</span> da solução em cada caso.</p>
-          </div>
-        </section>
-      </section> <!-- FIM DO SLIDE HORIZONTAL 10 (TÓPICO 8) -->
-
-      <!-- SLIDE HORIZONTAL 11 (APLICAÇÕES) -->
-      <section>
-        <section data-background-color="#000"> <!-- Vertical 11.0 -->
-            <h2>Aplicações na Matrix: Conexões Históricas e Modernas</h2>
-            <p>Os <span class="highlight">códigos vetoriais</span> e <span class="highlight">espaços euclidianos</span> não são apenas abstrações.</p>
-            <p>Eles são a linguagem usada para construir e entender desde a <span class="highlight">mecânica celeste</span> de Newton até os <span class="highlight">algoritmos de busca</span> do Google e os <span class="highlight">mundos virtuais</span> dos seus jogos favoritos.</p>
-            <!-- TODO: Adicionar conteúdo específico sobre aplicações históricas e modernas. -->
-        </section>
-        <section data-background-color="#000"> <!-- Vertical 11.1 -->
-            <h2>Aplicações na Matrix: Realidade Digital Moderna</h2>
-            <p>Onde os <span class="highlight">espaços euclidianos</span> e vetores são a espinha dorsal do seu mundo digital:</p>
-            <ul>
-                <li>Computação Gráfica: <span class="highlight">Modelagem 3D, transformações, iluminação.</span></li>
-                <li>Machine Learning & IA: <span class="highlight">Vetores de características, espaços de alta dimensão, similaridade.</span></li>
-                <li>Processamento de Sinais e Imagens: <span class="highlight">Filtros, compressão, reconhecimento facial.</span></li>
-                <li>Física de Jogos e Simulações: <span class="highlight">Movimento, colisões, forças.</span></li>
-                <li>Robótica: <span class="highlight">Posicionamento, navegação, cinemática.</span></li>
-            </ul>
-            <p class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace;">
-              > Os vetores são os blocos de construção da sua experiência digital interativa.
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Pense em um vetor como o seu **Avatar**. Ele representa uma posição, um deslocamento ou uma direção de movimento no mapa do jogo.
             </p>
-            <!-- TODO: Adicionar exemplos mais concretos e talvez imagens no futuro -->
-        </section>
-      </section> <!-- FIM DO SLIDE HORIZONTAL 11 (APLICAÇÕES) -->
+          </section>
 
-      <!-- SLIDE HORIZONTAL 12 (ENCERRAMENTO) -->
-      <section data-background-color="#000">
-        <h2>Módulo Euclidiano Concluído</h2>
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="width: 100%;">
-            <p>Você agora possui as <span class="highlight">chaves vetoriais fundamentais</span> para navegar e manipular as dimensões da Matrix Matemática.</p>
-            <p>Os protocolos de <span class="highlight">retas, planos e sistemas lineares</span> foram decifrados sob uma nova luz.</p>
-            <p>Próximo módulo: <span class="highlight">Transformações Lineares - Remodelando a Realidade</span></p>
-            
-            <div class="fragment" style="color: #0f0; font-family: 'Source Code Pro', monospace; margin-top: 30px;">
-              <p>> Status: Módulo Euclid_Core.dll assimilado</p>
-              <p>> Capacidades de navegação dimensional expandidas</p>
-              <p>> Preparando para módulos de transformação...</p>
+          <section>
+            <h2>Mecânica: Operações Básicas</h2>
+            <div class="math-section">
+              <p><strong>Adição (Combinação de Movimentos):</strong> \(\vec{u} + \vec{v} = (u_1+v_1, u_2+v_2, \dots)\)</p>
+              <p><strong>Multiplicação por Escalar (Amplificar Movimento):</strong> \(k\vec{v} = (kv_1, kv_2, \dots)\)</p>
             </div>
-          </div>
-        </div>
-      </section> <!-- FIM DO SLIDE HORIZONTAL 12 (ENCERRAMENTO) -->
-      
-    </div> <!-- FIM DO DIV slides -->
-  </div> <!-- FIM DO DIV reveal -->
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Somar vetores é como combinar dois movimentos (ex: "ande para frente" + "ande para a direita"). Multiplicar por um escalar é aumentar ou diminuir a intensidade de um movimento (ex: "correr" é 2x "andar").
+            </p>
+          </section>
+          
+          <section>
+            <h2>Regra Especial: Base Canônica</h2>
+            <div class="math-section">
+              <p>Em \( \mathbb{R}^3 \), os vetores \(\vec{i}=(1,0,0)\), \(\vec{j}=(0,1,0)\) e \(\vec{k}=(0,0,1)\) formam a <strong>base canônica</strong>. Qualquer vetor pode ser escrito como uma combinação deles.</p>
+              <p>\[\vec{v} = (a, b, c) = a\vec{i} + b\vec{j} + c\vec{k}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> \(\vec{i}, \vec{j}, \vec{k}\) são os "movimentos básicos" do jogo: um passo no eixo X, um no eixo Y e um no eixo Z. Qualquer movimento complexo é uma combinação desses passos básicos.
+            </p>
+          </section>
 
-  <!-- Script para criar efeito Matrix -->
-  <script>
-    // Script para o efeito Matrix com canvas
-    document.addEventListener('DOMContentLoaded', function() {
-      // Inicializando o canvas
-      var canvas = document.getElementById('matrix-canvas');
-      var ctx = canvas.getContext('2d');
-      
-      // Definindo largura e altura do canvas
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      // Ajustar o canvas quando a janela for redimensionada
-      window.addEventListener('resize', function() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        columns = canvas.width / fontSize;
-        // Reiniciar as gotas
-        drops = [];
-        for (var i = 0; i < columns; i++) {
-          drops[i] = 1;
-        }
-      });
-      
-      // Configurando os caracteres (letras e símbolos matemáticos)
-      var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZαβγδεζηθικλμνξπρστυφχψω∑∆∇∈≠∞∫∬∭∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟≠≡≢≣≤≥≦≧≨≩≪≫≬≭≮≯≰≱0123456789';
-      letters = letters.split('');
-      
-      // Configurando as colunas
-      var fontSize = 10,
-          columns = canvas.width / fontSize;
-      
-      // Configurando as gotas
-      var drops = [];
-      for (var i = 0; i < columns; i++) {
-        drops[i] = 1;
-      }
-      
-      // Função de desenho
-      function draw() {
-        // Criar um efeito de transparência (rastro)
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Cor e estilo do texto
-        ctx.fillStyle = 'rgba(0, 255, 0, 0.17)'; // Verde bem suave para não interferir
-        ctx.font = fontSize + 'px monospace';
-        
-        // Loop através de cada gota
-        for (var i = 0; i < drops.length; i++) {
-          // Caractere aleatório
-          var text = letters[Math.floor(Math.random() * letters.length)];
+          <section>
+            <h2>Desafio: Quest de Treinamento</h2>
+            <div class="problem-section">
+              <h4>🎯 Quest de Treinamento (Fácil)</h4>
+              <p>Dados os avatares \(\vec{u} = (2, -1, 5)\) e \(\vec{v} = (-3, 4, 1)\):</p>
+              <ol>
+                  <li>Calcule o movimento combinado \(\vec{u} + \vec{v}\).</li>
+                  <li>Calcule o movimento amplificado \(3\vec{u}\).</li>
+                  <li>Expresse o avatar \(\vec{v}\) usando os blocos de construção \(\vec{i}, \vec{j}, \vec{k}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Fácil)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Quest de Treinamento:</h4>
+              <ol>
+                <li>Para a soma, some as coordenadas correspondentes de \(\vec{u}\) e \(\vec{v}\).</li>
+                <li>Para a multiplicação, multiplique cada coordenada de \(\vec{u}\) por 3.</li>
+                <li>Para a base canônica, use as coordenadas de \(\vec{v}\) como os coeficientes de \(\vec{i}, \vec{j}, \vec{k}\).</li>
+              </ol>
+            </div>
+          </section>
           
-          // Posição x e y para o texto
-          var x = i * fontSize;
-          var y = drops[i] * fontSize;
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Parabéns, jogador!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Definição de Vetor (Avatar)</li>
+                    <li>Adição e Multiplicação por Escalar (Movimentos)</li>
+                    <li>Base Canônica (Blocos de Construção)</li>
+                </ul>
+            </div>
+            <p>Você agora sabe como representar e manipular os avatares no espaço do jogo!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.2: A Régua do Universo (Norma e Distância)             -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Norma (Magnitude do Avatar)</h2>
+            <div class="math-section">
+              <p>A <strong>norma</strong> (ou módulo) de um vetor \(\vec{v}\) é o seu comprimento. É calculada usando o Teorema de Pitágoras generalizado.</p>
+              <p>\[\|\vec{v}\| = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> A norma é a "força" do seu movimento, a "distância" que seu avatar se desloca em uma única ação, ou o seu "tamanho".
+            </p>
+          </section>
+
+          <section>
+            <h2>Mecânica: Distância entre Pontos</h2>
+            <div class="math-section">
+              <p>A distância entre dois pontos (ou as "pontas" de dois vetores) A e B é a norma do vetor que os conecta, \(\vec{AB} = B - A\).</p>
+              <p>\[d(A, B) = \|\vec{AB}\| = \|B - A\|\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Isso calcula a distância em linha reta entre dois locais ou dois avatares no mapa.
+            </p>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Vetor Unitário (Direção Pura)</h2>
+            <div class="math-section">
+              <p>Um <strong>vetor unitário</strong> (ou <strong>versor</strong>) é um vetor com norma igual a 1. Ele representa apenas a direção.</p>
+              <p>\[\hat{v} = \frac{\vec{v}}{\|\vec{v}\|}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> O versor é a "mira" do seu avatar. Ele diz para onde apontar, sem se preocupar com a força ou distância. É a direção pura.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Dado o avatar \(\vec{v} = (3, 0, -4)\) e os pontos \(A=(1, 2, 3)\) e \(B=(3, 4, 2)\):</p>
+              <ol>
+                <li>Calcule a magnitude \(\|\vec{v}\|\).</li>
+                <li>Calcule a distância entre A e B.</li>
+                <li>Encontre o vetor unitário \(\hat{v}\) (a "direção pura" do avatar \(\vec{v}\)).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>Use a fórmula da norma: \(\sqrt{3^2 + 0^2 + (-4)^2}\).</li>
+                <li>Primeiro, calcule \(\vec{AB} = B - A\). Depois, calcule a norma de \(\vec{AB}\).</li>
+                <li>Calcule \(\|\vec{v}\|\) e depois divida cada componente de \(\vec{v}\) por esse valor.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Missão Cumprida!</p>
+            <div class="math-section">
+              <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+              <ul>
+                <li>Norma de um Vetor (Magnitude)</li>
+                <li>Distância entre Pontos</li>
+                <li>Vetor Unitário (Direção Pura)</li>
+              </ul>
+            </div>
+            <p>Agora você pode medir tamanhos e distâncias no universo do jogo!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.3: Sincronia de Movimento (Produto Escalar)            -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Produto Escalar (Teste de Sincronia)</h2>
+            <div class="math-section">
+              <p>O <strong>produto escalar</strong> entre dois vetores resulta em um **número** (um escalar), não em um vetor. Ele mede o "alinhamento" entre eles.</p>
+              <p>\[\vec{u} \cdot \vec{v} = u_1v_1 + u_2v_2 + \dots + u_nv_n\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Se \(\vec{u}\) é a direção que você aponta e \(\vec{v}\) é a direção do vento, o produto escalar diz o quanto o vento está a seu favor ou contra você.
+            </p>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Propriedade Geométrica</h2>
+            <div class="math-section">
+              <p>O produto escalar também se relaciona com o ângulo \(\theta\) entre os vetores:</p>
+              <p>\[\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos \theta\]</p>
+              <p>Isso nos permite calcular o ângulo: \(\cos \theta = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\)</p>
+            </div>
+            <p class="game-interp">
+                <strong>Interpretação no Jogo:</strong> Esta é a "fórmula secreta" para descobrir o ângulo exato entre duas direções de movimento.
+            </p>
+          </section>
+
+          <section>
+            <h2>Mecânica: Projeção Vetorial (A Sombra do Avatar)</h2>
+            <div class="math-section">
+              <p>A <strong>projeção</strong> de \(\vec{u}\) sobre \(\vec{v}\) é o vetor "sombra" que \(\vec{u}\) lança na direção de \(\vec{v}\).</p>
+              <p>\[\text{proj}_{\vec{v}}\vec{u} = \left( \frac{\vec{u} \cdot \vec{v}}{\|\vec{v}\|^2} \right) \vec{v}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Se \(\vec{u}\) é a força total que você aplica e \(\vec{v}\) é a direção de um trilho, a projeção é a componente da sua força que efetivamente empurra o carrinho no trilho.
+            </p>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Ortogonalidade</h2>
+            <div class="math-section">
+              <p>Dois vetores são <strong>ortogonais</strong> (perpendiculares) se o ângulo entre eles é 90°. Isso acontece exatamente quando seu produto escalar é zero.</p>
+              <p>\[\vec{u} \perp \vec{v} \iff \vec{u} \cdot \vec{v} = 0\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> "Caminhos Independentes". Se a direção da câmera é ortogonal à direção do seu movimento, mover-se para frente não afeta o que está à sua direita ou esquerda na tela.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Dados os vetores \(\vec{u}=(2, 2, 0)\) e \(\vec{v}=(3, 0, 0)\):</p>
+              <ol>
+                <li>Os vetores \(\vec{a}=(1, -2)\) e \(\vec{b}=(4, 2)\) são ortogonais?</li>
+                <li>Qual o ângulo \(\theta\) entre \(\vec{u}\) e \(\vec{v}\)?</li>
+                <li>Calcule a projeção de \(\vec{u}\) sobre \(\vec{v}\). O que este vetor "sombra" representa?</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Calcule \(\vec{a} \cdot \vec{b}\). Se o resultado for 0, eles são ortogonais.</li>
+                <li>Calcule \(\vec{u} \cdot \vec{v}\), \(\|\vec{u}\|\) e \(\|\vec{v}\|\). Use a fórmula do cosseno para encontrar \(\theta\).</li>
+                <li>Aplique a fórmula da projeção diretamente. O resultado será um vetor na direção de \(\vec{v}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Sincronia estabelecida!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Produto Escalar (Teste de Sincronia)</li>
+                    <li>Cálculo de Ângulo</li>
+                    <li>Projeção Vetorial (Sombra)</li>
+                    <li>Ortogonalidade (Perpendicularidade)</li>
+                </ul>
+            </div>
+            <p>Você agora consegue analisar as relações angulares entre os avatares!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.4: A Dimensão Oculta (Produto Vetorial em R³)          -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Produto Vetorial (Criador de Eixos)</h2>
+            <div class="math-section">
+              <p>O <strong>produto vetorial</strong> \(\vec{u} \times \vec{v}\) é uma operação exclusiva do \( \mathbb{R}^3 \). O resultado é um <strong>novo vetor</strong> que é ortogonal a \(\vec{u}\) e \(\vec{v}\) simultaneamente.</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Se você tem duas direções no chão (\(\vec{u}\) e \(\vec{v}\)), o produto vetorial encontra a direção "para cima", perpendicular ao chão. É a ferramenta para criar um novo eixo a partir de dois existentes.
+            </p>
+          </section>
+
+          <section>
+            <h2>Mecânica: Cálculo via Determinante</h2>
+            <div class="math-section">
+              <p>A forma mais prática de calcular é usando um determinante simbólico com a base canônica na primeira linha.</p>
+              <p>\[ \vec{u} \times \vec{v} = \det \begin{pmatrix} \vec{i} & \vec{j} & \vec{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{pmatrix} \]</p>
+              <p>\[ = (u_2v_3 - u_3v_2)\vec{i} - (u_1v_3 - u_3v_1)\vec{j} + (u_1v_2 - u_2v_1)\vec{k} \]</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Propriedades Chave</h2>
+            <div class="math-section">
+              <p>O vetor resultante \(\vec{w} = \vec{u} \times \vec{v}\) tem duas propriedades mágicas:</p>
+              <ol>
+                <li><strong>Ortogonalidade:</strong> \(\vec{w}\) é perpendicular a \(\vec{u}\) e a \(\vec{v}\).</li>
+                <li><strong>Magnitude:</strong> \(\|\vec{w}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta\), que é a <strong>área</strong> do paralelogramo formado por \(\vec{u}\) e \(\vec{v}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Dados \(\vec{u} = (1, 2, 0)\) e \(\vec{v} = (0, 3, 1)\):</p>
+              <ol>
+                <li>Calcule o novo eixo \(\vec{w} = \vec{u} \times \vec{v}\).</li>
+                <li>Verifique se \(\vec{w}\) é realmente ortogonal a \(\vec{u}\) (use o produto escalar).</li>
+                <li>Qual a área do paralelogramo formado por \(\vec{u}\) e \(\vec{v}\)?</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Monte e calcule o determinante 3x3 para encontrar \(\vec{w}\).</li>
+                <li>Calcule \(\vec{w} \cdot \vec{u}\). O resultado deve ser 0.</li>
+                <li>Calcule a norma do vetor \(\vec{w}\) que você encontrou no passo 1. O valor é a área.</li>
+              </ol>
+            </div>
+          </section>
           
-          // Desenhar o texto
-          ctx.fillText(text, x, y);
-          
-          // Enviar a gota de volta ao topo após atingir o limite
-          // Adicionar randomização para o efeito parecer mais natural
-          if (y > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          
-          // Mover a gota
-          drops[i]++;
-        }
-      }
-      
-      // Loop da animação (30 FPS)
-      setInterval(draw, 33);
-    });
-  </script>
-  
-  <!-- Scripts do reveal.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/zoom/zoom.min.js"></script>
-  
-  <!-- Inicialização do reveal.js -->
-  <script>
-    Reveal.initialize({
-      hash: true,
-      controls: true,
-      progress: true,
-      center: true,
-      transition: 'slide', // none/fade/slide/convex/concave/zoom
-      
-      // Plugins
-      plugins: [
-        RevealMarkdown,
-        RevealHighlight,
-        RevealNotes,
-        RevealMath.KaTeX,
-        RevealZoom
-      ],
-      
-      // Configuração do MathJax para fórmulas matemáticas
-      math: {
-        mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
-        config: 'TeX-AMS_HTML-full',
-        TeX: { Macros: {} }
-      }
-    });
-  </script>
-</body>
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Dimensão desbloqueada!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Produto Vetorial (Criação de Eixo Perpendicular)</li>
+                    <li>Cálculo via Determinante</li>
+                    <li>Área do Paralelogramo via Norma</li>
+                </ul>
+            </div>
+            <p>Você pode criar novas dimensões e calcular áreas no espaço 3D!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.5: Desenhando o Mapa (Geometria Analítica) -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Equação da Reta</h2>
+            <div class="math-section">
+              <p>Uma reta é definida por um <strong>ponto</strong> \(A\) por onde passa e um <strong>vetor diretor</strong> \(\vec{v}\) que dá sua inclinação.</p>
+              <p>Equação Vetorial: \( P = A + t\vec{v} \)</p>
+              <p>\[ (x, y, z) = (x_0, y_0, z_0) + t(a, b, c) \]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Esta é a "sequência de comandos" para desenhar um caminho infinito. "Comece no ponto A e dê \(t\) passos na direção \(\vec{v}\)".
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Encontre a equação vetorial da reta que passa pelos pontos \(A=(1, 5, 2)\) e \(B=(3, 1, 6)\).</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>Escolha um dos pontos como seu ponto de partida \(A\).</li>
+                <li>Encontre o vetor diretor calculando \(\vec{v} = \vec{AB} = B - A\).</li>
+                <li>Monte a equação \(P = A + t\vec{v}\) com os valores encontrados.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Mecânica: Equação do Plano</h2>
+            <div class="math-section">
+              <p>Um plano é definido por um <strong>ponto</strong> \(A\) e um <strong>vetor normal</strong> \(\vec{n}\) (perpendicular ao plano).</p>
+              <p>\[ \vec{n} \cdot (P - A) = 0 \]</p>
+              <p>Isso leva à equação geral: \(ax + by + cz + d = 0\), onde \(\vec{n}=(a,b,c)\).</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> O vetor normal é a "chave de orientação" de uma parede infinita. Qualquer caminho desenhado sobre essa parede será sempre perpendicular ao vetor normal.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Encontre a equação geral do plano que contém os pontos \(A=(1,0,0)\), \(B=(0,1,0)\) e \(C=(0,0,1)\).</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Crie dois vetores que estão no plano: \(\vec{u} = \vec{AB}\) e \(\vec{v} = \vec{AC}\).</li>
+                <li>Calcule o vetor normal \(\vec{n} = \vec{u} \times \vec{v}\). Este vetor é perpendicular ao plano.</li>
+                <li>Escolha um dos pontos (ex: A) e use \(\vec{n}\) e A para montar a equação geral do plano.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Mapa concluído!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Equação Vetorial da Reta</li>
+                    <li>Equação Geral do Plano</li>
+                </ul>
+            </div>
+            <p>Você agora tem as ferramentas para construir as estruturas básicas do mundo do jogo!</p>
+          </section>
+        </section>
+
+        <!-- Slide Final: Easter Egg -->
+        <section>
+            <h2>Easter Egg: Aplicações</h2>
+            <div class="lore-section">
+                <div class="lore-label">EASTER EGG</div>
+                <p><strong>Onde a Álgebra Linear é o "Motor do Jogo" no Mundo Real</strong></p>
+                <p>
+                    Cada ação em um jogo 3D, do movimento da câmera à forma como a luz bate em uma parede, é calculada usando as operações com vetores que você acabou de aprender.
+                </p>
+            </div>
+            <div class="math-section">
+                <p>Exemplos de aplicação:</p>
+                <ul>
+                    <li><strong>Computação Gráfica:</strong> Vetores normais (\(\vec{n}\)) determinam como a luz reflete em uma superfície.</li>
+                    <li><strong>Física de Jogos:</strong> Velocidade, aceleração e força são todos vetores. O produto escalar detecta colisões.</li>
+                    <li><strong>Machine Learning:</strong> Dados complexos (imagens, palavras) são transformados em vetores em espaços de alta dimensão.</li>
+                </ul>
+            </div>
+        </section>
+      </div>
+    </div>
+    
+    <script>
+      window.onload = function () {
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          center: true,
+          hash: true,
+          plugins: [RevealMath.MathJax3],
+          width: '90%',
+          height: '100%',
+          margin: 0.02,
+          minScale: 0.45,
+          maxScale: 1.5,
+          transition: 'fade',
+        });
+      };
+    </script>
+  </body>
 </html>
