@@ -73,11 +73,11 @@ A primeira grande chave que abre novas áreas do jogo.
 ### FASE 3: Explorando o Espaço - Vetores Euclidianos [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos-vetoriais-euclidianos.html)
 Navegando pelo mundo 3D (e além) do jogo.
 
-- Vetores: seus personagens no espaço
-- Norma e Distância: medindo seu poder e o caminho
-- Ortogonalidade: ângulos retos e atalhos
-- A Geometria dos Sistemas Lineares
-- Produto Vetorial: uma nova dimensão de interação
+- [Vetores: seus personagens no espaço](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/vetores.html)
+- [Norma e Distância: medindo seu poder e o caminho](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/norma-e-distancia.html)
+- [Ortogonalidade: ângulos retos e atalhos](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/ortogonalidade.html)
+- [A Geometria dos Sistemas Lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/geometria-sistemas-lineares.html)
+- [Produto Vetorial: uma nova dimensão de interação](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/produto-vetorial.html)
 - **Mini-Chefe:** [Quiz da Fase 3](quiz/ga.md)
 
 <details><summary>🔍 Glossário da Fase 3</summary>
@@ -87,18 +87,18 @@ Navegando pelo mundo 3D (e além) do jogo.
 ### FASE 4: Portais e Avatares - Transformações Lineares [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/transformacoes.html)
 Aprendendo a se teleportar e a transformar seu personagem.
 
-- Espaço Euclidiano n-dimensional
-- Transformações Lineares de $R^n$ em $R^m$ (Portais)
-- Propriedades das Transformações Lineares
+- [Espaço Euclidiano n-dimensional](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/espaco-euclidiano-n-dimensional.html)
+- [Transformações Lineares de $R^n$ em $R^m$ (Portais)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/transformacoes-lineares.html)
+- [Propriedades das Transformações Lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/propriedades-transformacoes-lineares.html)
 
 ### FASE 5: As Leis do Universo - Espaços Vetoriais Abstratos [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos.html)
 Explorando as regras que governam não apenas este jogo, mas todos os universos possíveis.
 
-- Espaços vetoriais reais e seus 10 axiomas (A Constituição do Multiverso)
-- Subespaços (Zonas Seguras)
-- Independência Linear (Personagens únicos)
-- Coordenadas e Bases (O sistema de GPS do universo)
-- Dimensão, Posto e Nulidade
+- [Espaços vetoriais reais e seus 10 axiomas](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/espacos-vetoriais-reais.html)
+- [Subespaços (Zonas Seguras)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/subespacos.html)
+- [Independência Linear (Personagens únicos)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/independencia-linear.html)
+- [Coordenadas e Bases (O sistema de GPS do universo)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/coordenadas-e-bases.html)
+- [Dimensão, Posto e Nulidade](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/dimensao-posto-nulidade.html)
 - **Mini-Chefe:** [Quiz da Fase 5](quiz/espaco_linear.md)
 
 <details><summary>🔍 Glossário da Fase 5</summary>
@@ -108,8 +108,8 @@ Explorando as regras que governam não apenas este jogo, mas todos os universos 
 ### FASE FINAL: O Código-Fonte - Autovalores e Autovetores
 A busca pelo *Easter Egg* final: os segredos mais profundos da estrutura do jogo.
 
-- Autovalores e Autovetores: as "direções preferenciais" do universo
-- Diagonalização: simplificando a própria realidade
+- [Autovalores e Autovetores: as "direções preferenciais"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-6/autovalores-e-autovetores.html)
+- [Diagonalização: simplificando a própria realidade](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-6/diagonalizacao.html)
 - **Chefe Final:** [Quiz da Fase Final](quiz/auto_valores_vetores.md)
 
 <details><summary>🔍 Glossário da Fase Final</summary>
