@@ -76,8 +76,9 @@ Navegando pelo mundo 3D (e além) do jogo.
 - **Quest 3.1:** [Vetores: seus personagens no espaço](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/vetores.html)
 - **Quest 3.2:** [Norma e Distância: medindo seu poder e o caminho](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/norma-e-distancia.html)
 - **Quest 3.3:** [Ortogonalidade: ângulos retos e atalhos](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/ortogonalidade.html)
-- **Quest 3.4:** [A Geometria dos Sistemas Lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/geometria-sistemas-lineares.html)
-- **Quest 3.5:** [Produto Vetorial: uma nova dimensão de interação](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/produto-vetorial.html)
+- **Quest 3.4:** [Retas e planos](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/retas-e-planos.html)
+- **Quest 3.5:** [A Geometria dos Sistemas Lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/geometria-sistemas-lineares.html)
+- **Quest 3.6:** [Produto Vetorial: uma nova dimensão de interação](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-3/produto-vetorial.html)
 - **Mini-Chefe:** [Quiz da Fase 3](quiz/ga.md)
 
 <details><summary>🔍 Glossário da Fase 3</summary>
