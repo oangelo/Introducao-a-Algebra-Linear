@@ -88,9 +88,9 @@ Navegando pelo mundo 3D (e além) do jogo.
 ### FASE 4: Portais e Avatares - Transformações Lineares [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/transformacoes.html)
 Aprendendo a se teleportar e a transformar seu personagem.
 
-- **Quest 4.1:** [Espaço Euclidiano n-dimensional](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/espaco-euclidiano-n-dimensional.html)
-- **Quest 4.2:** [Transformações Lineares de $R^n$ em $R^m$ (Portais)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/transformacoes-lineares.html)
-- **Quest 4.3:** [Propriedades das Transformações Lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/propriedades-transformacoes-lineares.html)
+- **Quest 4.1:** [O Primeiro Portal (Aplicando Matrizes de Transformação)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/aplicando.html)
+- **Quest 4.2:** [O Arsenal do Mestre do Jogo (Construindo Matrizes de Transformação)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/transformacoes-lineares.html)
+- **Quest 4.3:** [Combos e Reversões (Composição e Invertibilidade)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/combos-e-reversoes.html)
 
 ### FASE 5: As Leis do Universo - Espaços Vetoriais Abstratos [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos.html)
 Explorando as regras que governam não apenas este jogo, mas todos os universos possíveis.
