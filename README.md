@@ -10,7 +10,7 @@ Sua jornada até agora é muito importante para mim. Para garantir que o "jogo" 
 
 Suas respostas são **100% anônimas** e levarão apenas 5 minutos. Seu feedback é o 'power-up' que preciso para melhorar o curso *para vocês*!
 
-[**>> INICIAR MISSÃO DE FEEDBACK (RESPONDER PESQUISA) <<**](https://docs.google.com/forms/d/e/1FAIpQLSd7dUipQLSd7dUipQLabz1EziTpv5VrTHZu0hu50yHQTzOGxs_82DjpqvA/viewform)
+[**>> INICIAR MISSÃO DE FEEDBACK (RESPONDER PESQUISA) <<**](https://docs.google.com/forms/d/e/1FAIpQLSd7dUipQLabz1EziTpv5VrTHZu0hu50yHQTzOGxs_82DjpqvA/viewform)
 
 Muito obrigado pela sua colaboração!
 
