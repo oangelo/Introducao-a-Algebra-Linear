@@ -2,6 +2,17 @@
 
 Bem-vindo, Jogador! Você está prestes a iniciar uma jornada pelo universo da Álgebra Linear. Este é um mundo vasto, cheio de desafios, segredos e ferramentas poderosas. Sua missão, caso decida aceitar, é dominar suas regras, coletar seus artefatos e provar sua maestria. Que comecem os jogos!
 
+### 🎮 Missão de Feedback: Ajude a Calibrar o Jogo! 🎮
+
+Olá, Jogador!
+
+Sua jornada até agora é muito importante para mim. Para garantir que o "jogo" esteja bem balanceado, divertido e justo para todos, criei uma pesquisa rápida.
+
+Suas respostas são **100% anônimas** e levarão apenas 5 minutos. Seu feedback é o 'power-up' que preciso para melhorar o curso *para vocês*!
+
+[**>> INICIAR MISSÃO DE FEEDBACK (RESPONDER PESQUISA) <<**](https://docs.google.com/forms/d/e/1FAIpQLSd7dUipQLSd7dUipQLabz1EziTpv5VrTHZu0hu50yHQTzOGxs_82DjpqvA/viewform)
+
+Muito obrigado pela sua colaboração!
 
 ## Mapa da Missão
 
