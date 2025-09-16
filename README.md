@@ -2,6 +2,17 @@
 
 Bem-vindo, Jogador! Você está prestes a iniciar uma jornada pelo universo da Álgebra Linear. Este é um mundo vasto, cheio de desafios, segredos e ferramentas poderosas. Sua missão, caso decida aceitar, é dominar suas regras, coletar seus artefatos e provar sua maestria. Que comecem os jogos!
 
+### 🎮 Missão de Feedback: Ajude a Calibrar o Jogo! 🎮
+
+Olá, Jogador!
+
+Sua jornada até agora é muito importante para mim. Para garantir que o "jogo" esteja bem balanceado, divertido e justo para todos, criei uma pesquisa rápida.
+
+Suas respostas são **100% anônimas** e levarão apenas 5 minutos. Seu feedback é o 'power-up' que preciso para melhorar o curso *para vocês*!
+
+[**>> INICIAR MISSÃO DE FEEDBACK (RESPONDER PESQUISA) <<**](https://docs.google.com/forms/d/e/1FAIpQLSd7dUipQLabz1EziTpv5VrTHZu0hu50yHQTzOGxs_82DjpqvA/viewform)
+
+Muito obrigado pela sua colaboração!
 
 ## Mapa da Missão
 
@@ -88,9 +99,9 @@ Navegando pelo mundo 3D (e além) do jogo.
 ### FASE 4: Portais e Avatares - Transformações Lineares [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/transformacoes.html)
 Aprendendo a se teleportar e a transformar seu personagem.
 
-- **Quest 4.1:** [Espaço Euclidiano n-dimensional](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/espaco-euclidiano-n-dimensional.html)
-- **Quest 4.2:** [Transformações Lineares de $R^n$ em $R^m$ (Portais)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/transformacoes-lineares.html)
-- **Quest 4.3:** [Propriedades das Transformações Lineares](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/propriedades-transformacoes-lineares.html)
+- **Quest 4.1:** [O Primeiro Portal (Aplicando Matrizes de Transformação)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/aplicando.html)
+- **Quest 4.2:** [O Arsenal do Mestre do Jogo (Construindo Matrizes de Transformação)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/transformacoes-lineares.html)
+- **Quest 4.3:** [Combos e Reversões (Composição e Invertibilidade)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/combos-e-reversoes.html)
 
 ### FASE 5: As Leis do Universo - Espaços Vetoriais Abstratos [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos.html)
 Explorando as regras que governam não apenas este jogo, mas todos os universos possíveis.
