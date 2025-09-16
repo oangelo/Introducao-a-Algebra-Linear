@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+    <title>ÁLGEBRA ARCADE | Fase 4.2: O Arsenal do Mestre do Jogo</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 4.2: O Arsenal do Mestre do Jogo</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: O Arsenal do Mestre do Jogo (Construindo Matrizes de Transformação)</h3>
+        <p>Na fase anterior, você aprendeu a usar os "portais" (matrizes) que já existiam. Agora, como um verdadeiro Mestre do Jogo, você aprenderá a criá-los! A missão é construir a "Matriz de Transformação" \(A\) a partir de uma descrição geométrica do efeito desejado. Para isso, usaremos a Regra de Ouro dos Construtores de Portais.</p>
+        <p>A regra é simples: para construir a matriz de uma transformação \(T\), basta observar para onde ela envia os vetores da base canônica (\(\mathbf{e}_1, \mathbf{e}_2, \dots\)). Os resultados se tornam as colunas da sua matriz. Prepare-se para forjar seu próprio arsenal de efeitos especiais!</p>
+        <div class="formula">\[ A = \begin{bmatrix} | & | & \dots \\ T(\mathbf{e}_1) & T(\mathbf{e}_2) & \dots \\ | & | & \dots \end{bmatrix} \]</div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-A: Construindo o Portal de Espelho (Método Fundamental)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar o método fundamental encontrando a matriz para uma reflexão através da reta \(y=-x\).
+            </div>
+            <p>Em um puzzle da "Era 16-bit", você precisa criar um "portal de espelho" que reflete qualquer ponto \((x,y)\) para o ponto \((-y,-x)\). Para criar a matriz \(A\) desta transformação \(T\), determine para onde os vetores da base canônica, \(\mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\) e \(\mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\), são enviados.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Aplique a regra da transformação \((x,y) \rightarrow (-y,-x)\) a \(\mathbf{e}_1\) e \(\mathbf{e}_2\). O resultado de \(T(\mathbf{e}_1)\) será a primeira coluna da sua matriz, e \(T(\mathbf{e}_2)\) será a segunda.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Transforme \(\mathbf{e}_1\):</strong> Para \(\mathbf{e}_1 = (1,0)\), temos \(x=1, y=0\). A transformação o leva para \((-y,-x) = (0,-1)\). Este é o vetor \(T(\mathbf{e}_1)\), a primeira coluna da matriz.</li>
+                    <li><strong>Transforme \(\mathbf{e}_2\):</strong> Para \(\mathbf{e}_2 = (0,1)\), temos \(x=0, y=1\). A transformação o leva para \((-y,-x) = (-1,0)\). Este é o vetor \(T(\mathbf{e}_2)\), a segunda coluna.</li>
+                    <li><strong>Monte a Matriz:</strong> Junte as colunas para formar a matriz \(A = [T(\mathbf{e}_1) | T(\mathbf{e}_2)]\).</li>
+                </ol>
+                <div class="formula">\[ A = [ T(\mathbf{e}_1) | T(\mathbf{e}_2) ] = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Os desenvolvedores não memorizam todas as matrizes. Eles usam esse método exato para construir a matriz de qualquer efeito visual customizado que precisem para o jogo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-B: O Esmagador 2D (Construção de Matriz de Projeção)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a matriz que projeta qualquer vetor 2D sobre o eixo y.
+            </div>
+            <p>Você está projetando uma armadilha, a "Prensa Esmagadora", que achata qualquer objeto na tela contra a parede do fundo (o eixo y). Geometricamente, isso significa que a coordenada x de qualquer ponto se torna 0, enquanto a coordenada y permanece a mesma. Construa a matriz de projeção \(P_y\) que realiza essa transformação \(T(x,y) = (0,y)\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Onde o vetor \(\mathbf{e}_1=(1,0)\) vai parar se sua coordenada x for zerada? E o vetor \(\mathbf{e}_2=(0,1)\)? Use os resultados como colunas da matriz.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Transforme \(\mathbf{e}_1\):</strong> O vetor \(\mathbf{e}_1 = (1,0)\) é projetado sobre o eixo y. Sua coordenada x vira 0, então \(T(\mathbf{e}_1) = (0,0)\). Esta é a primeira coluna.</li>
+                    <li><strong>Transforme \(\mathbf{e}_2\):</strong> O vetor \(\mathbf{e}_2 = (0,1)\) já está sobre o eixo y. A projeção não o altera, então \(T(\mathbf{e}_2) = (0,1)\). Esta é a segunda coluna.</li>
+                    <li><strong>Monte a Matriz:</strong> Combine os vetores-coluna para obter a matriz da "Prensa Esmagadora".</li>
+                </ol>
+                <div class="formula">\[ P_y = [ T(\mathbf{e}_1) | T(\mathbf{e}_2) ] = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Projeções são usadas para criar sombras, minimapas 2D a partir de um mundo 3D, ou para efeitos de "achatamento", como quando um personagem de desenho animado bate em uma parede.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-C: Designer de Efeitos Visuais (Descrição Geométrica de Matriz)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dada uma matriz simples, descrever em palavras o efeito geométrico que ela causa.
+            </div>
+            <p>Você encontrou um "power-up" misterioso no código do jogo, definido pela matriz \(A\) abaixo. Para entender o que ele faz, observe o que acontece com os vetores da base canônica, \(\mathbf{e}_1\) e \(\mathbf{e}_2\). Descreva o efeito geométrico do power-up.</p>
+            \[ A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Lembre-se que as colunas de \(A\) são \(T(\mathbf{e}_1)\) e \(T(\mathbf{e}_2)\). Onde \(\mathbf{e}_1\) foi parar? E \(\mathbf{e}_2\)? A coordenada x mudou? E a y? Qual transformação geométrica faz isso?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Analise a primeira coluna:</strong> A primeira coluna é \(\begin{pmatrix} 1 \\ 0 \end{pmatrix}\). Isso significa que \(T(\mathbf{e}_1) = \mathbf{e}_1\). O vetor do eixo x não muda.</li>
+                    <li><strong>Analise a segunda coluna:</strong> A segunda coluna é \(\begin{pmatrix} 0 \\ -1 \end{pmatrix}\). Isso significa que \(T(\mathbf{e}_2) = -\mathbf{e}_2\). O vetor do eixo y é invertido.</li>
+                    <li><strong>Descreva o Efeito:</strong> Uma transformação que mantém a coordenada x e inverte a coordenada y é uma <strong>reflexão através do eixo x</strong>.</li>
+                </ol>
+                <div class="formula">\[ T(x,y) = (x, -y) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Entender o que uma matriz faz a partir de sua estrutura é uma habilidade essencial para depurar gráficos e otimizar código, permitindo que desenvolvedores identifiquem rapidamente o propósito de uma transformação sem precisar executá-la.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-A (MÉDIO) -->
+        <div class="mission">
+            <h3>MISSÃO 2-A: A Câmera Isométrica (Extensão para R³)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Construir uma matriz de transformação 3D simples, como a reflexão através do plano xy.
+            </div>
+            <p>Você está configurando a câmera para um jogo 3D com um efeito de "mundo invertido", onde tudo é refletido através do chão (o plano xy). Uma reflexão através do plano xy mapeia um ponto \((x, y, z)\) para \((x, y, -z)\). Construa a matriz 3x3 para esta transformação usando a base canônica de \(\mathbb{R}^3\): \(\mathbf{e}_1=(1,0,0)\), \(\mathbf{e}_2=(0,1,0)\), \(\mathbf{e}_3=(0,0,1)\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O método é o mesmo, mas agora com três vetores e três colunas. O que acontece com \(\mathbf{e}_1\), \(\mathbf{e}_2\) e \(\mathbf{e}_3\) quando a coordenada z de cada um é invertida?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Transforme \(\mathbf{e}_1 = (1,0,0)\):</strong> A coordenada z é 0, então invertê-la não muda nada. \(T(\mathbf{e}_1) = (1,0,0)\).</li>
+                    <li><strong>Transforme \(\mathbf{e}_2 = (0,1,0)\):</strong> A coordenada z é 0, então também não muda. \(T(\mathbf{e}_2) = (0,1,0)\).</li>
+                    <li><strong>Transforme \(\mathbf{e}_3 = (0,0,1)\):</strong> A coordenada z é 1. Invertendo, ela se torna -1. \(T(\mathbf{e}_3) = (0,0,-1)\).</li>
+                    <li><strong>Monte a Matriz:</strong> Use os três vetores resultantes como as colunas da sua matriz 3x3.</li>
+                </ol>
+                <div class="formula">\[ A = [ T(\mathbf{e}_1) | T(\mathbf{e}_2) | T(\mathbf{e}_3) ] = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Efeitos de portal, como em "Portal", ou mundos espelhados, como em "The Legend of Zelda: A Link to the Past", usam matrizes de reflexão para renderizar a visão do outro lado de forma eficiente.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MÉDIO) -->
+        <div class="mission">
+            <h3>MISSÃO 2-B: A Lente de Cisalhamento (Construção de Matriz de Cisalhamento)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Deduzir a matriz para um cisalhamento vertical a partir de sua descrição geométrica.
+            </div>
+            <p>Projete uma "lente de distorção" que causa um <strong>cisalhamento vertical</strong>. Este efeito mantém a coordenada x de um ponto, mas adiciona o dobro da coordenada x à coordenada y. A transformação é \(T(x,y) = (x, y + 2x)\). Encontre a matriz padrão para esta lente.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para \(T(\mathbf{e}_1)\), use \(x=1, y=0\) na fórmula. Para \(T(\mathbf{e}_2)\), use \(x=0, y=1\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Transforme \(\mathbf{e}_1 = (1,0)\):</strong> Usando a regra, \(T(1,0) = (1, 0 + 2 \cdot 1) = (1,2)\). Esta é a primeira coluna.</li>
+                    <li><strong>Transforme \(\mathbf{e}_2 = (0,1)\):</strong> Usando a regra, \(T(0,1) = (0, 1 + 2 \cdot 0) = (0,1)\). Esta é a segunda coluna.</li>
+                    <li><strong>Monte a Matriz:</strong> Combine as colunas para formar a matriz de cisalhamento vertical.</li>
+                </ol>
+                <div class="formula">\[ A = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Efeitos de texto itálico em interfaces gráficas são, na verdade, uma aplicação de uma matriz de cisalhamento (shear) sobre os vetores que definem as fontes.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MÉDIO) -->
+        <div class="mission">
+            <h3>MISSÃO 2-C: Reflexo no Rio Diagonal (Reflexão não-Axial)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a matriz que reflete um ponto através da reta \(y=x\).
+            </div>
+            <p>Um laser precisa ser refletido na superfície de um rio que corre exatamente na diagonal, ao longo da linha \(y=x\). Uma reflexão através da reta \(y=x\) tem o efeito de trocar as coordenadas de um ponto, ou seja, \(T(x,y) = (y,x)\). Construa a matriz para esta transformação.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O que acontece com as coordenadas de \(\mathbf{e}_1=(1,0)\) quando elas são trocadas? E com as de \(\mathbf{e}_2=(0,1)\)?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Transforme \(\mathbf{e}_1 = (1,0)\):</strong> Trocando as coordenadas, \(T(1,0) = (0,1)\). Esta é a primeira coluna.</li>
+                    <li><strong>Transforme \(\mathbf{e}_2 = (0,1)\):</strong> Trocando as coordenadas, \(T(0,1) = (1,0)\). Esta é a segunda coluna.</li>
+                    <li><strong>Monte a Matriz:</strong> Junte as colunas para formar a matriz de reflexão.</li>
+                </ol>
+                <div class="formula">\[ A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos de puzzle que envolvem espelhos e lasers, a matriz de reflexão do espelho é calculada com base em sua orientação para determinar a nova trajetória do feixe.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (AVANÇADO) -->
+        <div class="mission">
+            <h3>MISSÃO 3-A: A Rotação da Torre de Vigia 3D (Rotação 3D)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Deduzir a matriz de rotação em torno do eixo z em \(\mathbb{R}^3\) por um ângulo \(\theta\).
+            </div>
+            <p>Você está programando uma torre de vigia em um jogo 3D. A torre gira em torno de seu próprio eixo, que coincide com o eixo z do mundo do jogo. Encontre a matriz 3x3 que rotaciona um ponto por um ângulo \(\theta\) no sentido anti-horário em torno do eixo z. (Dica: a rotação ocorre no plano xy, enquanto a coordenada z permanece inalterada).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O que acontece com \(\mathbf{e}_3=(0,0,1)\) se ele está no eixo de rotação? Para \(\mathbf{e}_1\) e \(\mathbf{e}_2\), a transformação é uma rotação 2D normal no plano xy. Qual é a nova coordenada z deles?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Transforme \(\mathbf{e}_1 = (1,0,0)\):</strong> Rotacionar \((1,0)\) por \(\theta\) no plano xy resulta em \((\cos\theta, \sin\theta)\). A coordenada z permanece 0. Assim, \(T(\mathbf{e}_1) = (\cos\theta, \sin\theta, 0)\).</li>
+                    <li><strong>Transforme \(\mathbf{e}_2 = (0,1,0)\):</strong> Rotacionar \((0,1)\) por \(\theta\) no plano xy resulta em \((-\sin\theta, \cos\theta)\). A coordenada z permanece 0. Assim, \(T(\mathbf{e}_2) = (-\sin\theta, \cos\theta, 0)\).</li>
+                    <li><strong>Transforme \(\mathbf{e}_3 = (0,0,1)\):</strong> Como \(\mathbf{e}_3\) está no eixo de rotação, ele não se move. Assim, \(T(\mathbf{e}_3) = (0,0,1)\).</li>
+                    <li><strong>Monte a Matriz:</strong> Junte os três vetores-coluna.</li>
+                </ol>
+                <div class="formula">\[ A = \begin{pmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é uma das matrizes de rotação mais fundamentais em gráficos 3D, usada para girar objetos, personagens e a câmera em torno de um dos eixos principais.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (AVANÇADO) -->
+        <div class="mission">
+            <h3>MISSÃO 3-B: O Projetor de Alvos (Projeção Ortogonal)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a fórmula de projeção para construir a matriz que projeta vetores sobre a linha gerada por \(\mathbf{d}=(1,3)\).
+            </div>
+            <p>Um "projetor de alvos" em seu jogo de estratégia precisa mostrar a projeção de qualquer unidade na direção de um vetor de ataque \(\mathbf{d} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}\). Construa a matriz de transformação \(P\) para esta projeção usando a fórmula: \(\text{proj}_{\mathbf{d}}\mathbf{x} = \frac{\mathbf{x} \cdot \mathbf{d}}{\mathbf{d} \cdot \mathbf{d}}\mathbf{d}\). Para isso, projete os vetores da base canônica sobre \(\mathbf{d}\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, calcule \(\mathbf{d} \cdot \mathbf{d}\). Depois, aplique a fórmula de projeção para \(\mathbf{x}=\mathbf{e}_1\) para achar a primeira coluna, e para \(\mathbf{x}=\mathbf{e}_2\) para achar a segunda.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o denominador: \(\mathbf{d} \cdot \mathbf{d} = 1^2 + 3^2 = 10\).</li>
+                    <li><strong>Transforme \(\mathbf{e}_1\):</strong> Calcule \(\text{proj}_{\mathbf{d}}\mathbf{e}_1 = \frac{(1,0)\cdot(1,3)}{10}(1,3) = \frac{1}{10}(1,3) = \begin{pmatrix} 1/10 \\ 3/10 \end{pmatrix}\). Esta é a primeira coluna.</li>
+                    <li><strong>Transforme \(\mathbf{e}_2\):</strong> Calcule \(\text{proj}_{\mathbf{d}}\mathbf{e}_2 = \frac{(0,1)\cdot(1,3)}{10}(1,3) = \frac{3}{10}(1,3) = \begin{pmatrix} 3/10 \\ 9/10 \end{pmatrix}\). Esta é a segunda coluna.</li>
+                    <li><strong>Monte a Matriz:</strong> Junte as colunas.</li>
+                </ol>
+                <div class="formula">\[ P = \begin{pmatrix} 1/10 & 3/10 \\ 3/10 & 9/10 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A física de colisão e deslizamento usa projeções. Para fazer um personagem deslizar ao longo de uma parede, a engine projeta o vetor de movimento do jogador sobre o vetor da parede.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (AVANÇADO) -->
+        <div class="mission">
+            <h3>MISSÃO 3-C: O Portal Multiefeito (Análise Geométrica 3D)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dada uma matriz 3x3, descrever a sequência de efeitos que ela causa.
+            </div>
+            <p>Um portal mágico no seu jogo está aplicando um efeito estranho descrito pela matriz \(A\). Ao analisar as colunas de \(A\), que são as imagens de \(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\), descreva os múltiplos efeitos geométricos que o portal está aplicando em um objeto 3D.</p>
+            \[ A = \begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 5 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Olhe para os blocos da matriz. O que o bloco superior 2x2 \(\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\) faz no plano xy? O que o número '5' na diagonal faz com a coordenada z?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Analise \(T(\mathbf{e}_1)\) e \(T(\mathbf{e}_2)\):</strong> \(T(\mathbf{e}_1)=(0, -1, 0)\) e \(T(\mathbf{e}_2)=(1, 0, 0)\). No plano xy, isso é uma rotação de 90° no sentido <strong>horário</strong> (ou -90°).</li>
+                    <li><strong>Analise \(T(\mathbf{e}_3)\):</strong> \(T(\mathbf{e}_3)=(0, 0, 5)\). Isso significa que o vetor no eixo z é esticado por um fator de 5.</li>
+                    <li><strong>Combine os Efeitos:</strong> A transformação aplica dois efeitos simultaneamente: uma rotação de 90° no sentido horário em torno do eixo z e uma dilatação (escala) por um fator de 5 ao longo do eixo z.</li>
+                </ol>
+                <div class="formula">\[ T(x,y,z) = (y, -x, 5z) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Transformações complexas em jogos são frequentemente combinações de rotações, escalas e translações. Ser capaz de decompor uma matriz em seus efeitos componentes é crucial para criar e depurar animações e comportamentos de objetos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-A (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-A: O Código-Fonte da Rotação (Derivação da Matriz)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar trigonometria para derivar a matriz de rotação geral em \(\mathbb{R}^2\) para um ângulo \(\theta\).
+            </div>
+            <p>Você foi encarregado de escrever a função `create_rotation_matrix(theta)` para a engine do jogo. Para isso, você precisa da fórmula geral. Use seus conhecimentos de trigonometria e o método da base canônica para construir a matriz que rotaciona um vetor em \(\mathbb{R}^2\) por um ângulo \(\theta\) no sentido anti-horário.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Imagine \(\mathbf{e}_1 = (1,0)\) rotacionado:</strong> Desenhe o círculo trigonométrico. O vetor \(\mathbf{e}_1\) está no eixo x. Ao rotacioná-lo por \(\theta\), ele aponta para o ponto \((\cos\theta, \sin\theta)\) no círculo. Este é \(T(\mathbf{e}_1)\).</li>
+                    <li><strong>Imagine \(\mathbf{e}_2 = (0,1)\) rotacionado:</strong> O vetor \(\mathbf{e}_2\) está no eixo y, que é o ângulo de 90° ou \(\pi/2\). Rotacioná-lo por \(\theta\) o leva para o ângulo \(\theta + 90^\circ\). As coordenadas são \((\cos(\theta+90^\circ), \sin(\theta+90^\circ))\).</li>
+                    <li><strong>Use Identidades Trigonométricas:</strong> Lembre-se que \(\cos(\theta+90^\circ) = -\sin\theta\) e \(\sin(\theta+90^\circ) = \cos\theta\). Portanto, \(T(\mathbf{e}_2) = (-\sin\theta, \cos\theta)\).</li>
+                    <li><strong>Monte a Matriz Final:</strong> Use \(T(\mathbf{e}_1)\) e \(T(\mathbf{e}_2)\) como as colunas da matriz de rotação.</li>
+                </ol>
+                <div class="formula">\[ R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é uma das matrizes mais importantes em toda a computação gráfica. A capacidade de derivá-la do zero é a marca de um programador de engine que compreende profundamente os fundamentos matemáticos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-B: Calibrando o Portal Alienígena (Transformação de Vetores Arbitrários)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a matriz \(A\) sabendo para onde ela leva dois vetores que não são da base canônica.
+            </div>
+            <p>Você encontrou um portal alienígena que é uma transformação linear \(T\). Você não sabe a matriz \(A\) dele, mas fez dois testes:
+            <br>1. Uma sonda enviada na direção \(\mathbf{v}_1 = \begin{pmatrix}1\\1\end{pmatrix}\) saiu na direção \(\mathbf{w}_1 = \begin{pmatrix}2\\3\end{pmatrix}\).
+            <br>2. Outra sonda em \(\mathbf{v}_2 = \begin{pmatrix}1\\-1\end{pmatrix}\) saiu em \(\mathbf{w}_2 = \begin{pmatrix}0\\1\end{pmatrix}\).
+            <br>Encontre a matriz \(A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}\) do portal. (Dica: use as duas equações matriciais \(A\mathbf{v}_1=\mathbf{w}_1\) e \(A\mathbf{v}_2=\mathbf{w}_2\) para criar um sistema de equações lineares para \(a,b,c,d\)).</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Monte as equações:</strong> A partir de \(A\mathbf{v}_1=\mathbf{w}_1\), obtemos: \(a+b=2\) e \(c+d=3\). A partir de \(A\mathbf{v}_2=\mathbf{w}_2\), obtemos: \(a-b=0\) e \(c-d=1\).</li>
+                    <li><strong>Resolva para a primeira linha:</strong> Temos o sistema \(a+b=2\) e \(a-b=0\). Resolvendo, encontramos \(a=1, b=1\).</li>
+                    <li><strong>Resolva para a segunda linha:</strong> Temos o sistema \(c+d=3\) e \(c-d=1\). Resolvendo, encontramos \(c=2, d=1\).</li>
+                    <li><strong>Construa a Matriz A:</strong> Reúna os coeficientes encontrados para formar a matriz do portal.</li>
+                </ol>
+                <div class="formula">\[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} a+b \\ c+d \end{pmatrix} = \begin{pmatrix} 2 \\ 3 \end{pmatrix} \implies \text{Sistema 1} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em animação procedural, às vezes o artista define a posição inicial e final de um objeto, e a engine precisa calcular a matriz de transformação (escala, rotação) que leva de um estado ao outro. Este é um problema de "calibração" muito comum.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-C: Combo de Distorção Máxima (Construção Composta)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Construir a matriz única que primeiro cisalha horizontalmente (fator k) e depois reflete através do eixo y.
+            </div>
+            <p>Crie um efeito de "distorção caótica". A transformação primeiro aplica um cisalhamento horizontal que mapeia \((x,y) \rightarrow (x+ky, y)\), e <strong>depois</strong> reflete o resultado através do eixo y. Encontre a matriz padrão para esta transformação composta \(T\). Não multiplique matrizes; em vez disso, aplique a sequência de transformações aos vetores da base canônica.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Transforme \(\mathbf{e}_1 = (1,0)\):</strong>
+                        <ul>
+                            <li>1. Cisalhamento: \((1,0) \rightarrow (1+k\cdot0, 0) = (1,0)\).</li>
+                            <li>2. Reflexão em Y: \((1,0) \rightarrow (-1,0)\). Portanto, \(T(\mathbf{e}_1) = (-1,0)\).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Transforme \(\mathbf{e}_2 = (0,1)\):</strong>
+                        <ul>
+                            <li>1. Cisalhamento: \((0,1) \rightarrow (0+k\cdot1, 1) = (k,1)\).</li>
+                            <li>2. Reflexão em Y: \((k,1) \rightarrow (-k,1)\). Portanto, \(T(\mathbf{e}_2) = (-k,1)\).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Monte a Matriz Final:</strong> Use \(T(\mathbf{e}_1)\) e \(T(\mathbf{e}_2)\) como as colunas da matriz da transformação composta.</li>
+                </ol>
+                <div class="formula">\[ A = [ T(\mathbf{e}_1) | T(\mathbf{e}_2) ] = \begin{pmatrix} -1 & -k \\ 0 & 1 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Para otimizar o desempenho, múltiplas transformações (como as de uma cadeia de animação) são pré-calculadas e combinadas em uma única matriz. Isso reduz o número de multiplicações que a GPU precisa fazer por vértice, tornando o jogo mais rápido.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>
