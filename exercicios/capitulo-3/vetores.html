@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Vetores e Operações Básicas</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 3.1: O Avatar do Jogo</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Vetores e Operações Básicas</h3>
+        <p>Bem-vindo ao núcleo da geometria dos jogos! Um <strong>vetor</strong> é a ferramenta fundamental que usamos para descrever a posição, o movimento e a direção de qualquer objeto no universo do jogo. Pense nele como uma seta com um tamanho e uma direção. Dominar as operações básicas — somar vetores para combinar movimentos e multiplicá-los por escalares para alterar sua intensidade — é o primeiro passo para criar qualquer mecânica de jogo, desde o simples caminhar de um avatar até a física complexa de uma simulação.</p>
+        <p>Um vetor em \( \mathbb{R}^n \) é representado por uma lista ordenada de números chamados componentes. Por exemplo, em um jogo 2D, a posição de um personagem pode ser \( \vec{p} = (x, y) \). As operações fundamentais são feitas componente a componente:</p>
+        <div class="formula">
+            Soma: \( \vec{u} + \vec{v} = (u_1+v_1, u_2+v_2, ..., u_n+v_n) \) <br>
+            Multiplicação por Escalar: \( k \cdot \vec{v} = (k \cdot v_1, k \cdot v_2, ..., k \cdot v_n) \)
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>MISSÃO 1-A: O Primeiro Passo do Avatar (Soma de Vetores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a adição de vetores para encontrar uma posição final.
+            </div>
+            <p>Em um clássico jogo da <strong>Era Arcade</strong>, seu avatar está na posição inicial representada pelo vetor \( \vec{p} = (3, 2) \). Você move o joystick, aplicando um vetor de deslocamento \( \vec{d} = (4, 1) \). Qual será a nova posição do seu avatar, representada pelo vetor \( \vec{p}_{final} \)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A posição final é a soma da posição inicial com o vetor de deslocamento. Lembre-se que a soma de vetores é feita componente a componente.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor de posição inicial \( \vec{p} \) e o vetor de deslocamento \( \vec{d} \).</li>
+                    <li>A posição final é calculada pela soma \( \vec{p}_{final} = \vec{p} + \vec{d} \).</li>
+                    <li>Some as componentes x correspondentes e as componentes y correspondentes para encontrar o novo vetor.</li>
+                </ol>
+                <div class="formula">\( \vec{p}_{final} = (p_x + d_x, p_y + d_y) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos 2D, a posição de qualquer objeto na tela (personagens, inimigos, itens) é armazenada como um vetor. Cada movimento é simplesmente a adição de um vetor de deslocamento à posição atual do objeto.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>MISSÃO 1-B: O Efeito do Power-Up "Velocidade" (Multiplicação por Escalar)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender o efeito de escalar um vetor de movimento.
+            </div>
+            <p>Seu personagem de um jogo de nave da <strong>Era Arcade</strong> tem um vetor de movimento padrão \( \vec{v} = (2, -1) \) a cada segundo. Ao coletar um item de 'Velocidade', seu movimento é triplicado. Qual é o novo vetor de deslocamento \( \vec{v}_{boost} \) do personagem por segundo?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Triplicar o movimento significa multiplicar o vetor de movimento pelo escalar 3. A multiplicação por escalar afeta cada componente do vetor.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor de movimento original \( \vec{v} \) e o escalar \( k=3 \).</li>
+                    <li>O novo vetor \( \vec{v}_{boost} \) é encontrado calculando \( k \cdot \vec{v} \).</li>
+                    <li>Multiplique cada componente do vetor \( \vec{v} \) pelo escalar 3.</li>
+                </ol>
+                <div class="formula">\( \vec{v}_{boost} = k \cdot \vec{v} = (k \cdot v_x, k \cdot v_y) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Power-ups que alteram velocidade, força ou tamanho de um efeito visual são implementados multiplicando vetores por escalares. Um escalar maior que 1 aumenta o efeito (boost), enquanto um escalar entre 0 e 1 o diminui (slowdown).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>MISSÃO 1-C: O Caminho até o Inimigo (Subtração de Vetores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o vetor de deslocamento entre dois pontos.
+            </div>
+            <p>Em um jogo de estratégia da <strong>Era 8-bit</strong>, seu herói está na posição \( A = (1, 5) \) e um inimigo está parado na posição \( B = (8, 3) \). Para programar um ataque em linha reta, você precisa encontrar o "Vetor de Ataque" \( \vec{AB} \) que vai do herói até o inimigo. Qual é esse vetor?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O vetor que liga um ponto de origem A a um ponto de destino B é encontrado subtraindo o vetor posição de A do vetor posição de B. Pense nisso como 'destino menos origem'.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Represente as posições A e B como vetores \( \vec{a} = (1, 5) \) e \( \vec{b} = (8, 3) \).</li>
+                    <li>O vetor de deslocamento \( \vec{AB} \) é calculado pela subtração \( \vec{b} - \vec{a} \).</li>
+                    <li>Subtraia as componentes correspondentes (x de B menos x de A, y de B menos y de A).</li>
+                </ol>
+                <div class="formula">\( \vec{AB} = \vec{b} - \vec{a} = (b_x - a_x, b_y - a_y) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Calcular o vetor entre dois objetos é essencial para a IA. É usado para mirar projéteis, fazer inimigos perseguirem o jogador e determinar a direção em que um personagem precisa olhar.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (MAIN MISSION) -->
+        <div class="mission">
+            <h3>MISSÃO 2-A: Combo de Movimentos Especiais (Combinação Linear Simples)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Combinar adição e multiplicação por escalar em uma única expressão.
+            </div>
+            <p>Em um jogo de luta da <strong>Era 16-bit</strong>, um personagem parte da origem \( (0,0) \). Ele executa um combo que consiste em 2 passos para frente, definidos pelo vetor \( \vec{v} = (1, 0) \), seguido por 3 'dashes' laterais, definidos pelo vetor \( \vec{u} = (0, 1) \). Qual é a posição final do personagem após executar o combo \( 2\vec{v} + 3\vec{u} \)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, calcule os vetores resultantes das multiplicações por escalar (\( 2\vec{v} \) e \( 3\vec{u} \)). Depois, some os dois vetores resultantes.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o vetor \( 2\vec{v} \) multiplicando cada componente de \( \vec{v} \) por 2.</li>
+                    <li>Calcule o vetor \( 3\vec{u} \) multiplicando cada componente de \( \vec{u} \) por 3.</li>
+                    <li>Some os dois vetores resultantes para encontrar a posição final.</li>
+                </ol>
+                <div class="formula">\( \vec{p}_{final} = k_1 \cdot \vec{v} + k_2 \cdot \vec{u} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Combinações lineares são a base para descrever movimentos complexos. Em animação, a posição de um osso em um esqueleto 3D é muitas vezes uma combinação linear das posições de seus ossos 'pais'.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MAIN MISSION) -->
+        <div class="mission">
+            <h3>MISSÃO 2-B: Item no Ponto de Encontro (Ponto Médio com Vetores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar operações vetoriais para encontrar o ponto médio entre dois objetos.
+            </div>
+            <p>Em um jogo cooperativo da <strong>Era 16-bit</strong>, o Jogador 1 está na posição \( P_1 = (2, 10) \) e o Jogador 2 está em \( P_2 = (12, 4) \). Um item de cura deve aparecer exatamente no ponto médio entre eles. Quais são as coordenadas do ponto \( M \) onde o item deve ser gerado?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O vetor posição do ponto médio \( \vec{m} \) pode ser encontrado somando os vetores posição \( \vec{p_1} \) e \( \vec{p_2} \) e depois multiplicando o resultado pelo escalar \( 1/2 \) (ou dividindo por 2).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Represente \( P_1 \) e \( P_2 \) como vetores \( \vec{p_1} = (2, 10) \) e \( \vec{p_2} = (12, 4) \).</li>
+                    <li>Some os dois vetores: \( \vec{s} = \vec{p_1} + \vec{p_2} \).</li>
+                    <li>Multiplique o vetor soma \( \vec{s} \) pelo escalar \( 1/2 \) para encontrar o vetor do ponto médio \( \vec{m} \).</li>
+                </ol>
+                <div class="formula">\( \vec{m} = \frac{1}{2}(\vec{p_1} + \vec{p_2}) = \left(\frac{p_{1x} + p_{2x}}{2}, \frac{p_{1y} + p_{2y}}{2}\right) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Calcular o ponto médio é útil para o comportamento da câmera em jogos cooperativos (mantendo a câmera centralizada entre os jogadores), para a lógica de IA (encontrar um ponto de encontro) e para efeitos visuais.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MAIN MISSION) -->
+        <div class="mission">
+            <h3>MISSÃO 2-C: A Velocidade Relativa do Projétil (Movimento Relativo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a subtração para encontrar a velocidade de um objeto em relação a outro.
+            </div>
+            <p>Em um jogo de 'shoot 'em up', sua nave se move com um vetor de velocidade \( \vec{v}_{jogador} = (10, 0) \). Um inimigo se move com \( \vec{v}_{inimigo} = (3, 4) \). Para a física do jogo, é crucial saber a velocidade do inimigo <em>do ponto de vista do jogador</em>. Calcule o vetor de velocidade relativa \( \vec{v}_{relativa} \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A velocidade de B em relação a A é \( \vec{v}_B - \vec{v}_A \). Neste caso, você quer a velocidade do inimigo em relação ao jogador.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor velocidade do inimigo (\( \vec{v}_{inimigo} \)) e do jogador (\( \vec{v}_{jogador} \)).</li>
+                    <li>Calcule a velocidade relativa subtraindo a velocidade do observador (jogador) da velocidade do objeto observado (inimigo).</li>
+                    <li>Execute a subtração componente a componente.</li>
+                </ol>
+                <div class="formula">\( \vec{v}_{relativa} = \vec{v}_{observado} - \vec{v}_{observador} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O conceito de velocidade relativa é fundamental em motores de física para calcular colisões de forma realista. Quando dois objetos em movimento colidem, o que importa é a velocidade com que eles se aproximam um do outro, não suas velocidades em relação ao mundo do jogo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>MISSÃO 3-A: Navegando na Galáxia 3D (Operações Vetoriais em R³)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Estender as operações básicas de soma e escala para o espaço tridimensional.
+            </div>
+            <p>Você está pilotando uma nave em um simulador espacial da <strong>Era 3D Inicial</strong>. Sua posição atual é \( P = (1, 2, 3) \). Você aciona os propulsores para executar a manobra 'Salto Duplo Alfa', que corresponde a um deslocamento de \( 2\vec{v} \), seguido da manobra 'Guinada Beta', um deslocamento de \( \vec{u} \). Sabendo que \( \vec{v} = (0, 5, 1) \) e \( \vec{u} = (10, 0, -2) \), qual é a sua posição final \( P_{final} \)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A lógica é a mesma do 2D, mas agora com uma terceira componente (z). Calcule \( 2\vec{v} \), depois some \( \vec{u} \) e, finalmente, some o resultado à sua posição inicial \( P \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o vetor da primeira manobra: \( 2\vec{v} = 2 \cdot (0, 5, 1) \).</li>
+                    <li>Calcule o vetor de deslocamento total somando o resultado da primeira manobra com o vetor da segunda: \( \vec{d}_{total} = 2\vec{v} + \vec{u} \).</li>
+                    <li>A posição final é a posição inicial mais o deslocamento total: \( \vec{p}_{final} = \vec{p} + \vec{d}_{total} \).</li>
+                </ol>
+                <div class="formula">\( \vec{p}_{final} = \vec{p}_{inicial} + k\vec{v} + \vec{u} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Toda a movimentação em jogos 3D, desde um simples passo de um personagem até o voo complexo de uma nave, é controlada pela manipulação de vetores em \( \mathbb{R}^3 \). Adicionar a terceira dimensão (eixo z) permite profundidade e verticalidade.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>MISSÃO 3-B: O Foco da Câmera do Esquadrão (Centro de Massa / Centroide)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular a posição média de múltiplos pontos usando vetores.
+            </div>
+            <p>Em um jogo de estratégia em tempo real da <strong>Era 3D Inicial</strong>, a câmera tática deve focar no centro do seu esquadrão. Suas três unidades estão nas posições \( A = (1, 5, 2) \), \( B = (3, 1, 8) \) e \( C = (8, 3, 5) \). Calcule as coordenadas do centroide \( G \) do triângulo formado por elas, que será o ponto de foco da câmera.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O centroide (ou centro de massa) de um conjunto de pontos é a média de suas posições. Some os vetores posição e divida o resultado pelo número de pontos (neste caso, 3).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Represente as posições A, B e C como vetores \( \vec{a} \), \( \vec{b} \) e \( \vec{c} \).</li>
+                    <li>Some os três vetores: \( \vec{s} = \vec{a} + \vec{b} + \vec{c} \).</li>
+                    <li>Multiplique o vetor soma \( \vec{s} \) pelo escalar \( 1/3 \) (ou divida cada componente por 3) para encontrar o vetor do centroide \( \vec{g} \).</li>
+                </ol>
+                <div class="formula">\( \vec{g} = \frac{1}{n}(\vec{p_1} + \vec{p_2} + ... + \vec{p_n}) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Além de controlar câmeras, o cálculo do centroide é usado em física para determinar o ponto de equilíbrio de objetos complexos e em IA para que grupos de inimigos se movam de forma coesa, mantendo o 'centro' da formação.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>MISSÃO 3-C: Animação Suave entre Posições (Interpolação Linear / Lerp)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar um ponto em um segmento de reta usando uma combinação linear ponderada.
+            </div>
+            <p>Um animador precisa mover um objeto da Posição A \( \vec{a} = (-4, 1, 9) \) para a Posição B \( \vec{b} = (8, 5, 1) \). Em vez de um teletransporte, o movimento deve ser suave. Calcule a posição exata do objeto \( P(t) \) quando ele percorreu \( t = 0.75 \) (ou 75%) do caminho de A para B. A fórmula para Interpolação Linear (Lerp) é \( P(t) = (1-t)\vec{a} + t\vec{b} \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Substitua \( t = 0.75 \) na fórmula dada. Isso significa que o objeto estará '25% em A' e '75% em B'. Calcule \( (1-0.75)\vec{a} \) e \( 0.75\vec{b} \) separadamente e depois some os resultados.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique os vetores de início \( \vec{a} \), de fim \( \vec{b} \) e o parâmetro de interpolação \( t=0.75 \).</li>
+                    <li>Calcule o primeiro termo da fórmula: \( (1-t)\vec{a} = 0.25 \cdot (-4, 1, 9) \).</li>
+                    <li>Calcule o segundo termo da fórmula: \( t\vec{b} = 0.75 \cdot (8, 5, 1) \).</li>
+                    <li>Some os dois vetores resultantes para encontrar a posição interpolada \( \vec{p}(t) \).</li>
+                </ol>
+                <div class="formula">\( \vec{p}(t) = (1-t)\vec{a} + t\vec{b} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A Interpolação Linear (Lerp) é uma das operações mais onipresentes em desenvolvimento de jogos. É usada para suavizar movimentos de câmera, animações de personagens, transições de cores, fade-in/fade-out de áudio e qualquer outra coisa que precise mudar de um estado A para um estado B ao longo do tempo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>MISSÃO 4-A: A Lógica da Patrulha de IA (Sequência de Deslocamentos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar uma sequência de operações vetoriais para simular um comportamento de IA.
+            </div>
+            <p>Você está programando a IA de um guarda na <strong>Era Moderna</strong>. A rota de patrulha dele é um ciclo entre três pontos: \( A = (0, 0) \), \( B = (10, 5) \) e \( C = (8, 15) \). Para que a IA funcione, você precisa fornecer a ela a lista de vetores de deslocamento para cada trecho da rota: \( \vec{AB} \), \( \vec{BC} \) e \( \vec{CA} \). Calcule esses três vetores.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se que o vetor de deslocamento de um ponto de origem \( P_1 \) para um ponto de destino \( P_2 \) é \( \vec{P_2} - \vec{P_1} \).</li>
+                    <li>Calcule o primeiro vetor da rota: \( \vec{AB} = \vec{b} - \vec{a} \).</li>
+                    <li>Calcule o segundo vetor da rota: \( \vec{BC} = \vec{c} - \vec{b} \).</li>
+                    <li>Calcule o vetor de retorno para fechar o ciclo: \( \vec{CA} = \vec{a} - \vec{c} \).</li>
+                    <li>Verifique opcionalmente que a soma dos vetores de deslocamento em um ciclo fechado (\( \vec{AB} + \vec{BC} + \vec{CA} \)) resulta no vetor nulo \( (0,0) \).</li>
+                </ol>
+                <div class="formula">\( \vec{P_1P_2} = \vec{p_2} - \vec{p_1} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Sistemas de 'waypoints' (pontos de passagem) para a IA são construídos sobre essa lógica. A IA armazena uma lista de vetores de deslocamento e os segue em sequência para patrulhar áreas, seguir caminhos pré-definidos ou executar ações coreografadas.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>MISSÃO 4-B: Mantendo a Formação de Ataque (Translação de um Sistema)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular as novas posições de múltiplos objetos que se movem em uníssono com um líder.
+            </div>
+            <p>Em um jogo de esquadrão, o Líder está na posição \( L = (20, 30) \). Seus dois aliados, A1 e A2, mantêm suas posições <em>relativas</em> ao líder através dos vetores \( \vec{d_1} = (-5, 2) \) e \( \vec{d_2} = (5, 2) \), formando uma ponta de flecha. O jogador move o líder para uma nova posição \( L' = (15, 40) \). Quais são as novas posições absolutas \( A1' \) e \( A2' \) dos aliados para que a formação seja mantida?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Entenda que a posição absoluta de um aliado é a posição do líder mais o vetor de deslocamento relativo do aliado: \( \vec{a_1} = \vec{l} + \vec{d_1} \).</li>
+                    <li>Identifique o novo vetor posição do líder, \( \vec{l'} = (15, 40) \).</li>
+                    <li>Calcule a nova posição absoluta do primeiro aliado usando a nova posição do líder: \( \vec{a_1'} = \vec{l'} + \vec{d_1} \).</li>
+                    <li>Calcule a nova posição absoluta do segundo aliado da mesma forma: \( \vec{a_2'} = \vec{l'} + \vec{d_2} \).</li>
+                </ol>
+                <div class="formula">\( \vec{p}_{aliado}' = \vec{p}_{lider}' + \vec{d}_{relativo} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa é a lógica fundamental por trás de formações de unidades em jogos de estratégia, o movimento de partes de um inimigo 'chefe' que são conectadas, ou até mesmo o sistema de 'câmera de ombro' onde a posição da câmera é sempre a posição do jogador mais um deslocamento fixo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>MISSÃO 4-C: O Ponto de Interceptação (Equação Vetorial Simples)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Montar e resolver uma equação vetorial para encontrar um ponto futuro.
+            </div>
+            <p>Seu personagem em um jogo 2D está na posição \( P = (1, 1) \) e dispara um feixe de laser que viaja indefinidamente na direção do vetor \( \vec{v} = (4, 3) \). Há uma barreira de energia vertical e intransponível ao longo de toda a linha \( x = 17 \). Em que ponto \( (x, y) \) o laser atingirá a barreira?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a equação vetorial da trajetória do laser. A posição do laser \( \vec{L}(t) \) em qualquer instante \( t > 0 \) é \( \vec{L}(t) = \vec{p} + t \cdot \vec{v} \).</li>
+                    <li>Separe a equação vetorial em duas equações escalares para as componentes x e y: \( L_x(t) = p_x + t \cdot v_x \) e \( L_y(t) = p_y + t \cdot v_y \).</li>
+                    <li>Use a condição da barreira (\( x=17 \)) na primeira equação: \( 17 = 1 + t \cdot 4 \).</li>
+                    <li>Resolva essa equação para encontrar o valor do parâmetro \( t \) no momento do impacto.</li>
+                    <li>Substitua o valor de \( t \) encontrado na segunda equação (\( L_y(t) \)) para descobrir a coordenada y do ponto de impacto.</li>
+                </ol>
+                <div class="formula">\( \vec{p}_{final} = \vec{p}_{inicial} + t \cdot \vec{v} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a base do 'raycasting', uma técnica extremamente comum usada para detecção de acertos de tiros (hitscan), para a IA 'ver' se há obstáculos em sua frente, para selecionar objetos com o mouse em jogos 3D e muito mais.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>
