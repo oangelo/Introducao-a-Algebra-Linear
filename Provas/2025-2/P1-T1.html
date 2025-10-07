@@ -2,14 +2,17 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Prova 1 (P1) - Versão B</title>
+    <title>Gabarito - Prova 1 (P1) - Versão B</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
     <script>
-        // Configuração padrão do MathJax
+        // Configuração do MathJax para funcionar com <details>
         window.MathJax = {
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: {
+                skipHtmlTags: ['details'] // Permite que MathJax renderize dentro de <details>
             },
             startup: {
                 ready: () => {
@@ -19,196 +22,305 @@
         };
     </script>
     <style>
-        @page {
-            size: A4;
-            margin: 1cm;
-        }
-
         body {
             font-family: 'Times New Roman', serif;
-            font-size: 9pt;
-            line-height: 1.3;
-            margin: 0;
+            font-size: 11pt;
+            line-height: 1.5;
+            background-color: #fff;
+            color: #000;
         }
-
+        
         .container {
             width: 100%;
-            height: 27.7cm; /* A4 height (29.7cm) - vertical margins (2cm) */
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
         }
-
-        .main-header {
+        
+        .header h1 {
             text-align: center;
-            border-bottom: 1px solid #000;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            flex-shrink: 0;
-        }
-
-        .main-header h1 {
-            margin: 0;
-            font-size: 11pt;
+            font-size: 16pt;
             font-weight: bold;
-        }
-
-        .main-header h2 {
-            margin: 0;
-            font-size: 10pt;
-            font-weight: normal;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
         }
         
-        .content {
-            display: flex;
-            gap: 1.5cm; /* Espaço entre as colunas */
-            flex-grow: 1;
-        }
-
-        .column {
-            flex: 1;
-            min-width: 0; /* Previne overflow do flexbox */
-        }
-        
-        .student-details {
-            margin-bottom: 20px;
-        }
-
-        .student-details div {
-            margin-bottom: 4px;
-        }
-        
-        .student-details span {
-            border-bottom: 1px solid #000;
-            min-width: 350px;
-            display: inline-block;
-            margin-left: 5px;
-        }
-        
-        .grade-table {
-            margin-bottom: 10px;
-        }
-        
-        .grade-table table {
-            border-collapse: collapse;
-            font-size: 8pt;
-            text-align: center;
-            width: 100%;
-        }
-
-        .grade-table th, .grade-table td {
-            border: 1px solid #000;
-            padding: 4px;
-            height: 0.8cm; /* Altura fixa para a célula de nota */
-        }
-
-        .instructions {
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 8.5pt;
-        }
-
         .question {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
         }
 
+        .question:last-child {
+            border-bottom: none;
+        }
+        
         .question-header {
             font-weight: bold;
-            font-size: 10pt;
+            font-size: 13pt;
             color: #000;
-            border-left: 3px solid #000;
-            padding: 5px 8px;
-            background-color: #f5f5f5;
-            margin-bottom: 8px;
+            border-left: 4px solid #000;
+            padding: 8px 10px;
+            background-color: #f0f0f0;
+            margin-bottom: 12px;
         }
 
+        .enunciado {
+            background-color: #fafafa;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
         .subquestion {
-            margin: 8px 0 8px 15px;
+            margin: 10px 0 10px 20px;
+        }
+        
+        details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        summary {
+            font-weight: bold;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #e9e9e9;
+            font-size: 10pt;
+            border-radius: 3px;
+        }
+        .answer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .answer p, .answer ul {
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="main-header">
-            <h1>Universidade do Estado do Rio de Janeiro - UERJ</h1>
-            <h2>Prova 1 (P1) - Versão B - Introdução à Álgebra Linear</h2>
+        <div class="header">
+            <h1>Gabarito - Prova 1 (P1) - Versão B</h1>
         </div>
-
         <div class="content">
-            <div class="column">
-                <div class="student-details">
-                    <div><strong>Curso:</strong> <span></span></div>
-                    <div><strong>Nome:</strong> <span></span></div>
-                    <div><strong>Matrícula:</strong> <span></span></div>
-                </div>
-
-                <div class="question">
-                    <div class="question-header">Questão 1: Equação da Circunferência e Sistemas Lineares</div>
+            
+            <div class="question">
+                <div class="question-header">Questão 1: Equação da Circunferência e Sistemas Lineares</div>
+                <p><strong>Justificativa Didática:</strong> Esta questão desafia o aluno a traduzir um problema geométrico em um problema algébrico. Ela avalia a habilidade de modelagem e a aplicação rigorosa do método da Eliminação Gaussiana para encontrar os coeficientes da equação geral da circunferência.</p>
+                <div class="enunciado">
                     <p>A equação geral de uma circunferência é dada por \(x^2+y^2+Dx+Ey+F=0\).</p>
-                    <div class="subquestion"><strong>a)</strong> Sabendo que a circunferência passa pelos pontos \(A(1, 0)\), \(B(-1, 2)\) e \(C(3, 4)\), substitua as coordenadas de cada ponto na equação para montar um sistema de três equações lineares com as incógnitas D, E e F.</div>
-                    <div class="subquestion"><strong>b)</strong> Resolva o sistema linear encontrado utilizando o método da Eliminação Gaussiana para determinar os valores de D, E e F.</div>
-                    <div class="subquestion"><strong>c)</strong> Escreva a equação geral completa da circunferência e verifique que os três pontos A, B e C satisfazem a equação encontrada.</div>
+                </div>
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Sabendo que a circunferência passa pelos pontos \(A(1, 0)\), \(B(-1, 2)\) e \(C(3, 4)\), substitua as coordenadas de cada ponto na equação para montar um sistema de três equações lineares com as incógnitas D, E e F.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Substituindo os pontos na equação \(x^2+y^2+Dx+Ey+F=0\):</p>
+                            <ul>
+                                <li>Ponto A: \(1^2+0^2+D(1)+E(0)+F=0 \Rightarrow 1+D+F=0 \Rightarrow D+F=-1\)</li>
+                                <li>Ponto B: \((-1)^2+2^2+D(-1)+E(2)+F=0 \Rightarrow 5-D+2E+F=0 \Rightarrow -D+2E+F=-5\)</li>
+                                <li>Ponto C: \(3^2+4^2+D(3)+E(4)+F=0 \Rightarrow 25+3D+4E+F=0 \Rightarrow 3D+4E+F=-25\)</li>
+                            </ul>
+                            <p>O sistema linear é:</p>
+                            $$
+                            \begin{cases}
+                            D + F = -1 \\
+                            -D + 2E + F = -5 \\
+                            3D + 4E + F = -25
+                            \end{cases}
+                            $$
+                        </div>
+                    </details>
                 </div>
 
-                <div class="question">
-                    <div class="question-header">Questão 2: Matriz Inversa e Determinantes</div>
-                    <p>Seja a matriz \(A\) dada por:
-                    $$ A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 1 & 0 & 3 \end{pmatrix} $$
-                    </p>
-                    <div class="subquestion"><strong>a)</strong> Calcule o determinante de \(A\). Com base no resultado, justifique se a matriz é invertível.</div>
-                    <div class="subquestion"><strong>b)</strong> Se for invertível, encontre a matriz inversa \(A^{-1}\) utilizando o método de Gauss-Jordan.</div>
-                    <div class="subquestion"><strong>c)</strong> Realize o produto \(A \cdot A^{-1}\) para verificar que o resultado é a matriz identidade \(I_3\).</div>
+                <div class="subquestion">
+                    <strong>b)</strong> Resolva o sistema linear encontrado utilizando o método da Eliminação Gaussiana para determinar os valores de D, E e F.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Montamos a matriz aumentada e aplicamos as operações:</p>
+                            $$ \left[ \begin{array}{ccc|c} 1 & 0 & 1 & -1 \\ -1 & 2 & 1 & -5 \\ 3 & 4 & 1 & -25 \end{array} \right] \xrightarrow{L_2+L_1; L_3-3L_1} \left[ \begin{array}{ccc|c} 1 & 0 & 1 & -1 \\ 0 & 2 & 2 & -6 \\ 0 & 4 & -2 & -22 \end{array} \right] \xrightarrow{\frac{1}{2}L_2} \left[ \begin{array}{ccc|c} 1 & 0 & 1 & -1 \\ 0 & 1 & 1 & -3 \\ 0 & 4 & -2 & -22 \end{array} \right] \xrightarrow{L_3-4L_2} \left[ \begin{array}{ccc|c} 1 & 0 & 1 & -1 \\ 0 & 1 & 1 & -3 \\ 0 & 0 & -6 & -10 \end{array} \right] $$
+                            <p>Resolvendo por substituição retroativa:
+                            <br>- \(-6F = -10 \Rightarrow F = 10/6 = 5/3\).
+                            <br>- \(E + F = -3 \Rightarrow E + 5/3 = -3 \Rightarrow E = -9/3 - 5/3 = -14/3\).
+                            <br>- \(D + F = -1 \Rightarrow D + 5/3 = -1 \Rightarrow D = -3/3 - 5/3 = -8/3\).
+                            </p>
+                            <p>A solução é \(D = -8/3\), \(E = -14/3\), \(F = 5/3\).</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Escreva a equação geral completa da circunferência e verifique que os três pontos A, B e C satisfazem a equação encontrada.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>A equação geral da circunferência é: \(x^2+y^2 - \frac{8}{3}x - \frac{14}{3}y + \frac{5}{3} = 0\).</p>
+                           <p>Multiplicando por 3, temos a forma equivalente: \(3x^2+3y^2 - 8x - 14y + 5 = 0\).</p>
+                           <p><strong>Verificação:</strong></p>
+                           <ul>
+                               <li>A(1,0): \(3(1)^2+3(0)^2 - 8(1) - 14(0) + 5 = 3 - 8 + 5 = 0\). (Ok)</li>
+                               <li>B(-1,2): \(3(-1)^2+3(2)^2 - 8(-1) - 14(2) + 5 = 3+12+8-28+5 = 28-28 = 0\). (Ok)</li>
+                               <li>C(3,4): \(3(3)^2+3(4)^2 - 8(3) - 14(4) + 5 = 27+48-24-56+5 = 80-80 = 0\). (Ok)</li>
+                           </ul>
+                        </div>
+                    </details>
                 </div>
             </div>
 
-            <div class="column">
-                <div class="grade-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Q1</th>
-                                <th>Q2</th>
-                                <th>Q3</th>
-                                <th>Q4</th>
-                                <th>TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="question">
+                <div class="question-header">Questão 2: Matriz Inversa e Determinantes</div>
+                <p><strong>Justificativa Didática:</strong> Avalia a habilidade de calcular a inversa de uma matriz 3x3 que requer manipulação cuidadosa, incluindo operações que geram frações. A matriz foi escolhida para equilibrar o desafio procedural e a complexidade aritmética.</p>
+                <div class="enunciado">
+                    <p>Seja a matriz \(A\) dada por:
+                    $$ A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 1 & 0 & 3 \end{pmatrix} $$
+                    </p>
                 </div>
-                <div class="instructions">
-                    Instruções: Resolva todas as questões apresentando os cálculos detalhadamente. Cada questão vale 2,5 pontos.
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Calcule o determinante de \(A\). Com base no resultado, justifique se a matriz é invertível.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Usando a Regra de Sarrus ou expansão em cofatores:</p>
+                            $$ \det(A) = 1(1 \cdot 3 - 2 \cdot 0) - 2(0 \cdot 3 - 2 \cdot 1) + 3(0 \cdot 0 - 1 \cdot 1) = 1(3) - 2(-2) + 3(-1) = 3 + 4 - 3 = 4 $$
+                            <p>Como \(\det(A) = 4 \neq 0\), a matriz \(A\) é invertível.</p>
+                        </div>
+                    </details>
                 </div>
 
-                <div class="question">
-                    <div class="question-header">Questão 3: Planos e Retas no R³</div>
+                <div class="subquestion">
+                    <strong>b)</strong> Se for invertível, encontre a matriz inversa \(A^{-1}\) utilizando o método de Gauss-Jordan.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Escalonando a matriz aumentada \([A|I]\):</p>
+                            $$ \left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 & 1 & 0 \\ 1 & 0 & 3 & 0 & 0 & 1 \end{array} \right] \xrightarrow{L_3-L_1} \left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 & 1 & 0 \\ 0 & -2 & 0 & -1 & 0 & 1 \end{array} \right] \xrightarrow{L_1-2L_2; L_3+2L_2} \left[ \begin{array}{ccc|ccc} 1 & 0 & -1 & 1 & -2 & 0 \\ 0 & 1 & 2 & 0 & 1 & 0 \\ 0 & 0 & 4 & -1 & 2 & 1 \end{array} \right] $$
+                            $$ \xrightarrow{\frac{1}{4}L_3} \left[ \begin{array}{ccc|ccc} 1 & 0 & -1 & 1 & -2 & 0 \\ 0 & 1 & 2 & 0 & 1 & 0 \\ 0 & 0 & 1 & -1/4 & 1/2 & 1/4 \end{array} \right] \xrightarrow{L_1+L_3; L_2-2L_3} \left[ \begin{array}{ccc|ccc} 1 & 0 & 0 & 3/4 & -3/2 & 1/4 \\ 0 & 1 & 0 & 1/2 & 0 & -1/2 \\ 0 & 0 & 1 & -1/4 & 1/2 & 1/4 \end{array} \right] $$
+                            <p>A matriz inversa é: \( A^{-1} = \begin{pmatrix} 3/4 & -3/2 & 1/4 \\ 1/2 & 0 & -1/2 \\ -1/4 & 1/2 & 1/4 \end{pmatrix} \)</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Realize o produto \(A \cdot A^{-1}\) para verificar que o resultado é a matriz identidade \(I_3\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           $$ A \cdot A^{-1} = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 1 & 0 & 3 \end{pmatrix} \begin{pmatrix} 3/4 & -3/2 & 1/4 \\ 1/2 & 0 & -1/2 \\ -1/4 & 1/2 & 1/4 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+                           <p>O resultado é a matriz identidade, confirmando que a inversa está correta.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 3: Planos e Retas no R³</div>
+                <p><strong>Justificativa Didática:</strong> Aprofunda a capacidade de manipulação de objetos no espaço tridimensional, exigindo a construção de planos a partir de diferentes restrições geométricas e utilizando o produto vetorial para encontrar os vetores normais.</p>
+                <div class="enunciado">
                     <p>Considere o ponto \(P(3, 0, 1)\) e a reta \(r\) com equações paramétricas:
                     $$ r: \begin{cases} x = 2t \\ y = 1 \\ z = 2 - t \end{cases}, \quad t \in \mathbb{R} $$
                     </p>
-                    <div class="subquestion"><strong>a)</strong> Determine a equação geral do plano \(\alpha\) que contém o ponto \(P\) e a reta \(r\).</div>
-                    <div class="subquestion"><strong>b)</strong> Determine a equação geral do plano \(\beta\) que também contém a reta \(r\), mas é perpendicular ao plano \(\alpha\).</div>
-                    <div class="subquestion"><strong>c)</strong> Verifique, através do produto escalar, que o vetor normal do plano \(\beta\) (\(\vec{n}_\beta\)) é ortogonal tanto ao vetor diretor da reta \(r\) (\(\vec{v}_r\)) quanto ao vetor normal do plano \(\alpha\) (\(\vec{n}_\alpha\)).</div>
+                </div>
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Determine a equação geral do plano \(\alpha\) que contém o ponto \(P\) e a reta \(r\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A reta \(r\) passa pelo ponto \(Q(0, 1, 2)\) (para \(t=0\)) e tem vetor diretor \(\vec{v}_r = (2, 0, -1)\).
+                            O plano \(\alpha\) contém a reta \(r\) e o ponto \(P(3, 0, 1)\), então ele também contém o vetor \(\vec{QP} = P - Q = (3, -1, -1)\).
+                            O vetor normal ao plano \(\alpha\) é \(\vec{n}_\alpha = \vec{v}_r \times \vec{QP}\).</p>
+                             $$ \vec{n}_\alpha = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 2 & 0 & -1 \\ 3 & -1 & -1 \end{vmatrix} = (-1, -1, -2) $$
+                             <p>Podemos usar o vetor paralelo \((1, 1, 2)\) como normal. Usando \(\vec{n}_\alpha = (1, 1, 2)\) e o ponto \(P(3,0,1)\), a equação é \(1(x-3)+1(y-0)+2(z-1)=0\), que resulta em \(x+y+2z-5=0\).</p>
+                        </div>
+                    </details>
                 </div>
 
-                <div class="question">
-                    <div class="question-header">Questão 4: Definição de Transformação Linear</div>
+                <div class="subquestion">
+                    <strong>b)</strong> Determine a equação geral do plano \(\beta\) que também contém a reta \(r\), mas é perpendicular ao plano \(\alpha\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>O plano \(\beta\) contém a reta \(r\) (logo, \(\vec{v}_r\) está em \(\beta\)) e é perpendicular a \(\alpha\) (logo, \(\vec{n}_\alpha\) é paralelo a \(\beta\)).
+                            Portanto, o vetor normal de \(\beta\) é \(\vec{n}_\beta = \vec{v}_r \times \vec{n}_\alpha\).</p>
+                            $$ \vec{n}_\beta = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 2 & 0 & -1 \\ 1 & 1 & 2 \end{vmatrix} = (1, -5, 2) $$
+                            <p>Usando \(\vec{n}_\beta=(1,-5,2)\) e um ponto da reta, como \(Q(0,1,2)\), a equação é \(1(x-0)-5(y-1)+2(z-2)=0\), que resulta em \(x-5y+2z+1=0\).</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Verifique que o vetor normal do plano \(\beta\) (\(\vec{n}_\beta\)) é ortogonal tanto ao vetor diretor da reta \(r\) (\(\vec{v}_r\)) quanto ao vetor normal do plano \(\alpha\) (\(\vec{n}_\alpha\)).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Verificamos se o produto escalar é zero.</p>
+                           <ul>
+                           <li>\(\vec{n}_\beta \cdot \vec{v}_r = (1, -5, 2) \cdot (2, 0, -1) = 1(2) - 5(0) + 2(-1) = 2 - 2 = 0\). (Ortogonais)</li>
+                           <li>\(\vec{n}_\beta \cdot \vec{n}_\alpha = (1, -5, 2) \cdot (1, 1, 2) = 1(1) - 5(1) + 2(2) = 1 - 5 + 4 = 0\). (Ortogonais)</li>
+                           </ul>
+                           <p>Ambas as condições são satisfeitas.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 4: Definição de Transformação Linear</div>
+                <p><strong>Justificativa Didática:</strong> Questão conceitual que testa a compreensão da definição formal de uma transformação linear, sem dar dicas sobre as propriedades a serem testadas. O aluno deve demonstrar conhecimento fundamental para diferenciar transformações e conectar a linearidade com a representação matricial e a invertibilidade.</p>
+                <div class="enunciado">
                     <p>Considere as seguintes transformações do \(\mathbb{R}^3\) no \(\mathbb{R}^3\):</p>
-                    <div class="subquestion"><strong>a)</strong> Verifique se as transformações abaixo são lineares, justificando sua resposta.
+                </div>
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Verifique se as transformações abaixo são lineares, justificando sua resposta.
                         <ul style="list-style-type: none; padding-left: 10px;">
                             <li>\( T_1(x, y, z) = (x - y, z, 2x + y) \)</li>
                             <li>\( T_2(x, y, z) = (x+1, y^2, z) \)</li>
                         </ul>
-                    </div>
-                    <div class="subquestion"><strong>b)</strong> Qual das transformações acima pode ser representada por uma matriz? Encontre a matriz padrão correspondente.</div>
-                    <div class="subquestion"><strong>c)</strong> A transformação que é linear pode ser "desfeita", ou seja, existe uma transformação inversa que leva a imagem de volta ao vetor original? Justifique sua resposta analisando a matriz encontrada no item (b).</div>
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p><strong>Para \(T_1\):</strong> É linear. Suas componentes são combinações lineares das variáveis de entrada, o que garante a validade das propriedades de soma e multiplicação por escalar.</p>
+                            <p><strong>Para \(T_2\):</strong> Não é linear. Podemos mostrar com um contraexemplo para a propriedade da multiplicação por escalar.
+                            <br>Seja \(\vec{u} = (0,2,0)\). Então \(T_2(\vec{u}) = (0+1, 2^2, 0) = (1, 4, 0)\).
+                            <br>Seja \(k=2\). Então \(T_2(k\vec{u}) = T_2(0,4,0) = (0+1, 4^2, 0) = (1, 16, 0)\).
+                            <br>Porém, \(kT_2(\vec{u}) = 2 \cdot (1, 4, 0) = (2, 8, 0)\).
+                            <br>Como \(T_2(k\vec{u}) \neq kT_2(\vec{u})\), a transformação não é linear. (A presença do termo "+1" e do expoente "y²" são indicativos de não-linearidade).</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="subquestion">
+                    <strong>b)</strong> Qual das transformações acima pode ser representada por uma matriz? Encontre a matriz padrão correspondente.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Apenas a transformação linear \(T_1\) pode ser representada por uma matriz. Encontramos a matriz aplicando \(T_1\) aos vetores da base canônica:</p>
+                            <ul>
+                                <li>\(T_1(1,0,0) = (1, 0, 2)\)</li>
+                                <li>\(T_1(0,1,0) = (-1, 0, 1)\)</li>
+                                <li>\(T_1(0,0,1) = (0, 1, 0)\)</li>
+                            </ul>
+                            <p>A matriz padrão é: \( A = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 0 & 1 \\ 2 & 1 & 0 \end{pmatrix} \)</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> A transformação que é linear pode ser "desfeita"? Justifique sua resposta analisando a matriz encontrada no item (b).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Uma transformação linear pode ser "desfeita" se sua matriz padrão for invertível. Para verificar isso, calculamos o determinante da matriz \(A\):</p>
+                           $$ \det(A) = 1(0 \cdot 0 - 1 \cdot 1) - (-1)(0 \cdot 0 - 1 \cdot 2) + 0(\dots) = 1(-1) + 1(2) = -1 + 2 = 1 $$
+                           <p>Como \(\det(A) = 1 \neq 0\), a matriz é invertível. Portanto, existe uma transformação inversa \(T_1^{-1}\) representada pela matriz \(A^{-1}\) que "desfaz" a transformação \(T_1\).</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>
