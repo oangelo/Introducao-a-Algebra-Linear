@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Prova 1 (P1) - Versão B</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        // Configuração padrão do MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <style>
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9pt;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 27.7cm; /* A4 height (29.7cm) - vertical margins (2cm) */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-header {
+            text-align: center;
+            border-bottom: 1px solid #000;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .main-header h1 {
+            margin: 0;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .main-header h2 {
+            margin: 0;
+            font-size: 10pt;
+            font-weight: normal;
+        }
+        
+        .content {
+            display: flex;
+            gap: 1.5cm; /* Espaço entre as colunas */
+            flex-grow: 1;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 0; /* Previne overflow do flexbox */
+        }
+        
+        .student-details {
+            margin-bottom: 20px;
+        }
+
+        .student-details div {
+            margin-bottom: 4px;
+        }
+        
+        .student-details span {
+            border-bottom: 1px solid #000;
+            min-width: 350px;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .grade-table {
+            margin-bottom: 10px;
+        }
+        
+        .grade-table table {
+            border-collapse: collapse;
+            font-size: 8pt;
+            text-align: center;
+            width: 100%;
+        }
+
+        .grade-table th, .grade-table td {
+            border: 1px solid #000;
+            padding: 4px;
+            height: 0.8cm; /* Altura fixa para a célula de nota */
+        }
+
+        .instructions {
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 8.5pt;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question-header {
+            font-weight: bold;
+            font-size: 10pt;
+            color: #000;
+            border-left: 3px solid #000;
+            padding: 5px 8px;
+            background-color: #f5f5f5;
+            margin-bottom: 8px;
+        }
+
+        .subquestion {
+            margin: 8px 0 8px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-header">
+            <h1>Universidade do Estado do Rio de Janeiro - UERJ</h1>
+            <h2>Prova 1 (P1) - Versão B - Introdução à Álgebra Linear</h2>
+        </div>
+
+        <div class="content">
+            <div class="column">
+                <div class="student-details">
+                    <div><strong>Curso:</strong> <span></span></div>
+                    <div><strong>Nome:</strong> <span></span></div>
+                    <div><strong>Matrícula:</strong> <span></span></div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header">Questão 1: Equação da Circunferência e Sistemas Lineares</div>
+                    <p>A equação geral de uma circunferência é dada por \(x^2+y^2+Dx+Ey+F=0\).</p>
+                    <div class="subquestion"><strong>a)</strong> Sabendo que a circunferência passa pelos pontos \(A(1, 0)\), \(B(-1, 2)\) e \(C(3, 4)\), substitua as coordenadas de cada ponto na equação para montar um sistema de três equações lineares com as incógnitas D, E e F.</div>
+                    <div class="subquestion"><strong>b)</strong> Resolva o sistema linear encontrado utilizando o método da Eliminação Gaussiana para determinar os valores de D, E e F.</div>
+                    <div class="subquestion"><strong>c)</strong> Escreva a equação geral completa da circunferência e verifique que os três pontos A, B e C satisfazem a equação encontrada.</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header">Questão 2: Matriz Inversa e Determinantes</div>
+                    <p>Seja a matriz \(A\) dada por:
+                    $$ A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 1 & 0 & 3 \end{pmatrix} $$
+                    </p>
+                    <div class="subquestion"><strong>a)</strong> Calcule o determinante de \(A\). Com base no resultado, justifique se a matriz é invertível.</div>
+                    <div class="subquestion"><strong>b)</strong> Se for invertível, encontre a matriz inversa \(A^{-1}\) utilizando o método de Gauss-Jordan.</div>
+                    <div class="subquestion"><strong>c)</strong> Realize o produto \(A \cdot A^{-1}\) para verificar que o resultado é a matriz identidade \(I_3\).</div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="grade-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Q1</th>
+                                <th>Q2</th>
+                                <th>Q3</th>
+                                <th>Q4</th>
+                                <th>TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="instructions">
+                    Instruções: Resolva todas as questões apresentando os cálculos detalhadamente. Cada questão vale 2,5 pontos.
+                </div>
+
+                <div class="question">
+                    <div class="question-header">Questão 3: Planos e Retas no R³</div>
+                    <p>Considere o ponto \(P(3, 0, 1)\) e a reta \(r\) com equações paramétricas:
+                    $$ r: \begin{cases} x = 2t \\ y = 1 \\ z = 2 - t \end{cases}, \quad t \in \mathbb{R} $$
+                    </p>
+                    <div class="subquestion"><strong>a)</strong> Determine a equação geral do plano \(\alpha\) que contém o ponto \(P\) e a reta \(r\).</div>
+                    <div class="subquestion"><strong>b)</strong> Determine a equação geral do plano \(\beta\) que também contém a reta \(r\), mas é perpendicular ao plano \(\alpha\).</div>
+                    <div class="subquestion"><strong>c)</strong> Verifique, através do produto escalar, que o vetor normal do plano \(\beta\) (\(\vec{n}_\beta\)) é ortogonal tanto ao vetor diretor da reta \(r\) (\(\vec{v}_r\)) quanto ao vetor normal do plano \(\alpha\) (\(\vec{n}_\alpha\)).</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header">Questão 4: Definição de Transformação Linear</div>
+                    <p>Considere as seguintes transformações do \(\mathbb{R}^3\) no \(\mathbb{R}^3\):</p>
+                    <div class="subquestion"><strong>a)</strong> Verifique se as transformações abaixo são lineares, justificando sua resposta.
+                        <ul style="list-style-type: none; padding-left: 10px;">
+                            <li>\( T_1(x, y, z) = (x - y, z, 2x + y) \)</li>
+                            <li>\( T_2(x, y, z) = (x+1, y^2, z) \)</li>
+                        </ul>
+                    </div>
+                    <div class="subquestion"><strong>b)</strong> Qual das transformações acima pode ser representada por uma matriz? Encontre a matriz padrão correspondente.</div>
+                    <div class="subquestion"><strong>c)</strong> A transformação que é linear pode ser "desfeita", ou seja, existe uma transformação inversa que leva a imagem de volta ao vetor original? Justifique sua resposta analisando a matriz encontrada no item (b).</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

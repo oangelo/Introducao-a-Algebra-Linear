@@ -7,5 +7,6 @@
  - [PF](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-1/PF.html)
 
 # 2025-2
- - [P1](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-2/P1-T2.html)
+ - [P1-T1](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-2/P1-T1.html)
+ - [P1-T2](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-2/P1-T2.html)
 
