@@ -105,7 +105,7 @@ Aprendendo a se teleportar e a transformar seu personagem.
 - **Quest 4.2:** [O Arsenal do Mestre do Jogo (Construindo Matrizes de Transformação)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/transformacoes-lineares.html)
 - **Quest 4.3:** [Combos e Reversões (Composição e Invertibilidade)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-4/combos-e-reversoes.html)
 
-### FASE 5: As Leis do Universo - Espaços Vetoriais Abstratos [👨‍🏫](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espacos.html)
+### FASE 5: As Leis do Universo - Espaços Vetoriais Abstratos [👨‍🏫 - 1](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espaco-vetorial-pt1.html) [👨‍🏫 - 2](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espaco-vetorial-pt2.html)
 Explorando as regras que governam não apenas este jogo, mas todos os universos possíveis.
 
 - **Quest 5.1:** [Espaços vetoriais reais e seus 10 axiomas](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/espacos-vetoriais-reais.html)
