@@ -2,11 +2,365 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Álgebra Arcade | Missões</title>
-    <!-- Conteúdo a ser gerado -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Espaços Vetoriais</title>
 </head>
 <body>
-    <h1>Em Construção</h1>
-    <p>Esta página de missões será gerada em breve!</p>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 5.1: As Leis do Universo</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Espaços Vetoriais - As Regras do Jogo</h3>
+        <p>Bem-vindo ao nível mais fundamental, jogador! Antes de construirmos mundos complexos, precisamos definir as "leis da física" que governam tudo. Um <strong>Espaço Vetorial</strong> é qualquer universo de objetos (sejam eles setas, matrizes ou polinômios) onde as operações de soma e multiplicação por escalar funcionam de maneira previsível e consistente, obedecendo a 10 regras sagradas (os axiomas).</p>
+        <p>O segredo não é memorizar as 10 regras, mas sim saber testar as mais importantes. A maioria das falhas ocorre em duas condições críticas: a operação te "expulsa" do universo do jogo (falha de fechamento) ou o universo não tem um "ponto de partida" (falta o vetor nulo).</p>
+        <div class="formula">
+            Axiomas-Chave a Verificar:
+            <ol>
+                <li><strong>Fechamento da Soma:</strong> Se \(\vec{u}, \vec{v}\) estão no universo \(V\), então \(\vec{u} + \vec{v}\) também deve estar em \(V\).</li>
+                <li><strong>Fechamento da Mult. por Escalar:</strong> Se \(\vec{u}\) está em \(V\), então \(k\vec{u}\) também deve estar em \(V\) para qualquer escalar \(k\).</li>
+            </ol>
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>Checando as Regras do Jogo (Axioma da Comutatividade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar um dos axiomas mais básicos (a comutatividade da soma) em um ambiente familiar como \(\mathbb{R}^2\).
+            </div>
+            <p>Um avatar parte da origem \((0,0)\). Primeiro, ele se move de acordo com o vetor \(\vec{u} = (3, 1)\) e, em seguida, executa um segundo movimento \(\vec{v} = (1, 4)\). Qual é a sua posição final? E se a ordem dos movimentos fosse invertida (\(\vec{v}\) primeiro, depois \(\vec{u}\))? Mostre que \(\vec{u} + \vec{v} = \vec{v} + \vec{u}\) e que a posição final é a mesma.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A soma de vetores é feita componente a componente. Some as coordenadas x e y separadamente para cada caso e compare os resultados.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule a primeira soma para encontrar a posição final: \(\vec{u} + \vec{v} = (3+1, 1+4)\).</li>
+                    <li>Calcule a segunda soma, com a ordem invertida: \(\vec{v} + \vec{u} = (1+3, 4+1)\).</li>
+                    <li>Compare os vetores resultantes para confirmar que são idênticos.</li>
+                </ol>
+                <div class="formula">\(\vec{a} + \vec{b} = (a_1+b_1, a_2+b_2)\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este axioma garante que a ordem dos movimentos simples em um jogo de grid não altera o resultado final. Ir "3 para a direita e 1 para cima" seguido de "1 para a direita e 4 para cima" leva ao mesmo local que fazer os movimentos na ordem inversa, tornando a física do jogo previsível.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>O Ponto de Partida Fixo (Axioma do Vetor Nulo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar e confirmar o papel do elemento neutro da soma.
+            </div>
+            <p>No mundo do jogo \(\mathbb{R}^2\), existe um comando especial "Ficar Parado", representado por um vetor \(\vec{0}\). Se seu avatar está na posição \(\vec{u} = (-5, 2)\) e executa o comando "Ficar Parado", qual é sua nova posição? Mostre que \(\vec{u} + \vec{0} = \vec{u}\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Qual vetor representa o comando "não se mover", ou seja, um deslocamento de zero no eixo x e zero no eixo y?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor nulo (comando "Ficar Parado") em \(\mathbb{R}^2\) como sendo \(\vec{0} = (0, 0)\).</li>
+                    <li>Some o vetor de posição do avatar \(\vec{u}\) com o vetor nulo.</li>
+                    <li>Verifique que o resultado da soma é o próprio vetor de posição \(\vec{u}\).</li>
+                </ol>
+                <div class="formula">\(\vec{u} + \vec{0} = \vec{u}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O vetor nulo é a origem do mundo do jogo, o ponto de referência fundamental. Sem ele, seria impossível definir posições de forma absoluta.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>Retornando à Base (Axioma do Inverso Aditivo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender a existência de um movimento oposto para cada movimento possível.
+            </div>
+            <p>Seu personagem executa um salto complexo representado pelo vetor de deslocamento \(\vec{u} = (7, -3)\). Qual é o vetor \(\vec{v}\) que representa o salto exatamente oposto, capaz de retornar o personagem ao seu ponto de partida? Mostre que a soma do movimento original com seu oposto resulta no vetor nulo (\(\vec{u} + \vec{v} = \vec{0}\)).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Se um movimento é "7 para a direita e 3 para baixo", o movimento oposto deve ser "7 para a esquerda e 3 para cima". Como você representa isso com sinais?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Para que a soma resulte em \((0,0)\), cada componente da soma deve ser zero. O inverso aditivo de \(\vec{u}\), denotado \(-\vec{u}\), é o vetor que cumpre essa condição.</li>
+                    <li>Encontre o inverso aditivo trocando o sinal de cada componente do vetor \(\vec{u}\).</li>
+                    <li>Calcule a soma \(\vec{u} + (-\vec{u})\) para confirmar que o resultado é \(\vec{0}\).</li>
+                </ol>
+                <div class="formula">\(\vec{u} + (-\vec{u}) = \vec{0}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este axioma garante que toda ação pode ser desfeita. Isso é crucial para programar o movimento de retorno de um inimigo, para a lógica de "rebobinar o tempo" ou simplesmente para o personagem voltar um passo.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (MÉDIO) -->
+        <div class="mission">
+            <h3>Universo com Física Alternativa (Falha na Associatividade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Testar os axiomas quando uma operação de soma não padrão é introduzida.
+            </div>
+            <p>Um "glitch cósmico" alterou as leis da física em \(\mathbb{R}^2\). A nova operação de adição \(\oplus\) é definida como \(\vec{u} \oplus \vec{v} = 2\vec{u} + \vec{v}\) (onde '+' é a soma padrão de vetores). Sejam \(\vec{u}=(1,0)\), \(\vec{v}=(0,1)\), e \(\vec{w}=(2,2)\). Verifique se a propriedade associativa \((\vec{u} \oplus \vec{v}) \oplus \vec{w} = \vec{u} \oplus (\vec{v} \oplus \vec{w})\) se mantém. Este universo "bugado" é um espaço vetorial?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Calcule cada lado da equação separadamente, respeitando a ordem das operações (parênteses primeiro). Se os resultados forem diferentes, o axioma falha.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o lado esquerdo: primeiro, encontre \(\vec{a} = \vec{u} \oplus \vec{v}\). Depois, calcule \(\vec{a} \oplus \vec{w}\).</li>
+                    <li>Calcule o lado direito: primeiro, encontre \(\vec{b} = \vec{v} \oplus \vec{w}\). Depois, calcule \(\vec{u} \oplus \vec{b}\).</li>
+                    <li>Compare os resultados finais. Se forem diferentes, a associatividade falha e o conjunto não é um espaço vetorial.</li>
+                </ol>
+                <div class="formula">Axioma a ser testado: \((\vec{u}+\vec{v})+\vec{w} = \vec{u}+(\vec{v}+\vec{w})\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Se a associatividade falhar, a física do jogo se torna caótica. Uma sequência de três movimentos teria resultados diferentes dependendo de como você os agrupa, quebrando a consistência do mundo.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-B (MÉDIO) -->
+        <div class="mission">
+            <h3>O Power-up Bugado (Falha no Axioma de Identidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Investigar como uma multiplicação por escalar não padrão pode quebrar as regras.
+            </div>
+            <p>Um novo "power-up" no jogo redefine a multiplicação por escalar \(k \odot \vec{u}\) em \(\mathbb{R}^2\). A nova regra é: \(k \odot \vec{u} = (k u_2, k u_1)\), ou seja, ela multiplica os componentes pelo escalar e os troca de posição. Teste se o axioma da identidade multiplicativa, \(1 \odot \vec{u} = \vec{u}\), funciona para o vetor \(\vec{u}=(5, 8)\). O universo com este power-up é um espaço vetorial?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Aplique a regra especial usando \(k=1\) ao vetor \(\vec{u}=(5,8)\). O resultado é o mesmo vetor \((5,8)\) ou algo diferente?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a definição da nova operação para calcular \(1 \odot (5,8)\).</li>
+                    <li>Substitua \(k=1\), \(u_1=5\) e \(u_2=8\) na fórmula \((k u_2, k u_1)\).</li>
+                    <li>Compare o vetor resultante com o vetor original \(\vec{u}=(5,8)\). Se forem diferentes, o axioma falha.</li>
+                </ol>
+                <div class="formula">Axioma a ser testado: \(1\vec{u} = \vec{u}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este axioma é o "power-up de identidade". Multiplicar por 1 não deve alterar nada. Se isso acontecer, significa que a escala está fundamentalmente quebrada, e ações simples como "manter a velocidade atual" (multiplicar por 1) se tornariam imprevisíveis.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MÉDIO) -->
+        <div class="mission">
+            <h3>O Nível que Não Zera (Falha no Axioma do Vetor Nulo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Analisar um conjunto que não contém o elemento neutro da soma.
+            </div>
+            <p>Considere o conjunto \(W\) de todos os pontos na reta de equação \(y = x + 1\). Usando as operações padrão de \(\mathbb{R}^2\) (soma e multiplicação por escalar usuais), o conjunto \(W\) pode ser um espaço vetorial?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Um espaço vetorial deve, obrigatoriamente, conter o vetor nulo. Qual é o vetor nulo de \(\mathbb{R}^2\)? Ele pertence à reta \(y=x+1\)?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique que o elemento neutro (vetor nulo) de \(\mathbb{R}^2\) é \(\vec{0}=(0,0)\).</li>
+                    <li>Para que \(W\) seja um espaço vetorial, ele deve conter este elemento.</li>
+                    <li>Verifique se o ponto \((0,0)\) satisfaz a equação da reta. Substitua \(x=0\) e \(y=0\) em \(y=x+1\).</li>
+                    <li>Se a equação resultar em uma afirmação falsa, o vetor nulo não está em \(W\), e portanto \(W\) não é um espaço vetorial.</li>
+                </ol>
+                <div class="formula">A ser verificado: O vetor \(\vec{0}\) pertence ao conjunto?</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Se uma "zona" do jogo não contém a origem do mundo, ela não pode herdar as mesmas regras de física. Os movimentos dentro dela não se comportarão da mesma forma que os movimentos no resto do mapa, pois as posições não podem ser definidas de forma consistente com o sistema global.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (AVANÇADO) -->
+        <div class="mission">
+            <h3>O Grid de Itens 2x2 (Espaço Vetorial de Matrizes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Generalizar o conceito de espaço vetorial para o universo das matrizes \(M_{22}\).
+            </div>
+            <p>O conjunto de todas as matrizes 2x2 com entradas reais, \(M_{22}\), com as operações padrão de adição de matrizes e multiplicação por escalar, forma um espaço vetorial. Em vez de testar todos os 10 axiomas, responda às seguintes perguntas-chave:
+            <ol>
+                <li>Qual é o "vetor nulo" neste espaço?</li>
+                <li>Se \(A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}\) é um "vetor", qual é o seu "vetor inverso" \(-A\)?</li>
+                <li>O conjunto é fechado sob adição e multiplicação por escalar? (Justifique em uma frase).</li>
+            </ol>
+            </p>
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Pense nas propriedades das matrizes que você já conhece. O "vetor nulo" é a matriz que não altera outra matriz quando somada a ela. O "vetor inverso" é a matriz que, somada à original, resulta na matriz nula.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>O "vetor nulo" é a matriz identidade da adição: a matriz 2x2 com todos os elementos iguais a zero.</li>
+                    <li>O "vetor inverso" \(-A\) é obtido multiplicando cada elemento de \(A\) por -1.</li>
+                    <li>Analise se a soma de duas matrizes 2x2 resulta em algo que não é uma matriz 2x2. Faça o mesmo para a multiplicação por escalar. Se as operações sempre resultam em um objeto do mesmo tipo, o conjunto é fechado.</li>
+                </ol>
+                <div class="formula">Operações Padrão: \(A+B\) e \(kA\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Os programadores usam matrizes para representar de tudo: inventários, mapas de tiles, tabelas de status de personagens e transformações gráficas. Tratar o conjunto de matrizes como um espaço vetorial permite usar ferramentas de álgebra linear para manipular esses dados de forma eficiente.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (AVANÇADO) -->
+        <div class="mission">
+            <h3>A Caixa de Ferramentas do Programador (Espaço Vetorial de Polinômios)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a definição de espaço vetorial a polinômios de grau \(\le 2\).
+            </div>
+            <p>Considere \(P_2\), o conjunto de todos os polinômios de grau menor ou igual a 2 (da forma \(p(x) = ax^2 + bx + c\)). Com as operações usuais de soma de polinômios e multiplicação por escalar, \(P_2\) é um espaço vetorial. Investigue:
+            <ol>
+                <li>Qual é o "vetor nulo" (o polinômio nulo) em \(P_2\)?</li>
+                <li>Este conjunto é fechado sob adição? Dê um exemplo.</li>
+                <li>Este conjunto é fechado sob multiplicação por escalar?</li>
+            </ol>
+            </p>
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Somar dois polinômios de grau 2 pode resultar em um polinômio de grau maior que 2? E multiplicar por um número? Se a resposta for não, o conjunto é fechado.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>O "vetor nulo" é o polinômio cujos coeficientes são todos zero, resultando na função constante \(p(x)=0\).</li>
+                    <li>Some dois polinômios genéricos de \(P_2\), como \((a_1x^2+b_1x+c_1) + (a_2x^2+b_2x+c_2)\). O resultado ainda tem a forma \(ax^2+bx+c\)?</li>
+                    <li>Multiplique um polinômio genérico de \(P_2\) por um escalar \(k\). O resultado ainda é um polinômio de grau menor ou igual a 2?</li>
+                </ol>
+                <div class="formula">\(p(x)+q(x)\), \(k \cdot p(x)\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Polinômios são usados para criar curvas suaves para animações (interpolação), trajetórias de projéteis, ou para modelar o aumento de atributos de um personagem conforme ele sobe de nível (curvas de XP).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (AVANÇADO) -->
+        <div class="mission">
+            <h3>A Barreira do Eixo Y (Falha no Fechamento)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar por que um subconjunto do plano pode falhar no fechamento sob multiplicação por escalar.
+            </div>
+            <p>Um nível do jogo é restrito ao semiplano direito, ou seja, ao conjunto \(W\) de todos os vetores \((x,y)\) em \(\mathbb{R}^2\) onde \(x \ge 0\). O conjunto \(W\) é um espaço vetorial com as operações padrão? Teste os dois axiomas de fechamento (soma e multiplicação por escalar) para descobrir.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A soma de dois números não negativos é sempre não negativa. Isso resolve o fechamento da soma. Mas o que acontece se você multiplicar um número não negativo por um escalar... negativo?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste de Fechamento da Soma:</strong> Pegue dois vetores \(\vec{u}=(u_1, u_2)\) e \(\vec{v}=(v_1, v_2)\) em \(W\), o que implica \(u_1 \ge 0\) e \(v_1 \ge 0\). Verifique o sinal da primeira componente da soma \(\vec{u}+\vec{v}\).</li>
+                    <li><strong>Teste de Fechamento da Multiplicação por Escalar:</strong> Pegue um vetor \(\vec{u}\) em \(W\) (por exemplo, \((2,3)\)) e um escalar negativo (por exemplo, \(k=-1\)).</li>
+                    <li>Calcule \(k\vec{u}\) e verifique se o resultado ainda pertence a \(W\) (ou seja, se sua primeira componente ainda é \(\ge 0\)). Se não, o axioma falha.</li>
+                </ol>
+                <div class="formula">A ser testado: \(k\vec{u} \in W\) para todo \(k \in \mathbb{R}\)?</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso mostra que uma "parede invisível" no mapa pode quebrar as regras de um espaço vetorial. Uma força (um escalar negativo aplicado a um vetor de velocidade) poderia teoricamente "empurrar" um jogador através da barreira, o que significa que os programadores precisam adicionar verificações de colisão extras em vez de confiar apenas na álgebra linear pura.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-A (COMPLEXO) -->
+        <div class="mission">
+            <h3>A Parede Invisível do Quadrante (Boss Fight)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar uma falha sutil e clássica de fechamento com escalares negativos.
+            </div>
+            <p>Uma arena de batalha especial restringe os jogadores ao primeiro quadrante do mapa. Seja \(V\) o conjunto de todos os vetores \((x,y)\) tais que \(x \ge 0\) e \(y \ge 0\). Usando as operações padrão de \(\mathbb{R}^2\), determine se \(V\) é um espaço vetorial. Justifique sua resposta testando os axiomas de fechamento.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Fechamento da Soma:</strong> Considere dois vetores \(\vec{u}=(u_1, u_2)\) e \(\vec{v}=(v_1, v_2)\) em \(V\). Por definição, todos os componentes \(u_1, u_2, v_1, v_2\) são não negativos. Analise os componentes da soma \(\vec{u}+\vec{v} = (u_1+v_1, u_2+v_2)\). A soma de números não negativos é sempre não negativa, então a soma permanece em \(V\). Este axioma é satisfeito.</li>
+                    <li><strong>Teste do Fechamento da Multiplicação por Escalar:</strong> Escolha um vetor que está claramente em \(V\), por exemplo, \(\vec{u}=(1,1)\). Agora, escolha um escalar negativo, por exemplo, \(k=-1\).</li>
+                    <li>Calcule o produto \(k\vec{u}\). O resultado é \((-1,-1)\).</li>
+                    <li>Verifique se o resultado pertence a \(V\). Como os componentes \(-1\) são menores que 0, o vetor resultante está fora do primeiro quadrante. O axioma de fechamento da multiplicação por escalar falha.</li>
+                    <li><strong>Conclusão:</strong> Como um dos axiomas falha, \(V\) não é um espaço vetorial.</li>
+                </ol>
+                <div class="formula">Axioma de Fechamento da Multiplicação por Escalar: \(k\vec{u} \in V\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Muitas quantidades em jogos (como vida, mana ou coordenadas em um quadrante específico) são não negativas. No entanto, as forças ou efeitos que atuam sobre elas (dano, empurrões, etc.) podem ser negativos. Isso significa que o "espaço de estados" do jogo não é um verdadeiro espaço vetorial, e a programação deve levar em conta essas restrições.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-B (COMPLEXO) -->
+        <div class="mission">
+            <h3>Glitch nas Matrizes Invertíveis (Boss Fight)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Analisar um conjunto mais complexo onde múltiplos axiomas-chave falham.
+            </div>
+            <p>Um programador sênior sugere que, para garantir que todas as transformações no jogo possam ser desfeitas, o motor gráfico só deve trabalhar com matrizes 2x2 invertíveis. Seja \(V\) o conjunto de todas as matrizes 2x2 invertíveis. Usando as operações padrão de adição de matrizes, determine se \(V\) é um espaço vetorial. Encontre pelo menos dois axiomas que falham.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Axioma do Vetor Nulo:</strong> O "vetor nulo" no espaço de matrizes \(M_{22}\) é a matriz nula, \(\begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}\). Calcule o determinante desta matriz. Como \(\det(\vec{0}) = 0\), a matriz nula não é invertível. Portanto, o vetor nulo não pertence ao conjunto \(V\). Esta falha já é suficiente para provar que \(V\) não é um espaço vetorial.</li>
+                    <li><strong>Teste do Fechamento da Soma:</strong> Para encontrar uma segunda falha, precisamos mostrar que a soma de duas matrizes invertíveis pode não ser invertível. Considere duas matrizes invertíveis simples, \(A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\) (\(\det(A)=1\)) e \(B = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}\) (\(\det(B)=1\)). Ambas pertencem a \(V\).</li>
+                    <li>Calcule a soma \(A+B\). O resultado é a matriz nula.</li>
+                    <li>Como já estabelecido, a matriz nula não é invertível. Portanto, a soma de dois "vetores" de \(V\) resultou em um "vetor" que está fora de \(V\). O conjunto não é fechado sob adição.</li>
+                </ol>
+                <div class="formula">A ser testado: \(\vec{0} \in V?\) e \(A, B \in V \implies A+B \in V?\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso revela um problema sutil no design de um motor de jogo. Embora usar apenas matrizes invertíveis pareça uma boa ideia para garantir que as animações possam ser revertidas, o conjunto delas não se comporta como um espaço vetorial. Isso significa que operações simples como somar duas transformações podem levar a um estado "quebrado" (uma transformação não reversível), exigindo tratamento especial no código.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-C (COMPLEXO) -->
+        <div class="mission">
+            <h3>O Motor de Jogo Supremo (Boss Fight)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender a aplicação mais abstrata de espaço vetorial a um conjunto de funções.
+            </div>
+            <p>O motor de jogo mais avançado que existe, o "Motor de Análise", trata funções matemáticas como objetos. Considere o conjunto \(V = C(\mathbb{R})\), que contém todas as funções contínuas de \(\mathbb{R}\) em \(\mathbb{R}\). As operações são definidas da seguinte forma:
+            <ul>
+                <li><strong>Soma:</strong> \((f+g)(x) = f(x) + g(x)\)</li>
+                <li><strong>Multiplicação por Escalar:</strong> \((kf)(x) = k \cdot f(x)\)</li>
+            </ul>
+            Este conjunto forma um espaço vetorial. Responda:
+            <ol>
+                <li>Qual é o "vetor nulo" neste espaço de funções?</li>
+                <li>Para o "vetor" \(f(x) = \sin(x)\), qual é o seu "vetor inverso aditivo"?</li>
+            </ol>
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Identificando o Vetor Nulo:</strong> O vetor nulo é um elemento que, somado a qualquer outro, não o altera. Precisamos de uma função \(z(x)\) tal que \(f(x) + z(x) = f(x)\) para qualquer \(f(x)\). A única função que satisfaz isso é a função constante \(z(x) = 0\). Esta é uma função contínua, então pertence ao conjunto.</li>
+                    <li><strong>Identificando o Vetor Inverso:</strong> Para um dado "vetor" \(f(x)\), seu inverso \(-f(x)\) deve ser tal que a soma dos dois resulte no vetor nulo (a função \(z(x)=0\)). Portanto, para \(f(x) = \sin(x)\), procuramos uma função \(g(x)\) tal que \(\sin(x) + g(x) = 0\). A solução é \(g(x) = -\sin(x)\). Esta também é uma função contínua.</li>
+                </ol>
+                <div class="formula">\((f+(-f))(x) = f(x) - f(x) = 0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este conceito, embora altamente abstrato, é a base para técnicas avançadas usadas em jogos modernos. A análise de Fourier, que decompõe sons e imagens em somas de senos e cossenos, trata essas funções como vetores em um espaço vetorial de dimensão infinita. Isso é fundamental para compressão de áudio, efeitos sonoros e shaders gráficos complexos.</p>
+            </details>
+        </div>
+    </main>
 </body>
 </html>

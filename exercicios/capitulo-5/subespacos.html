@@ -2,11 +2,351 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Álgebra Arcade | Missões</title>
-    <!-- Conteúdo a ser gerado -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Subespaços Vetoriais</title>
 </head>
 <body>
-    <h1>Em Construção</h1>
-    <p>Esta página de missões será gerada em breve!</p>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 5.2: Zonas Seguras (Subespaços)</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Subespaços Vetoriais</h3>
+        <p>Em qualquer grande universo de jogo, existem "Zonas Seguras" — mini-universos autocontidos onde as regras da física ainda se aplicam. Em Álgebra Linear, chamamos isso de <strong>Subespaço Vetorial</strong>. É um subconjunto de um espaço vetorial que, por si só, também é um espaço vetorial.</p>
+        <p>A boa notícia é que não precisamos testar todos os 10 axiomas novamente! Se um conjunto já está dentro de um espaço vetorial, ele herda a maioria das regras. Só precisamos verificar as condições essenciais para que ele seja "autocontido".</p>
+        <div class="formula">
+            <strong>O Teste do Subespaço (Atalho Mestre):</strong>
+            <p>Um subconjunto \(W\) é um subespaço se, e somente se:</p>
+            <ol>
+                <li>O vetor nulo \(\vec{0}\) está em \(W\). (A zona segura tem uma origem).</li>
+                <li>É fechado sob <strong>soma</strong>: Se \(\vec{u}, \vec{v}\) estão em \(W\), então \(\vec{u}+\vec{v}\) também está em \(W\).</li>
+                <li>É fechado sob <strong>multiplicação por escalar</strong>: Se \(\vec{u}\) está em \(W\), então \(k\vec{u}\) também está em \(W\).</li>
+            </ol>
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>A Rota Principal (Reta pela origem como subespaço)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o teste do subespaço em um exemplo geométrico simples e positivo.
+            </div>
+            <p>Uma estrada principal no mapa do jogo é descrita pela equação \(y = 2x\). Este conjunto de pontos, que representa a estrada, é uma "Zona Segura" (um subespaço) dentro do universo \(\mathbb{R}^2\)? Use o teste do subespaço para verificar.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Verifique os três passos: 1. O ponto \((0,0)\) está na reta? 2. Se você somar dois pontos da reta, o resultado ainda está na reta? 3. Se você esticar ou encolher um vetor que aponta para a reta, ele continua na reta?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> Verifique se o ponto \((0,0)\) satisfaz a equação \(y=2x\).</li>
+                    <li><strong>Teste do Fechamento da Soma:</strong> Pegue dois vetores genéricos que estão na reta, \(\vec{u}=(x_1, 2x_1)\) e \(\vec{v}=(x_2, 2x_2)\). Some-os e veja se o vetor resultante ainda satisfaz a condição "a segunda componente é o dobro da primeira".</li>
+                    <li><strong>Teste do Fechamento da Multiplicação por Escalar:</strong> Pegue um vetor genérico da reta, \(\vec{u}=(x, 2x)\), e multiplique-o por um escalar \(k\). Verifique se o vetor resultante ainda obedece à equação da reta.</li>
+                </ol>
+                <div class="formula">Condição a ser testada: \(y_{\text{resultado}} = 2 \cdot x_{\text{resultado}}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Qualquer reta ou plano que passa pela origem do mundo do jogo é um subespaço. Isso é útil para definir trajetórias de projéteis, lasers ou caminhos de IA que devem se comportar de forma consistente com a física do jogo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>O Beco sem Saída (Reta que não passa pela origem)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar a falha mais comum ao testar um subespaço: a ausência do vetor nulo.
+            </div>
+            <p>Um beco no mapa do jogo é descrito pela reta \(y = 2x + 1\). Por que este conjunto de pontos <strong>não</strong> pode ser uma Zona Segura (um subespaço) de \(\mathbb{R}^2\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Qual é o primeiro e mais rápido teste que você deve fazer? Lembre-se, toda Zona Segura precisa ter um ponto de origem \((0,0)\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor nulo de \(\mathbb{R}^2\), que é \(\vec{0}=(0,0)\).</li>
+                    <li>Verifique se este vetor pertence ao conjunto, ou seja, se o ponto \((0,0)\) satisfaz a equação da reta \(y = 2x + 1\).</li>
+                    <li>Substitua \(x=0\) e \(y=0\) na equação. Se o resultado for uma contradição (como \(0=1\)), o vetor nulo não está no conjunto, e o teste falha imediatamente.</li>
+                </ol>
+                <div class="formula">Regra de Ouro: Se \(\vec{0} \notin W\), então \(W\) não é um subespaço.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso mostra que um caminho ou área que não está "ancorada" na origem do mundo do jogo não pode ser tratada com as mesmas regras de vetores. A matemática para movimentos dentro dessa área precisa de um ajuste (translação), não sendo um subespaço puro.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>O Campo de Força Plano (Plano pela origem como subespaço)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Generalizar a intuição geométrica de \(\mathbb{R}^2\) para um plano em \(\mathbb{R}^3\).
+            </div>
+            <p>Em um jogo de ficção científica, um campo de força plano é definido por todos os pontos \((x,y,z)\) que satisfazem a equação \(x - 3y + 2z = 0\). Mostre que este plano é um subespaço de \(\mathbb{R}^3\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O processo é idêntico ao da reta em \(\mathbb{R}^2\), mas agora com três componentes. Pegue dois vetores genéricos que satisfazem a equação, some-os e veja se o resultado também satisfaz.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> Verifique se o ponto \((0,0,0)\) satisfaz a equação do plano.</li>
+                    <li><strong>Teste da Soma:</strong> Considere \(\vec{u}=(x_1, y_1, z_1)\) e \(\vec{v}=(x_2, y_2, z_2)\) que estão no plano. Isso significa que \(x_1-3y_1+2z_1=0\) e \(x_2-3y_2+2z_2=0\). Some \(\vec{u}+\vec{v}\) e verifique se as componentes do resultado satisfazem a equação do plano.</li>
+                    <li><strong>Teste do Escalar:</strong> Multiplique \(\vec{u}\) por um escalar \(k\) e verifique se as componentes do vetor \(k\vec{u}\) satisfazem a equação do plano.</li>
+                </ol>
+                <div class="formula">Condição: \(x - 3y + 2z = 0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Planos que passam pela origem são fundamentais em gráficos 3D para representar superfícies como pisos, paredes, espelhos d'água e campos de visão de câmeras de segurança.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-A (MÉDIO) -->
+        <div class="mission">
+            <h3>O Arsenal Simétrico (Subespaço de matrizes simétricas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o teste do subespaço em um conjunto de matrizes com uma propriedade específica.
+            </div>
+            <p>O inventário de um personagem é representado por matrizes 2x2. Uma "matriz de status" é considerada simétrica se \(A = A^T\). O conjunto de todas as matrizes de status simétricas 2x2 é um subespaço do espaço vetorial \(M_{22}\) de todas as matrizes 2x2?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Use as propriedades da transposta: \((A+B)^T = A^T + B^T\) e \((kA)^T = kA^T\). Se A e B são simétricas, o que você pode dizer sobre \(A^T\) e \(B^T\)?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> A matriz nula 2x2 é simétrica? (A transposta da matriz nula é ela mesma?).</li>
+                    <li><strong>Teste da Soma:</strong> Sejam \(A\) e \(B\) duas matrizes simétricas. Verifique se a soma \(A+B\) também é simétrica. Para isso, calcule \((A+B)^T\) e veja se é igual a \(A+B\).</li>
+                    <li><strong>Teste do Escalar:</strong> Seja \(A\) uma matriz simétrica e \(k\) um escalar. Verifique se \(kA\) é uma matriz simétrica. Calcule \((kA)^T\) e veja se é igual a \(kA\).</li>
+                </ol>
+                <div class="formula">Condição a ser testada: \(A = A^T\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Matrizes simétricas aparecem em física de jogos (tensores de inércia para rotação de objetos 3D) e em algoritmos de IA (matrizes de covariância para análise de dados). Garantir que elas formam um subespaço significa que podemos manipulá-las com ferramentas de álgebra linear sem sair desse "universo" de matrizes simétricas.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MÉDIO) -->
+        <div class="mission">
+            <h3>A Arena dos Polinômios sem Lag (Subespaço de polinômios)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender que um espaço vetorial menor pode ser um subespaço de um maior.
+            </div>
+            <p>O motor de animação do jogo usa polinômios de grau \(\le 2\) (o espaço \(P_2\)) para trajetórias. Para otimizar o desempenho, os desenvolvedores querem usar apenas polinômios de grau \(\le 1\) (o espaço \(P_1\)), que são mais simples. O conjunto \(P_1\) é um subespaço de \(P_2\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A soma de duas retas (polinômios de grau 1) pode resultar em uma parábola (grau 2)? E se você multiplicar uma reta por um número? Se o resultado sempre for uma reta ou uma constante, o conjunto é fechado.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> O polinômio nulo, \(p(x)=0\), tem grau menor ou igual a 1?</li>
+                    <li><strong>Teste da Soma:</strong> Pegue dois polinômios de \(P_1\), \(p(x) = ax+b\) e \(q(x) = cx+d\). A soma deles, \((a+c)x + (b+d)\), ainda é um polinômio de grau menor ou igual a 1?</li>
+                    <li><strong>Teste do Escalar:</strong> Multiplique \(p(x)=ax+b\) por um escalar \(k\). O resultado, \(kax+kb\), ainda está em \(P_1\)?</li>
+                </ol>
+                <div class="formula">Espaço \(P_1 = \{ax+b \mid a,b \in \mathbb{R}\}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso mostra como conjuntos de ferramentas podem ser aninhados. O conjunto de "movimentos lineares" é uma zona segura e mais simples dentro do universo maior de "movimentos parabólicos", garantindo que a combinação de movimentos simples não gere, de repente, um movimento complexo e inesperado.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-C (MÉDIO) -->
+        <div class="mission">
+            <h3>Glitch na Diagonal (Falha no fechamento da soma)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar uma falha de fechamento em um conjunto de matrizes aparentemente válido.
+            </div>
+            <p>Um tipo especial de "matriz de power-up" é definido como qualquer matriz 2x2 onde o elemento na primeira linha e primeira coluna é sempre 1. Ou seja, matrizes da forma \(\begin{pmatrix} 1 & b \\ c & d \end{pmatrix}\). Este conjunto é um subespaço de \(M_{22}\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Pegue duas matrizes que obedecem a essa regra. Some-as. O que acontece com o elemento no canto superior esquerdo do resultado?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Você pode começar pelo teste do vetor nulo. A matriz nula tem 1 no canto superior esquerdo? Se não, já falhou.</li>
+                    <li>Como alternativa, teste o fechamento da soma. Crie duas matrizes genéricas que pertencem ao conjunto, \(A = \begin{pmatrix} 1 & b_1 \\ c_1 & d_1 \end{pmatrix}\) e \(B = \begin{pmatrix} 1 & b_2 \\ c_2 & d_2 \end{pmatrix}\).</li>
+                    <li>Calcule a soma \(A+B\).</li>
+                    <li>Verifique se a matriz resultante ainda obedece à regra de ter o número 1 no canto superior esquerdo. Se não, o conjunto não é fechado sob adição.</li>
+                </ol>
+                <div class="formula">Condição a ser testada: \(a_{11} = 1\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é um exemplo clássico de "estado de jogo" que não forma um subespaço. Se "ter um item específico" é representado por um 1 em uma matriz de inventário, combinar dois inventários (somar as matrizes) pode resultar em um estado inválido (ter 2 desse item). O código do jogo precisa tratar esses casos especiais.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (AVANÇADO) -->
+        <div class="mission">
+            <h3>O Portal para o Nada (Espaço Nulo como subespaço)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que o conjunto solução de um sistema homogêneo é sempre um subespaço.
+            </div>
+            <p>Uma transformação \(A\) em \(\mathbb{R}^3\) representa um portal. O "Espaço Nulo" de \(A\) é o conjunto de todos os pontos \(\vec{x}\) que são enviados para a origem, ou seja, que satisfazem \(A\vec{x} = \vec{0}\). Prove, de forma geral, que o Espaço Nulo de qualquer matriz \(A\) é sempre um subespaço vetorial.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Use as propriedades da multiplicação de matrizes: \(A(\vec{u}+\vec{v}) = A\vec{u} + A\vec{v}\) e \(A(k\vec{u}) = k(A\vec{u})\). Se \(A\vec{u}=\vec{0}\) e \(A\vec{v}=\vec{0}\), o que acontece quando você aplica \(A\) à soma \(\vec{u}+\vec{v}\)?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> O vetor \(\vec{x}=\vec{0}\) é sempre uma solução para \(A\vec{x}=\vec{0}\)? Sim, pois \(A\vec{0}=\vec{0}\).</li>
+                    <li><strong>Teste da Soma:</strong> Suponha que \(\vec{u}\) e \(\vec{v}\) estão no Espaço Nulo. Isso significa que \(A\vec{u}=\vec{0}\) e \(A\vec{v}=\vec{0}\). Agora, teste se a soma \(\vec{u}+\vec{v}\) está no Espaço Nulo, calculando \(A(\vec{u}+\vec{v})\).</li>
+                    <li><strong>Teste do Escalar:</strong> Suponha que \(\vec{u}\) está no Espaço Nulo (\(A\vec{u}=\vec{0}\)). Teste se \(k\vec{u}\) também está, calculando \(A(k\vec{u})\).</li>
+                </ol>
+                <div class="formula">Condição: \(A\vec{x} = \vec{0}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O Espaço Nulo de uma matriz de transformação de câmera 3D para 2D representa todos os pontos no espaço 3D que são projetados no centro da tela (a origem da imagem 2D). Saber que esses pontos formam um subespaço (uma reta) é fundamental para algoritmos de projeção e renderização.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (AVANÇADO) -->
+        <div class="mission">
+            <h3>A Sala do Equilíbrio (Matrizes com traço nulo como subespaço)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o teste em um conjunto definido por uma propriedade linear (o traço).
+            </div>
+            <p>Em um jogo de estratégia, uma "matriz de fluxo de recursos" 2x2 descreve a troca de recursos entre duas facções. O traço da matriz (soma dos elementos da diagonal principal) representa a criação líquida de recursos. O conjunto de todas as matrizes de "fluxo equilibrado", onde \(\text{tr}(A) = 0\), é um subespaço de \(M_{22}\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Use as propriedades do traço: \(\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B)\) e \(\text{tr}(kA) = k \cdot \text{tr}(A)\). Se o traço de A e B é zero, o que acontece com o traço da soma?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> Qual é o traço da matriz nula 2x2?</li>
+                    <li><strong>Teste da Soma:</strong> Sejam \(A\) e \(B\) duas matrizes com traço zero. Use a propriedade \(\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B)\) para determinar o traço da soma.</li>
+                    <li><strong>Teste do Escalar:</strong> Seja \(A\) uma matriz com traço zero e \(k\) um escalar. Use a propriedade \(\text{tr}(kA) = k \cdot \text{tr}(A)\) para determinar o traço de \(kA\).</li>
+                </ol>
+                <div class="formula">Condição: \(\text{tr}(A) = a_{11}+a_{22} = 0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Propriedades como o traço são usadas em mecânica quântica e física avançada, que podem inspirar sistemas de magia ou tecnologia em jogos. Um "feitiço de equilíbrio" poderia ser uma transformação cujo traço é zero, garantindo que alguma quantidade (como a "energia mágica total") seja conservada.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-C (AVANÇADO) -->
+        <div class="mission">
+            <h3>O Universo de um Movimento Só (Span de um vetor como subespaço)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender que o `span` (espaço gerado) de um conjunto de vetores sempre forma um subespaço.
+            </div>
+            <p>Um personagem do jogo tem apenas um movimento especial: um "dash" na direção do vetor \(\vec{v}=(4,1)\). Ele pode executar este dash por qualquer duração (ou seja, pode se mover por qualquer múltiplo escalar de \(\vec{v}\)). O conjunto de todos os pontos que ele pode alcançar a partir da origem, \(\text{span}\{\vec{v}\}\), forma um subespaço de \(\mathbb{R}^2\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Um ponto genérico neste conjunto tem a forma \(k\vec{v}\). O que acontece quando você soma dois pontos dessa forma? E quando multiplica um deles por outro escalar?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> O vetor nulo pode ser escrito como um múltiplo escalar de \(\vec{v}\)? (Dica: qual escalar usar?).</li>
+                    <li><strong>Teste da Soma:</strong> Pegue dois vetores do conjunto, \(\vec{u}_1 = k_1\vec{v}\) e \(\vec{u}_2 = k_2\vec{v}\). Some-os. O resultado pode ser escrito na forma \((\text{algum escalar}) \cdot \vec{v}\)?</li>
+                    <li><strong>Teste do Escalar:</strong> Pegue um vetor do conjunto, \(\vec{u} = k\vec{v}\), e multiplique-o por um escalar \(c\). O resultado \(c\vec{u}\) ainda é um múltiplo escalar de \(\vec{v}\)?</li>
+                </ol>
+                <div class="formula">Definição: \(W = \{k\vec{v} \mid k \in \mathbb{R}\}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é um resultado fundamental: o conjunto de todos os locais alcançáveis a partir de um conjunto de movimentos básicos (o `span`) é sempre uma "Zona Segura" (um subespaço). Isso garante que combinar movimentos básicos não levará o jogador a uma área "bugada" fora do espaço de jogo definido por esses movimentos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-A (COMPLEXO) -->
+        <div class="mission">
+            <h3>A Encruzilhada Proibida (União de dois subespaços)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Demonstrar com um contraexemplo clássico que a união de subespaços geralmente não é um subespaço.
+            </div>
+            <p>O mapa do jogo consiste em duas estradas retas que se cruzam na origem: o eixo X e o eixo Y. Sabemos que cada eixo, individualmente, é um subespaço ("Zona Segura"). Mas e o conjunto que contém AMBAS as estradas (a união dos dois eixos)? Este conjunto é um subespaço de \(\mathbb{R}^2\)?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Análise do Problema:</strong> O conjunto \(W\) é a união do eixo X (todos os pontos \((x,0)\)) e do eixo Y (todos os pontos \((0,y)\)).</li>
+                    <li><strong>Teste do Fechamento da Soma:</strong> Para provar que não é um subespaço, basta encontrar um contraexemplo.
+                        <ul>
+                            <li>Escolha um vetor que está no eixo X (e portanto em \(W\)). Ex: \(\vec{u}=(1,0)\).</li>
+                            <li>Escolha um vetor que está no eixo Y (e portanto em \(W\)). Ex: \(\vec{v}=(0,1)\).</li>
+                        </ul>
+                    </li>
+                    <li>Calcule a soma \(\vec{u}+\vec{v}\).</li>
+                    <li>Verifique se o vetor resultante pertence a \(W\). Ou seja, o ponto \((1,1)\) está no eixo X ou no eixo Y? Se não, o conjunto não é fechado sob adição.</li>
+                </ol>
+                <div class="formula">Contraexemplo: \(\vec{u} \in W, \vec{v} \in W\), mas \(\vec{u}+\vec{v} \notin W\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso tem implicações diretas no design de níveis. Se um personagem pode se mover ao longo de paredes (eixo X) ou subir escadas (eixo Y), a combinação de um passo para o lado e um passo para cima o coloca no "meio do ar" — um ponto que não pertence a nenhum dos dois subespaços originais. O motor do jogo precisa de uma física mais geral (como a gravidade) para lidar com essa situação.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (COMPLEXO) -->
+        <div class="mission">
+            <h3>O Ponto de Encontro (Interseção de dois subespaços)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que a interseção de dois subespaços é sempre um subespaço.
+            </div>
+            <p>Dois campos de força planos, \(W_1\) e \(W_2\), são subespaços em \(\mathbb{R}^3\). Eles se cruzam em uma linha que passa pela origem. Prove, de forma geral, que a interseção de quaisquer dois subespaços \(W_1\) e \(W_2\) de um espaço vetorial \(V\) é também um subespaço de \(V\).</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> Se \(W_1\) e \(W_2\) são subespaços, ambos devem conter o vetor nulo \(\vec{0}\). Portanto, \(\vec{0}\) também deve estar na interseção deles.</li>
+                    <li><strong>Teste da Soma:</strong> Sejam \(\vec{u}\) e \(\vec{v}\) dois vetores na interseção \(W_1 \cap W_2\).
+                        <ul>
+                            <li>Por definição, isso significa que \(\vec{u}\) e \(\vec{v}\) estão em \(W_1\). Como \(W_1\) é um subespaço, a soma \(\vec{u}+\vec{v}\) também está em \(W_1\).</li>
+                            <li>Da mesma forma, \(\vec{u}\) e \(\vec{v}\) estão em \(W_2\). Como \(W_2\) é um subespaço, a soma \(\vec{u}+\vec{v}\) também está em \(W_2\).</li>
+                            <li>Se \(\vec{u}+\vec{v}\) está em ambos, \(W_1\) e \(W_2\), então está na interseção.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Teste do Escalar:</strong> Use um raciocínio semelhante para mostrar que se \(\vec{u}\) está na interseção, então \(k\vec{u}\) também está.</li>
+                </ol>
+                <div class="formula">Definição: \(\vec{x} \in W_1 \cap W_2 \iff \vec{x} \in W_1 \text{ e } \vec{x} \in W_2\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em um jogo, isso pode representar a área onde duas auras de efeito se sobrepõem. Por exemplo, se uma "aura de lentidão" (subespaço 1) e uma "aura de dano contínuo" (subespaço 2) se cruzam, a região de interseção é uma "Zona Segura" no sentido de que as propriedades de ambas as auras se aplicam de forma consistente ali.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-C (COMPLEXO) -->
+        <div class="mission">
+            <h3>A Zona de Silêncio (Subespaço de funções)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o teste do subespaço em um contexto de funções contínuas.
+            </div>
+            <p>O motor de áudio do jogo trabalha com funções contínuas, \(C(\mathbb{R})\). Uma "zona de silêncio" é criada em um instante específico, digamos em \(t=5\). Considere o conjunto \(W\) de todas as funções \(f(t)\) em \(C(\mathbb{R})\) tais que \(f(5)=0\). Este conjunto é um subespaço de \(C(\mathbb{R})\)?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste do Vetor Nulo:</strong> O "vetor nulo" no espaço de funções é a função \(z(t) = 0\) para todo \(t\). Essa função satisfaz a condição em \(t=5\)?</li>
+                    <li><strong>Teste da Soma:</strong> Sejam \(f\) e \(g\) duas funções em \(W\). Isso significa que \(f(5)=0\) e \(g(5)=0\). A soma das funções é \((f+g)(t) = f(t)+g(t)\). O que é \((f+g)(5)\)? Se for zero, o conjunto é fechado sob adição.</li>
+                    <li><strong>Teste do Escalar:</strong> Seja \(f\) uma função em \(W\) (\(f(5)=0\)) e \(k\) um escalar. A função escalar é \((kf)(t) = k \cdot f(t)\). O que é \((kf)(5)\)? Se for zero, o conjunto é fechado sob multiplicação por escalar.</li>
+                </ol>
+                <div class="formula">Condição a ser testada: \(f(5) = 0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este conceito é usado em processamento de sinais para áudio e gráficos. Por exemplo, ao criar um efeito de "fade out" para uma música, o programador está efetivamente garantindo que a função de amplitude da onda sonora pertença a um conjunto como este, onde ela se torna zero em um ponto específico do tempo. Saber que é um subespaço garante que combinar ou escalar sons com essa propriedade não quebrará o efeito.</p>
+            </details>
+        </div>
+    </main>
 </body>
 </html>
