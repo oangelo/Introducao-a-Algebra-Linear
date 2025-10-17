@@ -2,11 +2,348 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Álgebra Arcade | Missões</title>
-    <!-- Conteúdo a ser gerado -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Bases e Coordenadas</title>
 </head>
 <body>
-    <h1>Em Construção</h1>
-    <p>Esta página de missões será gerada em breve!</p>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 5.4: O GPS do Universo</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Bases e Coordenadas</h3>
+        <p>Todo universo de jogo precisa de um sistema de coordenadas, um "GPS" para localizar objetos. Em Álgebra Linear, esse GPS é chamado de <strong>Base</strong>. Uma base é um conjunto de vetores "perfeito": pequeno o suficiente para não ter redundâncias (<strong>Linearmente Independente</strong>) e poderoso o suficiente para alcançar qualquer ponto do universo (<strong>Gera o Espaço</strong>).</p>
+        <p>Uma vez que temos uma base, a localização de qualquer vetor pode ser descrita por um conjunto único de <strong>coordenadas</strong>, que nos dizem "quanto" de cada vetor da base precisamos para chegar lá. A mesma localização pode ter coordenadas diferentes dependendo do GPS (base) que você está usando!</p>
+        <div class="formula">
+            <strong>Missão Principal: Encontrar Coordenadas</strong>
+            <p>Para encontrar as coordenadas \(\vec{c}\) de um vetor \(\vec{v}\) na base \(B=\{\vec{b_1}, \dots, \vec{b_n}\}\), resolva o sistema linear:</p>
+            \[ B\vec{c} = \vec{v} \quad \text{ou} \quad c_1\vec{b_1} + \dots + c_n\vec{b_n} = \vec{v} \]
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>O Baú do Tesouro Inalcançável (Span)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar se um vetor pertence ao espaço gerado (span) por outros dois.
+            </div>
+            <p>Um baú de tesouro está na localização \(\vec{w}=(7, -1, 5)\). Seu personagem tem duas habilidades de movimento: "Salto" \(\vec{u}=(1, 2, -1)\) e "Dash" \(\vec{v}=(3, 1, 2)\). É possível chegar ao baú combinando múltiplos desses movimentos a partir da origem? Em outras palavras, \(\vec{w}\) está no \(\text{span}\{\vec{u}, \vec{v}\}\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Você precisa encontrar escalares \(c_1, c_2\) tais que \(c_1\vec{u} + c_2\vec{v} = \vec{w}\). Isso se traduz em um sistema de 3 equações e 2 incógnitas. Se o sistema tiver solução, é possível.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a equação vetorial \(c_1\begin{pmatrix}1\\2\\-1\end{pmatrix} + c_2\begin{pmatrix}3\\1\\2\end{pmatrix} = \begin{pmatrix}7\\-1\\5\end{pmatrix}\).</li>
+                    <li>Converta em um sistema linear: \(c_1+3c_2=7\), \(2c_1+c_2=-1\), \(-c_1+2c_2=5\).</li>
+                    <li>Resolva o sistema. Das duas primeiras equações, você pode encontrar valores para \(c_1\) e \(c_2\).</li>
+                    <li>Verifique se esses valores satisfazem a terceira equação. Se sim, o sistema é consistente e o vetor pertence ao span.</li>
+                </ol>
+                <div class="formula">Teste de consistência: \(A\vec{c}=\vec{w}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O `span` de um conjunto de movimentos define todas as áreas "alcançáveis" do jogo. Se um objetivo está fora do `span`, o jogador precisa adquirir uma nova habilidade para chegar lá. É um conceito fundamental para o design de progressão em jogos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>O GPS Perfeito (Verificação de Base em R²)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o determinante para verificar rapidamente se dois vetores formam uma base para \(\mathbb{R}^2\).
+            </div>
+            <p>Um engenheiro propõe um novo sistema de navegação para o mapa 2D usando os vetores \(\vec{b_1}=(3,1)\) e \(\vec{b_2}=(1,2)\). Para que este seja um bom "GPS", os vetores precisam formar uma base. Verifique se eles são Linearmente Independentes e se geram \(\mathbb{R}^2\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Para \(n\) vetores em \(\mathbb{R}^n\), eles formam uma base se, e somente se, a matriz formada por eles tem determinante não-nulo. Este é o atalho mais rápido!</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Para verificar se dois vetores em \(\mathbb{R}^2\) formam uma base, basta verificar se são Linearmente Independentes. Se forem, eles automaticamente geram o espaço.</li>
+                    <li>Forme a matriz \(B\) com os vetores como colunas: \(B = \begin{pmatrix} 3 & 1 \\ 1 & 2 \end{pmatrix}\).</li>
+                    <li>Calcule o determinante de \(B\). \(\det(B) = (3)(2) - (1)(1)\).</li>
+                    <li>Se o determinante for diferente de zero, os vetores são LI e, portanto, formam uma base para \(\mathbb{R}^2\).</li>
+                </ol>
+                <div class="formula">Para \(n\) vetores em \(\mathbb{R}^n\): \(\det(B) \neq 0 \iff\) formam uma base.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma base é um sistema de coordenadas. A base canônica \(\{\vec{i}, \vec{j}\}\) é o sistema "Norte/Leste". Uma base diferente pode ser um sistema "Nordeste/Noroeste", que pode ser mais natural para o movimento em um mapa isométrico, por exemplo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>Coordenadas de Fábrica (Coordenadas na Base Canônica)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender que as coordenadas na base canônica são os próprios componentes do vetor.
+            </div>
+            <p>A base padrão (canônica) de \(\mathbb{R}^2\) é \(E = \{\vec{e_1}, \vec{e_2}\}\) onde \(\vec{e_1}=(1,0)\) e \(\vec{e_2}=(0,1)\). Se a posição de seu personagem é \(\vec{v}=(7,3)\), quais são suas coordenadas na base canônica? Ou seja, quais \(c_1, c_2\) satisfazem \(c_1\vec{e_1} + c_2\vec{e_2} = \vec{v}\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Substitua os vetores na equação: \(c_1(1,0) + c_2(0,1) = (7,3)\). O que isso lhe diz sobre \(c_1\) e \(c_2\)?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a equação vetorial: \(c_1\begin{pmatrix}1\\0\end{pmatrix} + c_2\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}7\\3\end{pmatrix}\).</li>
+                    <li>Simplifique o lado esquerdo: \(\begin{pmatrix}c_1\\c_2\end{pmatrix} = \begin{pmatrix}7\\3\end{pmatrix}\).</li>
+                    <li>Por igualdade de vetores, concluímos que \(c_1=7\) e \(c_2=3\).</li>
+                    <li>O vetor de coordenadas de \(\vec{v}\) na base canônica, \([\vec{v}]_E\), é \(\begin{pmatrix}7\\3\end{pmatrix}\).</li>
+                </ol>
+                <div class="formula">Para a base canônica, \([\vec{v}]_E = \vec{v}\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A base canônica é o sistema de coordenadas padrão de quase todos os motores de jogo. Quando você define a posição de um objeto como `(x, y)`, você está implicitamente usando a base canônica.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-A (PRINCIPAL) -->
+        <div class="mission">
+            <h3>Navegando em Outro Idioma (Coordenadas em uma Base Não-Canônica)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular as coordenadas de um vetor em uma base diferente da padrão.
+            </div>
+            <p>Você entra em uma "zona distorcida" cujo sistema de eixos é definido pela base \(B = \{\vec{b_1}, \vec{b_2}\}\), onde \(\vec{b_1}=(1,1)\) e \(\vec{b_2}=(0,2)\). Sua posição no mapa global ainda é \(\vec{v}=(3,5)\). Quais são suas coordenadas nesta nova zona distorcida? Encontre \([\vec{v}]_B\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Você precisa resolver a equação \(c_1\vec{b_1} + c_2\vec{b_2} = \vec{v}\). Monte o sistema linear e encontre \(c_1\) e \(c_2\).</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a equação vetorial: \(c_1\begin{pmatrix}1\\1\end{pmatrix} + c_2\begin{pmatrix}0\\2\end{pmatrix} = \begin{pmatrix}3\\5\end{pmatrix}\).</li>
+                    <li>Converta em um sistema linear: \(c_1 = 3\) e \(c_1 + 2c_2 = 5\).</li>
+                    <li>Resolva o sistema. A primeira equação já nos dá \(c_1=3\). Substituindo na segunda, temos \(3 + 2c_2 = 5\), o que leva a \(c_2=1\).</li>
+                    <li>O vetor de coordenadas é \([\vec{v}]_B = \begin{pmatrix}3\\1\end{pmatrix}\).</li>
+                </ol>
+                <div class="formula">Resolver \(B\vec{c}=\vec{v}\) para encontrar \(\vec{c} = [\vec{v}]_B\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso acontece constantemente em jogos 3D. A câmera tem seu próprio sistema de coordenadas (base). Para renderizar a cena, o motor precisa calcular as coordenadas de todos os objetos do mundo em relação à base da câmera.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-B (PRINCIPAL) -->
+        <div class="mission">
+            <h3>Decodificando o Sinal (Encontrar Vetor a partir de Coordenadas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dado um vetor de coordenadas e uma base, calcular o vetor original no espaço.
+            </div>
+            <p>Um aliado em uma nave com um sistema de coordenadas local diferente, definido pela base \(B = \{\vec{b_1}, \vec{b_2}\}\) onde \(\vec{b_1}=(2,-1)\) e \(\vec{b_2}=(1,1)\), envia a localização de um alvo: \([\vec{v}]_B = \begin{pmatrix}3\\-2\end{pmatrix}\). Qual é a localização real do alvo, \(\vec{v}\), no sistema de coordenadas global (canônico)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>As coordenadas são os "pesos" da combinação linear. Você já tem os pesos (\(c_1=3, c_2=-2\)) e os vetores da base. Apenas calcule a combinação linear.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se da definição de coordenadas: \(\vec{v} = c_1\vec{b_1} + c_2\vec{b_2}\).</li>
+                    <li>Substitua os valores dados na equação: \(\vec{v} = 3\begin{pmatrix}2\\-1\end{pmatrix} + (-2)\begin{pmatrix}1\\1\end{pmatrix}\).</li>
+                    <li>Realize as multiplicações por escalar e a soma dos vetores para encontrar \(\vec{v}\).</li>
+                </ol>
+                <div class="formula">\(\vec{v} = B[\vec{v}]_B\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso é usado para o movimento de objetos relativos a outros. Por exemplo, a posição de uma torre em cima de um tanque em movimento. As coordenadas da torre são relativas à base do tanque. Para saber a posição global da torre, o motor do jogo realiza exatamente este cálculo a cada quadro.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-C (PRINCIPAL) -->
+        <div class="mission">
+            <h3>O Manual de Magias (Verificação de Base para Matrizes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o conceito de base a um subespaço de matrizes.
+            </div>
+            <p>O subespaço das matrizes simétricas 2x2, \(S_{22}\), é um "universo" de 3 dimensões. Um antigo manual de magia afirma que as "runas" (matrizes) \( B = \left\{ \begin{pmatrix}1&0\\0&0\end{pmatrix}, \begin{pmatrix}0&1\\1&0\end{pmatrix}, \begin{pmatrix}0&0\\0&1\end{pmatrix} \right\} \) formam uma base para este universo. Verifique se o conjunto \(B\) é Linearmente Independente e se gera \(S_{22}\).</p>
+
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Uma matriz simétrica genérica tem a forma \(\begin{pmatrix}a&b\\b&c\end{pmatrix}\). Você consegue escrevê-la como uma combinação linear das matrizes da base? Se sim, elas geram o espaço. Para LI, verifique se a única combinação que resulta na matriz nula é a trivial.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Teste de Geração (Span):</strong> Tente escrever uma matriz simétrica genérica como combinação linear: \(c_1\begin{pmatrix}1&0\\0&0\end{pmatrix} + c_2\begin{pmatrix}0&1\\1&0\end{pmatrix} + c_3\begin{pmatrix}0&0\\0&1\end{pmatrix} = \begin{pmatrix}a&b\\b&c\end{pmatrix}\). Isso resulta em \(\begin{pmatrix}c_1&c_2\\c_2&c_3\end{pmatrix} = \begin{pmatrix}a&b\\b&c\end{pmatrix}\), o que mostra que podemos encontrar os coeficientes \(c_1=a, c_2=b, c_3=c\). Portanto, o conjunto gera \(S_{22}\).</li>
+                    <li><strong>Teste de Independência Linear:</strong> Considere a combinação que resulta na matriz nula. Pelo passo anterior, isso implica \(c_1=0, c_2=0, c_3=0\). A única solução é a trivial.</li>
+                    <li>Como o conjunto é LI e gera o espaço, ele é uma base.</li>
+                </ol>
+                <div class="formula">Base: LI + Span</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Definir uma base para um conjunto de "estados" (como matrizes de status) permite que os desenvolvedores armazenem e manipulem esses estados de forma eficiente, usando apenas as coordenadas em vez da matriz inteira.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE) -->
+        <div class="mission">
+            <h3>A Fórmula da Trajetória (Coordenadas em uma Base de Polinômios)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular as coordenadas de um polinômio em relação a uma base de polinômios.
+            </div>
+            <p>A trajetória de um projétil é descrita pelo polinômio \(p(t) = 4 + 6t - t^2\). O sistema de controle do projétil usa a base \(B=\{1, t-1, (t-1)^2\}\) para \(P_2\). Encontre as coordenadas de \(p(t)\) nesta base.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Expanda os polinômios da base (ex: \((t-1)^2 = t^2-2t+1\)). Em seguida, monte a equação \(c_1(1) + c_2(t-1) + c_3(t-1)^2 = 4+6t-t^2\) e iguale os coeficientes das potências de \(t\).</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a equação: \(c_1 + c_2(t-1) + c_3(t^2-2t+1) = 4+6t-t^2\).</li>
+                    <li>Reagrupe o lado esquerdo por potências de \(t\): \(c_3t^2 + (c_2-2c_3)t + (c_1-c_2+c_3) = -t^2+6t+4\).</li>
+                    <li>Iguale os coeficientes correspondentes para formar um sistema linear:
+                        <ul><li>\(c_3 = -1\) (coeficientes de \(t^2\))</li>
+                            <li>\(c_2-2c_3 = 6\) (coeficientes de \(t\))</li>
+                            <li>\(c_1-c_2+c_3 = 4\) (termos constantes)</li></ul>
+                    </li>
+                    <li>Resolva o sistema para encontrar \(c_1, c_2, c_3\), que são as coordenadas desejadas.</li>
+                </ol>
+                <div class="formula">Igualar coeficientes: \(a_1t^2+... = a_2t^2+... \implies a_1=a_2, ...\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em animação, usar bases como esta (chamadas de bases de Bernstein em um contexto similar) permite controlar as curvas de forma mais intuitiva. As coordenadas podem representar o ponto inicial, a velocidade inicial e a aceleração em um determinado ponto, em vez dos coeficientes abstratos da base canônica.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (ELITE) -->
+        <div class="mission">
+            <h3>Mapeando o Campo de Batalha (Encontrar uma Base para um Plano)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dado um plano em \(\mathbb{R}^3\), encontrar um conjunto de vetores que forma uma base para ele.
+            </div>
+            <p>Um campo de batalha plano é definido pela equação \(x+y-z=0\). Encontre uma base para este subespaço de \(\mathbb{R}^3\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>A equação tem 3 variáveis e 1 restrição. Isso significa que há 2 "variáveis livres". Expresse a variável dependente em termos das livres e, em seguida, separe os termos para extrair os vetores da base.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Isole uma variável na equação do plano. Por exemplo, \(z=x+y\).</li>
+                    <li>Um vetor genérico no plano tem a forma \(\vec{v} = (x, y, x+y)\).</li>
+                    <li>Separe o vetor em partes contendo apenas \(x\) e partes contendo apenas \(y\): \(\vec{v} = (x, 0, x) + (0, y, y)\).</li>
+                    <li>Fatore as variáveis livres: \(\vec{v} = x(1, 0, 1) + y(0, 1, 1)\).</li>
+                    <li>Isso mostra que qualquer vetor no plano é uma combinação linear de \(\vec{b_1}=(1,0,1)\) e \(\vec{b_2}=(0,1,1)\). Estes dois vetores geram o plano e são LI. Portanto, formam uma base.</li>
+                </ol>
+                <div class="formula">Solução Geral \(\implies\) Vetores da Base</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Quando se projeta um nível em um terreno plano inclinado, os desenvolvedores definem implicitamente uma base para aquele plano. Os movimentos dos personagens e a colocação de objetos são então calculados em relação a essa base para garantir que permaneçam no chão.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (ELITE) -->
+        <div class="mission">
+            <h3>O Arsenal do Time (Base para o Espaço Coluna)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar o algoritmo para encontrar uma base para o espaço coluna de uma matriz.
+            </div>
+            <p>Um time de heróis tem 4 habilidades de ataque, representadas pelos vetores coluna da matriz \(A = \begin{pmatrix} 1 & 2 & 3 & 1 \\ 2 & 4 & 7 & 3 \\ 3 & 6 & 10 & 4 \end{pmatrix}\). Encontre um conjunto mínimo de habilidades "fundamentais" que geram todo o seu potencial ofensivo (ou seja, encontre uma base para o espaço coluna de A).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Escale a matriz \(A\) para sua forma escalonada. As colunas da matriz *original* que correspondem às colunas com pivôs na matriz escalonada formam a base.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escale a matriz \(A\) para sua forma escalonada (RREF é ainda melhor).</li>
+                    <li>Identifique as colunas que contêm as posições de pivô (os "1"s líderes de cada linha).</li>
+                    <li>A base para o espaço coluna de \(A\) é o conjunto dos vetores coluna da matriz **original** \(A\) que correspondem a essas posições de pivô.</li>
+                    <li>Nota: As colunas da matriz escalonada *não* formam a base do espaço coluna de \(A\), pois as operações de linha podem alterar o espaço coluna.</li>
+                </ol>
+                <div class="formula">Colunas de Pivô na RREF \(\implies\) Colunas Base na Matriz Original</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta técnica permite que os designers analisem um conjunto complexo de habilidades de personagens e identifiquem quais são as "essenciais" e quais são redundantes (combinações das essenciais). Isso é crucial para o balanceamento e para evitar habilidades inúteis.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>Os Caminhos Secretos (Base para o Espaço Nulo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar o algoritmo para encontrar uma base para o espaço nulo de uma matriz.
+            </div>
+            <p>Uma transformação de "compressão de dados" \(A = \begin{pmatrix} 1 & 2 & 0 & 3 \\ 0 & 0 & 1 & -1 \end{pmatrix}\) envia certos vetores de dados \(\vec{x}\) para \(\vec{0}\). Encontre uma base para o subespaço de todos os vetores \(\vec{x} \in \mathbb{R}^4\) que são "anulados" por esta transformação (ou seja, uma base para o Espaço Nulo de A).</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Resolva o sistema homogêneo \(A\vec{x}=\vec{0}\). A matriz \(A\) já está em forma escalonada.</li>
+                    <li>Identifique as variáveis de pivô (correspondentes às colunas de pivô, \(x_1\) e \(x_3\)) e as variáveis livres (as outras, \(x_2\) e \(x_4\)).</li>
+                    <li>Escreva as equações: \(x_1 + 2x_2 + 3x_4 = 0\) e \(x_3 - x_4 = 0\).</li>
+                    <li>Expresse as variáveis de pivô em termos das variáveis livres: \(x_1 = -2x_2 - 3x_4\) e \(x_3 = x_4\).</li>
+                    <li>Escreva o vetor solução genérico \(\vec{x}\) e separe-o em partes, uma para cada variável livre.</li>
+                    <li>\(\vec{x} = \begin{pmatrix} -2x_2 - 3x_4 \\ x_2 \\ x_4 \\ x_4 \end{pmatrix} = x_2\begin{pmatrix}-2\\1\\0\\0\end{pmatrix} + x_4\begin{pmatrix}-3\\0\\1\\1\end{pmatrix}\).</li>
+                    <li>Os vetores que multiplicam as variáveis livres formam a base para o Espaço Nulo.</li>
+                </ol>
+                <div class="formula">Solução Geral de \(A\vec{x}=\vec{0}\) \(\implies\) Base do Espaço Nulo</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em física de simulação, o Espaço Nulo de uma matriz de restrições representa todos os movimentos que um personagem ou objeto pode fazer sem violar as regras. Por exemplo, em uma simulação de ragdoll, o Espaço Nulo descreve como as partes do corpo podem se mover sem se desconectar umas das outras.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Sistema de Defesa Ortogonal (Propriedades de Bases Ortogonais)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que um conjunto de vetores ortogonais não nulos é sempre Linearmente Independente.
+            </div>
+            <p>Três canhões de defesa estão posicionados em direções mutuamente perpendiculares (ortogonais), dadas pelos vetores não-nulos \(\{\vec{v_1}, \vec{v_2}, \vec{v_3}\}\). Prove que seus vetores de tiro devem ser Linearmente Independentes.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a equação de teste: \(c_1\vec{v_1} + c_2\vec{v_2} + c_3\vec{v_3} = \vec{0}\).</li>
+                    <li>Para provar que \(c_1=0\), faça o produto escalar de ambos os lados da equação por \(\vec{v_1}\): \(\vec{v_1} \cdot (c_1\vec{v_1} + c_2\vec{v_2} + c_3\vec{v_3}) = \vec{v_1} \cdot \vec{0}\).</li>
+                    <li>Use a linearidade do produto escalar: \(c_1(\vec{v_1}\cdot\vec{v_1}) + c_2(\vec{v_1}\cdot\vec{v_2}) + c_3(\vec{v_1}\cdot\vec{v_3}) = 0\).</li>
+                    <li>Por serem ortogonais, \(\vec{v_1}\cdot\vec{v_2} = 0\) e \(\vec{v_1}\cdot\vec{v_3} = 0\). A equação se simplifica para \(c_1(\vec{v_1}\cdot\vec{v_1}) = 0\).</li>
+                    <li>Como \(\vec{v_1}\) não é nulo, \(\vec{v_1}\cdot\vec{v_1} = ||\vec{v_1}||^2 \neq 0\). Portanto, a única possibilidade é que \(c_1=0\).</li>
+                    <li>Repita o processo, fazendo o produto escalar com \(\vec{v_2}\) e depois com \(\vec{v_3}\), para mostrar que \(c_2=0\) e \(c_3=0\).</li>
+                    <li>Como a única solução é a trivial, o conjunto é Linearmente Independente.</li>
+                </ol>
+                <div class="formula">Chave do Puzzle: \(\vec{v_i} \cdot \vec{v_j} = 0\) para \(i \neq j\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Bases ortogonais (e ortonormais) são as melhores "bases GPS". Elas correspondem aos eixos X, Y, Z que usamos intuitivamente. São a fundação para a maioria dos sistemas de coordenadas em física e gráficos de jogos, pois simplificam enormemente os cálculos de distância, rotação e projeção.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>Tradução de Mapas (Coordenadas em Duas Bases Diferentes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar as coordenadas de um mesmo vetor em duas bases não-canônicas distintas.
+            </div>
+            <p>Um ponto de interesse no mapa está em \(\vec{v}=(7,5)\). Duas facções observam este ponto a partir de suas bases:
+            <ul>
+                <li>Facção A usa a base \(A = \{\vec{a_1}, \vec{a_2}\}\) com \(\vec{a_1}=(1,1), \vec{a_2}=(1,-1)\).</li>
+                <li>Facção B usa a base \(B = \{\vec{b_1}, \vec{b_2}\}\) com \(\vec{b_1}=(2,0), \vec{b_2}=(1,1)\).</li>
+            </ul>
+            Encontre as coordenadas do ponto \(\vec{v}\) para cada facção. Ou seja, encontre \([\vec{v}]_A\) e \([\vec{v}]_B\).</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Este desafio consiste em resolver dois sistemas lineares independentes.</li>
+                    <li><strong>Para a Facção A:</strong> Resolva o sistema \(A\vec{c}_A = \vec{v}\), que é \(\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}c_1\\c_2\end{pmatrix} = \begin{pmatrix}7\\5\end{pmatrix}\). A solução lhe dará \([\vec{v}]_A\).</li>
+                    <li><strong>Para a Facção B:</strong> Resolva o sistema \(B\vec{c}_B = \vec{v}\), que é \(\begin{pmatrix}2&1\\0&1\end{pmatrix}\begin{pmatrix}c_1\\c_2\end{pmatrix} = \begin{pmatrix}7\\5\end{pmatrix}\). A solução lhe dará \([\vec{v}]_B\).</li>
+                    <li>Observe que, embora o vetor \(\vec{v}\) seja o mesmo, seus vetores de coordenadas \([\vec{v}]_A\) e \([\vec{v}]_B\) são diferentes, pois são medidos em relação a "réguas" diferentes.</li>
+                </ol>
+                <div class="formula">Dois problemas: \(A\vec{c}_A = \vec{v}\) e \(B\vec{c}_B = \vec{v}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é o problema central da "mudança de base". Um motor de jogo precisa constantemente traduzir coordenadas entre diferentes sistemas: coordenadas do mundo, coordenadas locais de um objeto, coordenadas da câmera, coordenadas da tela. Dominar essa tradução é essencial para que os gráficos e a física funcionem corretamente.</p>
+            </details>
+        </div>
+    </main>
 </body>
 </html>
