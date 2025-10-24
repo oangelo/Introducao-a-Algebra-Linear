@@ -2,11 +2,355 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Álgebra Arcade | Missões</title>
-    <!-- Conteúdo a ser gerado -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display.swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Dimensão, Posto e Nulidade</title>
 </head>
 <body>
-    <h1>Em Construção</h1>
-    <p>Esta página de missões será gerada em breve!</p>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 5.5: A Medida do Poder</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Dimensão, Posto e Nulidade</h3>
+        <p>Depois de definir os universos (Espaços Vetoriais) e seus sistemas de GPS (Bases), é hora de medi-los. A <strong>Dimensão</strong> de um espaço é a medida mais básica: é o número de vetores em qualquer uma de suas bases. Ela nos diz quantos "graus de liberdade" ou "informações independentes" o espaço contém.</p>
+        <p>Quando aplicamos essa ideia a uma matriz, obtemos duas medidas cruciais:
+            <ul>
+                <li><strong>Posto (Rank):</strong> A dimensão do Espaço Coluna. Mede o "poder de saída" ou a "influência" da matriz. É o número de pivôs.</li>
+                <li><strong>Nulidade (Nullity):</strong> A dimensão do Espaço Nulo. Mede a "redundância" ou "compressão" da matriz. É o número de variáveis livres.</li>
+            </ul>
+        </p>
+        <div class="formula">
+            <strong>Teorema do Posto-Nulidade (A Lei de Conservação):</strong>
+            <p>Para qualquer matriz \(A\) com \(n\) colunas:</p>
+            \[ \text{posto}(A) + \text{nulidade}(A) = n \]
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>Medindo o Campo de Jogo (Dimensão de Espaços Padrão)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar a dimensão de espaços vetoriais conhecidos.
+            </div>
+            <p>Responda rapidamente, com base no seu conhecimento das bases canônicas:
+                <ol>
+                    <li>Qual a dimensão de um mapa 2D, \(\mathbb{R}^2\)?</li>
+                    <li>Qual a dimensão de um universo 3D, \(\mathbb{R}^3\)?</li>
+                    <li>Qual a dimensão de um "hiper-espaço" de 5 dimensões, \(\mathbb{R}^5\)?</li>
+                </ol>
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>A dimensão de \(\mathbb{R}^n\) é o número de vetores na sua base mais simples (a base canônica). Quantos vetores como \((1,0,0)\), \((0,1,0)\), etc., você precisa para cada espaço?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>A base canônica de \(\mathbb{R}^2\) é \(\{(1,0), (0,1)\}\). Como há 2 vetores na base, a dimensão é 2.</li>
+                    <li>A base canônica de \(\mathbb{R}^3\) é \(\{(1,0,0), (0,1,0), (0,0,1)\}\). Como há 3 vetores na base, a dimensão é 3.</li>
+                    <li>Generalizando, a base canônica de \(\mathbb{R}^n\) tem \(n\) vetores. Portanto, a dimensão de \(\mathbb{R}^5\) é 5.</li>
+                </ol>
+                <div class="formula">\(\text{dim}(\mathbb{R}^n) = n\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A dimensão do espaço de jogo define as regras fundamentais de movimento. Em um jogo 2D (dim=2), você só precisa de duas coordenadas (x,y). Em um jogo 3D (dim=3), você precisa de (x,y,z). A dimensão é o número de "eixos" independentes de movimento.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>A Dimensão da Estrada (Dimensão de um Subespaço)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a dimensão de um subespaço geométrico (reta/plano).
+            </div>
+            <p>Considere os seguintes subespaços em \(\mathbb{R}^3\):
+                <ol>
+                    <li>Uma estrada reta que passa pela origem. Qual é a sua dimensão?</li>
+                    <li>Um campo de força plano que passa pela origem. Qual é a sua dimensão?</li>
+                </ol>
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Quantos vetores LI você precisa para *gerar* uma reta? E para gerar um plano?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Uma reta que passa pela origem é o `span` de um único vetor diretor não-nulo. Uma base para a reta é \(\{\vec{v}\}\), onde \(\vec{v}\) é o vetor diretor. Como a base tem 1 vetor, a dimensão é 1.</li>
+                    <li>Um plano que passa pela origem é o `span` de dois vetores diretores não-colineares (LI). Uma base para o plano é \(\{\vec{u}, \vec{v}\}\), onde \(\vec{u}\) e \(\vec{v}\) são esses vetores. Como a base tem 2 vetores, a dimensão é 2.</li>
+                </ol>
+                <div class="formula">\(\text{dimensão} = \text{número de vetores na base}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em um jogo 3D, um personagem restrito a se mover em um trilho ou cabo (uma reta) tem apenas 1 grau de liberdade de movimento. Um personagem que se move em uma parede plana (um plano) tem 2 graus de liberdade.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>O Painel de Controle (Dimensão de M₂₂)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Estender o conceito de dimensão para espaços não-geométricos.
+            </div>
+            <p>O espaço vetorial \(M_{22}\) contém todas as matrizes 2x2. Quantos números independentes (dimensão) são necessários para definir completamente uma "matriz de status" 2x2? Qual é a dimensão de \(M_{22}\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Pense na base canônica de \(M_{22}\), que consiste em matrizes com um '1' e o resto '0'. Quantas dessas matrizes você precisa para construir qualquer matriz 2x2?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Uma matriz 2x2 genérica é \(\begin{pmatrix}a&b\\c&d\end{pmatrix}\).</li>
+                    <li>Para definir essa matriz, precisamos especificar 4 valores independentes: \(a, b, c, d\).</li>
+                    <li>A base canônica para \(M_{22}\) é \(\left\{ \begin{pmatrix}1&0\\0&0\end{pmatrix}, \begin{pmatrix}0&1\\0&0\end{pmatrix}, \begin{pmatrix}0&0\\1&0\end{pmatrix}, \begin{pmatrix}0&0\\0&1\end{pmatrix} \right\}\).</li>
+                    <li>Como a base tem 4 "vetores" (matrizes), a dimensão de \(M_{22}\) é 4.</li>
+                </ol>
+                <div class="formula">\(\text{dim}(M_{mn}) = m \times n\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso nos diz que uma transformação 2D simples (rotação+escala), representada por uma matriz 2x2, tem 4 "parâmetros" que a definem. O motor gráfico armazena e manipula esses 4 valores.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (PRINCIPAL) -->
+        <div class="mission">
+            <h3>O Poder de Fogo Real (Posto de uma Matriz)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o posto (rank) de uma matriz a partir do número de pivôs em sua forma escalonada.
+            </div>
+            <p>A matriz de ataque de um esquadrão é \(A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{pmatrix}\). O posto da matriz nos diz a dimensão do espaço de alvos que eles podem atingir (a dimensão do Espaço Coluna). Encontre o posto de \(A\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Escale a matriz para sua forma escalonada. O número de pivôs (ou de linhas não-nulas) na forma escalonada é igual ao posto.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a matriz \(A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{pmatrix}\).</li>
+                    <li>Aplique operações de linha para escaloná-la. Subtraia 2 vezes a primeira linha da segunda (\(L_2 \leftarrow L_2 - 2L_1\)).</li>
+                    <li>A matriz se torna \(\begin{pmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \end{pmatrix}\).</li>
+                    <li>Conte o número de pivôs (o '1' na primeira linha). Há apenas 1 pivô.</li>
+                    <li>Portanto, o posto de \(A\) é 1.</li>
+                </ol>
+                <div class="formula">\(\text{posto}(A) = \text{número de pivôs}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Apesar de ter 3 vetores de ataque, o esquadrão tem um "poder de fogo" de dimensão 1. Isso significa que todos os seus ataques são colineares (apontam na mesma direção). Eles só podem atingir alvos ao longo de uma única linha no mapa, tornando-os muito especializados e ineficazes contra alvos fora dessa linha.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-B (PRINCIPAL) -->
+        <div class="mission">
+            <h3>As Táticas Redundantes (Nulidade de uma Matriz)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular a nulidade de uma matriz a partir do número de variáveis livres.
+            </div>
+            <p>Para a mesma matriz de ataque \(A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{pmatrix}\), a nulidade nos diz a dimensão do espaço de "táticas redundantes" (o Espaço Nulo). Encontre a nulidade de \(A\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Após escalonar a matriz, a nulidade é igual ao número de colunas *sem* pivôs. Essas são as suas variáveis livres.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>A forma escalonada de \(A\) é \(\begin{pmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \end{pmatrix}\).</li>
+                    <li>A primeira coluna tem um pivô. A segunda e a terceira colunas não têm.</li>
+                    <li>O número de colunas sem pivô (variáveis livres) é 2.</li>
+                    <li>Portanto, a nulidade de \(A\) é 2.</li>
+                </ol>
+                <div class="formula">\(\text{nulidade}(A) = \text{número de variáveis livres}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma nulidade de 2 significa que há um espaço de dimensão 2 de "combinações de cancelamento". Isso reflete a alta redundância das habilidades do esquadrão. Existem infinitas maneiras de combinar seus três ataques para que o resultado líquido seja zero.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-C (PRINCIPAL) -->
+        <div class="mission">
+            <h3>O Balanço de Poder (Teorema do Posto-Nulidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar o Teorema do Posto-Nulidade para uma matriz dada.
+            </div>
+            <p>Usando os resultados das duas missões anteriores para a matriz \(A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{pmatrix}\), verifique se o Teorema do Posto-Nulidade se mantém. Some o "poder de fogo real" (posto) com as "táticas redundantes" (nulidade). O resultado é igual ao número total de habilidades (colunas)?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Na Missão 2-A, encontramos que \(\text{posto}(A) = 1\).</li>
+                    <li>Na Missão 2-B, encontramos que \(\text{nulidade}(A) = 2\).</li>
+                    <li>Some os dois valores: \(\text{posto}(A) + \text{nulidade}(A) = 1 + 2 = 3\).</li>
+                    <li>Conte o número de colunas da matriz \(A\). Há 3 colunas.</li>
+                    <li>Como \(3=3\), o teorema é verificado.</li>
+                </ol>
+                <div class="formula">\(\text{posto}(A) + \text{nulidade}(A) = n\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O teorema diz que o número total de habilidades de um time (\(n\)) é sempre dividido entre habilidades únicas/efetivas (posto) e habilidades redundantes (nulidade). Você não pode ter ambos altos ao mesmo tempo. Um time com alto posto é versátil, enquanto um time com alta nulidade tem muita sobreposição de habilidades.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-A (ELITE) -->
+        <div class="mission">
+            <h3>Análise Completa do Esquadrão (Calcular Posto e Nulidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Realizar o escalonamento de uma matriz e então encontrar seu posto e nulidade.
+            </div>
+            <p>Um novo conjunto de habilidades para um time de 4 personagens é dado pela matriz \(A = \begin{pmatrix} 1 & -2 & 0 & 1 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & 0 & 0 \end{pmatrix}\). A matriz já está na forma escalonada. Qual o posto e a nulidade de \(A\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Posto = número de pivôs. Nulidade = número de colunas sem pivôs. Conte-os diretamente da matriz.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique as colunas com pivôs (os '1's líderes). São a coluna 1 e a coluna 3.</li>
+                    <li>O número de pivôs é 2. Portanto, \(\text{posto}(A) = 2\).</li>
+                    <li>Identifique as colunas sem pivôs. São a coluna 2 e a coluna 4.</li>
+                    <li>O número de colunas sem pivôs (variáveis livres) é 2. Portanto, \(\text{nulidade}(A) = 2\).</li>
+                    <li>Verificação rápida com o Teorema: \(\text{posto}+\text{nulidade} = 2+2=4\), que é o número de colunas. Correto.</li>
+                </ol>
+                <div class="formula">Posto = #Pivôs, Nulidade = #Var. Livres</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa análise revela que, das 4 habilidades, apenas 2 são fundamentalmente independentes. O time tem um poder efetivo de dimensão 2, e há um espaço de dimensão 2 de estratégias redundantes. O designer poderia remover 2 personagens ou redesenhar suas habilidades sem perder poder de fogo.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-B (ELITE) -->
+        <div class="mission">
+            <h3>A Dimensão do Arsenal (Dimensão do Espaço Coluna)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a dimensão do espaço coluna de uma matriz e sua base.
+            </div>
+            <p>Dado o time com 4 habilidades da matriz \(A = \begin{pmatrix} 1 & 2 & 3 & 1 \\ 2 & 4 & 7 & 3 \\ 3 & 6 & 10 & 4 \end{pmatrix}\) da missão 3-C de Coordenadas, encontre a dimensão do seu Espaço Coluna e uma base para ele. Qual o "poder de fogo" real do time?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>A dimensão do Espaço Coluna é, por definição, o posto da matriz. Use o método de escalonamento para identificar as colunas de pivô e, em seguida, pegue as colunas correspondentes da matriz *original* como base.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escale a matriz \(A\) para sua forma escalonada reduzida (RREF): \(\begin{pmatrix} 1 & 2 & 0 & -2 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix}\).</li>
+                    <li>Identifique as colunas de pivô na RREF: colunas 1 e 3.</li>
+                    <li>O número de pivôs é 2, portanto a dimensão do Espaço Coluna (o posto) é 2. O time tem um "poder de fogo" de dimensão 2.</li>
+                    <li>A base para o Espaço Coluna de \(A\) é formada pelas colunas 1 e 3 da matriz **original** \(A\).</li>
+                    <li>Base = \(\left\{ \begin{pmatrix}1\\2\\3\end{pmatrix}, \begin{pmatrix}3\\7\\10\end{pmatrix} \right\}\).</li>
+                </ol>
+                <div class="formula">\(\text{dim}(\text{Col}(A)) = \text{posto}(A)\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso nos dá a resposta completa sobre o poder do time. Não apenas sabemos que seu poder é bidimensional (posto=2), mas também identificamos as duas habilidades-chave (a base) que definem todo o seu potencial. As outras duas habilidades são apenas combinações lineares dessas duas.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-C (ELITE) -->
+        <div class="mission">
+            <h3>Dimensão da Sala de Estratégia (Dimensão do Espaço Nulo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a dimensão do espaço nulo de uma matriz e sua base.
+            </div>
+            <p>Usando a mesma matriz \(A\) da missão anterior e sua RREF \(\begin{pmatrix} 1 & 2 & 0 & -2 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix}\), encontre a dimensão do Espaço Nulo e uma base para ele. Qual a dimensão do espaço de "estratégias redundantes"?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>A dimensão do Espaço Nulo é a nulidade (número de variáveis livres). Use a RREF para escrever a solução geral de \(A\vec{x}=\vec{0}\) em termos das variáveis livres e extraia os vetores da base.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Da RREF, as variáveis livres são \(x_2\) e \(x_4\). O número de variáveis livres é 2, portanto a dimensão do Espaço Nulo (nulidade) é 2.</li>
+                    <li>Escreva o sistema a partir da RREF: \(x_1+2x_2-2x_4=0\) e \(x_3+x_4=0\).</li>
+                    <li>Expresse as variáveis de pivô: \(x_1 = -2x_2+2x_4\) e \(x_3 = -x_4\).</li>
+                    <li>Escreva a solução geral e separe por variável livre: \(\vec{x} = x_2\begin{pmatrix}-2\\1\\0\\0\end{pmatrix} + x_4\begin{pmatrix}2\\0\\-1\\1\end{pmatrix}\).</li>
+                    <li>A base para o Espaço Nulo é o conjunto dos vetores que multiplicam as variáveis livres.</li>
+                </ol>
+                <div class="formula">\(\text{dim}(\text{Nul}(A)) = \text{nulidade}(A)\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma base para o Espaço Nulo fornece as "receitas" fundamentais para a redundância. Qualquer combinação linear desses dois vetores da base representa uma forma de usar as 4 habilidades do time de modo que o efeito final seja nulo.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Diagnóstico Rápido (Uso dedutivo do Teorema do Posto-Nulidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o teorema para deduzir a nulidade a partir do posto (e vice-versa), sem escalonamento.
+            </div>
+            <p>Uma matriz de transformação \(A\) de um jogo é 5x7 (5 linhas, 7 colunas). A equipe de desenvolvimento informa que o "poder efetivo" da transformação tem dimensão 4 (ou seja, \(\text{posto}(A)=4\)). Qual é a dimensão do conjunto de vetores que são "esmagados" para a origem (ou seja, qual é a nulidade de A)?</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se do Teorema do Posto-Nulidade: \(\text{posto}(A) + \text{nulidade}(A) = n\), onde \(n\) é o número de colunas.</li>
+                    <li>Identifique os valores dados: \(\text{posto}(A) = 4\) e \(n = 7\) (pois a matriz é 5x7).</li>
+                    <li>Substitua na fórmula: \(4 + \text{nulidade}(A) = 7\).</li>
+                    <li>Resolva para a nulidade: \(\text{nulidade}(A) = 7 - 4 = 3\).</li>
+                    <li>A dimensão do Espaço Nulo é 3.</li>
+                </ol>
+                <div class="formula">\(\text{nulidade}(A) = n - \text{posto}(A)\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso permite que os desenvolvedores façam diagnósticos rápidos sobre suas ferramentas. Se eles criam uma transformação de um espaço de 7 dimensões (ex: 7 atributos de personagem) e descobrem que seu posto é apenas 4, eles sabem imediatamente, sem mais cálculos, que há um subespaço de 3 dimensões de "combinações de atributos" que são completamente ignorados pela transformação.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Super-Arma Reversível (Posto e Invertibilidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Conectar o posto de uma matriz quadrada à sua invertibilidade.
+            </div>
+            <p>Uma "super-arma" no jogo aplica uma transformação em todo o mapa, representada por uma matriz quadrada \(A\) de tamanho \(n \times n\). Para que essa transformação seja "reversível" (ou seja, para que exista um "botão de desfazer"), a matriz \(A\) deve ser invertível.
+                <ol>
+                    <li>Qual deve ser o posto de \(A\) para que ela seja invertível? (Isso é chamado de "posto cheio" ou "full rank").</li>
+                    <li>O que isso implica sobre a nulidade de \(A\)?</li>
+                </ol>
+            </p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Uma matriz quadrada \(A\) de tamanho \(n \times n\) é invertível se, e somente se, suas colunas são Linearmente Independentes.</li>
+                    <li>Se as \(n\) colunas em \(\mathbb{R}^n\) são LI, elas formam uma base para \(\mathbb{R}^n\). Isso significa que a dimensão do Espaço Coluna é \(n\).</li>
+                    <li>Portanto, para \(A\) ser invertível, seu posto deve ser igual ao número de colunas: \(\text{posto}(A) = n\).</li>
+                    <li>Pelo Teorema do Posto-Nulidade: \(\text{posto}(A) + \text{nulidade}(A) = n\). Substituindo, temos \(n + \text{nulidade}(A) = n\).</li>
+                    <li>Isso implica que \(\text{nulidade}(A) = 0\). O Espaço Nulo contém apenas o vetor nulo.</li>
+                </ol>
+                <div class="formula">Para \(A_{n \times n}\), Invertível \(\iff \text{posto}(A)=n \iff \text{nulidade}(A)=0\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma transformação com nulidade zero significa que nenhum vetor não-nulo é mapeado para a origem. Nenhuma informação é "perdida" ou "esmagada". É por isso que a transformação pode ser perfeitamente revertida. Se a nulidade fosse maior que zero, múltiplos vetores de entrada seriam mapeados para o mesmo vetor de saída, tornando impossível saber de qual deles você veio ao tentar reverter.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Destino do Projétil (Posto e Consistência de Sistemas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Relacionar o posto com a existência de soluções para \(A\vec{x}=\vec{b}\).
+            </div>
+            <p>Um canhão em um jogo 3D dispara projéteis. A matriz de mira \(A\) é 3x3. Após a análise, descobre-se que \(\text{posto}(A)=2\). Isso significa que o canhão pode atingir qualquer alvo \(\vec{b}\) no espaço 3D? Explique sua resposta em termos do Espaço Coluna.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>O conjunto de todos os alvos \(\vec{b}\) que o canhão pode atingir é, por definição, o Espaço Coluna de \(A\), \(\text{Col}(A)\).</li>
+                    <li>O posto de \(A\) é a dimensão do Espaço Coluna. Foi dado que \(\text{posto}(A)=2\).</li>
+                    <li>Isso significa que o conjunto de todos os alvos atingíveis é um subespaço de dimensão 2 dentro do universo do jogo, que é \(\mathbb{R}^3\).</li>
+                    <li>Geometricamente, um subespaço de dimensão 2 em \(\mathbb{R}^3\) é um plano que passa pela origem.</li>
+                    <li>Portanto, o canhão não pode atingir qualquer alvo no espaço 3D. Ele só pode atingir alvos que estão localizados em um plano específico. Alvos fora desse plano são inalcançáveis.</li>
+                </ol>
+                <div class="formula">Sistema \(A\vec{x}=\vec{b}\) tem solução \(\iff \vec{b} \in \text{Col}(A)\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é um exemplo de uma arma ou habilidade com limitações. O "posto" de uma habilidade diz o quão "versátil" ela é. Uma habilidade de posto 1 só pode afetar alvos em uma linha. Uma de posto 2, em um plano. Apenas uma habilidade de posto 3 (posto cheio) poderia, teoricamente, atingir qualquer ponto no espaço 3D. Isso é fundamental para o design de mecânicas de jogo e suas limitações estratégicas.</p>
+            </details>
+        </div>
+    </main>
 </body>
 </html>
