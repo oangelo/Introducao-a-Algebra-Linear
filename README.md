@@ -112,7 +112,7 @@ Explorando as regras que governam não apenas este jogo, mas todos os universos 
 - **Quest 5.2:** [Subespaços (Zonas Seguras)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/subespacos.html)
 - **Quest 5.3:** [Independência Linear (Personagens únicos)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/independencia-linear.html)
 - **Quest 5.4:** [Coordenadas e Bases (O sistema de GPS do universo)](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/coordenadas-e-bases.html)
-- **Quest 5.5:** [Dimensão, Posto e Nulidade](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/dimenso-posto-nulidade.html)
+- **Quest 5.5:** [Dimensão, Posto e Nulidade](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-5/dimensao-posto-nulidade.html)
 - **Mini-Chefe:** [Quiz da Fase 5](quiz/espaco_linear.md)
 
 <details><summary>🔍 Glossário da Fase 5</summary>
