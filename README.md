@@ -119,7 +119,7 @@ Explorando as regras que governam não apenas este jogo, mas todos os universos 
 (Seu glossário atual já está excelente)
 </details>
 
-### FASE FINAL: O Código-Fonte - Autovalores e Autovetores
+### FASE FINAL: O Código-Fonte - Autovalores e Autovetores [👨‍🏫 - 1](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/espaco-vetorial-pt1.html) [👨‍🏫 - 2](https://oangelo.github.io/Introducao-a-Algebra-Linear/slide-decks/eigenbase.html)
 A busca pelo *Easter Egg* final: os segredos mais profundos da estrutura do jogo.
 
 - **Quest 6.1:** [Autovalores e Autovetores: as "direções preferenciais"](https://oangelo.github.io/Introducao-a-Algebra-Linear/exercicios/capitulo-6/autovalores-e-autovetores.html)
