@@ -2,11 +2,345 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Álgebra Arcade | Missões</title>
-    <!-- Conteúdo a ser gerado -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Autovalores e Autovetores</title>
 </head>
 <body>
-    <h1>Em Construção</h1>
-    <p>Esta página de missões será gerada em breve!</p>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 6: O Código-Fonte</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Autovalores e Autovetores</h3>
+        <p>Bem-vindo à fase final, onde deciframos o código-fonte das transformações lineares. Um **autovetor** é um "caminho ótimo", uma direção especial que não é alterada por uma transformação, apenas esticada ou encolhida. O fator de escala dessa mudança é o **autovalor** correspondente. Encontrá-los revela a estrutura mais fundamental de qualquer matriz.</p>
+        <p>A relação que define essa propriedade é a equação fundamental: \(Av = \lambda v\), onde \(A\) é a matriz, \(v\) é o autovetor (não nulo) e \(\lambda\) é o autovalor. Para encontrar os autovalores, resolvemos a "equação característica":</p>
+        <div class="formula">\(\det(A - \lambda I) = 0\)</div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1 (BÁSICO) -->
+        <div class="mission">
+            <h3>Verificação de Autovetor (Definição de Autovetor)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar se um vetor é um autovetor de uma matriz e encontrar o autovalor correspondente.
+            </div>
+            <p>Uma arma de energia experimental dispara um pulso de transformação \(A\). O pulso só causa dano máximo a alvos que são seus autovetores. Verifique se o alvo na posição \(v = \begin{pmatrix} 1 \\ 2 \end{pmatrix}\) é um autovetor da transformação \( A = \begin{pmatrix} 3 & 1 \\ 2 & 2 \end{pmatrix} \). Se for, qual é o seu "fator de escala" (autovalor) \(\lambda\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Calcule o produto \(Av\). Se o vetor resultante for um múltiplo escalar do vetor original \(v\) (ou seja, \(Av = \lambda v\)), então \(v\) é um autovetor. O fator de multiplicação é o autovalor \(\lambda\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Multiplique a matriz \(A\) pelo vetor \(v\).</li>
+                    <li>Compare o vetor resultante, \(Av\), com o vetor original \(v\).</li>
+                    <li>Verifique se existe um escalar \(\lambda\) tal que o vetor resultante é igual a \(\lambda \cdot v\). Se existir, \(v\) é um autovetor e \(\lambda\) é o autovalor correspondente.</li>
+                </ol>
+                <div class="formula">\(Av = \begin{pmatrix} 3 & 1 \\ 2 & 2 \end{pmatrix} \begin{pmatrix} 1 \\ 2 \end{pmatrix} = ?\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso é como verificar se um personagem está perfeitamente alinhado com um feixe de energia. Se estiver, ele é empurrado para frente ou para trás ao longo desse feixe sem mudar de direção.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2 (BÁSICO) -->
+        <div class="mission">
+            <h3>A Equação Característica (Polinômio Característico 2x2)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o polinômio característico `det(A - λI)` para uma matriz 2x2 simples.
+            </div>
+            <p>Para descobrir os autovalores de um campo de força \( A = \begin{pmatrix} 5 & -1 \\ 3 & 1 \end{pmatrix} \), você precisa primeiro encontrar sua "equação característica". Encontre a equação \(\det(A - \lambda I) = 0\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Comece construindo a matriz \(A - \lambda I\). Isso significa subtrair \(\lambda\) dos elementos da diagonal principal de \(A\). Depois, calcule o determinante dessa nova matriz.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Construa a matriz \(A - \lambda I = \begin{pmatrix} 5-\lambda & -1 \\ 3 & 1-\lambda \end{pmatrix}\).</li>
+                    <li>Calcule o determinante da matriz resultante usando a fórmula \(ad-bc\).</li>
+                    <li>Simplifique a expressão para obter um polinômio quadrático em \(\lambda\). Esta é a equação característica.</li>
+                </ol>
+                <div class="formula">\(\det \begin{pmatrix} a-\lambda & b \\ c & d-\lambda \end{pmatrix} = (a-\lambda)(d-\lambda) - bc = 0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este passo é como encontrar o manual de um dispositivo inimigo. O manual não diz quais são as fraquezas, mas ensina a fórmula para calculá-las.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3 (BÁSICO) -->
+        <div class="mission">
+            <h3>Encontrando os Autovalores (Raízes de Polinômio Quadrático)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver uma equação característica quadrática para encontrar os autovalores de uma matriz.
+            </div>
+            <p>A equipe de engenharia descobriu a equação característica de um escudo inimigo: \(\lambda^2 - 7\lambda + 10 = 0\). Para desativar o escudo, você precisa sintonizar seu canhão disruptor para os valores exatos de \(\lambda\) que são as raízes desta equação. Encontre os autovalores.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Esta é uma equação quadrática padrão. Você pode resolvê-la fatorando o polinômio ou usando a fórmula de Bhaskara para encontrar as raízes.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique os coeficientes \(a, b, c\) da equação \(\lambda^2 - 7\lambda + 10 = 0\).</li>
+                    <li>Use a fórmula quadrática \(\lambda = \frac{-b \pm \sqrt{b^2-4ac}}{2a}\) ou fatore a equação para encontrar as duas raízes.</li>
+                    <li>As raízes encontradas são os autovalores da matriz original.</li>
+                </ol>
+                <div class="formula">\(\lambda^2 - (\text{soma das raízes})\lambda + (\text{produto das raízes}) = 0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em muitos jogos, chefes têm pontos fracos específicos. Encontrar os autovalores é como descobrir que um golem de gelo é fraco contra fogo.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4 (MAIN) -->
+        <div class="mission">
+            <h3>O Eixo Estável (Autovetores para um dado λ)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dado um autovalor, resolver o sistema `(A - λI)v = 0` para encontrar o autoespaço.
+            </div>
+            <p>Um giroscópio de estabilização, descrito pela matriz \( A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix} \), possui um autovalor conhecido \(\lambda = 5\). Para alinhar o sistema, você precisa encontrar seu "eixo estável", que corresponde ao autovetor associado a este autovalor. Encontre o autoespaço para \(\lambda=5\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Substitua \(\lambda=5\) na matriz \(A - \lambda I\). Depois, resolva o sistema homogêneo \((A - 5I)v = 0\) para encontrar os vetores \(v\) que formam o autoespaço. A solução será uma linha ou um plano de vetores.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule a matriz \(B = A - 5I\).</li>
+                    <li>Monte o sistema de equações lineares \(Bv = 0\), onde \(v = \begin{pmatrix} x \\ y \end{pmatrix}\).</li>
+                    <li>Resolva o sistema para encontrar a relação entre \(x\) e \(y\). As equações serão linearmente dependentes.</li>
+                    <li>Escreva um vetor base para o espaço de solução (o autoespaço). Por exemplo, se você encontrar \(x=y\), um bom vetor base é \(\begin{pmatrix} 1 \\ 1 \end{pmatrix}\).</li>
+                </ol>
+                <div class="formula">\(\begin{pmatrix} 4-5 & 1 \\ 2 & 3-5 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Objetos 3D em jogos giram em torno de eixos. Um autovetor associado a \(\lambda=1\) pode representar o eixo de rotação de um objeto que não é deformado pela rotação.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 5 (MAIN) -->
+        <div class="mission">
+            <h3>Decodificação Completa 2D (Autovalores e Autovetores 2x2)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Realizar o processo completo de encontrar autovalores e autovetores para uma matriz 2x2.
+            </div>
+            <p>Você capturou um "Power-up" de distorção de campo, representado pela matriz \( A = \begin{pmatrix} 2 & 3 \\ 2 & 1 \end{pmatrix} \). Para entender completamente seu funcionamento, você precisa decodificá-lo, encontrando todos os seus autovetores e seus autovalores correspondentes.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Este é um combo de missões anteriores. Primeiro, encontre a equação característica e resolva-a para achar os autovalores. Depois, para cada autovalor encontrado, resolva o sistema homogêneo correspondente para achar o autovetor.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o polinômio característico \(\det(A - \lambda I) = 0\).</li>
+                    <li>Resolva a equação quadrática para encontrar os autovalores \(\lambda_1\) e \(\lambda_2\).</li>
+                    <li>Para \(\lambda_1\), encontre o autovetor \(v_1\) resolvendo \((A - \lambda_1 I)v_1 = 0\).</li>
+                    <li>Para \(\lambda_2\), encontre o autovetor \(v_2\) resolvendo \((A - \lambda_2 I)v_2 = 0\).</li>
+                </ol>
+                <div class="formula">Passo 1: \(\det(A-\lambda I)=0\). Passo 2: Para cada \(\lambda_i\), resolver \((A-\lambda_i I)v=0\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso equivale a fazer a engenharia reversa completa de uma mecânica de jogo, entendendo exatamente como ela afeta o mundo e quais são seus eixos de ação principais.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 6 (MAIN) -->
+        <div class="mission">
+            <h3>O Raio Esmagador (Autovalores Nulo e Unitário)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Analisar uma matriz de projeção para entender o significado geométrico de λ=0 e λ=1.
+            </div>
+            <p>Um "Raio Esmagador" no jogo usa a transformação de projeção \( A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \) para achatar tudo no eixo x. Encontre os autovalores e autovetores desta matriz. O que eles nos dizem sobre as direções que são esmagadas na origem e as que permanecem intactas?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Como a matriz é diagonal, os autovalores estão na diagonal principal! Um autovalor \(\lambda=1\) significa que o autovetor não muda (\(Av=v\)). Um autovalor \(\lambda=0\) significa que o autovetor é transformado no vetor nulo (\(Av=0\)).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique os autovalores na diagonal: \(\lambda_1=1\) e \(\lambda_2=0\).</li>
+                    <li>Para \(\lambda_1=1\), resolva \((A-I)v=0\). O autovetor correspondente será a direção que permanece inalterada pela projeção.</li>
+                    <li>Para \(\lambda_2=0\), resolva \((A-0I)v=0\), ou simplesmente \(Av=0\). O autovetor correspondente será a direção que é "esmagada" na origem.</li>
+                    <li>Interprete geometricamente: qual eixo é preservado e qual é aniquilado?</li>
+                </ol>
+                <div class="formula">\(Av = 1v \implies\) Direção Invariante. \(Av = 0v \implies\) Direção Nulificada.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Muitas engines gráficas usam projeções para criar sombras. A direção da luz determina qual dimensão é "esmagada" para criar a sombra 2D em uma superfície.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 7 (ELITE) -->
+        <div class="mission">
+            <h3>Equação de Estabilidade 3D (Polinômio Característico 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o polinômio característico cúbico para uma matriz 3x3.
+            </div>
+            <p>Sua nave-mãe, cujo sistema estrutural é modelado por \( A = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 3 \end{pmatrix} \), está sofrendo instabilidades. O primeiro passo para o diagnóstico é encontrar sua "equação característica". Calcule \(\det(A - \lambda I)\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Construa a matriz \(A - \lambda I\) e calcule seu determinante. A expansão de cofatores ao longo da segunda linha pode simplificar os cálculos, já que ela contém muitos zeros.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Forme a matriz \(A - \lambda I = \begin{pmatrix} 1-\lambda & 2 & 1 \\ 0 & 2-\lambda & 0 \\ 1 & 0 & 3-\lambda \end{pmatrix}\).</li>
+                    <li>Calcule o determinante. A expansão de cofatores pela segunda linha é uma boa estratégia: \((2-\lambda) \cdot \det \begin{pmatrix} 1-\lambda & 1 \\ 1 & 3-\lambda \end{pmatrix}\).</li>
+                    <li>Expanda o determinante 2x2 restante e multiplique os termos para obter o polinômio cúbico final.</li>
+                </ol>
+                <div class="formula">\(\det(M) = \sum_{j=1}^n (-1)^{i+j} M_{ij} \det(\text{submatriz}_{ij})\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A análise de estabilidade em física de jogos complexos (como a integridade estrutural de um prédio destrutível) usa esses princípios para determinar como e quando as coisas quebram.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 8 (ELITE) -->
+        <div class="mission">
+            <h3>Quebrando a Criptografia Cúbica (Briot-Ruffini)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar os autovalores de uma matriz 3x3 resolvendo a equação característica cúbica.
+            </div>
+            <p>A equação característica de uma estrutura alienígena é \( -\lambda^3 + 4\lambda^2 - \lambda - 6 = 0 \). Os autovalores, que representam as instabilidades da estrutura, são as raízes desta equação. Use o método de Briot-Ruffini para encontrar os três autovalores.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, multiplique a equação por -1 para facilitar. Depois, teste as raízes candidatas, que são os divisores inteiros do termo constante (-6). Divisores: \(\pm1, \pm2, \pm3, \pm6\). Assim que encontrar uma raiz, use Briot-Ruffini para reduzir o polinômio a uma equação quadrática.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Reescreva a equação como \(\lambda^3 - 4\lambda^2 + \lambda + 6 = 0\).</li>
+                    <li>Teste divisores de 6 (ex: \(\lambda=-1\), \(\lambda=2\), \(\lambda=3\)) para encontrar uma raiz.</li>
+                    <li>Após encontrar uma raiz \(r\), aplique Briot-Ruffini para dividir o polinômio por \((\lambda-r)\).</li>
+                    <li>Resolva a equação quadrática resultante para encontrar as duas raízes restantes.</li>
+                </ol>
+                <div class="formula">Se \(P(r)=0\), então \(P(\lambda) = (\lambda-r) \cdot Q(\lambda)\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Puzzles de alto nível em jogos de aventura frequentemente exigem a descoberta de um padrão ou "chave" (a primeira raiz) que simplifica o resto do puzzle.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 9 (ELITE) -->
+        <div class="mission">
+            <h3>Isolando um Eixo de Rotação (Autovetores 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar o autoespaço correspondente a um autovalor específico para uma matriz 3x3.
+            </div>
+            <p>Um sistema de giroscópios 3D é descrito pela matriz \( A = \begin{pmatrix} 0 & 0 & -2 \\ 1 & 2 & 1 \\ 1 & 0 & 3 \end{pmatrix} \). Um de seus autovalores conhecidos é \(\lambda=2\). Encontre o eixo de rotação estável (autovetor) associado a este autovalor.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você precisa resolver o sistema \((A-2I)v=0\). Construa a matriz \(A-2I\), monte a matriz aumentada e use a eliminação de Gauss para encontrar o espaço nulo. A solução será uma linha no espaço 3D.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule a matriz \(B = A - 2I\).</li>
+                    <li>Monte o sistema homogêneo \(Bv=0\) para \(v=\begin{pmatrix} x \\ y \\ z \end{pmatrix}\).</li>
+                    <li>Use operações de linha para escalonar a matriz do sistema.</li>
+                    <li>Expresse as variáveis pivô em termos da variável livre para encontrar a forma geral do autovetor.</li>
+                    <li>Escolha um valor conveniente para a variável livre (como 1) para obter um vetor base para o autoespaço.</li>
+                </ol>
+                <div class="formula">\((A-\lambda_i I)v=0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em simulações espaciais, o eixo em torno do qual uma estação espacial gira lentamente é um autovetor. Encontrá-lo é crucial para o acoplamento de naves.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 10 (BOSS) -->
+        <div class="mission">
+            <h3>O Código-Fonte do Motor 3D (Autovalores e Autovetores 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar todos os autovalores e autovetores para uma matriz 3x3.
+            </div>
+            <p>Missão Final: você obteve acesso à matriz central do motor gráfico do jogo, \( A = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 2 & 1 \\ -1 & 0 & 1 \end{pmatrix} \). Para obter controle total, você precisa decifrar seu "código-fonte": encontre todos os seus autovalores e os autovetores correspondentes, revelando seus eixos operacionais fundamentais.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o polinômio característico \(\det(A - \lambda I)\). (Dica: a matriz é triangular em blocos, o que simplifica o determinante).</li>
+                    <li>Resolva a equação cúbica para encontrar os autovalores \(\lambda_1, \lambda_2, \lambda_3\).</li>
+                    <li>Para cada autovalor \(\lambda_i\) distinto, resolva o sistema homogêneo \((A-\lambda_i I)v=0\) para encontrar o autoespaço correspondente.</li>
+                </ol>
+                <div class="formula">Processo Completo: \(\det(A-\lambda I)=0 \implies \lambda_i \implies (A-\lambda_i I)v_i=0 \implies v_i\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a análise definitiva. Corresponde a entender os princípios fundamentais que governam a física e as transformações de todo o universo do jogo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 11 (BOSS) -->
+        <div class="mission">
+            <h3>Anomalia no Sinal (Autovalores Repetidos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Discutir o que significa para uma matriz ter autovalores repetidos.
+            </div>
+            <p>Um diagnóstico do motor do jogo reporta que uma transformação 3D possui os autovalores \(\lambda_1 = 7, \lambda_2 = 3, \lambda_3 = 3\). O que a repetição do autovalor \(\lambda = 3\) implica sobre os "eixos estáveis" (autovetores) da transformação? É garantido que exista apenas um eixo estável para \(\lambda=3\)?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se que cada autovalor deve ter pelo menos um autovetor (um autoespaço de dimensão pelo menos 1).</li>
+                    <li>A multiplicidade de um autovalor na equação característica é chamada de "multiplicidade algébrica". O número de autovetores linearmente independentes para esse autovalor é a "multiplicidade geométrica".</li>
+                    <li>A multiplicidade geométrica é sempre menor ou igual à algébrica. Portanto, para \(\lambda=3\), podemos ter um autoespaço de dimensão 1 (uma linha de autovetores) ou um autoespaço de dimensão 2 (um plano de autovetores).</li>
+                    <li>Conclusão: Não é garantido que exista apenas um eixo. Pode haver um plano inteiro onde cada vetor é simplesmente escalado por 3. Um exemplo simples é uma matriz que escala os eixos Y e Z por 3, mas deixa o eixo X em paz.</li>
+                </ol>
+                <div class="formula">\(1 \le \text{mult. geométrica} \le \text{mult. algébrica}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em vez de um único eixo de rotação, uma nave pode ter um "plano de estabilidade", onde qualquer rotação dentro desse plano é igualmente estável. Isso leva a físicas de voo mais complexas e interessantes.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 12 (BOSS) -->
+        <div class="mission">
+            <h3>O Dilema do Vórtice (Autovetores Reais)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Explicar por que uma matriz de rotação pura em 2D não possui autovetores reais.
+            </div>
+            <p>Um "Power-up" de vórtice gira todos os objetos e projéteis em 45 graus em torno do jogador. A matriz de transformação é \( A = \begin{pmatrix} \cos(45^\circ) & -\sin(45^\circ) \\ \sin(45^\circ) & \cos(45^\circ) \end{pmatrix} \). Usando um argumento geométrico (não precisa calcular!), explique por que essa transformação não pode ter nenhum "caminho ótimo" (autovetor real), exceto pelo vetor nulo.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>A definição de um autovetor \(v\) é que sua direção não muda após a transformação; ele só é escalado: \(Av\) é paralelo a \(v\).</li>
+                    <li>Uma rotação de 45 graus (ou qualquer rotação que não seja de 0 ou 180 graus) muda a direção de *todos* os vetores não nulos no plano.</li>
+                    <li>Como nenhum vetor (além do vetor nulo, que não conta como autovetor) aponta na mesma direção após a rotação, não pode haver vetores que satisfaçam a condição de serem autovetores reais.</li>
+                    <li>O polinômio característico de uma rotação 2D geralmente não possui raízes reais, o que confirma algebricamente a intuição geométrica.</li>
+                </ol>
+                <div class="formula">Autovetor: \(Av\) paralelo a \(v\). Rotação: \(Av\) nunca é paralelo a \(v\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Certos efeitos especiais, como um redemoinho ou vórtice, são projetados para desorientar e alterar a trajetória de tudo. Sua natureza é a ausência de direções estáveis.</p>
+            </details>
+        </div>
+
+    </main>
 </body>
 </html>
