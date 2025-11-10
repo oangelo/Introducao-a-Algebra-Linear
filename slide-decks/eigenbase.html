@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Álgebra Linear: O Código-Fonte</title>
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game-theme.css" />
+    <!-- Scripts para Reveal.js e MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="background-grid"></div>
+      <div class="ghost"></div>
+      <div class="ghost"></div>
+
+      <div class="slides">
+        <!-- =========================== -->
+        <!-- SLIDE DE TÍTULO DA FASE -->
+        <!-- =========================== -->
+        <section>
+          <h1>Fase Final: O Código-Fonte</h1>
+          <h3>Autovalores e Autovetores</h3>
+          <p class="press-start">Pressione Enter para começar</p>
+        </section>
+
+        <!-- =========================== -->
+        <!-- SLIDES DE LORE (DIVIDIDOS)-->
+        <!-- =========================== -->
+        <section>
+            <!-- Slide de Lore 1: Dev Log -->
+            <section>
+                <h2>Lore da Fase: Dev Log</h2>
+                <div class="lore-section">
+                    <div class="lore-label">DEV LOG</div>
+                    <p><strong>Desenvolvedor Original: Augustin-Louis Cauchy (~1820s)</strong></p>
+                    <p>
+                    Cauchy, ao estudar as superfícies quádricas, foi um dos primeiros a entender que certas "transformações" (matrizes) possuíam eixos principais que não mudavam de direção. Ele descobriu as "frequências secretas" do universo matemático, que mais tarde seriam chamadas de autovalores.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide de Lore 2: A Mecânica -->
+            <section>
+                <h2>Lore da Fase: A Mecânica</h2>
+                <div class="lore-section">
+                    <div class="lore-label">A MECÂNICA</div>
+                    <p><strong>Desafio do Jogo: O Comportamento Oculto</strong></p>
+                    <p>
+                    Até agora, vimos transformações como "Power-ups" que movem e distorcem nossos "Avatares" (vetores). Mas algumas transformações têm um segredo: existem direções especiais, "Caminhos Ótimos", que não são rotacionadas. Um avatar nessa direção apenas cresce ou encolhe. Encontrar esses caminhos e seus fatores de escala é como acessar o código-fonte da transformação, revelando sua essência.
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- QUEST 6.1: Autovalores e Autovetores -->
+        <!-- ============================================== -->
+        <section>
+          <!-- Bloco 1: Definição e Intuição -->
+          <section>
+            <h2>Mecânica: Autovalores e Autovetores</h2>
+            <div class="math-section">
+              <p>Um **autovetor** de uma matriz \(A\) é um vetor não nulo \(v\) que, quando multiplicado por \(A\), resulta em um múltiplo escalar de si mesmo. O escalar, \(\lambda\), é o **autovalor** correspondente.</p>
+              <p>\[Av = \lambda v\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> O **Autovetor** (\(v\)) é um "Caminho Ótimo". Quando a transformação \(A\) age sobre ele, ele não muda de direção. O **Autovalor** (\(\lambda\)) é a "Frequência Secreta", o fator pelo qual o caminho é esticado ou encolhido.
+            </p>
+          </section>
+
+          <section>
+            <h2>Demo: Caminho Ótimo</h2>
+            <canvas id="eigenvectorVisualization" class="visualization-canvas" width="600" height="400"></canvas>
+            <div class="controls-container">
+              <button class="control-button" onclick="applyTransformation()">Aplicar Transformação</button>
+              <button class="control-button" onclick="resetTransformation()">Reset</button>
+            </div>
+          </section>
+          
+          <section>
+            <h2>Dica: Onde Estão os Caminhos Ótimos?</h2>
+             <div class="lore-section">
+                 <div class="lore-label">DICA DO MESTRE DO JOGO</div>
+                 <p>Toda transformação tem um "Caminho Ótimo"?</p>
+                 <ul>
+                    <li><strong>Rotação (em 2D):</strong> Pense em girar o plano em 90°. Algum vetor (exceto o zero) aponta para a mesma direção de antes? Não! Uma rotação pura em 2D <strong>não tem autovetores reais</strong>. Ela muda a direção de todo mundo!</li>
+                    <li class="fragment"><strong>Projeção:</strong> Imagine projetar todos os vetores sobre o eixo X.
+                        <ul>
+                            <li>Um vetor que já está no eixo X (ex: [1, 0]) não muda. Ele é um autovetor com autovalor \(\lambda=1\).</li>
+                            <li>Um vetor no eixo Y (ex: [0, 1]) é esmagado na origem. Ele vira o vetor [0, 0]. Isso conta! \(A v = 0 \cdot v\). Ele é um autovetor com autovalor \(\lambda=0\).</li>
+                        </ul>
+                    </li>
+                 </ul>
+             </div>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Polinômio Característico</h2>
+            <div class="math-section">
+              <p>Para encontrar os autovalores, reescrevemos a equação como \((A - \lambda I)v = 0\). Para que exista uma solução não nula para \(v\), a matriz \((A - \lambda I)\) deve ser singular, ou seja, seu determinante deve ser zero.</p>
+              <p>\[\det(A - \lambda I) = 0\]</p>
+              <p>Esta é a **equação característica**. O lado esquerdo é o **polinômio característico** de \(A\).</p>
+            </div>
+          </section>
+
+          <!-- Bloco 2: Cálculo -->
+          <section>
+            <h2>Mecânica: Roteiro para Autovalores</h2>
+            <div class="math-section">
+              <h4>Sequência de Comandos (Autovalores):</h4>
+              <ol>
+                <li>A partir da matriz \(A\), construa a matriz \(A - \lambda I\).</li>
+                <li>Calcule o determinante: \(\det(A - \lambda I)\).</li>
+                <li>Resolva a equação \(\det(A - \lambda I) = 0\) para encontrar as raízes \(\lambda\). Estas são as "Frequências Secretas" (autovalores).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Mecânica: Roteiro para Autovetores</h2>
+            <div class="math-section">
+              <h4>Sequência de Comandos (Autovetores):</h4>
+              <ol>
+                <li>Para <strong>cada autovalor</strong> \(\lambda\) que você encontrou:</li>
+                <li>Substitua o valor de \(\lambda\) na equação \((A - \lambda I)v = 0\).</li>
+                <li>Resolva o sistema linear homogêneo resultante. As soluções não nulas são os "Caminhos Ótimos" (autovetores) associados àquele \(\lambda\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Desafio: Quest de Treinamento</h2>
+            <div class="problem-section">
+              <h4>🎯 Quest de Treinamento (Fácil)</h4>
+              <p>Encontre os autovalores e os autovetores correspondentes da matriz:</p>
+              <p>\[ A = \begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix} \]</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Fácil)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Quest de Treinamento:</h4>
+              <ol>
+                <li>Polinômio Característico: \(\det(A - \lambda I) = (4-\lambda)(1-\lambda) - (-2)(1) = \lambda^2 - 5\lambda + 6 = 0\).</li>
+                <li>Autovalores: As raízes são \(\lambda_1 = 2\) e \(\lambda_2 = 3\).</li>
+                <li>Autovetor para \(\lambda_1 = 2\): Resolva \((A-2I)v = 0\). O autoespaço é gerado por \(v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\).</li>
+                <li>Autovetor para \(\lambda_2 = 3\): Resolva \((A-3I)v = 0\). O autoespaço é gerado por \(v_2 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}\).</li>
+              </ol>
+            </div>
+          </section>
+          
+          <!-- Bloco 3: Briot-Ruffini -->
+          <section>
+             <h2>Dica do Mestre do Jogo</h2>
+             <div class="lore-section">
+                 <div class="lore-label">DICA</div>
+                 <p>Para matrizes 3x3 ou maiores, você encontrará um "Puzzle de Polinômio Cúbico". Resolver \(\det(A-\lambda I)=0\) pode ser difícil.</p>
+                 <p>Um item especial, a "Sequência de Comandos de Briot-Ruffini", pode te ajudar a reduzir o grau do polinômio para encontrar suas raízes!</p>
+             </div>
+          </section>
+          
+          <section>
+            <h2>Mecânica: Algoritmo de Briot-Ruffini</h2>
+            <div class="math-section">
+               <p>Para resolver \(P(\lambda) = a_n\lambda^n + \dots + a_0 = 0\), teste as raízes candidatas (divisores de \(a_0\)). Se \(P(r) = 0\), use o algoritmo para dividir \(P(\lambda)\) por \((\lambda-r)\).</p>
+               <p>Exemplo: \(P(\lambda) = \lambda^3 - 6\lambda^2 + 11\lambda - 6 = 0\). Teste \(\lambda=1\): \(1-6+11-6=0\). Funciona!</p>
+               <p>
+                 <pre style="font-family: 'VT323', monospace; font-size: 1.2em; text-align: left; margin-left: 15%;">
+  1 | 1  -6  +11  -6
+----|-----------------
+    | 1  -5    6   0
+                 </pre>
+               </p>
+               <p>O resultado é \(\lambda^2 - 5\lambda + 6 = 0\), cujas raízes são \(\lambda=2\) e \(\lambda=3\). As raízes totais são 1, 2 e 3.</p>
+            </div>
+          </section>
+
+          <!-- Bloco 4: Aplicando Briot-Ruffini -->
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Encontre os autovalores da matriz \(A\):</p>
+              <p>\[ A = \begin{pmatrix} 4 & 0 & 1 \\ -2 & 1 & 0 \\ -2 & 0 & 1 \end{pmatrix} \]</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>Polinômio característico: \(\det(A-\lambda I) = -\lambda^3 + 6\lambda^2 - 11\lambda + 6 = 0\).</li>
+                <li>Divida por -1: \(\lambda^3 - 6\lambda^2 + 11\lambda - 6 = 0\).</li>
+                <li>Teste raízes candidatas (divisores de 6). Para \(\lambda=1\), o resultado é 0.</li>
+                <li>Use Briot-Ruffini para dividir por \((\lambda-1)\), resultando em \(\lambda^2 - 5\lambda + 6\).</li>
+                <li>As raízes da quadrática são \(\lambda=2\) e \(\lambda=3\). Os autovalores são \(\lambda_1 = 1, \lambda_2 = 2, \lambda_3 = 3\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Parabéns, você decifrou o código-fonte!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Definição de Autovalor (\(\lambda\)) e Autovetor (\(v\)): \(Av = \lambda v\).</li>
+                    <li>Polinômio Característico: \(\det(A - \lambda I) = 0\).</li>
+                    <li>Algoritmo de Briot-Ruffini para encontrar raízes.</li>
+                </ul>
+            </div>
+            <p>Você agora entende a essência de uma transformação linear!</p>
+          </section>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- QUEST 6.2: Diagonalização -->
+        <!-- ============================================== -->
+        <section>
+          <!-- Bloco 1: Mudança de Base -->
+          <section>
+              <h2>Mecânica: Revisão - Mudança de Base</h2>
+              <div class="math-section">
+                  <p>Lembre-se da Fase 5: se temos uma transformação \(A\) na base canônica, e queremos vê-la de uma nova base \(B\), a nova matriz da transformação, \(M_B\), é:</p>
+                  <p>\[ M_B = P^{-1} A P \]</p>
+                  <p>Onde \(P\) é a matriz de mudança da base \(B\) para a base canônica (suas colunas são os vetores da base \(B\)).</p>
+              </div>
+              <p class="game-interp">
+                  <strong>Interpretação no Jogo:</strong> É como colocar um "óculos" diferente para ver o mundo. O mundo não muda, mas nossa descrição dele sim. \(P\) traduz da nova visão para a antiga, \(A\) age no mundo antigo, e \(P^{-1}\) traduz de volta para a nova visão.
+              </p>
+          </section>
+
+          <!-- Bloco 2: A Base Perfeita -->
+          <section>
+              <h2>Regra Especial: A Base de Autovetores</h2>
+              <div class="math-section">
+                  <p>E se usarmos um "Conjunto de Habilidades" (Base) especial, formado apenas pelos "Caminhos Ótimos" (Autovetores)? Essa base é chamada de **Eigenbase**.</p>
+                  <p>A pergunta é: Como a transformação \(A\) se parece quando vista através dos "óculos" da Eigenbase?</p>
+              </div>
+          </section>
+
+          <section>
+              <h2>Mecânica: A Transformação na Eigenbase</h2>
+              <div class="math-section">
+                  <p>Na Eigenbase, a ação da transformação é super simples! Cada vetor da base é apenas esticado ou encolhido pelo seu autovalor correspondente. A matriz da transformação nessa base se torna uma **matriz diagonal** \(D\)!</p>
+                  <p>\[ D = \begin{pmatrix} \lambda_1 & 0 & \dots \\ 0 & \lambda_2 & \dots \\ \vdots & \vdots & \ddots \end{pmatrix} \]</p>
+                  <p>Usando a fórmula de mudança de base, com \(P\) sendo a matriz dos autovetores, temos:</p>
+                  <p>\[D = P^{-1} A P\]</p>
+              </div>
+              <p class="game-interp"><strong>Momento "Aha!":</strong> A diagonalização não é um truque, é simplesmente **olhar para a transformação a partir da sua própria base preferencial!**</p>
+          </section>
+
+          <!-- Bloco 3: Diagonalização -->
+          <section>
+            <h2>Mecânica: Ativando o "Modo Deus"</h2>
+            <div class="math-section">
+              <p>Reorganizando a fórmula anterior, obtemos a forma da **diagonalização**:</p>
+              <p>\[A = PDP^{-1}\]</p>
+              <p>Isso nos dá um poder incrível. Para calcular \(A^k\):</p>
+              <p>\[A^k = (PDP^{-1})(PDP^{-1})\dots(PDP^{-1}) = PD^kP^{-1}\]</p>
+              <p>Calcular \(D^k\) é trivial: basta elevar os elementos da diagonal!</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Diagonalize a matriz \(A\) da Quest anterior:</p>
+              <p>\[ A = \begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix} \]</p>
+              <p>Lembre-se: \(\lambda_1=2, v_1=\begin{pmatrix} 1 \\ 1 \end{pmatrix}\); \(\lambda_2=3, v_2=\begin{pmatrix} 2 \\ 1 \end{pmatrix}\).</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>A Eigenbase é formada por \(v_1\) e \(v_2\). A matriz de mudança de base \(P\) tem esses vetores como colunas: \(P = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}\).</li>
+                <li>Na Eigenbase, a transformação é a matriz diagonal \(D\) com os autovalores correspondentes: \(D = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}\).</li>
+                <li>A diagonalização é a expressão \(A = PDP^{-1}\). Encontrar \(P^{-1}\) completa o processo.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Usando a diagonalização que você acabou de encontrar, calcule \(A^5\).</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+               <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Use a fórmula do "Modo Deus": \(A^5 = PD^5P^{-1}\).</li>
+                <li>Calcule \(D^5\): \(D^5 = \begin{pmatrix} 2^5 & 0 \\ 0 & 3^5 \end{pmatrix} = \begin{pmatrix} 32 & 0 \\ 0 & 243 \end{pmatrix}\).</li>
+                <li>A inversa de P é \(P^{-1} = \begin{pmatrix} -1 & 2 \\ 1 & -1 \end{pmatrix}\).</li>
+                <li>Faça a multiplicação: \(A^5 = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 32 & 0 \\ 0 & 243 \end{pmatrix} P^{-1} = \begin{pmatrix} 454 & -422 \\ 211 & -179 \end{pmatrix}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Você dominou a mudança de perspectiva!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Diagonalização é uma **Mudança para a Base de Autovetores (Eigenbase)**.</li>
+                    <li>Relação fundamental: \(D = P^{-1} A P\).</li>
+                    <li>Fórmula do "Modo Deus": \(A^k = PD^kP^{-1}\).</li>
+                </ul>
+            </div>
+            <p>A estrutura fundamental do universo da Álgebra Linear está aberta para você!</p>
+          </section>
+        </section>
+
+        <!-- Slide Final: Easter Egg -->
+        <section>
+            <h2>Easter Egg: Aplicações</h2>
+            <div class="lore-section">
+                <div class="lore-label">EASTER EGG</div>
+                <p><strong>Onde a Álgebra Linear é o "Motor do Jogo" no Mundo Real</strong></p>
+                <p>
+                    Os conceitos de autovalores e autovetores não são apenas o final do jogo; eles são o motor de inovações que usamos todos os dias.
+                </p>
+            </div>
+            <div class="math-section">
+                <p>Exemplos de aplicação:</p>
+                <ul>
+                    <li><strong>Google PageRank</strong>: O ranking de uma página é um componente do autovetor principal de uma matriz gigantesca que representa os links da web.</li>
+                    <li><strong>Machine Learning (PCA)</strong>: Reduz a dimensionalidade de dados (ex: imagens) encontrando os autovetores da matriz de covariância.</li>
+                    <li><strong>Engenharia Estrutural</strong>: Autovalores determinam as frequências de vibração de uma estrutura, ajudando a prevenir colapsos.</li>
+                </ul>
+            </div>
+        </section>
+      </div>
+    </div>
+    
+    <script>
+      // Inicialização do Reveal.js
+      window.onload = function () {
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          center: true,
+          hash: true,
+          plugins: [RevealMath.MathJax3],
+          width: '90%',
+          height: '100%',
+          margin: 0.02,
+          minScale: 0.45,
+          maxScale: 1.5,
+          transition: 'fade',
+        });
+      };
+      
+      // Script para a visualização de Autovetores
+      let eigenCanvas, eigenCtx, transformed = false;
+      const A = [[1.5, 0.5], [0.5, 1.5]]; // Matriz de transformação
+      const v1 = [1, 1];  // Autovetor 1 (lambda = 2)
+      const v_other = [0.2, 1]; // Outro vetor
+      const origin = { x: 300, y: 200 };
+      const scale = 50;
+
+      function drawVector(ctx, vector, color, label) {
+          ctx.beginPath();
+          ctx.moveTo(origin.x, origin.y);
+          ctx.lineTo(origin.x + vector[0] * scale, origin.y - vector[1] * scale);
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 3;
+          ctx.stroke();
+          ctx.fillStyle = color;
+          ctx.font = "20px 'VT323'";
+          ctx.fillText(label, origin.x + vector[0] * scale + 5, origin.y - vector[1] * scale);
+      }
+      
+      function multiplyMatrixVector(M, v) {
+        return [
+          M[0][0] * v[0] + M[0][1] * v[1],
+          M[1][0] * v[0] + M[1][1] * v[1]
+        ];
+      }
+
+      function drawEigenDemo() {
+        if (!eigenCtx) return;
+        eigenCtx.clearRect(0, 0, eigenCanvas.width, eigenCanvas.height);
+        
+        // Desenha eixos
+        eigenCtx.strokeStyle = '#333';
+        eigenCtx.lineWidth = 1;
+        eigenCtx.beginPath();
+        eigenCtx.moveTo(0, origin.y); eigenCtx.lineTo(eigenCanvas.width, origin.y);
+        eigenCtx.moveTo(origin.x, 0); eigenCtx.lineTo(origin.x, eigenCanvas.height);
+        eigenCtx.stroke();
+        
+        if (transformed) {
+          // Desenha a linha do autovetor
+          eigenCtx.strokeStyle = 'rgba(0, 255, 255, 0.3)';
+          eigenCtx.beginPath();
+          eigenCtx.moveTo(origin.x - v1[0]*scale*3, origin.y + v1[1]*scale*3);
+          eigenCtx.lineTo(origin.x + v1[0]*scale*3, origin.y - v1[1]*scale*3);
+          eigenCtx.stroke();
+          
+          drawVector(eigenCtx, multiplyMatrixVector(A, v1), '#FFFF00', 'Av1 (Caminho Ótimo)');
+          drawVector(eigenCtx, multiplyMatrixVector(A, v_other), '#FF00FF', 'Av_outro');
+        } else {
+          // Desenha a linha do autovetor
+          eigenCtx.strokeStyle = 'rgba(0, 255, 255, 0.3)';
+          eigenCtx.beginPath();
+          eigenCtx.moveTo(origin.x - v1[0]*scale*3, origin.y + v1[1]*scale*3);
+          eigenCtx.lineTo(origin.x + v1[0]*scale*3, origin.y - v1[1]*scale*3);
+          eigenCtx.stroke();
+          
+          drawVector(eigenCtx, v1, '#00FFFF', 'v1 (Caminho Ótimo)');
+          drawVector(eigenCtx, v_other, '#FF88FF', 'v_outro');
+        }
+      }
+
+      function initEigenDemo() {
+        eigenCanvas = document.getElementById('eigenvectorVisualization');
+        if (!eigenCanvas) return;
+        eigenCtx = eigenCanvas.getContext('2d');
+        transformed = false;
+        drawEigenDemo();
+      }
+
+      window.applyTransformation = function() {
+        transformed = true;
+        drawEigenDemo();
+      };
+      
+      window.resetTransformation = function() {
+        transformed = false;
+        drawEigenDemo();
+      };
+      
+      Reveal.on('slidechanged', event => {
+        if (event.currentSlide.querySelector('#eigenvectorVisualization')) {
+          initEigenDemo();
+        }
+      });
+    </script>
+  </body>
+</html>
