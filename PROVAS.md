@@ -11,3 +11,4 @@
  - [P1-T2](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-2/P1-T2.html)
  - [P2-T2](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-2/P2-T2.html)
  - [P2-T1](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-2/P2-T1.html)
+ - [PS-T2](https://oangelo.github.io/Introducao-a-Algebra-Linear/Provas/2025-2/PS-T2.html)
