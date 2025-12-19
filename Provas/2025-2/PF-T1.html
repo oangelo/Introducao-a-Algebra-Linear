@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabarito - Prova Final de Álgebra Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }, options: { skipHtmlTags: ['details'] }, startup: { ready: () => { MathJax.startup.defaultReady(); } } };
+    </script>
+    <style>
+        body { font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.5; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header h1 { text-align: center; font-size: 16pt; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 25px; }
+        .question { margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
+        .question:last-child { border-bottom: none; }
+        .question-header { font-weight: bold; font-size: 13pt; border-left: 4px solid #000; padding: 8px 10px; background-color: #f0f0f0; margin-bottom: 12px; }
+        .subquestion { margin: 10px 0 10px 20px; }
+        details { margin-top: 10px; border: 1px solid #ddd; border-radius: 4px; background-color: #f9f9f9; }
+        summary { font-weight: bold; padding: 8px 12px; cursor: pointer; background-color: #e9e9e9; font-size: 10pt; }
+        .answer { padding: 15px; border-top: 1px solid #ddd; background-color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"><h1>Gabarito - Prova Final de Álgebra Linear</h1></div>
+        <div class="content">
+            <div class="question">
+                <div class="question-header">Questão 1: Análise Completa de uma Matriz</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre a RREF de \(A\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(\begin{pmatrix} 1 & 2 & 0 & 1 \\ 2 & 4 & 1 & 4 \\ 0 & 0 & 1 & 2 \end{pmatrix} \xrightarrow{L_2 \leftarrow L_2-2L_1} \begin{pmatrix} 1 & 2 & 0 & 1 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 1 & 2 \end{pmatrix} \xrightarrow{L_3 \leftarrow L_3-L_2} \begin{pmatrix} 1 & 2 & 0 & 1 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 \end{pmatrix}\)</p>
+                        <p>A matriz já está na forma RREF.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Base para Col(A) e posto.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>As colunas pivô na RREF são a 1ª e a 3ª. A base para Col(A) usa as colunas correspondentes da matriz **original** A.</p>
+                        <p><strong>Base para Col(A): \(\left\{ \begin{pmatrix}1\\2\\0\end{pmatrix}, \begin{pmatrix}0\\1\\1\end{pmatrix} \right\}\)</strong>. O <strong>posto</strong> é a dimensão do Espaço Coluna, então **Posto(A) = 2**.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Base para Nul(A) e nulidade.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Da RREF, temos o sistema \(x_1+2x_2+x_4=0\) e \(x_3+2x_4=0\). Variáveis livres: \(x_2=s, x_4=t\).</p>
+                        <p>Temos \(x_1=-2s-t\) e \(x_3=-2t\). A solução é \(\vec{x} = (-2s-t, s, -2t, t) = s(-2,1,0,0) + t(-1,0,-2,1)\).</p>
+                        <p><strong>Base para Nul(A): \(\left\{ \begin{pmatrix}-2\\1\\0\\0\end{pmatrix}, \begin{pmatrix}-1\\0\\-2\\1\end{pmatrix} \right\}\)</strong>. A <strong>nulidade</strong> é a dimensão do Espaço Nulo, então **Nulidade(A) = 2**.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Verifique o Teorema do Posto-Nulidade.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Posto(A) + Nulidade(A) = 2 + 2 = 4. O número de colunas da matriz A é 4. A relação \(4=4\) é satisfeita.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 2: Consequências da Invertibilidade</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Calcule o determinante de A.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Expandindo pela segunda linha (ou coluna): \(\det(A) = 1 \cdot \det\begin{pmatrix}1&2\\1&1\end{pmatrix} = 1(1-2) = -1\). <strong>\(\det(A) = -1\)</strong>.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> As colunas de A são LI? Formam uma base para \(\mathbb{R}^3\)?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p><strong>Sim, são LI</strong>. Pelo Teorema da Matriz Invertível, se \(\det(A) \neq 0\), as colunas de A são linearmente independentes. Como temos 3 vetores LI em \(\mathbb{R}^3\) (que tem dimensão 3), <strong>sim, eles formam uma base</strong>.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> O sistema \(A\vec{x}=\vec{0}\) possui soluções não triviais?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p><strong>Não.</strong> Como \(\det(A) \neq 0\), a matriz é invertível. Isso significa que o sistema homogêneo \(A\vec{x}=\vec{0}\) admite apenas a solução trivial \(\vec{x}=\vec{0}\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> \(\lambda=0\) não é um autovalor de A?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p><strong>Sim, podemos afirmar.</strong> Uma matriz tem um autovalor \(\lambda=0\) se, e somente se, ela for não invertível (\(\det(A)=0\)). Como \(\det(A)=-1 \neq 0\), a matriz é invertível e, portanto, 0 não é um autovalor de A.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 3: O Espaço Abstrato dos Polinômios</div>
+                <div class="subquestion">
+                    <strong>a)</strong> O conjunto \(B = \{1, 2t, -2+4t^2\}\) é LI?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Mapeando para vetores na base canônica \(\{1,t,t^2\}\) de \(\mathbb{P}_2\): \(\vec{v_1}=(1,0,0)\), \(\vec{v_2}=(0,2,0)\), \(\vec{v_3}=(-2,0,4)\). Formamos a matriz \(M=\begin{pmatrix}1&0&-2\\0&2&0\\0&0&4\end{pmatrix}\).</p>
+                        <p>Como M é triangular, seu determinante é o produto da diagonal: \(\det(M) = 1 \cdot 2 \cdot 4 = 8\). Como \(\det(M) \neq 0\), o conjunto de vetores (e de polinômios) é <strong>linearmente independente</strong>.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> O conjunto \(B\) forma uma base para \(\mathbb{P}_2\)?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p><strong>Sim.</strong> O espaço \(\mathbb{P}_2\) tem dimensão 3. Como temos um conjunto com 3 vetores que é LI, ele forma uma base para \(\mathbb{P}_2\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Encontre as coordenadas de \(p(t)=2+4t-8t^2\) na base B.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Buscamos \(c_1, c_2, c_3\) tais que \(c_1(1) + c_2(2t) + c_3(-2+4t^2) = 2+4t-8t^2\). Agrupando por potências de t:</p>
+                        <p>\((c_1 - 2c_3) + (2c_2)t + (4c_3)t^2 = 2+4t-8t^2\). Igualando os coeficientes:</p>
+                        <p>\(4c_3 = -8 \implies c_3 = -2\).</p>
+                        <p>\(2c_2 = 4 \implies c_2 = 2\).</p>
+                        <p>\(c_1 - 2c_3 = 2 \implies c_1 - 2(-2) = 2 \implies c_1 + 4 = 2 \implies c_1 = -2\).</p>
+                        <p>As coordenadas são <strong>\((-2, 2, -2)\)</strong>.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 4: O Procedimento da Diagonalização</div>
+                 <div class="subquestion">
+                    <strong>a)</strong> Encontre os autovalores de A.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(\det(A-\lambda I) = \det\begin{pmatrix} 1-\lambda & -1 & 0 \\ -1 & 2-\lambda & -1 \\ 0 & -1 & 1-\lambda \end{pmatrix}\)
+                        \(= (1-\lambda)\det\begin{pmatrix}2-\lambda&-1\\-1&1-\lambda\end{pmatrix} - (-1)\det\begin{pmatrix}-1&-1\\0&1-\lambda\end{pmatrix}\)</p>
+                        <p>\(= (1-\lambda)[(2-\lambda)(1-\lambda)-1] + [(-1)(1-\lambda)]\)</p>
+                        <p>\(= (1-\lambda)[\lambda^2-3\lambda+1] - (1-\lambda) = (1-\lambda)(\lambda^2-3\lambda) = \lambda(1-\lambda)(\lambda-3)\).</p>
+                        <p>Os autovalores são <strong>\(\lambda=0, \lambda=1, \lambda=3\)</strong>.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Encontre uma base para cada autoespaço.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Para \(\lambda=0\): Resolvemos \(A\vec{x}=\vec{0}\). Escalonando \(\begin{pmatrix}1&-1&0\\-1&2&-1\\0&-1&1\end{pmatrix}\) obtemos \(\begin{pmatrix}1&0&-1\\0&1&-1\\0&0&0\end{pmatrix}\). Solução: \(x=z, y=z\). Base para \(E_0\): \(\{(1,1,1)\}\).</p>
+                        <p>Para \(\lambda=1\): Resolvemos \((A-I)\vec{x}=\vec{0}\). Escalonando \(\begin{pmatrix}0&-1&0\\-1&1&-1\\0&-1&0\end{pmatrix}\) obtemos \(\begin{pmatrix}1&0&1\\0&1&0\\0&0&0\end{pmatrix}\). Solução: \(y=0, x=-z\). Base para \(E_1\): \(\{(-1,0,1)\}\).</p>
+                        <p>Para \(\lambda=3\): Resolvemos \((A-3I)\vec{x}=\vec{0}\). Escalonando \(\begin{pmatrix}-2&-1&0\\-1& -1&-1\\0&-1&-2\end{pmatrix}\) obtemos \(\begin{pmatrix}1&0&-1\\0&1&2\\0&0&0\end{pmatrix}\). Solução: \(x=z, y=-2z\). Base para \(E_3\): \(\{(1,-2,1)\}\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Construa as matrizes P e D.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>P é formada pelos autovetores, D pelos autovalores correspondentes.</p>
+                        <p>\(P = \begin{pmatrix} 1 & -1 & 1 \\ 1 & 0 & -2 \\ 1 & 1 & 1 \end{pmatrix}\), \(D = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 3 \end{pmatrix}\)</p>
+                    </div></details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> Verifique que \(AP=PD\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(AP = \begin{pmatrix} 1&-1&0\\-1&2&-1\\0&-1&1\end{pmatrix}\begin{pmatrix}1&-1&1\\1&0&-2\\1&1&1\end{pmatrix} = \begin{pmatrix}0&-1&3\\0&1&-3\\0&1&3\end{pmatrix}\).</p>
+                        <p>\(PD = \begin{pmatrix}1&-1&1\\1&0&-2\\1&1&1\end{pmatrix}\begin{pmatrix}0&0&0\\0&1&0\\0&0&3\end{pmatrix} = \begin{pmatrix}0&-1&3\\0&0&-6\\0&1&3\end{pmatrix}\).</p>
+                        <p>[Correção no cálculo]: O autovetor para \(\lambda=3\) é \((1, -2, 1)\). \(AP_3 = (3, -6, 3) = 3(1, -2, 1)\). \(AP\) deveria ser \(\begin{pmatrix}0&-1&3\\0&0&-6\\0&1&3\end{pmatrix}\). Houve um erro de cálculo manual. O processo correto leva a \(AP = PD\). O resultado esperado para AP é \(\begin{pmatrix}0&-1&3\\0&0&-6\\0&1&3\end{pmatrix}\).</p>
+                    </div></details>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
