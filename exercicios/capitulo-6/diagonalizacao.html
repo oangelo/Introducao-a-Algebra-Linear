@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Diagonalização</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 6: O Código-Fonte</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Diagonalização</h3>
+        <p>A diagonalização é uma das técnicas mais poderosas da Álgebra Linear. Ela não é um truque, mas sim uma **mudança de perspectiva**. Em vez de olhar uma transformação \(A\) a partir da base canônica, nós a olhamos a partir da sua própria base preferencial: a base de autovetores (Eigenbase). Nessa base, a transformação se torna uma simples matriz diagonal \(D\).</p>
+        
+        <h4>A Ordem Correta das Matrizes: A Jornada do Vetor</h4>
+        <p>A ordem das matrizes na fórmula é crucial e não pode ser trocada. Pense nisso como uma tradução: a matriz \(A\) só "fala" a língua do mundo normal (base canônica), enquanto \(D\) "fala" a língua da Eigenbase. Para aplicar a transformação a um vetor escrito na Eigenbase (\([v]_B\)), ele precisa fazer a seguinte jornada (lembre-se que a multiplicação de matrizes é lida da direita para a esquerda):</p>
+        <p style="text-align: center;">\( [Av]_B = \underbrace{P^{-1}}_{\text{3. Traduz de volta}} \underbrace{A}_{\text{2. Transforma}} \underbrace{P}_{\text{1. Traduz para o normal}} [v]_B \)</p>
+        <ol>
+            <li><strong>\(P[v]_B\)</strong>: A matriz \(P\) (cujas colunas são os autovetores) traduz o vetor da Eigenbase para o mundo normal.</li>
+            <li><strong>\(A(P[v]_B)\)</strong>: A matriz \(A\) age sobre o vetor, que agora está em sua língua nativa.</li>
+            <li><strong>\(P^{-1}(AP[v]_B)\)</strong>: A matriz \(P^{-1}\) pega o resultado e o traduz de volta para a Eigenbase.</li>
+        </ol>
+        <p>Portanto, a matriz da transformação vista da perspectiva da Eigenbase é \(D = P^{-1}AP\).</p>
+
+        <h4>As Duas Fórmulas Essenciais</h4>
+        <p><strong>1. A Fórmula Conceitual:</strong> \(D = P^{-1}AP\). Ela nos diz como a transformação \(A\) se *parece* na perspectiva da Eigenbase.</p>
+        <p><strong>2. A Fórmula Computacional:</strong> \(A = PDP^{-1}\). Rearranjando a fórmula anterior, obtemos uma maneira de *reconstruir* a matriz original \(A\) a partir de suas partes simples. É esta forma que nos dá superpoderes, especialmente para calcular potências:</p>
+        <div class="formula">\(A^k = PD^kP^{-1}\)</div>
+    </div>
+
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1 (BÁSICO) -->
+        <div class="mission">
+            <h3>Montando o "Cheat Code" (Construção de P e D)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dados os autovalores e autovetores de uma matriz A, construir as matrizes P e D.
+            </div>
+            <p>Você encontrou os componentes de um código secreto para uma matriz \(A\). Os autovalores são \(\lambda_1 = 2\) e \(\lambda_2 = 3\), com autovetores correspondentes \(v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\) e \(v_2 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}\). Monte a matriz de autovetores \(P\) e a matriz diagonal de autovalores \(D\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A matriz \(P\) tem os autovetores como suas colunas. A matriz \(D\) é uma matriz diagonal com os autovalores correspondentes na diagonal. A ordem importa: a primeira coluna de \(P\) deve corresponder ao primeiro elemento da diagonal de \(D\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Construa a matriz \(P\) colocando os autovetores \(v_1\) e \(v_2\) como suas colunas.</li>
+                    <li>Construa a matriz \(D\) colocando os autovalores \(\lambda_1\) e \(\lambda_2\) na diagonal principal, na mesma ordem dos autovetores em \(P\). O resto da matriz \(D\) é preenchido com zeros.</li>
+                </ol>
+                <div class="formula">\(P = [v_1 | v_2]\) e \(D = \begin{pmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{pmatrix}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso é como pegar os itens-chave que você coletou (autovetores e autovalores) e montá-los na ordem correta para criar uma arma ou ferramenta poderosa.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2 (BÁSICO) -->
+        <div class="mission">
+            <h3>Invertendo a Perspectiva (Inversa de Matriz 2x2)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar o cálculo da inversa de uma matriz 2x2, um passo crucial para a diagonalização.
+            </div>
+            <p>Para o "óculos" da eigenbase \(P = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}\) funcionar, você precisa da lente que traduz o mundo de volta para a visão normal. Calcule a matriz inversa \(P^{-1}\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para uma matriz 2x2 \(M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}\), a inversa é \(M^{-1} = \frac{1}{ad-bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}\). Primeiro, calcule o determinante.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o determinante de \(P\): \(\det(P) = (1)(1) - (2)(1)\).</li>
+                    <li>Aplique a fórmula da inversa, trocando os elementos da diagonal principal, negando os da outra diagonal e dividindo tudo pelo determinante.</li>
+                </ol>
+                <div class="formula">\(P^{-1} = \frac{1}{\det(P)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A matriz \(P\) te leva para uma "dimensão paralela" onde os cálculos são fáceis. A matriz \(P^{-1}\) é o portal que te traz de volta para o mundo normal com a solução.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3 (BÁSICO) -->
+        <div class="mission">
+            <h3>Verificação do Código-Fonte (Verificação da Relação A = PDP⁻¹)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dadas todas as matrizes (A, P, D, P⁻¹), verificar se a equação de diagonalização é válida.
+            </div>
+            <p>Você montou o "Cheat Code" completo. A matriz original era \(A = \begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix}\), e você tem \(P = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}\), \(D = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}\) e \(P^{-1} = \begin{pmatrix} -1 & 2 \\ 1 & -1 \end{pmatrix}\). Verifique se o código funciona multiplicando \(PDP^{-1}\) e confirmando que o resultado é \(A\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Realize as multiplicações de matrizes em etapas. É mais fácil calcular \(PD\) primeiro e depois multiplicar o resultado por \(P^{-1}\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto \(M = PD\).</li>
+                    <li>Calcule o produto final \(MP^{-1}\).</li>
+                    <li>Verifique se o resultado é igual à matriz \(A\).</li>
+                </ol>
+                <div class="formula">\(A \stackrel{?}{=} PDP^{-1}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Antes de usar um item raro, é bom testá-lo para ter certeza de que ele faz o que a descrição diz. Esta é a "fase de testes" da diagonalização.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4 (MAIN) -->
+        <div class="mission">
+            <h3>Ativando o "Modo Deus" (2D) (Diagonalização Completa 2x2)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Realizar o processo completo de diagonalização para uma matriz 2x2: encontrar P, D e P⁻¹.
+            </div>
+            <p>Para poder usar um "Power-up" de transformação \(A = \begin{pmatrix} 3 & -2 \\ 1 & 0 \end{pmatrix}\) de forma controlada, você precisa decompô-lo em suas partes fundamentais. Diagonalize a matriz \(A\) encontrando \(P\), \(D\) e \(P^{-1}\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, encontre os autovalores e autovetores de \(A\), como na Quest 6.1. Depois, use esses componentes para construir \(P\) e \(D\). Por fim, calcule a inversa \(P^{-1}\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Encontre os autovalores de \(A\) resolvendo \(\det(A-\lambda I)=0\).</li>
+                    <li>Para cada autovalor, encontre o autovetor correspondente.</li>
+                    <li>Construa as matrizes \(P\) e \(D\).</li>
+                    <li>Calcule a inversa \(P^{-1}\).</li>
+                </ol>
+                <div class="formula">\(A = PDP^{-1}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isto é o equivalente a desmontar completamente uma peça de tecnologia avançada para entender como cada parte funciona e como remontá-la.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 5 (MAIN) -->
+        <div class="mission">
+            <h3>Previsão de Longo Prazo (Potência de Matriz)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a forma diagonalizada `A = PDP⁻¹` para calcular `A^k` de forma eficiente.
+            </div>
+            <p>Preveja o estado do sistema do jogo após aplicar o "Power-up" \(A = \begin{pmatrix} 3 & -2 \\ 1 & 0 \end{pmatrix}\) 5 vezes seguidas. Usando a diagonalização que você encontrou na missão anterior, calcule \(A^5\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Use a fórmula do "Modo Deus": \(A^5 = PD^5P^{-1}\). O passo mais fácil é calcular \(D^5\): basta elevar os elementos da diagonal à quinta potência.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Pegue a matriz diagonal \(D\) da missão anterior.</li>
+                    <li>Calcule \(D^5\) elevando cada elemento da diagonal a 5.</li>
+                    <li>Execute a multiplicação de matrizes \(A^5 = P(D^5)P^{-1}\) usando as matrizes \(P\) e \(P^{-1}\) que você já encontrou.</li>
+                </ol>
+                <div class="formula">\(A^k = PD^kP^{-1}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em vez de simular um efeito complexo frame a frame, os desenvolvedores podem usar este método para pular diretamente para o resultado final, economizando um poder de processamento imenso.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 6 (MAIN) -->
+        <div class="mission">
+            <h3>Glitch na Matriz (Matriz Não Diagonalizável)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Tentar diagonalizar uma matriz de cisalhamento e entender por que o processo falha.
+            </div>
+            <p>Um item de jogo que deveria "empurrar" objetos parece estar bugado. Sua matriz de transformação é \(A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\). Tente diagonalizar esta matriz. O que acontece? Por que ela não pode ser simplificada desta forma?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Encontre os autovalores. Você encontrará um autovalor repetido. Agora, tente encontrar os autovetores para este autovalor. Quantos autovetores linearmente independentes você consegue encontrar?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule a equação característica. Você encontrará um autovalor \(\lambda=1\) com multiplicidade algébrica 2.</li>
+                    <li>Resolva \((A-1I)v=0\) para encontrar os autovetores.</li>
+                    <li>Você descobrirá que o autoespaço tem dimensão 1 (é uma linha, gerada por \(\begin{pmatrix} 1 \\ 0 \end{pmatrix}\)).</li>
+                    <li>Conclusão: Como não é possível encontrar dois autovetores linearmente independentes para formar uma base de \(\mathbb{R}^2\), a matriz \(P\) não pode ser construída e, portanto, \(A\) não é diagonalizável.</li>
+                </ol>
+                <div class="formula">Diagonalizável se \(\text{mult. geométrica} = \text{mult. algébrica}\) para todos os \(\lambda\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Algumas mecânicas de jogo são fundamentalmente "quebradas" ou assimétricas e não podem ser simplificadas. A matemática por trás delas reflete isso.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 7 (ELITE) -->
+        <div class="mission">
+            <h3>"Modo Deus" Avançado (3D) (Diagonalização Completa 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Diagonalizar completamente uma matriz 3x3.
+            </div>
+            <p>É hora de desmontar a matriz de física de um objeto 3D complexo: \(A = \begin{pmatrix} 1 & -3 & 3 \\ 3 & -5 & 3 \\ 6 & -6 & 4 \end{pmatrix}\). Encontre as matrizes \(P\) e \(D\) tais que \(A = PDP^{-1}\). (Não é necessário calcular \(P^{-1}\)).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O processo é idêntico ao 2D, apenas com mais cálculos. Primeiro, encontre os autovalores resolvendo o polinômio característico cúbico. Depois, para cada autovalor, encontre o autovetor resolvendo um sistema 3x3.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule \(\det(A-\lambda I)\) para encontrar o polinômio característico. As raízes (autovalores) são \(\lambda_1 = 4\) e \(\lambda_2 = -2\) (com multiplicidade 2).</li>
+                    <li>Para \(\lambda=4\), encontre o autovetor correspondente resolvendo \((A-4I)v=0\).</li>
+                    <li>Para \(\lambda=-2\), resolva \((A+2I)v=0\). Você deve encontrar um autoespaço de dimensão 2 (um plano). Encontre dois vetores LI nesse plano.</li>
+                    <li>Construa \(P\) com os três autovetores encontrados e \(D\) com os autovalores correspondentes.</li>
+                </ol>
+                <div class="formula">Mesmo processo: encontrar \(\lambda_i\), depois \(v_i\), depois montar \(P\) e \(D\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Analisar a física de objetos com rotação complexa, como um asteróide em um simulador espacial, requer a decomposição de suas matrizes de inércia, um processo muito similar à diagonalização.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 8 (ELITE) -->
+        <div class="mission">
+            <h3>Efeito em Cascata (Potência de Matriz 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a diagonalização de uma matriz 3x3 para calcular sua potência.
+            </div>
+            <p>Um campo de força 3D é descrito por \(A = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{pmatrix}\). Foi descoberto que \(A=PDP^{-1}\) onde \(D = \begin{pmatrix} 4 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\). Calcule o efeito acumulado do campo de força após 3 pulsos, ou seja, encontre \(A^3\). (Não é necessário conhecer P ou P⁻¹ para responder).</p>
+             <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A pergunta parece mais difícil do que é. A questão é sobre as propriedades de \(A^3\). Quais são os autovalores de \(A^3\)? Como a diagonalização de \(A^3\) se relaciona com a de \(A\)?</p>
+                </div>
+            </details>
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a fórmula de potência: \(A^3 = PD^3P^{-1}\).</li>
+                    <li>Calcule \(D^3\). Como \(D\) é diagonal, basta elevar seus elementos diagonais ao cubo: \(4^3, 1^3, 1^3\).</li>
+                    <li>A matriz \(A^3\) é diagonalizável pela mesma matriz \(P\), e seus autovalores são os cubos dos autovalores de \(A\).</li>
+                    <li>Os autovalores de \(A^3\) são, portanto, 64, 1 e 1. Embora não possamos calcular \(A^3\) explicitamente sem \(P\), nós deciframos completamente suas propriedades fundamentais.</li>
+                </ol>
+                <div class="formula">Se \(A=PDP^{-1}\), então \(A^k = PD^kP^{-1}\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Entender os autovalores de um efeito ao longo do tempo permite prever seu comportamento de longo prazo sem simular cada passo, como prever se um "dano sobre tempo" (DoT) vai se tornar mais forte ou mais fraco.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 9 (ELITE) -->
+        <div class="mission">
+            <h3>Segredos da Matriz Diagonal (Propriedades)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Relacionar os autovalores (elementos de D) com o traço e o determinante da matriz original A.
+            </div>
+            <p>Um hacker te deu os autovalores de um chefe final: \(\lambda_1 = 5, \lambda_2 = 2, \lambda_3 = -1\). Você não tem a matriz \(A\) do chefe, mas pode descobrir algumas de suas propriedades secretas. Qual é o determinante de \(A\) e o traço de \(A\)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Existem duas propriedades mágicas: o determinante de uma matriz é o produto de seus autovalores, e o traço (soma dos elementos da diagonal) de uma matriz é a soma de seus autovalores.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a propriedade de que \(\det(A)\) é igual ao produto de seus autovalores. Calcule \(\lambda_1 \cdot \lambda_2 \cdot \lambda_3\).</li>
+                    <li>Use a propriedade de que \(\text{tr}(A)\) é igual à soma de seus autovalores. Calcule \(\lambda_1 + \lambda_2 + \lambda_3\).</li>
+                </ol>
+                <div class="formula">\(\det(A) = \prod \lambda_i\) e \(\text{tr}(A) = \sum \lambda_i\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isto é como uma análise de metagame. Você não conhece os movimentos exatos do oponente, mas, ao observar seus efeitos, pode inferir suas estatísticas gerais de "poder de ataque" (determinante) e "saúde/estabilidade" (traço).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 10 (BOSS) -->
+        <div class="mission">
+            <h3>Evolução do Jogo (Sistemas Dinâmicos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Modelar um sistema simples com `x_k+1 = Ax_k` e usar diagonalização para prever o estado futuro `x_k`.
+            </div>
+            <p>Em um ecossistema, a população de predadores (\(p\)) e presas (\(h\)) a cada rodada é modelada por \( \begin{pmatrix} p_{k+1} \\ h_{k+1} \end{pmatrix} = \begin{pmatrix} 0.5 & 0.4 \\ -0.1 & 1.1 \end{pmatrix} \begin{pmatrix} p_k \\ h_k \end{pmatrix} \). Se a população inicial é \(x_0 = \begin{pmatrix} 100 \\ 100 \end{pmatrix}\), use a diagonalização para encontrar uma fórmula para a população \(x_k\) após \(k\) rodadas.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Diagonalize a matriz \(A\). Os autovalores são \(\lambda_1=1\) e \(\lambda_2=0.6\). Os autovetores correspondentes são \(v_1=\begin{pmatrix} 4 \\ 5 \end{pmatrix}\) e \(v_2=\begin{pmatrix} 1 \\ 1 \end{pmatrix}\).</li>
+                    <li>Expresse o vetor inicial \(x_0\) como uma combinação linear dos autovetores: \(x_0 = c_1v_1 + c_2v_2\). Resolva este sistema para encontrar \(c_1\) e \(c_2\).</li>
+                    <li>A solução para \(x_k = A^kx_0\) é dada por \(x_k = c_1(\lambda_1)^k v_1 + c_2(\lambda_2)^k v_2\).</li>
+                    <li>Substitua os valores para obter a fórmula final para \(x_k\). Note que, a longo prazo, o termo com \(\lambda_2=0.6\) desaparecerá, e a população se estabilizará na direção do autovetor \(v_1\).</li>
+                </ol>
+                <div class="formula">Se \(x_0 = \sum c_i v_i\), então \(x_k = \sum c_i \lambda_i^k v_i\).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> É assim que o balanceamento de jogos de estratégia é modelado. Os desenvolvedores usam esses sistemas para garantir que nenhuma unidade ou facção se torne infinitamente poderosa com o tempo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 11 (BOSS) -->
+        <div class="mission">
+            <h3>Engenharia Reversa (Construindo A a partir de P e D)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dados os autovetores (P) e autovalores (D) de uma transformação, reconstruir a matriz original A.
+            </div>
+            <p>Você descobriu os "eixos de poder" (autovetores) de uma arma lendária: \(v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\) e \(v_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\). Seus "fatores de amplificação" (autovalores) são \(\lambda_1 = 5\) e \(\lambda_2 = 2\). Reconstrua a matriz de transformação \(A\) da arma.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Construa a matriz \(P\) com os autovetores e a matriz \(D\) com os autovalores.</li>
+                    <li>Calcule a inversa \(P^{-1}\).</li>
+                    <li>Use a fórmula de engenharia reversa \(A = PDP^{-1}\) e execute a multiplicação de matrizes.</li>
+                </ol>
+                <div class="formula">\(A = PDP^{-1}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Modders e criadores de conteúdo customizado usam esse processo reverso para criar seus próprios itens e mecânicas de jogo, definindo primeiro o comportamento desejado (autovetores) e depois construindo a matriz que o implementa.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 12 (BOSS) -->
+        <div class="mission">
+            <h3>Poderes ao Quadrado (Diagonalização de A²)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que se A é diagonalizável, então A² também é, e encontrar sua diagonalização.
+            </div>
+            <p>Um "Power-up" \(A\) é ativado duas vezes seguidas, resultando na transformação \(A^2\). Se \(A\) é diagonalizável com a forma \(A = PDP^{-1}\), prove que \(A^2\) também é diagonalizável. Quais são os autovetores e autovalores de \(A^2\)?</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva \(A^2\) usando a forma diagonalizada: \(A^2 = (PDP^{-1})(PDP^{-1})\).</li>
+                    <li>Use a associatividade da multiplicação de matrizes para reagrupar os termos: \(A^2 = PD(P^{-1}P)DP^{-1}\).</li>
+                    <li>Como \(P^{-1}P = I\) (matriz identidade), a expressão se simplifica para \(A^2 = PDIDP^{-1} = PD^2P^{-1}\).</li>
+                    <li>Esta expressão está na forma de uma diagonalização. Portanto, \(A^2\) é diagonalizável.</li>
+                    <li>Conclusão: A matriz \(A^2\) tem os **mesmos autovetores** que \(A\) (as colunas de \(P\)), e seus autovalores são os **quadrados** dos autovalores de \(A\) (os elementos na diagonal de \(D^2\)).</li>
+                </ol>
+                <div class="formula">\(A^2 = PD^2P^{-1}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso mostra que aplicar um "buff" várias vezes não cria caos. O efeito acumulado ainda opera nos mesmos eixos fundamentais, apenas com uma magnitude maior. Isso garante que a física do jogo permaneça consistente.</p>
+            </details>
+        </div>
+
+    </main>
+</body>
+</html>

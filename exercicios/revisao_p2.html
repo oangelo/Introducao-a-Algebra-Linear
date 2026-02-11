@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álgebra Arcade - A Grande Revisão (Fases 5-6)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Script para renderizar LaTeX com MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --font-pixel: 'Press Start 2P', cursive;
+            --font-mono: 'Roboto Mono', monospace;
+            --color-text: #333;
+            --color-header: #000;
+            --color-accent: #d9534f;
+            --color-border: #ccc;
+            --color-bg-light: #f9f9f9;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background-color: #e0e0e0;
+            color: var(--color-text);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            font-size: 9.5pt;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        
+        .page-header {
+            text-align: center;
+            border-bottom: 3px solid var(--color-header);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-pixel);
+            font-size: 18pt;
+            color: var(--color-header);
+            margin: 0;
+        }
+
+        .page-header h2 {
+            font-family: var(--font-mono);
+            font-size: 12pt;
+            color: #555;
+            font-weight: 700;
+            margin: 5px 0 0 0;
+        }
+
+        .content {
+            column-count: 2;
+            column-gap: 15mm;
+        }
+        
+        .mission {
+            background-color: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 15px;
+            break-inside: avoid; /* Evita que a missão quebre entre colunas */
+        }
+        
+        .mission h3 {
+            font-family: var(--font-pixel);
+            font-size: 9pt;
+            color: var(--color-header);
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 8px;
+        }
+        
+        .mission-objective {
+            font-style: italic;
+            font-size: 8.5pt;
+            color: #555;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--color-accent);
+        }
+
+        @media print {
+            body, .page {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                background-color: white;
+            }
+            .page {
+                padding: 10mm; /* Ajuste de margem para impressão */
+            }
+            .mission {
+                 background-color: #f9f9f9; /* Adiciona um leve fundo para distinção na impressão P&B */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="page-header">
+            <h1>Álgebra Arcade</h1>
+            <h2>Folha de Missões: A Engenharia Reversa de um Universo</h2>
+        </header>
+
+        <main class="content">
+
+            <!-- Ato I: As Leis Fundamentais -->
+            <div class="mission">
+                <h3>MISSÃO 1: O Dicionário do Arquiteto</h3>
+                <div class="mission-objective">
+                    Com suas próprias palavras, o que é um <strong>Espaço Vetorial</strong>? Quais são as duas operações essenciais que definem as "regras do jogo" e por que os 10 axiomas são como a "física" que governa esses universos?
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 2: Mapeando o Multiverso</h3>
+                <div class="mission-objective">
+                    O conceito de Espaço Vetorial é abstrato e serve para unificar ideias. Cite pelo menos três exemplos de conjuntos matemáticos diferentes que são Espaços Vetoriais.
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 3: A Planta Baixa de M₂₂</h3>
+                <div class="mission-objective">
+                    Usando a notação matemática formal de conjuntos, escreva a definição do espaço vetorial de todas as matrizes 2x2, que chamamos de \(M_{22}\).<br>
+                    \(M_{22} = \{ \dots \}\) <br>
+                    <em>(Dica: Lembre-se de como escrevemos o \(ℝ^3\): \(ℝ^3 = \{(x, y, z) | x, y, z ∈ ℝ\}\))</em>
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 4: Zonas Seguras vs. Áreas Restritas</h3>
+                <div class="mission-objective">
+                    (a) Dentro do "universo" \(M_{22}\), proponha um subconjunto que você acredita ser um <strong>subespaço</strong> (uma "Zona Segura"). Escreva sua definição formal.<br><br>
+                    (b) Agora, proponha um subconjunto que você acredita <strong>NÃO</strong> ser um subespaço (uma "Área Restrita"). Escreva sua definição.<br><br>
+                    (c) Para sua "Zona Segura" do item (a), prove que ela é um subespaço usando o teste de fechamento (soma e multiplicação por escalar).<br><br>
+                    (d) Para sua "Área Restrita" do item (b), mostre com um contraexemplo qual axioma (ou condição de fechamento) falha.
+                </div>
+            </div>
+
+            <!-- Ato II: Os Blocos de Construção -->
+            <div class="mission">
+                <h3>MISSÃO 5: A Receita Universal</h3>
+                <div class="mission-objective">
+                    (a) Imagine um <strong>subconjunto finito e pequeno</strong> de vetores de um Espaço Vetorial. O que o termo <strong>Span (Espaço Gerado)</strong> significa no contexto de "construir" todos os vetores possíveis a partir desse subconjunto?<br><br>
+                    (b) Considere um conjunto de vetores que <strong>NÃO</strong> é um subespaço (como o primeiro quadrante do \(ℝ^2\)). Se você calcular o Span desse conjunto, o resultado é um subespaço vetorial? Justifique a diferença.
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 6: Ingredientes Redundantes</h3>
+                <div class="mission-objective">
+                    O que acontece se um dos seus "vetores construtores" for, ele mesmo, uma combinação dos outros? Como isso afeta a "eficiência" do seu conjunto? O que os termos <strong>Linearmente Dependente (LD)</strong> e <strong>Linearmente Independente (LI)</strong> significam?
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 7: O Kit de Construção Perfeito</h3>
+                <div class="mission-objective">
+                    (a) Para criar um "sistema de coordenadas" (um "GPS"), qual seria o "kit de vetores construtores" perfeito? Descreva as duas condições (discutidas nas missões 5 e 6) que ele deve satisfazer para ser mínimo e completo. Como chamamos esse "kit perfeito"?<br><br>
+                    (b) O número de vetores nesse "kit perfeito" varia, ou é sempre o mesmo para um dado espaço vetorial? Esse número fundamental, que mede os "graus de liberdade" de um universo, recebe o nome de <strong>Dimensão</strong>.
+                </div>
+            </div>
+
+            <!-- Ato III: Análise de Campo -->
+            <div class="mission">
+                <h3>MISSÃO 8: Estudo de Caso - O Universo A</h3>
+                <div class="mission-objective">
+                    Agora vamos aplicar tudo para analisar um universo específico, definido pela matriz \(A\) e pelo vetor-alvo \(\vec{b}\). Nosso objetivo é decifrar todas as suas regras e propriedades.
+                </div>
+                \[ A = \begin{bmatrix}
+                1 & 2 & 0 & 1 \\
+                0 & 1 & 1 & 1 \\
+                1 & 3 & 1 & 2
+                \end{bmatrix}, \quad \vec{b} = \begin{bmatrix} 3 \\ 1 \\ 4 \end{bmatrix} \]
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 9: Análise do Kit 'A'</h3>
+                <div class="mission-objective">
+                    Os vetores coluna de \(A\) formam um conjunto LI ou LD? Justifique sua resposta com os cálculos necessários.
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 10: O Mapa Acessível</h3>
+                <div class="mission-objective">
+                    O `Span` das colunas de \(A\) (seu Espaço Coluna) forma uma reta, um plano ou todo o \(\mathbb{R}^3\)? Encontre uma base para o Espaço Coluna de \(A\) e determine sua dimensão (o <strong>posto(A)</strong>).
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 11: Missão de Resgate</h3>
+                <div class="mission-objective">
+                     O vetor-alvo \(\vec{b}\) pode ser escrito como uma combinação linear das colunas de \(A\)? Qual sistema de equações lineares precisamos resolver para responder a essa pergunta? Se houver solução, encontre uma delas e chame-a de \(\vec{x}_p\) (sua solução particular).
+                </div>
+            </div>
+            
+            <div class="mission">
+                <h3>MISSÃO 12: Os Códigos Secretos de A</h3>
+                <div class="mission-objective">
+                    Agora, encontre o "manual de redundâncias" do sistema. Encontre uma base para o <strong>Espaço Nulo</strong> de \(A\) e determine sua dimensão (a <strong>nulidade(A)</strong>).
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 13: O Teorema do Engenheiro</h3>
+                <div class="mission-objective">
+                    Verifique se a lei de conservação do nosso universo é válida. Mostre que `posto(A) + nulidade(A)` é igual ao número de colunas de \(A\).
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 14: O Mapa de Todas as Rotas</h3>
+                <div class="mission-objective">
+                    Usando sua solução particular \(\vec{x}_p\) da Missão 11 e a base do Espaço Nulo da Missão 12, escreva a expressão para a <strong>solução geral</strong> do sistema \(A\vec{x} = \vec{b}\). Explique o que cada parte da expressão \(\vec{x} = \vec{x}_p + \vec{x}_h\) significa.
+                </div>
+            </div>
+
+            <div class="mission">
+                <h3>MISSÃO 15: A Verificação Final (Boss)</h3>
+                <div class="mission-objective">
+                    Mostre que a sua solução geral \(\vec{x}\) da Missão 14 é, de fato, uma solução. Para isso, calcule o produto \(A\vec{x}\) e mostre que o resultado é igual a \(\vec{b}\). (Dica: use a propriedade distributiva: \(A(\vec{v}_1 + \vec{v}_2) = A\vec{v}_1 + A\vec{v}_2\)).
+                </div>
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

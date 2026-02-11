@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito - Segunda Prova de Álgebra Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'details']
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+        
+        .question-header {
+            font-weight: bold;
+            font-size: 13pt;
+            color: #000;
+            border-left: 4px solid #000;
+            padding-left: 10px;
+            margin-bottom: 12px;
+            background-color: #f0f0f0;
+            padding: 8px 10px;
+        }
+        
+        .subquestion {
+            margin: 10px 0 10px 20px;
+        }
+        
+        .subquestion strong {
+            font-weight: bold;
+        }
+        
+        .question p {
+            margin: 10px 0;
+        }
+        
+        details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        summary {
+            font-weight: bold;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #e9e9e9;
+            border-radius: 3px;
+            font-size: 10pt;
+        }
+        .answer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .answer p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gabarito - Segunda Prova de Álgebra Linear</h1>
+        </div>
+        
+        <div class="content">
+            
+            <!-- Questão 1 (Sem alterações) -->
+            <div class="question">
+                <div class="question-header">Questão 1 - Subespaços Vetoriais</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Considere o conjunto \(W = \{(x, y, z) \in \mathbb{R}^3 \mid x - 2y + z = 0\}\). Verifique se o vetor nulo \((0, 0, 0)\) pertence a W.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Para verificar se \((0,0,0)\) pertence a W, substituímos \(x=0, y=0, z=0\) na condição do conjunto:</p>
+                            <p>\(0 - 2(0) + 0 = 0 - 0 + 0 = 0\)</p>
+                            <p>Como a igualdade \(0=0\) é verdadeira, <strong>o vetor nulo pertence a W.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Sejam \(\vec{u} = (x_1, y_1, z_1)\) e \(\vec{v} = (x_2, y_2, z_2)\) dois vetores pertencentes a W. Mostre que a soma \(\vec{u} + \vec{v}\) também pertence a W.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Se \(\vec{u} \in W\), então \(x_1 - 2y_1 + z_1 = 0\). Se \(\vec{v} \in W\), então \(x_2 - 2y_2 + z_2 = 0\).</p>
+                            <p>A soma é \(\vec{u} + \vec{v} = (x_1+x_2, y_1+y_2, z_1+z_2)\). Para que a soma pertença a W, ela deve satisfazer a condição:</p>
+                            <p>\((x_1+x_2) - 2(y_1+y_2) + (z_1+z_2) = 0\)</p>
+                            <p>Reagrupando os termos: \((x_1 - 2y_1 + z_1) + (x_2 - 2y_2 + z_2)\)</p>
+                            <p>Pelas nossas hipóteses, sabemos que cada parênteses vale zero: \(0 + 0 = 0\)</p>
+                            <p>Como a condição é satisfeita, <strong>W é fechado sob a soma.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Seja \(\vec{u} = (x, y, z)\) um vetor em W e \(k\) um escalar real. Mostre que o vetor \(k\vec{u}\) também pertence a W.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Se \(\vec{u} \in W\), então \(x - 2y + z = 0\).</p>
+                           <p>O vetor \(k\vec{u}\) é \((kx, ky, kz)\). Para que ele pertença a W, deve satisfazer a condição: \((kx) - 2(ky) + (kz) = 0\)</p>
+                           <p>Fatorando \(k\): \(k(x - 2y + z)\). Pela nossa hipótese, o termo no parêntese é zero: \(k(0) = 0\)</p>
+                           <p>Como a condição é satisfeita, <strong>W é fechado sob a multiplicação por escalar.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> Agora, considere o conjunto \(H = \{(x, y, z) \in \mathbb{R}^3 \mid x - 2y + z = 1\}\). Mostre, usando um contra-exemplo, por que H <strong>não</strong> é um subespaço vetorial.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A maneira mais simples é testar a presença do vetor nulo. Substituindo \((0,0,0)\) na condição de H: \(0 - 2(0) + 0 = 0\). A condição exige que o resultado seja 1, mas obtivemos 0. Como \(0 \neq 1\), o vetor nulo não pertence a H. Portanto, <strong>H não é um subespaço vetorial.</strong></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Questão 2 (Sem alterações) -->
+            <div class="question">
+                <div class="question-header">Questão 2 - Base, Dimensão e Coordenadas</div>
+                 <div class="subquestion">
+                    <strong>a)</strong> Considere os vetores \(\vec{v_1} = (1, 1, 0)\), \(\vec{v_2} = (0, 1, 1)\) e \(\vec{v_3} = (1, 0, 1)\). Verifique se o conjunto \(S = \{\vec{v_1}, \vec{v_2}, \vec{v_3}\}\) é linearmente independente (LI).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Montamos uma matriz com os vetores como colunas e calculamos seu determinante.</p>
+                            $$A = \begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}$$
+                            <p>\(\det(A) = 1(1) - 0 + 1(1) = 2\). Como \(\det(A) \neq 0\), <strong>o conjunto S é linearmente independente.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> O conjunto S forma uma base para o \(\mathbb{R}^3\)? Justifique.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Sim. A dimensão do \(\mathbb{R}^3\) é 3. Como temos um conjunto com 3 vetores que é linearmente independente (provado no item a), um teorema garante que este conjunto também gera o \(\mathbb{R}^3\). Portanto, <strong>S é uma base para o \(\mathbb{R}^3\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Encontre as coordenadas do vetor \(\vec{w} = (5, 4, 3)\) na base S.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Buscamos \(c_1, c_2, c_3\) tais que \(c_1\vec{v_1} + c_2\vec{v_2} + c_3\vec{v_3} = \vec{w}\). Resolvendo o sistema correspondente, encontramos \(c_3 = 2\), \(c_2 = 1\), e \(c_1 = 3\). <strong>As coordenadas são \((3, 1, 2)\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Verifique se as coordenadas encontradas estão corretas.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Calculamos a combinação linear \(3\vec{v_1} + 1\vec{v_2} + 2\vec{v_3}\):</p>
+                            <p>\(3(1, 1, 0) + 1(0, 1, 1) + 2(1, 0, 1) = (3+0+2, 3+1+0, 0+1+2) = (5, 4, 3)\)</p>
+                            <p>O resultado é o vetor \(\vec{w}\), então <strong>a verificação foi bem-sucedida.</strong></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Questão 3 (Sem alterações) -->
+            <div class="question">
+                <div class="question-header">Questão 3 - Mudança de Base</div>
+                <p>Seja a base canônica \(A = \{\vec{e_1}, \vec{e_2}, \vec{e_3}\}\) e a base \(B = \{\vec{b_1}, \vec{b_2}, \vec{b_3}\} = \{(1,0,0), (1,1,0), (1,1,1)\}\) do \(\mathbb{R}^3\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre as coordenadas do vetor \(\vec{v}=(3,2,1)\) na base B resolvendo o sistema \(c_1\vec{b_1} + c_2\vec{b_2} + c_3\vec{b_3} = \vec{v}\).
+                     <details><summary>Ver Resposta</summary><div class="answer"><p>Resolvendo o sistema \(\begin{cases} c_1 + c_2 + c_3 = 3 \\ c_2 + c_3 = 2 \\ c_3 = 1 \end{cases}\), obtemos \(c_3 = 1, c_2 = 1, c_1 = 1\). As coordenadas são <strong>\([\vec{v}]_B = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}\).</strong></p></div></details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> Monte a matriz de mudança de base da base B para a base A, \(P_{A \leftarrow B}\), colocando os vetores de B como colunas.
+                     <details><summary>Ver Resposta</summary><div class="answer">$$ P_{A \leftarrow B} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix} $$</div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Calcule a matriz inversa \(P_{B \leftarrow A} = (P_{A \leftarrow B})^{-1}\).
+                     <details><summary>Ver Resposta</summary><div class="answer"><p>A matriz inversa é <strong>\(P_{B \leftarrow A} = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}\).</strong></p></div></details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> Use a matriz \(P_{B \leftarrow A}\) para encontrar as coordenadas \([\vec{v}]_B\) a partir de \([\vec{v}]_A = \begin{pmatrix} 3 \\ 2 \\ 1 \end{pmatrix}\).
+                     <details><summary>Ver Resposta</summary><div class="answer"><p>\([\vec{v}]_B = P_{B \leftarrow A} \cdot [\vec{v}]_A = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} 3 \\ 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}\)</p></div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>e)</strong> Compare os resultados dos itens (a) e (d). O que isso nos diz?
+                     <details><summary>Ver Resposta</summary><div class="answer"><p>Os resultados são idênticos. Isso nos diz que multiplicar um vetor pela matriz de mudança de base inversa (\(P_{B \leftarrow A}\)) é um atalho que realiza o mesmo processo de resolver o sistema de equações para encontrar as novas coordenadas.</p></div></details>
+                </div>
+            </div>
+            
+            <!-- Questão 4 (Revisada) -->
+            <div class="question">
+                <div class="question-header">Questão 4 - Autovalores e Autovetores</div>
+                <p>Considere a matriz \(A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 3 \end{pmatrix}\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre o polinômio característico \(p(\lambda) = \det(A - \lambda I)\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            $$ A - \lambda I = \begin{pmatrix} 2-\lambda & 1 & 0 \\ 0 & 2-\lambda & 1 \\ 0 & 0 & 3-\lambda \end{pmatrix} $$
+                            <p>O determinante de uma matriz triangular é o produto de suas entradas na diagonal principal.</p>
+                            <p><strong>O polinômio característico é \(p(\lambda) = (2-\lambda)^2(3-\lambda)\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> Calcule os autovalores de A.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p>Os autovalores são as raízes do polinômio característico, ou seja, os valores de \(\lambda\) para os quais \(p(\lambda)=0\).</p>
+                             <p>\((2-\lambda)^2(3-\lambda) = 0\)</p>
+                             <p><strong>Os autovalores são \(\lambda = 2\) e \(\lambda = 3\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Para o **menor** autovalor encontrado, determine o autoespaço associado e apresente uma base para ele.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>O menor autovalor é \(\lambda = 2\). Resolvemos \((A - 2I)\vec{x} = \vec{0}\):</p>
+                            $$ \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} $$
+                            <p>Isso nos dá as equações: \(y=0\) e \(z=0\). A variável \(x\) é livre. O autovetor é da forma \(\vec{x} = (t, 0, 0) = t(1, 0, 0)\).</p>
+                            <p><strong>O autoespaço \(E_2\) é o conjunto de todos os múltiplos de \((1,0,0)\), e uma base para ele é \(\{(1,0,0)\}\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Para o **maior** autovalor encontrado, determine o autoespaço associado e apresente uma base para ele.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>O maior autovalor é \(\lambda = 3\). Resolvemos \((A - 3I)\vec{x} = \vec{0}\):</p>
+                             $$ \begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \\ 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} $$
+                             <p>O sistema \(\begin{cases} -x+y=0 \\ -y+z=0 \end{cases}\) implica \(x=y=z\). O autovetor é da forma \(\vec{x} = (t, t, t) = t(1, 1, 1)\).</p>
+                             <p><strong>Uma base para o autoespaço \(E_3\) é \(\{(1,1,1)\}\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>e)</strong> Escolha um autovetor \(\vec{v}\) não nulo associado ao **maior** autovalor e verifique que a relação \(A\vec{v} = \lambda\vec{v}\) é satisfeita.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Usaremos o autovetor \(\vec{v}=(1,1,1)\) da base de \(E_3\) e seu autovalor correspondente \(\lambda=3\).</p>
+                            <p>Lado esquerdo: \(A\vec{v}\)</p>
+                             $$ A\vec{v} = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 3 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2+1+0 \\ 0+2+1 \\ 0+0+3 \end{pmatrix} = \begin{pmatrix} 3 \\ 3 \\ 3 \end{pmatrix} $$
+                             <p>Lado direito: \(\lambda\vec{v}\)</p>
+                             $$ \lambda\vec{v} = 3\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 3 \\ 3 \end{pmatrix} $$
+                             <p>Como \(A\vec{v} = \lambda\vec{v}\), <strong>a verificação foi bem-sucedida.</strong></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Produto Vetorial</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 3.6: A Dimensão Oculta</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Produto Vetorial em R³</h3>
+        <p>Prepare-se para uma nova dimensão de interação. O <strong>Produto Vetorial</strong>, representado por \( \vec{u} \times \vec{v} \), é uma operação exclusiva do espaço 3D que pega dois vetores e retorna um <strong>novo vetor</strong>. Este vetor resultante tem duas propriedades mágicas: primeiro, ele é sempre <strong>ortogonal</strong> aos dois vetores que o criaram, o que é perfeito para encontrar a "normal" de uma superfície. Segundo, sua <strong>magnitude</strong> é igual à <strong>área</strong> do paralelogramo formado pelos vetores originais. Essa ferramenta é a chave para a iluminação 3D, a física de rotação e a construção da própria geometria do mundo do jogo.</p>
+        <p>A ordem da operação importa: \( \vec{u} \times \vec{v} \) aponta na direção oposta de \( \vec{v} \times \vec{u} \) (Regra da Mão Direita).</p>
+        <div class="formula">
+            \( \vec{u} \times \vec{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix} = (u_2v_3 - u_3v_2)\mathbf{i} - (u_1v_3 - u_3v_1)\mathbf{j} + (u_1v_2 - u_2v_1)\mathbf{k} \) <br>
+            Propriedade da Área: \( \|\vec{u} \times \vec{v}\| = \|\vec{u}\| \|\vec{v}\| \sin(\theta) \)
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>Criando um Novo Eixo de Jogo (Cálculo do Produto Vetorial)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar o cálculo do produto vetorial entre dois vetores em R³.
+            </div>
+            <p>Em um simulador espacial da <strong>Era 3D Inicial</strong>, os vetores de direção local de sua nave são "frente" \( \vec{u} = (2, 0, 1) \) e "direita" \( \vec{v} = (0, 3, 0) \). Para orientar corretamente a câmera, o jogo precisa calcular o vetor "cima" \( \vec{w} \), que é perpendicular a ambos. Calcule \( \vec{w} = \vec{u} \times \vec{v} \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Use a fórmula do determinante para calcular o produto vetorial. Lembre-se do padrão: para a componente <strong>i</strong>, use o determinante 2x2 das componentes y e z. Para <strong>j</strong>, use as de x e z (e inverta o sinal). Para <strong>k</strong>, use as de x e y.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte o determinante simbólico com \( \mathbf{i}, \mathbf{j}, \mathbf{k} \) na primeira linha, as componentes de \( \vec{u} \) na segunda e as de \( \vec{v} \) na terceira.</li>
+                    <li>Calcule a componente \( \mathbf{i} \): \( (0)(0) - (1)(3) \).</li>
+                    <li>Calcule a componente \( \mathbf{j} \): \( (2)(0) - (1)(0) \). Lembre-se de subtrair este termo.</li>
+                    <li>Calcule a componente \( \mathbf{k} \): \( (2)(3) - (0)(0) \).</li>
+                    <li>Combine os resultados para formar o vetor final \( \vec{w} \).</li>
+                </ol>
+                <div class="formula">\( \vec{w} = (u_y v_z - u_z v_y, u_z v_x - u_x v_z, u_x v_y - u_y v_x) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é o cálculo fundamental para criar um sistema de coordenadas local para qualquer objeto em 3D. A partir dos vetores "frente" e "direita", o motor do jogo pode sempre derivar o vetor "cima", garantindo que a orientação do objeto seja consistente.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>A Prova da Ortogonalidade (Propriedade de Ortogonalidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar, usando o produto escalar, que o resultado do produto vetorial é ortogonal aos vetores de entrada.
+            </div>
+            <p>Usando os vetores da missão anterior, \( \vec{u} = (2, 0, 1) \), \( \vec{v} = (0, 3, 0) \), e o vetor resultante \( \vec{w} \) que você calculou, prove matematicamente que \( \vec{w} \) é de fato ortogonal a \( \vec{u} \) e a \( \vec{v} \). (Faça os cálculos \( \vec{w} \cdot \vec{u} \) e \( \vec{w} \cdot \vec{v} \)).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Lembre-se da Fase 3.3: dois vetores são ortogonais se o produto escalar entre eles é zero. Você precisa fazer dois cálculos de produto escalar separados.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Pegue o vetor \( \vec{w} \) que você encontrou na Missão 1-A.</li>
+                    <li>Calcule o primeiro produto escalar: \( \vec{w} \cdot \vec{u} \). Some os produtos das componentes correspondentes. O resultado deve ser 0.</li>
+                    <li>Calcule o segundo produto escalar: \( \vec{w} \cdot \vec{v} \). O resultado também deve ser 0.</li>
+                    <li>Conclua que, como ambos os produtos escalares são zero, \( \vec{w} \) é ortogonal a \( \vec{u} \) e \( \vec{v} \).</li>
+                </ol>
+                <div class="formula">Verificar se \( (\vec{u} \times \vec{v}) \cdot \vec{u} = 0 \) e \( (\vec{u} \times \vec{v}) \cdot \vec{v} = 0 \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Os motores de jogo realizam essa verificação (ou confiam nela) constantemente. A iluminação 3D, por exemplo, depende do vetor normal (calculado via produto vetorial) ser verdadeiramente perpendicular à superfície para calcular como a luz reflete.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>A Área de Efeito Mágico (Magnitude do Produto Vetorial)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular a área de um paralelogramo usando a norma do produto vetorial.
+            </div>
+            <p>Uma magia de área afeta um campo de força no chão em forma de paralelogramo. O feitiço é lançado da origem e as duas arestas adjacentes do campo são definidas pelos vetores \( \vec{a} = (4, 1, 0) \) e \( \vec{b} = (1, 3, 0) \). Qual é a área exata de efeito da magia?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A área de um paralelogramo definido por dois vetores é igual à magnitude (norma) do produto vetorial entre eles. Primeiro, calcule \( \vec{c} = \vec{a} \times \vec{b} \), e depois calcule a norma \( \|\vec{c}\| \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto vetorial \( \vec{c} = \vec{a} \times \vec{b} \).</li>
+                    <li>O resultado será um vetor com componentes x, y e z.</li>
+                    <li>Calcule a norma do vetor \( \vec{c} \) usando a fórmula \( \|\vec{c}\| = \sqrt{c_x^2 + c_y^2 + c_z^2} \).</li>
+                    <li>O valor numérico da norma é a área do paralelogramo.</li>
+                </ol>
+                <div class="formula">Área = \( \|\vec{a} \times \vec{b}\| \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Embora não seja comum calcular áreas de efeito dessa forma (geralmente se usam círculos ou retângulos), essa propriedade é crucial na física de fluidos simulada, onde a magnitude do produto vetorial entre a velocidade do fluido e um vetor normal de superfície pode determinar a força de arrasto.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (MAIN MISSION) -->
+        <div class="mission">
+            <h3>O Normal da Superfície Triangular (Aplicação para Vetor Normal)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o produto vetorial para encontrar um vetor normal a uma face poligonal (triângulo) de um modelo 3D.
+            </div>
+            <p>Todos os modelos 3D em jogos são feitos de triângulos. Para a iluminação funcionar, cada triângulo precisa de um "vetor normal" que aponte para fora. Dados os três vértices de um triângulo, \( P=(1,0,0) \), \( Q=(0,1,0) \), e \( R=(0,0,1) \), encontre um vetor normal à sua superfície.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para encontrar um vetor normal a um triângulo, crie dois vetores de aresta a partir de um vértice comum (por exemplo, \( \vec{PQ} \) e \( \vec{PR} \)). O produto vetorial desses dois vetores de aresta será normal ao plano do triângulo.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escolha um vértice como ponto de partida, por exemplo, P.</li>
+                    <li>Crie o primeiro vetor de aresta: \( \vec{u} = \vec{Q} - \vec{P} \).</li>
+                    <li>Crie o segundo vetor de aresta: \( \vec{v} = \vec{R} - \vec{P} \).</li>
+                    <li>Calcule o produto vetorial \( \vec{n} = \vec{u} \times \vec{v} \). Este será um vetor normal à superfície do triângulo.</li>
+                </ol>
+                <div class="formula">\( \vec{n} = (\vec{Q}-\vec{P}) \times (\vec{R}-\vec{P}) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é um dos usos mais importantes do produto vetorial em computação gráfica. O cálculo do vetor normal para cada face de um modelo 3D é um passo essencial no pipeline de renderização, determinando como a luz interage com o objeto para criar sombras e destaques.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MAIN MISSION) -->
+        <div class="mission">
+            <h3>A Área do Portal Triangular (Área de Triângulo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Adaptar a fórmula da área do paralelogramo para calcular a área de um triângulo.
+            </div>
+            <p>Um portal mágico de formato triangular é definido por duas arestas que partem de um mesmo vértice. Essas arestas são representadas pelos vetores \( \vec{u} = (5, 0, 0) \) e \( \vec{v} = (0, 3, 4) \). Qual é a área exata da superfície do portal?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A área de um triângulo definido por dois vetores é exatamente metade da área do paralelogramo formado por eles. Calcule a norma do produto vetorial e divida o resultado por 2.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto vetorial \( \vec{c} = \vec{u} \times \vec{v} \).</li>
+                    <li>Calcule a norma do vetor resultante: \( \|\vec{c}\| \).</li>
+                    <li>A área do portal é \( \frac{1}{2} \|\vec{c}\| \).</li>
+                </ol>
+                <div class="formula">Área do Triângulo = \( \frac{1}{2} \|\vec{u} \times \vec{v}\| \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em simulações de física mais avançadas, calcular a área da superfície de um objeto (somando as áreas de todos os seus triângulos) é importante para determinar propriedades como resistência do ar ou pressão de fluidos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MAIN MISSION) -->
+        <div class="mission">
+            <h3>A Regra da Mão Direita (Propriedade Anticomutativa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Demonstrar que a ordem dos vetores no produto vetorial inverte a direção do resultado.
+            </div>
+            <p>A direção do vetor normal é crucial, pois ela define o "lado de fora" e o "lado de dentro" de uma face. Usando os vetores de base canônica \( \vec{u} = (1, 0, 0) \) (eixo x) e \( \vec{v} = (0, 1, 0) \) (eixo y), calcule \( \vec{u} \times \vec{v} \) e depois calcule \( \vec{v} \times \vec{u} \). O que você observa sobre os resultados?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Faça os dois cálculos de produto vetorial separadamente. Você deve descobrir que \( \vec{u} \times \vec{v} \) resulta em \( (0, 0, 1) \) (eixo z), enquanto \( \vec{v} \times \vec{u} \) resulta em \( (0, 0, -1) \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o primeiro produto vetorial: \( (1,0,0) \times (0,1,0) \).</li>
+                    <li>Calcule o segundo produto vetorial: \( (0,1,0) \times (1,0,0) \).</li>
+                    <li>Compare os dois vetores resultantes. Eles devem ser idênticos em magnitude, mas com sinais opostos em todas as componentes.</li>
+                </ol>
+                <div class="formula">\( \vec{u} \times \vec{v} = -(\vec{v} \times \vec{u}) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta propriedade é vital para o "back-face culling", uma otimização onde o motor de renderização não desenha os triângulos que estão de costas para a câmera. O jogo usa o produto vetorial para determinar a orientação da face e, se ela estiver "de costas", é simplesmente ignorada, economizando muito poder de processamento.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>A Base de Coordenadas da Câmera (Construção de Base Ortogonal)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o produto vetorial para criar um sistema de coordenadas local para um objeto do jogo.
+            </div>
+            <p>A câmera do seu jogo 3D aponta na direção "frente" \( \vec{f} = (0, 1, 1) \). Para saber como se mover para os lados, ela precisa de um vetor "direita" que seja perpendicular à direção "frente" e ao eixo "cima" do mundo, que é \( \vec{up}_{world} = (0, 1, 0) \). Depois, ela precisa de um vetor "cima" que seja perpendicular à nova "frente" e à nova "direita".<br> 1. Calcule o vetor "direita" real: \( \vec{d} = \vec{f} \times \vec{up}_{world} \).<br> 2. Calcule o vetor "cima" real: \( \vec{u} = \vec{d} \times \vec{f} \).<br>(Não se esqueça de normalizar os vetores se quiser usá-los para movimento).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Este é um processo de dois passos. Resolva o primeiro produto vetorial para encontrar o vetor \( \vec{d} \). Em seguida, use esse novo vetor \( \vec{d} \) e o vetor \( \vec{f} \) original no segundo cálculo de produto vetorial para encontrar \( \vec{u} \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule \( \vec{d} = (0, 1, 1) \times (0, 1, 0) \). O resultado será o vetor "direita".</li>
+                    <li>Pegue o vetor \( \vec{d} \) que você acabou de encontrar e o vetor original \( \vec{f} \).</li>
+                    <li>Calcule \( \vec{u} = \vec{d} \times \vec{f} \). O resultado será o vetor "cima" real, perfeitamente ortogonal aos outros dois.</li>
+                    <li>O conjunto \( \{ \vec{f}, \vec{d}, \vec{u} \} \) agora forma uma base ortogonal para a câmera.</li>
+                </ol>
+                <div class="formula">Processo de ortogonalização de Gram-Schmidt (simplificado).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este procedimento, conhecido como processo de ortogonalização de Gram-Schmidt (em uma versão simplificada), é usado para construir a matriz de visualização ("View Matrix") da câmera, que transforma as coordenadas de todos os objetos do mundo para o sistema de coordenadas da câmera antes de serem projetados na tela.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-B (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>A Força de Rotação (Torque)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o torque como o produto vetorial entre o vetor raio (braço de alavanca) e o vetor força.
+            </div>
+            <p>Em um jogo com física realista, você aplica uma força \( \vec{F} = (0, 0, -10) \) (empurrando para baixo) na maçaneta de uma porta de castelo. A maçaneta está localizada pelo vetor \( \vec{r} = (2, 0.5, 0) \) em relação ao eixo de rotação da porta (as dobradiças). Em física, o torque (a "força de rotação") é um vetor calculado por \( \vec{\tau} = \vec{r} \times \vec{F} \). Calcule o vetor torque, que dirá ao motor de física em qual eixo e com que intensidade a porta deve girar.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Aplique diretamente a fórmula do produto vetorial para \( \vec{r} \) e \( \vec{F} \). O vetor resultante \( \vec{\tau} \) apontará ao longo do eixo de rotação (neste caso, as dobradiças da porta).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte o determinante para calcular \( \vec{r} \times \vec{F} \), com as componentes de \( \vec{r} \) na segunda linha e as de \( \vec{F} \) na terceira.</li>
+                    <li>Calcule cada componente do vetor resultante.</li>
+                    <li>Interprete o resultado: a direção do vetor torque é o eixo de rotação, e sua magnitude é a intensidade da rotação.</li>
+                </ol>
+                <div class="formula">\( \vec{\tau} = \vec{r} \times \vec{F} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O produto vetorial é o coração da simulação de rotações em motores de física como Havok ou PhysX. Qualquer força que não seja aplicada no centro de massa de um objeto gera um torque que é calculado dessa forma para produzir uma rotação realista.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>O Volume da Zona de Efeito (Produto Misto)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o volume de um paralelepípedo usando o produto misto.
+            </div>
+            <p>Uma magia de "prisão de cristal" cria uma zona de efeito em forma de paralelepípedo a partir da posição do mago. As três arestas adjacentes da prisão são definidas pelos vetores \( \vec{a} = (3, 0, 0) \), \( \vec{b} = (1, 4, 0) \) e \( \vec{c} = (1, 1, 5) \). O volume dessa forma é dado pelo valor absoluto do produto misto, \( V = |(\vec{a} \times \vec{b}) \cdot \vec{c}| \). Calcule o volume da prisão.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, calcule o produto vetorial \( \vec{d} = \vec{a} \times \vec{b} \). Depois, pegue o vetor resultante \( \vec{d} \) e calcule seu produto escalar com o terceiro vetor, \( \vec{c} \). O valor absoluto do resultado é o volume.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto vetorial \( \vec{d} = \vec{a} \times \vec{b} \).</li>
+                    <li>O resultado será um vetor. Chame-o de \( \vec{d} \).</li>
+                    <li>Calcule o produto escalar \( \vec{d} \cdot \vec{c} \).</li>
+                    <li>O volume é o valor absoluto do escalar resultante.</li>
+                </ol>
+                <div class="formula">Volume = \( |(\vec{a} \times \vec{b}) \cdot \vec{c}| \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O produto misto não é tão comum quanto os outros, mas é usado em física avançada para detectar certos tipos de colisão e em geometria computacional para determinar a orientação ("winding order") de tetraedros em malhas volumétricas.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>Definindo a Arena Flutuante (Síntese: Equação do Plano)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a equação de um plano a partir de três pontos não colineares.
+            </div>
+            <p>Uma arena triangular flutuante é sustentada por três pilares cujos topos estão nas posições \( P=(1,2,5) \), \( Q=(4,2,7) \) e \( R=(3,5,8) \). Para a física do jogo, precisamos da equação geral do plano do chão da arena, que tem a forma \( ax + by + cz = d \). O vetor \( \vec{n}=(a,b,c) \) é o vetor normal ao plano. Determine a equação do plano.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro, encontre o vetor normal ao plano. Para isso, crie dois vetores de aresta no plano, como \( \vec{u} = \vec{Q} - \vec{P} \) e \( \vec{v} = \vec{R} - \vec{P} \).</li>
+                    <li>Calcule o vetor normal \( \vec{n} = \vec{u} \times \vec{v} \). As componentes deste vetor são os coeficientes \( a, b, c \) da equação do plano.</li>
+                    <li>Agora você tem a forma \( ax + by + cz = d \). Para encontrar \( d \), substitua as coordenadas de um dos pontos originais (P, Q ou R) na equação. Por exemplo, usando P: \( a(p_x) + b(p_y) + c(p_z) = d \).</li>
+                    <li>Resolva para \( d \) e escreva a equação final completa do plano.</li>
+                </ol>
+                <div class="formula">1. \( \vec{n} = (\vec{Q}-\vec{P}) \times (\vec{R}-\vec{P}) \)<br>2. \( d = \vec{n} \cdot \vec{P} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A equação do plano é fundamental para a detecção de colisão 3D. Quando um personagem se move, o jogo verifica se sua nova posição "cruzou" o plano do chão. É também usada para reflexões em superfícies planas (como um espelho) e para "prender" personagens ao chão em terrenos irregulares.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>Verificando se o Nível é Plano (Coplanaridade de Vetores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o produto misto para verificar se quatro pontos estão no mesmo plano.
+            </div>
+            <p>Um designer de níveis está tentando criar uma plataforma retangular e posicionou quatro suportes nos pontos \( A(1,1,1) \), \( B(2,3,2) \), \( C(4,2,2) \) e \( D(3,0,1) \). Se os quatro pontos não forem coplanares, a plataforma ficará "torta". Verifique se os pontos são coplanares.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Crie três vetores a partir de um ponto em comum, por exemplo, A: \( \vec{AB} = \vec{B}-\vec{A} \), \( \vec{AC} = \vec{C}-\vec{A} \), e \( \vec{AD} = \vec{D}-\vec{A} \).</li>
+                    <li>Se os quatro pontos forem coplanares, esses três vetores também serão.</li>
+                    <li>Três vetores são coplanares se o volume do paralelepípedo que eles formam for zero. Calcule o produto misto: \( (\vec{AB} \times \vec{AC}) \cdot \vec{AD} \).</li>
+                    <li>Se o resultado for zero, os pontos são coplanares. Caso contrário, não são.</li>
+                </ol>
+                <div class="formula">Coplanar se \( ((\vec{B}-\vec{A}) \times (\vec{C}-\vec{A})) \cdot (\vec{D}-\vec{A}) = 0 \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Ferramentas de modelagem 3D e editores de níveis usam esse teste para validar a geometria. Muitos motores de jogo só funcionam bem com geometria "planar" (quadriláteros e polígonos cujos vértices estão no mesmo plano), e essa verificação matemática garante que os modelos criados sejam válidos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Momento Angular do Asteroide (Momento Angular)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o momento angular de um objeto como o produto vetorial da sua posição e momento linear.
+            </div>
+            <p>Em uma simulação espacial, um pequeno asteroide está na posição \( \vec{r} = (8, 6, 0) \) em relação ao centro de um planeta. Ele se move com um momento linear \( \vec{p} = (0, 50, 0) \) (onde \( \vec{p} = \text{massa} \cdot \vec{v} \)). Em física, o momento angular \( \vec{L} \) é um vetor que descreve o estado de rotação do sistema e é calculado como \( \vec{L} = \vec{r} \times \vec{p} \). Calcule o vetor de momento angular do asteroide. A direção de \( \vec{L} \) é o eixo em torno do qual o asteroide está "orbitando" o planeta.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor posição \( \vec{r} \) e o vetor momento linear \( \vec{p} \).</li>
+                    <li>Aplique a fórmula do produto vetorial para calcular \( \vec{L} = \vec{r} \times \vec{p} \).</li>
+                    <li>Monte o determinante com \( \vec{r} \) na segunda linha e \( \vec{p} \) na terceira.</li>
+                    <li>Calcule as componentes do vetor resultante. Este vetor representa o eixo e a magnitude da "quantidade de rotação" do asteroide em torno do planeta.</li>
+                </ol>
+                <div class="formula">\( \vec{L} = \vec{r} \times \vec{p} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A conservação do momento angular é um princípio fundamental da física. Em simulações realistas, os motores de física garantem que \( \vec{L} \) permaneça constante na ausência de torques externos. Isso é o que faz patinadores girarem mais rápido ao encolher os braços e o que mantém planetas em suas órbitas.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

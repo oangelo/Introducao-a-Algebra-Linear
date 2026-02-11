@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+
+    <title>ÁLGEBRA ARCADE | A Regra de Cramer</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 2.4: A Chave Mestra de Cramer</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: A Regra de Cramer</h3>
+        <p>Você encontrou a Chave Mestra, jogador! A Regra de Cramer é uma fórmula elegante que usa determinantes para resolver diretamente sistemas de equações lineares \(Ax=b\). É como um código de trapaça que te dá a solução de um puzzle sem precisar resolver passo a passo.</p>
+        <p>Para um sistema de \(n\) equações com \(n\) variáveis, a solução para a variável \(x_i\) é a razão entre dois determinantes. O denominador é o determinante da matriz de coeficientes \(A\). O numerador é o determinante da matriz \(A_i\), que é a matriz \(A\) com a i-ésima coluna substituída pelo vetor de constantes \(b\).</p>
+        <p><strong>Aviso:</strong> A Chave Mestra só funciona se o sistema tiver uma fechadura única! Ou seja, \(\det(A) \neq 0\).</p>
+        <div class="formula">
+        $$ x_i = \frac{\det(A_i)}{\det(A)} $$
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1 (BÁSICO) -->
+        <div class="mission">
+            <h3>Alquimia 101 (Regra de Cramer para sistema 2x2)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a mecânica básica: calcular \(\det(A)\), \(\det(A_1)\), \(\det(A_2)\) e encontrar a solução.
+            </div>
+            <p>Um alquimista precisa de \(x_1\) litros de "Mana Líquida" e \(x_2\) gramas de "Pó de Estrela" para criar duas poções. As receitas formam o seguinte sistema de equações. Use a Regra de Cramer para descobrir as quantidades exatas de cada ingrediente.
+            $$ \begin{cases} 2x_1 + x_2 = 7 \\ 3x_1 - 2x_2 = 0 \end{cases} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você precisará calcular três determinantes: \(\det(A)\), \(\det(A_1)\) (onde a primeira coluna é substituída por \([7, 0]^T\)), e \(\det(A_2)\) (onde a segunda coluna é substituída).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a matriz de coeficientes \(A\) e o vetor de constantes \(b\).</li>
+                    <li>Calcule o determinante da matriz de coeficientes, \(\det(A)\). Verifique se é diferente de zero.</li>
+                    <li>Construa a matriz \(A_1\) substituindo a primeira coluna de \(A\) por \(b\). Calcule \(\det(A_1)\).</li>
+                    <li>Construa a matriz \(A_2\) substituindo a segunda coluna de \(A\) por \(b\). Calcule \(\det(A_2)\).</li>
+                    <li>Aplique a fórmula de Cramer: \(x_1 = \det(A_1)/\det(A)\) e \(x_2 = \det(A_2)/\det(A)\).</li>
+                </ol>
+                <div class="formula">$$ x_1 = \frac{\det(A_1)}{\det(A)}, \quad x_2 = \frac{\det(A_2)}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Sistemas de crafting em RPGs frequentemente envolvem resolver sistemas de equações para determinar as quantidades de recursos necessárias para produzir um conjunto de itens.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2 (BÁSICO) -->
+        <div class="mission">
+            <h3>Alinhamento de Canhões de Plasma (Regra de Cramer para sistema 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a fórmula de Cramer a um sistema 3x3 padrão, exigindo o cálculo de quatro determinantes.
+            </div>
+            <p>Para alinhar três canhões de plasma em um ponto de convergência, os níveis de energia \(x\), \(y\), e \(z\) devem satisfazer o sistema abaixo. Use a Regra de Cramer para encontrar os valores de energia.
+            $$ \begin{cases} x + 2y + z = 7 \\ 2x - y + z = 4 \\ x + y - 2z = -1 \end{cases} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O processo é o mesmo do 2x2, mas agora você precisa calcular quatro determinantes 3x3. Organize seus cálculos com cuidado!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz de coeficientes \(A\) e o vetor de constantes \(b\).</li>
+                    <li>Calcule \(\det(A)\). Se for não nulo, prossiga.</li>
+                    <li>Calcule \(\det(A_x)\), \(\det(A_y)\) e \(\det(A_z)\) substituindo a coluna correspondente por \(b\) em cada caso.</li>
+                    <li>Aplique a Regra de Cramer para encontrar \(x\), \(y\), e \(z\).</li>
+                </ol>
+                <div class="formula">$$ y = \frac{\det(A_y)}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Puzzles em jogos de ficção científica muitas vezes envolvem ajustar níveis de energia ou frequências em múltiplos painéis para satisfazer um conjunto de condições, um análogo direto a resolver um sistema de equações.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3 (BÁSICO) -->
+        <div class="mission">
+            <h3>Decodificando a Trajetória (Sistema 3x3 com zeros estratégicos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Reforçar o método em um sistema 3x3 onde o cálculo dos determinantes é simplificado pela presença de zeros.
+            </div>
+            <p>A trajetória de um projétil é dada por \(y = ax^2 + bx + c\). Para acertar um alvo, ela deve passar pelos pontos \((1, 2)\), \((-1, 6)\) e \((2, 9)\). Isso leva ao sistema abaixo para os coeficientes \(a, b, c\). Resolva-o usando a Regra de Cramer.
+            $$ \begin{cases} a + b + c = 2 \\ a - b + c = 6 \\ 4a + 2b + c = 9 \end{cases} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Antes de calcular os determinantes, você pode simplificar a matriz usando operações de linha (que não alteram o determinante) para criar zeros e facilitar os cálculos. Por exemplo, \(L_2 \leftarrow L_2 - L_1\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz \(A\) e o vetor \(b\).</li>
+                    <li>Calcule \(\det(A)\). Você pode usar expansão em cofatores ou redução por linhas.</li>
+                    <li>Monte \(A_a\), \(A_b\), e \(A_c\).</li>
+                    <li>Calcule os determinantes das matrizes modificadas. Note que a estrutura delas pode permitir cálculos mais rápidos.</li>
+                    <li>Use a Regra de Cramer para encontrar os coeficientes \(a\), \(b\), e \(c\).</li>
+                </ol>
+                <div class="formula">$$ c = \frac{\det(A_c)}{\det(A)} = \frac{\det\begin{pmatrix} 1 & 1 & 2 \\ 1 & -1 & 6 \\ 4 & 2 & 9 \end{pmatrix}}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A física de projéteis em muitos jogos (como artilharia ou arco e flecha) é baseada em equações parabólicas. Os programadores resolvem sistemas como este para garantir que o projétil siga a trajetória desejada.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Balanceamento de Equipe de RPG (Montagem do sistema + Cramer)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Traduzir um problema de palavras em um sistema de equações lineares e, em seguida, resolvê-lo com a Regra de Cramer.
+            </div>
+            <p>Você é um game designer balanceando 3 itens: um Amuleto (\(x\)), um Anel (\(y\)) e um Elmo (\(z\)). A combinação deles deve atender aos seguintes critérios de poder:
+            <ul>
+                <li>1 Amuleto e 1 Anel devem dar 5 de poder.</li>
+                <li>2 Anéis e 1 Elmo devem dar 4 de poder.</li>
+                <li>1 Amuleto e 2 Elmos devem dar 7 de poder.</li>
+            </ul>
+            Monte o sistema de equações e use a Regra de Cramer para encontrar o valor de poder de cada item.
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Traduza cada critério em uma equação. Por exemplo, "1 Amuleto e 1 Anel devem dar 5 de poder" se torna \(x + y = 5\). Cuidado com as variáveis ausentes (coeficiente zero).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Traduza as condições para um sistema linear: \(x+y=5\), \(2y+z=4\), \(x+2z=7\).</li>
+                    <li>Monte a matriz de coeficientes \(A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 2 & 1 \\ 1 & 0 & 2 \end{pmatrix}\) e o vetor \(b = \begin{pmatrix} 5 \\ 4 \\ 7 \end{pmatrix}\).</li>
+                    <li>Calcule \(\det(A)\) e verifique que é não nulo.</li>
+                    <li>Calcule \(\det(A_x)\), \(\det(A_y)\), e \(\det(A_z)\).</li>
+                    <li>Use a Regra de Cramer para encontrar os valores \(x\), \(y\), e \(z\).</li>
+                </ol>
+                <div class="formula">$$ A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 2 & 1 \\ 1 & 0 & 2 \end{pmatrix}, \quad b = \begin{pmatrix} 5 \\ 4 \\ 7 \end{pmatrix} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O balanceamento de jogos é uma arte complexa que frequentemente usa matemática para garantir que não existam estratégias ou itens excessivamente poderosos. Resolver sistemas lineares é uma ferramenta para ajustar os parâmetros do jogo.</p>
+            </details>
+        </div>
+
+
+	<!-- MISSÃO 5 (INTERMEDIÁRIO) - CORRIGIDA -->
+	<div class="mission">
+		<h3>O Puzzle Impossível (Falha da Regra de Cramer)</h3>
+		<div class="mission-objective">
+			<strong>Objetivo da Missão:</strong> Identificar um sistema onde a Regra de Cramer não pode ser aplicada e entender o porquê.
+		</div>
+		<p>Em uma sala de puzzle, você encontra um painel com 3 alavancas (\(x, y, z\)). Um diagrama antigo mostra as seguintes relações que as alavancas devem satisfazer para abrir a porta:
+		$$ \begin{cases} x + y + z = 3 \\ 2x - y + 5z = 6 \\ 2x + 2y + 2z = 7 \end{cases} $$
+		Explique por que a Regra de Cramer falha para este sistema.
+		</p>
+
+		<details class="hint-container">
+			<summary>Pedir Dica ao Mestre do Jogo...</summary>
+			<div class="hint">
+				<p>Qual é a condição fundamental para que a Regra de Cramer possa ser usada? Calcule o determinante da matriz de coeficientes primeiro. Observe a relação entre a primeira e a terceira linha da matriz.</p>
+			</div>
+		</details>
+
+		<details>
+			<summary>Ver Detonado...</summary>
+			<ol class="solution-steps">
+				<li>Monte a matriz de coeficientes \(A = \begin{pmatrix} 1 & 1 & 1 \\ 2 & -1 & 5 \\ 2 & 2 & 2 \end{pmatrix}\).</li>
+				<li>Calcule o determinante \(\det(A)\). Uma maneira rápida é notar que a terceira linha é o dobro da primeira (\(L_3 = 2L_1\)).</li>
+				<li>Uma propriedade dos determinantes afirma que se uma linha é múltipla de outra, o determinante é zero. Portanto, \(\det(A) = 0\).</li>
+				<li>A Regra de Cramer envolve uma divisão por \(\det(A)\). Como a divisão por zero é indefinida, a regra não pode ser aplicada. Isso significa que o sistema não tem uma solução única.</li>
+				<li>(Análise extra) O sistema é impossível. Da primeira equação, \(x+y+z=3\). Multiplicando por 2, temos \(2x+2y+2z=6\). A terceira equação afirma que \(2x+2y+2z=7\). Como \(6 \neq 7\), há uma contradição.</li>
+			</ol>
+			<div class="formula">$$ \det(A) = 0 \implies \text{Cramer não se aplica} $$</div>
+			<p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Um puzzle sem solução única pode ser um bug ou um elemento de história intencional. Matematicamente, \(\det(A)=0\) significa que as restrições do puzzle são ou redundantes (infinitas soluções) ou contraditórias (nenhuma solução), como neste caso.</p>
+		</details>
+	</div>
+
+        <!-- MISSÃO 6 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Navegação em Campo de Asteroides (Sistema 3x3 com coordenadas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver um sistema de equações para encontrar um ponto de encontro no espaço 3D.
+            </div>
+            <p>Sua nave precisa encontrar um ponto de encontro seguro \((x, y, z)\) em um campo de asteroides. O ponto deve satisfazer simultaneamente as equações de três sensores de navegação. Use a Regra de Cramer para encontrar as coordenadas do ponto seguro.
+            $$ \begin{cases} 2x - z = 4 \\ x + 3y + z = 5 \\ 5y - z = 1 \end{cases} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A presença de zeros na matriz de coeficientes tornará os cálculos dos determinantes mais rápidos. Escolha expandir por colunas ou linhas com zeros!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz de coeficientes \(A\) e o vetor de constantes \(b\). Note os zeros nas posições (1,2) e (3,1).</li>
+                    <li>Calcule \(\det(A)\).</li>
+                    <li>Construa e calcule \(\det(A_x)\), \(\det(A_y)\) e \(\det(A_z)\).</li>
+                    <li>Use a fórmula de Cramer para encontrar as coordenadas \(x, y, z\).</li>
+                </ol>
+                <div class="formula">$$ x = \frac{\det(A_x)}{\det(A)}, \quad y = \frac{\det(A_y)}{\det(A)}, \quad z = \frac{\det(A_z)}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A navegação em espaços 3D complexos, especialmente para I.A., muitas vezes requer a resolução de sistemas de equações para encontrar trajetórias ótimas ou pontos de interesse que satisfaçam múltiplas restrições.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 7 (AVANÇADO) -->
+        <div class="mission">
+            <h3>A Fórmula Universal da Forja (Sistema com Parâmetros)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a Regra de Cramer para resolver um sistema cuja solução será expressa em termos de um parâmetro `k`.
+            </div>
+            <p>A receita para uma armadura lendária requer \(x\) unidades de "Aço Valiriano" e \(y\) unidades de "Couro de Dragão". As quantidades dependem de um bônus de nível \(k\), conforme o sistema abaixo. Use a Regra de Cramer para encontrar a fórmula para a quantidade \(x\) de Aço Valiriano em função de \(k\).
+            $$ \begin{cases} kx + y = 2 \\ x + ky = 3 \end{cases} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Trate \(k\) como uma constante. Os determinantes que você calcular serão polinômios na variável \(k\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz de coeficientes \(A = \begin{pmatrix} k & 1 \\ 1 & k \end{pmatrix}\) e o vetor \(b = \begin{pmatrix} 2 \\ 3 \end{pmatrix}\).</li>
+                    <li>Calcule \(\det(A)\) em função de \(k\).</li>
+                    <li>Construa a matriz \(A_x = \begin{pmatrix} 2 & 1 \\ 3 & k \end{pmatrix}\).</li>
+                    <li>Calcule \(\det(A_x)\) em função de \(k\).</li>
+                    <li>Aplique a fórmula de Cramer para encontrar \(x\): \(x = \det(A_x) / \det(A)\). A resposta será uma expressão racional em \(k\).</li>
+                </ol>
+                <div class="formula">$$ x(k) = \frac{\det \begin{pmatrix} 2 & 1 \\ 3 & k \end{pmatrix}}{\det \begin{pmatrix} k & 1 \\ 1 & k \end{pmatrix}} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos com sistemas de progressão, as fórmulas para dano, vida, etc., são frequentemente funções de nível do personagem. A Regra de Cramer é uma ferramenta teórica para derivar essas fórmulas em sistemas lineares.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 8 (AVANÇADO) -->
+        <div class="mission">
+            <h3>Ponto de Impacto (Interpretação Geométrica)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a Regra de Cramer para encontrar o ponto de interseção de três planos no espaço.
+            </div>
+            <p>Três feixes de laser são disparados em um laboratório. Cada feixe pode ser descrito pela equação de um plano. Para ativar um artefato, você precisa encontrar o ponto de impacto exato \((x, y, z)\) onde os três feixes se cruzam. Calcule este ponto usando a Regra de Cramer.
+            $$ \text{Plano 1: } x + y = 1 $$
+            $$ \text{Plano 2: } y + z = 1 $$
+            $$ \text{Plano 3: } x + z = 1 $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Transforme as equações dos planos em um sistema linear 3x3. Note a simetria do sistema; isso pode dar uma pista sobre a solução.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Converta as equações dos planos em uma matriz de coeficientes \(A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}\) e um vetor de constantes \(b = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}\).</li>
+                    <li>Calcule \(\det(A)\).</li>
+                    <li>Calcule \(\det(A_x)\), \(\det(A_y)\) e \(\det(A_z)\).</li>
+                    <li>Aplique a Regra de Cramer para encontrar as coordenadas do ponto de interseção.</li>
+                </ol>
+                <div class="formula">$$ Ax=b $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A detecção de colisão (ray tracing, por exemplo) e os cálculos de linha de visão em 3D envolvem encontrar interseções de retas e planos, problemas que são fundamentalmente resolvidos com sistemas de equações lineares.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 9 (AVANÇADO) -->
+        <div class="mission">
+            <h3>Código de Acesso Parcial (Encontrando uma Única Variável)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a Regra de Cramer para encontrar eficientemente apenas uma das variáveis de um sistema 3x3, sem resolver o sistema completo.
+            </div>
+            <p>Para desativar um sistema de segurança, você só precisa do terceiro dígito (\(z\)) de um código de 3 partes. O código satisfaz o sistema de equações abaixo. Use a Regra de Cramer para encontrar apenas o valor de \(z\) da forma mais rápida possível.
+            $$ \begin{cases} 5x + y - z = 4 \\ 9x + y - z = 1 \\ x - y + 5z = 2 \end{cases} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você não precisa calcular \(\det(A_x)\) ou \(\det(A_y)\). Foque apenas nos dois determinantes necessários para encontrar \(z\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique que para encontrar \(z\), a fórmula é \(z = \det(A_z) / \det(A)\).</li>
+                    <li>Monte a matriz de coeficientes \(A\) e calcule seu determinante \(\det(A)\).</li>
+                    <li>Monte a matriz \(A_z\) substituindo a terceira coluna de \(A\) pelo vetor de constantes \([4, 1, 2]^T\).</li>
+                    <li>Calcule o determinante \(\det(A_z)\).</li>
+                    <li>Calcule a razão para encontrar \(z\).</li>
+                </ol>
+                <div class="formula">$$ z = \frac{\det(A_z)}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em muitos puzzles e quests, você não precisa da solução completa, apenas de uma parte específica dela. A Regra de Cramer é ideal para essas situações, economizando cálculos desnecessários, análogo a um speedrunner otimizando cada movimento.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 10 (BOSS) -->
+        <div class="mission">
+            <h3>Hackeando o Reator Principal (Aplicando Cramer a um sistema 4x4)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar uma única variável em um sistema 4x4, demonstrando a utilidade de Cramer quando a solução completa não é necessária.
+            </div>
+            <p>Para estabilizar o reator de uma nave, você precisa determinar o fluxo de energia para o quarto conduíte, \(x_4\). A física do reator é descrita pelo sistema 4x4 abaixo. Encontre o valor de \(x_4\) usando a Regra de Cramer.
+            $$ \begin{cases} x_1 + x_3 = 3 \\ x_2 - x_4 = -2 \\ 2x_1 + x_2 = 4 \\ x_3 + 2x_4 = 1 \end{cases} $$
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz de coeficientes \(A\) (4x4) e o vetor de constantes \(b\). A presença de muitos zeros facilitará os cálculos.</li>
+                    <li>Calcule o determinante de \(A\). Use expansão em cofatores de forma estratégica.</li>
+                    <li>Construa a matriz \(A_4\) substituindo a quarta coluna de \(A\) pelo vetor \(b\).</li>
+                    <li>Calcule o determinante de \(A_4\). Novamente, use os zeros a seu favor.</li>
+                    <li>Aplique a fórmula de Cramer: \(x_4 = \det(A_4) / \det(A)\).</li>
+                </ol>
+                <div class="formula">$$ x_4 = \frac{\det(A_4)}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em simulações complexas (economia, física, ecossistemas), os modelos podem ter centenas de variáveis. Muitas vezes, um designer só precisa ajustar ou monitorar uma única variável, tornando métodos como Cramer conceitualmente úteis.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 11 (BOSS) -->
+        <div class="mission">
+            <h3>A Matriz Inversa Secreta (Conexão entre Cramer e a Matriz Inversa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a lógica da Regra de Cramer para deduzir a fórmula de uma entrada específica da matriz inversa (\((A^{-1})_{ij}\)).
+            </div>
+            <p>Um "cheat code" encontrado nos arquivos do jogo revela que a entrada na linha \(i\), coluna \(j\) da matriz inversa, \((A^{-1})_{ij}\), pode ser calculada como \(\frac{C_{ji}}{\det(A)}\), onde \(C_{ji}\) é o cofator (\(j,i\)) da matriz \(A\). Use a Regra de Cramer para explicar por que esta fórmula secreta está correta.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Lembre-se que a \(j\)-ésima coluna da matriz inversa \(A^{-1}\) é o vetor solução \(x\) para o sistema \(Ax = e_j\), onde \(e_j\) é o \(j\)-ésimo vetor da base canônica (um 1 na posição \(j\) e zeros no resto).</li>
+                    <li>Para encontrar a entrada \((A^{-1})_{ij}\), precisamos do \(i\)-ésimo componente da solução \(x\), ou seja, \(x_i\).</li>
+                    <li>Use a Regra de Cramer para encontrar \(x_i\): \(x_i = \det(A_i) / \det(A)\), onde \(A_i\) é a matriz \(A\) com a \(i\)-ésima coluna substituída por \(e_j\).</li>
+                    <li>Agora, calcule \(\det(A_i)\). A maneira mais fácil é expandir o determinante ao longo da \(i\)-ésima coluna (que é \(e_j\)). O único termo não-nulo da expansão será o elemento '1' na posição \((j,i)\) da matriz \(A_i\).</li>
+                    <li>O termo da expansão é \(1 \cdot (-1)^{j+i} \det(M_{ji})\), que é exatamente a definição do cofator \(C_{ji}\) da matriz original \(A\).</li>
+                    <li>Portanto, \(\det(A_i) = C_{ji}\). Substituindo na Regra de Cramer, obtemos \(x_i = C_{ji} / \det(A)\), o que prova a fórmula.</li>
+                </ol>
+                <div class="formula">$$ (A^{-1})_{ij} = x_i = \frac{\det(A_i)}{\det(A)} = \frac{C_{ji}}{\det(A)} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> "Easter eggs" e segredos em jogos são, por vezes, manifestações de verdades matemáticas ou lógicas profundas do sistema do jogo. Esta missão mostra como uma fórmula aparentemente arbitrária é, na verdade, uma consequência direta da estrutura matemática subjacente.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 12 (BOSS) -->
+        <div class="mission">
+            <h3>Paradoxo do Multiverso (Análise de Sistemas Singulares)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Analisar um sistema onde \(\det(A)=0\) e \(\det(A_i)=0\) e interpretar o que isso significa (infinitas soluções/nenhuma solução).
+            </div>
+            <p>Um puzzle de portal interdimensional é descrito por um sistema \(Ax=b\) cujo determinante \(\det(A)\) é zero. Isso cria um paradoxo: o sistema pode ter infinitas soluções (portais sobrepostos) ou nenhuma solução (universos paralelos). A Regra de Cramer falha, mas os determinantes \(\det(A_i)\) ainda dão uma pista. Como você pode usá-los para distinguir entre os dois casos?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro, confirmamos que \(\det(A)=0\). A Regra de Cramer não pode ser usada para encontrar uma solução única.</li>
+                    <li>A fórmula de Cramer é \(x_i \cdot \det(A) = \det(A_i)\). Se \(\det(A)=0\), a equação se torna \(0 = \det(A_i)\).</li>
+                    <li>**Caso 1: Nenhuma Solução (Universos Paralelos).** Se existir pelo menos um \(i\) para o qual \(\det(A_i) \neq 0\), a equação se torna \(0 = \text{(algo não-zero)}\), o que é uma contradição. Portanto, o sistema é inconsistente e não tem solução.</li>
+                    <li>**Caso 2: Infinitas Soluções (Portais Sobrepostos).** Se \(\det(A_i) = 0\) para *todos* os \(i\), a equação se torna \(0=0\). Isso não gera contradição. O sistema é consistente, mas dependente. Isso indica que existem infinitas soluções.</li>
+                    <li>Em resumo: se \(\det(A)=0\), o sistema tem solução(ões) se, e somente se, \(\det(A_i)=0\) para todo \(i\).</li>
+                </ol>
+                <div class="formula">$$ \det(A)=0: \begin{cases} \text{Algum } \det(A_i) \neq 0 & \implies \text{Nenhuma Solução} \\ \text{Todo } \det(A_i) = 0 & \implies \text{Infinitas Soluções} \end{cases} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta análise é crucial para a geração procedural de conteúdo. Ao gerar um puzzle, a engine pode verificar estas condições para garantir que o puzzle tenha uma solução (ou, intencionalmente, que não tenha). Isso evita a criação de níveis quebrados ou impossíveis de resolver.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

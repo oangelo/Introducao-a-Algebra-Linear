@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Álgebra Linear: [TÍTULO DA FASE]</title>
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game-theme.css" />
+    <!-- Scripts para Reveal.js e MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="background-grid"></div>
+      <div class="ghost"></div>
+      <div class="ghost"></div>
+
+      <div class="slides">
+        <!-- =========================== -->
+        <!-- SLIDE DE TÍTULO DA FASE -->
+        <!-- =========================== -->
+        <section>
+          <h1>Fase X: [Título da Fase]</h1>
+          <h3>[Subtítulo temático da fase]</h3>
+          <p class="press-start">Pressione Enter para começar</p>
+        </section>
+
+        <!-- =========================== -->
+        <!-- SLIDES DE LORE (DIVIDIDOS)-->
+        <!-- =========================== -->
+        <section>
+            <!-- Slide de Lore 1: Dev Log -->
+            <section>
+                <h2>Lore da Fase: Dev Log</h2>
+                <div class="lore-section">
+                    <div class="lore-label">DEV LOG</div>
+                    <p><strong>Desenvolvedor Original: [Nome do Matemático] (Ano)</strong></p>
+                    <p>
+                    Descrição do contexto da "mecânica" do jogo. Apresente o matemático como o "programador" original que descobriu/criou esta regra fundamental.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide de Lore 2: A Mecânica -->
+            <section>
+                <h2>Lore da Fase: A Mecânica</h2>
+                <div class="lore-section">
+                    <div class="lore-label">A MECÂNICA</div>
+                    <p><strong>Desafio do Jogo</strong></p>
+                    <p>
+                    Explicação de qual "problema de design" no jogo (ou seja, que tipo de problema matemático) esta nova mecânica veio para resolver.
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- QUEST: [NOME DO TÓPICO] (Estrutura Vertical) -->
+        <!-- ============================================== -->
+        <section>
+          <!-- Slide: Mecânica Principal (Conceito) -->
+          <section>
+            <h2>Mecânica: [Nome do Conceito]</h2>
+            <div class="math-section">
+              <p>Definição formal da mecânica:</p>
+              <p>\[\text{Fórmula matemática}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Como esta habilidade ou ferramenta funciona?
+            </p>
+          </section>
+
+          <!-- Slide: Demo da Habilidade (Visualização) -->
+          <section>
+            <h2>Demo: [Nome do Conceito]</h2>
+            <canvas id="conceptVisualization" class="visualization-canvas" width="700" height="400"></canvas>
+            <div class="controls-container">
+              <label for="parameter1">Parâmetro:</label>
+              <input type="range" id="parameter1" min="1" max="100" value="50" oninput="updateDemo()" />
+              <button class="control-button" onclick="resetDemo()">Reset</button>
+            </div>
+          </section>
+
+          <!-- Slide: Regra Especial (Teorema) -->
+          <section>
+            <h2>Regra Especial: [Nome do Teorema]</h2>
+            <div class="math-section">
+              <p>Propriedade ou teorema que funciona como um "power-up":</p>
+              <p>\[\text{Teorema ou propriedade}\]</p>
+            </div>
+          </section>
+
+          <!-- Slide: Desafio (Fácil) -->
+          <section>
+            <h2>Desafio: Quest de Treinamento</h2>
+            <div class="problem-section">
+              <h4>🎯 Quest de Treinamento (Fácil)</h4>
+              <p>Descrição de um problema direto que aplica a definição.</p>
+            </div>
+          </section>
+
+          <!-- Slide: Guia de Estratégia (Fácil) -->
+          <section>
+            <h2>Guia: Estratégia (Fácil)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Quest de Treinamento:</h4>
+              <ol>
+                <li>Passo 1: Identifique a ferramenta necessária.</li>
+                <li>Passo 2: Aplique a fórmula [Nome da Fórmula] diretamente.</li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- Slide: Desafio (Médio) -->
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Descrição de um problema que combina o conceito com outros já vistos.</p>
+            </div>
+          </section>
+
+          <!-- Slide: Guia de Estratégia (Médio) -->
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>Passo 1: Desconstrua o problema em partes menores.</li>
+                <li>Passo 2: Use [Conceito A] para resolver a primeira parte.</li>
+                <li>Passo 3: Use [Conceito B] com o resultado anterior.</li>
+              </ol>
+            </div>
+          </section>
+          
+          <!-- Slide: Desafio (Avançado/Complexo) -->
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Descrição de um problema mais abstrato ou com uma aplicação mais complexa.</p>
+            </div>
+          </section>
+
+          <!-- Slide: Guia de Estratégia (Avançado/Complexo) -->
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+               <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Passo 1: Pense no significado geométrico/abstrato do problema.</li>
+                <li>Passo 2: Formule uma hipótese usando o Teorema X.</li>
+              </ol>
+            </div>
+          </section>
+          
+          <!-- Slide: Recompensa (Síntese) -->
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Parabéns, jogador!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Conceito 1</li>
+                    <li>Teorema 2</li>
+                </ul>
+            </div>
+            <p>Você agora pode usar essas ferramentas para enfrentar desafios mais complexos!</p>
+          </section>
+        </section>
+
+        <!-- Slide Final: Easter Egg -->
+        <section>
+            <h2>Easter Egg: Aplicações</h2>
+            <div class="lore-section">
+                <div class="lore-label">EASTER EGG</div>
+                <p><strong>Onde a Álgebra Linear é o "Motor do Jogo" no Mundo Real</strong></p>
+                <p>
+                    Descrição de como os conceitos vistos são a base para tecnologias como computação gráfica 3D, machine learning, etc.
+                </p>
+            </div>
+            <div class="math-section">
+                <p>Exemplos de aplicação:</p>
+                <ul>
+                    <li>Rotação de câmera em jogos 3D (Transformações Matriciais)</li>
+                    <li>Algoritmo PageRank do Google (Autovetores)</li>
+                </ul>
+            </div>
+        </section>
+      </div>
+    </div>
+    
+    <script>
+      // Inicialização do Reveal.js
+      window.onload = function () {
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          center: true,
+          hash: true,
+          plugins: [RevealMath.MathJax3],
+          width: '90%',
+          height: '100%',
+          margin: 0.02,
+          minScale: 0.45,
+          maxScale: 1.5,
+          transition: 'fade',
+        });
+      };
+      
+      let demoCanvas, demoCtx, demoParam = 50, animationFrameId = null;
+      function initDemo() { if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; } demoCanvas = document.getElementById('conceptVisualization'); if (!demoCanvas) return; demoCtx = demoCanvas.getContext('2d'); drawDemo(); }
+      function drawDemo() { if (!demoCtx) return; demoCtx.clearRect(0, 0, demoCanvas.width, demoCanvas.height); const playerSize = 20; const x = (demoCanvas.width - playerSize) * (demoParam / 100); const y = demoCanvas.height / 2 - playerSize / 2; demoCtx.fillStyle = '#FFFF00'; demoCtx.fillRect(x, y, playerSize, playerSize); demoCtx.fillStyle = '#00FFFF'; demoCtx.fillRect(demoCanvas.width - 40, y, playerSize, playerSize); }
+      window.updateDemo = function () { const slider = document.getElementById('parameter1'); if (slider) { demoParam = slider.value; drawDemo(); } };
+      window.resetDemo = function () { demoParam = 50; const slider = document.getElementById('parameter1'); if (slider) { slider.value = 50; } drawDemo(); };
+      function cleanupDemo() { if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; } }
+      Reveal.on('slidechanged', event => { cleanupDemo(); if (event.currentSlide.querySelector('#conceptVisualization')) { initDemo(); } });
+    </script>
+  </body>
+</html>

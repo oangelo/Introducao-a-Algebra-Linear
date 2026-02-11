@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Independência Linear</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 5.3: Personagens Únicos</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Independência Linear</h3>
+        <p>Em um time de heróis, você quer que cada um tenha um papel único. Se a habilidade de um herói puder ser perfeitamente replicada combinando as habilidades de outros, ele é redundante. Em Álgebra Linear, essa ideia de "não redundância" é chamada de <strong>Independência Linear (LI)</strong>.</p>
+        <p>Um conjunto de vetores é <strong>Linearmente Independente (LI)</strong> se a única maneira de combiná-los para chegar na origem (\(\vec{0}\)) é não usar nenhum deles. Se houver outra forma, o conjunto é <strong>Linearmente Dependente (LD)</strong>, o que significa que pelo menos um vetor é uma combinação dos outros.</p>
+        <div class="formula">
+            <strong>O Teste de Independência:</strong>
+            <p>Para um conjunto \(\{\vec{v_1}, ..., \vec{v_n}\}\), resolva a equação \(c_1\vec{v_1} + c_2\vec{v_2} + \dots + c_n\vec{v_n} = \vec{0}\).</p>
+            <ul>
+                <li>Se a <strong>única solução</strong> for \(c_1=c_2=\dots=c_n=0\) (a solução trivial), o conjunto é <strong>LI</strong>.</li>
+                <li>Se existirem <strong>outras soluções</strong>, o conjunto é <strong>LD</strong>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>Habilidades Redundantes (Dependência Linear por Múltiplo Escalar)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar visualmente e algebricamente vetores colineares como Linearmente Dependentes (LD).
+            </div>
+            <p>Um personagem tem duas habilidades de movimento: "Investida Rápida" \(\vec{u}=(2,3)\) e "Investida Poderosa" \(\vec{v}=(4,6)\). Mostre que essas habilidades são redundantes, ou seja, que o conjunto \(\{\vec{u}, \vec{v}\}\) é Linearmente Dependente.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Um vetor é múltiplo do outro? Se você consegue escrever \(\vec{v} = k\vec{u}\) para algum escalar \(k\), então eles são LD. Você pode reescrever essa equação para ter a forma \(c_1\vec{u} + c_2\vec{v} = \vec{0}\)?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Observe que \(\vec{v}\) é exatamente o dobro de \(\vec{u}\), ou seja, \(\vec{v} = 2\vec{u}\).</li>
+                    <li>Reorganize a equação para a forma do teste de independência: \(2\vec{u} - \vec{v} = \vec{0}\).</li>
+                    <li>Esta é uma combinação linear que resulta no vetor nulo onde os coeficientes (\(c_1=2, c_2=-1\)) não são todos zero.</li>
+                    <li>Como existe uma solução não trivial, o conjunto é Linearmente Dependente.</li>
+                </ol>
+                <div class="formula">Definição de LD: Existe uma solução não trivial para \(c_1\vec{u} + c_2\vec{v} = \vec{0}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Ter duas habilidades que apontam na mesma direção, mas com forças diferentes, é uma redundância de design. O jogador poderia simplesmente usar a habilidade mais fraca duas vezes para obter o mesmo efeito da mais forte. Em termos de mecânica, elas não são fundamentalmente diferentes.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>O Esquadrão Equilibrado (Independência Linear em R²)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar a independência de dois vetores não colineares.
+            </div>
+            <p>Dois heróis formam um time. O primeiro ataca na horizontal, \(\vec{u}=(1,0)\). O segundo ataca na diagonal, \(\vec{v}=(1,1)\). Seus ataques são fundamentalmente diferentes? Prove que o conjunto \(\{\vec{u}, \vec{v}\}\) é Linearmente Independente.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Configure a equação \(c_1(1,0) + c_2(1,1) = (0,0)\). Isso gera um pequeno sistema de duas equações. Se a única solução for \(c_1=0\) e \(c_2=0\), eles são LI.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a equação vetorial: \(c_1\begin{pmatrix}1\\0\end{pmatrix} + c_2\begin{pmatrix}1\\1\end{pmatrix} = \begin{pmatrix}0\\0\end{pmatrix}\).</li>
+                    <li>Converta a equação em um sistema de equações lineares: \(c_1 + c_2 = 0\) (para a primeira componente) e \(0 \cdot c_1 + c_2 = 0\) (para a segunda).</li>
+                    <li>Resolva o sistema. A segunda equação nos dá \(c_2=0\). Substituindo na primeira, obtemos \(c_1=0\).</li>
+                    <li>Como a única solução é a trivial (\(c_1=0, c_2=0\)), o conjunto é Linearmente Independente.</li>
+                </ol>
+                <div class="formula">Teste: \(c_1\vec{u} + c_2\vec{v} = \vec{0} \implies c_1=0, c_2=0?\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Estes dois heróis formam uma boa equipe. Como seus ataques são LI, eles podem cobrir todo o campo de batalha 2D (qualquer vetor em \(\mathbb{R}^2\) pode ser escrito como uma combinação de seus ataques). Nenhum ataque é um desperdício.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>Excesso de Heróis (Conjunto LD com mais vetores que a dimensão)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a regra de que \(n+1\) vetores em \(\mathbb{R}^n\) são sempre LD.
+            </div>
+            <p>Uma equipe de 3 heróis opera em um mapa 2D. Seus vetores de movimento são \(\vec{v_1}=(1,2)\), \(\vec{v_2}=(-1,1)\) e \(\vec{v_3}=(2,1)\). Sem fazer nenhum cálculo, você pode garantir que os movimentos deles são redundantes (ou seja, que o conjunto é Linearmente Dependente)? Por quê?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Quantas "direções fundamentais" (dimensões) o mundo do jogo tem? Quantos heróis você tem? O que acontece quando você tem mais vetores do que dimensões?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o espaço em que os vetores vivem: \(\mathbb{R}^2\), que tem dimensão 2.</li>
+                    <li>Conte o número de vetores no conjunto: 3.</li>
+                    <li>Aplique o teorema: Qualquer conjunto com mais vetores do que a dimensão do espaço é, obrigatoriamente, Linearmente Dependente.</li>
+                    <li>A razão é que o sistema \(A\vec{c}=\vec{0}\) terá 2 equações (dimensão) e 3 variáveis (vetores). Um sistema homogêneo com mais variáveis do que equações sempre terá variáveis livres e, portanto, infinitas soluções não triviais.</li>
+                </ol>
+                <div class="formula">Regra: Em \(\mathbb{R}^n\), qualquer conjunto com \(m > n\) vetores é LD.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em um jogo 2D, você só precisa de dois movimentos independentes (como "cima/baixo" e "esquerda/direita") para chegar a qualquer lugar. Qualquer terceiro tipo de movimento (como uma "diagonal") pode sempre ser recriado combinando os dois primeiros. A equipe tem excesso de capacidades de movimento.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-A (PRINCIPAL) -->
+        <div class="mission">
+            <h3>O Trio de Ataque (Teste de LI via Sistema Homogêneo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Montar e analisar o sistema \(A\vec{c}=\vec{0}\) para três vetores em \(\mathbb{R}^3\).
+            </div>
+            <p>Três magos lançam feitiços representados pelos vetores \(\vec{v_1}=(1,2,3)\), \(\vec{v_2}=(0,1,2)\) e \(\vec{v_3}=(2,0,1)\). Determine se algum feitiço pode ser replicado combinando os outros dois, ou seja, se o conjunto é Linearmente Dependente ou Independente. Use o método do sistema homogêneo.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Construa uma matriz \(A\) onde as colunas são os vetores \(\vec{v_1}, \vec{v_2}, \vec{v_3}\). Resolva o sistema \(A\vec{c}=\vec{0}\) usando escalonamento. Se a única solução for \(\vec{c}=(0,0,0)\), eles são LI.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada para o sistema \(A\vec{c}=\vec{0}\): \(\begin{pmatrix} 1 & 0 & 2 & | & 0 \\ 2 & 1 & 0 & | & 0 \\ 3 & 2 & 1 & | & 0 \end{pmatrix}\).</li>
+                    <li>Aplique operações de linha (escalonamento) para reduzir a matriz à sua forma escalonada.</li>
+                    <li>Analise a forma escalonada. Se houver um pivô em cada coluna, não há variáveis livres, e a única solução é a trivial (\(c_1=c_2=c_3=0\)).</li>
+                    <li>Se a única solução for a trivial, conclua que o conjunto de vetores é Linearmente Independente.</li>
+                </ol>
+                <div class="formula">Forma Matricial: \(A\vec{c}=\vec{0}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é o método universal para testar a sinergia de um time. Se os vetores de "efeito" de 3 personagens são LI, significa que eles cobrem o "espaço de efeitos" 3D de forma eficiente, e a combinação de seus poderes pode criar resultados únicos e complexos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (PRINCIPAL) -->
+        <div class="mission">
+            <h3>O Cheat Code do Determinante (Teste de LI para matrizes quadradas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o determinante como um atalho para verificar a independência de 3 vetores em \(\mathbb{R}^3\).
+            </div>
+            <p>Considere o mesmo trio de magos da missão anterior, com os feitiços \(\vec{v_1}=(1,2,3)\), \(\vec{v_2}=(0,1,2)\) e \(\vec{v_3}=(2,0,1)\). Agora, use o "cheat code" do determinante para verificar se o conjunto é LI ou LD.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Forme uma matriz quadrada com os vetores como colunas e calcule seu determinante. O que um determinante não-nulo lhe diz sobre a independência linear?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Construa a matriz \(A\) com os vetores como colunas: \(A = \begin{pmatrix} 1 & 0 & 2 \\ 2 & 1 & 0 \\ 3 & 2 & 1 \end{pmatrix}\).</li>
+                    <li>Calcule o determinante de \(A\). (ex: usando a Regra de Sarrus ou expansão de cofatores).</li>
+                    <li>Se \(\det(A) \neq 0\), o sistema \(A\vec{c}=\vec{0}\) tem apenas a solução trivial, e os vetores são Linearmente Independentes.</li>
+                    <li>Se \(\det(A) = 0\), o sistema tem infinitas soluções, e os vetores são Linearmente Dependentes.</li>
+                </ol>
+                <div class="formula">\(\det(A) \neq 0 \iff \text{Colunas são LI}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O determinante é como um "medidor de sinergia" instantâneo. Se for zero, o time tem poderes redundantes; se não for zero, seus poderes são únicos e combinam-se de forma eficiente. É uma ferramenta de diagnóstico rápido para game designers.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (PRINCIPAL) -->
+        <div class="mission">
+            <h3>O Batedor e o Tanque (Teste de LI para matrizes não-quadradas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Forçar o uso do sistema homogêneo quando o atalho do determinante não se aplica.
+            </div>
+            <p>Um time em um mundo 3D é composto por um "Batedor" ágil, com vetor de movimento \(\vec{u}=(1, -1, 0)\), e um "Tanque" robusto, com vetor \(\vec{v}=(0, 1, 5)\). Seus movimentos são Linearmente Independentes?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Você não pode usar o determinante aqui porque a matriz formada pelos vetores não seria quadrada. Volte ao método fundamental: resolva \(c_1\vec{u} + c_2\vec{v} = \vec{0}\).</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a equação vetorial: \(c_1\begin{pmatrix}1\\-1\\0\end{pmatrix} + c_2\begin{pmatrix}0\\1\\5\end{pmatrix} = \begin{pmatrix}0\\0\\0\end{pmatrix}\).</li>
+                    <li>Converta em um sistema de 3 equações e 2 variáveis: \(c_1=0\), \(-c_1+c_2=0\), e \(5c_2=0\).</li>
+                    <li>Resolva o sistema. A primeira equação já informa que \(c_1=0\). A terceira informa que \(c_2=0\). A segunda equação (\(0+0=0\)) é consistente.</li>
+                    <li>Como a única solução é \(c_1=0, c_2=0\), os vetores são Linearmente Independentes.</li>
+                </ol>
+                <div class="formula">Atalho do Determinante: Apenas para Matrizes Quadradas!</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Apenas dois heróis em um mundo 3D não conseguem "cobrir" todo o espaço com seus movimentos (eles geram um plano). No entanto, seus movimentos são únicos e não redundantes, a menos que sejam colineares, o que não é o caso aqui.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE) -->
+        <div class="mission">
+            <h3>O Inventário dos Artefatos (Independência Linear em Matrizes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Abstrair o teste de LI para um espaço de matrizes.
+            </div>
+            <p>Três artefatos concedem bônus de status, representados pelas matrizes:
+            \(M_1=\begin{pmatrix}1&0\\0&1\end{pmatrix}\), \(M_2=\begin{pmatrix}0&1\\1&0\end{pmatrix}\), \(M_3=\begin{pmatrix}1&1\\1&1\end{pmatrix}\).
+            Um dos artefatos é redundante? Verifique se o conjunto \(\{M_1, M_2, M_3\}\) é Linearmente Dependente.</p>
+
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Tente encontrar uma combinação visual. \(M_3\) parece ser uma soma de \(M_1\) e \(M_2\). Se você confirmar isso, terá encontrado uma relação de dependência.</p>
+            </details>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a equação de teste: \(c_1M_1 + c_2M_2 + c_3M_3 = \begin{pmatrix}0&0\\0&0\end{pmatrix}\).</li>
+                    <li>Por inspeção (ou resolvendo o sistema de 4 equações), note que \(M_1 + M_2 = M_3\).</li>
+                    <li>Reorganize a equação para a forma padrão: \(1 \cdot M_1 + 1 \cdot M_2 - 1 \cdot M_3 = \begin{pmatrix}0&0\\0&0\end{pmatrix}\).</li>
+                    <li>Encontramos uma combinação linear que resulta na matriz nula com coeficientes não-nulos (\(c_1=1, c_2=1, c_3=-1\)).</li>
+                    <li>Portanto, o conjunto é Linearmente Dependente. O terceiro artefato é redundante.</li>
+                </ol>
+                <div class="formula">Teste: \(c_1M_1 + c_2M_2 + c_3M_3 = \mathbf{0}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Game designers precisam balancear itens. Se o efeito de um item "lendário" pode ser perfeitamente replicado combinando dois itens "raros", o item lendário perde seu valor e o sistema de itens fica desequilibrado.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (ELITE) -->
+        <div class="mission">
+            <h3>A Biblioteca de Feitiços (Independência Linear em Polinômios)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o teste de LI a polinômios, conectando à unicidade dos coeficientes.
+            </div>
+            <p>Um sistema de magia é construído a partir de três feitiços base, representados pelos polinômios em \(P_2\): \(p_1(t)=1\), \(p_2(t)=t\), e \(p_3(t)=t^2\). Mostre que esses feitiços base são Linearmente Independentes.</p>
+
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Configure a equação \(c_1 \cdot 1 + c_2 \cdot t + c_3 \cdot t^2 = 0\). Lembre-se que um polinômio é igual a zero para *todos os valores de t* se, e somente se, todos os seus coeficientes são zero.</p>
+            </details>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a equação de teste: \(c_1 + c_2t + c_3t^2 = 0\), onde o lado direito é o polinômio nulo.</li>
+                    <li>O princípio fundamental da identidade de polinômios afirma que se um polinômio é zero para todos os valores da variável, então todos os seus coeficientes devem ser zero.</li>
+                    <li>Isso nos leva diretamente à conclusão de que \(c_1=0\), \(c_2=0\) e \(c_3=0\).</li>
+                    <li>Como a única solução é a trivial, o conjunto \(\{1, t, t^2\}\) é Linearmente Independente.</li>
+                </ol>
+                <div class="formula">\(at^2+bt+c=0 \forall t \iff a=b=c=0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Estes polinômios formam a "base canônica" para as curvas de segundo grau. Sua independência linear garante que qualquer trajetória parabólica de um projétil pode ser descrita de forma única por uma combinação desses três "efeitos" base (uma componente constante, uma linear e uma quadrática).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (ELITE) -->
+        <div class="mission">
+            <h3>O Feitiço Composto (Dependência Linear em Polinômios)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar uma relação de dependência entre um conjunto de polinômios.
+            </div>
+            <p>Um mago descobriu três pergaminhos de feitiços: \(p_1(t) = t+1\), \(p_2(t) = t^2\), e \(p_3(t) = t^2+t+1\). Ele suspeita que um dos feitiços é apenas uma combinação dos outros. Prove que o conjunto \(\{p_1, p_2, p_3\}\) é Linearmente Dependente.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Observe os polinômios. O terceiro feitiço parece familiar? Tente somar os dois primeiros.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Por inspeção, podemos ver que \(p_1(t) + p_2(t) = (t+1) + (t^2) = t^2+t+1 = p_3(t)\).</li>
+                    <li>Reorganize esta equação para a forma do teste de independência: \(1 \cdot p_1(t) + 1 \cdot p_2(t) - 1 \cdot p_3(t) = 0\).</li>
+                    <li>Encontramos uma combinação linear dos polinômios que resulta no polinômio nulo, com coeficientes não-nulos (\(c_1=1, c_2=1, c_3=-1\)).</li>
+                    <li>Portanto, o conjunto é Linearmente Dependente.</li>
+                </ol>
+                <div class="formula">Relação de dependência: \(p_3 = p_1 + p_2\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é um exemplo de um feitiço "composto" que não traz nenhuma nova funcionalidade. Em jogos de criação (crafting), descobrir que um item raro é apenas a soma de dois itens comuns torna a receita de criação menos valiosa.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Recruta Inútil (O Vetor Nulo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar que qualquer conjunto contendo o vetor nulo é instantaneamente Linearmente Dependente.
+            </div>
+            <p>Um esquadrão de heróis é formado pelos vetores de poder \(\{\vec{v_1}, \vec{v_2}, ..., \vec{v_k}\}\). Um novo recruta se junta ao time, mas seu vetor de poder é \(\vec{0}\). Prove que o novo conjunto \(\{\vec{v_1}, \vec{v_2}, ..., \vec{v_k}, \vec{0}\}\) é sempre Linearmente Dependente, não importa quão poderosos sejam os outros heróis.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Considere a equação do teste de independência para o novo conjunto: \(c_1\vec{v_1} + c_2\vec{v_2} + \dots + c_k\vec{v_k} + c_{k+1}\vec{0} = \vec{0}\).</li>
+                    <li>Nosso objetivo é encontrar uma solução onde nem todos os coeficientes são zero.</li>
+                    <li>Podemos escolher \(c_1=0, c_2=0, \dots, c_k=0\). Isso zera a contribuição de todos os heróis originais.</li>
+                    <li>Agora, podemos escolher qualquer valor não-nulo para o coeficiente do vetor nulo. Por exemplo, escolha \(c_{k+1}=1\).</li>
+                    <li>A equação se torna \(0\vec{v_1} + \dots + 0\vec{v_k} + 1\vec{0} = \vec{0}\), que se simplifica para \(\vec{0} = \vec{0}\).</li>
+                    <li>Encontramos uma solução (\(c_1=\dots=c_k=0, c_{k+1}=1\)) que não é a solução trivial. Portanto, o conjunto é sempre Linearmente Dependente.</li>
+                </ol>
+                <div class="formula">Chave do Puzzle: \(1 \cdot \vec{0} = \vec{0}\) é uma combinação linear não trivial.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Um personagem com "poder zero" não adiciona nada de novo ao time e, matematicamente, torna as capacidades do grupo "dependentes". Ele pode ser "simulado" não fazendo nada, o que é uma forma de redundância.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Modificador Instável (LI com parâmetro desconhecido)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o determinante para encontrar o valor de um parâmetro que torna um conjunto de vetores Linearmente Dependente.
+            </div>
+            <p>Os vetores de poder de um trio de magos dependem de um "modificador de energia" \(k\). Os vetores são: \(\vec{v_1}=(1,0,k)\), \(\vec{v_2}=(0,1,1)\), e \(\vec{v_3}=(k,1,0)\). Para qual(is) valor(es) de \(k\) os poderes do trio se tornam redundantes (Linearmente Dependentes)?</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>O conjunto de três vetores em \(\mathbb{R}^3\) é Linearmente Dependente se, e somente se, o determinante da matriz formada por eles for igual a zero.</li>
+                    <li>Monte a matriz \(A = \begin{pmatrix} 1 & 0 & k \\ 0 & 1 & 1 \\ k & 1 & 0 \end{pmatrix}\).</li>
+                    <li>Calcule o determinante de \(A\) em termos de \(k\). Usando a expansão de cofatores na primeira linha, por exemplo: \(\det(A) = 1(0-1) - 0(\dots) + k(0-k) = -1 - k^2\).</li>
+                    <li>Para que os vetores sejam LD, devemos ter \(\det(A)=0\). Portanto, resolva a equação \(-1 - k^2 = 0\).</li>
+                    <li>A equação \(k^2 = -1\) não tem soluções no conjunto dos números reais.</li>
+                    <li>Conclusão: Não existe nenhum valor real de \(k\) para o qual os vetores sejam Linearmente Dependentes. Eles são Linearmente Independentes para todo \(k \in \mathbb{R}\).</li>
+                </ol>
+                <div class="formula">Condição para LD: \(\det(A) = 0\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é um exemplo de balanceamento de jogo. O designer precisa garantir que, independentemente do nível de "energia" (\(k\)), as habilidades dos personagens permaneçam únicas e não se sobreponham de forma a quebrar o jogo. Aqui, o design é robusto, pois as habilidades nunca se tornam redundantes.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Sinergia da Equipe (Prova conceitual de LI)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Provar uma propriedade de independência linear sem usar números específicos.
+            </div>
+            <p>Suponha que as habilidades de dois personagens, \(\vec{u}\) e \(\vec{v}\), são Linearmente Independentes. Para criar sinergia, um desenvolvedor cria duas novas habilidades de equipe: "Ataque Combinado" (\(\vec{u}+\vec{v}\)) e "Manobra de Flanco" (\(\vec{u}-\vec{v}\)). Prove que essas novas habilidades de equipe também são Linearmente Independentes.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Para provar que \(\{\vec{u}+\vec{v}, \vec{u}-\vec{v}\}\) é LI, devemos mostrar que a única solução para \(c_1(\vec{u}+\vec{v}) + c_2(\vec{u}-\vec{v}) = \vec{0}\) é \(c_1=0, c_2=0\).</li>
+                    <li>Distribua os escalares: \(c_1\vec{u} + c_1\vec{v} + c_2\vec{u} - c_2\vec{v} = \vec{0}\).</li>
+                    <li>Reagrupe os termos com \(\vec{u}\) e \(\vec{v}\): \( (c_1+c_2)\vec{u} + (c_1-c_2)\vec{v} = \vec{0} \).</li>
+                    <li>Sabemos por hipótese que \(\{\vec{u}, \vec{v}\}\) é um conjunto Linearmente Independente. Isso significa que, por definição, seus coeficientes na equação acima devem ser zero.</li>
+                    <li>Isso nos dá um sistema de equações para \(c_1\) e \(c_2\): \(c_1+c_2=0\) e \(c_1-c_2=0\).</li>
+                    <li>Resolvendo este sistema (por exemplo, somando as duas equações), encontramos que a única solução é \(c_1=0\) e \(c_2=0\).</li>
+                    <li>Como a única solução é a trivial, o conjunto \(\{\vec{u}+\vec{v}, \vec{u}-\vec{v}\}\) é Linearmente Independente.</li>
+                </ol>
+                <div class="formula">Ponto de partida: \(c_1(\vec{u}+\vec{v}) + c_2(\vec{u}-\vec{v}) = \vec{0}\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso prova que se você começar com habilidades únicas, combiná-las de formas aditivas/subtrativas preserva essa unicidade. É uma garantia matemática de que criar "habilidades de sinergia" a partir de um conjunto bem projetado de habilidades base não introduzirá redundâncias no sistema de combate.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

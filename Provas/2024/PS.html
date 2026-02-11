@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Álgebra Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #333;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 1.5rem;
+        }
+        .math-block {
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        details {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Questão 1</h2>
+    <p>Encontre uma base do espaço nulo de \(A\).</p>
+    <div class="math-block">
+        \[A = \begin{bmatrix} 
+        1 & 4 & 5 & 2 \\ 
+        2 & 1 & 3 & 0 \\ 
+        -1 & 3 & 2 & 2 
+        \end{bmatrix}\]
+    </div>
+    <details>
+        <summary>Solução</summary>
+	<p>
+Considere a matriz:
+$$A = \begin{bmatrix}
+1 & 4 & 5 & 2 \\
+2 & 1 & 3 & 0 \\
+-1 & 3 & 2 & 2
+\end{bmatrix}.$$
+
+Faremos o escalonamento usando "L" para representar linha:
+
+1. \( L_2 \leftarrow L_2 - 2L_1 \):
+\[
+\begin{bmatrix}
+1 & 4 & 5 & 2 \\
+0 & -7 & -7 & -4 \\
+-1 & 3 & 2 & 2
+\end{bmatrix}
+\]
+
+2. \( L_3 \leftarrow L_3 + L_1 \):
+\[
+\begin{bmatrix}
+1 & 4 & 5 & 2 \\
+0 & -7 & -7 & -4 \\
+0 & 7 & 7 & 4
+\end{bmatrix}
+\]
+
+3. \( L_3 \leftarrow L_3 + L_2 \):
+\[
+\begin{bmatrix}
+1 & 4 & 5 & 2 \\
+0 & -7 & -7 & -4 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\]
+
+4. Dividindo a segunda linha por \(-7\):
+\[
+\begin{bmatrix}
+1 & 4 & 5 & 2 \\
+0 & 1 & 1 & \frac{4}{7} \\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+\]
+
+A matriz resultante leva ao seguinte sistema de equações:
+\[
+\begin{cases}
+x_1 + 4x_2 + 5x_3 + 2x_4 = 0 \\[6pt]
+x_2 + x_3 + \frac{4}{7}x_4 = 0
+\end{cases}
+\]
+
+Da segunda equação, podemos expressar \(x_2\) em função das variáveis livres \(x_3\) e \(x_4\):
+\[
+x_2 = -x_3 - \frac{4}{7}x_4.
+\]
+
+Substituindo essa expressão na primeira equação:
+\[
+x_1 + 4(-x_3 - \tfrac{4}{7}x_4) + 5x_3 + 2x_4 = 0.
+\]
+
+Isto simplifica para:
+\[
+x_1 -4x_3 - \tfrac{16}{7}x_4 + 5x_3 + 2x_4 = x_1 + x_3 - \tfrac{2}{7}x_4 = 0.
+\]
+
+Portanto:
+\[
+x_1 = -x_3 + \tfrac{2}{7}x_4.
+\]
+
+Agora, tome \(x_3 = s\) e \(x_4 = t\) como variáveis livres. Assim:
+\[
+x_1 = -s + \tfrac{2}{7}t, \quad x_2 = -s - \tfrac{4}{7}t, \quad x_3 = s, \quad x_4 = t.
+\]
+
+Agrupando em função de \(s\) e \(t\):
+\[
+\begin{bmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{bmatrix} 
+= s\begin{bmatrix}-1 \\ -1 \\ 1 \\ 0\end{bmatrix} 
++ t\begin{bmatrix}\tfrac{2}{7} \\ -\tfrac{4}{7} \\ 0 \\ 1\end{bmatrix}.
+\]
+
+Multiplicando a segunda base por 7 para evitar frações (uma operação permitida, pois não altera o espaço gerado):
+\[
+= s\begin{bmatrix}-1 \\ -1 \\ 1 \\ 0\end{bmatrix}
++ u\begin{bmatrix}2 \\ -4 \\ 0 \\ 7\end{bmatrix}, \text{ onde } u = \tfrac{t}{1}.
+\]
+
+Portanto, uma base para o espaço nulo de \(A\) é:
+\[
+\{(-1, -1, 1, 0), (2, -4, 0, 7)\}.
+\]
+
+Estes vetores formam a base do espaço nulo, pois qualquer solução do sistema homogêneo pode ser escrita como uma combinação linear deles.
+	</p>
+    </details>
+
+    <h2>Questão 2</h2>
+    <p>Encontre bases dos seguintes subespaços de \(\mathbb{R}^3\).</p>
+    
+    <h3>(a)</h3>
+    <p>O plano \(3x - 2y + 5z = 0\).</p>
+    <h3>(b)</h3>
+    <p>O plano \(x - y = 0\).</p>
+    <h3>(c)</h3>
+    <p>A reta \(x = 2t\), \(y = -t\), \(z = 4t\).</p>
+    <h3>(d)</h3>
+    <p>Todos os vetores da forma \((a, b, c)\) com \(b = a + c\).</p>
+    <details>
+        <summary>Solução</summary>
+	<p>
+Para cada subespaço, precisamos encontrar um conjunto de vetores linearmente independentes que o gerem.
+
+### (a) 
+O plano é dado por 
+$$3x - 2y + 5z = 0.$$
+
+Podemos escolher, por exemplo, \(y\) e \(z\) como variáveis livres. Assim, a partir da equação:
+\[
+3x = 2y - 5z \implies x = \frac{2}{3}y - \frac{5}{3}z.
+\]
+
+Definindo \(y = s\) e \(z = t\), obtemos:
+\[
+(x,y,z) = \left(\frac{2}{3}s - \frac{5}{3}t, s, t\right) = s\left(\frac{2}{3}, 1, 0\right) + t\left(-\frac{5}{3}, 0, 1\right).
+\]
+
+Para evitar frações, multiplicamos por 3:
+\[
+(x,y,z) = s(2,3,0) + t(-5,0,3).
+\]
+
+Uma base para o plano é, portanto:
+\[
+\{(2,3,0), (-5,0,3)\}.
+\]
+
+### (b)
+O plano é dado por 
+$$x - y = 0 \implies x = y.$$
+
+Podemos parametrizar \(x = y = s\) e deixar \(z\) livre como \(t\):
+\[
+(x,y,z) = (s,s,t) = s(1,1,0) + t(0,0,1).
+\]
+
+Assim, uma base é:
+\[
+\{(1,1,0), (0,0,1)\}.
+\]
+
+### (c)
+A reta é dada por:
+\[
+x = 2t, \quad y = -t, \quad z = 4t.
+\]
+
+Podemos escrever:
+\[
+(x,y,z) = t(2,-1,4).
+\]
+
+Uma base para a reta é:
+\[
+\{(2,-1,4)\}.
+\]
+
+### (d)
+Temos todos os vetores \((a,b,c)\) tais que \(b = a + c\).
+
+Substituindo \(b\):
+\[
+(a,b,c) = (a,a+c,c).
+\]
+
+Podemos parametrizar por \(a\) e \(c\):
+\[
+(a,b,c) = a(1,1,0) + c(0,1,1).
+\]
+
+Uma base é, portanto:
+\[
+\{(1,1,0), (0,1,1)\}.
+\]
+
+Resumindo:
+
+- (a) Base: \(\{(2,3,0), (-5,0,3)\}\).
+- (b) Base: \(\{(1,1,0), (0,0,1)\}\).
+- (c) Base: \(\{(2,-1,4)\}\).
+- (d) Base: \(\{(1,1,0), (0,1,1)\}\).
+</p>
+
+    </details>
+
+    <h2>Questão 3</h2>
+    <p>Encontre a inversa de</p>
+    <div class="math-block">
+        \[A = \begin{bmatrix} 
+        1 & 2 & 3 \\ 
+        2 & 5 & 3 \\ 
+        1 & 0 & 8 
+        \end{bmatrix}\]
+    </div>
+    <details>
+        <summary>Solução</summary>
+	<p>
+Vamos encontrar a inversa da matriz
+$$
+A = \begin{bmatrix}
+1 & 2 & 3 \\
+2 & 5 & 3 \\
+1 & 0 & 8
+\end{bmatrix}.
+$$
+
+Começamos com a matriz estendida \((A|I)\):
+\[
+\left[\begin{array}{ccc|ccc}
+1 & 2 & 3 & 1 & 0 & 0 \\
+2 & 5 & 3 & 0 & 1 & 0 \\
+1 & 0 & 8 & 0 & 0 & 1
+\end{array}\right].
+\]
+
+**Passo 1:** Use \(L_1\) como pivô para eliminar abaixo dele na primeira coluna.
+
+- \(L_2 \leftarrow L_2 - 2L_1\):
+\[
+L_2: (2 - 2\cdot1, \; 5 - 2\cdot2, \; 3 - 2\cdot3 \;|\; 0 - 2\cdot1, \;1 - 2\cdot0, \;0 - 2\cdot0)
+= (0, 1, -3 | -2, 1, 0).
+\]
+
+- \(L_3 \leftarrow L_3 - L_1\):
+\[
+L_3: (1-1, \;0-2, \;8-3 \;|\; 0-1, \;0-0, \;1-0)
+= (0, -2, 5 | -1, 0, 1).
+\]
+
+A matriz agora é:
+\[
+\left[\begin{array}{ccc|ccc}
+1 & 2 & 3 & 1 & 0 & 0 \\
+0 & 1 & -3 & -2 & 1 & 0 \\
+0 & -2 & 5 & -1 & 0 & 1
+\end{array}\right].
+\]
+
+**Passo 2:** Use \(L_2\) como pivô para eliminar em \(L_3\).
+
+- \(L_3 \leftarrow L_3 + 2L_2\):
+\[
+L_3: (0, -2 + 2\cdot1, 5 + 2\cdot(-3) \;|\; -1 + 2\cdot(-2), 0 + 2\cdot1, 1 + 2\cdot0)
+= (0, 0, -1 | -5, 2, 1).
+\]
+
+Agora temos:
+\[
+\left[\begin{array}{ccc|ccc}
+1 & 2 & 3 & 1 & 0 & 0 \\
+0 & 1 & -3 & -2 & 1 & 0 \\
+0 & 0 & -1 & -5 & 2 & 1
+\end{array}\right].
+\]
+
+**Passo 3:** Faça o pivô da terceira linha ser 1.
+
+- \(L_3 \leftarrow -L_3\):
+\[
+(0, 0, 1 | 5, -2, -1).
+\]
+
+\[
+\left[\begin{array}{ccc|ccc}
+1 & 2 & 3 & 1 & 0 & 0 \\
+0 & 1 & -3 & -2 & 1 & 0 \\
+0 & 0 & 1 & 5 & -2 & -1
+\end{array}\right].
+\]
+
+**Passo 4:** Elimine a terceira variável das linhas 1 e 2.
+
+- \(L_2 \leftarrow L_2 + 3L_3\):
+\[
+L_2: (0,1,-3 | -2,1,0) + 3(0,0,1 | 5,-2,-1) 
+= (0,1,0 | -2+15, 1+(-6), 0+(-3))
+= (0,1,0 | 13,-5,-3).
+\]
+
+- \(L_1 \leftarrow L_1 - 3L_3\):
+\[
+L_1: (1,2,3 | 1,0,0) - 3(0,0,1 | 5,-2,-1) 
+= (1,2,0 | 1-15, 0+6, 0+3)
+= (1,2,0 | -14,6,3).
+\]
+
+A matriz agora é:
+\[
+\left[\begin{array}{ccc|ccc}
+1 & 2 & 0 & -14 & 6 & 3 \\
+0 & 1 & 0 & 13 & -5 & -3 \\
+0 & 0 & 1 & 5 & -2 & -1
+\end{array}\right].
+\]
+
+**Passo 5:** Elimine a segunda variável da primeira linha.
+
+- \(L_1 \leftarrow L_1 - 2L_2\):
+\[
+L_1: (1,2,0|-14,6,3) - 2(0,1,0|13,-5,-3) 
+= (1,0,0 | -14-26, 6+10, 3+6)
+= (1,0,0 | -40,16,9).
+\]
+
+Agora a matriz está na forma:
+\[
+\left[\begin{array}{ccc|ccc}
+1 & 0 & 0 & -40 & 16 & 9 \\
+0 & 1 & 0 & 13 & -5 & -3 \\
+0 & 0 & 1 & 5 & -2 & -1
+\end{array}\right].
+\]
+
+A parte da direita é a matriz inversa:
+\[
+A^{-1} = \begin{bmatrix}
+-40 & 16 & 9 \\
+13 & -5 & -3 \\
+5 & -2 & -1
+\end{bmatrix}.
+\]
+
+Logo, a inversa de \(A\) é:
+$$
+A^{-1} = \begin{bmatrix}
+-40 & 16 & 9 \\
+13 & -5 & -3 \\
+5 & -2 & -1
+\end{bmatrix}.
+$$
+</p>
+
+    </details>
+
+    <h2>Questão 4</h2>
+    <p>Encontre bases dos autoespaços de</p>
+    <div class="math-block">
+        \[A = \begin{bmatrix} 
+        0 & 0 & -2 \\ 
+        1 & 2 & 1 \\ 
+        1 & 0 & 3 
+        \end{bmatrix}\]
+    </div>
+    <details>
+        <summary>Solução</summary>
+	<p>
+Primeiro, precisamos encontrar os autovalores da matriz
+$$
+A = \begin{bmatrix}
+0 & 0 & -2 \\
+1 & 2 & 1 \\
+1 & 0 & 3
+\end{bmatrix}.
+$$
+
+**Passo 1: Encontrar os autovalores**
+
+Determinamos o polinômio característico de \(A\):
+\[
+\det(A - \lambda I) = \begin{vmatrix}
+-\lambda & 0 & -2 \\
+1 & 2-\lambda & 1 \\
+1 & 0 & 3-\lambda 
+\end{vmatrix}.
+\]
+
+Expanda pelo primeiro elemento da primeira linha:
+\[
+-\lambda \begin{vmatrix}
+2-\lambda & 1 \\
+0 & 3-\lambda
+\end{vmatrix}
+- 0 + (-2)\begin{vmatrix}
+1 & 2-\lambda \\
+1 & 0
+\end{vmatrix}.
+\]
+
+Cálculo do primeiro determinante:
+\[
+(2-\lambda)(3-\lambda) - (1 \cdot 0) = (2-\lambda)(3-\lambda) = 6 -5\lambda + \lambda^2.
+\]
+
+Então a parte correspondente a \(-\lambda\) é:
+\[
+-\lambda( \lambda^2 -5\lambda +6 ).
+\]
+
+Para o segundo determinante:
+\[
+\begin{vmatrix}
+1 & 2-\lambda \\
+1 & 0
+\end{vmatrix} = 1 \cdot 0 - (2-\lambda)\cdot1 = \lambda - 2.
+\]
+
+Logo, o polinômio característico é:
+\[
+-\lambda(\lambda^2 - 5\lambda +6) -2(\lambda - 2).
+\]
+
+Fatoramos \(\lambda^2 - 5\lambda +6\):
+\[
+\lambda^2 - 5\lambda + 6 = (\lambda - 2)(\lambda - 3).
+\]
+
+Assim:
+\[
+-\lambda(\lambda - 2)(\lambda - 3) - 2(\lambda - 2).
+\]
+
+Fatora-se \((\lambda - 2)\):
+\[
+(\lambda - 2)( -\lambda(\lambda - 3) - 2 ) = (\lambda - 2)( -\lambda^2 +3\lambda -2 ).
+\]
+
+Testando \(\lambda = 1\), substituímos no polinômio original e verificamos que \(\lambda = 1\) é raiz. Assim, reorganizando, encontramos as raízes \(\lambda = 1\) e \(\lambda = 2\), sendo que \(\lambda = 2\) aparece com multiplicidade 2.
+
+Portanto, os autovalores são:
+\[
+\lambda_1 = 1, \quad \lambda_2 = 2 \text{ (com multiplicidade 2)}.
+\]
+
+**Passo 2: Encontrar os autovetores de \(\lambda = 1\)**
+
+Resolva \((A - I)x = 0\):
+\[
+A - I = \begin{bmatrix}
+-1 & 0 & -2 \\
+1 & 1 & 1 \\
+1 & 0 & 2
+\end{bmatrix}.
+\]
+
+Fazendo escalonamento:
+1. Use a primeira linha para eliminar abaixo:
+   - \(L_2 \leftarrow L_2 + L_1\): 
+   \[
+   L_2: (1+(-1), 1+0, 1+(-2)) = (0,1,-1).
+   \]
+
+   - \(L_3 \leftarrow L_3 + L_1\):
+   \[
+   L_3: (1+(-1), 0+0, 2+(-2)) = (0,0,0).
+   \]
+
+Agora temos:
+\[
+\begin{bmatrix}
+-1 & 0 & -2 \\
+0 & 1 & -1 \\
+0 & 0 & 0
+\end{bmatrix}.
+\]
+
+Do sistema:
+\[
+- x_1 - 2x_3 = 0 \implies x_1 = -2x_3.
+\]
+\[
+x_2 - x_3 = 0 \implies x_2 = x_3.
+\]
+
+Seja \(x_3 = s\):
+\[
+(x_1,x_2,x_3) = (-2s, s, s) = s(-2,1,1).
+\]
+
+Um autovetor para \(\lambda=1\) é:
+\[
+(-2,1,1).
+\]
+
+**Passo 3: Encontrar os autovetores de \(\lambda = 2\)**
+
+Resolva \((A - 2I)x = 0\):
+\[
+A - 2I = \begin{bmatrix}
+0-2 & 0 & -2 \\ 
+1 & 2-2 & 1 \\ 
+1 & 0 & 3-2
+\end{bmatrix}
+= \begin{bmatrix}
+-2 & 0 & -2 \\
+1 & 0 & 1 \\
+1 & 0 & 1
+\end{bmatrix}.
+\]
+
+Escalonando:
+1. Troque \(L_1\) com \(L_2\) para ter pivô fácil:
+\[
+\begin{bmatrix}
+1 & 0 & 1 \\
+-2 & 0 & -2 \\
+1 & 0 & 1
+\end{bmatrix}.
+\]
+
+2. \(L_2 \leftarrow L_2 + 2L_1\):
+\[
+L_2: (-2+2\cdot1,0, -2+2\cdot1) = (0,0,0).
+\]
+
+3. \(L_3 \leftarrow L_3 - L_1\):
+\[
+L_3: (1-1,0-0,1-1) = (0,0,0).
+\]
+
+Restou apenas uma equação:
+\[
+x_1 + x_3 = 0 \implies x_1 = -x_3.
+\]
+
+Aqui \(x_2\) é livre e \(x_3\) também é livre. Seja:
+\[
+x_2 = u, \quad x_3 = v.
+\]
+
+Então:
+\[
+(x_1,x_2,x_3) = (-v,u,v) = u(0,1,0) + v(-1,0,1).
+\]
+
+Portanto, o autoespaço para \(\lambda=2\) é gerado por:
+\[
+\{(0,1,0), (-1,0,1)\}.
+\]
+
+**Conclusão:**
+
+- Para \(\lambda=1\), uma base do autoespaço é:
+\[
+\{(-2,1,1)\}.
+\]
+
+- Para \(\lambda=2\), uma base do autoespaço é:
+\[
+\{(0,1,0), (-1,0,1)\}.
+\]
+</p>
+
+    </details>
+
+    <script>
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            "HTML-CSS": { 
+                linebreaks: { automatic: true },
+                scale: 100,
+                styles: {
+                    ".MathJax_Display": {
+                        "margin": "1em 0",
+                        "overflow-x": "auto",
+                        "overflow-y": "hidden"
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

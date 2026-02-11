@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Fase 4.3: Combos e Reversões</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 4.3: Combos e Reversões</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Combos e Reversões (Composição e Invertibilidade)</h3>
+        <p>Você já sabe usar e criar portais. Agora é hora de masterizar a arte de combiná-los e revertê-los! Aplicar múltiplos portais em sequência é chamado de <strong>Composição</strong>, e é realizado pela multiplicação de suas matrizes. Cuidado, Mestre do Jogo: a ordem importa, e a multiplicação é feita na ordem inversa da aplicação!</p>
+        <p>Também vamos investigar quando um portal pode ser revertido. Uma transformação é <strong>invertível</strong> se seu determinante for diferente de zero. Se for, podemos calcular sua matriz inversa \(A^{-1}\), que funciona como um "botão de desfazer".</p>
+        <div class="formula">\[ \text{Composição: } T_{total}(\mathbf{x}) = T_2(T_1(\mathbf{x})) = (A_2 A_1)\mathbf{x} \]</div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-A: Combo de Power-ups (Composição de Matrizes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a multiplicação de duas matrizes 2x2 para encontrar uma matriz de transformação única.
+            </div>
+            <p>Um personagem coleta um item que primeiro o rotaciona 90° no sentido anti-horário (matriz \(A_1\)) e, em seguida, dobra seu tamanho (matriz \(A_2\)). Calcule a matriz de transformação única \(C\) que representa o efeito combinado \(T_2(T_1(\mathbf{x}))\).</p>
+            \[ A_1 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \quad (\text{Rotação}) \qquad A_2 = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \quad (\text{Escala}) \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O efeito combinado é dado pela multiplicação das matrizes na ordem inversa da aplicação. Você precisa calcular \(C = A_2 A_1\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Configure a multiplicação de matrizes: \(C = A_2 A_1\).</li>
+                    <li>Calcule o primeiro elemento de \(C\) (\(c_{11}\)) multiplicando a primeira linha de \(A_2\) pela primeira coluna de \(A_1\).</li>
+                    <li>Continue o processo para os outros três elementos da matriz \(C\).</li>
+                    <li>A matriz resultante \(C\) aplica ambos os efeitos de uma só vez.</li>
+                </ol>
+                <div class="formula">\[ C = A_2 A_1 = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> As engines de jogos "achatam" longas sequências de transformações (como a hierarquia de ossos de um personagem) em uma única matriz para cada objeto, otimizando drasticamente os cálculos gráficos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-B: A Ordem do Portal Importa! (Ordem da Composição)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Demonstrar que a ordem da multiplicação de matrizes afeta o resultado final (\(AB \neq BA\)).
+            </div>
+            <p>Um sprite é afetado por uma reflexão através do eixo y (matriz \(A\)) e uma rotação de 45° anti-horário (matriz \(B\)). Mostre que o resultado final é diferente dependendo da ordem em que os efeitos são aplicados. Calcule \(C_1 = BA\) (primeiro reflete, depois rotaciona) e \(C_2 = AB\) (primeiro rotaciona, depois reflete).</p>
+            \[ A = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}, \quad B = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Calcule os dois produtos de matriz, \(BA\) e \(AB\), separadamente. Se as matrizes resultantes não forem idênticas, a ordem importa. Lembre-se, a matriz da direita é o primeiro efeito a ser aplicado.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Calcule \(C_1 = BA\):</strong> Multiplique a matriz \(B\) pela matriz \(A\).</li>
+                    <li><strong>Calcule \(C_2 = AB\):</strong> Multiplique a matriz \(A\) pela matriz \(B\).</li>
+                    <li>Compare as matrizes \(C_1\) e \(C_2\). Você verá que seus elementos são diferentes, provando que a composição de transformações não é comutativa.</li>
+                </ol>
+                <div class="formula">\[ BA \neq AB \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é uma regra crucial em animação. Girar o braço de um personagem e depois dobrar o cotovelo produz um resultado muito diferente de dobrar o cotovelo e depois girar o braço inteiro.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-C: O Portal de Mão Única (Teste de Invertibilidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o determinante para verificar se uma transformação pode ser revertida.
+            </div>
+            <p>Um portal mágico tem o poder de achatar qualquer objeto 3D em sua sombra 2D no chão. Este efeito é uma projeção no plano xy, representada pela matriz \(P\). Calcule o determinante de \(P\). Se o determinante for zero, a transformação é um "caminho sem volta" e não pode ser revertida. É possível recuperar um objeto 3D a partir de sua sombra?</p>
+            \[ P = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para uma matriz 3x3, uma maneira fácil de calcular o determinante é a expansão de cofatores. Tente expandir ao longo da terceira linha ou coluna, pois ela contém muitos zeros.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a fórmula do determinante para uma matriz 3x3. A expansão ao longo da terceira linha é a mais simples.</li>
+                    <li>A fórmula é \( \det(P) = p_{31}C_{31} + p_{32}C_{32} + p_{33}C_{33} \).</li>
+                    <li>Como \(p_{31}=0\) e \(p_{32}=0\), o cálculo se resume a \(p_{33}\) vezes o determinante de sua submatriz 2x2.</li>
+                    <li>\( \det(P) = 0 - 0 + 0 \cdot \det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = 0 \).</li>
+                    <li>Como o determinante é zero, a transformação não é invertível.</li>
+                </ol>
+                <div class="formula">\[ \det(A) = 0 \implies \text{Não invertível} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A projeção da cena 3D para a tela 2D é uma transformação não-invertível. A informação de profundidade é "perdida". É por isso que técnicas como Z-buffering são necessárias para descobrir qual objeto está na frente de qual.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-A (PRINCIPAL) -->
+        <div class="mission">
+            <h3>MISSÃO 2-A: Checagem de Estabilidade do Combo (Composição e Invertibilidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a matriz de uma transformação composta e, em seguida, determinar se o efeito combinado é invertível.
+            </div>
+            <p>Um personagem é afetado por uma poção que primeiro causa um cisalhamento horizontal (matriz \(A_1\)) e depois uma rotação de -90° (matriz \(A_2\)). Primeiro, encontre a matriz combinada \(C = A_2 A_1\). Em seguida, calcule o determinante de \(C\) para verificar se existe um "antídoto" (uma transformação inversa) para este efeito.</p>
+            \[ A_1 = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}, \quad A_2 = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, calcule a matriz \(C = A_2 A_1\). Depois, calcule o determinante da matriz \(C\) resultante usando a fórmula \(ad-bc\). Se for diferente de zero, um antídoto existe.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule a matriz de composição \(C = A_2 A_1\).</li>
+                    <li>O resultado será uma nova matriz 2x2.</li>
+                    <li>Calcule o determinante desta nova matriz \(C\).</li>
+                    <li>Uma propriedade útil é que \(\det(AB) = \det(A)\det(B)\). \(\det(A_1)=1\) e \(\det(A_2)=1\), então \(\det(C)=1\), que é diferente de zero.</li>
+                    <li>Como o determinante não é zero, a transformação combinada é invertível.</li>
+                </ol>
+                <div class="formula">\[ \det(A_2 A_1) = \det(A_2) \cdot \det(A_1) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Os desenvolvedores garantem que as transformações de movimento normais do jogador (andar, virar, pular) sejam sempre invertíveis, para que o jogador possa sempre "desfazer" uma ação (por exemplo, andando para trás).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (PRINCIPAL) -->
+        <div class="mission">
+            <h3>MISSÃO 2-B: O Glitch Irreversível (Interpretação Geométrica)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Explicar geometricamente por que uma transformação de projeção não é invertível.
+            </div>
+            <p>Uma armadilha "esmagadora" projeta qualquer objeto na tela sobre o eixo x. Sua matriz é \(P = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\). Aplique esta transformação aos vetores \(\mathbf{v}_1 = \begin{pmatrix} 3 \\ 5 \end{pmatrix}\) e \(\mathbf{v}_2 = \begin{pmatrix} 3 \\ -2 \end{pmatrix}\). Baseado no resultado, explique em palavras por que é impossível saber a posição original de um inimigo depois que ele foi "esmagado".</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Se dois (ou mais) pontos de partida diferentes levam ao mesmo ponto de chegada, como você poderia saber de qual deles você partiu olhando apenas para o ponto final?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule \(P\mathbf{v}_1 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} 3 \\ 5 \end{pmatrix}\).</li>
+                    <li>Calcule \(P\mathbf{v}_2 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} 3 \\ -2 \end{pmatrix}\).</li>
+                    <li>Observe que ambos os resultados são idênticos.</li>
+                    <li>A explicação geométrica é que a transformação "perde" a informação da coordenada y. Múltiplos pontos de entrada são mapeados para um único ponto de saída. Portanto, a transformação não é "um-para-um" e não pode ser invertida.</li>
+                </ol>
+                <div class="formula">\[ T(\mathbf{u}) = T(\mathbf{v}) \text{ para } \mathbf{u} \neq \mathbf{v} \implies T \text{ não é invertível} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> É por isso que em jogos de tiro com "ragdoll physics", uma vez que um personagem cai no chão de uma forma específica, não há como "rebobinar" a física de forma determinística; a informação sobre as forças iniciais foi perdida.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (PRINCIPAL) -->
+        <div class="mission">
+            <h3>MISSÃO 2-C: Combo de Câmera 3D (Composição em R³)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a multiplicação de matrizes 3x3 para encontrar uma única matriz de transformação de câmera.
+            </div>
+            <p>Em um simulador de voo, a câmera do cockpit primeiro gira 90° em torno do eixo y (guinada, matriz \(A_1\)) e depois rotaciona -90° em torno do eixo x (arfagem, matriz \(A_2\)). Encontre a matriz final \(C = A_2 A_1\) que representa a orientação final da câmera.</p>
+            \[ A_1 = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ -1 & 0 & 0 \end{pmatrix}, \quad A_2 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A multiplicação de matrizes 3x3 segue a mesma regra "linha por coluna" da 2x2, mas cada produto escalar terá três termos. Seja metódico e cuidadoso.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Configure a multiplicação \(C = A_2 A_1\).</li>
+                    <li>Calcule cada um dos nove elementos de \(C\). Por exemplo, \(c_{11}\) é a primeira linha de \(A_2\) vezes a primeira coluna de \(A_1\): \((1 \cdot 0) + (0 \cdot 0) + (0 \cdot -1) = 0\).</li>
+                    <li>Complete o cálculo para todos os elementos para obter a matriz de orientação final.</li>
+                </ol>
+                <div class="formula">\[ C = A_2 A_1 \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> As orientações de objetos em 3D são quase sempre o resultado da composição de várias rotações (chamadas de ângulos de Euler ou quaternions). Esta operação é o coração do movimento em 3D.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE) -->
+        <div class="mission">
+            <h3>MISSÃO 3-A: O Botão de Desfazer (Cálculo da Matriz Inversa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular a matriz inversa \(A^{-1}\) de uma transformação 2x2 para reverter seu efeito.
+            </div>
+            <p>Um personagem é acidentalmente transformado por um "raio de distorção" descrito pela matriz \(A\). Para criar um "item de restauração", você precisa encontrar a matriz inversa \(A^{-1}\) que desfaz o efeito. Calcule a inversa da matriz \(A\) abaixo.</p>
+            \[ A = \begin{pmatrix} 3 & 7 \\ 1 & 2 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Lembre-se da fórmula da inversa 2x2: \(A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}\). Primeiro, calcule o determinante.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o determinante de A: \(\det(A) = (3)(2) - (7)(1) = 6 - 7 = -1\).</li>
+                    <li>Como o determinante é \(-1 \neq 0\), a inversa existe.</li>
+                    <li>Aplique a fórmula da inversa: troque os elementos da diagonal principal (\(a\) e \(d\)), negue os outros dois (\(b\) e \(c\)), e multiplique a matriz resultante por \(1/\det(A)\).</li>
+                </ol>
+                <div class="formula">\[ A^{-1} = \frac{1}{ad-bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos com manipulação de tempo, como "Braid", a engine precisa calcular a inversa das transformações de física e movimento para "rebobinar" o estado do jogo de forma precisa.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (ELITE) -->
+        <div class="mission">
+            <h3>MISSÃO 3-B: Retornando à Base (Aplicação da Matriz Inversa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a matriz inversa para encontrar o vetor original a partir do vetor transformado (\(\mathbf{x} = A^{-1}\mathbf{y}\)).
+            </div>
+            <p>Uma nave aliada foi atingida por um raio trator e movida para a posição \(\mathbf{y} = \begin{pmatrix} 9 \\ 5 \end{pmatrix}\). A transformação do raio é conhecida e descrita pela matriz \(A = \begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}\). Para planejar um resgate, calcule a posição original \(\mathbf{x}\) da nave antes dela ser movida.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Se \(\mathbf{y} = A\mathbf{x}\), então a posição original é \(\mathbf{x} = A^{-1}\mathbf{y}\). O primeiro passo é encontrar a matriz inversa \(A^{-1}\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o determinante de \(A\): \(\det(A) = (2)(1) - (-1)(-1) = 1\).</li>
+                    <li>Calcule a matriz inversa \(A^{-1}\) usando a fórmula.</li>
+                    <li>Uma vez que você tenha \(A^{-1}\), calcule a posição original multiplicando a inversa pelo vetor da posição final: \(\mathbf{x} = A^{-1}\mathbf{y}\).</li>
+                </ol>
+                <div class="formula">\[ \mathbf{x} = A^{-1}\mathbf{y} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em sistemas de "replay" ou "killcams", a engine do jogo armazena os estados finais e as transformações. Para mostrar o que aconteceu, ela pode precisar usar inversas para reconstruir estados anteriores.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (ELITE) -->
+        <div class="mission">
+            <h3>MISSÃO 3-C: Engenharia Reversa do Combo Final (Resolvendo Equações Matriciais)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Isolar uma matriz desconhecida em uma equação de composição para descobrir uma transformação intermediária.
+            </div>
+            <p>Sabe-se que o efeito final de um combo de feitiços é a matriz \(C\). O primeiro feitiço lançado foi \(A\). Encontre a matriz do segundo feitiço, \(X\), sabendo que eles foram aplicados na ordem \(A\) e depois \(X\), resultando na equação \(C = XA\).</p>
+            \[ A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 1 \\ 2 & 3 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para isolar \(X\) na equação \(C = XA\), você precisa "cancelar" \(A\). Faça isso multiplicando ambos os lados da equação por \(A^{-1}\) pela <strong>direita</strong>. A ordem é crucial!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece com a equação \(C = XA\).</li>
+                    <li>Multiplique pela direita por \(A^{-1}\): \(CA^{-1} = XAA^{-1}\).</li>
+                    <li>Como \(AA^{-1} = I\) (matriz identidade), a equação se simplifica para \(X = CA^{-1}\).</li>
+                    <li>Calcule a inversa de \(A\), que é \(A^{-1}\).</li>
+                    <li>Calcule o produto de matrizes \(C \cdot A^{-1}\) para encontrar \(X\).</li>
+                </ol>
+                <div class="formula">\[ X = C A^{-1} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso é usado em sistemas de animação para "resolver" restrições. Se a engine sabe onde o pé de um personagem deve estar (matriz C) e qual a orientação da perna (matriz A), ela pode calcular a rotação necessária do quadril (matriz X).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-A (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-A: O Arsenal Completo (Composição de Três Transformações)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular a matriz de efeito único para uma sequência de três transformações (\(A_3A_2A_1\)).
+            </div>
+            <p>Um projétil mágico é lançado. Seu efeito é uma sequência de três transformações: primeiro, ele dobra de tamanho (escala, \(A_1\)), depois rotaciona 90° no sentido anti-horário (\(A_2\)), e finalmente sofre um cisalhamento horizontal (\(A_3\)). Encontre a matriz única \(C\) que descreve o efeito final do projétil.</p>
+            \[ A_1 = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}, \quad A_2 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}, \quad A_3 = \begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix} \]
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>A matriz combinada é \(C = A_3 A_2 A_1\). A multiplicação de matrizes é associativa, então você pode calcular em qualquer agrupamento, desde que mantenha a ordem.</li>
+                    <li>Primeiro, calcule a matriz intermediária \(M = A_2 A_1\).</li>
+                    <li>Em seguida, use essa matriz \(M\) para calcular o resultado final \(C = A_3 M\).</li>
+                    <li>A matriz \(C\) resultante é a transformação que aplica todos os três efeitos de uma só vez.</li>
+                </ol>
+                <div class="formula">\[ C = A_3(A_2 A_1) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A "matriz de visão" final em um jogo 3D é o produto de várias matrizes: a matriz do modelo do objeto, a matriz de visão da câmera e a matriz de projeção. A GPU multiplica vértices por esta matriz combinada final.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-B: A Regra de Ouro da Reversão (Inversa da Composição)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar a propriedade \((AB)^{-1} = B^{-1}A^{-1}\), mostrando que para desfazer, a ordem das inversas também se inverte.
+            </div>
+            <p>Um herói passa pelo "Portal da Rotação" (\(A\)) e depois pelo "Portal da Distorção" (\(B\)). Para voltar para casa, ele precisa passar pelos portais inversos. A intuição pode dizer que ele deve usar \(A^{-1}\) e depois \(B^{-1}\), mas a matemática diz o contrário. Prove que a matriz para voltar, \((AB)^{-1}\), é na verdade \(B^{-1}A^{-1}\). Use as matrizes abaixo para verificar.</p>
+            \[ A = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \]
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Calcule o lado esquerdo:</strong>
+                        <ul>
+                            <li>Calcule a matriz de composição \(C = AB\).</li>
+                            <li>Calcule a inversa dessa matriz, \((AB)^{-1} = C^{-1}\).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Calcule o lado direito:</strong>
+                        <ul>
+                            <li>Calcule a inversa de A, \(A^{-1}\).</li>
+                            <li>Calcule a inversa de B, \(B^{-1}\).</li>
+                            <li>Calcule o produto das inversas na ordem trocada: \(B^{-1}A^{-1}\).</li>
+                        </ul>
+                    </li>
+                    <li>Compare as duas matrizes resultantes. Elas devem ser idênticas, provando a regra.</li>
+                </ol>
+                <div class="formula">\[ (AB)^{-1} = B^{-1}A^{-1} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso é análogo a vestir equipamentos. Se você coloca luvas e depois um escudo, para desequipar, você precisa tirar o escudo primeiro e depois as luvas. A ordem de "desfazer" é o reverso da ordem de "fazer".</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-C: O Desafio do Cofre Temporal (Problema Integrado)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar composição e inversão para encontrar um estado inicial a partir de um estado final e uma sequência de transformações.
+            </div>
+            <p>Em um cofre, você encontra a forma final de uma chave, representada pelo vetor \(\mathbf{y} = \begin{pmatrix} -3 \\ 5 \end{pmatrix}\). Um log de segurança revela que a chave original, \(\mathbf{x}\), foi primeiro rotacionada -90° (matriz \(A\)) e depois cisalhada (matriz \(B\)). Para forjar a chave original, você precisa descobrir a forma \(\mathbf{x}\).</p>
+            \[ A = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \]
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a equação da transformação: \(\mathbf{y} = B(A\mathbf{x}) = (BA)\mathbf{x}\).</li>
+                    <li>Para encontrar \(\mathbf{x}\), você precisa isolá-lo: \(\mathbf{x} = (BA)^{-1}\mathbf{y}\).</li>
+                    <li>Use a propriedade da missão anterior: \((BA)^{-1} = A^{-1}B^{-1}\).</li>
+                    <li>Calcule \(A^{-1}\) e \(B^{-1}\).</li>
+                    <li>Calcule a matriz da transformação inversa total: \(C_{inv} = A^{-1}B^{-1}\).</li>
+                    <li>Finalmente, encontre a forma original da chave: \(\mathbf{x} = C_{inv}\mathbf{y}\).</li>
+                </ol>
+                <div class="formula">\[ \mathbf{x} = (BA)^{-1}\mathbf{y} = (A^{-1}B^{-1})\mathbf{y} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Problemas como este aparecem em jogos de puzzle baseados em lógica, onde o jogador vê o estado final de um quebra-cabeça e deve deduzir a sequência de movimentos inversos para chegar ao estado inicial.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

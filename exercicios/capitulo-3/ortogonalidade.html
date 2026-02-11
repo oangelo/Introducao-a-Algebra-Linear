@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Produto Escalar</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 3.3: Sincronia de Movimento</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Produto Escalar e Ortogonalidade</h3>
+        <p>O <strong>Produto Escalar</strong> (ou produto interno) é uma das operações mais versáteis da Álgebra Linear. Ele pega dois vetores e retorna um único número (um escalar). Esse número mágico nos diz o quanto os vetores estão "alinhados" ou "sincronizados". A aplicação mais imediata é testar a <strong>ortogonalidade</strong> (se formam um ângulo de 90°), uma condição que aparece em todo lugar, desde a física de colisões até a orientação de câmeras. Mais do que isso, ele é a chave para calcularmos o ângulo exato entre quaisquer dois vetores, uma ferramenta indispensável para a IA e a geometria dos jogos 3D.</p>
+        <p>Dominar o produto escalar é como ganhar uma ferramenta de diagnóstico que revela a relação geométrica oculta entre os vetores que governam o seu jogo.</p>
+        <div class="formula">
+            Definição Algébrica: \( \vec{u} \cdot \vec{v} = u_1v_1 + u_2v_2 + \dots + u_nv_n \) <br>
+            Propriedade Geométrica: \( \vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos(\theta) \) <br>
+            Ortogonalidade: \( \vec{u} \perp \vec{v} \iff \vec{u} \cdot \vec{v} = 0 \)
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>O Teste de Sincronia de Padrões (Cálculo Algébrico do Produto Escalar)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a fórmula de cálculo do produto escalar em R².
+            </div>
+            <p>Em um jogo de puzzle, dois padrões de movimento de inimigos são descritos pelos vetores \( \vec{u} = (2, 5) \) e \( \vec{v} = (3, -1) \). O "fator de sincronia" entre eles, que afeta a dificuldade do nível, é dado pelo produto escalar \( \vec{u} \cdot \vec{v} \). Calcule este valor.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A fórmula do produto escalar é: some os produtos das componentes correspondentes. Multiplique as componentes x, multiplique as componentes y e, em seguida, some os resultados.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique as componentes dos vetores: \( u_x=2, u_y=5 \) e \( v_x=3, v_y=-1 \).</li>
+                    <li>Multiplique as componentes x: \( u_x \cdot v_x = 2 \cdot 3 \).</li>
+                    <li>Multiplique as componentes y: \( u_y \cdot v_y = 5 \cdot (-1) \).</li>
+                    <li>Some os dois produtos para obter o resultado final.</li>
+                </ol>
+                <div class="formula">\( \vec{u} \cdot \vec{v} = u_x v_x + u_y v_y \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O cálculo bruto do produto escalar é uma das operações vetoriais mais rápidas e eficientes, sendo usado extensivamente em 'shaders' (programas que rodam na placa de vídeo) para calcular efeitos de iluminação em tempo real.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>O Cruzamento Perfeito no Labirinto (Verificação de Ortogonalidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o produto escalar para determinar se dois vetores são ortogonais.
+            </div>
+            <p>Ao projetar um labirinto para um jogo da <strong>Era 8-bit</strong>, você precisa garantir que dois corredores se cruzem em um ângulo reto perfeito. A direção do primeiro corredor é dada pelo vetor \( \vec{a} = (4, -6) \) e a do segundo por \( \vec{b} = (3, 2) \). Eles são perpendiculares?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Dois vetores são ortogonais (perpendiculares) se, e somente se, o produto escalar entre eles for exatamente zero. Calcule \( \vec{a} \cdot \vec{b} \) e verifique o resultado.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto escalar entre \( \vec{a} \) e \( \vec{b} \): \( (4)(3) + (-6)(2) \).</li>
+                    <li>Avalie a soma.</li>
+                    <li>Se o resultado for 0, os vetores são ortogonais. Caso contrário, não são.</li>
+                </ol>
+                <div class="formula">\( \vec{a} \perp \vec{b} \iff \vec{a} \cdot \vec{b} = 0 \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A checagem de ortogonalidade é fundamental para a construção de sistemas de coordenadas. A câmera de um jogo 3D, por exemplo, é definida por três vetores mutuamente ortogonais: "frente", "cima" e "direita".</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>O Bônus de Vento a Favor (Interpretação do Sinal do Produto Escalar)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender o que o sinal do produto escalar diz sobre a direção relativa de dois vetores.
+            </div>
+            <p>Em um jogo de navegação, o vento sopra na direção do vetor \( \vec{w} = (1, 1) \). O seu barco ganha um bônus de velocidade se estiver viajando a favor do vento (ângulo agudo) e uma penalidade se estiver contra (ângulo obtuso). <br>a) Se você se move na direção \( \vec{d_1} = (3, 2) \), o ângulo é agudo, obtuso ou reto? <br>b) E se o movimento for \( \vec{d_2} = (-5, -1) \)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O sinal do produto escalar revela a natureza do ângulo \( \theta \) entre os vetores: <br>• Positivo: \( \theta \) é agudo (< 90°). <br>• Zero: \( \theta \) é reto (= 90°). <br>• Negativo: \( \theta \) é obtuso (> 90°).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Para a parte (a), calcule o produto escalar \( \vec{w} \cdot \vec{d_1} \) e observe o sinal do resultado.</li>
+                    <li>Para a parte (b), calcule o produto escalar \( \vec{w} \cdot \vec{d_2} \) e observe o sinal do resultado.</li>
+                    <li>Associe o sinal do produto escalar com o tipo de ângulo correspondente.</li>
+                </ol>
+                <div class="formula">\( \text{sinal}(\vec{u} \cdot \vec{v}) \implies \text{tipo de ângulo}(\theta) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A IA usa essa checagem de sinal constantemente. Para saber se um inimigo está na frente ou atrás do jogador, a IA calcula o produto escalar entre o vetor "frente" do jogador e o vetor que aponta para o inimigo. Se for positivo, está na frente; se negativo, atrás.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (MAIN MISSION) -->
+        <div class="mission">
+            <h3>O Cone de Visão do Guarda (Ângulo entre Vetores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a fórmula completa do produto escalar para calcular o ângulo entre dois vetores.
+            </div>
+            <p>Em um jogo de espionagem da <strong>Era 3D Inicial</strong>, um guarda está parado e olhando na direção do vetor \( \vec{f} = (1, 1) \). A posição do jogador em relação ao guarda é dada pelo vetor \( \vec{p} = (4, 0) \). Calcule o ângulo \( \theta \) entre o olhar do guarda e a posição do jogador para determinar se ele foi visto.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Isole o \( \cos(\theta) \) na fórmula geométrica: \( \cos(\theta) = \frac{\vec{f} \cdot \vec{p}}{\|\vec{f}\| \|\vec{p}\|} \). Você precisará calcular o produto escalar no numerador e as normas dos dois vetores no denominador.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto escalar \( \vec{f} \cdot \vec{p} \).</li>
+                    <li>Calcule a norma de \( \vec{f} \), ou seja, \( \|\vec{f}\| \).</li>
+                    <li>Calcule a norma de \( \vec{p} \), ou seja, \( \|\vec{p}\| \).</li>
+                    <li>Divida o produto escalar pelo produto das normas para obter o valor de \( \cos(\theta) \).</li>
+                    <li>Use a função \( \arccos \) (cosseno inverso) para encontrar o ângulo \( \theta \).</li>
+                </ol>
+                <div class="formula">\( \theta = \arccos\left(\frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\right) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa é a matemática exata por trás da mecânica de "cone de visão" em jogos de furtividade. A IA calcula o ângulo para o jogador, e se esse ângulo for menor que o ângulo de visão do guarda (ex: 45°), o jogador é detectado.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MAIN MISSION) -->
+        <div class="mission">
+            <h3>A Força do Vento nas Velas (Componente de um Vetor (Projeção Escalar))</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o "tamanho da sombra" de um vetor sobre outro, sem encontrar o vetor projeção.
+            </div>
+            <p>Um vento forte sopra com um vetor de força \( \vec{F} = (10, 5) \). Um barco a vela se move estritamente na direção do eixo x, representada pelo vetor \( \vec{d} = (4, 0) \). Qual é a magnitude da força do vento que efetivamente empurra o barco para frente (ou seja, a projeção escalar de \( \vec{F} \) sobre a direção de \( \vec{d} \))?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A projeção escalar de um vetor \( \vec{u} \) sobre um vetor \( \vec{v} \) é dada por \( \frac{\vec{u} \cdot \vec{v}}{\|\vec{v}\|} \). Ela mede o "comprimento da componente" de \( \vec{u} \) na direção de \( \vec{v} \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto escalar entre a força e a direção: \( \vec{F} \cdot \vec{d} \).</li>
+                    <li>Calcule a norma do vetor de direção do barco: \( \|\vec{d}\| \).</li>
+                    <li>Divida o produto escalar pela norma para encontrar a magnitude da força efetiva.</li>
+                </ol>
+                <div class="formula">\( \text{Comp}_{\vec{v}}\vec{u} = \frac{\vec{u} \cdot \vec{v}}{\|\vec{v}\|} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A física de jogos usa projeções para calcular como as forças se aplicam. Por exemplo, ao descer uma rampa, a força da gravidade (que aponta para baixo) é projetada na direção da rampa para determinar a aceleração do personagem.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MAIN MISSION) -->
+        <div class="mission">
+            <h3>Alinhamento de Módulos em 3D (Produto Escalar em R³)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Estender o cálculo e a interpretação do produto escalar para o espaço 3D.
+            </div>
+            <p>Em um simulador espacial, você precisa acoplar um módulo a uma estação. O vetor de aproximação do seu módulo é \( \vec{a} = (2, 3, 1) \) e a doca de acoplagem da estação aponta na direção \( \vec{d} = (2, 3, -13) \). Para um acoplamento magnético perfeito, os vetores devem ser ortogonais. Verifique se o alinhamento está correto.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A regra da ortogonalidade é a mesma em R³. Calcule o produto escalar \( \vec{a} \cdot \vec{d} \), que agora incluirá o produto das componentes z. Se o resultado for 0, eles são ortogonais.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Multiplique as componentes x: \( (2)(2) \).</li>
+                    <li>Multiplique as componentes y: \( (3)(3) \).</li>
+                    <li>Multiplique as componentes z: \( (1)(-13) \).</li>
+                    <li>Some os três resultados e verifique se a soma é igual a zero.</li>
+                </ol>
+                <div class="formula">\( \vec{u} \cdot \vec{v} = u_x v_x + u_y v_y + u_z v_z \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos 3D, a iluminação mais básica (difusa) é calculada usando o produto escalar entre o vetor normal da superfície de um polígono e o vetor que aponta para a fonte de luz. Isso determina o quão "de frente" a superfície está para a luz, e, portanto, o quão iluminada ela deve ser.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>A Sombra do Zeppelin (Projeção Ortogonal de um Vetor)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o vetor que representa a projeção de um vetor sobre outro.
+            </div>
+            <p>Um zeppelin tem sua posição dada pelo vetor \( \vec{z} = (5, 8, 10) \). A luz do sol vem diretamente de cima, na direção do vetor \( \vec{l} = (0, 0, -1) \). A sombra do zeppelin no chão (o plano xy) pode ser encontrada projetando o vetor posição \( \vec{z} \) em um vetor que representa o chão, como \( \vec{g} = (1, 0, 0) \), e depois em outro como \( \vec{h} = (0, 1, 0) \). Contudo, há um "cheat code": a sombra no chão é simplesmente o vetor \( \vec{z} \) com sua componente z zerada. Verifique se o vetor \( \vec{s} = (5, 8, 0) \) é ortogonal ao vetor da luz \( \vec{l} \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O problema se resume a uma verificação de ortogonalidade. O plano do chão é, por definição, ortogonal à direção da luz vinda de cima. Calcule o produto escalar entre o vetor sombra proposto \( \vec{s} = (5, 8, 0) \) e o vetor da luz \( \vec{l} = (0, 0, -1) \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique os vetores a serem testados: \( \vec{s} = (5, 8, 0) \) e \( \vec{l} = (0, 0, -1) \).</li>
+                    <li>Calcule o produto escalar: \( \vec{s} \cdot \vec{l} = (5)(0) + (8)(0) + (0)(-1) \).</li>
+                    <li>Se o resultado for zero, a condição de ortogonalidade é satisfeita, confirmando que o vetor sombra está corretamente "achatado" no plano do chão.</li>
+                </ol>
+                <div class="formula">A sombra \( \vec{s} \) está no plano xy se \( \vec{s} \cdot \vec{k} = 0 \), onde \( \vec{k}=(0,0,1) \).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Embora existam técnicas mais avançadas, uma das formas mais simples de renderizar sombras em jogos antigos era "achatar" a geometria do personagem em um plano (o chão) e desenhar essa forma achatada em preto. Isso envolve projetar todos os vértices do modelo em um plano, uma operação baseada em produto escalar.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>Deslizando ao Longo da Parede (Decomposição de Vetores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Decompor um vetor de movimento em componentes paralela e perpendicular a uma superfície.
+            </div>
+            <p>Seu personagem tenta se mover com o vetor de velocidade \( \vec{v} = (3, 5) \) mas colide com uma parede longa e lisa cuja direção é \( \vec{w} = (1, 1) \). Na física de muitos jogos, o personagem não para, mas desliza ao longo da parede. O movimento de deslize é a projeção do vetor de velocidade na direção da parede. Calcule este vetor de deslize, \( \text{proj}_{\vec{w}}\vec{v} \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A fórmula para a projeção de \( \vec{v} \) em \( \vec{w} \) é \( \left(\frac{\vec{v} \cdot \vec{w}}{\|\vec{w}\|^2}\right) \vec{w} \). O termo entre parênteses é um escalar. Calcule esse escalar primeiro e depois o multiplique pelo vetor \( \vec{w} \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o produto escalar \( \vec{v} \cdot \vec{w} \).</li>
+                    <li>Calcule o quadrado da norma de \( \vec{w} \): \( \|\vec{w}\|^2 = w_x^2 + w_y^2 \). Note que isso evita uma raiz quadrada.</li>
+                    <li>Divida o produto escalar pelo quadrado da norma para encontrar o escalar de projeção.</li>
+                    <li>Multiplique este escalar pelo vetor \( \vec{w} \) para obter o vetor de projeção final.</li>
+                </ol>
+                <div class="formula">\( \text{proj}_{\vec{w}}\vec{v} = \left(\frac{\vec{v} \cdot \vec{w}}{\vec{w} \cdot \vec{w}}\right) \vec{w} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a matemática exata por trás da física de "deslizar na parede" (wall sliding). Ao detectar uma colisão, o motor de física decompõe a velocidade do jogador em duas partes: uma que é perpendicular à parede (e é zerada para impedir que ele a atravesse) e outra que é paralela (que se torna a nova velocidade do jogador).</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-C (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>A Rota de Fuga Perpendicular (Construção de um Vetor Ortogonal)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dado um vetor em R², encontrar um vetor não-nulo que seja ortogonal a ele.
+            </div>
+            <p>Um inimigo em um jogo de visão superior ('top-down') patrulha para frente e para trás ao longo do caminho definido pelo vetor \( \vec{p} = (4, -7) \). Para criar uma rota de fuga segura, você precisa encontrar um vetor de direção \( \vec{d} \) que seja perfeitamente perpendicular à rota de patrulha. Encontre um possível vetor \( \vec{d} \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para um vetor \( \vec{v} = (a, b) \) em R², um vetor ortogonal pode ser construído rapidamente trocando as componentes e invertendo o sinal de uma delas. Por exemplo, \( (-b, a) \). Verifique se o produto escalar entre \( (a,b) \) e \( (-b,a) \) é zero.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique as componentes do vetor de patrulha: \( p_x = 4 \) e \( p_y = -7 \).</li>
+                    <li>Construa um novo vetor trocando as posições das componentes: \( (-7, 4) \).</li>
+                    <li>Inverta o sinal de uma das componentes. Por exemplo, a primeira: \( (7, 4) \). Ou a segunda: \( (-7, -4) \).</li>
+                    <li>Qualquer um desses vetores resultantes será ortogonal ao original. Escolha um.</li>
+                    <li>Verifique sua resposta calculando o produto escalar entre o vetor original e o que você encontrou.</li>
+                </ol>
+                <div class="formula">Se \( \vec{v}=(a,b) \), então \( \vec{v}^{\perp} = (-b, a) \) é ortogonal.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa técnica é usada para calcular o vetor "direita" de um personagem 2D quando se sabe o vetor "frente". Se o personagem está olhando na direção (f_x, f_y), seu lado direito aponta para (f_y, -f_x), permitindo movimentos laterais ('strafing').</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Lógica do Ataque Furtivo ("Backstab")</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Combinar subtração, norma e produto escalar para determinar se um ataque veio por trás.
+            </div>
+            <p>Em um RPG, um inimigo está na posição \( E = (5, 5) \) e está olhando fixamente na direção do vetor \( \vec{f} = (0, 1) \) (para cima no mapa). O seu personagem, um ladrão, ataca de uma posição próxima \( P = (6, 2) \). Para que o jogo registre um dano crítico de "backstab", o ataque deve vir de um cone de 180° atrás do inimigo. O seu ataque qualifica? (Dica: compare a direção do olhar \( \vec{f} \) com a direção de onde veio o ataque \( \vec{PE} \)).</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro, calcule o vetor que aponta do jogador para o inimigo. Este é o vetor da direção do ataque: \( \vec{a} = \vec{E} - \vec{P} \).</li>
+                    <li>Agora você tem o vetor do olhar do inimigo, \( \vec{f} \), e o vetor do ataque, \( \vec{a} \).</li>
+                    <li>Calcule o produto escalar \( \vec{f} \cdot \vec{a} \).</li>
+                    <li>Analise o sinal do produto escalar. Se for negativo, significa que o ângulo entre o olhar do inimigo e a direção do ataque é obtuso (maior que 90°), o que caracteriza um ataque vindo "pelas costas". Se for positivo, veio pela frente. Se for zero, veio exatamente do lado.</li>
+                </ol>
+                <div class="formula">Ataque por trás se \( \vec{f}_{\text{inimigo}} \cdot (\vec{p}_{\text{inimigo}} - \vec{p}_{\text{jogador}}) < 0 \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa é a lógica exata implementada em muitos RPGs e jogos de ação para bônus de dano posicional. É um cálculo extremamente rápido e eficiente que combina vários conceitos vetoriais para criar uma mecânica de jogo significativa.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Ricochete do Laser na Parede (Reflexão de Vetor)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar projeções para calcular o vetor de reflexão de um projétil.
+            </div>
+            <p>Um raio laser viaja com o vetor de direção \( \vec{v} = (3, -2) \) e atinge uma parede vertical. O vetor <strong>normal</strong> à superfície da parede (um vetor ortogonal que aponta para fora) é \( \vec{n} = (-1, 0) \). A fórmula para a reflexão perfeita de um vetor \( \vec{v} \) sobre uma superfície com normal \( \hat{n} \) (versor) é \( \vec{v}_{refletido} = \vec{v} - 2 \cdot \text{proj}_{\hat{n}}\vec{v} \). Calcule o novo vetor de direção do laser após o ricochete.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro, verifique se o vetor normal \( \vec{n} \) já é um versor. Calcule sua norma. Se não for 1, normalize-o para obter \( \hat{n} \). (Neste caso, \( \|(-1,0)\| = 1 \), então \( \vec{n} = \hat{n} \)).</li>
+                    <li>Calcule a projeção de \( \vec{v} \) em \( \hat{n} \): \( \text{proj}_{\hat{n}}\vec{v} = (\vec{v} \cdot \hat{n}) \hat{n} \).</li>
+                    <li>Calcule o produto escalar \( \vec{v} \cdot \hat{n} \).</li>
+                    <li>Multiplique esse escalar pelo vetor \( \hat{n} \) para obter o vetor projeção.</li>
+                    <li>Substitua na fórmula da reflexão: subtraia duas vezes o vetor projeção do vetor de direção original \( \vec{v} \).</li>
+                </ol>
+                <div class="formula">\( \vec{v}_{r} = \vec{v} - 2(\vec{v} \cdot \hat{n})\hat{n} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa fórmula de reflexão é a base para a física de ricochetes de balas, bolas de bilhar e para o 'ray tracing' em computação gráfica, onde raios de luz são refletidos em superfícies para simular iluminação e reflexos realistas.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Física do Arado Mágico (Cálculo de Trabalho)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o produto escalar para calcular o trabalho realizado por uma força.
+            </div>
+            <p>Em um jogo de simulação de fazenda mágica, um golem de pedra arrasta um arado, sofrendo um deslocamento descrito pelo vetor \( \vec{d} = (8, 6) \) metros. Uma força mágica constante, dada pelo vetor \( \vec{F} = (50, 20) \) Newtons, atua sobre o golem. Em física, o trabalho (energia) realizado por uma força constante durante um deslocamento é dado pelo produto escalar entre o vetor força e o vetor deslocamento. Calcule o trabalho, em Joules, realizado pela força mágica.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor força \( \vec{F} \) e o vetor deslocamento \( \vec{d} \).</li>
+                    <li>Lembre-se da definição de Trabalho (\( W \)): \( W = \vec{F} \cdot \vec{d} \).</li>
+                    <li>Calcule o produto escalar entre os dois vetores. O resultado será um escalar que representa a energia transferida para o sistema, medida em Joules.</li>
+                    <li>Note que o trabalho mede apenas a componente da força que atua na mesma direção do deslocamento. O produto escalar faz esse cálculo de forma natural.</li>
+                </ol>
+                <div class="formula">\( W = \vec{F} \cdot \vec{d} = \|\vec{F}\| \|\vec{d}\| \cos(\theta) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Embora motores de física completos usem integrais para forças variáveis, para forças constantes (como gravidade ou um empurrão mágico constante), o cálculo do trabalho via produto escalar é usado para determinar mudanças na energia cinética de um objeto. Isso pode afetar a velocidade do objeto, o dano de impacto ou o consumo de 'stamina' de um personagem.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>
