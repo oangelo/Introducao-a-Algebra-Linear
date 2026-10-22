@@ -1,0 +1,145 @@
+# Storyboard — Fase 1 · Sistemas e Matrizes
+
+Piloto. Se este formato funcionar, as outras cinco fases seguem iguais.
+
+**Herda** os quadros Q03–Q07 de [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md). Este documento
+abre esses cinco quadros em nove telas e **nomeia a imagem de cada uma**.
+
+---
+
+## 1. Inventário de imagem da fase
+
+Nove telas. **Uma** imagem gerada; o resto é diagrama em SVG. Isso não é economia — é a
+fronteira da [`BIBLIA.md`](BIBLIA.md) §5: se o slide tem conta, a imagem é SVG.
+
+| Tela | Tipo de imagem | O que é |
+|---|---|---|
+| F1-01 capa | SVG (silhueta) | o saguão com o gabinete 1 aceso |
+| F1-02 cena | **gerada** | a guilda, o livro-caixa |
+| F1-03 dica | reaproveita F1-02 | a mesma cena, escurecida |
+| F1-04 estado | SVG | o mapa dos 4 problemas da fase |
+| F1-05 tópico | SVG | matriz aumentada |
+| F1-06 tópico | SVG | a escada dos pivôs |
+| F1-07 tópico | SVG | \(AB \neq BA\) |
+| F1-08 tópico | SVG | a ida e a volta \(A \to A^{-1}\) |
+| F1-09 peça | SVG | a peça 1 no contador |
+
+**Regra da fase:** nenhuma fórmula dentro de imagem gerada. A cena nunca mostra número,
+letra legível nem equação — modelo de difusão inventa símbolo e o aluno acredita.
+
+---
+
+## 2. Quadro por quadro
+
+### F1-01 · Capa
+- **Tela:** silhueta do saguão, escuro; só o gabinete 1 aceso, em âmbar. Título grande, centralizado no alto.
+- **Imagem (SVG):** seis retângulos-arados em perspectiva, um preenchido em âmbar com brilho; os outros cinco em contorno cinza. Sem personagem.
+- **Texto:** *FASE 1 — SISTEMAS E MATRIZES*
+- **HUD:** `FASE 1 · PEÇAS 0/6` (aparece pela primeira vez no curso)
+- **Em sala:** o professor não lê a capa. Ela fica enquanto ele diz o que a fase resolve.
+
+### F1-02 · Cena
+- **Tela:** a imagem ocupa tudo. Uma linha de texto no canto inferior esquerdo.
+- **Imagem (gerada):** a banca do mercador em Portoveloz, ao entardecer. Balcão de madeira com três tiras de pergaminho lado a lado — as três compras de três dias diferentes. Um mercador astuto, de perfil, mão aberta sobre as tiras como quem esconde o preço. Moedas dispersas; poções, pergaminhos e anéis em prateleiras ao fundo, fora de foco. Pintura digital, traço limpo, paleta âmbar e verde-oliva.
+  **Negativo:** nenhum texto legível, nenhum numeral, nenhuma fórmula, nenhuma escrita em página alguma. Se o modelo escrever algo, a imagem é descartada.
+- **Texto:** *três compras. três totais. nenhum preço.*
+- **HUD:** `FASE 1 · PEÇAS 0/6`
+- **Por que esta cena e não um livro-caixa:** a narração existente (`scripts/matrizes_e_sistemas.md`, §5–§6) descreve o mercador de Portoveloz e as compras de três dias — é literalmente um sistema \(3\times3\). A cena tem que ser o problema, não a metáfora dele.
+
+### F1-03 · Dica de carregamento
+- **Tela:** a mesma cena de F1-02, com véu escuro a 60%. A dica no canto inferior, sozinha, sem HUD concorrendo.
+- **Imagem:** reaproveita F1-02 — zero custo.
+- **Texto:** *Leia o enunciado duas vezes. O erro quase nunca está na conta — está no que a conta responde.*
+- **HUD:** `FASE 1 · PEÇAS 0/6`
+- **Camada do jogador:** é a única dica da fase, e é sobre *como jogar*, não sobre matriz.
+
+### F1-04 · Estado
+- **Tela:** o mapa da fase. Quatro caixas numeradas, uma delas destacada — onde estamos agora. Abaixo, uma linha.
+- **Imagem (SVG):** quatro retângulos em fila, com rótulo curto em cada um: *sistema*, *escada*, *produto*, *volta*. O primeiro aceso.
+- **Texto:** *quatro problemas, quatro telas. Nenhum deles é uma conta longa.*
+- **HUD:** `FASE 1 · PEÇAS 0/6`
+- **Função:** é o quadro que o aluno olha ao voltar do celular. Tem que responder "onde eu estou" em dois segundos.
+
+### F1-05 · Tópico — sistemas lineares
+- **Tela:** uma matriz aumentada grande, à esquerda; à direita, três rótulos curtos empilhados.
+- **Imagem (SVG):** colchetes, três linhas de coeficientes, barra vertical separando a coluna dos termos independentes. Os três rótulos: *uma solução · infinitas · nenhuma*.
+- **Texto:** o enunciado do exercício que vai ao quadro.
+- **HUD:** `FASE 1 · SISTEMAS · PEÇAS 0/6`
+- **Em sala:** o slide fica; a classificação é construída no quadro, não revelada aqui.
+
+### F1-06 · Tópico — eliminação gaussiana
+- **Tela:** a matriz com os pivôs destacados e a escada desenhada por cima.
+- **Imagem (SVG):** os números da matriz em cinza; os pivôs em âmbar; uma linha fina ligando os pivôs em degraus, descendo da esquerda para a direita. **Sem** seta indicando operação — a operação é do quadro, não do slide.
+- **Texto:** o enunciado do exercício.
+- **HUD:** `FASE 1 · ELIMINAÇÃO · PEÇAS 0/6`
+
+### F1-07 · Tópico — produto de matrizes
+- **Tela:** duas multiplicações lado a lado, uma riscada.
+- **Imagem (SVG):** à esquerda \(AB\), à direita \(BA\), com sinais de diferente entre elas e um traço diagonal sobre a segunda. Sem números — só as letras.
+- **Texto:** *a ordem importa.*
+- **HUD:** `FASE 1 · PRODUTO · PEÇAS 0/6`
+- **Nota:** esta é a semente da Fase 4, onde a composição de transformações vai cobrar o preço. Não explicar agora.
+
+### F1-08 · Tópico — matriz inversa
+- **Tela:** um ciclo de três paradas.
+- **Imagem (SVG):** \(A \to A^{-1} \to I\), seta curvada voltando de \(I\) para \(A\) por baixo, formando o laço. A volta em âmbar; a ida em cinza.
+- **Texto:** o enunciado do exercício.
+- **HUD:** `FASE 1 · INVERSA · PEÇAS 0/6`
+- **Nota:** o laço é a imagem que a Fase 2 vai reabrir com o determinante. Mesma forma, outra pergunta.
+
+### F1-09 · Peça
+- **Tela:** contador grande, sozinho no centro. Nada mais.
+- **Imagem (SVG):** seis círculos em fila, o primeiro preenchido em âmbar.
+- **Texto:** *peça 1 — o estado*
+- **HUD:** `PEÇAS 1/6`
+- **Em sala:** nenhum som, nenhuma animação de comemoração. O professor segue para o exercício seguinte.
+
+---
+
+## 3. O que não tem imagem
+
+- **Nenhuma grade deformada.** Ela é da Fase 4, uma única vez no curso (Q21). Aqui seria decoração.
+- **Nenhuma cena por tópico.** A fase tem uma cena, e ela está em F1-02. Repetir cena a cada tópico é o erro que a versão atual comete.
+- **Nenhum retrato de matemático.** O DEV LOG virou créditos com dívida técnica (BÍBLIA §6); isso é uma tela por fase, não um retrato por tópico.
+
+---
+
+## 4. Checagem contra as outras fases
+
+Antes de aprovar esta fase, conferir que ela não invade:
+
+- **F2** — determinante não aparece em nenhuma tela; nem a palavra, nem o símbolo \(|A|\).
+- **F3** — nenhuma interpretação geométrica do conjunto-solução. A matriz é tabela, não plano.
+- **F4** — nenhuma transformação, nenhuma grade, nenhuma seta no espaço.
+- **F5** — as palavras *posto*, *nulidade*, *base*, *span* não aparecem.
+
+E que ela **entrega** o que as outras vão usar: escalonamento (F2, F5), inversa (F4),
+não comutatividade (F4).
+
+---
+
+## 5. Conflitos com o material existente
+
+A narração da Fase 1 é recente e boa — é a voz do gabinete 1: fala "aventureiros", guilda,
+Portoveloz, dungeon. Compatível com o gênero, se lida como o alto-falante do arcade.
+
+Mas o roteiro registra **um conflito de terminologia** que precisa de decisão:
+
+- A narração termina com *"descobrirão que o chefe não era tão assustador quanto parecia"*.
+- No repositório, **"Chefe" já significa prova** (`AGENTS.md` da raiz: "as provas são Chefes").
+
+Se o beat da F6 também se chamar "chefe", o aluno não distingue o confronto narrativo da prova.
+**Decisão proposta:** o beat da F6 chama-se **confronto final**, e "Chefe" fica reservado para
+prova. A frase falada da narração pode continuar usando "chefe" — dita em voz alta, ela se
+refere à prova, que é o que o aluno teme de fato.
+
+---
+
+## 6. Pendências
+
+- **Gerador de imagem bloqueado.** F1-02 é a única tela que depende dele. As outras oito são
+  SVG e podem ser implementadas hoje.
+- Falta decidir se F1-03 (dica) é tela própria ou sobreposição na própria F1-02. Custa um
+  clique a mais na primeira opção.
+- A cena de F1-02 já foi alinhada à narração existente (§5). Falta só conferir, ao gerar, que
+  o mercador e as três tiras de compra fiquem legíveis na composição.

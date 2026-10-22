@@ -163,5 +163,8 @@ storyboard ao lado.
   (a lista que se lê de uma vez para achar repetição).
 - Feito: [`BIBLIA.md`](BIBLIA.md) — as regras que justificam o arco: registros, peças,
   orçamentos (4 saguões, 6 cenas, 6 dicas, ≤12 pausas, 1 confronto).
-- Próximo passo: **storyboard da Fase 1** → aprovação → `slide-spec.md` → implementação.
+- Feito: [`STORYBOARD-F1.md`](STORYBOARD-F1.md) — piloto com 9 telas e o inventário de imagem
+  de cada uma (1 gerada, 8 SVG).
+- Próximo passo: aprovar a Fase 1 → `slide-spec.md` → implementar as 8 telas SVG (a cena
+  espera o gerador).
 - Bloqueado: gerador de imagem (Camada B).
