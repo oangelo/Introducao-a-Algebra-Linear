@@ -1,7 +1,8 @@
 # AGENTS.md — Slides de Introdução à Álgebra Linear
 
 Contrato operacional. **Leia antes de tocar em qualquer arquivo desta pasta.**
-O *porquê* está em [`HISTORIA.md`](HISTORIA.md); o desenho em [`ESTRATEGIA.md`](ESTRATEGIA.md);
+O *porquê* está em [`HISTORIA.md`](HISTORIA.md); o arco do curso em
+[`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md); o desenho em [`ESTRATEGIA.md`](ESTRATEGIA.md);
 o que entra em cada fase em [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md); o diagnóstico do que
 existe hoje em [`RTC.md`](RTC.md).
 
@@ -89,17 +90,19 @@ estrutura, silenciosamente. Erro silencioso em slide de matemática é pior que 
 ## 4. Estrutura de uma fase
 
 ```
-00-capa        → nome da fase, 1 linha de missão
+00-capa        → nome da fase, 1 linha de missão, o gabinete aceso no saguão
 01-estado      → HUD: onde estamos, o que já foi feito
 02..NN         → um slide por tópico de exercício, o exercício que será resolvido no quadro
-NN+1-placar    → o que foi dominado, qual é o próximo chefe
+NN+1-peça      → a peça coletada nesta fase (ver STORYBOARD-GERAL.md §3)
 ```
 
-- **HUD fixo em todo slide**, com fase, tópico e exercício correspondente. Se poluir, reduz a
-  faixa — não remove.
-- **Sem `01-historia` de slide inteiro.** A história entra como **cena** (Camada B), no máximo
-  duas por fase. É fio, não enredo.
+- **HUD fixo em todo slide**, com fase, tópico, exercício e peças coletadas. Se poluir, reduz
+  a faixa — não remove.
+- **Sem `01-historia` de slide inteiro.** A história entra como **cena** (Camada B), uma por
+  fase. É fio, não enredo.
 - O slide de cada tópico mostra **o exercício que vai ser resolvido**, não a solução.
+- **Nenhuma fase termina com chefe.** O curso tem um único confronto, na F6. As outras cinco
+  terminam com uma peça na mão.
 
 ---
 
@@ -156,5 +159,7 @@ storyboard ao lado.
   DEV LOG como créditos, sem cota numérica, piloto = **Fase 1**.
 - Feito: [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md) — o que entra em cada fase e **qual
   capítulo é dono de cada conceito** (regra R1: um conceito tem um dono).
+- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — o arco do curso em 8 atos, as seis
+  peças, os orçamentos de dispositivo (4 saguões, 6 cenas, 6 dicas, ≤12 pausas, 1 confronto).
 - Próximo passo: **storyboard da Fase 1** → aprovação → `slide-spec.md` → implementação.
 - Bloqueado: gerador de imagem (Camada B).
