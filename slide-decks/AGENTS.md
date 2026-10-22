@@ -159,7 +159,9 @@ storyboard ao lado.
   DEV LOG como créditos, sem cota numérica, piloto = **Fase 1**.
 - Feito: [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md) — o que entra em cada fase e **qual
   capítulo é dono de cada conceito** (regra R1: um conceito tem um dono).
-- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — o arco do curso em 8 atos, as seis
-  peças, os orçamentos de dispositivo (4 saguões, 6 cenas, 6 dicas, ≤12 pausas, 1 confronto).
+- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — os 36 quadros do curso, na ordem
+  (a lista que se lê de uma vez para achar repetição).
+- Feito: [`BIBLIA.md`](BIBLIA.md) — as regras que justificam o arco: registros, peças,
+  orçamentos (4 saguões, 6 cenas, 6 dicas, ≤12 pausas, 1 confronto).
 - Próximo passo: **storyboard da Fase 1** → aprovação → `slide-spec.md` → implementação.
 - Bloqueado: gerador de imagem (Camada B).
