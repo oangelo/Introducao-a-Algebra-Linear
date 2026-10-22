@@ -2,7 +2,8 @@
 
 Contrato operacional. **Leia antes de tocar em qualquer arquivo desta pasta.**
 O *porquê* está em [`HISTORIA.md`](HISTORIA.md); o desenho em [`ESTRATEGIA.md`](ESTRATEGIA.md);
-o diagnóstico do que existe hoje em [`RTC.md`](RTC.md).
+o que entra em cada fase em [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md); o diagnóstico do que
+existe hoje em [`RTC.md`](RTC.md).
 
 ---
 
@@ -153,5 +154,7 @@ storyboard ao lado.
 - Nada foi implementado. Nenhum slide novo, nenhum deck alterado.
 - Decidido: premissa HUD, ficção do fliperama, fio condutor, camada do jogador, HUD fixo,
   DEV LOG como créditos, sem cota numérica, piloto = **Fase 1**.
+- Feito: [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md) — o que entra em cada fase e **qual
+  capítulo é dono de cada conceito** (regra R1: um conceito tem um dono).
 - Próximo passo: **storyboard da Fase 1** → aprovação → `slide-spec.md` → implementação.
 - Bloqueado: gerador de imagem (Camada B).
