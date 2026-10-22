@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álgebra Arcade - A Grande Revisão (Folha de Missões)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Script para renderizar LaTeX com MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --font-pixel: 'Press Start 2P', cursive;
+            --font-mono: 'Roboto Mono', monospace;
+            --color-text: #333;
+            --color-header: #000;
+            --color-accent: #d9534f;
+            --color-border: #ccc;
+            --color-bg-light: #f9f9f9;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background-color: #e0e0e0;
+            color: var(--color-text);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            font-size: 9.5pt;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        
+        .page-header {
+            text-align: center;
+            border-bottom: 3px solid var(--color-header);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-pixel);
+            font-size: 18pt;
+            color: var(--color-header);
+            margin: 0;
+        }
+
+        .page-header h2 {
+            font-family: var(--font-mono);
+            font-size: 12pt;
+            color: #555;
+            font-weight: 700;
+            margin: 5px 0 0 0;
+        }
+
+        .content {
+            column-count: 2;
+            column-gap: 15mm;
+        }
+        
+        .mission {
+            background-color: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 15px;
+            break-inside: avoid; /* Evita que a missão quebre entre colunas */
+        }
+        
+        .mission h3 {
+            font-family: var(--font-pixel);
+            font-size: 9pt;
+            color: var(--color-header);
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 8px;
+        }
+        
+        .mission-objective {
+            font-style: italic;
+            font-size: 8.5pt;
+            color: #555;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--color-accent);
+        }
+
+        code {
+            font-family: var(--font-mono);
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        @media print {
+            body, .page {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                background-color: white;
+            }
+            .page {
+                padding: 10mm; /* Ajuste de margem para impressão */
+            }
+            .mission {
+                 background-color: #f9f9f9; /* Adiciona um leve fundo para distinção na impressão P&B */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="page-header">
+            <h1>Álgebra Arcade</h1>
+            <h2>Folha de Missões: A Grande Revisão (Fases 1-4)</h2>
+        </header>
+
+        <main class="content">
+
+            <!-- Missão 1-A -->
+            <div class="mission">
+                <h3>MISSÃO 1-A: A Charada do Projétil</h3>
+                <div class="mission-objective">
+                    Modele o sistema de equações que define a trajetória parabólica `p(x) = ax² + bx + c` que passa pelos "anéis mágicos" localizados nos pontos (1, 4), (2, 9) e (-1, 6).
+                </div>
+            </div>
+            
+            <!-- Missão 1-B -->
+            <div class="mission">
+                <h3>MISSÃO 1-B: Escalonando o Desafio</h3>
+                <div class="mission-objective">
+                    Resolva o sistema da Missão 1-A usando Eliminação Gaussiana para encontrar os coeficientes `a, b, c`.
+                </div>
+            </div>
+            
+            <!-- Missão 1-C -->
+            <div class="mission">
+                <h3>MISSÃO 1-C: O Poder da Inversa e de Cramer</h3>
+                <div class="mission-objective">
+                    Re-resolva o sistema da Missão 1-A usando (1) o método da Matriz Inversa e (2) a Regra de Cramer para confirmar o resultado.
+                </div>
+            </div>
+
+            <!-- Missão 2-A -->
+            <div class="mission">
+                <h3>MISSÃO 2-A: O Corredor Infinito</h3>
+                <div class="mission-objective">
+                    Encontre a solução paramétrica do sistema abaixo e explique por que `det(A) = 0` previa a existência de infinitas soluções. <br>
+                    `x + y - 2z = 5` <br>
+                    `2x + y - 3z = 7` <br>
+                    `x - z = 2`
+                </div>
+            </div>
+
+            <!-- Missão 2-B -->
+            <div class="mission">
+                <h3>MISSÃO 2-B: Power-up Genuíno ou Falso?</h3>
+                <div class="mission-objective">
+                    Verifique se as transformações `T: R² -> R²` abaixo são lineares, justificando sua resposta.
+                    <ol>
+                        <li>`T(x, y) = (2x - y, x)`</li>
+                        <li>`F(x, y) = (xy, x+y)`</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Missão 2-C -->
+            <div class="mission">
+                <h3>MISSÃO 2-C: O Plano Secreto</h3>
+                <div class="mission-objective">
+                    Encontre a solução paramétrica para o sistema abaixo, que descreve um "plano secreto".<br>
+                    `x + 2y - z = 3` <br>
+                    `2x + 4y - 2z = 6` <br>
+                    `-x - 2y + z = -3`
+                </div>
+            </div>
+
+            <!-- Missão 3-A -->
+            <div class="mission">
+                <h3>MISSÃO 3-A: Desarmando a Trava Pentadimensional</h3>
+                <div class="mission-objective">
+                    Calcule o determinante da matriz 5x5 abaixo de forma eficiente, usando operações de linha para simplificá-la.
+                </div>
+                \[ A = \begin{bmatrix}
+                1 & -2 & 0 & 3 & 1 \\
+                0 & 1 & 2 & -1 & 0 \\
+                -2 & 4 & 1 & 0 & 1 \\
+                0 & 0 & 3 & 1 & 2 \\
+                1 & 0 & -1 & 0 & 1
+                \end{bmatrix} \]
+            </div>
+
+            <!-- Missão 3-B -->
+            <div class="mission">
+                <h3>MISSÃO 3-B: Convergência de Corredores</h3>
+                <div class="mission-objective">
+                    Encontre a equação geral do plano que contém as duas retas `r₁` e `r₂` dadas pelas interseções de planos: <br>
+                    `r₁`: {`x + y = 2`, `z = 1`} <br>
+                    `r₂`: {`x - y = 0`, `z = 1`}
+                </div>
+            </div>
+            
+            <!-- Missão 3-C -->
+            <div class="mission">
+                <h3>MISSÃO 3-C: O Arsenal Completo do Mestre do Jogo</h3>
+                <div class="mission-objective">
+                    Construa seu "arsenal de matrizes". Escreva as matrizes padrão 3x3 para:
+                    <ol>
+                        <li>Rotação de um ângulo `θ` em torno do eixo x (`Rₓ`).</li>
+                        <li>Reflexão através do plano yz (`Refl_yz`).</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Missão 4-A -->
+            <div class="mission">
+                <h3>MISSÃO 4-A: Combo X-Y (Boss Fight)</h3>
+                <div class="mission-objective">
+                    Calcule a matriz de transformação `M_yx` que resulta da aplicação de uma rotação de 90° em torno do eixo x, **seguida por** uma rotação de 90° em torno do eixo y.
+                </div>
+            </div>
+
+            <!-- Missão 4-B -->
+            <div class="mission">
+                <h3>MISSÃO 4-B: Combo Y-X (Boss Fight)</h3>
+                <div class="mission-objective">
+                    Calcule a matriz de transformação `M_xy` que resulta da aplicação de uma rotação de 90° em torno do eixo y, **seguida por** uma rotação de 90° em torno do eixo x.
+                </div>
+            </div>
+
+            <!-- Missão 4-C -->
+            <div class="mission">
+                <h3>MISSÃO 4-C: A Lição Final (Boss Fight)</h3>
+                <div class="mission-objective">
+                    Compare `M_yx` e `M_xy`. Elas são iguais? Para ver o efeito, aplique ambas as matrizes ao vetor `v = (1, 0, 0)` e descreva a posição final do vetor em cada caso. Qual a lição final do Mestre do Jogo?
+                </div>
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

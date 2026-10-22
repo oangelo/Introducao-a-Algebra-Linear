@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Expansão em Cofatores</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 2.1: Decodificação Recursiva</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Expansão em Cofatores</h3>
+        <p>Bem-vindo, jogador! Nesta fase, você aprenderá a "Decodificação Recursiva", uma técnica poderosa para calcular o determinante de uma matriz. Pense nisso como abrir um arquivo de jogo complexo (uma matriz grande) inspecionando seus sub-arquivos (submatrizes menores) um por um.</p>
+        <p>A expansão em cofatores nos permite quebrar um determinante grande em uma soma de determinantes menores. É um método fundamental para entender a estrutura interna das matrizes e como cada elemento contribui para a transformação geral. A chave é o <strong>cofator</strong> \(C_{ij}\), que combina o sinal de posição com o determinante do "menor" \(M_{ij}\).</p>
+        <div class="formula">
+        $$ \det(A) = \sum_{j=1}^{n} a_{ij} \cdot C_{ij} = \sum_{j=1}^{n} a_{ij} \cdot (-1)^{i+j} \cdot \det(M_{ij}) $$
+        </div>
+        <p>Onde \(M_{ij}\) é a submatriz obtida removendo-se a linha \(i\) e a coluna \(j\) de \(A\).</p>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1 (BÁSICO) -->
+        <div class="mission">
+            <h3>Aquecimento no Fliperama (Determinante 2x2 por Cofatores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a fórmula de cofatores no caso mais simples para entender o padrão de sinais \((-1)^{i+j}\).
+            </div>
+            <p>Um designer de jogos aplicou uma transformação ao sprite de um power-up. A transformação é descrita pela matriz \(A\). Calcule o fator de escala de área, dado pelo determinante de \(A\), usando expansão em cofatores ao longo da primeira linha.
+            $$ A = \begin{pmatrix} 3 & 1 \\ 2 & 4 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Lembre-se da fórmula: \(\det(A) = a_{11}C_{11} + a_{12}C_{12}\). O cofator \(C_{ij}\) inclui o sinal \((-1)^{i+j}\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique os elementos da primeira linha: \(a_{11} = 3\) e \(a_{12} = 1\).</li>
+                    <li>Calcule o cofator \(C_{11}\). O sinal é \((-1)^{1+1} = +1\). O menor \(M_{11}\) é o determinante da matriz que sobra ao remover a linha 1 e coluna 1, que é \(\det(4) = 4\). Portanto, \(C_{11} = 4\).</li>
+                    <li>Calcule o cofator \(C_{12}\). O sinal é \((-1)^{1+2} = -1\). O menor \(M_{12}\) é \(\det(2) = 2\). Portanto, \(C_{12} = -2\).</li>
+                    <li>Aplique a fórmula da expansão: \(\det(A) = a_{11}C_{11} + a_{12}C_{12}\).</li>
+                </ol>
+                <div class="formula">$$ \det(A) = a_{11}(-1)^{1+1}\det(M_{11}) + a_{12}(-1)^{1+2}\det(M_{12}) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O determinante de uma matriz de transformação 2D informa o quanto a área de um objeto muda. Se \(\det(A)=10\), a área do sprite se torna 10 vezes maior.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2 (BÁSICO) -->
+        <div class="mission">
+            <h3>O Puzzle do Templo 3D (Determinante 3x3 - Caso Padrão)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a expansão em cofatores a uma matriz 3x3 sem atalhos óbvios.
+            </div>
+            <p>Para abrir a porta de um templo antigo em um jogo de aventura 3D, você precisa alinhar três artefatos. A matriz de alinhamento é dada por \(B\). A porta só abrirá se o sistema for estável, ou seja, \(\det(B) \neq 0\). Calcule o determinante de \(B\) usando expansão pela primeira linha.
+            $$ B = \begin{pmatrix} 2 & -1 & 0 \\ 1 & 3 & 5 \\ 4 & 1 & -2 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A expansão pela primeira linha irá gerar uma soma de três termos. Cada termo envolve o cálculo de um determinante 2x2.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique os elementos da primeira linha: \(a_{11}=2\), \(a_{12}=-1\), \(a_{13}=0\).</li>
+                    <li>Calcule o primeiro termo: \(2 \cdot (-1)^{1+1} \cdot \det \begin{pmatrix} 3 & 5 \\ 1 & -2 \end{pmatrix}\).</li>
+                    <li>Calcule o segundo termo: \(-1 \cdot (-1)^{1+2} \cdot \det \begin{pmatrix} 1 & 5 \\ 4 & -2 \end{pmatrix}\).</li>
+                    <li>O terceiro termo é zero, pois \(a_{13}=0\), simplificando o cálculo.</li>
+                    <li>Some os resultados dos termos para encontrar o determinante final.</li>
+                </ol>
+                <div class="formula">$$ \det(B) = a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em física de jogos, matrizes 3x3 podem representar o momento de inércia de um objeto. Um determinante não nulo significa que o objeto pode girar livremente em 3D.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3 (BÁSICO) -->
+        <div class="mission">
+            <h3>O Ponto Fraco do Inimigo (Escolha Estratégica com Zeros)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender como a escolha de uma linha/coluna com zeros simplifica drasticamente os cálculos.
+            </div>
+            <p>Você hackeou a I.A. de um inimigo e obteve sua matriz de defesa \(C\). Para encontrar uma vulnerabilidade, calcule a "instabilidade estrutural" (\(\det(C)\)). Escolha a linha ou coluna mais eficiente para realizar a expansão em cofatores.
+            $$ C = \begin{pmatrix} 4 & 0 & -2 \\ 3 & 5 & 0 \\ 1 & 0 & 3 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Procure a linha ou coluna com o maior número de zeros. Cada zero elimina um termo inteiro da soma da expansão.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Observe que a segunda coluna tem dois elementos nulos (\(c_{12}\) e \(c_{32}\)). Esta é a escolha ideal para a expansão.</li>
+                    <li>A fórmula da expansão pela segunda coluna é \(\det(C) = c_{12}C_{12} + c_{22}C_{22} + c_{32}C_{32}\).</li>
+                    <li>Como \(c_{12}=0\) e \(c_{32}=0\), a soma se reduz a um único termo: \(c_{22}C_{22}\).</li>
+                    <li>Calcule este único termo: \(5 \cdot (-1)^{2+2} \cdot \det \begin{pmatrix} 4 & -2 \\ 1 & 3 \end{pmatrix}\).</li>
+                </ol>
+                <div class="formula">$$ \det(C) = \sum_{i=1}^{3} c_{ij} C_{ij} \quad (\text{escolhendo a coluna } j=2) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em programação, otimizar algoritmos é crucial. Escolher a coluna com mais zeros é análogo a encontrar um atalho no código que evita cálculos desnecessários, fazendo o jogo rodar mais rápido.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Renderizando o Kart (Modo 7) (Determinante 3x3 com Variáveis)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a expansão para encontrar o valor de um parâmetro \(k\) que torna o determinante nulo.
+            </div>
+            <p>Em um jogo de corrida estilo "Mode 7", a matriz de projeção da pista depende de um parâmetro de câmera \(k\). Se o determinante da matriz for zero, a projeção "achata" e causa um glitch visual. Encontre o valor de \(k\) que causa esse glitch na matriz \(D\).
+            $$ D = \begin{pmatrix} 1 & k & 3 \\ 2 & -1 & 0 \\ 0 & 4 & k \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Calcule o determinante em função de \(k\). O resultado será uma expressão polinomial. Depois, iguale essa expressão a zero para encontrar o valor de \(k\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escolha uma linha ou coluna para expandir. A primeira coluna ou a terceira linha são boas escolhas por conterem um zero. Vamos usar a primeira coluna.</li>
+                    <li>Expanda o determinante: \(1 \cdot \det\begin{pmatrix} -1 & 0 \\ 4 & k \end{pmatrix} - 2 \cdot \det\begin{pmatrix} k & 3 \\ 4 & k \end{pmatrix}\).</li>
+                    <li>Resolva os determinantes 2x2: \(1(-k - 0) - 2(k^2 - 12)\).</li>
+                    <li>Simplifique a expressão resultante para obter um polinômio em \(k\).</li>
+                    <li>Iguale o polinômio a zero (\(\det(D) = 0\)) e resolva a equação para encontrar os valores de \(k\).</li>
+                </ol>
+                <div class="formula">$$ \det(D) = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma matriz com determinante zero representa uma transformação que "esmaga" o espaço, perdendo uma dimensão. Em gráficos, isso pode significar projetar um objeto 3D em uma linha, ou um 2D em um ponto.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 5 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>Portal Interdimensional 4x4 (Determinante 4x4 com Zeros)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a técnica de escolha estratégica em uma matriz de ordem maior, reduzindo-a a subproblemas 3x3.
+            </div>
+            <p>Para abrir um portal em um jogo de ficção científica, a matriz de transformação do espaço-tempo \(E\) precisa ser estável (\(\det(E) \neq 0\)). Calcule o determinante da matriz 4x4 abaixo para verificar a estabilidade do portal.
+            $$ E = \begin{pmatrix} 1 & 0 & 2 & 0 \\ 3 & -1 & 0 & 4 \\ 0 & 2 & 5 & 0 \\ -1 & 0 & 1 & 6 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Expanda pela coluna com mais zeros. Isso reduzirá o problema de um determinante 4x4 para o cálculo de apenas dois determinantes 3x3.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique que a segunda coluna é a melhor para a expansão, pois tem dois zeros.</li>
+                    <li>A expansão se reduz a dois termos: \(-1 \cdot C_{22} + 2 \cdot C_{32}\).</li>
+                    <li>Calcule o primeiro cofator: \(C_{22} = (-1)^{2+2} \det \begin{pmatrix} 1 & 2 & 0 \\ 0 & 5 & 0 \\ -1 & 1 & 6 \end{pmatrix}\). Calcule este determinante 3x3 (dica: use a segunda coluna de novo!).</li>
+                    <li>Calcule o segundo cofator: \(C_{32} = (-1)^{3+2} \det \begin{pmatrix} 1 & 2 & 0 \\ 3 & 0 & 4 \\ -1 & 1 & 6 \end{pmatrix}\). Calcule este determinante 3x3.</li>
+                    <li>Combine os resultados para obter o determinante final de \(E\).</li>
+                </ol>
+                <div class="formula">$$ \det(E) = \sum_{i=1}^{4} e_{i2} C_{i2} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Gráficos 3D modernos usam matrizes 4x4 (coordenadas homogêneas) para representar translação, rotação e escala de uma só vez. O determinante mede a distorção de volume causada por essa transformação.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 6 (INTERMEDIÁRIO) -->
+        <div class="mission">
+            <h3>A Singularidade do Asteróide (Determinante e Invertibilidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Relacionar o resultado do determinante (nulo ou não nulo) a uma propriedade física do jogo.
+            </div>
+            <p>Em um simulador espacial, a matriz \(F\) descreve os eixos de rotação de um asteroide. Se \(\det(F) = 0\), o asteroide possui uma "singularidade": ele não pode ser girado livremente e tem um eixo de rotação "travado". Calcule \(\det(F)\) e determine se o asteroide tem essa falha.
+            $$ F = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 0 & 1 & 5 \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Calcule o determinante. Se o resultado for zero, a matriz não é invertível, o que corresponde à singularidade. Observe a relação entre a primeira e a segunda linha.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escolha qualquer linha ou coluna para expandir. A primeira coluna é uma opção.</li>
+                    <li>Expanda o determinante: \(1 \cdot \det\begin{pmatrix} 4 & 6 \\ 1 & 5 \end{pmatrix} - 2 \cdot \det\begin{pmatrix} 2 & 3 \\ 1 & 5 \end{pmatrix}\).</li>
+                    <li>Calcule os determinantes 2x2 e some os termos.</li>
+                    <li>Interprete o resultado: se o determinante for zero, a matriz é singular. Uma propriedade dos determinantes diz que se uma linha é múltipla de outra (aqui, \(L_2 = 2L_1\)), o determinante é sempre zero.</li>
+                </ol>
+                <div class="formula">$$ \text{Matriz Singular} \iff \det(F) = 0 $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Uma matriz de transformação não-invertível (singular) é uma operação que não pode ser "desfeita". Em um jogo, isso pode ser um efeito de um buraco negro que comprime o espaço, do qual não há retorno.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 7 (AVANÇADO) -->
+        <div class="mission">
+            <h3>O Segredo da Matriz Triangular (Propriedade de Matrizes Triangulares)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a expansão em cofatores para provar que o determinante de uma matriz triangular é o produto de sua diagonal.
+            </div>
+            <p>A engine do seu jogo precisa calcular rapidamente a escala total de objetos "aninhados" (como um braço ligado a um torso, que está ligado ao corpo do personagem). A matriz de transformação total é uma matriz triangular superior. Prove, usando expansão em cofatores, que o determinante da matriz 3x3 abaixo é simplesmente o produto de suas entradas diagonais.
+            $$ T = \begin{pmatrix} a & b & c \\ 0 & d & e \\ 0 & 0 & f \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Comece expandindo pela primeira coluna. O que acontece com os termos que têm zero? Repita o processo na submatriz resultante.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Realize a expansão em cofatores pela primeira coluna de \(T\). Os únicos termos não-nulos virão do elemento \(a\).</li>
+                    <li>A expressão se simplifica para \(\det(T) = a \cdot (-1)^{1+1} \cdot \det \begin{pmatrix} d & e \\ 0 & f \end{pmatrix}\).</li>
+                    <li>Calcule o determinante 2x2 restante, que é \((d \cdot f - e \cdot 0) = df\).</li>
+                    <li>Combine os resultados para mostrar que \(\det(T) = a \cdot d \cdot f\), que é o produto dos elementos da diagonal.</li>
+                </ol>
+                <div class="formula">$$ \det(T) = t_{11} \cdot t_{22} \cdot \dots \cdot t_{nn} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta propriedade é uma otimização massiva. Em vez de um cálculo complexo, a engine pode obter o determinante de matrizes triangulares (comuns em animação) com uma simples multiplicação, economizando preciosos ciclos de CPU.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 8 (AVANÇADO) -->
+        <div class="mission">
+            <h3>Invasão em Blocos (Determinante de Matriz de Blocos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o determinante de uma matriz 4x4 estruturada em blocos, onde um dos blocos é nulo.
+            </div>
+            <p>A matriz de estado do seu jogo de estratégia separa os dados da sua base (bloco superior esquerdo \(A\)) e das unidades inimigas (bloco inferior direito \(B\)). Como não há interação direta, o bloco superior direito é nulo. Calcule o determinante da matriz de blocos \(G\) e mostre que \(\det(G) = \det(A)\det(B)\).
+            $$ G = \begin{pmatrix} 2 & 1 & 0 & 0 \\ 3 & 4 & 0 & 0 \\ \hline 5 & 6 & 7 & 8 \\ 9 & 10 & 1 & 2 \end{pmatrix} = \begin{pmatrix} A & \mathbf{0} \\ C & B \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Expanda pela primeira linha. O cofator de cada elemento será um determinante 3x3. Note que esses determinantes 3x3 também têm uma estrutura especial.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Expanda \(\det(G)\) ao longo da primeira linha. A fórmula é \(2 \cdot C_{11} + 1 \cdot C_{12}\).</li>
+                    <li>Observe que os cofatores \(C_{11}\) e \(C_{12}\) envolvem determinantes de submatrizes 3x3 que ainda contêm uma coluna de zeros.</li>
+                    <li>Por exemplo, \(C_{11} = \det \begin{pmatrix} 4 & 0 & 0 \\ 6 & 7 & 8 \\ 10 & 1 & 2 \end{pmatrix}\). Ao expandir este determinante (pela primeira linha, por exemplo), você obtém \(4 \cdot \det(B)\).</li>
+                    <li>Faça o mesmo para \(C_{12}\). A expressão final se agrupará de forma a resultar em \((2 \cdot 4 - 1 \cdot 3) \cdot \det(B)\), que é \(\det(A)\det(B)\).</li>
+                </ol>
+                <div class="formula">$$ \det\begin{pmatrix} A & \mathbf{0} \\ C & B \end{pmatrix} = \det(A)\det(B) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta propriedade mostra que se dois sistemas (jogador e inimigo) são independentes, a "complexidade" total (determinante) do sistema combinado é o produto de suas complexidades individuais.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 9 (AVANÇADO) -->
+        <div class="mission">
+            <h3>A Prova do Speedrunner (Efeito da Troca de Linhas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Utilizar o raciocínio de cofatores para justificar por que trocar duas linhas de uma matriz inverte o sinal do seu determinante.
+            </div>
+            <p>Um *glitch* descoberto por speedrunners permite ativar um "Modo Espelho" que troca os eixos Y e Z do mundo do jogo. Matematicamente, isso corresponde a trocar duas linhas na matriz de transformação. Usando uma matriz genérica 2x2, demonstre que trocar as duas linhas inverte o sinal do determinante.
+            $$ A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \quad \text{e} \quad A' = \begin{pmatrix} c & d \\ a & b \end{pmatrix} $$
+            </p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Calcule \(\det(A)\) e \(\det(A')\) separadamente usando a fórmula padrão para determinantes 2x2. Compare os dois resultados.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o determinante da matriz original \(A\). O resultado é \(ad - bc\).</li>
+                    <li>Calcule o determinante da matriz \(A'\) com as linhas trocadas. O resultado é \(cb - da\).</li>
+                    <li>Compare os dois resultados. Note que \(cb - da = -(ad - bc)\).</li>
+                    <li>Conclua que \(\det(A') = -\det(A)\). Embora demonstrado para 2x2, este princípio vale para matrizes de qualquer ordem e pode ser provado formalmente com expansão em cofatores e indução.</li>
+                </ol>
+                <div class="formula">$$ \det(A') = -\det(A) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A troca de sinal no determinante indica uma inversão de "orientação". Em 3D, isso significa transformar um mundo "destro" em um "canhoto", como olhar para ele através de um espelho.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 10 (BOSS) -->
+        <div class="mission">
+            <h3>O Labirinto do Minotauro Algorítmico (Matriz 5x5 Esparsa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o determinante de uma matriz grande, mas com muitos zeros, exigindo múltiplas expansões estratégicas.
+            </div>
+            <p>Você enfrenta um chefe final cuja I.A. é governada por um labirinto procedural. O "fator de complexidade" do labirinto é o determinante da sua matriz de adjacência \(H\). Calcule \(\det(H)\) para encontrar a chave para derrotá-lo.
+            $$ H = \begin{pmatrix} 3 & 0 & 0 & 1 & 0 \\ 0 & -1 & 2 & 0 & 0 \\ 0 & 0 & 4 & 0 & 1 \\ 5 & 0 & 0 & 2 & 0 \\ 0 & 0 & -3 & 0 & 6 \end{pmatrix} $$
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique as linhas/colunas mais esparsas (com mais zeros). A segunda e a quinta colunas são excelentes candidatas.</li>
+                    <li>Expanda pela segunda coluna. O único termo não-nulo é o de \(h_{22} = -1\). Isso reduz o problema a calcular o determinante de uma submatriz 4x4.</li>
+                    <li>Na submatriz 4x4 resultante, procure novamente a melhor linha/coluna para expandir. A nova segunda coluna (originalmente a terceira de H) será a mais eficiente.</li>
+                    <li>Continue o processo de expansão recursiva, sempre escolhendo o caminho de menor resistência (mais zeros), até chegar a um determinante 2x2.</li>
+                </ol>
+                <div class="formula">$$ \det(A) = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} \det(M_{ij}) \quad (\text{Aplicado recursivamente}) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Matrizes esparsas são comuns em jogos, representando sistemas onde nem tudo está conectado a tudo (ex: mapas de níveis, redes de waypoints para I.A.). Explorar a esparsidade é uma técnica de otimização fundamental.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 11 (BOSS) -->
+        <div class="mission">
+            <h3>A Fórmula Secreta de Vandermonde (Determinante de Matriz de Vandermonde)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o determinante de uma matriz 3x3 de Vandermonde e generalizar o padrão.
+            </div>
+            <p>Para criar um "power-up" com uma curva de poder única, os desenvolvedores usam uma matriz de Vandermonde para garantir que a curva passe por três pontos distintos \((a, p_a), (b, p_b), (c, p_c)\). A unicidade da curva é garantida se o determinante da matriz \(V\) for não-nulo. Calcule \(\det(V)\).
+            $$ V = \begin{pmatrix} 1 & a & a^2 \\ 1 & b & b^2 \\ 1 & c & c^2 \end{pmatrix} $$
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a expansão em cofatores pela primeira linha (ou coluna).</li>
+                    <li>A expressão será \(1 \cdot \det\begin{pmatrix} b & b^2 \\ c & c^2 \end{pmatrix} - a \cdot \det\begin{pmatrix} 1 & b^2 \\ 1 & c^2 \end{pmatrix} + a^2 \cdot \det\begin{pmatrix} 1 & b \\ 1 & c \end{pmatrix}\).</li>
+                    <li>Calcule cada determinante 2x2: \(bc^2 - b^2c\), \(c^2 - b^2\), e \(c - b\).</li>
+                    <li>Substitua e simplifique a expressão algébrica. Fatore os termos comuns, como \((c-b)\).</li>
+                    <li>O objetivo é chegar à forma fatorada: \((b-a)(c-a)(c-b)\). Isso mostra que o determinante só é zero se dois dos pontos \(a, b, c\) forem iguais.</li>
+                </ol>
+                <div class="formula">$$ \det(V) = (b-a)(c-a)(c-b) $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Interpolação é usada para criar curvas suaves para animação, movimento de câmera ou balanceamento de estatísticas. A matriz de Vandermonde é a base teórica que garante que, dados N pontos, existe um único polinômio de grau N-1 que passa por todos eles.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 12 (BOSS) -->
+        <div class="mission">
+            <h3>O Colapso Recursivo (Relação de Recorrência para Determinantes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar uma fórmula de recorrência para o determinante de uma família de matrizes tridiagonais de ordem `n`.
+            </div>
+            <p>A física de uma "ponte de energia" com \(n\) seções é modelada pela matriz \(A_n\) de ordem \(n\). A ponte é estável se \(\det(A_n) \neq 0\). Seja \(D_n = \det(A_n)\). Use a expansão em cofatores para encontrar uma relação de recorrência para \(D_n\) em termos de \(D_{n-1}\) e \(D_{n-2}\).
+            $$ A_n = \begin{pmatrix}
+            2 & -1 & 0 & \dots & 0 \\
+            -1 & 2 & -1 & \dots & 0 \\
+            0 & -1 & 2 & \ddots & \vdots \\
+            \vdots & \ddots & \ddots & \ddots & -1 \\
+            0 & \dots & \dots & -1 & 2
+            \end{pmatrix} $$
+            </p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Comece expandindo \(D_n = \det(A_n)\) pela primeira linha.</li>
+                    <li>O primeiro termo é \(2 \cdot (-1)^{1+1} \cdot \det(M_{11})\). Note que a submatriz \(M_{11}\) é exatamente a matriz \(A_{n-1}\), então seu determinante é \(D_{n-1}\). O termo é \(2D_{n-1}\).</li>
+                    <li>O segundo termo é \(-1 \cdot (-1)^{1+2} \cdot \det(M_{12})\). Isso simplifica para \(+1 \cdot \det(M_{12})\).</li>
+                    <li>Analise a matriz \(M_{12}\). Para calcular seu determinante, expanda-o pela sua primeira coluna (que só tem o elemento \(-1\)).</li>
+                    <li>Essa segunda expansão mostrará que \(\det(M_{12}) = -1 \cdot \det(A_{n-2}) = -D_{n-2}\).</li>
+                    <li>Combine os resultados: \(D_n = 2D_{n-1} - D_{n-2}\).</li>
+                </ol>
+                <div class="formula">$$ D_n = 2D_{n-1} - D_{n-2} $$</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Relações de recorrência são a base da programação dinâmica, uma técnica usada para resolver problemas complexos (como pathfinding em um grid) quebrando-os em subproblemas mais simples e reutilizando as soluções.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

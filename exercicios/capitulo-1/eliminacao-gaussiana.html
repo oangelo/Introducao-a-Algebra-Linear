@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa -->
+    <link rel="stylesheet" href="game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Sistemas Lineares e Eliminação Gaussiana</title>
+    <style>
+    /*
+     * Game Theme for Algebra Arcade Exercises
+     * Estilo para as listas de exercícios (v3 - Pedagógico)
+     */
+
+    :root {
+        --background-color: #1a1a2d;
+        --main-font: 'VT323', monospace;
+        --heading-font: 'Press Start 2P', sans-serif;
+        --text-color: #e0e0e0;
+        --cyan: #00ffff;
+        --magenta: #ff00ff;
+        --yellow: #ffff00;
+        --green: #00ff00;
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: var(--main-font);
+        font-size: 1.5rem;
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 4px solid var(--cyan);
+        box-shadow: 0 0 15px var(--cyan);
+    }
+
+    h1, h2, h3 {
+        font-family: var(--heading-font);
+        color: var(--yellow);
+        text-shadow: 2px 2px 0px var(--magenta);
+        text-transform: uppercase;
+    }
+
+    .console-header { text-align: center; border: 2px solid var(--yellow); padding: 10px; margin-bottom: 30px; }
+    .console-header h1 { font-size: 2em; margin: 0.5em 0; }
+    .console-header h2 { font-size: 1.2em; margin: 0.5em 0; }
+    .mission-intro h3 { font-size: 1.5em; color: var(--cyan); text-shadow: 2px 2px 0px var(--magenta); }
+
+    .mission { background-color: rgba(0, 0, 0, 0.3); border: 2px solid var(--cyan); padding: 20px; margin-bottom: 25px; counter-increment: mission-counter; }
+    .mission h3 { font-size: 1.2em; }
+    .mission h3::before { content: "MISSÃO #" counter(mission-counter) ": "; color: var(--yellow); }
+
+    .mission-objective {
+        background-color: rgba(0, 255, 255, 0.1);
+        border: 1px dashed var(--cyan);
+        padding: 10px;
+        margin: 15px 0;
+        font-size: 1.2rem;
+    }
+    .mission-objective strong {
+        font-family: var(--heading-font);
+        color: var(--cyan);
+        font-size: 0.9em;
+    }
+
+    .hint-container {
+        margin: 15px 0;
+    }
+    .hint-container summary {
+        font-family: var(--main-font);
+        color: var(--yellow);
+        font-size: 1.2rem;
+        font-style: italic;
+        cursor: pointer;
+        border: 1px dashed var(--yellow);
+        padding: 8px;
+        display: inline-block;
+    }
+    .hint-container .hint {
+        margin-top: 10px;
+        border-left: 4px solid var(--yellow);
+        padding: 10px;
+        background: rgba(255, 255, 0, 0.05);
+        font-style: italic;
+    }
+    .hint p { margin: 0; }
+
+    details { border: 2px dashed var(--green); padding: 15px; margin-top: 20px; background-color: rgba(0, 255, 0, 0.05); }
+    details summary { font-family: var(--heading-font); color: var(--green); cursor: pointer; font-size: 0.9em; }
+
+    .solution-steps { padding-left: 20px; }
+    .solution-steps li { list-style-type: '» '; margin-bottom: 10px; padding-left: 10px; }
+
+    .formula { display: block; margin: 15px 0; padding: 15px; background-color: rgba(0, 0, 0, 0.5); border: 2px solid var(--magenta); color: var(--text-color); text-align: center; overflow-x: auto; }
+    .game-connection { margin-top: 15px; padding-top: 10px; border-top: 1px dashed var(--text-color); font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <header class="console-header">
+        <h1>Álgebra Arcade</h1>
+        <h2>Fase 2: O Mestre dos Puzzles</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Sistemas Lineares e Eliminação Gaussiana</h3>
+        <p>Bem-vindo, jogador! Nesta fase, você aprenderá a resolver os quebra-cabeças lógicos que formam o coração de muitos jogos. Um sistema de equações lineares é como um puzzle com várias regras interligadas. A Eliminação Gaussiana é a sua ferramenta mestre para decifrá-los de forma organizada e eficiente!</p>
+        <p>A estratégia é transformar o sistema em um "Grid do Nível" (Matriz Aumentada) e usar "Power-ups" (Operações Elementares de Linha) para simplificar o grid até que a solução se torne óbvia. O objetivo é chegar à "Forma Escalonada", onde você pode descobrir o valor de cada variável, uma por uma, de baixo para cima.</p>
+        <div class="formula">
+            \[ \begin{cases} a_{11}x_1 + a_{12}x_2 = b_1 \\ a_{21}x_1 + a_{22}x_2 = b_2 \end{cases} \quad \xrightarrow{\text{Transforma em}} \quad \left[ \begin{array}{cc|c} a_{11} & a_{12} & b_1 \\ a_{21} & a_{22} & b_2 \end{array} \right] \]
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- Training Quests (Fácil) -->
+        <div class="mission">
+            <h3>Balanceamento de Atributos (Sistemas Lineares 2x2)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Montar uma matriz aumentada e executar uma única operação de eliminação.
+            </div>
+            <p>Um designer de jogos precisa balancear um novo herói. Duas poções afetam os atributos de Ataque (A) e Defesa (D). A Poção Vermelha dá 2 de Ataque e 1 de Defesa. A Poção Azul dá 1 de Ataque e 2 de Defesa. O herói precisa de exatamente 8 de Ataque e 7 de Defesa. Quantas poções de cada tipo (v, a) ele deve tomar? O sistema é:</p>
+            \[ \begin{cases} 2v + a = 8 \\ v + 2a = 7 \end{cases} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para eliminar a variável 'v' da segunda linha, você pode multiplicar a segunda linha por 2 e depois subtrair a primeira linha dela.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Represente o sistema como uma matriz aumentada. A primeira coluna representa 'v', a segunda 'a', e a terceira os totais.</li>
+                    <li>Escolha uma variável para eliminar na segunda linha (por exemplo, 'v'). Para isso, use a primeira linha como pivô. Execute a operação de linha \( L_2 \leftarrow 2L_2 - L_1 \).</li>
+                    <li>A nova matriz estará em forma escalonada. A segunda linha agora terá a forma \( 0v + ka = c \), permitindo que você descubra 'a'.</li>
+                    <li>Com o valor de 'a', use a primeira equação original para encontrar 'v'.</li>
+                </ol>
+                <div class="formula">\[ \left[ \begin{array}{cc|c} 2 & 1 & 8 \\ 1 & 2 & 7 \end{array} \right] \xrightarrow{2L_2 - L_1} \text{ ???} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Sistemas lineares são usados constantemente no balanceamento de jogos para garantir que as combinações de itens, habilidades e atributos sejam justas e interessantes.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>O Segredo do Ferreiro (Operações com Múltiplos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a multiplicação de uma linha por um escalar antes de somá-la a outra.
+            </div>
+            <p>Em um RPG, o ferreiro vende Espadas de Ferro e Escudos de Aço. Um aventureiro compra 3 espadas e 2 escudos por 120 moedas de ouro. Outro compra 4 espadas e 3 escudos por 170 moedas. Qual o preço de cada item (e, s)?</p>
+            \[ \begin{cases} 3e + 2s = 120 \\ 4e + 3s = 170 \end{cases} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Não há um múltiplo inteiro simples para eliminar uma variável diretamente. Tente multiplicar a primeira linha por 4 e a segunda por 3 para igualar os coeficientes de 'e'. Depois, subtraia uma da outra.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva a matriz aumentada correspondente ao sistema de preços.</li>
+                    <li>Para eliminar a variável 'e' na segunda linha, você precisa que os coeficientes de 'e' nas duas linhas sejam múltiplos um do outro. Uma boa estratégia é encontrar o mínimo múltiplo comum.</li>
+                    <li>Execute a operação \(L_2 \leftarrow 3L_2 - 4L_1\). Isso fará com que o primeiro elemento da segunda linha se torne zero.</li>
+                    <li>A partir da matriz escalonada, resolva para 's' na segunda linha e depois substitua o valor encontrado na primeira equação para achar 'e'.</li>
+                </ol>
+                <div class="formula">\[ L_2' = 3 \times (\text{linha } 2) - 4 \times (\text{linha } 1) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A economia interna de jogos de RPG é toda baseada em sistemas de equações para definir preços, recompensas e custos de craft, mantendo o universo do jogo consistente.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>Puzzle dos Interruptores (Troca de Linhas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Reconhecer quando uma troca de linhas (power-up de "Swap") simplifica o processo de eliminação.
+            </div>
+            <p>Para abrir uma porta secreta, você precisa resolver um puzzle. A primeira regra é \(0x + 2y = 6\). A segunda regra é \(x + 3y = 7\). Encontre os valores de x e y para abrir a porta.</p>
+            \[ \begin{cases} 2y = 6 \\ x + 3y = 7 \end{cases} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O pivô da primeira linha (o primeiro elemento não-nulo) está na segunda coluna. Para seguir o método padrão, o ideal é ter um pivô na primeira coluna. Trocar as linhas pode ajudar!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada para o sistema, lembrando de colocar um 0 no lugar do 'x' na primeira equação.</li>
+                    <li>Observe que o elemento na posição (1,1) é zero. Para facilitar a eliminação, é melhor ter um número diferente de zero ali. Use o "Power-up de Swap": troque a Linha 1 com a Linha 2 (\(L_1 \leftrightarrow L_2\)).</li>
+                    <li>A matriz já estará em forma escalonada após a troca! Resolva para 'y' usando a nova segunda linha e depois encontre 'x' com a primeira.</li>
+                </ol>
+                <div class="formula">\[ \left[ \begin{array}{cc|c} 0 & 2 & 6 \\ 1 & 3 & 7 \end{array} \right] \xrightarrow{L_1 \leftrightarrow L_2} \text{ ???} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Muitos puzzles em jogos de aventura, como em "The Legend of Zelda", são, na essência, sistemas de equações onde a ordem das ações (trocar linhas) importa para chegar à solução.</p>
+            </details>
+        </div>
+        
+        <!-- Main Missions (Médio) -->
+        <div class="mission">
+            <h3>Calibrando Cores de Sprite (Sistemas Lineares 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar o processo de eliminação gaussiana de forma sistemática para um sistema 3x3.
+            </div>
+            <p>Um artista gráfico está criando uma cor especial para a aura de um chefe. A cor é uma combinação de Vermelho (R), Verde (G) e Azul (B). As três condições para a calibração perfeita são:</p>
+            \[ \begin{cases} R + G + B = 10 \\ 2R - G + B = 7 \\ R + 2G - B = 5 \end{cases} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Use a primeira linha para eliminar a variável 'R' da segunda e da terceira linha. Faça as operações \(L_2 \leftarrow L_2 - 2L_1\) e \(L_3 \leftarrow L_3 - L_1\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Construa a matriz aumentada 3x4 para o sistema.</li>
+                    <li>**Passo 1 (Eliminar 'R'):** Use a primeira linha como pivô. Zere o primeiro elemento da Linha 2 e da Linha 3.</li>
+                    <li>**Passo 2 (Eliminar 'G'):** Agora, ignore a primeira linha. Use a nova Linha 2 como pivô para zerar o segundo elemento da nova Linha 3.</li>
+                    <li>A matriz está agora em forma escalonada. Use a última linha para encontrar 'B', depois substitua na segunda para encontrar 'G', e por fim, use ambas na primeira para encontrar 'R'.</li>
+                </ol>
+                <div class="formula">\[ \left[ \begin{array}{ccc|c} 1 & 1 & 1 & 10 \\ 2 & -1 & 1 & 7 \\ 1 & 2 & -1 & 5 \end{array} \right] \rightarrow \dots \rightarrow \left[ \begin{array}{ccc|c} 1 & \dots & \dots & \dots \\ 0 & \dots & \dots & \dots \\ 0 & 0 & \dots & \dots \end{array} \right] \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A representação de cores em computadores (RGB) é um espaço vetorial tridimensional. Efeitos complexos de iluminação e shaders frequentemente resolvem sistemas lineares para calcular a cor final de cada pixel.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>Farm de Itens Raros (Reforçando o Processo 3x3)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Solidificar o método de eliminação para sistemas 3x3 com coeficientes variados.
+            </div>
+            <p>Para forjar uma armadura lendária, você precisa de 3 itens: Escama de Dragão (x), Pena de Grifo (y) e Coração de Golem (z). As runas antigas te dão três pistas sobre as quantidades necessárias:</p>
+            \[ \begin{cases} x + 2y + 3z = 14 \\ 2x + 5y + 8z = 36 \\ -x + y + 2z = 8 \end{cases} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O processo é o mesmo: use a Linha 1 para zerar os primeiros elementos das Linhas 2 e 3. A operação para a Linha 3 será uma SOMA, não uma subtração: \(L_3 \leftarrow L_3 + L_1\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada 3x4.</li>
+                    <li>Execute as operações \(L_2 \leftarrow L_2 - 2L_1\) e \(L_3 \leftarrow L_3 + L_1\) para eliminar 'x' da segunda e terceira equações.</li>
+                    <li>Com a matriz parcialmente escalonada, use a nova segunda linha para eliminar a variável 'y' da nova terceira linha.</li>
+                    <li>Resolva o sistema de trás para frente (resolução por substituição retroativa) a partir da forma escalonada.</li>
+                </ol>
+                <div class="formula">\[ \text{Objetivo: Zerar os elementos nas posições (2,1), (3,1) e (3,2).} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Sistemas de "crafting" em jogos complexos como "Minecraft" ou "World of Warcraft" usam regras que podem ser modeladas como sistemas de equações para determinar as receitas e os recursos necessários.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>O Puzzle da Sala do Tesouro (Aproveitando Zeros)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar e utilizar zeros pré-existentes na matriz para economizar passos.
+            </div>
+            <p>Uma sala de tesouro tem 3 alavancas (x, y, z). As inscrições na parede dão as seguintes condições para abrir o baú:</p>
+            \[ \begin{cases} 2x - 3y + z = 1 \\ y - z = 2 \\ x - y + z = 2 \end{cases} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A segunda equação já tem o coeficiente de 'x' igual a zero. Você pode trocar a Linha 2 e a Linha 3 para ter uma matriz mais organizada, mas o principal é que você só precisa eliminar 'x' de uma linha, não de duas!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Ao montar a matriz aumentada, note que o elemento na posição (2,1) já é zero. Isso significa que um passo da eliminação já foi feito para você!</li>
+                    <li>Você só precisa eliminar o 'x' da terceira linha. Use a primeira linha para fazer isso: \(L_3 \leftarrow 2L_3 - L_1\).</li>
+                    <li>Depois disso, a sua matriz estará quase em forma escalonada. Use a segunda linha para eliminar 'y' da nova terceira linha.</li>
+                    <li>Resolva o sistema escalonado por substituição retroativa.</li>
+                </ol>
+                <div class="formula">\[ \left[ \begin{array}{ccc|c} 2 & -3 & 1 & 1 \\ 0 & 1 & -1 & 2 \\ 1 & -1 & 1 & 2 \end{array} \right] \rightarrow \text{ Economize um passo!} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em programação de jogos, otimização é tudo. Reconhecer casos especiais (como um zero já no lugar certo) economiza poder de processamento, permitindo que o jogo rode mais rápido.</p>
+            </details>
+        </div>
+
+        <!-- Elite Challenges (Avançado) -->
+        <div class="mission">
+            <h3>A Poção Impossível (Sistemas Inconsistentes)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar um sistema sem solução ("Glitch no Código") através da eliminação gaussiana.
+            </div>
+            <p>Um alquimista tenta criar uma poção lendária com 3 ingredientes (x, y, z). As fórmulas do livro antigo são:</p>
+            \[ \begin{cases} x + y - z = 5 \\ 2x + 2y - 2z = 12 \\ x - y + z = 1 \end{cases} \]
+            <p>Ele segue as instruções, mas algo dá errado. Use a Eliminação Gaussiana para descobrir por que a receita falha.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe a relação entre a primeira e a segunda equação. Se uma equação é um múltiplo de outra, mas o resultado não é, você pode ter um problema. Prossiga com a eliminação e veja que tipo de linha aparece.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada.</li>
+                    <li>Use a primeira linha para eliminar 'x' da segunda. Execute a operação \(L_2 \leftarrow L_2 - 2L_1\).</li>
+                    <li>Analise a nova segunda linha. Você obterá uma equação da forma \(0x + 0y + 0z = k\), onde \(k\) é um número diferente de zero.</li>
+                    <li>Essa equação, \(0 = k\), é uma contradição matemática. Isso significa que o sistema é inconsistente e não possui solução.</li>
+                </ol>
+                <div class="formula">\[ \text{Se você chegar a uma linha como } [0 \quad 0 \quad 0 \quad | \quad k \neq 0], \text{ há um "Glitch"!}\]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso representa um "softlock" ou uma condição impossível em um jogo. É um erro de design onde as regras do puzzle se contradizem, impedindo o jogador de progredir. Identificar isso é como fazer um debug na lógica do jogo.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>A Receita Flexível (Sistemas com Infinitas Soluções)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar um sistema com infinitas soluções e expressar a solução usando uma variável livre.
+            </div>
+            <p>Um chef em um jogo de simulação tem uma receita secreta que usa Farinha (f), Açúcar (a) e Ovos (o). As regras de proporção são:</p>
+            \[ \begin{cases} f + 2a + 3o = 6 \\ 2f - a + 4o = 3 \\ 4f + 3a + 10o = 15 \end{cases} \]
+            <p>Descubra se existe uma única combinação ou se a receita permite variações.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Durante a eliminação, você pode descobrir que uma linha inteira se torna zero (incluindo o resultado). Isso indica que uma das equações era redundante (uma combinação das outras).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada e comece o processo de eliminação padrão, zerando a primeira coluna abaixo do pivô.</li>
+                    <li>Continue o processo para a segunda coluna. Você notará que a terceira linha se tornará uma linha de zeros: \( [0 \quad 0 \quad 0 \quad | \quad 0] \).</li>
+                    <li>Essa linha \(0=0\) é sempre verdade e não adiciona informação. Você fica com 2 equações e 3 variáveis. Isso significa que há infinitas soluções.</li>
+                    <li>Escolha uma variável para ser o "parâmetro livre" (geralmente a última, 'o'). Chame-a de \(t\). Expresse as outras variáveis ('f' e 'a') em termos de \(t\).</li>
+                </ol>
+                <div class="formula">\[ \text{Se você chegar a uma linha } [0 \quad 0 \quad 0 \quad | \quad 0], \text{ use uma variável livre!} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso é comum em jogos com sistemas de "crafting" ou construção. A solução não é única; o jogador tem liberdade (um parâmetro livre) para customizar suas criações dentro de um conjunto de regras, como em "Kerbal Space Program".</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>O Caminho do Fantasma (Parametrizando a Solução)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a escrita da solução geral para um sistema com uma variável livre.
+            </div>
+            <p>A IA de um fantasma em um jogo de labirinto se move no espaço 3D. Sua próxima posição (x, y, z) deve obedecer a duas regras de programação:</p>
+            \[ \begin{cases} x - y + 2z = 4 \\ 2x - y + 5z = 10 \end{cases} \]
+            <p>Descreva todos os pontos possíveis para onde o fantasma pode se mover.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você tem mais variáveis do que equações. Isso é uma grande pista de que haverá infinitas soluções. Use a eliminação para simplificar o sistema e depois parametrize a solução.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada, que terá 2 linhas e 4 colunas.</li>
+                    <li>Execute uma única operação de eliminação para zerar o elemento (2,1): \(L_2 \leftarrow L_2 - 2L_1\).</li>
+                    <li>A matriz já está em forma escalonada. Como você tem 3 variáveis e 2 equações efetivas, uma variável será livre. Escolha \(z=t\).</li>
+                    <li>Use a segunda equação para encontrar 'y' em função de 't'.</li>
+                    <li>Substitua 'y' e 'z' na primeira equação para encontrar 'x' em função de 't'. A solução será um conjunto de equações paramétricas.</li>
+                </ol>
+                <div class="formula">\[ \text{Solução terá a forma: } \begin{cases} x = \dots t + \dots \\ y = \dots t + \dots \\ z = t \end{cases} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A solução representa uma linha reta no espaço 3D. Isso é usado para definir trajetórias de projéteis, feixes de laser ou caminhos de patrulha de NPCs em um jogo. A IA pode escolher qualquer ponto nessa linha (qualquer valor de 't') como seu destino.</p>
+            </details>
+        </div>
+        
+        <!-- Boss Fights (Complexo) -->
+        <div class="mission">
+            <h3>Boss Fight: O Reator Arcane (Sistema 3x3 Direto)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar com confiança todo o processo de eliminação gaussiana em um sistema 3x3 sem dicas.
+            </div>
+            <p>Para derrotar o chefe final, você precisa sobrecarregar seu reator de energia. O reator requer três feixes de energia (x, y, z) calibrados perfeitamente. As leituras do console mostram as seguintes interdependências:</p>
+            \[ \begin{cases} 2x + 4y - 2z = 4 \\ x + 3y + z = 10 \\ 3x + 2y + 2z = 12 \end{cases} \]
+            <p>Encontre os níveis de energia (x, y, z) para vencer o jogo!</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Antes de começar, você pode simplificar a primeira equação dividindo-a por 2. Isso torna os cálculos mais fáceis. Chame a nova equação de \(L_1\).</li>
+                    <li>Monte a matriz aumentada com a linha simplificada.</li>
+                    <li>Execute as operações de linha para zerar os elementos abaixo do pivô na primeira coluna.</li>
+                    <li>Execute a operação de linha para zerar o elemento abaixo do pivô na segunda coluna.</li>
+                    <li>Com a matriz em forma escalonada, use a substituição retroativa para encontrar z, depois y, e finalmente x.</li>
+                </ol>
+                <div class="formula">\[ \left[ \begin{array}{ccc|c} 2 & 4 & -2 & 4 \\ \dots & \dots & \dots & \dots \\ \dots & \dots & \dots & \dots \end{array} \right] \xrightarrow{L_1 / 2} \left[ \begin{array}{ccc|c} 1 & 2 & -1 & 2 \\ \dots & \dots & \dots & \dots \\ \dots & \dots & \dots & \dots \end{array} \right] \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Puzzles de "Boss Fight" que não envolvem apenas reflexos, mas também lógica, são comuns. Resolver esse sistema é como alinhar os canhões de energia na hora certa para o golpe final, exigindo precisão e método.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>Boss Fight: O Código do Arquiteto (Múltiplas Variáveis Livres)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver e parametrizar um sistema com duas variáveis livres.
+            </div>
+            <p>Você encontrou o código-fonte do mundo do jogo. Para alterá-lo, você precisa definir quatro parâmetros (w, x, y, z). Existem apenas duas restrições impostas pelo Arquiteto:</p>
+            \[ \begin{cases} w + 2x - y + 3z = 5 \\ 2w + 4x - y + 8z = 14 \end{cases} \]
+            <p>Descreva todas as configurações de código válidas.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada 2x5.</li>
+                    <li>Execute a eliminação para zerar o primeiro elemento da segunda linha: \(L_2 \leftarrow L_2 - 2L_1\).</li>
+                    <li>Após a eliminação, você terá 2 equações e 4 variáveis. Isso significa que haverá \(4 - 2 = 2\) variáveis livres.</li>
+                    <li>Escolha 'y' e 'z' como variáveis livres. Defina \(y = t\) e \(z = s\), onde t e s são parâmetros.</li>
+                    <li>Use a segunda equação para expressar 'w' (ou 'x') em termos de 's' e 't'.</li>
+                    <li>Substitua tudo na primeira equação para encontrar a variável restante em termos de 's' e 't'.</li>
+                </ol>
+                <div class="formula">\[ \text{A solução será um plano no espaço 4D, parametrizado por 's' e 't'.} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos de sandbox como "Garry's Mod" ou "Dreams", os criadores não definem uma única solução. Eles fornecem um conjunto de regras (equações) e os jogadores têm múltiplos graus de liberdade (variáveis livres) para criar o que quiserem dentro desse sistema.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>Boss Fight: Estabilizador do Rift Dimensional (Sistema 4x4)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Demonstrar maestria aplicando o método de eliminação a um sistema maior e mais complexo.
+            </div>
+            <p>Um portal para outra dimensão está instável. Para fechá-lo, você precisa calibrar 4 cristais de energia (w, x, y, z). O sistema de estabilização é governado pelas seguintes equações:</p>
+            \[ \begin{cases} w - x + 2y - z = -1 \\ x + y - z = 0 \\ -w + x - y + 2z = 2 \\ y + z = 3 \end{cases} \]
+            <p>Aplique a Eliminação Gaussiana metodicamente para encontrar a única configuração que salvará o mundo.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte a matriz aumentada 4x5. Observe que já existem alguns zeros na matriz, o que é uma vantagem.</li>
+                    <li>**Passo 1:** Use a Linha 1 para eliminar 'w' da Linha 3 (\(L_3 \leftarrow L_3 + L_1\)). A Linha 2 e a Linha 4 já têm zero na primeira coluna.</li>
+                    <li>**Passo 2:** A matriz resultante agora tem zeros abaixo do pivô (1,1). Use a Linha 2 como pivô para eliminar 'x' da nova Linha 3.</li>
+                    <li>**Passo 3:** A matriz está quase escalonada. Use a nova Linha 3 como pivô para eliminar 'y' da Linha 4.</li>
+                    <li>A matriz está em forma escalonada. Resolva para z, depois y, depois x, e finalmente w, usando substituição retroativa.</li>
+                </ol>
+                <div class="formula">\[ \text{Seja sistemático: zere a primeira coluna, depois a segunda, depois a terceira.} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Sistemas de física em tempo real, especialmente em simulações complexas envolvendo múltiplos objetos interconectados (como um prédio desmoronando), resolvem sistemas de equações lineares muito grandes a cada frame para calcular as forças e posições corretas.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

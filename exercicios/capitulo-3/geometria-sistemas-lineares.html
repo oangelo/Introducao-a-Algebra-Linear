@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Geometria dos Sistemas Lineares</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 3.5: A Geometria dos Sistemas Lineares</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: A Geometria dos Sistemas Lineares</h3>
+        <p>Até agora, vimos a álgebra dos sistemas e a geometria de retas e planos separadamente. Esta fase une os dois mundos! Cada equação linear em um sistema de duas variáveis representa uma <strong>reta</strong> no plano. Cada equação em um sistema de três variáveis representa um <strong>plano</strong> no espaço. Resolver um sistema, portanto, não é apenas um exercício algébrico — é encontrar o <strong>ponto (ou reta) de interseção</strong> onde todos esses objetos geométricos se encontram.</p>
+        <p>Entender essa conexão visual nos permite prever o tipo de solução de um sistema apenas olhando para a geometria das retas e planos que ele descreve, uma habilidade essencial para depurar a lógica espacial de um jogo.</p>
+        <div class="formula">
+            Sistema 2x2: \( \begin{cases} a_1x + b_1y = c_1 \\ a_2x + b_2y = c_2 \end{cases} \) \( \iff \) Interseção de 2 Retas <br>
+            Sistema 3x3: \( \begin{cases} a_1x + b_1y + c_1z = d_1 \\ a_2x + b_2y + c_2z = d_2 \\ a_3x + b_3y + c_3z = d_3 \end{cases} \) \( \iff \) Interseção de 3 Planos
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>O Ponto de Encontro das Patrulhas (Sistema 2x2 com Solução Única)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Interpretar a solução de um sistema 2x2 como o ponto de interseção de duas retas.
+            </div>
+            <p>Em um jogo de estratégia da <strong>Era 16-bit</strong>, a rota de patrulha de um guarda é descrita pela reta \( x + y = 7 \). A sua rota de infiltração segue a linha \( 2x - y = 5 \). Para evitar a detecção, você precisa saber exatamente em que ponto \( (x, y) \) do mapa vocês se encontrarão. Resolva o sistema e encontre as coordenadas.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você pode resolver este sistema pelo método da substituição ou da adição. O método da adição parece mais rápido aqui: somar as duas equações eliminará a variável \( y \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva o sistema de equações uma sobre a outra.</li>
+                    <li>Some a primeira equação à segunda. O termo \( y \) será cancelado.</li>
+                    <li>Resolva a equação resultante para encontrar o valor de \( x \).</li>
+                    <li>Substitua o valor de \( x \) encontrado em qualquer uma das equações originais para encontrar o valor de \( y \).</li>
+                </ol>
+                <div class="formula">Solução: Ponto \( (x, y) \) que satisfaz ambas as equações.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Calcular a interseção de caminhos é fundamental para a IA prever colisões, determinar pontos de encontro ou interceptar o jogador. Em 2D, isso se resume a resolver um sistema linear 2x2.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>As Barreiras de Laser Paralelas (Sistema 2x2 sem Solução)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Interpretar um sistema inconsistente como duas retas paralelas.
+            </div>
+            <p>Um puzzle em seu jogo apresenta duas barreiras de laser. A primeira barreira segue a linha \( x - 2y = 4 \). A segunda, a linha \( x - 2y = -2 \). Mostre algebricamente que o sistema formado por essas duas equações não tem solução e explique o que isso significa geometricamente.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Tente resolver o sistema pelo método da subtração. Subtraia a segunda equação da primeira. O que acontece com as variáveis \( x \) e \( y \)? O resultado é uma afirmação matemática válida?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Monte o sistema com as duas equações.</li>
+                    <li>Subtraia a segunda equação da primeira: \( (x - 2y) - (x - 2y) = 4 - (-2) \).</li>
+                    <li>Simplifique a equação. Você chegará a uma contradição, como \( 0 = 6 \).</li>
+                    <li>Uma contradição significa que o sistema é inconsistente (não tem solução). Geometricamente, isso significa que as retas são paralelas e nunca se cruzam.</li>
+                </ol>
+                <div class="formula">Sistema Inconsistente \( \iff \) Retas Paralelas.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em design de níveis, garantir que certas barreiras ou caminhos sejam paralelos é importante para criar corredores ou zonas seguras. A matemática por trás disso é a de um sistema linear sem solução.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>A Sincronização Perfeita de Rotas (Sistema 2x2 com Infinitas Soluções)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Interpretar um sistema dependente como duas retas coincidentes.
+            </div>
+            <p>Numa missão de "siga o líder", você precisa seguir o exato caminho de um NPC guia. O caminho do NPC é descrito por \( 3x - y = 2 \). Seu sistema de navegação automática define sua rota como \( 6x - 2y = 4 \). Mostre que há infinitas soluções para este sistema e descreva o que isso significa para as duas rotas.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe que a segunda equação é um múltiplo da primeira. O que acontece se você dividir a segunda equação por 2? Como isso se compara com a primeira equação?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Divida a segunda equação, \( 6x - 2y = 4 \), por 2.</li>
+                    <li>Você obterá \( 3x - y = 2 \), que é idêntica à primeira equação.</li>
+                    <li>Quando as equações são equivalentes, qualquer ponto que satisfaz uma, satisfaz a outra. Isso leva a uma identidade como \( 0 = 0 \) se você tentar eliminá-las.</li>
+                    <li>Isso significa que o sistema tem infinitas soluções. Geometricamente, as duas retas são coincidentes; elas são, na verdade, a mesma reta.</li>
+                </ol>
+                <div class="formula">Sistema Dependente \( \iff \) Retas Coincidentes.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este cenário pode aparecer como um "glitch no código" ou uma redundância. Se dois sistemas de lógica diferentes (por exemplo, física e IA) estão tentando controlar um objeto com as mesmas regras, eles estão descrevendo o mesmo caminho geométrico.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (MAIN MISSION) -->
+        <div class="mission">
+            <h3>A Localização do Artefato Oculto (Sistema 3x3 com Solução Única)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Interpretar a solução de um sistema 3x3 como a interseção de três planos em um ponto.
+            </div>
+            <p>Na <strong>Era 3D Inicial</strong>, três scanners de longo alcance varrem uma sala para encontrar um artefato. Cada scanner detecta uma superfície plana onde o artefato pode estar. As equações dos planos são: <br>Plano 1: \( x = 5 \) <br>Plano 2: \( y = 3 \) <br>Plano 3: \( x + y + z = 10 \) <br>Em qual ponto \( (x, y, z) \) o artefato está localizado?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Este sistema é particularmente simples de resolver por substituição. As duas primeiras equações já lhe dão os valores de \( x \) e \( y \). Substitua-os na terceira equação para encontrar \( z \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Da primeira equação, sabemos que \( x = 5 \).</li>
+                    <li>Da segunda equação, sabemos que \( y = 3 \).</li>
+                    <li>Substitua esses valores na terceira equação: \( (5) + (3) + z = 10 \).</li>
+                    <li>Resolva para \( z \). O ponto de interseção será \( (5, 3, z) \).</li>
+                </ol>
+                <div class="formula">Solução: Ponto \( (x, y, z) \) comum aos três planos.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Mecânicas de "triangulação" em jogos, onde o jogador deve usar múltiplos sinais ou pistas para encontrar um local, são uma aplicação direta da resolução de sistemas lineares. O ponto de solução é o local do objetivo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MAIN MISSION) -->
+        <div class="mission">
+            <h3>O Balanceamento da Espada Lendária (Formulação de um Sistema)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Traduzir um problema de design de jogo em um sistema de equações para encontrar valores.
+            </div>
+            <p>Você é um game designer balanceando uma nova espada lendária. Ela possui dois atributos: Ataque (A) e Defesa (D). Para manter o jogo justo, eles devem obedecer a duas regras de balanceamento: <br> Regra 1: O dobro do Ataque mais a Defesa deve somar 12 pontos de poder. <br> Regra 2: O Ataque mais o triplo da Defesa deve somar 11 pontos de poder. <br> Formule um sistema de equações e o resolva para encontrar os valores de A e D.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Traduza cada "Regra" em uma equação matemática. "O dobro do Ataque" é \( 2A \), "mais a Defesa" é \( +D \). Use isso para montar o sistema 2x2 e depois resolva-o.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Traduza as regras para equações: \( 2A + D = 12 \) e \( A + 3D = 11 \).</li>
+                    <li>Resolva o sistema. Por exemplo, usando substituição: isole \( D \) na primeira equação (\( D = 12 - 2A \)).</li>
+                    <li>Substitua essa expressão para \( D \) na segunda equação.</li>
+                    <li>Resolva a nova equação para encontrar o valor de \( A \).</li>
+                    <li>Substitua o valor de \( A \) de volta em \( D = 12 - 2A \) para encontrar \( D \).</li>
+                </ol>
+                <div class="formula">\( \begin{cases} 2A + D = 12 \\ A + 3D = 11 \end{cases} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O balanceamento de atributos, economia de recursos em jogos de estratégia, e até mesmo a distribuição de pontos de experiência, são frequentemente modelados e resolvidos usando sistemas de equações lineares.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MAIN MISSION) -->
+        <div class="mission">
+            <h3>A Linha de Energia no Teto (Sistema 3x3 com Infinitas Soluções)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Interpretar um sistema 3x3 dependente como a interseção de planos ao longo de uma reta.
+            </div>
+            <p>Em uma sala futurista, uma parede é representada pelo plano \( x + z = 4 \) e o teto é o plano \( y + z = 6 \). Uma linha de conduítes de energia percorre exatamente a junção da parede com o teto. Descreva essa linha de interseção usando uma equação paramétrica.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você tem 2 equações e 3 variáveis. Isso indica infinitas soluções. Para parametrizar, escolha uma variável para ser o parâmetro livre, por exemplo, \( z = t \). Depois, expresse \( x \) e \( y \) em termos de \( t \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Defina \( z = t \).</li>
+                    <li>Substitua \( z=t \) na primeira equação: \( x + t = 4 \). Isole \( x \).</li>
+                    <li>Substitua \( z=t \) na segunda equação: \( y + t = 6 \). Isole \( y \).</li>
+                    <li>Escreva as equações paramétricas para \( x, y, z \). Isso descreve a reta de interseção.</li>
+                </ol>
+                <div class="formula">Solução: Reta \( P(t) = (x(t), y(t), z(t)) \).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em modelagem 3D e design de níveis, a interseção de dois planos define uma aresta. A matemática para encontrar essa aresta é resolver um sistema linear e parametrizar a solução como uma reta.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>O Glitch da Prisão Impossível (Sistema 3x3 sem Solução)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Analisar um sistema 3x3 inconsistente e sua geometria (planos que não se encontram em um ponto comum).
+            </div>
+            <p>Um mago tenta criar uma prisão mágica em um único ponto, unindo três planos de energia: <br>Plano 1: \( x + y + z = 6 \) <br>Plano 2: \( x + y + z = 10 \) <br>Plano 3: \( 2x - y = 0 \) <br> Explique algebricamente por que a prisão falha (o sistema não tem solução) e descreva a geometria do problema.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe os dois primeiros planos. Seus vetores normais são idênticos, mas os termos constantes são diferentes. O que isso significa sobre a relação geométrica entre eles? Isso já é suficiente para criar uma contradição?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Compare as equações do Plano 1 e do Plano 2. A expressão \( x+y+z \) não pode ser igual a 6 e a 10 ao mesmo tempo.</li>
+                    <li>Isso é uma contradição direta. O sistema é inconsistente e não tem solução.</li>
+                    <li>Geometricamente, o Plano 1 e o Plano 2 são paralelos e distintos. Como eles nunca se cruzam, é impossível que os três planos se encontrem em um ponto (ou mesmo em uma linha) comum.</li>
+                </ol>
+                <div class="formula">Inconsistência \( \iff \) Planos sem ponto de interseção comum.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Detectar inconsistências em sistemas lógicos é uma parte crucial da depuração. Se um objeto recebe comandos contraditórios (ex: "esteja na posição A" e "esteja na posição B" ao mesmo tempo), o resultado é um 'glitch'. A análise de sistemas lineares pode modelar e identificar esses problemas.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-B (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>O Controle Redundante do Painel (Análise de Dependência Linear)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Relacionar a dependência linear dos vetores normais com a geometria dos planos.
+            </div>
+            <p>Um painel de controle é definido por três equações planares: <br>Plano 1: \( x + y + z = 1 \) <br>Plano 2: \( 2x + 2y + 2z = 2 \) <br>Plano 3: \( x - y = 3 \) <br>Analise a relação entre o Plano 1 e o Plano 2. Essa redundância afeta a natureza da solução do sistema (ponto, linha, ou nenhuma)?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe que a equação do Plano 2 é exatamente o dobro da equação do Plano 1. Isso significa que eles representam o mesmo plano. Como isso afeta o sistema como um todo? Quantas equações independentes você realmente tem?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Divida a equação do Plano 2 por 2. Você obterá a mesma equação do Plano 1.</li>
+                    <li>Isso significa que o Plano 1 e o Plano 2 são coincidentes. A informação do Plano 2 é redundante.</li>
+                    <li>O sistema efetivamente se resume a duas equações não-paralelas (Plano 1 e Plano 3) em três variáveis.</li>
+                    <li>A interseção de dois planos não-paralelos é sempre uma reta. Portanto, o sistema tem infinitas soluções ao longo de uma linha.</li>
+                </ol>
+                <div class="formula">Planos coincidentes reduzem o número de equações independentes.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em sistemas de constraints (restrições) na física de animação, a detecção de equações redundantes é importante para a estabilidade e eficiência do solver. Se duas restrições estão tentando fazer a mesma coisa, uma pode ser removida para acelerar os cálculos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>A Triangulação Consistente (Sistema Sobredeterminado)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar a consistência de um sistema com mais equações do que variáveis.
+            </div>
+            <p>Três torres de rádio em um mapa 2D fornecem três "linhas de posição" para um tesouro: <br>Reta 1: \( x - y = 1 \) <br>Reta 2: \( x + y = 3 \) <br>Reta 3: \( x = 2 \) <br>Normalmente, duas linhas são suficientes. Verifique se a terceira informação é consistente com as duas primeiras. Ou seja, o sistema tem uma solução única ou é inconsistente?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Resolva o sistema formado pelas duas primeiras equações para encontrar um ponto candidato. Depois, verifique se esse ponto também satisfaz a terceira equação.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Resolva o sistema 2x2 formado pelas Reta 1 e Reta 2. Somando as duas equações, você encontrará \( 2x = 4 \), então \( x=2 \). Substituindo de volta, \( y=1 \). O ponto de interseção é \( (2,1) \).</li>
+                    <li>Agora, verifique se o ponto \( (2,1) \) satisfaz a equação da Reta 3.</li>
+                    <li>A Reta 3 é \( x=2 \). Como a coordenada x do nosso ponto é 2, a equação é satisfeita.</li>
+                    <li>Como o ponto satisfaz todas as três equações, o sistema é consistente e a solução é \( (2,1) \). As três pistas apontam para o mesmo local.</li>
+                </ol>
+                <div class="formula">Sistema sobredeterminado pode ter solução se uma equação for combinação das outras.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Sistemas sobredeterminados aparecem em problemas de otimização, como o "inverse kinematics" (IK), onde o sistema tenta satisfazer múltiplas restrições (ex: mão deve tocar o objeto, cotovelo não pode dobrar para trás) para encontrar a melhor pose para um personagem.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Alinhamento do Cristal de Poder (Sistema com Parâmetro)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Determinar o valor de um parâmetro que altera o tipo de solução de um sistema.
+            </div>
+            <p>Um cristal de poder, representado pelo plano \( x + y + z = 4 \), deve ser alinhado com um feixe de energia (plano \( x - y = 2 \)) e um campo estabilizador (plano \( 2x + kz = 10 \)), onde \( k \) é uma constante de calibração. Para qual valor de \( k \) os três planos se interceptam em uma linha (infinitas soluções) em vez de um único ponto?</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Para que o sistema tenha infinitas soluções, as equações (ou os vetores normais) devem ser linearmente dependentes. Isso ocorre quando o determinante da matriz de coeficientes é zero.</li>
+                    <li>Monte a matriz 3x3 com os coeficientes de x, y e z das três equações.</li>
+                    <li>Calcule o determinante dessa matriz. O resultado será uma expressão em termos de \( k \).</li>
+                    <li>Iguale o determinante a zero e resolva para \( k \). Esse valor de \( k \) fará com que um plano seja uma combinação linear dos outros, resultando em uma linha de interseção (assumindo que o sistema seja consistente).</li>
+                </ol>
+                <div class="formula">\( \det(A) = 0 \implies \) Sistema não tem solução única.</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Parâmetros em equações são a base de jogos com física ajustável ou puzzles dinâmicos. O jogador pode mover um controle deslizante (alterando um 'k') que muda o comportamento do mundo do jogo, e a transição entre diferentes tipos de solução (ex: de estável para instável) pode ser um objetivo de jogabilidade.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Calibração do Teletransportador (Sistema Homogêneo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Analisar quando um sistema homogêneo possui soluções não triviais e o que isso significa geometricamente.
+            </div>
+            <p>A calibração de um teletransportador é perfeita se o sistema de estabilização, dado por \( x + 2y - z = 0 \), \( 2x + y + z = 0 \), e \( 3x + 3y = 0 \), tiver apenas a solução trivial \( (0,0,0) \), que representa o ponto de origem estável. Verifique se existem outras soluções (pontos de instabilidade) além da origem.</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Um sistema homogêneo (onde todos os termos constantes são zero) tem soluções não triviais se, e somente se, o determinante da matriz de coeficientes for zero.</li>
+                    <li>Monte a matriz de coeficientes com as três equações.</li>
+                    <li>Calcule o determinante.</li>
+                    <li>Se o determinante for diferente de zero, a única solução é a trivial (0,0,0) e o sistema é estável.</li>
+                    <li>Se o determinante for igual a zero, existem infinitas soluções (uma linha ou plano de instabilidade passando pela origem). Observe se há alguma dependência linear entre as equações.</li>
+                </ol>
+                <div class="formula">Sistema \( A\vec{x} = \vec{0} \) tem solução não trivial \( \iff \det(A) = 0 \).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O "espaço nulo" de uma matriz (o conjunto de soluções para \( A\vec{x}=0 \)) é um conceito fundamental em animação por computador. Ele representa os movimentos que um personagem pode fazer sem violar suas restrições (por exemplo, os movimentos de um braço que mantêm a mão fixa em um ponto).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Cripta Selada (Síntese: Do Problema à Solução)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Construir as equações de três planos a partir de dados geométricos e depois resolver o sistema.
+            </div>
+            <p>Uma cripta antiga é selada em um único ponto onde três fechaduras planares se encontram. Você tem os seguintes dados do seu scanner:<br>• Fechadura 1: É perpendicular ao eixo x e passa pelo ponto \( (5,1,1) \).<br>• Fechadura 2: Tem vetor normal \( (0, 1, 1) \) e passa pelo ponto \( (0, 2, 2) \).<br>• Fechadura 3: Passa pelos três pontos \( A(1,1,1), B(2,1,1), C(1,2,2) \).<br>Encontre a equação de cada plano e resolva o sistema para achar o ponto de abertura da cripta.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>**Plano 1:** Perpendicular ao eixo x significa que seu normal é \( \vec{n_1}=(1,0,0) \). Se passa por \( (5,1,1) \), sua equação é \( 1x+0y+0z = 1(5) \), ou seja, \( x=5 \).</li>
+                    <li>**Plano 2:** Use o normal \( \vec{n_2}=(0,1,1) \) e o ponto \( (0,2,2) \) para achar a equação. \( 0x+1y+1z = 0(0)+1(2)+1(2) \), ou seja, \( y+z=4 \).</li>
+                    <li>**Plano 3:** Encontre o normal usando o produto vetorial \( \vec{n_3} = (B-A) \times (C-A) \). Depois, use um dos pontos para achar a equação do plano.</li>
+                    <li>Agora você tem um sistema 3x3 com as três equações. Resolva-o, provavelmente por substituição, já que a primeira equação é muito simples.</li>
+                </ol>
+                <div class="formula">Resolver \( \begin{cases} \text{Eq. Plano 1} \\ \text{Eq. Plano 2} \\ \text{Eq. Plano 3} \end{cases} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta missão simula um problema completo de geometria computacional. Em um jogo, os dados sobre a geometria (pontos, normais) são a entrada, e o motor precisa primeiro construir as representações algébricas (equações) para depois realizar cálculos com elas, como encontrar interseções.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

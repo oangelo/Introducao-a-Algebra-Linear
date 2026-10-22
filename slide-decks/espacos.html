@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<title>Espaços Vetoriais</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+.reveal ul { list-style-type: none; }
+.reveal ul li::before { content: "» ";}
+.two-columns { display: flex; justify-content: space-between; }
+.two-columns > * { flex: 1; }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Espaço Vetorial: Uma Visão Intuitiva e Formal</h1>
+				</section>
+
+				<section>
+
+					<section>
+						<h1>Visão Intuitiva </h1>
+					</section>
+
+					<section>
+						<h2>O Conceito Generalizado de Vetor</h2>
+						<p>Em Álgebra Linear, o termo "vetor" é muito mais abrangente do que o conceito usual de seta no espaço.</p>
+						<p>Um "vetor" em Álgebra Linear pode representar:</p>
+						<ul>
+							<li>Vetores usuais em \(\mathbb{R}^2\), \(\mathbb{R}^3\), ou \(\mathbb{R}^n\)</li>
+							<li>Matrizes de qualquer dimensão</li>
+							<li>Polinômios</li>
+							<li>Funções</li>
+							<li>Sequências</li>
+							<li>E muito mais!</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Por que Generalizar o Conceito de Vetor?</h2>
+						<p>Esta generalização permite:</p>
+						<ul>
+							<li>Aplicar técnicas de Álgebra Linear a uma ampla gama de problemas</li>
+							<li>Unificar conceitos aparentemente distintos sob um mesmo framework</li>
+							<li>Desenvolver teorias mais abrangentes e poderosas</li>
+						</ul>
+						<p><strong>Exemplo:</strong> Podemos tratar um polinômio \(ax^2 + bx + c\) como um vetor (a, b, c) em \(\mathbb{R}^3\).</p>
+						<p><strong>Implicação:</strong> Operações com polinômios podem ser vistas como operações vetoriais!</p>
+					</section>
+
+					<section>
+						<h2>Espaço Vetorial: Uma Visão Intuitiva</h2>
+						<p>Imagine um grande parque de diversões com vários tipos de atrações:</p>
+						<ul>
+							<li>Montanhas-russas (movimento em 3D)</li>
+							<li>Carrosséis (movimento circular)</li>
+							<li>Trenzinho (movimento linear)</li>
+						</ul>
+						<p>O parque inteiro é como um espaço vetorial - um "universo" onde diferentes tipos de movimentos (vetores) podem existir e se combinar.</p>
+					</section>
+
+					<section>
+						<h2>Subespaço: Uma Visão Intuitiva</h2>
+						<p>Agora, pense em uma área específica do parque:</p>
+						<ul>
+							<li>A área das montanhas-russas (movimento em 3D)</li>
+							<li>A praça dos carrosséis (movimento circular)</li>
+						</ul>
+						<p>Cada área específica é como um subespaço - um "mini-universo" dentro do parque maior, com suas próprias regras e movimentos permitidos.</p>
+					</section>
+
+
+					<section>
+						<h2>Propriedades de um Espaço Vetorial</h2>
+						<h3>O Parque de Diversões</h3>
+						<ul>
+							<li>Pode combinar atrações (soma de vetores)</li>
+							<li>Pode ampliar ou reduzir atrações (multiplicação por escalar)</li>
+							<li>Tem uma "atração nula" (vetor zero)</li>
+							<li>Segue regras consistentes em todo o parque</li>
+						</ul>
+						<p><strong>Exemplo:</strong> Combinar um passeio de montanha-russa com um carrossel cria uma nova "atração" no parque.</p>
+					</section>
+
+					<section>
+						<h2>Propriedades de um Subespaço</h2>
+						<h3>Área Específica do Parque</h3>
+						<ul>
+							<li>Parte do parque maior</li>
+							<li>Segue as mesmas regras do parque</li>
+							<li>Combinações de atrações desta área permanecem na área</li>
+							<li>Inclui a "atração nula"</li>
+						</ul>
+						<p><strong>Exemplo:</strong> Na área das montanhas-russas, combinar duas montanhas-russas ainda resulta em uma montanha-russa.</p>
+					</section>
+
+					<section>
+						<h2>Comparação: Espaço Vetorial vs Subespaço</h2>
+						<table>
+							<tr>
+								<th>Espaço Vetorial (Parque)</th>
+								<th>Subespaço (Área Específica)</th>
+							</tr>
+							<tr>
+								<td>Contém todos os tipos de atrações</td>
+								<td>Contém um subconjunto específico de atrações</td>
+							</tr>
+							<tr>
+								<td>Define as regras gerais</td>
+								<td>Segue as regras do espaço vetorial</td>
+							</tr>
+							<tr>
+								<td>Pode ter dimensão infinita</td>
+								<td>Geralmente tem dimensão menor ou igual</td>
+							</tr>
+						</table>
+						<p><strong>Conclusão:</strong> Um subespaço é como uma "mini-versão" do espaço vetorial, mantendo todas as suas propriedades essenciais.</p>
+					</section>
+
+				</section>
+				<section>
+					<section>
+						<h1>Definição Formal</h1>
+					</section>
+
+					<section>
+						<h2>Espaços Vetoriais</h2>
+						<p>Definição formal de um espaço vetorial:</p>
+						<p>Um conjunto V com operações de adição e multiplicação por escalar que satisfazem certos axiomas.</p>
+					</section>
+
+					<section>
+						<h2>Axiomas de um Espaço Vetorial (1/2)</h2>
+						<p>Para objetos u, v e w, que pertencem a um dado conjunto V, V é um espaço vetorial se:</p>
+						<ul>
+							<li>\(u + v \in V\)</li>
+							<li>\(u + v = v + u\)</li>
+							<li>\(u + (v + w) = (u + v) + w\)</li>
+							<li>Existe um objeto 0 tal que \(0 + u = u\)</li>
+							<li>Existe um objeto -u tal que \(u + (-u) = 0\)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Axiomas de um Espaço Vetorial (2/2)</h2>
+						<ul>
+							<li>Para um escalar k temos que \(ku \in V\)</li>
+							<li>\(k(u + v) = ku + kv\)</li>
+							<li>\((k + l)u = ku + lu\)</li>
+							<li>\(k(lu) = (kl)u\)</li>
+							<li>\(1u = u\)</li>
+						</ul>
+						<p>onde \(k, l \in \mathbb{R}\).</p>
+					</section>
+
+					<section>
+						<h2>Espaços Vetoriais Reais</h2>
+						<p>\(\mathbb{R}^n\): O espaço dos vetores com n componentes reais</p>
+						<ul>
+							<li>Exemplo: \(\mathbb{R}^2\) (plano cartesiano)</li>
+							<li>Exemplo: \(\mathbb{R}^3\) (espaço tridimensional)</li>
+						</ul>
+						<p>Aplicação: Em \(\mathbb{R}^3\), podemos descrever a posição de um objeto no espaço.</p>
+					</section>
+
+					<section>
+						<h2>Reconhecendo Espaços Vetoriais</h2>
+						<p>São espaços vetoriais?</p>
+						<ul>
+							<li>\(\mathbb{R}^n\)</li>
+							<li>Matrizes 2x2</li>
+							<li>Vetores da forma (a, b, 1) com \(a, b \in \mathbb{R}\)</li>
+							<li>Planos que passem pela origem</li>
+							<li>Polinômios de segunda ordem</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Subespaços Vetoriais</h2>
+						<p><strong>Definição:</strong> Um subconjunto W de um espaço vetorial V será chamado de subespaço vetorial se W formar um espaço vetorial.</p>
+					</section>
+
+					<section>
+						<h2>Verificação de Subespaços</h2>
+						<p>Precisamos verificar todas as 10 propriedades para W?</p>
+						<p>Não, W já herda várias propriedades de V!</p>
+					</section>
+
+					<section>
+						<h2>Teorema de Subespaços</h2>
+						<p>Se W é um subconjunto de objetos de V, então W será um subespaço de V se:</p>
+						<ul>
+							<li>Se u e v forem vetores de W, então \(u + v \in W\)</li>
+							<li>Para um escalar k e um vetor \(u \in W\), temos que \(ku \in W\)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Reconhecendo Subespaços Vetoriais</h2>
+						<ul>
+							<li>Retas que passam pela origem são subespaços de \(\mathbb{R}^2\)?</li>
+							<li>Quais são os subespaços de \(\mathbb{R}^3\)?</li>
+							<li>Cite um subespaço das matrizes 2x2.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Espaço Solução de um Sistema Homogêneo</h2>
+						<p><strong>Teorema:</strong> Para um sistema linear homogêneo de m equações e n incógnitas, o conjunto de vetores solução é um subespaço de \(\mathbb{R}^n\).</p>
+						<p>Prova: Exercício para o leitor (dica: use o teorema de subespaços).</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Combinação Linear, Bases e Dimensão </h2>
+					</section>
+
+
+					<section>
+						<h2>Combinação Linear Dependente e Independente</h2>
+						<p>Considere uma coleção de vetores \(S = \{v_1, v_2, ..., v_n\}\).</p>
+						<p>Se \(k_1v_1 + k_2v_2 + ... + k_nv_n = \vec{0}\),</p>
+						<ul>
+							<li>A combinação é independente apenas quando \(k_1 = k_2 = ... = k_n = 0\)</li>
+							<li>Caso contrário, o conjunto é dito linearmente dependente</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Teoremas de Dependência Linear</h2>
+						<ul>
+							<li>Um conjunto é linearmente dependente se qualquer um vetor puder ser escrito como combinação linear dos outros.</li>
+							<li>Um conjunto é linearmente independente se nenhum vetor pode ser escrito como combinação linear dos outros.</li>
+							<li>Um conjunto finito de vetores que contém o vetor zero é linearmente dependente.</li>
+							<li>Um conjunto de dois vetores é linearmente independente se, e somente se, os vetores não puderem ser escritos um como o múltiplo do outro.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Exemplos de Independência Linear</h2>
+						<ul>
+							<li>Em \(\mathbb{R}^2\): Os vetores (1,0) e (0,1) são linearmente independentes</li>
+							<li>Em \(\mathbb{R}^3\): Os vetores (1,0,0), (0,1,0), e (1,1,0) são linearmente dependentes</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Problemas de Independência Linear</h2>
+						<ul>
+							<li>Os vetores \(v_1 = (2,-1,0,3)\), \(v_2 = (1,2,5,-1)\), \(v_3 = (7,-1,5,8)\) são linearmente independentes?</li>
+							<li>Os polinômios \(p_1 = 1-x\), \(p_2 = 5 + 3x - 2x^2\) e \(p_3 = 1 + 3x - x^2\) formam um conjunto linearmente independente?</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Independência Linear de Funções</h2>
+						<p>Podemos verificar se funções são linearmente independentes/dependentes?</p>
+						<ul>
+							<li>seno e cosseno são LI?</li>
+							<li>x e seno são LI?</li>
+						</ul>
+						<p>Um assunto que ficará para Introdução às Equações Diferenciais.</p>
+					</section>
+
+					<section>
+						<h2>Bases</h2>
+						<p><strong>Definição:</strong> Se V é qualquer espaço vetorial e \(S = \{v_1, v_2, ..., v_n\}\) é um conjunto de elementos (vetores), S é uma base se:</p>
+						<ol>
+							<li>S é linearmente independente.</li>
+							<li>Uma combinação dos elementos de S gera qualquer vetor de V.</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Teorema de Unicidade da Base</h2>
+						<p>Se \(S = \{v_1, v_2, ..., v_n\}\) é uma base para o espaço vetorial V, então qualquer vetor \(v \in V\) pode ser escrito como uma combinação linear, \(v = c_1v_1 + c_2v_2 + ... + c_nv_n\), de apenas uma maneira!</p>
+						<p>(Os \(c_i\)'s são as coordenadas do vetor v na base S.)</p>
+					</section>
+
+
+					<section>
+						<h2>Exemplos de Bases</h2>
+						<ul>
+							<li>Base canônica de \(\mathbb{R}^3\): \(\{(1,0,0), (0,1,0), (0,0,1)\}\)</li>
+							<li>Uma base alternativa para \(\mathbb{R}^2\): \(\{(1,1), (1,-1)\}\)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Problemas de Bases</h2>
+						<ol>
+							<li>Mostre que os vetores \(v_1 = (1,2,1)\), \(v_2 = (2,9,0)\) e \(v_3 = (3,3,4)\) formam uma base para o \(\mathbb{R}^3\). Vamos chamar esta base de S.</li>
+							<li>Encontre o vetor de coordenadas de \(v = (5,-1,9)\) na base acima.</li>
+							<li>Dado os vetores na base S, \(v_S = (-1,3,2)\), encontre o vetor na base canônica do \(\mathbb{R}^3\).</li>
+							<li>Mostre que a base canônica das matrizes 2x2 formam uma base.</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Dimensões</h2>
+						<p><strong>Definição:</strong> Um espaço vetorial V não nulo é dito de dimensão finita se um conjunto finito de vetores formam uma base para ele. Se tal conjunto não existe, V é chamado de conjunto de dimensão infinita.</p>
+					</section>
+
+					<section>
+						<h2>Teoremas de Dimensão</h2>
+						<p>Seja V um espaço vetorial de dimensão finita e seja \(\{v_1, v_2, ..., v_n\}\) uma base qualquer, temos:</p>
+						<ol>
+							<li>Se um conjunto tem mais que n vetores, ele é linearmente dependente.</li>
+							<li>Se um conjunto tem menos que n vetores, ele não gera V.</li>
+						</ol>
+						<p><strong>Teorema:</strong> Todas as bases para um espaço vetorial de dimensão finita têm o mesmo número de vetores.</p>
+					</section>
+
+					<section>
+						<h2>Traduzindo o Teorema da Dimensão</h2>
+						<p>Todas as bases de um espaço vetorial têm o mesmo número de elementos, por exemplo:</p>
+						<ul>
+							<li>\(\mathbb{R}^2\): dimensão 2</li>
+							<li>\(\mathbb{R}^3\): dimensão 3</li>
+							<li>Espaço das matrizes 2x2: dimensão 4</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Definição de Dimensão</h2>
+						<p>A dimensão de um espaço vetorial de dimensão finita, denotado por dim(V), é definida como o número de vetores da base de V.</p>
+						<p>Adicionalmente, definimos o espaço vetorial do vetor nulo como tendo dimensão nula.</p>
+					</section>
+
+					<section>
+						<h2>Bases e Dimensão</h2>
+						<p><strong>Base:</strong> Conjunto de vetores linearmente independentes que geram todo o espaço</p>
+						<p><strong>Dimensão:</strong> Número de vetores em uma base do espaço vetorial</p>
+					</section>
+
+
+					<section>
+						<h2>Problema de Dimensão</h2>
+						<p>Encontre a base e a dimensão do espaço solução do sistema:</p>
+						<p>\[
+						\begin{array}{l}
+						2x_1 + 2x_2 - x_3 + x_5 = 0 \\
+						-x_1 - x_2 + 2x_3 - 3x_4 + x_5 = 0 \\
+						x_1 + x_2 - 2x_3 - x_5 = 0 \\
+						x_3 + x_4 + x_5 = 0 
+						\end{array}
+						\]</p>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Teorema mais/menos e Span</h2>
+					</section>
+
+					<section>
+						<h2>Teorema mais/menos: Uma Visão Intuitiva</h2>
+						<p>Imagine que você está construindo uma casa com blocos LEGO:</p>
+						<div style="display: flex; justify-content: space-around;">
+							<div style="text-align: center;">
+								<h3>Teorema "mais" (+)</h3>
+								<p>Adicionando um bloco único</p>
+								<p>Se você ganhar um bloco que não pode ser construído com os blocos existentes, você expande suas possibilidades de construção.</p>
+							</div>
+							<div style="text-align: center;">
+								<h3>Teorema "menos" (-)</h3>
+								<p>Removendo um bloco redundante</p>
+								<p>Se você perder um bloco que pode ser construído com outros blocos, você não perde nenhuma possibilidade de construção.</p>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h2>Teorema mais/menos: Aplicação em Vetores</h2>
+						<p><strong>Em termos de vetores:</strong></p>
+						<ul>
+							<li><strong>Teorema "mais" (+):</strong> Adicionar um vetor independente aumenta a dimensão do espaço.</li>
+							<li><strong>Teorema "menos" (-):</strong> Remover um vetor dependente não altera o espaço gerado.</li>
+						</ul>
+						<p><strong>Implicações:</strong></p>
+						<ul>
+							<li>Ajuda a construir bases de forma eficiente</li>
+							<li>Permite simplificar conjuntos de vetores geradores</li>
+							<li>Fundamental para entender a estrutura de espaços vetoriais</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Espaço Gerado (Span)</h2>
+						<p><strong>Definição:</strong> Se \(S = \{v_1, v_2, ..., v_r\}\) é um conjunto de vetores em um espaço vetorial V, então o espaço vetorial W constituído de todas as combinações lineares dos vetores de S é chamado de espaço vetorial gerado por \(v_1, v_2, ..., v_r\).</p>
+						<p>Notação: \(W = span(S)\) ou \(W = span\{v_1, v_2, ..., v_r\}\)</p>
+					</section>
+
+					<section>
+						<h2>Teoremas Adicionais</h2>
+						<p><strong>Teorema mais/menos:</strong> Considere um conjunto S de vetores de um espaço vetorial V.</p>
+						<ul>
+							<li>Dado um \(v \in V\) tal que \(v \not\in span(S)\), então, o conjunto \(S \cup \{v\}\) é também linearmente independente.</li>
+							<li>Dado um \(v \in V\) tal que \(v \in span(S)\), então, o conjunto \(S - \{v\}\) gera o mesmo espaço que S, ou seja, \(span(S) = span(S - \{v\})\)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Teorema de Geração ou Dependência</h2>
+						<p>Considere um conjunto S de n vetores de um espaço vetorial V de dimensão n. Ou S gera V ou os vetores de S são linearmente dependentes.</p>
+						<p>Como gerar bases?</p>
+					</section>
+					<section>
+						<h2>Vetores Geradores (Spanning) de um Espaço</h2>
+						<p><strong>Teorema:</strong> Para vetores \(v_1, v_2, ..., v_n\) em um espaço vetorial V:</p>
+						<ul>
+							<li>O espaço W constituído de combinações lineares de \(v_1, v_2, ..., v_n\) é um subespaço de V.</li>
+							<li>W é o menor subespaço de V de maneira que qualquer subespaço que contenha \(v_1, v_2, ..., v_n\) também contém W.</li>
+						</ul>
+					</section>
+
+
+
+					<section>
+						<h2>Exemplo de Span</h2>
+						<p>Determine se os vetores \(v_1 = (1,1,2), v_2 = (1,0,1)\) e \(v_3 = (2,1,3)\) geram o \(\mathbb{R}^3\).</p>
+					</section>
+
+					<section>
+						<h2>Problemas de Espaço Solução</h2>
+						<p>Encontre os vetores que geram os espaços soluções dos sistemas homogêneos com matriz dos coeficientes dadas por:</p>
+						<p>\[
+						\begin{bmatrix}
+						1 & -2 & 3 \\
+						2 & -4 & 6 \\
+						3 & -6 & 9 
+						\end{bmatrix}
+						\begin{bmatrix}
+						1 & -2 & 3 \\
+						-3 & 7 & -8 \\
+						-2 & 4 & -6 
+						\end{bmatrix}
+						\begin{bmatrix}
+						1 & -2 & 3 \\
+						-3 & 7 & -8 \\
+						4 & 1 & 2 
+						\end{bmatrix}
+						\begin{bmatrix}
+						0 & 0 & 0 \\
+						0 & 0 & 0 \\
+						0 & 0 & 0 
+						\end{bmatrix}
+						\]</p>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Espaço Linha, Espaço Coluna e Espaço Nulo</h2>
+						<p>O trio fantástico das matrizes</p>
+					</section>
+
+					<section>
+						<h3>Definições</h3>
+						<p>Para uma matriz \(A_{m \times n}\):</p>
+						<ul>
+							<li><strong>Espaço Linha:</strong> Subespaço de \(\mathbb{R}^n\) gerado pelos vetores linha de \(A\)</li>
+							<li><strong>Espaço Coluna:</strong> Subespaço de \(\mathbb{R}^m\) gerado pelos vetores coluna de \(A\)</li>
+							<li><strong>Espaço Nulo:</strong> Subespaço de \(\mathbb{R}^m\) que é solução de \(Ax=0\)</li>
+						</ul>
+						<p>Pense neles como uma banda de rock: cada um tem seu papel, mas juntos fazem a música acontecer!</p>
+					</section>
+
+					<section>
+						<h3>Questões Importantes</h3>
+						<ul>
+							<li>Existe relação entre a solução de um sistema linear consistente, \(Ax=b\), e esses espaços?</li>
+							<li>Existe relação entre os espaços linha, coluna e nulo de uma matriz?</li>
+						</ul>
+						<p>Spoiler: Sim, e é mais emocionante que o final de Game of Thrones!</p>
+					</section>
+
+					<section>
+						<h3>Teorema Importante</h3>
+						<p>Um sistema linear não homogêneo \(Ax = b\) é consistente se, e somente se, \(b\) está no espaço coluna de \(A\).</p>
+						<p>Em outras palavras: se \(b\) não está na "festa" do espaço coluna, o sistema não tem solução!</p>
+					</section>
+
+					<section>
+						<h3>Exemplo Prático</h3>
+						<p>Mostre que \(b\) está no espaço coluna da matriz \(A\) e escreva \(b\) como combinação linear destes vetores:</p>
+						\[A = \begin{bmatrix}
+						-1 & 3 & 2  \\
+						1 & 2 & -3  \\
+						2 & 1 & -2  
+						\end{bmatrix}, \quad
+						b = \begin{bmatrix}
+						1\\
+						-9\\
+						-3 
+						\end{bmatrix}\]
+						<p>Dica: Resolva o sistema \(Ax = b\) e use os coeficientes para expressar \(b\)!</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Solução Geral e Particular</h2>
+						<p>Ou: Como fazer mágica com vetores</p>
+					</section>
+
+					<section>
+						<h3>Teorema da Solução Geral</h3>
+						<p>Se \(x_0\) é uma solução particular de \(Ax = b\), e \(v_1, v_2, \dots, v_k\) formam uma base para o espaço nulo de \(A\), então toda solução do sistema é da forma:</p>
+						\[x = x_0 + c_1 v_1 + c_2 v_2 + \dots + c_k v_k\]
+						<p>onde os \(c_i\)'s são constantes reais.</p>
+						<p>É como um buffet de vetores: pegue uma solução particular e adicione quantos vetores do espaço nulo quiser!</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Bases para Espaços Vetoriais</h2>
+						<p>Ou: Como construir um lar para seus vetores</p>
+					</section>
+
+					<section>
+						<h3>Teoremas Importantes</h3>
+						<ul>
+							<li>Operações elementares nas linhas não alteram o espaço nulo da matriz.</li>
+							<li>Operações elementares nas linhas não alteram o espaço linha da matriz.</li>
+							<li>Para matrizes linha equivalentes \(A\) e \(B\):
+								<ul>
+									<li>Independência linear é preservada nas colunas correspondentes.</li>
+									<li>Bases do espaço coluna são preservadas nas colunas correspondentes.</li>
+								</ul>
+							</li>
+						</ul>
+						<p>É como um jogo de Tetris: você pode girar e mover as peças, mas o jogo continua o mesmo!</p>
+					</section>
+
+					<section>
+						<h3>Forma Echelon Reduzida</h3>
+						<p>Se uma matriz \(R\) está na forma de echelon reduzida por linha:</p>
+						<ul>
+							<li>As linhas com 1 liderando formam uma base para o espaço linha de \(R\).</li>
+							<li>As colunas com 1 liderando formam uma base para o espaço coluna de \(R\).</li>
+						</ul>
+						<p>É como organizar sua estante de livros: os mais importantes ficam na frente!</p>
+					</section>
+
+					<section>
+						<h3>Exemplo: Encontre as bases</h3>
+						<p>Para a matriz:</p>
+						\[A = \begin{bmatrix}
+						1  & -3 &  4 & -2 &  5 & 4 \\
+						2  & -6 &  9  & -1 & 8 & 2 \\
+						2  & -6 &  9  & -1 & 9 & 7 \\
+						-1 &  3 & -4  &  2 & -5 &-4
+						\end{bmatrix}\]
+						<p>Encontre o espaço linha e coluna.</p>
+						<p>Dica: Reduza à forma echelon e use o teorema anterior!</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Posto e Nulidade</h2>
+						<p>Ou: Como medir a "musculatura" de uma matriz</p>
+					</section>
+
+					<section>
+						<h3>Definições</h3>
+						<ul>
+							<li><strong>Posto (Rank):</strong> Dimensão comum entre o espaço linha e coluna</li>
+							<li><strong>Nulidade:</strong> Dimensão do espaço nulo</li>
+						</ul>
+						<p>O posto é como o número de halteres que sua matriz consegue levantar!</p>
+					</section>
+
+					<section>
+						<h3>Teorema do Posto-Nulidade</h3>
+						<p>Para uma matriz \(A\) com \(n\) colunas:</p>
+						\[\text{posto}(A) + \text{nulidade}(A) = n\]
+						<p>É como a lei de conservação de energia, mas para dimensões!</p>
+					</section>
+
+					<section>
+						<h3>Teorema da Solução</h3>
+						<p>Para um sistema consistente \(Ax=b\) com \(m\) equações, \(n\) incógnitas e \(A\) de posto \(r\):</p>
+						<p>A solução geral contém \(n-r\) parâmetros livres.</p>
+						<p>É como um jogo de adivinhação: quanto menor o posto, mais liberdade você tem!</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Autovalores e Autovetores</h2>
+						<p>Ou: Como encontrar as "superestrelas" de uma matriz</p>
+					</section>
+
+					<section>
+						<h3>Exemplo: Base para Autoespaço</h3>
+						<p>Encontre a base para o autoespaço da matriz:</p>
+						\[A = \begin{bmatrix}
+						0  &  0 & -2 \\
+						1  &  2 &  1 \\
+						1  &  0 &  3 \\
+						\end{bmatrix}\]
+						<p>Dica: Encontre os autovalores, depois resolva \((A - \lambda I)x = 0\) para cada autovalor!</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>Conclusão</h2>
+					<p>A Álgebra Linear fornece uma estrutura formal para:</p>
+					<ul>
+						<li>Entender relações entre vetores e espaços</li>
+						<li>Analisar dependência e independência linear</li>
+						<li>Determinar bases e dimensões de espaços vetoriais</li>
+						<li>Resolver sistemas de equações lineares</li>
+						<li>Aplicar conceitos em diversas áreas da ciência e engenharia</li>
+					</ul>
+					<p>Lembre-se: matrizes são como pessoas - complexas, às vezes difíceis de entender, mas sempre cheias de surpresas!</p>
+				</section>
+			</div>
+		</div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+		<script>
+			Reveal.initialize({
+				width: 1200,
+				height: 720,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+			});
+		</script>
+	</body>
+</html>
+</body>
+</html>
