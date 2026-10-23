@@ -5,7 +5,8 @@ O *porquê* está em [`HISTORIA.md`](HISTORIA.md); o arco do curso em
 [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md); as regras da ficção em [`BIBLIA.md`](BIBLIA.md);
 o desenho em [`ESTRATEGIA.md`](ESTRATEGIA.md); o que entra em cada fase em
 [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md); a parte não-matemática em
-[`MAPA-JOGADOR.md`](MAPA-JOGADOR.md); o diagnóstico do que existe hoje em [`RTC.md`](RTC.md).
+[`MAPA-JOGADOR.md`](MAPA-JOGADOR.md); a abertura, tela por tela, em
+[`STORYBOARD-CAP1.md`](STORYBOARD-CAP1.md); o diagnóstico do que existe hoje em [`RTC.md`](RTC.md).
 
 ---
 
