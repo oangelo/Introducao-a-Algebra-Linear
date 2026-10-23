@@ -93,14 +93,19 @@ estrutura, silenciosamente. Erro silencioso em slide de matemática é pior que 
 
 ### Camada B — cena (imagem gerada, Qwen-Image)
 
-- **Uma por fase, seis no curso.**
+- **Uma por fase, seis no curso** — mais uma por cartela do capítulo 1 (Q01–Q10).
 - Nunca carrega conteúdo matemático verificável.
 - Marcada como fabricada.
 - Nunca no mesmo slide que diagrama ou fórmula — a cena tem slide próprio.
 
-> **BLOQUEIO ATUAL:** não há gerador de imagem exposto ao agente. llama.cpp não gera imagem;
-> Qwen-Image em GGUF roda em **stable-diffusion.cpp** (`/sdapi/v1/txt2img`), provavelmente em
-> container separado. Falta a porta/comando — ver `RTC.md` §9 / issue.
+> **Gerador disponível.** Qwen-Image-2.1-Turbo e FLUX.3 via `sd-cli` no Oráculo. Mas **não se
+> chama o gerador à mão**: a cena entra em [`img-gen/cenas.tsv`](img-gen/cenas.tsv) e o harness
+> [`img-gen/gen.sh`](img-gen/gen.sh) roda em lote, numa janela só de GPU. Ver
+> [`img-gen/README.md`](img-gen/README.md).
+>
+> **Personagem fixo por referência**, nunca por descrição: `img/personagens/jogador-capuz.png`
+> (capuz, sem rosto). Capuz é a assinatura; o mundo muda a roupa, o capuz fica. Seed e negativo
+> ficam travados no manifesto.
 
 ---
 
@@ -191,4 +196,7 @@ storyboard ao lado.
   de imagem de cada tela (1 gerada, 8 SVG).
 - Próximo passo: aprovar a Fase 1 → `slide-spec.md` → implementar as 8 telas SVG (a cena
   espera o gerador).
-- Bloqueado: gerador de imagem (Camada B).
+- Feito: [`img-gen/`](img-gen/README.md) — harness de imagem em janela única, manifesto de 16
+  cenas e o personagem canônico (`img/personagens/jogador-capuz.png`). Testado de ponta a ponta:
+  `c4-caderno` gerado, sem texto legível.
+- A gerar: as outras 15 cenas do manifesto.
