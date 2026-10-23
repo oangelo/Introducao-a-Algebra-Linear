@@ -2,9 +2,10 @@
 
 Contrato operacional. **Leia antes de tocar em qualquer arquivo desta pasta.**
 O *porquê* está em [`HISTORIA.md`](HISTORIA.md); o arco do curso em
-[`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md); o desenho em [`ESTRATEGIA.md`](ESTRATEGIA.md);
-o que entra em cada fase em [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md); o diagnóstico do que
-existe hoje em [`RTC.md`](RTC.md).
+[`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md); as regras da ficção em [`BIBLIA.md`](BIBLIA.md);
+o desenho em [`ESTRATEGIA.md`](ESTRATEGIA.md); o que entra em cada fase em
+[`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md); a parte não-matemática em
+[`MAPA-JOGADOR.md`](MAPA-JOGADOR.md); o diagnóstico do que existe hoje em [`RTC.md`](RTC.md).
 
 ---
 
@@ -28,33 +29,44 @@ foi explicitamente rejeitada pelo professor.** O limiar se calibra no storyboard
 
 ---
 
-## 2. A ficção: um fliperama, seis gabinetes
+## 2. A ficção: um concurso dentro de um fliperama
 
-O curso **é um fliperama**. Cada fase é um **gabinete** com gênero próprio.
+O curso **é um concurso deixado por quem construiu o jogo**. Seis portões (as fases), seis
+chaves (uma por portão), uma última porta (a sala da máquina). Cada fase é um **gabinete** com
+gênero próprio.
 
 > **Regra dura: um gabinete, um gênero, do primeiro ao último slide da fase.**
 
-Hoje o repositório viola isso: há três ficções simultâneas (fantasia medieval, cyberpunk e
-arcade), 8 exercícios misturam medieval com cyberpunk no mesmo arquivo, e o deck
+**O que não se copia de *Ready Player One*** (a referência de espírito): OASIS, Halliday/Anorak,
+o ovo, os nomes das chaves, a cultura pop dos anos 80. Fica a estrutura — concurso, portões,
+chaves, prêmio desconhecido — que é domínio público.
+
+Hoje o repositório viola a regra do gênero: há três ficções simultâneas (fantasia medieval,
+cyberpunk e arcade), 8 exercícios misturam medieval com cyberpunk no mesmo arquivo, e o deck
 `eliminacao_gaussiana.html` também. Ver `RTC.md` §3.
 
-| Fase | Gabinete | Gênero |
+| Portão | Gabinete | Gênero |
 |---|---|---|
-| 1 | Sistemas e Matrizes | fantasia medieval (narração pronta) |
-| 2 | Determinantes | cyberpunk (narração pronta) |
-| 3 | Vetores Euclidianos | FPS — a definir no storyboard |
-| 4 | Transformações | plataforma — a definir no storyboard |
-| 5 | Espaços Vetoriais | construção/estratégia — a definir no storyboard |
-| 6 | Autovalores | corrida — a definir no storyboard |
+| P1 | Sistemas e Matrizes | fantasia medieval (narração pronta) |
+| P2 | Determinantes | cyberpunk (narração pronta) |
+| P3 | Vetores Euclidianos | FPS |
+| P4 | Transformações | plataforma com gravidade variável |
+| P5 | Espaços Vetoriais | construção/estratégia |
+| P6 | Autovalores | corrida |
 
 **Fio condutor do curso:** *"O que este sistema faz com o espaço?"* Cada fase acrescenta uma
 resposta nova — ver `HISTORIA.md` §3. Ao escrever qualquer slide, saiba qual é o pedaço da
 resposta que aquela fase entrega.
 
-**Camada do jogador:** disciplina, hábito, dúvida. A lição **só entra se for consequência do
-conceito da fase** (matriz = composição = hábito atômico; autovetor = o que não muda). Nada
-de motivação genérica. Veículos: dica de tela de carregamento (1 por fase) e menu de pausa
-(no máximo 2 por fase). Ver `HISTORIA.md` §4.
+**Camada do jogador:** é **foco**, não enfeite. Dez tópicos, dez donos: quatro no Manual do
+Jogador (Ato 0) e um por fase. Ver [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md).
+
+A lição só entra se for **ocasião do conceito** da fase — a matemática dá o gancho, a evidência
+vem citada (com DOI), nunca alegada pela metáfora. Nada de motivação genérica.
+
+Veículos: **4 telas de Manual** (Q03–Q06, só no começo), **6 dicas de carregamento** (uma por
+fase, cada uma uma técnica diferente) e **12 pausas** (2 por fase, sobreposição, pergunta
+calibrada pelo tópico da fase — nenhuma se repete).
 
 ---
 
@@ -90,19 +102,22 @@ estrutura, silenciosamente. Erro silencioso em slide de matemática é pior que 
 ## 4. Estrutura de uma fase
 
 ```
-00-capa        → nome da fase, 1 linha de missão, o gabinete aceso no saguão
-01-estado      → HUD: onde estamos, o que já foi feito
-02..NN         → um slide por tópico de exercício, o exercício que será resolvido no quadro
-NN+1-peça      → a peça coletada nesta fase (ver STORYBOARD-GERAL.md §3)
+00-capa        → nome do portão, 1 linha de missão, o gabinete aceso e a fechadura
+01-cena        → imagem gerada (uma por fase, nunca com matemática)
+02-dica        → carga: a técnica de estudo que a fase possui
+03-estado      → HUD: onde estamos, o que já foi feito
+04..NN         → um slide por tópico de exercício, o exercício que será resolvido no quadro
+NN+1-chave     → a chave do portão (ver STORYBOARD-GERAL.md, Ato 7)
 ```
 
-- **HUD fixo em todo slide**, com fase, tópico, exercício e peças coletadas. Se poluir, reduz
-  a faixa — não remove.
+- **HUD fixo em todo slide**, com portão, tópico, exercício e chaves. Se poluir, reduz a
+  faixa — não remove.
 - **Sem `01-historia` de slide inteiro.** A história entra como **cena** (Camada B), uma por
   fase. É fio, não enredo.
 - O slide de cada tópico mostra **o exercício que vai ser resolvido**, não a solução.
-- **Nenhuma fase termina com chefe.** O curso tem um único confronto, na F6. As outras cinco
-  terminam com uma peça na mão.
+- **Nenhuma fase termina com chefe.** O curso tem um único **confronto**, na F6. As outras
+  cinco terminam com uma chave na mão.
+- **Pausas** são sobreposição, não tela: 2 por fase, no meio e no fim do miolo.
 
 ---
 
@@ -159,12 +174,14 @@ storyboard ao lado.
   DEV LOG como créditos, sem cota numérica, piloto = **Fase 1**.
 - Feito: [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md) — o que entra em cada fase e **qual
   capítulo é dono de cada conceito** (regra R1: um conceito tem um dono).
-- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — os 36 quadros do curso, na ordem
-  (a lista que se lê de uma vez para achar repetição).
-- Feito: [`BIBLIA.md`](BIBLIA.md) — as regras que justificam o arco: registros, peças,
-  orçamentos (4 saguões, 6 cenas, 6 dicas, ≤12 pausas, 1 confronto).
-- Feito: [`STORYBOARD-F1.md`](STORYBOARD-F1.md) — piloto com 9 telas e o inventário de imagem
-  de cada uma (1 gerada, 8 SVG).
+- Feito: [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md) — os dez tópicos da parte não-matemática, com
+  dono, técnica, ocasião no conteúdo e referência com DOI.
+- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — os 42 quadros do curso, na ordem, com
+  as chaves, o Manual do Jogador e as 12 pausas.
+- Feito: [`BIBLIA.md`](BIBLIA.md) — as regras: concurso, chaves, registros, orçamentos
+  (4 telas de manual, 2 interstícios, 6 cenas, 6 dicas, 12 pausas, 1 confronto, 6 chaves).
+- Feito: [`STORYBOARD-F1.md`](STORYBOARD-F1.md) — piloto com 9 telas, 2 pausas e o inventário
+  de imagem de cada tela (1 gerada, 8 SVG).
 - Próximo passo: aprovar a Fase 1 → `slide-spec.md` → implementar as 8 telas SVG (a cena
   espera o gerador).
 - Bloqueado: gerador de imagem (Camada B).

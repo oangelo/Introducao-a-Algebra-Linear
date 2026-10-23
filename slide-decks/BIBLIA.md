@@ -20,16 +20,28 @@ nenhuma fase repete a experiência da anterior?*
 
 ## 1. A premissa dramática
 
-> **O curso é uma noite no fliperama. Seis gabinetes. Uma ficha.**
+> **O curso é um concurso deixado dentro de um fliperama. Seis portões, seis chaves, uma última
+> porta.**
 
 O aluno não sabe o que há dentro das máquinas. A pergunta do curso — *o que este sistema faz
 com o espaço?* — é também a pergunta dramática: **o que tem dentro dessas máquinas?**
 
-O saguão não é enfeite. É o que transforma seis aulas desconexas em um lugar só. O aluno entra
+O motor é o de uma **caçada**, não o de uma visita guiada: alguém construiu o jogo e deixou um
+desafio. Vencer um portão dá uma **chave**. As seis chaves abrem a última porta.
+
+O saguão não é enfeite: é o que transforma seis aulas desconexas em um lugar só. O aluno entra
 no mesmo lugar seis vezes; o que muda é qual máquina ele liga.
 
-**A revelação final:** os seis gabinetes rodam na **mesma placa**. Fases diferentes, gêneros
-diferentes, e no fim a mesma matemática embaixo. É a tese do curso, e ela é verdadeira.
+**A revelação final:** atrás da última porta não há troféu — há a **sala da máquina**, e os
+seis gabinetes rodam na **mesma placa**. Fases diferentes, gêneros diferentes, a mesma
+matemática embaixo. É a tese do curso, e ela é verdadeira.
+
+### O que não se copia
+
+A referência de **espírito** é *Ready Player One* — e é só isso. O curso não usa nada dele: nem
+o OASIS, nem Halliday/Anorak, nem o ovo, nem os nomes das três chaves, nem a cultura pop dos
+anos 80. Fica a estrutura nua — concurso, portões, chaves, prêmio desconhecido — que é domínio
+público e não tem dono.
 
 ---
 
@@ -47,7 +59,7 @@ a repetição: a fase 4 não é "a fase 3 mais difícil", é outro tipo de pergu
 | 4 | F4 Transformações | o que ela faz com o espaço? | **a mão** | vertigem |
 | 5 | F5 Espaços | de que o espaço é feito? | **o esqueleto** | clareza |
 | 6 | F6 Autovalores | o que ela não muda? | **o eixo** | quietude |
-| 7 | fechamento | — | as seis luzes acesas, a mesma placa | reconhecimento |
+| 7 | fechamento | — | as seis chaves, a última porta, a mesma placa | reconhecimento |
 
 ### A regra de ouro da anti-repetição
 
@@ -61,12 +73,12 @@ aprendizagem de uma ferramenta.
 
 ---
 
-## 3. O dispositivo que amarra o curso: as seis peças
+## 3. O dispositivo que amarra o curso: as seis chaves
 
-Em cada fase o aluno **desmonta uma peça da máquina**. Ao fim do curso tem seis peças na mão e
-descobre que elas montam uma só coisa.
+Em cada fase o aluno **vence um portão e leva uma chave**. Ao fim tem seis chaves na mão, e
+descobre que elas abrem a mesma porta.
 
-| Fase | Peça | Na matemática |
+| Fase | Chave | Na matemática |
 |---|---|---|
 | F1 | o **estado** | classificação do sistema: possível, indeterminado, impossível |
 | F2 | a **impressão digital** | determinante; singularidade; invertibilidade |
@@ -76,8 +88,12 @@ descobre que elas montam uma só coisa.
 | F6 | o **eixo** | autovetor: a direção que não muda |
 
 **Por que funciona:** é um acúmulo, não uma repetição. O dispositivo é o mesmo em toda fase
-(um contador de peças no HUD), mas o que se acumula **não é pontos** — é entendimento, e cada
-peça é de natureza diferente. Placar de pontos repetiria; coleção de peças não.
+(um contador de chaves no HUD), mas o que se acumula **não é pontos** — é entendimento, e cada
+chave é de natureza diferente. Placar de pontos repetiria; coleção de chaves não.
+
+**Por que chave e não peça.** Peça desmonta; chave **abre**. O aluno não está desmontando a
+máquina ao longo do curso — ele está destrancando. Isso mantém a tensão até o fim, e faz o
+último quadro significar algo: seis chaves, uma porta.
 
 ---
 
@@ -88,24 +104,27 @@ aparecer em toda fase, ele vira ruído.
 
 | Dispositivo | Quantos | Onde | Regra |
 |---|---|---|---|
-| **Saguão** (interstício) | **4** | abertura, depois de F2, depois de F4, fechamento | só quando muda o **registro**, não a fase |
+| **Manual do Jogador** | **4 telas** | só no Ato 0 | sono, corpo, gente, regras do jogo — nunca depois |
+| **Saguão** (interstício) | **2** | depois de F2 e depois de F4 | só quando muda o **registro**, não a fase |
 | **Cena** (imagem gerada) | **6** | uma por fase, em slide próprio | nunca mostra matemática |
-| **Dica de carregamento** | **6** | uma por fase, no slide de abertura | sempre sobre *como jogar*, nunca sobre a matéria |
-| **Pausa** (metacognição) | **≤ 12** | máx. 2 por fase | sempre sobre o estado do jogador |
-| **Chefe / confronto** | **1** | só na F6 | fase não tem chefe; o curso tem um |
-| **Peça coletada** | **6** | contador no HUD, a partir da F2 | aparece sem comentário, nunca celebrada |
+| **Dica de carregamento** | **6** | uma por fase, no slide da cena | técnica de estudo, uma por fase, todas diferentes |
+| **Pausa** (metacognição) | **12** | 2 por fase, sobreposição | pergunta calibrada pelo tópico da fase; nenhuma se repete |
+| **Confronto** | **1** | só na F6 | fase não tem chefe; o curso tem um |
+| **Chave** | **6** | contador no HUD, a partir de F1 | aparece sem comentário, nunca celebrada |
 
-**Por que só quatro saguões.** Um saguão entre cada par de fases seria simetria — e simetria
-vira repetição. Os três cortes de registro são:
+**Por que só dois interstícios.** Um saguão entre cada par de fases seria simetria — e simetria
+vira repetição. Os dois cortes de registro são:
 
 1. **F2 → F3**: da máquina que *responde* para o espaço que ela *habita*.
 2. **F4 → F5**: da máquina que *age* para a máquina que se pode *abrir*.
-3. **F6**: o fim, quando as seis peças se reconhecem.
 
 **Por que não há chefe por fase.** Seis chefes é a repetição mais previsível que existe. O
 curso tem **um** confronto, e ele é o último: a F6 é onde a máquina tenta não se deixar
-entender, e o autovetor é a resposta. As outras cinco fases terminam com uma peça na mão, não
-com um troféu.
+entender, e o autovetor é a resposta. As outras cinco fases terminam com uma chave na mão.
+
+**Por que o Manual vem antes de tudo.** As quatro condições do jogador — sono, corpo, gente,
+regras — valem para o curso inteiro; se aparecessem por fase, virariam seis repetições da mesma
+advertência. Uma vez, no começo, e nunca mais. Ver [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md).
 
 ---
 
@@ -113,7 +132,7 @@ com um troféu.
 
 **O que nunca muda** — é a âncora do aluno que voltou do celular:
 
-- o **HUD** (fase, tópico, exercício correspondente, peças) na mesma posição em todo slide;
+- o **HUD** (portão, tópico, exercício correspondente, chaves) na mesma posição em todo slide;
 - a **tipografia** e a grade;
 - a **paleta neutra do HUD**.
 
@@ -143,7 +162,7 @@ Antes de escrever qualquer storyboard de fase, verifique que ele não repete:
 | Nunca repita | Porque |
 |---|---|
 | o mesmo tipo de abertura ("bem-vindo à fase N") | seis boas-vindas é uma só, repetida |
-| a mesma cena de vitória no fim de cada fase | a fase termina com peça, não com festa |
+| a mesma cena de vitória no fim de cada fase | a fase termina com chave, não com festa |
 | o mesmo diagrama de "grade" em toda fase | a grade deformada é **uma** vez, na F4, onde significa algo |
 | a mesma dica de carregamento reescrita | cada dica é sobre uma estratégia diferente |
 | o mesmo registro emocional em duas fases | ver §2 |
