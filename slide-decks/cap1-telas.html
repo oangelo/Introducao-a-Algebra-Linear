@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capítulo 1 · as dez telas — imagem, texto e fonte</title>
+<link rel="stylesheet" href="cap1-telas.css">
+</head>
+<body>
+
+<header class="cabeca">
+  <h1>Capítulo 1 · as dez telas</h1>
+  <p class="sub">Cada ficha tem quatro camadas separadas: a imagem que a IA gerou (sem uma letra),
+  o texto que vai no slide, a fala do professor — onde está a substância — e a fonte de cada
+  afirmação. O retângulo escuro de cada ficha é o slide como ele vai aparecer: imagem, frase no
+  canto, faixa de HUD no topo e, quando a tela afirma um fato, a linha da fonte.</p>
+</header>
+
+<div class="aviso">
+  <h2>Por que a imagem não tem texto</h2>
+  <ul>
+    <li>Modelo de difusão inventa letra. Letra inventada em slide de aula é pior que slide sem
+    letra: o aluno lê e acredita.</li>
+    <li>Texto no slide é <b>tipografia</b>, não pixel: nítido, selecionável, traduzível e
+    corrigível em um segundo.</li>
+    <li>A imagem carrega o <b>gesto</b>; o slide carrega a <b>frase</b>; a fonte carrega a
+    <b>prova</b>. Misturar as três numa peça só é o que torna slide de aula ilegível.</li>
+  </ul>
+</div>
+
+<main>
+
+<!-- Q01 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c1-teoria.png" alt="Quarto escuro à noite; um jovem de costas, no chão, diante do monitor aceso, controle na mão.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Todo mundo tem uma teoria de como jogar melhor.</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q01</span>a convicção</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>Uma frase. Nenhuma fonte: a tela não afirma um fato, ela descreve o aluno.</dd>
+
+      <dt>A fala</dt>
+      <dd>Todo aluno entra no curso com uma técnica própria — e não é preguiça, é uma técnica que
+      ele mesmo adotou e nunca testou. Quase sempre é reler, grifar e virar a noite na véspera.
+      Dunlosky e colegas revisaram dez técnicas de estudo em uso real: as duas mais populares,
+      releitura e grifo, ficaram entre as de menor utilidade; as de maior utilidade — prática de
+      recuperação e prática distribuída — são justamente as que quase ninguém usa.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>O quarto escuro e o controle na mão dizem que a técnica dele é jogar, sem que a imagem
+      precise julgar. Se a cena mostrasse bagunça, o aluno se defenderia; ela mostra convicção —
+      e é com a convicção que se começa.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J. &
+      Willingham, D. T.</b> (2013). Improving students' learning with effective learning
+      techniques. <i>Psychological Science in the Public Interest</i> 14, 4–58.
+      doi:10.1177/1529100612453266</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q02 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c2-madrugada.png" alt="A mesma sala, mais tarde: ele caído sobre a mesa, caneca vazia, relógio de perfil.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">A dele era virar a noite.</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q02</span>a técnica <span class="selo">evidência completa na F3</span></h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>Uma frase. Sem fonte: a evidência de sono é da Fase 3, não deste capítulo.</dd>
+
+      <dt>A fala</dt>
+      <dd>A técnica é simples: estudar até tarde na véspera, dormir pouco e compensar com café. O
+      que ele compra com as horas extras não é tempo de estudo — é mais exposição ao mesmo
+      material, paga com a noite em que o cérebro reativaria e estabilizaria o que ele acabou de
+      estudar. A conta fecha negativa: ele troca consolidação por releitura. O mecanismo e os
+      números ficam para a Fase 3, cujo tema é sono; aqui basta que ele veja a troca.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>A madrugada é a técnica visível no corpo, não no argumento. A cena não mostra alguém
+      sofrendo — mostra alguém convencido, o que é mais fiel e mais desconfortável.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Rasch, B. & Born, J.</b> (2013). About sleep's role in memory.
+      <i>Physiological Reviews</i> 93, 681–766. doi:10.1152/physrev.00032.2012 — desenvolvido na
+      F3 (<a href="MAPA-JOGADOR.md">MAPA-JOGADOR.md</a> §2).</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q03 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c3-vitoria.png" alt="Ele de costas, os dois braços erguidos, diante da tela estourada de branco.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Funcionou uma vez. Isso não é evidência.</p>
+    <p class="fonte">Barnett, van der Pols &amp; Dobson (2005) · doi:10.1093/ije/dyh299</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q03</span>a virada</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase e a fonte. É a primeira tela do capítulo que acusa alguma coisa, então é a
+      primeira que precisa dizer de onde vem.</dd>
+
+      <dt>A fala</dt>
+      <dd>Ele virou a noite, fez a prova, tirou nota melhor que a anterior — e concluiu causa. O
+      problema é que nota oscila. Quem tirou uma nota baixa tende a tirar uma nota melhor depois
+      por razões que não têm nada a ver com a técnica: é regressão à média, um efeito estatístico
+      que aparece toda vez que se mede o mesmo grupo duas vezes, com qualquer intervenção ou sem
+      nenhuma. Com uma observação, "melhorou" não distingue "a técnica funcionou" de "a nota
+      voltou ao normal". n&nbsp;=&nbsp;1 não é evidência: é anedota com data.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>O gesto de vitória é o instante exato em que a conclusão causal se forma na cabeça de
+      quem estuda. A imagem tem que ser comemorativa, porque a frase tem que doer.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Barnett, A. G., van der Pols, J. C. & Dobson, A. J.</b> (2005).
+      Regression to the mean: what it is and how to deal with it. <i>International Journal of
+      Epidemiology</i> 34, 215–220. doi:10.1093/ije/dyh299</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q04 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c4-caderno.png" alt="Caderno aberto sobre a mesa, duas colunas traçadas a régua, ambas vazias; lápis ao lado.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Para saber, tem que comparar.</p>
+    <p class="fonte">Lind (1753) · ensaio de 1747</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q04</span>instrumento 1 · comparação</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase e a fonte. A história é contada em sala, não escrita no slide.</dd>
+
+      <dt>A fala</dt>
+      <dd>Comparar tem quase três séculos. Em 1747, a bordo do HMS Salisbury, James Lind pegou
+      doze marinheiros com escorbuto, alojou todos juntos, com a mesma dieta e as mesmas
+      condições, e deu a cada par um tratamento diferente: sidra, elixir de vitríolo, vinagre,
+      água do mar, laranjas e limões. O par que recebeu cítricos sarou; os outros não. O achado
+      em si não era novo — marinheiros já desconfiavam dos cítricos. O novo foi o método:
+      dividir doentes em grupos, manter tudo igual e mudar uma coisa. É o instrumento mais velho
+      desta lista, e é exatamente o que falta em quase todo conselho de estudo.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>As duas colunas vazias <i>são</i> o instrumento: a forma da comparação antes de existir
+      qualquer dado. A régua ao lado do caderno é o único objeto do capítulo que não é gerado
+      por acaso — ela é o desenho da coluna.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Lind, J.</b> (1753). <i>A Treatise of the Scurvy</i>. Edinburgh:
+      Sands, Murray &amp; Cochran. Ensaio de 1747, 12 marinheiros, 6 tratamentos em pares de dois.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q05 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c5-semanas.png" alt="Duas grades semanais lado a lado; à esquerda luas, à direita sóis; uma linha difere.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Uma coisa de cada vez.</p>
+    <p class="fonte">Fisher (1935)</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q05</span>instrumento 2 · isolar a variável</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase e a fonte.</dd>
+
+      <dt>A fala</dt>
+      <dd>Se na mesma semana ele passou a dormir mais, a estudar com música e a usar um aplicativo
+      novo, e melhorou, ele não sabe o que causou. Isso tem nome: variável confundida. Duas coisas
+      que mudam juntas não se separam depois — não existe conta que desfaça a mistura, só um teste
+      que mude uma de cada vez. Fisher formalizou a ideia em 1935, no desenho de experimentos
+      agrícolas: sem variação controlada, o efeito que você mede é indistinguível do que mais
+      mudou junto. É a mesma pergunta que a Fase 1 vai fazer em matriz, com outro nome.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>Duas grades, uma linha de diferença. A imagem é a definição visual de "uma coisa só" —
+      se mudassem cinco linhas, a imagem não estaria mostrando o instrumento, estaria mostrando o
+      erro.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Fisher, R. A.</b> (1935). <i>The Design of Experiments</i>. Edinburgh:
+      Oliver &amp; Boyd.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q06 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c6-dois-jogadores.png" alt="Dois homens de costas, cada um na sua mesa: caderno novo à esquerda, caderno gasto à direita.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Alguém que não mudou nada.</p>
+    <p class="fonte">Hill (1965) · doi:10.1177/0035905X6505800103</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q06</span>instrumento 3 · grupo de controle</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase e a fonte.</dd>
+
+      <dt>A fala</dt>
+      <dd>O grupo de controle é a régua. Sem ele, "melhorou" compara o aluno com ele mesmo no
+      passado — e o passado não serve de régua, porque o semestre muda, a prova muda, o assunto
+      muda. Só quem não mudou nada isola o efeito do tempo e da matéria. Hill escreveu em 1965 os
+      critérios que a medicina usa até hoje para decidir se uma associação é causa, e o primeiro
+      deles é ter um grupo de comparação. É justamente o item que o aluno não tem quando avalia a
+      própria técnica: ele nunca tem um "eu" que não mudou nada.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>Dois corpos, um caderno novo e um gasto. O controle é uma <i>pessoa</i> que continua
+      igual — não uma coluna numa tabela. Por isso a imagem tem dois homens e não dois gráficos.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Hill, A. B.</b> (1965). The environment and disease: association or
+      causation? <i>Proceedings of the Royal Society of Medicine</i> 58, 295–300.
+      doi:10.1177/0035905X6505800103</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q07 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c7-estante.png" alt="Prateleira: um livro grosso de lombada dourada de pé e, ao lado, uma folha fina grampeada.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Virou livro. Não se repetiu.</p>
+    <p class="fonte">Baumeister et al. (1998) · doi:10.1037/0022-3514.74.5.1252</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q07</span>o caso · 1998</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase e a fonte do estudo original. O ano do estudo vai na fala, não no slide.</dd>
+
+      <dt>A fala</dt>
+      <dd>1998. Baumeister e colegas põem participantes numa sala com biscoitos recém-assados e
+      rabanetes. Um grupo come biscoito; o outro é obrigado a comer rabanete e a resistir ao
+      biscoito. Depois, os dois grupos tentam uma tarefa difícil. O grupo do rabanete desiste
+      antes. A conclusão: força de vontade é um combustível finito — gastou numa tarefa, falta na
+      outra. O resultado virou teoria, virou livro (<i>Willpower</i>, 2011), virou conselho de
+      produtividade, virou aula. Inclusive deste curso. E o experimento <b>não era fraude</b>:
+      era um resultado real, num grupo pequeno, que não sobreviveu à repetição.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>O livro grosso e a folha grampeada. A assimetria é o argumento inteiro — o que vendeu não
+      é o que se replicou. A lombada não tem título, por regra: o livro é "um livro", e a
+      identificação vem da fala, com a referência na mão.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Baumeister, R. F., Bratslavsky, E., Muraven, M. & Tice, D. M.</b>
+      (1998). Ego depletion: is the active self a limited resource? <i>Journal of Personality and
+      Social Psychology</i> 74, 1252–1265. doi:10.1037/0022-3514.74.5.1252</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q08 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c8-pilhas.png" alt="Mesa coberta por uma pilha alta de folhas soltas; uma mão apoiada no topo.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Uma noite é anedota. Trinta são dados.</p>
+    <p class="fonte">Hagger et al. (2016) · doi:10.1177/1745691616652873</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q08</span>instrumento 4 · volume</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase e a fonte da replicação.</dd>
+
+      <dt>A fala</dt>
+      <dd>2016. Vinte e três laboratórios, replicação pré-registrada, 2.141 participantes,
+      protocolo padronizado entre todos — não é "o mesmo estudo feito de novo", é o mesmo
+      protocolo rodado em vinte e três lugares, com o resultado somado. O efeito medido:
+      d&nbsp;=&nbsp;0,04. Compare com o que se tinha: um experimento, um laboratório, algumas
+      dezenas de pessoas. Estudo pequeno não erra só por azar: quando o efeito é pequeno, o
+      estudo pequeno só chega à publicação quando o acaso ajuda, e a literatura passa a conter
+      exatamente os resultados sortudos (Button et al., 2013).</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>A pilha tem altura. Quantidade precisa ser vista, não lida — e a mão sobre a pilha diz
+      que alguém carrega aquilo, não que aquilo apareceu sozinho.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Hagger, M. S. et al.</b> (2016). A multilab preregistered replication
+      of the ego-depletion effect. <i>Perspectives on Psychological Science</i> 11, 546–573.
+      doi:10.1177/1745691616652873<br>
+      <b>Button, K. S. et al.</b> (2013). Power failure: why small sample size undermines the
+      reliability of neuroscience. <i>Nature Reviews Neuroscience</i> 14, 365–376.
+      doi:10.1038/nrn3475</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q09 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c9-colunas.png" alt="Página de caderno com dois blocos de marcas de contagem quase iguais; uma diferença circulada a lápis vermelho.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">A diferença é maior do que o acaso?</p>
+    <p class="fonte">d = 0,04 · IC95% [−0,07; 0,15] · Hagger et al. (2016)</p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q09</span>instrumento 5 · significância</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase e a linha de números. É a única tela do capítulo com número — e o número não é
+      gerado por IA, é digitado: é o resultado da replicação, não uma ilustração dela.</dd>
+
+      <dt>A fala</dt>
+      <dd>d&nbsp;=&nbsp;0,04 quer dizer que os dois grupos diferem em 4% de um desvio-padrão. Na
+      prática: indistinguível. E o intervalo de confiança de 95% vai de −0,07 a +0,15 — ele
+      contém o zero, ou seja, "não há efeito" está dentro do que os dados permitem. Significância
+      não é "deu diferença". É "a diferença é maior do que a variação que o acaso produziria
+      sozinho". Quando o intervalo atravessa o zero, a resposta honesta é: não se sabe, e é isso
+      que os dados dizem.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>É o único ponto do capítulo em que o aluno <i>vê</i> uma diferença pequena e tem que
+      julgar se ela é real — o que ele vai fazer a vida inteira com resultado de exame, de
+      pesquisa e de conversa de corredor. A imagem não pode carregar o número; o número é do
+      slide, digitado.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Hagger, M. S. et al.</b> (2016). <i>Perspectives on Psychological
+      Science</i> 11, 546–573. doi:10.1177/1745691616652873 — <i>k</i>&nbsp;=&nbsp;23 laboratórios,
+      <i>N</i>&nbsp;=&nbsp;2.141, <i>d</i>&nbsp;=&nbsp;0,04, IC95% [−0,07; 0,15].</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Q10 -->
+<section class="ficha">
+  <div class="mock">
+    <img src="img/c10-fecho.png" alt="Caderno fechado na mesa; ao fundo, a tela do jogo ainda acesa. Duas linhas riscadas na capa.">
+    <div class="hud"><span>Capítulo 1 · o instrumento</span><span class="chaves">0 / 6 chaves</span></div>
+    <p class="frase">Antes de saber o que funciona, saiba como se sabe.
+      <span class="menor">Duas coisas que sempre andam juntas são uma só.</span></p>
+    <p class="fonte">Anton, <i>Álgebra Linear com Aplicações</i></p>
+  </div>
+  <div class="doc">
+    <h3><span class="num">Q10</span>o fecho</h3>
+    <dl>
+      <dt>No slide</dt>
+      <dd>A frase, a linha menor e a fonte da ponte (o livro adotado).</dd>
+
+      <dt>A fala</dt>
+      <dd>O capítulo entrega cinco perguntas e um caso que atravessa as cinco: comparado com quê;
+      mudou mais de uma coisa; quem não mudou nada; quantas vezes foi observado; a diferença passa
+      do acaso. A confissão, dita em voz alta: este curso já repetiu a ideia de força de vontade
+      como recurso que acaba. Dizer isso é mais útil ao aluno do que fingir que nunca aconteceu.
+      E a linha menor é a única antecipação de matemática do capítulo inteiro: quando duas coisas
+      sempre andam juntas, elas são uma variável só disfarçada de duas. Na Fase 1 isso se chama
+      dependência linear; o sistema fica indeterminado, e isso não é falha de quem pergunta.</dd>
+
+      <dt>Por que esta cena</dt>
+      <dd>Caderno fechado, tela acesa. O método terminou; o jogo continua. A tela acesa é o
+      capítulo seguinte e a única coisa que a imagem precisa dizer.</dd>
+
+      <dt>A fonte</dt>
+      <dd class="citacao"><b>Anton, H.</b> <i>Álgebra Linear com Aplicações</i>. Livro adotado do
+      curso — a ponte é desenvolvida na Fase 1, não aqui.</dd>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <h2>O que este documento é — e o que não é</h2>
+  <p>É o contrato das dez telas: imagem, texto do slide, fala e fonte, separados de propósito. O
+  arquivo que vira slide é outro; este serve para conferir se a frase diz o que a imagem mostra e
+  se a afirmação tem fonte antes de virar aula.</p>
+  <p><b>Regra que vale para todos:</b> se a imagem tivesse texto, ninguém saberia qual das duas
+  camadas está errada quando algo estiver errado. Separadas, o erro aparece onde está.</p>
+  <p>Ver <a href="STORYBOARD-CAP1.md">STORYBOARD-CAP1.md</a> (o arco e as transições),
+  <a href="CAPITULO-1.md">CAPITULO-1.md</a> (a prosa) e
+  <a href="MAPA-JOGADOR.md">MAPA-JOGADOR.md</a> (o que cada fase herda).</p>
+</footer>
+
+</body>
+</html>
