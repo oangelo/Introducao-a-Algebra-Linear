@@ -14,12 +14,17 @@ aluno pode discordar do curso com razão — que é o objetivo.
 
 ## 1. O personagem
 
-Um jogador de **capuz, sem rosto**. Mesma silhueta, mesma roupa, mesma postura em todas as
-imagens do curso. Sem nome.
+Um jogador **sem rosto**. Mesma silhueta, mesma roupa, mesma postura em todas as imagens do
+curso. Sem nome. Camiseta escura, calça, nada de figurino: ele está em casa.
 
 **Por que sem rosto:** rosto gerado por IA muda entre imagens, e dez imagens com dez caras
 diferentes destroem a ideia de que é a mesma pessoa. Sem rosto ele é consistente de graça — e
 vira qualquer aluno.
+
+**Por que não de capuz (descartado em out/2026):** o capuz era a solução para esconder o rosto,
+mas criava um personagem de ficção — e o capítulo 1 não é ficção, é o quarto do aluno. O capuz
+foi testado nas dez cenas e rejeitado: na cena de vitória ele caía para trás e virava outro
+personagem. A referência canônica é `img/personagens/jogador-quarto.png`.
 
 **Por que ele é o aluno:** o que acontece com ele no capítulo 1 é o que acontece com quem
 estuda. Ele erra o método antes de acertar. Não é exemplo de virtude; é cobaia de si mesmo.
@@ -87,16 +92,17 @@ disso em matriz: dependência linear, posto, grau de liberdade.
 
 ## 5. As dez cartelas
 
-Cada cartela é **uma imagem e uma frase**. Nenhuma imagem é gerada ainda — a descrição é o
-contrato para quem for gerar depois.
+Cada cartela é **uma imagem e uma frase**. As dez estão geradas em `img/c1-teoria.png` …
+`img/c10-fecho.png`; a descrição abaixo é o que elas mostram. O contrato de tela — o que entra,
+o que não entra, onde a frase senta — está em [`STORYBOARD-CAP1.md`](STORYBOARD-CAP1.md).
 
-**C1 · IMAGEM:** sala escura, só o brilho do monitor. O jogador de capuz, de costas, controle na mão.
+**C1 · IMAGEM:** sala escura, só o brilho do monitor. O jogador, de costas, controle na mão.
 **FRASE:** *Todo mundo tem uma teoria de como jogar melhor.*
 
-**C2 · IMAGEM:** a mesma sala, madrugada. Xícara, olhos vermelhos, o relógio marcando quatro.
+**C2 · IMAGEM:** a mesma sala, madrugada. Caneca vazia, ele caído sobre a mesa, o relógio de perfil (o mostrador não aparece de propósito).
 **FRASE:** *A dele era virar a noite.*
 
-**C3 · IMAGEM:** tela de vitória. Ele de punho erguido, capuz caído para trás.
+**C3 · IMAGEM:** tela de vitória estourada de branco. Ele de costas, os dois braços erguidos.
 **FRASE:** *Funcionou uma vez. Isso não é evidência.*
 
 **C4 · IMAGEM:** caderno aberto na mesa, duas colunas traçadas a régua, nada escrito ainda.
@@ -111,10 +117,10 @@ contrato para quem for gerar depois.
 **C7 · IMAGEM:** estante. Um livro grosso, com lombada dourada. Ao lado, uma folha fina, sem graça, grampeada.
 **FRASE:** *Virou livro. Não se repetiu.*
 
-**C8 · IMAGEM:** pilha de folhas cobrindo a mesa, cada uma com uma marcação de data.
+**C8 · IMAGEM:** pilha alta de folhas cobrindo a mesa, cada uma com uma marca ilegível num canto; uma mão apoiada no topo.
 **FRASE:** *Uma noite é anedota. Trinta são dados.*
 
-**C9 · IMAGEM:** duas colunas de números no caderno, quase iguais; uma diferença pequena circulada.
+**C9 · IMAGEM:** dois blocos de marcas de contagem no caderno, quase iguais; uma diferença pequena circulada a lápis vermelho.
 **FRASE:** *A diferença é maior do que o acaso?*
 
 **C10 · IMAGEM:** o caderno fechado; ao fundo, a tela do jogo ainda acesa. Duas linhas de números idênticas riscadas.
