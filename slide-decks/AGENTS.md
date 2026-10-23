@@ -58,15 +58,16 @@ cyberpunk e arcade), 8 exercícios misturam medieval com cyberpunk no mesmo arqu
 resposta nova — ver `HISTORIA.md` §3. Ao escrever qualquer slide, saiba qual é o pedaço da
 resposta que aquela fase entrega.
 
-**Camada do jogador:** é **foco**, não enfeite. Dez tópicos, dez donos: quatro no Manual do
-Jogador (Ato 0) e um por fase. Ver [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md).
+**Camada do jogador:** é **foco**, não enfeite. Um **instrumento** (capítulo 1: como se sabe
+que algo funciona) e **seis temas**, um por fase. Ver [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md) e
+[`CAPITULO-1.md`](CAPITULO-1.md).
 
 A lição só entra se for **ocasião do conceito** da fase — a matemática dá o gancho, a evidência
 vem citada (com DOI), nunca alegada pela metáfora. Nada de motivação genérica.
 
-Veículos: **4 telas de Manual** (Q03–Q06, só no começo), **6 dicas de carregamento** (uma por
-fase, cada uma uma técnica diferente) e **12 pausas** (2 por fase, sobreposição, pergunta
-calibrada pelo tópico da fase — nenhuma se repete).
+Veículos: **capítulo 1 com 10 cartelas** (Q01–Q10, antes do primeiro portão), **6 dicas de
+carregamento** (uma por fase, cada uma um achado diferente) e **12 pausas** (2 por fase,
+sobreposição, pergunta calibrada pelo tema da fase — nenhuma se repete).
 
 ---
 
@@ -167,17 +168,19 @@ storyboard ao lado.
 
 ---
 
-## 8. Onde estamos (2026-10-22)
+## 8. Onde estamos (2026-10-23)
 
 - Nada foi implementado. Nenhum slide novo, nenhum deck alterado.
 - Decidido: premissa HUD, ficção do fliperama, fio condutor, camada do jogador, HUD fixo,
   DEV LOG como créditos, sem cota numérica, piloto = **Fase 1**.
 - Feito: [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md) — o que entra em cada fase e **qual
   capítulo é dono de cada conceito** (regra R1: um conceito tem um dono).
-- Feito: [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md) — os dez tópicos da parte não-matemática, com
-  dono, técnica, ocasião no conteúdo e referência com DOI.
-- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — os 42 quadros do curso, na ordem, com
-  as chaves, o Manual do Jogador e as 12 pausas.
+- Feito: [`CAPITULO-1.md`](CAPITULO-1.md) — a abertura: os cinco instrumentos do método, o caso
+  da teoria que virou livro e não se replicou, e as 10 cartelas (imagem + frase).
+- Feito: [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md) — um instrumento (capítulo 1) e seis temas, um por
+  fase, com dica, ocasião no conteúdo e referência com DOI.
+- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — os 46 quadros do curso, na ordem, com
+  as chaves, o capítulo 1 e as 12 pausas.
 - Feito: [`BIBLIA.md`](BIBLIA.md) — as regras: concurso, chaves, registros, orçamentos
   (4 telas de manual, 2 interstícios, 6 cenas, 6 dicas, 12 pausas, 1 confronto, 6 chaves).
 - Feito: [`STORYBOARD-F1.md`](STORYBOARD-F1.md) — piloto com 9 telas, 2 pausas e o inventário

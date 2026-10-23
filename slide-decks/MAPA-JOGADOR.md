@@ -1,101 +1,108 @@
 # Mapa da Camada do Jogador — como se estuda, como se ganha
 
-A parte não-matemática do curso é **foco**, não enfeite. Aqui ela é partida em dez tópicos com
-**um dono cada** — mesma regra de posse da matemática (`MAPA-CAPITULOS.md` R1): um lugar
+A parte não-matemática é **foco**, não enfeite. Ela tem um instrumento, que vem antes de tudo, e
+seis temas, um por fase — mesma regra de posse da matemática (`MAPA-CAPITULOS.md` R1): um lugar
 introduz, nenhum outro reabre.
 
-**Regra de ouro da camada:** a lição só entra se for **ocasião do conceito** da fase. A
-matemática não prova nada sobre hábito — ela dá o gancho. A evidência vem citada, nunca
-alegada pela metáfora.
+**Regra de ouro:** o tema só entra se for **ocasião do conceito** da fase. A matemática não
+prova nada sobre sono — ela dá o gancho. A evidência vem citada, nunca alegada pela metáfora.
 
-**Regra de honestidade:** quando não há achado de pesquisa, o documento diz. Nem tudo aqui é
-ciência; parte é contrato didático.
+**Regra de honestidade:** quando não há achado de pesquisa, o documento diz. Parte disto é
+contrato didático, não ciência.
 
 ---
 
-## 1. Os dez donos
+## 0. O instrumento — Capítulo 1
 
-### Manual do Jogador — Ato 0 (quatro telas, antes do primeiro portão)
+Antes dos temas vem o **método**: como se sabe que algo funciona. Cinco instrumentos —
+comparação, isolar a variável, grupo de controle, volume de dados, significância — e um caso
+contado do começo ao fim ([`CAPITULO-1.md`](CAPITULO-1.md)).
 
-| # | Tópico | Tela | Evidência |
-|---|---|---|---|
-| M1 | **Sono** | *o que você estuda de manhã é decidido à noite* | Rasch & Born (2013); Curcio, Ferrara & De Gennaro (2006) |
-| M2 | **Corpo** | *o corpo não é pausa do estudo — é parte dele* | Hillman, Erickson & Kramer (2008); Erickson et al. (2011) |
-| M3 | **Gente** | *junto, mas cada um resolve antes* | Springer, Stanne & Donovan (1999) |
-| M4 | **As regras do jogo** | *a prova mede o que você recupera sem consulta, em duas horas* | — contrato didático, não achado |
+**Por que primeiro:** sem o instrumento, os temas abaixo viram conselho. Com ele, o aluno pode
+discordar do curso com razão.
 
-> **M4 não tem literatura** e não deve ter. É o professor abrindo o jogo: como a nota é
-> composta, o que a prova mede, o que "estudar" significa nesta disciplina. A honestidade aqui
-> é o conteúdo.
+O capítulo 1 **não** ensina sono, corpo nem amigos. Ensina a julgar quem fala deles.
 
-### Um por capítulo
+---
 
-| Fase | Tópico que ela possui | Técnica | Ocasião no conteúdo |
-|---|---|---|---|
-| F1 | **Diagnóstico e calibração** — você não sabe o que não sabe | autoexplicação | o sistema pode ser SPD, SPI ou SI: diagnosticar antes de resolver |
-| F2 | **Erro e verificação** — erro é dado, não veredito | prática de recuperação | \(\det \neq 0\): dá para desfazer; confira substituindo |
-| F3 | **Progresso** — distância, não velocidade | prática distribuída | norma e distância: mede-se o quanto falta, não o quanto correu |
-| F4 | **Hábito e ambiente** | intenção de implementação | composição de transformações: pequenas, na ordem certa |
-| F5 | **Seleção e economia** | intercalação | base e dimensão: o mínimo que gera tudo |
-| F6 | **Pressão e identidade** | dificuldade desejável | autovetor: o que não muda quando tudo muda |
+## 1. Os seis donos
+
+| Fase | Tema | O que a fase cobre | Dica de carregamento | Evidência |
+|---|---|---|---|---|
+| F1 | **Atenção e calibração** | você não sabe o que não sabe; *não sei* ≠ *não tem solução* | **corpo** — atenção é pré-requisito de perceber | Hillman et al. (2008); Erickson et al. (2011) |
+| F2 | **Verificação** | erro é dado; refazer de memória; comparar com um par | **amigos** — cada um resolve antes de comparar | Dunlosky et al. (2013); Springer et al. (1999) |
+| F3 | **Intervalo** | progresso por distância; distribuir; o sono consolida | **sono** — o que você estuda de manhã foi decidido à noite | Rohrer & Taylor (2007); Rasch & Born (2013); Curcio et al. (2006) |
+| F4 | **Hábito** | intenção com dia e hora; ambiente e fricção | **hábito** — se for terça às 19h, então dois exercícios | Gollwitzer & Sheeran (2006); Lally et al. (2010) |
+| F5 | **Economia** | escolher o que carregar; cortar o supérfluo | **intercalação** — misturar tipos | Dunlosky et al. (2013); Rohrer & Taylor (2007) |
+| F6 | **Pressão** | ansiedade é resposta ao risco; o que não muda | **dificuldade desejável** | Bjork & Bjork (2020) |
+
+**O que cada fase entrega:** uma dica (o achado ou a técnica, no slide de carregamento) e duas
+pausas (o tema, como pergunta ao aluno). Os dois falam do **mesmo** tema — a dica dá o achado, a
+pausa pede que o aluno se olhe.
 
 ---
 
 ## 2. O que cada dono cobre — e o que ele não cobre
 
-**M1 · Sono.** Consolidação: durante o sono o cérebro reativa e estabiliza o que foi aprendido.
-Privação prejudica atenção, codificação e desempenho. Consequência prática: virar a noite
-troca consolidação por exposição — a pior troca do curso.
-**Não cobre:** rotina de sono, higiene do sono, melatonina.
+### F1 · Atenção e calibração
 
-**M2 · Corpo.** Exercício aeróbico agudo melhora atenção e função executiva em minutos; treino
-regular tem efeito modesto e lento sobre memória. Efeito sobre nota é pequeno — efeito sobre
-desistir é grande.
-**Não cobre:** dieta, cafeína, suplemento.
+O aluno julga que aprendeu pela **fluência** — a sensação de familiaridade — que é o pior sinal
+disponível: reconhecer não é lembrar. Daí erra para cedo demais (achou familiar) ou insiste no
+que já sabe. E a distinção que a própria matemática faz: *"não tem solução" ≠ "eu não consigo"*.
 
-**M3 · Gente.** Aprendizagem cooperativa **estruturada** (meta comum, responsabilidade
+**Corpo, na dica.** Exercício aeróbico agudo melhora atenção e função executiva em minutos;
+treino regular tem efeito modesto e lento. O efeito sobre a nota é pequeno — o efeito sobre
+**notar o que não se sabe** é grande, e é disso que a fase trata.
+
+**Ferramenta:** autoexplicação — dizer em voz alta *por que* aquele sistema não tem solução. Se
+não consegue explicar, reconheceu; não entendeu.
+**Não cobre:** dieta, cafeína, suplemento, higiene do sono.
+
+### F2 · Verificação
+
+Erro é informação sobre o processo, não sobre o valor de quem errou. Três ferramentas:
+
+- **caderno de erros** — o erro, a causa, o que faria diferente;
+- **refazer de memória** — fechar o caderno e refazer (Dunlosky: alta utilidade);
+- **comparar com um par** — cada um resolve sozinho, depois comparam as resoluções.
+
+**Amigos, na dica.** Aprendizagem cooperativa **estruturada** (meta comum, responsabilidade
 individual) melhora desempenho em STEM. "Estudar junto" sem estrutura é conversa com caderno
-aberto. A regra operacional: cada um resolve sozinho, depois comparam as resoluções.
+aberto — e o par vira conferência independente, que é o que a fase precisa.
 **Não cobre:** como formar grupo, conflito interpessoal.
 
-**M4 · As regras do jogo.** O que a prova mede, como a nota é composta, quanto tempo, com ou
-sem consulta, o que conta como justificativa suficiente. É onde o aluno descobre que a prova
-não mede "o que ele sabe", mede o que ele **recupera sem pista sob pressão**.
-**Não cobre:** recurso, revisão de nota — isso é conversa individual.
+### F3 · Intervalo
 
-**F1 · Diagnóstico e calibração.** O aluno julga que aprendeu pela **fluência** — a sensação de
-familiaridade — que é o pior sinal disponível: reconhecer não é lembrar. Daí para cedo demais
-(achou familiar) ou insistir no que já sabe. E a distinção que a própria matemática faz:
-*"não tem solução" ≠ "eu não consigo"*. O sistema impossível é propriedade do problema.
-**Técnica:** autoexplicação — dizer em voz alta *por que* aquele sistema não tem solução.
+Duas armadilhas: medir esforço (horas sentadas) em vez de distância percorrida; e estudar em
+bloco único na véspera. Progresso se mede por quanto falta, e se constrói em intervalos.
 
-**F2 · Erro e verificação.** Erro é informação sobre o processo, não sobre o valor de quem
-errou. Duas ferramentas: **caderno de erros** (o erro, a causa, o que faria diferente) e
-**conferência por substituição** — que é o análogo exato de multiplicar por \(A^{-1}\): volta
-ao ponto de partida e vê se fecha.
-**Técnica:** prática de recuperação — fechar o caderno e refazer de memória.
+**Sono, na dica.** Distribuir só funciona porque **entre** as sessões o cérebro reativa e
+estabiliza o que foi aprendido — é a consolidação que dá sentido ao intervalo. Virar a noite
+troca consolidação por exposição: a pior troca do curso.
+**Não cobre:** rotina de sono, melatonina, quanto dormir.
 
-**F3 · Progresso.** Duas armadilhas: medir esforço (horas sentadas) em vez de distância
-percorrida; e estudar em bloco único na véspera. Progresso se mede por quanto falta, e se
-constrói em intervalos.
-**Técnica:** prática distribuída — 20 minutos por dia batem 3 horas na véspera.
+### F4 · Hábito
 
-**F4 · Hábito e ambiente.** Hábito é contexto, não vontade: mesmo gatilho, mesma hora, mesma
-cadeira. **Intenção de implementação** — "se for terça às 19h, então eu resolvo dois
-exercícios" — tem efeito médio-a-grande (\(d = 0{,}65\) em 94 testes). E não são 21 dias: a
-mediana observada é 66, com variação individual enorme.
-**Não cobre:** "força de vontade como combustível" — a replicação multicêntrica não sustentou
-o efeito, então o curso não constrói nada em cima disso.
+Hábito é contexto, não vontade: mesmo gatilho, mesma hora, mesma cadeira. **Intenção de
+implementação** — "se for terça às 19h, então eu resolvo dois exercícios" — tem efeito
+médio-a-grande (*d* = 0,65 em 94 testes). E não são 21 dias: a mediana observada é 66, com
+variação individual enorme (18 a 254).
+**Não cobre:** "força de vontade como combustível" — ver §3.
 
-**F5 · Seleção e economia.** Escolher a base é escolher o que carregar. Aplicado ao estudo:
-menos material, mais recuperação; cortar o que não gera; **intercalar** tipos de exercício em
-vez de blocos do mesmo tipo.
-**Técnica:** intercalação.
+### F5 · Economia
 
-**F6 · Pressão e identidade.** O que permanece quando a nota aperta. Ansiedade de prova não é
-falta de preparo — é resposta ao risco. E a lição que fecha o arco: **nem tudo diagonaliza**
-— alguns problemas não têm solução elegante, e isso não é fracasso de quem os enfrenta.
-**Técnica:** dificuldade desejável — se está confortável, provavelmente não está aprendendo.
+Escolher a base é escolher o que carregar. Aplicado ao estudo: menos material, mais recuperação;
+cortar o que não gera; **intercalar** tipos de exercício em vez de blocos do mesmo tipo — bloco
+treina reconhecer, intercalado treina escolher.
+**Não cobre:** cronograma de revisão para prova (isso é F3 + F6).
+
+### F6 · Pressão
+
+O que permanece quando a nota aperta. Ansiedade de prova não é falta de preparo — é resposta ao
+risco. E a lição que fecha o arco: **nem tudo diagonaliza** — alguns problemas não têm solução
+elegante, e isso não é fracasso de quem os enfrenta.
+**Dificuldade desejável, na dica:** se está confortável, provavelmente não está aprendendo.
+**Não cobre:** técnicas de relaxamento, mindfulness — não são o assunto da fase.
 
 ---
 
@@ -104,16 +111,18 @@ falta de preparo — é resposta ao risco. E a lição que fecha o arco: **nem t
 | Não entra | Por quê |
 |---|---|
 | Estilos de aprendizagem (visual/auditivo/cinestésico) | não há evidência de que casar o estilo melhore aprendizado |
-| "Mindset de crescimento" como eixo do curso | efeito pequeno em meta-análise com mais de 60 mil alunos (Sisk et al., 2018) |
-| Força de vontade como recurso que acaba | replicação multicêntrica com 23 laboratórios não reproduziu o efeito (Hagger et al., 2016) |
-| Pomodoro como técnica de memória | organiza atenção, não consolida aprendizado; se aparecer, é ferramenta do Manual, não ciência |
+| "Mindset de crescimento" como eixo | efeito pequeno em meta-análise com mais de 60 mil alunos (Sisk et al., 2018) |
+| Força de vontade como recurso que acaba | replicação com 23 laboratórios e 2.141 participantes não reproduziu o efeito: *d* = 0,04, IC95% [−0,07; 0,15] (Hagger et al., 2016) |
+| Pomodoro como técnica de memória | organiza atenção, não consolida aprendizado |
 | Motivação genérica ("acredite em você") | não é conteúdo, é ruído |
+| Como fazer anotações bonitas | forma sem função recuperativa |
+
+**Os três primeiros são matérias do capítulo 1**, não desta lista: eles aparecem lá como casos
+do método, não como conselhos.
 
 ---
 
 ## 4. Referências
-
-Cada alegação acima, com DOI.
 
 - **Bjork, R. A. & Bjork, E. L.** (2020). Desirable difficulties in theory and practice.
   *Journal of Applied Research in Memory and Cognition*. doi:10.1016/j.jarmac.2020.09.003

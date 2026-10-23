@@ -104,7 +104,7 @@ aparecer em toda fase, ele vira ruído.
 
 | Dispositivo | Quantos | Onde | Regra |
 |---|---|---|---|
-| **Manual do Jogador** | **4 telas** | só no Ato 0 | sono, corpo, gente, regras do jogo — nunca depois |
+| **Capítulo 1** | **10 cartelas** | antes do primeiro portão | o método — como se sabe que algo funciona; nunca depois |
 | **Saguão** (interstício) | **2** | depois de F2 e depois de F4 | só quando muda o **registro**, não a fase |
 | **Cena** (imagem gerada) | **6** | uma por fase, em slide próprio | nunca mostra matemática |
 | **Dica de carregamento** | **6** | uma por fase, no slide da cena | técnica de estudo, uma por fase, todas diferentes |
@@ -122,9 +122,11 @@ vira repetição. Os dois cortes de registro são:
 curso tem **um** confronto, e ele é o último: a F6 é onde a máquina tenta não se deixar
 entender, e o autovetor é a resposta. As outras cinco fases terminam com uma chave na mão.
 
-**Por que o Manual vem antes de tudo.** As quatro condições do jogador — sono, corpo, gente,
-regras — valem para o curso inteiro; se aparecessem por fase, virariam seis repetições da mesma
-advertência. Uma vez, no começo, e nunca mais. Ver [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md).
+**Por que o capítulo 1 vem antes de tudo.** Ele não entrega achados — entrega o **instrumento**
+com que se julga um achado. Sem ele, os seis temas seguintes viram conselho; com ele, o aluno
+pode discordar do curso com razão. E os achados (sono, corpo, amigos, hábito) não se acumulam
+aqui: cada um vai para a fase onde a matemática dá a ocasião. Ver
+[`CAPITULO-1.md`](CAPITULO-1.md) e [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md).
 
 ---
 

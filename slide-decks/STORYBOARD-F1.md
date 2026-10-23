@@ -2,12 +2,13 @@
 
 Piloto. Se este formato funcionar, as outras cinco fases seguem iguais.
 
-**Herda** os quadros Q07–Q11 de [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md). Este documento
+**Herda** os quadros Q11–Q15 de [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md). Este documento
 abre esses cinco quadros em **nove telas**, acrescenta **duas pausas** e **nomeia a imagem de
 cada tela**.
 
-**Tópico não-matemático que esta fase possui:** diagnóstico e calibração
-([`MAPA-JOGADOR.md`](MAPA-JOGADOR.md)). Transportado pela dica (Q09) e pelas duas pausas.
+**Tema não-matemático desta fase:** atenção e calibração
+([`MAPA-JOGADOR.md`](MAPA-JOGADOR.md)). A dica (Q13) traz o corpo — atenção é pré-requisito de
+perceber; as duas pausas trazem a calibração.
 
 ---
 
@@ -50,12 +51,12 @@ legível nem equação — modelo de difusão inventa símbolo e o aluno acredit
 - **HUD:** `P1 · CHAVES 0/6`
 - **Por que esta cena:** a narração existente (`scripts/matrizes_e_sistemas.md`, §5–§6) descreve o mercador de Portoveloz e as compras de três dias — é literalmente um sistema \(3\times3\). A cena tem que ser o problema, não a metáfora dele.
 
-### F1-03 · Dica de carregamento — autoexplicação
+### F1-03 · Dica de carregamento — corpo
 - **Tela:** a mesma cena de F1-02, com véu escuro a 60%. A dica no canto inferior, sozinha.
 - **Imagem:** reaproveita F1-02 — zero custo.
-- **Texto:** *Antes de calcular, diga em voz alta por que este sistema não vai ter solução. Se você não consegue explicar, reconheceu — não entendeu.*
+- **Texto:** *Atenção vem antes de calibração. Vinte minutos de caminhada antes de sentar mudam o que você consegue notar.*
 - **HUD:** `P1 · CHAVES 0/6`
-- **Camada do jogador:** é a única dica da fase. Fala de calibração, que é o tópico que a F1 possui.
+- **Camada do jogador:** é a única dica da fase. A fase possui **atenção e calibração** — o corpo dá a atenção, as pausas dão a calibração com a autoexplicação: dizer em voz alta *por que* aquele sistema não tem solução.
 
 ### F1-04 · Estado
 - **Tela:** o mapa da fase. Quatro caixas em fila, a primeira destacada — onde estamos agora.
@@ -109,10 +110,10 @@ legível nem equação — modelo de difusão inventa símbolo e o aluno acredit
 
 ## 3. O que não tem imagem
 
-- **Nenhuma grade deformada.** Ela é da Fase 4, uma única vez no curso (Q26). Aqui seria decoração.
+- **Nenhuma grade deformada.** Ela é da Fase 4, uma única vez no curso (Q30). Aqui seria decoração.
 - **Nenhuma cena por tópico.** A fase tem uma cena, em F1-02. Repetir cena a cada tópico é o erro que a versão atual comete.
 - **Nenhum retrato de matemático.** O DEV LOG virou créditos com dívida técnica (BÍBLIA §6); isso é uma tela por fase, não um retrato por tópico.
-- **Nada de sono, corpo ou estudo em grupo.** As quatro condições do jogador estão no Ato 0, em Q03–Q06, e não voltam. Aqui a camada do jogador é só calibração.
+- **Nada de sono ou estudo em grupo.** São das Fases 3 e 2 — aqui o corpo aparece como atenção, não como saúde. O capítulo 1 (Q01–Q10) entrega o método; esta fase não o reensina.
 
 ---
 
@@ -124,7 +125,7 @@ Antes de aprovar esta fase, conferir que ela não invade:
 - **F3** — nenhuma interpretação geométrica do conjunto-solução. A matriz é tabela, não plano.
 - **F4** — nenhuma transformação, nenhuma grade, nenhuma seta no espaço.
 - **F5** — as palavras *posto*, *nulidade*, *base*, *span* não aparecem.
-- **Manual (Ato 0)** — sono, corpo, gente e regras do jogo não voltam aqui.
+- **Capítulo 1 (Q01–Q10)** — o método não volta aqui: esta fase aplica, não reensina.
 
 E que ela **entrega** o que as outras vão usar: escalonamento (F2, F5), inversa (F4),
 não comutatividade (F4).
