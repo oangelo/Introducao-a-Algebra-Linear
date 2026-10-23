@@ -57,9 +57,10 @@ Isso resolve o problema sem descartar material:
 - as fases ganham gênero escolhido no storyboard, não herdado por acidente.
 
 > **Atualização (out/2026):** as narrações em áudio foram **descartadas** — antigas e
-> defasadas. O argumento que usava a narração como voz de cada gabinete não vale mais, e o
-> gênero do Portão 1 está **em aberto**. O resto continua: o arcade é o saguão que contém os
-> gêneros, não um quarto gênero.
+> defasadas. O argumento que usava a narração como voz de cada gabinete não vale mais. O
+> gênero do Portão 1 ficou em aberto e foi decidido depois como **noir / investigação**
+> ([`BIBLIA.md`](BIBLIA.md) §4). O resto continua: o arcade é o saguão que contém os gêneros,
+> não um quarto gênero.
 
 ### A regra que decorre
 

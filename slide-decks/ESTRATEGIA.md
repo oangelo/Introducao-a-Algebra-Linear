@@ -185,8 +185,8 @@ mecânicos que passam batido.
 6. Só então as outras 5 fases.
 
 > **Decidido:** piloto é a **Fase 1** — quatro tópicos, o formato mais simples do curso. Testa
-> o desenho inteiro antes das outras cinco. O gênero do gabinete está **em aberto**: a narração
-> em áudio que o definia foi descartada.
+> o desenho inteiro antes das outras cinco. O gênero do gabinete é **noir / investigação** —
+> decidido depois de descartar a narração em áudio.
 
 ---
 

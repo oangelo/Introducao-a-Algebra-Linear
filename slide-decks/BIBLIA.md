@@ -142,7 +142,7 @@ aqui: cada um vai para a fase onde a matemática dá a ocasião. Ver
 
 | Fase | Gabinete | Acento |
 |---|---|---|
-| F1 | **em aberto** | âmbar (provisório) |
+| F1 | **noir / investigação** | âmbar de lâmpada sobre preto |
 | F2 | cyberpunk | magenta e ciano sobre azul-noite |
 | F3 | FPS | laranja de mira sobre cinza-frio |
 | F4 | plataforma | roxo e verde-ácido |

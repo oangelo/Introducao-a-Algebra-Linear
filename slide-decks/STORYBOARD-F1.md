@@ -20,7 +20,7 @@ fronteira da [`BIBLIA.md`](BIBLIA.md) §3: se o slide tem conta, a imagem é SVG
 | Tela | Tipo de imagem | O que é |
 |---|---|---|
 | F1-01 capa | SVG (silhueta) | o saguão com o gabinete 1 aceso e a fechadura vazia |
-| F1-02 cena | **gerada** | a banca do mercador, as três compras |
+| F1-02 cena | **gerada** | a sala de interrogatório, as três pastas |
 | F1-03 dica | reaproveita F1-02 | a mesma cena, escurecida |
 | F1-04 estado | SVG | o mapa dos 4 problemas da fase |
 | F1-05 tópico | SVG | matriz aumentada |
@@ -45,11 +45,11 @@ legível nem equação — modelo de difusão inventa símbolo e o aluno acredit
 
 ### F1-02 · Cena
 - **Tela:** a imagem ocupa tudo. Uma linha de texto no canto inferior esquerdo.
-- **Imagem (gerada):** **em aberto.** A cena antiga (o mercador de Portoveloz) herdava a narração em áudio, que foi descartada. Critério para a cena nova: mostrar o **problema** da fase — condições parciais que, juntas, respondem ou não deixam resposta — sem texto legível e sem numeral.
-  **Negativo (mantém-se):** nenhum texto legível, nenhum numeral, nenhuma fórmula, nenhuma escrita em página alguma. Se o modelo escrever algo, a imagem é descartada.
-- **Texto:** *três compras. três totais. nenhum preço.*
+- **Imagem (gerada):** sala de interrogatório à noite. Uma lâmpada baixa sobre a mesa; **três pastas abertas** em leque; **uma cadeira vazia** do outro lado. Persiana ao fundo, a luz da rua cortando o ar em faixas finas. Silhueta de um detetive de chapéu, de costas para a câmera, **sem rosto**. Fumaça fina. Preto e âmbar, contraste alto, grão de filme.
+  **Negativo:** nenhum texto legível, nenhum numeral, nenhuma fórmula, nenhuma escrita em pasta, quadro ou papel. Se o modelo escrever algo, a imagem é descartada.
+- **Texto:** *três depoimentos. ninguém viu tudo.*
 - **HUD:** `P1 · CHAVES 0/6`
-- **Por que esta cena:** a cena tem que ser o **problema**, não a metáfora dele. A antiga servia porque a narração contava a mesma história; sem narração, ela perdeu a função.
+- **Por que esta cena:** as três pastas são as três equações; a cadeira vazia é a incógnita. A cena tem que ser o **problema**, não a metáfora dele — ver §5.
 
 ### F1-03 · Dica de carregamento — corpo
 - **Tela:** a mesma cena de F1-02, com véu escuro a 60%. A dica no canto inferior, sozinha.
@@ -132,20 +132,46 @@ não comutatividade (F4).
 
 ---
 
-## 5. Conflitos com o material existente
+## 5. A história da fase — noir
 
-**Não herda a narração.** As narrações em áudio foram descartadas (out/2026): antigas e
-defasadas. O `scripts/matrizes_e_sistemas.md` fica no repositório como registro — não é fonte de
-gênero, de cena nem de fala. Com isso, o **gênero do Portão 1 está em aberto**.
+**O cenário.** Delegacia, madrugada. Uma lâmpada, uma mesa, três pastas, uma cadeira vazia. O
+jogador é o detetive — chapéu, sem rosto, de costas.
 
-Mas o roteiro registra **um conflito de terminologia** que precisa de decisão:
+**O caso.** Uma noite, três testemunhas. Nenhuma viu tudo: cada uma descreve um pedaço. Juntas,
+os pedaços fecham o caso — ou não.
 
-- A narração termina com *"descobrirão que o chefe não era tão assustador quanto parecia"*.
-- No repositório, **"Chefe" já significa prova** (`AGENTS.md` da raiz: "as provas são Chefes").
+**As três armadilhas, que são a fase inteira:**
 
-Se o beat da F6 também se chamar "chefe", o aluno não distingue o confronto narrativo da prova.
-**Decisão:** o beat da F6 chama-se **confronto final**, e "Chefe" fica reservado para prova.
-Vale independentemente do áudio.
+1. **Um depoimento repete o outro.** Duas testemunhas contam a mesma história com palavras
+   diferentes. Parece informação nova; não é. O caso fica **em aberto** — não por falta de
+   testemunha, mas por falta de informação **independente**.
+2. **Um depoimento contradiz os outros dois.** Não existe cena que satisfaça os três ao mesmo
+   tempo. O caso **não fecha** — e insistir nele é o erro, não a dificuldade.
+3. **Os depoimentos que sobram se sustentam.** Um culpado, um caminho. O caso **fecha**.
+
+**O que isso é, em matemática:** depoimento = equação; testemunha redundante = linha dependente;
+contradição = sistema impossível; caso que fecha = solução única.
+
+**A fala do fim.** O detetive não pergunta quem foi:
+
+> *"Não perguntei quem foi. Perguntei se dá para saber."*
+
+É por isso que a chave é **o estado**.
+
+**Regra de ouro:** a cena não contém número e os slides de tópico não contêm história. A história
+dá a ocasião; o exercício dá o problema. Se o slide de tópico precisar da história para
+funcionar, ele está errado.
+
+### O que não se herda do material antigo
+
+As narrações em áudio foram descartadas (out/2026): antigas e defasadas. O
+`scripts/matrizes_e_sistemas.md` fica como registro — não é fonte de gênero, de cena nem de
+fala.
+
+O conflito de terminologia continua válido, e não depende do áudio: **"Chefe" já significa
+prova** (`AGENTS.md` da raiz). Se o beat da F6 também se chamasse "chefe", o aluno não
+distinguiria o confronto narrativo da prova. **Decisão:** o beat da F6 chama-se **confronto
+final**; "Chefe" fica reservado para prova.
 
 ---
 
@@ -155,5 +181,4 @@ Vale independentemente do áudio.
   SVG e podem ser implementadas hoje.
 - As duas pausas são sobreposição no Reveal (`fragment` + véu), não telas próprias. Se o
   Reveal complicar a sobreposição, viram telas — custa dois cliques a mais.
-- **A cena de F1-02 está em aberto**, dependente da decisão de gênero. As outras oito telas são
-  SVG e não dependem dela.
+- A cena de F1-02 (noir) é a única tela que depende do gerador. As outras oito são SVG.

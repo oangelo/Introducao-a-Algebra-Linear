@@ -51,7 +51,7 @@ cyberpunk e arcade), 8 exercícios misturam medieval com cyberpunk no mesmo arqu
 
 | Portão | Gabinete | Gênero |
 |---|---|---|
-| P1 | Sistemas e Matrizes | **em aberto** |
+| P1 | Sistemas e Matrizes | noir / investigação |
 | P2 | Determinantes | cyberpunk |
 | P3 | Vetores Euclidianos | FPS |
 | P4 | Transformações | plataforma com gravidade variável |

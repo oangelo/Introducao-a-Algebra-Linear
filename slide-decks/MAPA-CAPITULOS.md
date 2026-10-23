@@ -50,7 +50,7 @@ Conceitos que aparecem em mais de um capítulo —, os que geram repetição se 
 ## 3. Os seis capítulos
 
 ### Fase 1 — Sistemas e Matrizes
-**Gabinete:** **em aberto** (a narração em áudio foi descartada, out/2026)
+**Gabinete:** noir / investigação (a narração em áudio foi descartada; o registro é o interrogatório)
 
 - **Pergunta:** *dá para resolver?*
 - **Entra:** matriz como tabela de coeficientes; operações elementares; matriz aumentada;
@@ -63,7 +63,7 @@ Conceitos que aparecem em mais de um capítulo —, os que geram repetição se 
   `propriedades-matriciais`, `matrizes-inversas`
 - **Lição do jogador:** SPD/SPI/SI — distinguir é habilidade, não fracasso. *Dúvida honesta
   > resposta inventada.*
-- **Cena:** **em aberto**, junto com o gênero.
+- **Cena:** sala de interrogatório; três pastas e uma cadeira vazia.
 - **Herda:** nada. **Entrega:** escalonamento e inversa.
 
 ### Fase 2 — Determinantes

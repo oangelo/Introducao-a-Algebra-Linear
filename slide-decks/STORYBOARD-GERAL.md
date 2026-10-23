@@ -92,7 +92,7 @@ Nenhuma imagem é gerada ainda. A descrição de cada uma é o contrato para o g
 
 ---
 
-## ATO 1 — PORTÃO 1 · SISTEMAS E MATRIZES (âmbar, gênero em aberto)
+## ATO 1 — PORTÃO 1 · SISTEMAS E MATRIZES (âmbar, noir)
 
 ### Q11 · Capa
 - **Tela:** o saguão escuro; o gabinete 1 aceso em âmbar. A fechadura com seis buracos, nenhum preenchido.
@@ -100,8 +100,8 @@ Nenhuma imagem é gerada ainda. A descrição de cada uma é o contrato para o g
 - **HUD:** nasce aqui. `P1 · CHAVES 0/6`
 
 ### Q12 · Cena
-- **Tela:** imagem gerada. **Em aberto** — o gênero do portão não está decidido. Critério: mostrar o problema da fase (condições parciais que juntas respondem, ou não deixam resposta), sem texto legível e sem numeral.
-- **Texto:** em aberto, junto com a cena.
+- **Tela:** imagem gerada. Sala de interrogatório à noite: uma lâmpada baixa, três pastas abertas em leque, uma cadeira vazia. Persiana e fumaça. Silhueta de detetive de chapéu, de costas, sem rosto. Sem texto legível, sem numeral.
+- **Texto:** *três depoimentos. ninguém viu tudo.*
 - **HUD:** `P1 · CHAVES 0/6`
 
 ### Q13 · Dica de carregamento — corpo
