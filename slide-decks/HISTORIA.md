@@ -52,11 +52,14 @@ outro é arcade puro. **O arcade não é um quarto gênero: é o saguão que con
 
 Isso resolve o problema sem descartar material:
 
-- a narração de fantasia da Fase 1 vira a voz do **gabinete 1**;
-- a narração cyberpunk da Fase 2 vira a voz do **gabinete 2**;
 - os decks param de ser cyberpunk "sem querer" e passam a ser cyberpunk **porque a Fase 2
   é um gabinete cyberpunk** — decisão, não acidente;
-- as Fases 3 a 6 ganham gênero escolhido no storyboard, não herdado por acidente.
+- as fases ganham gênero escolhido no storyboard, não herdado por acidente.
+
+> **Atualização (out/2026):** as narrações em áudio foram **descartadas** — antigas e
+> defasadas. O argumento que usava a narração como voz de cada gabinete não vale mais, e o
+> gênero do Portão 1 está **em aberto**. O resto continua: o arcade é o saguão que contém os
+> gêneros, não um quarto gênero.
 
 ### A regra que decorre
 

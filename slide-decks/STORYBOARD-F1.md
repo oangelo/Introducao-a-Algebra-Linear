@@ -45,11 +45,11 @@ legível nem equação — modelo de difusão inventa símbolo e o aluno acredit
 
 ### F1-02 · Cena
 - **Tela:** a imagem ocupa tudo. Uma linha de texto no canto inferior esquerdo.
-- **Imagem (gerada):** a banca do mercador em Portoveloz, ao entardecer. Balcão de madeira com três tiras de pergaminho lado a lado — as três compras de três dias diferentes. Um mercador astuto, de perfil, mão aberta sobre as tiras como quem esconde o preço. Moedas dispersas; poções, pergaminhos e anéis em prateleiras ao fundo, fora de foco. Pintura digital, traço limpo, paleta âmbar e verde-oliva.
-  **Negativo:** nenhum texto legível, nenhum numeral, nenhuma fórmula, nenhuma escrita em página alguma. Se o modelo escrever algo, a imagem é descartada.
+- **Imagem (gerada):** **em aberto.** A cena antiga (o mercador de Portoveloz) herdava a narração em áudio, que foi descartada. Critério para a cena nova: mostrar o **problema** da fase — condições parciais que, juntas, respondem ou não deixam resposta — sem texto legível e sem numeral.
+  **Negativo (mantém-se):** nenhum texto legível, nenhum numeral, nenhuma fórmula, nenhuma escrita em página alguma. Se o modelo escrever algo, a imagem é descartada.
 - **Texto:** *três compras. três totais. nenhum preço.*
 - **HUD:** `P1 · CHAVES 0/6`
-- **Por que esta cena:** a narração existente (`scripts/matrizes_e_sistemas.md`, §5–§6) descreve o mercador de Portoveloz e as compras de três dias — é literalmente um sistema \(3\times3\). A cena tem que ser o problema, não a metáfora dele.
+- **Por que esta cena:** a cena tem que ser o **problema**, não a metáfora dele. A antiga servia porque a narração contava a mesma história; sem narração, ela perdeu a função.
 
 ### F1-03 · Dica de carregamento — corpo
 - **Tela:** a mesma cena de F1-02, com véu escuro a 60%. A dica no canto inferior, sozinha.
@@ -134,8 +134,9 @@ não comutatividade (F4).
 
 ## 5. Conflitos com o material existente
 
-A narração da Fase 1 é recente e boa — é a voz do gabinete 1: fala "aventureiros", guilda,
-Portoveloz, dungeon. Compatível com o gênero, se lida como o alto-falante do arcade.
+**Não herda a narração.** As narrações em áudio foram descartadas (out/2026): antigas e
+defasadas. O `scripts/matrizes_e_sistemas.md` fica no repositório como registro — não é fonte de
+gênero, de cena nem de fala. Com isso, o **gênero do Portão 1 está em aberto**.
 
 Mas o roteiro registra **um conflito de terminologia** que precisa de decisão:
 
@@ -143,9 +144,8 @@ Mas o roteiro registra **um conflito de terminologia** que precisa de decisão:
 - No repositório, **"Chefe" já significa prova** (`AGENTS.md` da raiz: "as provas são Chefes").
 
 Se o beat da F6 também se chamar "chefe", o aluno não distingue o confronto narrativo da prova.
-**Decisão proposta:** o beat da F6 chama-se **confronto final**, e "Chefe" fica reservado para
-prova. A frase falada da narração pode continuar usando "chefe" — dita em voz alta, ela se
-refere à prova, que é o que o aluno teme de fato.
+**Decisão:** o beat da F6 chama-se **confronto final**, e "Chefe" fica reservado para prova.
+Vale independentemente do áudio.
 
 ---
 
@@ -155,5 +155,5 @@ refere à prova, que é o que o aluno teme de fato.
   SVG e podem ser implementadas hoje.
 - As duas pausas são sobreposição no Reveal (`fragment` + véu), não telas próprias. Se o
   Reveal complicar a sobreposição, viram telas — custa dois cliques a mais.
-- A cena de F1-02 já foi alinhada à narração existente (§5). Falta conferir, ao gerar, que o
-  mercador e as três tiras de compra fiquem legíveis na composição.
+- **A cena de F1-02 está em aberto**, dependente da decisão de gênero. As outras oito telas são
+  SVG e não dependem dela.

@@ -92,7 +92,7 @@ Nenhuma imagem é gerada ainda. A descrição de cada uma é o contrato para o g
 
 ---
 
-## ATO 1 — PORTÃO 1 · SISTEMAS E MATRIZES (âmbar, fantasia medieval)
+## ATO 1 — PORTÃO 1 · SISTEMAS E MATRIZES (âmbar, gênero em aberto)
 
 ### Q11 · Capa
 - **Tela:** o saguão escuro; o gabinete 1 aceso em âmbar. A fechadura com seis buracos, nenhum preenchido.
@@ -100,8 +100,8 @@ Nenhuma imagem é gerada ainda. A descrição de cada uma é o contrato para o g
 - **HUD:** nasce aqui. `P1 · CHAVES 0/6`
 
 ### Q12 · Cena
-- **Tela:** imagem gerada. A banca do mercador em Portoveloz; três tiras de pergaminho lado a lado — as três compras. Nenhum número, nenhuma letra legível.
-- **Texto:** *três compras. três totais. nenhum preço.*
+- **Tela:** imagem gerada. **Em aberto** — o gênero do portão não está decidido. Critério: mostrar o problema da fase (condições parciais que juntas respondem, ou não deixam resposta), sem texto legível e sem numeral.
+- **Texto:** em aberto, junto com a cena.
 - **HUD:** `P1 · CHAVES 0/6`
 
 ### Q13 · Dica de carregamento — corpo

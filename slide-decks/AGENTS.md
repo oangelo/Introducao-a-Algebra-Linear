@@ -37,6 +37,10 @@ gênero próprio.
 
 > **Regra dura: um gabinete, um gênero, do primeiro ao último slide da fase.**
 
+**As narrações em áudio estão descartadas** (out/2026): são antigas e defasadas. Nenhum
+documento usa narração gravada como razão para manter gênero, cena ou fala. Os `scripts/*.md`
+ficam como registro, não como fonte.
+
 **O que não se copia de *Ready Player One*** (a referência de espírito): OASIS, Halliday/Anorak,
 o ovo, os nomes das chaves, a cultura pop dos anos 80. Fica a estrutura — concurso, portões,
 chaves, prêmio desconhecido — que é domínio público.
@@ -47,8 +51,8 @@ cyberpunk e arcade), 8 exercícios misturam medieval com cyberpunk no mesmo arqu
 
 | Portão | Gabinete | Gênero |
 |---|---|---|
-| P1 | Sistemas e Matrizes | fantasia medieval (narração pronta) |
-| P2 | Determinantes | cyberpunk (narração pronta) |
+| P1 | Sistemas e Matrizes | **em aberto** |
+| P2 | Determinantes | cyberpunk |
 | P3 | Vetores Euclidianos | FPS |
 | P4 | Transformações | plataforma com gravidade variável |
 | P5 | Espaços Vetoriais | construção/estratégia |

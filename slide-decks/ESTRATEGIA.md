@@ -184,8 +184,9 @@ mecânicos que passam batido.
 5. Testar a Camada B (uma cena com Qwen-Image) — bloqueado até ter a porta do gerador.
 6. Só então as outras 5 fases.
 
-> **Decidido:** piloto é a **Fase 1** — tem narração pronta, gênero definido (fantasia
-> medieval) e quatro tópicos. Testa o formato inteiro antes das outras cinco.
+> **Decidido:** piloto é a **Fase 1** — quatro tópicos, o formato mais simples do curso. Testa
+> o desenho inteiro antes das outras cinco. O gênero do gabinete está **em aberto**: a narração
+> em áudio que o definia foi descartada.
 
 ---
 

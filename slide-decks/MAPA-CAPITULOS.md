@@ -50,7 +50,7 @@ Conceitos que aparecem em mais de um capítulo —, os que geram repetição se 
 ## 3. Os seis capítulos
 
 ### Fase 1 — Sistemas e Matrizes
-**Gabinete:** fantasia medieval (narração pronta: `scripts/matrizes_e_sistemas.md`)
+**Gabinete:** **em aberto** (a narração em áudio foi descartada, out/2026)
 
 - **Pergunta:** *dá para resolver?*
 - **Entra:** matriz como tabela de coeficientes; operações elementares; matriz aumentada;
@@ -63,11 +63,11 @@ Conceitos que aparecem em mais de um capítulo —, os que geram repetição se 
   `propriedades-matriciais`, `matrizes-inversas`
 - **Lição do jogador:** SPD/SPI/SI — distinguir é habilidade, não fracasso. *Dúvida honesta
   > resposta inventada.*
-- **Cena:** a guilda e o mercador de Portoveloz.
+- **Cena:** **em aberto**, junto com o gênero.
 - **Herda:** nada. **Entrega:** escalonamento e inversa.
 
 ### Fase 2 — Determinantes
-**Gabinete:** cyberpunk (narração pronta: `scripts/determinantes.md`)
+**Gabinete:** cyberpunk (os decks do capítulo já são cyberpunk)
 
 - **Pergunta:** *dá para voltar?*
 - **Entra:** determinante como número; expansão em cofatores; propriedades (troca de linhas
