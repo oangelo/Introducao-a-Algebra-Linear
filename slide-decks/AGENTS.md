@@ -103,9 +103,13 @@ estrutura, silenciosamente. Erro silencioso em slide de matemática é pior que 
 > [`img-gen/gen.sh`](img-gen/gen.sh) roda em lote, numa janela só de GPU. Ver
 > [`img-gen/README.md`](img-gen/README.md).
 >
-> **Personagem fixo por referência**, nunca por descrição: `img/personagens/jogador-capuz.png`
-> (capuz, sem rosto). Capuz é a assinatura; o mundo muda a roupa, o capuz fica. Seed e negativo
-> ficam travados no manifesto.
+> **Traço C:** contorno preto fechado, cor chapada, cel shading em poucos degraus. Um só no
+> curso inteiro — o gênero muda cenário e paleta, não a linha.
+>
+> **Personagem fixo por referência**, nunca por descrição: `img/personagens/jogador-quarto.png`
+> (capítulo 1) e `img/personagens/personagem-noir.png` (detetive do P1). Em ambos **o rosto não
+> existe** — é a assinatura que sobrevive à troca de figurino. Seed e negativo travados no
+> manifesto.
 
 ---
 

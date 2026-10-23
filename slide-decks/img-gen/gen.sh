@@ -6,10 +6,13 @@
 # (o modelo de chat ocupa ~25 GB da VRAM). Gerar 16 cenas assim = 16 ciclos.
 # Aqui o ciclo acontece uma vez: para no começo, gera tudo, religa no fim —
 # sempre com trap, inclusive se for interrompido.
+#
+# A referência de personagem vem por variável de ambiente:
+#   REF=/mnt/Volatil/sdcpp/ref/jogador-quarto.png ./gen.sh cenas-cap1.tsv
 set -uo pipefail
 
 ROOT=/mnt/Volatil/sdcpp
-REF="$ROOT/ref/jogador-capuz.png"
+REF="${REF:-$ROOT/ref/personagem-noir.png}"
 MAN=${1:?uso: ./gen.sh cenas.tsv [--only prefixo]}
 ONLY=""
 if [ "${2:-}" = "--only" ]; then ONLY="${3:-}"; fi

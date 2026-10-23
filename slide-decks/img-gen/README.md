@@ -54,24 +54,52 @@ passar num plano de objeto devolve o moletom no meio de uma pilha de papéis.
    proíbe `text, letters, words, writing`; ainda assim, se aparecer qualquer letra legível, a
    imagem é **descartada**, não corrigida.
 2. **Nada de número, fórmula ou objeto matemático em imagem gerada.** Diagrama é SVG.
-3. **O rosto não existe.** Capuz, sombra, costas. É o que mantém a pessoa a mesma entre cenas.
+3. **O rosto não existe.** Sombra da aba, costas, silhueta. É o que mantém a pessoa a mesma.
 4. **Prompt não menciona a história do curso.** A cena mostra o **problema**, não a metáfora
    dele. Se a legenda precisar explicar a imagem, a imagem está errada.
 5. **Seed é registro.** Se uma cena for aprovada, a seed dela não muda mais — é o que permite
    regerar idêntico quando o modelo for trocado.
 
-## O personagem
+## O que a geração ensinou (out/2026)
 
-`img/personagens/jogador-capuz.png` — três vistas, capuz, sem rosto. É a referência canônica do
-curso inteiro. Cópia de trabalho no Oráculo em `/mnt/Volatil/sdcpp/ref/jogador-capuz.png`.
+Cinco coisas que custaram ~40 imagens para aparecer:
 
-**Regra:** o capuz é a assinatura dele. O mundo muda a roupa (sobretudo no noir, armadura no
-FPS), o capuz fica. É o que faz o aluno reconhecer o mesmo jogador nas seis fases.
+1. **O estilo vem na PRIMEIRA frase.** No fim do prompt ele é decoração: em cena de objeto o
+   modelo tem prior fotográfico e devolve foto. `Drawn illustration, comic book line art: clean
+   black contour outlines, flat colour areas, shading in a few hard cel steps` abre toda linha
+   do manifesto.
+2. **Nome de estilo não funciona; meio físico funciona.** "Uncanny X-Men era" e "Image Comics
+   1990s" viram pintura digital com clima de HQ. "Contorno preto fechado, cor chapada, cel
+   shading" vira desenho. Descreva o objeto impresso, não a referência cultural.
+3. **Referência de personagem clona.** "The same young man" + `-r` devolveu **três homens
+   idênticos**. Escreva "one single man" e ponha `multiple people, duplicated figures, clone` no
+   negativo. Em cena com duas pessoas de verdade, `ref=n` e descreva as duas.
+   E a referência às vezes **apaga** o personagem: no f1-02 ele desapareceu duas vezes com `-r`.
+4. **Cena sem personagem precisa de forma, não de luz.** Caderno, pilha de papéis e estante
+   saíram fotorrealistas até o prompt virar "duas formas planas com contorno grosso, sem textura,
+   sem brilho". Objeto pede geometria; luz pede pintura.
+5. **Planta azul é foto por natureza.** "Blueprint" traz render com carimbo e pseudo-texto.
+   Peça **papel branco com linhas pretas** — aí é desenho.
+
+## O traço e os personagens
+
+**Traço C** (decidido out/2026 comparando três clássicos noturnos): contorno preto fechado, cor
+chapada, cel shading em poucos degraus. Um só no curso inteiro — o gênero muda cenário e paleta,
+não a linha.
+
+Duas referências, porque são dois lugares:
+
+- `img/personagens/jogador-quarto.png` — o jogador no quarto (capítulo 1, o grau zero, sem gênero).
+- `img/personagens/personagem-noir.png` — o detetive do P1, chapéu e sobretudo.
+
+**Regra:** o rosto não existe em nenhum dos dois. É a assinatura que sobrevive à troca de
+figurino. Cópias de trabalho no Oráculo em `/mnt/Volatil/sdcpp/ref/`.
 
 ## Checklist antes de aprovar uma cena
 
 - [ ] tem texto, número ou letra legível? → descartar
 - [ ] o rosto aparece? → descartar
-- [ ] o personagem é o mesmo da referência? → conferir capuz e silhueta
+- [ ] o traço tem contorno preto e cor chapada, ou virou pintura/render? → refazer
+- [ ] a mesma pessoa aparece repetida na cena? → refazer sem `-r`
 - [ ] a cena é o problema, ou é decoração? → se é decoração, não entra
 - [ ] a composição deixa espaço para a linha de texto do slide? → a legenda vive no canto
