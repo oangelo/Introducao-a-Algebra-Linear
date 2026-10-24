@@ -105,10 +105,10 @@ o que não entra, onde a frase senta — está em [`STORYBOARD-CAP1.md`](STORYBO
 **C3 · IMAGEM:** tela de vitória estourada de branco. Ele de costas, os dois braços erguidos.
 **FRASE:** *Funcionou uma vez. Isso não é evidência.*
 
-**C4 · IMAGEM:** caderno aberto na mesa, duas colunas traçadas a régua, nada escrito ainda.
+**C4 · IMAGEM:** díptico de plataforma, os dois quadros separados por uma barra preta. No da esquerda, o boneco de pé no penhasco central, com o bloco "?" ao lado; no da direita, o mesmo boneco caindo no vão, sobre a água, entre os peixes. Dois desfechos do mesmo salto, lado a lado.
 **FRASE:** *Para saber, tem que comparar.*
 
-**C5 · IMAGEM:** duas semanas desenhadas lado a lado — uma com luas, outra com sóis. Só uma linha muda entre elas.
+**C5 · IMAGEM:** um único salto, muitos desfechos: do boneco no penhasco saem várias trajetórias tracejadas que caem na água, e só uma — laranja, desenhada por código — chega à plataforma. Mesma cena, mesma altura; o que muda é uma coisa de cada vez.
 **FRASE:** *Uma coisa de cada vez.*
 
 **C6 · IMAGEM:** dois jogadores lado a lado, de costas, um em cada gabinete — o da esquerda com caderno novo, o da direita com o mesmo caderno de anos. As duas telas trazem GAME OVER. A imagem é um díptico rasgado: metades deslocadas e giradas, com um relógio de mostrador analógico dentro do rasgo — é a mesma pessoa, em dois tempos.

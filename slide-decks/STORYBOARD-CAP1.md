@@ -78,19 +78,29 @@ causa. A imagem tem que ser comemorativa, porque a frase tem que doer.
 **Nota:** o gesto é de costas, sem rosto — o triunfo é do aluno, não de um personagem.
 **Transição:** a virada. Daqui em diante o capítulo não conta história, ensina a desmontar.
 
-### Q04 · `img/c4-caderno.png`
+### Q04 · `img/c4-comparar.png`
 **FRASE:** *Para saber, tem que comparar.*
-**A imagem mostra:** caderno aberto, duas colunas traçadas a régua, ambas vazias. Lápis ao lado.
-**Por que essa imagem:** as duas colunas vazias **são** o instrumento 1. A imagem é a pergunta
-"comparado com quê?" antes de qualquer número existir.
+**A imagem mostra:** díptico de plataforma separado por uma barra, o mesmo salto em dois quadros —
+à esquerda o boneco de pé no penhasco, com o bloco "?" ao lado; à direita o mesmo boneco caindo
+no vão, entre os peixes.
+**Por que essa imagem:** dois desfechos na mesma tela **são** o instrumento 1. O que a imagem
+mostra não é o resultado, é a **divisória**: sem as duas metades lado a lado não existe
+comparação, e é por isso que a barra é preta e grossa.
+**Como foi feita:** gerada (23/out, `raw/c4-comparar.png`) e ajustada por código
+(`ajustar-luz.py`, gama nas sombras). **Seed não registrada** — a cena foi aprovada antes do
+manifesto passar a exigir seed por linha.
 **Transição:** se comparar é o instrumento, comparar errado é a armadilha seguinte.
 
-### Q05 · `img/c5-semanas.png`
+### Q05 · `img/c5-isolar.png`
 **FRASE:** *Uma coisa de cada vez.*
-**A imagem mostra:** duas grades semanais lado a lado; à esquerda luas, à direita sóis; uma
-única linha difere entre as duas.
-**Por que essa imagem:** a diferença de uma linha é o instrumento 2 (isolar a variável) visto de
-cima, sem texto. Quem mexeu em tudo não sabe o que causou o quê.
+**A imagem mostra:** um único salto, muitos desfechos. Do boneco no penhasco saem trajetórias
+tracejadas que caem na água; uma só, laranja, chega à plataforma.
+**Por que essa imagem:** a mesma cena com desfechos diferentes só existe se **uma coisa** mudou
+entre as tentativas. As trajetórias em paralelo são o instrumento 2 visto de lado: quem mexeu em
+tudo de uma vez não sabe o que causou o quê.
+**Como foi feita:** cena gerada (`raw/c5-isolar.png`) e as trajetórias desenhadas por código
+(`img-gen/isolar-arcos.py`) — parábola de difusão sai torta e não fecha no alvo. **Seed não
+registrada.**
 **Transição:** falta a régua — comparar com quem não mudou nada.
 
 ### Q06 · `img/c6-dois-jogadores.png`
