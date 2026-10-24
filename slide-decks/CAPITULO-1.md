@@ -111,19 +111,19 @@ o que não entra, onde a frase senta — está em [`STORYBOARD-CAP1.md`](STORYBO
 **C5 · IMAGEM:** duas semanas desenhadas lado a lado — uma com luas, outra com sóis. Só uma linha muda entre elas.
 **FRASE:** *Uma coisa de cada vez.*
 
-**C6 · IMAGEM:** dois jogadores lado a lado, de costas. Um com caderno novo; o outro, o mesmo de sempre.
+**C6 · IMAGEM:** dois jogadores lado a lado, de costas, um em cada gabinete — o da esquerda com caderno novo, o da direita com o mesmo caderno de anos. As duas telas trazem GAME OVER. A imagem é um díptico rasgado: metades deslocadas e giradas, com um relógio de mostrador analógico dentro do rasgo — é a mesma pessoa, em dois tempos.
 **FRASE:** *Alguém que não mudou nada.*
 
-**C7 · IMAGEM:** estante. Um livro grosso, com lombada dourada. Ao lado, uma folha fina, sem graça, grampeada.
-**FRASE:** *Virou livro. Não se repetiu.*
+**C7 · IMAGEM:** díptico rasgado, o mesmo palco nas duas metades — plataforma redonda, saia escura, holofote. À esquerda o palco está ocupado: um homem de costas ergue um livro grosso como troféu e quatro pessoas de costas olham para ele. À direita o mesmo palco está vazio de gente e carrega só a pilha de maços, alta como uma pessoa, sem ninguém segurando e sem ninguém na sala.
+**FRASE:** *O que dizem que funciona. O que foi testado.*
 
-**C8 · IMAGEM:** pilha alta de folhas cobrindo a mesa, cada uma com uma marca ilegível num canto; uma mão apoiada no topo.
+**C8 · IMAGEM:** díptico rasgado. Metade esquerda: a pessoa sentada numa mesa limpa — um caderno fechado, uma folha, um lápis. Metade direita: a mesma pessoa, mesma mesa, mesma lâmpada, soterrada por pilhas de papel que tomam a mesa e o chão. O raio entre as duas é o mesmo da C6.
 **FRASE:** *Uma noite é anedota. Trinta são dados.*
 
-**C9 · IMAGEM:** dois blocos de marcas de contagem no caderno, quase iguais; uma diferença pequena circulada a lápis vermelho.
+**C9 · IMAGEM:** caderno aberto visto de cima, sob luz de luminária: três fileiras de marcas de contagem em cada página, em grupos de cinco, e duas marcas avulsas no fim da direita — a diferença — circuladas a lápis vermelho. As marcas são desenhadas por código, não geradas.
 **FRASE:** *A diferença é maior do que o acaso?*
 
-**C10 · IMAGEM:** o caderno fechado; ao fundo, a tela do jogo ainda acesa. Duas linhas de números idênticas riscadas.
+**C10 · IMAGEM:** montagem em quatro painéis. No alto, o jogador de capuz, de costas, no degrau mais alto de um pódio, erguendo um troféu num salão vazio sob dois holofotes. Embaixo, três painéis do mesmo tamanho: ele dormindo na cama, estudando sob o abajur, treinando numa escadaria ao amanhecer. Os quatro vêm do FLUX (seeds 5501–5506) e a montagem é código — as três cenas na base formam o degrau, sem hierarquia entre elas.
 **FRASE:** *Antes de saber o que funciona, saiba como se sabe.*
 **Linha menor, embaixo:** *Duas coisas que sempre andam juntas são uma só.*
 

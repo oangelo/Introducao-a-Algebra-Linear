@@ -104,37 +104,61 @@ devolveu três homens idênticos nesta cena.
 **Transição:** com o instrumento completo, o capítulo volta ao começo — mas agora com cientistas.
 
 ### Q07 · `img/c7-estante.png`
-**FRASE:** *Virou livro. Não se repetiu.*
-**A imagem mostra:** uma prateleira; um livro grosso com lombada dourada de pé, e ao lado uma
-folha fina grampeada.
-**Por que essa imagem:** a assimetria é o argumento. O livro vendeu; a replicação não.
-**Nota:** a lombada **não tem título legível**, por regra. O livro é "um livro", não um livro
+**FRASE:** *O que dizem que funciona. O que foi testado.*
+**A imagem mostra:** díptico rasgado com o **mesmo palco** nas duas metades. À esquerda o palco
+está ocupado — um homem de costas ergue um livro grosso como troféu, quatro pessoas de costas
+olham para ele. À direita o mesmo palco está vazio de gente e carrega só uma pilha de maços alta
+como uma pessoa, sem ninguém segurando e sem ninguém na sala.
+**Por que essa imagem:** a assimetria é o argumento, e ela é de **atenção**, não de objeto: o
+livro tem plateia, a evidência não tem. O palco idêntico é o que torna a comparação justa.
+**Nota:** o livro **não tem título legível**, por regra. É "um livro", não um livro
 identificável — a identificação vem da fala do professor, com a referência.
 **Transição:** se o livro não basta, o que basta? Volume.
 
 ### Q08 · `img/c8-pilhas.png`
 **FRASE:** *Uma noite é anedota. Trinta são dados.*
-**A imagem mostra:** mesa coberta por uma pilha alta de folhas soltas; uma mão apoiada no topo.
+**A imagem mostra:** díptico rasgado da mesma mesa e da mesma pessoa, de costas. À esquerda a
+mesa limpa — caderno fechado, uma folha, um lápis. À direita a mesma mesa soterrada: pilhas na
+mesa, papel no chão, a lâmpada quase encoberta.
 **Por que essa imagem:** a pilha tem **altura** — o instrumento 4 é quantidade, e quantidade
-precisa ser vista, não lida.
+precisa ser vista, não lida. O mesmo enquadramento nas duas metades transforma a diferença em
+número, não em cenário.
+**Nota de geração:** gerada sem corte e partida por código (`img-gen/corte-tempo.py`), porque
+raio desenhado por difusão sai torto e não alinha as metades — e aí deixa de ser "a mesma pessoa".
 **Transição:** trinta noites ainda podem ser trinta noites de sorte.
 
 ### Q09 · `img/c9-colunas.png`
 **FRASE:** *A diferença é maior do que o acaso?*
-**A imagem mostra:** página de caderno com dois blocos de marcas de contagem quase iguais, e
-uma diferença pequena circulada a lápis vermelho.
+**A imagem mostra:** caderno aberto visto de cima, sob luz de luminária; três fileiras de marcas
+de contagem em cada página, em grupos de cinco. Abaixo da última fileira da direita, duas marcas
+avulsas — a diferença — circuladas a lápis vermelho.
 **Por que essa imagem:** é o único lugar do capítulo em que o aluno **vê** uma diferença
 pequena — e a frase pergunta se ela é real. A resposta (d = 0,04, IC contendo o zero) é dita em
 sala, com a referência na mão; a imagem não pode carregar número.
+**Nota de geração:** a cena (caderno vazio, luz) é gerada; **as marcas e o círculo são desenhados
+por código** (`img-gen/marcas-contagem.py`). O modelo não conta: pedido para desenhar "dois blocos
+quase iguais", ele devolve ~145 riscos por bloco e circula um grupo qualquer — a diferença deixa
+de ser legível. Com o código, a diferença é exatamente duas marcas.
 **Transição:** o instrumento está completo. Falta dizer para que ele serve fora deste capítulo.
 
 ### Q10 · `img/c10-fecho.png`
 **FRASE:** *Antes de saber o que funciona, saiba como se sabe.*
 **LINHA MENOR, embaixo:** *Duas coisas que sempre andam juntas são uma só.*
-**A imagem mostra:** o caderno fechado na mesa; ao fundo, a tela do jogo ainda acesa. Duas linhas
-idênticas riscadas na capa.
-**Por que essa imagem:** o capítulo fecha com o caderno fechado e o jogo ligado — o método
-terminou, o jogo continua. A tela acesa é o próximo capítulo.
+**A imagem mostra:** uma montagem em quatro painéis. No alto, o jogador de capuz, de costas, no
+degrau mais alto de um pódio, erguendo um troféu; salão vazio, dois holofotes, nenhuma plateia.
+Embaixo, três painéis do mesmo tamanho — **dormindo** na cama, **estudando** sob o abajur,
+**treinando** numa escadaria ao amanhecer — presos por um colchete, formando a base do pódio.
+**Como foi feita:** quatro cenas no **FLUX** (`flux3`, seeds 5501–5506, referência
+`jogador-capuz.png`) e a montagem por código (`img-gen/podio.py`). Pedir "pódio com três cenas"
+numa geração só devolve papa: o modelo não sustenta três cenas distintas num enquadramento. Cada
+peça é gerada sozinha; o arranjo é layout, não conteúdo.
+**O que a composição evita:** a primeira montagem punha o painel do **estudo** mais alto e mais
+quente. O olho concluía "estudar foi o que ganhou o troféu" — atribuição que o capítulo acabou de
+dizer que não se pode fazer. Na versão aprovada os três painéis têm o mesmo tamanho e se encostam:
+são **um bloco**, não um ranking. É o desenho da variável confundida, não do mérito.
+**Por que essa imagem:** o troféu existe e os três jeitos de chegar nele nunca apareceram
+separados — é a pergunta "qual foi?" que fica sem resposta. O capítulo fecha no resultado e não na
+explicação, que é o que a Fase 1 vai cobrar.
 **Transição:** a linha menor é a **única** antecipação de matemática do capítulo inteiro. Ela
 não ensina independência linear; ela deixa a palavra no ar para a Fase 1 cobrar.
 

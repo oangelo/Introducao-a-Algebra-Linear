@@ -40,7 +40,15 @@ while IFS=$'\t' read -r name model w h seed ref prompt extra_neg; do
   fi
 
   echo "[gen] >>> $name  ($model ${w}x${h} seed=$seed ref=${ref:-n})"
-  if "$ROOT/qwen-image.sh" "$prompt" "${args[@]}"; then
+  # A PRIMEIRA cena depois do app.stop llama-cpp falha em "graph failed during
+  # weight preparation" — cold start, nao prompt (a mesma seed passa na segunda).
+  # Retentativa unica resolve e evita perder a cena do lote.
+  ok=0
+  for tentativa in 1 2; do
+    if "$ROOT/qwen-image.sh" "$prompt" "${args[@]}"; then ok=1; break; fi
+    [ "$tentativa" = 1 ] && echo "[gen] ~ retentando $name (cold start)" >&2
+  done
+  if [ "$ok" = 1 ]; then
     n_ok=$((n_ok+1))
   else
     n_fail=$((n_fail+1)); echo "[gen] !!! FALHOU: $name" >&2

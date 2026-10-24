@@ -53,12 +53,27 @@ passar num plano de objeto devolve o moletom no meio de uma pilha de papéis.
 1. **Texto nunca vem do modelo.** Ele inventa letra e o aluno acredita. O negativo base já
    proíbe `text, letters, words, writing`; ainda assim, se aparecer qualquer letra legível, a
    imagem é **descartada**, não corrigida.
+   **Símbolo se pede ao modelo, não se desenha por código**: a versão do "?" feita com spline em
+   `interrogacao.py` saiu com bico, quina e espessura de plotter — geometria limpa não vira
+   caligrafia. Se o símbolo for o assunto, o prompt pode pedi-lo (`?` não é palavra, e o negativo
+   continua proibindo letra) — foi assim que a versão com interrogação na capa saiu boa.
+   **Mas símbolo pode não ser o instrumento certo**: a Q10 acabou sem o "?" — o caderno com a
+   interrogação dizia "há uma pergunta", e a montagem do pódio diz *qual* pergunta é. As duas
+   versões estão em `descartados/`; a aprovada é a montagem.
 2. **Nada de número, fórmula ou objeto matemático em imagem gerada.** Diagrama é SVG.
 3. **O rosto não existe.** Sombra da aba, costas, silhueta. É o que mantém a pessoa a mesma.
 4. **Prompt não menciona a história do curso.** A cena mostra o **problema**, não a metáfora
    dele. Se a legenda precisar explicar a imagem, a imagem está errada.
 5. **Seed é registro.** Se uma cena for aprovada, a seed dela não muda mais — é o que permite
    regerar idêntico quando o modelo for trocado.
+6. **Peça é modelo, montagem é código.** Pedir "um pódio com três cenas dentro" numa geração só
+   devolve papa: o modelo não sustenta várias cenas distintas num enquadramento. Gere cada cena
+   sozinha (`cenas-podio*.tsv`) e componha em Python (`podio.py`). A montagem é layout, não
+   conteúdo — não põe nada que a cena não tenha.
+7. **A primeira cena do lote falha por cold start.** Depois do `app.stop llama-cpp`, o primeiro
+   `flux3` morre em `graph failed during weight preparation` — não é o prompt: a mesma seed passa
+   na segunda tentativa. `gen.sh` retenta uma vez (`for tentativa in 1 2`); sem isso, todo lote
+   perde a primeira cena.
 
 ## O que a geração ensinou (out/2026)
 
@@ -94,6 +109,45 @@ Duas referências, porque são dois lugares:
 
 **Regra:** o rosto não existe em nenhum dos dois. É a assinatura que sobrevive à troca de
 figurino. Cópias de trabalho no Oráculo em `/mnt/Volatil/sdcpp/ref/`.
+
+## Quando o gerador não dá conta: código depois da geração
+
+Duas coisas o modelo **não** faz, e insistir nele custa imagens: **contar** e **alinhar as duas
+metades de um rasgo**. Nesses casos a cena é gerada uma vez, sem o detalhe impossível, e o
+detalhe entra por código:
+
+| script | o que resolve | por que não no prompt |
+|---|---|---|
+| `corte-tempo.py` | parte a imagem em díptico rasgado: junta serrilhada, metades deslocadas e giradas | raio desenhado por difusão sai torto e em posição aleatória; as metades não alinham e "a mesma pessoa nos dois tempos" deixa de ser verdade |
+| `marcas_contagem.py` | desenha marcas de contagem (tallies) numa página de caderno gerada vazia, e circula só a diferença | o modelo não conta: devolve ~145 riscos por bloco e circula um grupo qualquer, então a "diferença pequena" some |
+| `interrogacao.py` | escreve um "?" a lápis na capa do caderno (Q10) | pedir "ponto de interrogação escrito na capa" devolve rabisco ilegível, e texto ilegível é descartado em Camada B |
+| `fecho.py` | duas linhas idênticas riscadas na capa (versão anterior da Q10) | o difusor nunca repete traço; duas linhas "idênticas" saem apenas parecidas |
+
+Regra geral: **gerar o que o modelo sabe fazer (luz, objeto, enquadramento) e desenhar o que ele
+não sabe (contagem, alinhamento, geometria exata)**. O resultado conta como Camada B, mas a nota
+de geração da cena precisa dizer qual parte é código — sem isso, quem regerar a cena perde o
+detalhe e não sabe por quê.
+
+## O que a geração ensinou sobre corrigir
+
+**Corrigir um item, não reescrever a cena.** Numa cartela já aprovada, trocar a frase inteira do
+prompt para remover um objeto errado devolveu composição nova — o personagem que estava atrás veio
+para o centro e a cena inteira mudou de sentido. Mudar **só** o objeto (e pôr o intruso no
+negativo) manteve o desenho e resolveu.
+
+**"Ignorar" é postura, não olhar.** "Ninguém olha para ele" produz gente de frente, parada, e lê
+como atenção. O que funciona é **para onde o corpo aponta**: figuras de costas, viradas para o
+outro lado, e o objeto atrás delas. De costas a assinatura (sem rosto) sai de graça.
+
+**Posição relativa reescreve a cena.** "Atrás do par" trouxe o sujeito para a frente, centralizado.
+Se a posição é o argumento, diga o **ângulo de câmera** ("atrás do ombro direito dele"), não a
+relação entre pessoas.
+
+**Objeto tem anatomia, e o modelo erra a que não foi dita.** "Caderno aberto visto de cima" com
+"espiral na borda esquerda" devolveu a lombada na **borda externa** — fisicamente impossível: num
+caderno aberto a espiral fica na **dobra central**, e as duas bordas externas são papel solto. Se
+uma peça do objeto pode ir para o lugar errado, diga onde ela está *e* onde ela não está
+("binding on the outer edge" no negativo), como se faz com o rosto.
 
 ## Checklist antes de aprovar uma cena
 
