@@ -32,6 +32,7 @@ class Fichas(HTMLParser):
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
+        self.em_h3 = False
         self.fichas = []
         self.atual = None
         self.campo = None
@@ -62,6 +63,7 @@ class Fichas(HTMLParser):
             self.atual["dd"].append([self.label or "", "", "citacao" in cls])
         elif tag == "h3" and not self.atual["h3"]:
             self.campo = "h3"
+            self.em_h3 = True
 
     def handle_endtag(self, tag):
         while self.stack:
@@ -70,6 +72,12 @@ class Fichas(HTMLParser):
                 break
         if tag in ("p", "span", "dt", "dd", "h3"):
             self.campo = None
+        # o <h3> tem <span class="num">Q04</span> dentro: fechar o span nao pode
+        # encerrar o titulo, senao a ficha sai com "Q04 ·" e nada depois
+        if tag == "span" and getattr(self, "em_h3", False):
+            self.campo = "h3"
+        if tag == "h3":
+            self.em_h3 = False
         if tag == "section" and self.atual is not None:
             self.fichas.append(self.atual)
             self.atual = None
