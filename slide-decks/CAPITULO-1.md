@@ -154,3 +154,14 @@ O capítulo 1 entrega a régua. Os outros medem com ela. Ver
 - **Sisk, V. F. et al.** (2018). To what extent and under which circumstances are growth
   mind-sets important to academic achievement? Two meta-analyses. *Psychological Science* 29,
   549–571. doi:10.1177/0956797617739704
+- **Alpha-Tocopherol, Beta Carotene Cancer Prevention Study Group** (1994). The effect of
+  vitamin E and beta carotene on the incidence of lung cancer and other cancers in male
+  smokers. *New England Journal of Medicine* 330, 1029–1035. doi:10.1056/NEJM199404143301501
+  — 29.133 fumantes; betacaroteno 20 mg/dia; câncer de pulmão **+18%** (IC95% 3–36).
+- **Omenn, G. S., Goodman, G. E., Thornquist, M. D. et al.** (1996). Effects of a combination of
+  beta carotene and vitamin A on lung cancer and cardiovascular disease. *New England Journal
+  of Medicine* 334, 1150–1155. doi:10.1056/NEJM199605023341802 — 18.314 pessoas; risco
+  relativo de câncer de pulmão **1,28** (IC95% 1,04–1,57); ensaio interrompido antes do fim.
+- **Barnett, A. G., van der Pols, J. C. & Dobson, A. J.** (2005). Regression to the mean: what
+  it is and how to deal with it. *International Journal of Epidemiology* 34, 215–220.
+  doi:10.1093/ije/dyh299 — sustenta a metade da fala sobre nota que oscila.
