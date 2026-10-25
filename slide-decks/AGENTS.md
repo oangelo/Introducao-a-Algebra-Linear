@@ -167,6 +167,7 @@ Verificável por script:
 ```bash
 grep -c 'style="' arquivo.html      # deve ser 0
 grep -c '\\\\(' arquivo.html        # deve ser 0 (LaTeX quebrado)
+python3 img-gen/check-cap1.py      # frases iguais nos 3 arquivos + imagem de cada cartela existe
 ```
 
 Verificação manual obrigatória:

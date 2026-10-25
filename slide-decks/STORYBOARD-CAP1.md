@@ -64,15 +64,16 @@ errado, e é isso: a cena apresenta a convicção, não o erro.
 
 ### Q02 · `img/c2-madrugada.png`
 **FRASE:** *A dele era virar a noite.*
-**A imagem mostra:** a mesma sala, mais tarde. Ele caído sobre a mesa, caneca vazia, o relógio
-de perfil (de propósito: o mostrador não aparece — número gerado é número errado).
+**A imagem mostra:** a mesma sala, mais tarde. Ele caído com a cabeça sobre os braços em cima da
+mesa, caneca vazia, uma mancha escura ao lado, o monitor ainda aceso. Não há relógio na cena.
 **Por que essa imagem:** a teoria dele não é uma ideia, é um comportamento. A aula mostra o
 comportamento porque é o que o aluno também faz.
 **Transição:** Q03 é a consequência, e é onde o capítulo arma a pegadinha.
 
 ### Q03 · `img/c3-vitoria.png`
 **FRASE:** *Funcionou uma vez. Isso não é evidência.*
-**A imagem mostra:** ele de costas, os dois braços erguidos diante da tela estourada de branco.
+**A imagem mostra:** ele de costas, os dois braços erguidos diante da tela azul do gabinete, que
+mostra WIN! em branco. **Texto legível na imagem** — pendência registrada em `CAPITULO-1.md`.
 **Por que essa imagem:** o gesto de vitória é o momento em que **qualquer pessoa** conclui a
 causa. A imagem tem que ser comemorativa, porque a frase tem que doer.
 **Nota:** o gesto é de costas, sem rosto — o triunfo é do aluno, não de um personagem.
@@ -105,10 +106,12 @@ registrada.**
 
 ### Q06 · `img/c6-dois-jogadores.png`
 **FRASE:** *Alguém que não mudou nada.*
-**A imagem mostra:** dois homens diferentes, de costas, cada um na sua mesa. Caderno novo à
-esquerda, caderno gasto à direita.
-**Por que essa imagem:** o grupo de controle é uma **pessoa que continua igual**, não uma
-coluna. A imagem tem dois corpos porque a ideia é relacional.
+**A imagem mostra:** díptico rasgado com a **mesma pessoa em dois tempos** — jovem à esquerda,
+idoso à direita —, de costas, no mesmo gabinete de fliperama, com GAME OVER nas duas telas; um
+relógio analógico dentro do rasgo; caderno em branco de um lado, caderno gasto do outro.
+**Por que essa imagem:** é o controle que o aluno **usa** — ele contra ele mesmo —, e é justamente
+por isso que não serve: o corpo envelheceu, o resultado não mudou. A régua de verdade está na sala,
+entre os colegas, e a cartela a deixa de fora de propósito.
 **Nota de geração:** sem referência de personagem e com negativo anti-clone — o modelo já
 devolveu três homens idênticos nesta cena.
 **Transição:** com o instrumento completo, o capítulo volta ao começo — mas agora com cientistas.
@@ -128,8 +131,8 @@ identificável — a identificação vem da fala do professor, com a referência
 ### Q08 · `img/c8-pilhas.png`
 **FRASE:** *Uma noite é anedota. Trinta são dados.*
 **A imagem mostra:** díptico rasgado da mesma mesa e da mesma pessoa, de costas. À esquerda a
-mesa limpa — caderno fechado, uma folha, um lápis. À direita a mesma mesa soterrada: pilhas na
-mesa, papel no chão, a lâmpada quase encoberta.
+mesa limpa — caderno fechado, uma folha solta, o abajur aceso. À direita a mesma mesa soterrada:
+pilhas na mesa, papel no chão, a lâmpada quase encoberta.
 **Por que essa imagem:** a pilha tem **altura** — o instrumento 4 é quantidade, e quantidade
 precisa ser vista, não lida. O mesmo enquadramento nas duas metades transforma a diferença em
 número, não em cenário.
@@ -140,8 +143,8 @@ raio desenhado por difusão sai torto e não alinha as metades — e aí deixa d
 ### Q09 · `img/c9-colunas.png`
 **FRASE:** *A diferença é maior do que o acaso?*
 **A imagem mostra:** caderno aberto visto de cima, sob luz de luminária; três fileiras de marcas
-de contagem em cada página, em grupos de cinco. Abaixo da última fileira da direita, duas marcas
-avulsas — a diferença — circuladas a lápis vermelho.
+de contagem em cada página, em grupos de cinco. Perto da lombada, uma marca curta avulsa — a
+diferença — circulada a lápis vermelho.
 **Por que essa imagem:** é o único lugar do capítulo em que o aluno **vê** uma diferença
 pequena — e a frase pergunta se ela é real. A resposta (d = 0,04, IC contendo o zero) é dita em
 sala, com a referência na mão; a imagem não pode carregar número.

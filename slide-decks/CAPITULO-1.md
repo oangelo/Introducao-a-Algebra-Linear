@@ -99,10 +99,12 @@ o que não entra, onde a frase senta — está em [`STORYBOARD-CAP1.md`](STORYBO
 **C1 · IMAGEM:** sala escura, só o brilho do monitor. O jogador, de costas, controle na mão.
 **FRASE:** *Todo mundo tem uma teoria de como jogar melhor.*
 
-**C2 · IMAGEM:** a mesma sala, madrugada. Caneca vazia, ele caído sobre a mesa, o relógio de perfil (o mostrador não aparece de propósito).
+**C2 · IMAGEM:** a mesma sala, madrugada. Caneca vazia, uma mancha escura na mesa, ele caído com a cabeça sobre os braços, o monitor ainda aceso com o labirinto. Não há relógio na cena — o tempo passa por fora do quadro.
 **FRASE:** *A dele era virar a noite.*
 
-**C3 · IMAGEM:** tela de vitória estourada de branco. Ele de costas, os dois braços erguidos.
+**C3 · IMAGEM:** a tela do gabinete em azul, com WIN! em branco sobre o labirinto. Ele de costas, os dois braços erguidos.
+
+**NOTA (24/out):** WIN! é texto legível dentro da imagem, contra a regra do capítulo (imagem sem texto). Está registrado como pendência: regerar `c3-vitoria` sem texto ou aceitar como tipografia diegética. A C6 tem o mesmo caso com GAME OVER.
 **FRASE:** *Funcionou uma vez. Isso não é evidência.*
 
 **C4 · IMAGEM:** díptico de plataforma, os dois quadros separados por uma barra preta. No da esquerda, o boneco de pé no penhasco central, com o bloco "?" ao lado; no da direita, o mesmo boneco caindo no vão, sobre a água, entre os peixes. Dois desfechos do mesmo salto, lado a lado.
@@ -117,10 +119,10 @@ o que não entra, onde a frase senta — está em [`STORYBOARD-CAP1.md`](STORYBO
 **C7 · IMAGEM:** díptico rasgado, o mesmo palco nas duas metades — plataforma redonda, saia escura, holofote. À esquerda o palco está ocupado: um homem de costas ergue um livro grosso como troféu e quatro pessoas de costas olham para ele. À direita o mesmo palco está vazio de gente e carrega só a pilha de maços, alta como uma pessoa, sem ninguém segurando e sem ninguém na sala.
 **FRASE:** *O que funciona não é o que se divulga.*
 
-**C8 · IMAGEM:** díptico rasgado. Metade esquerda: a pessoa sentada numa mesa limpa — um caderno fechado, uma folha, um lápis. Metade direita: a mesma pessoa, mesma mesa, mesma lâmpada, soterrada por pilhas de papel que tomam a mesa e o chão. O raio entre as duas é o mesmo da C6.
+**C8 · IMAGEM:** díptico rasgado. Metade esquerda: a pessoa sentada numa mesa limpa — um caderno fechado, uma folha solta, o abajur aceso. Metade direita: a mesma pessoa, mesma mesa, mesma lâmpada, soterrada por pilhas de papel que tomam a mesa e o chão. O raio entre as duas é o mesmo da C6.
 **FRASE:** *Uma noite é anedota. Trinta são dados.*
 
-**C9 · IMAGEM:** caderno aberto visto de cima, sob luz de luminária: três fileiras de marcas de contagem em cada página, em grupos de cinco, e duas marcas avulsas no fim da direita — a diferença — circuladas a lápis vermelho. As marcas são desenhadas por código, não geradas.
+**C9 · IMAGEM:** caderno aberto visto de cima, sob luz de luminária: três fileiras de marcas de contagem em cada página, em grupos de cinco, e uma marca curta avulsa perto da lombada — a diferença — circulada a lápis vermelho. As marcas são desenhadas por código, não geradas.
 **FRASE:** *A diferença é maior do que o acaso?*
 
 **C10 · IMAGEM:** montagem em quatro painéis. No alto, o jogador de capuz, de costas, no degrau mais alto de um pódio, erguendo um troféu num salão vazio sob dois holofotes. Embaixo, três painéis do mesmo tamanho: ele dormindo na cama, estudando sob o abajur, treinando numa escadaria ao amanhecer. Os quatro vêm do FLUX (seeds 5501–5506) e a montagem é código — as três cenas na base formam o degrau, sem hierarquia entre elas.
