@@ -115,7 +115,7 @@ o que não entra, onde a frase senta — está em [`STORYBOARD-CAP1.md`](STORYBO
 **FRASE:** *Alguém que não mudou nada.*
 
 **C7 · IMAGEM:** díptico rasgado, o mesmo palco nas duas metades — plataforma redonda, saia escura, holofote. À esquerda o palco está ocupado: um homem de costas ergue um livro grosso como troféu e quatro pessoas de costas olham para ele. À direita o mesmo palco está vazio de gente e carrega só a pilha de maços, alta como uma pessoa, sem ninguém segurando e sem ninguém na sala.
-**FRASE:** *O que dizem que funciona. O que foi testado.*
+**FRASE:** *O que funciona não é o que se divulga.*
 
 **C8 · IMAGEM:** díptico rasgado. Metade esquerda: a pessoa sentada numa mesa limpa — um caderno fechado, uma folha, um lápis. Metade direita: a mesma pessoa, mesma mesa, mesma lâmpada, soterrada por pilhas de papel que tomam a mesa e o chão. O raio entre as duas é o mesmo da C6.
 **FRASE:** *Uma noite é anedota. Trinta são dados.*

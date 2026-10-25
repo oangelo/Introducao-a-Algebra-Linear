@@ -113,8 +113,8 @@ coluna. A imagem tem dois corpos porque a ideia é relacional.
 devolveu três homens idênticos nesta cena.
 **Transição:** com o instrumento completo, o capítulo volta ao começo — mas agora com cientistas.
 
-### Q07 · `img/c7-estante.png`
-**FRASE:** *O que dizem que funciona. O que foi testado.*
+### Q07 · `img/c7-palco.png`
+**FRASE:** *O que funciona não é o que se divulga.*
 **A imagem mostra:** díptico rasgado com o **mesmo palco** nas duas metades. À esquerda o palco
 está ocupado — um homem de costas ergue um livro grosso como troféu, quatro pessoas de costas
 olham para ele. À direita o mesmo palco está vazio de gente e carrega só uma pilha de maços alta
@@ -123,7 +123,7 @@ como uma pessoa, sem ninguém segurando e sem ninguém na sala.
 livro tem plateia, a evidência não tem. O palco idêntico é o que torna a comparação justa.
 **Nota:** o livro **não tem título legível**, por regra. É "um livro", não um livro
 identificável — a identificação vem da fala do professor, com a referência.
-**Transição:** se o livro não basta, o que basta? Volume.
+**Transição:** se a fama não decide, o que decide? Quantidade — e a C8 mostra a quantidade.
 
 ### Q08 · `img/c8-pilhas.png`
 **FRASE:** *Uma noite é anedota. Trinta são dados.*
