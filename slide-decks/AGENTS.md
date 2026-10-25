@@ -219,3 +219,13 @@ storyboard ao lado.
   `c8-pilhas` saiu de `cenas.tsv` — a imagem aprovada é um díptico e nenhum prompt registrado o
   descrevia. Nas duas, o `alt` e o "Por que esta cena" do `cap1-telas.html` descreviam a cena
   antiga, não a que existe.
+- Feito em 25/out: [`f1-matematica.html`](f1-matematica.html) (+ `.pdf`, gerado por
+  `f1-matematica-pdf.py` a partir do HTML) — a parte matemática da Fase 1: o que é dito antes do
+  primeiro exemplo (9 blocos), 19 fichas de exemplo com o porquê de cada uma, repetição em três
+  passagens e os pontos em aberto. Todo resultado conferido por `img-gen/grade-f1.py`.
+- Feito em 25/out: `f1-portao-1.html` — **esqueleto** do deck único da fase (capa, cena, dica, mapa,
+  bloco 1 e chave) com `f1-portao-1.css`/`.js`. Blocos 2–4 estão como marcadores `<!--BLOCO-N-->`,
+  a serem escritos por partes. O JS guarda a posição no `localStorage` e oferece "retomar" na capa.
+- **Regra de deck de fase (25/out):** a unidade não é a aula. É **um deck por fase**, e o professor
+  para onde quiser — o deck é retomável. A divisão em aulas não existe porque o número de aulas
+  depende da turma.
