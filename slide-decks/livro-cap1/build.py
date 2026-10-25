@@ -14,40 +14,42 @@ import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 MANIFESTO = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AQUI, "capitulo.json")
-BS = chr(92)          # barra invertida, dos delimitadores de math
 
+# Modelo com marcadores {{chave}} e substituição por replace: assim chaves de JS no
+# template não disputam com o formatador. (O bug da primeira versão foi outro: escrever
+# '\(' dentro de string JS vira '(' e o MathJax passa a tratar todo parêntese como
+# fórmula. Os delimitadores padrão do MathJax 3 já são \( \) e \[ \] — não reconfigurar.)
 MODELO = """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{titulo} · capítulo 1</title>
-<meta name="description" content="{descricao}">
+<title>{{titulo}} · capítulo 1</title>
+<meta name="description" content="{{descricao}}">
 <link rel="stylesheet" href="tema.css">
 </head>
 <body class="leitura">
 
 <header class="capa">
-  <img src="{capa_img}" alt="{capa_alt}">
+  <img src="{{capa_img}}" alt="{{capa_alt}}">
   <div class="texto">
-    <p class="kicker">{kicker}</p>
-    <h1>{titulo}</h1>
-    <p class="sub">{subtitulo}</p>
-    <p class="autor">{autor}</p>
+    <p class="kicker">{{kicker}}</p>
+    <h1>{{titulo}}</h1>
+    <p class="sub">{{subtitulo}}</p>
+    <p class="autor">{{autor}}</p>
   </div>
 </header>
 
 <main class="coluna">
 
-{corpo}
+{{corpo}}
 
 </main>
 
 <script>
-window.MathJax = {{
-  tex: {{ inlineMath: [['{bs}(', '{bs})']], displayMath: [['{bs}[', '{bs}]']] }},
-  options: {{ skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }}
-}};
+window.MathJax = {
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 </body>
@@ -89,27 +91,32 @@ def main():
     if faltando:
         sys.exit("imagens que nao existem: " + ", ".join(sorted(set(faltando))))
 
-    n_cenas = len(re.findall(r'class="cena"', corpo))
-    n_sec = len(re.findall(r'<section class="sec"', corpo))
+    html = MODELO
+    for chave, valor in {
+        "titulo": cfg["titulo"],
+        "descricao": cfg.get("subtitulo", "").replace('"', "'"),
+        "kicker": cfg["kicker"],
+        "subtitulo": cfg["subtitulo"],
+        "autor": cfg["autor"],
+        "capa_img": base + cfg["capa"]["img"],
+        "capa_alt": cfg["capa"]["alt"],
+        "corpo": corpo,
+    }.items():
+        html = html.replace("{{%s}}" % chave, valor)
 
-    html = MODELO.format(
-        titulo=cfg["titulo"],
-        descricao=cfg.get("subtitulo", "").replace('"', "'"),
-        kicker=cfg["kicker"],
-        subtitulo=cfg["subtitulo"],
-        autor=cfg["autor"],
-        capa_img=base + cfg["capa"]["img"],
-        capa_alt=cfg["capa"]["alt"],
-        corpo=corpo,
-        bs=BS,
-    )
+    # marcador que sobrou é erro de digitação no template, não silêncio
+    sobras = re.findall(r"\{\{\w+\}\}", html)
+    if sobras:
+        sys.exit("marcadores não substituídos: " + ", ".join(sorted(set(sobras))))
 
     saida = os.path.join(AQUI, cfg["saida"])
     with open(saida, "w", encoding="utf-8") as fh:
         fh.write(html)
 
     print("ok %s" % cfg["saida"])
-    print("  blocos: %d · secoes: %d · cenas: %d" % (len(cfg["blocos"]), n_sec, n_cenas))
+    print("  blocos: %d · secoes: %d · cenas: %d"
+          % (len(cfg["blocos"]), len(re.findall(r'<section class="sec"', corpo)),
+             len(re.findall(r'class="cena"', corpo))))
     print("  tamanho: %d KB" % (len(html) // 1024))
 
 
