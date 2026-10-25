@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Norma e Distância</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 3.2: A Régua do Universo</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Norma, Distância e Vetores Unitários</h3>
+        <p>Agora que sabemos como direcionar nossos avatares, precisamos de uma régua para medir seu mundo. A <strong>norma</strong> de um vetor, representada por \( \| \vec{v} \| \), mede seu comprimento ou magnitude — a "força" de um pulo ou a "velocidade" de um projétil. A <strong>distância</strong> entre dois pontos é simplesmente a norma do vetor que os conecta. Por fim, o <strong>vetor unitário</strong> (ou <strong>versor</strong>) é a "direção pura", um vetor de comprimento 1 que nos permite separar a direção do movimento de sua intensidade.</p>
+        <p>Essas ferramentas são a base para qualquer tipo de medição em um jogo: verificar alcances, calcular trajetórias e normalizar movimentos para garantir consistência.</p>
+        <div class="formula">
+            Norma em \( \mathbb{R}^n \): \( \|\vec{v}\| = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2} \) <br>
+            Distância entre A e B: \( d(A,B) = \|\vec{B} - \vec{A}\| \) <br>
+            Vetor Unitário \( \hat{v} \): \( \hat{v} = \frac{\vec{v}}{\|\vec{v}\|} \)
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>A Força do Salto (Norma de um Vetor)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar o cálculo da magnitude (comprimento) de um vetor em R².
+            </div>
+            <p>Em um jogo de plataforma da <strong>Era 8-bit</strong>, o vetor de pulo do seu herói é \( \vec{v} = (3, 4) \). Isso significa que ele se desloca 3 unidades na horizontal e 4 na vertical. Qual é a distância exata, em linha reta, que ele percorre no ar? (Ou seja, qual é a norma de \( \vec{v} \)?)</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Use a fórmula da norma, que é essencialmente o Teorema de Pitágoras. A norma é a raiz quadrada da soma dos quadrados de cada componente do vetor.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique as componentes do vetor: \( v_x = 3 \) e \( v_y = 4 \).</li>
+                    <li>Eleve cada componente ao quadrado: \( v_x^2 = 9 \) e \( v_y^2 = 16 \).</li>
+                    <li>Some os quadrados: \( 9 + 16 = 25 \).</li>
+                    <li>Calcule a raiz quadrada do resultado para encontrar a norma.</li>
+                </ol>
+                <div class="formula">\( \|\vec{v}\| = \sqrt{v_x^2 + v_y^2} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A norma é usada para calcular a velocidade escalar de um objeto (a leitura do "velocímetro"), o alcance de uma arma, a força de uma explosão e qualquer outra mecânica que dependa do comprimento de um vetor.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (TRAINING QUEST) -->
+        <div class="mission">
+            <h3> Distância Segura para o Tesouro (Distância entre Vetores)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a fórmula da distância euclidiana entre dois pontos em R².
+            </div>
+            <p>Em um 'dungeon crawler', seu personagem está na posição \( P_1 = (2, 1) \) e um baú de tesouro está em \( P_2 = (7, 13) \). Qual é a distância em linha reta que te separa do tesouro? Este cálculo é vital para saber se você pode alcançá-lo em um único turno.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, encontre o vetor de deslocamento entre os dois pontos (\( \vec{P_2} - \vec{P_1} \)). Depois, calcule a norma desse vetor de deslocamento.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o vetor de deslocamento \( \vec{d} = \vec{P_2} - \vec{P_1} \).</li>
+                    <li>Subtraia as componentes correspondentes: \( \vec{d} = (7-2, 13-1) \).</li>
+                    <li>Agora, calcule a norma do vetor de deslocamento \( \vec{d} \) usando a fórmula \( \|\vec{d}\| = \sqrt{d_x^2 + d_y^2} \).</li>
+                </ol>
+                <div class="formula">\( d(P_1, P_2) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O cálculo de distância é onipresente: a IA usa para decidir qual alvo é o mais próximo, o jogo usa para determinar se um clique do mouse acertou um inimigo, e a física usa para detectar colisões (se a distância for menor que a soma dos raios dos objetos).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>A Direção Pura do Ataque (Vetor Unitário / Versor)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular um vetor de comprimento 1 que mantém a mesma direção do original.
+            </div>
+            <p>Um canhão em um jogo de torre de defesa aponta na direção do vetor \( \vec{d} = (8, -6) \). Para a lógica do jogo, precisamos apenas da direção do tiro, sem sermos influenciados pela sua magnitude (que pode variar com power-ups). Encontre o versor \( \hat{d} \) que representa a "direção pura" do tiro.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para normalizar um vetor (encontrar seu versor), você precisa dividi-lo por sua própria norma. Primeiro, calcule \( \|\vec{d}\| \), e depois divida cada componente de \( \vec{d} \) por esse valor.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule a norma do vetor \( \vec{d} = (8, -6) \). \( \|\vec{d}\| = \sqrt{8^2 + (-6)^2} \).</li>
+                    <li>O resultado da norma será o escalar pelo qual você dividirá o vetor.</li>
+                    <li>Crie o novo vetor \( \hat{d} \) dividindo cada componente de \( \vec{d} \) pela norma calculada.</li>
+                </ol>
+                <div class="formula">\( \hat{d} = \frac{\vec{d}}{\|\vec{d}\|} = \left( \frac{d_x}{\|\vec{d}\|}, \frac{d_y}{\|\vec{d}\|} \right) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Vetores unitários são a espinha dorsal do controle de movimento. Para fazer um personagem andar a uma velocidade constante em qualquer direção (incluindo diagonais), o jogo pega o vetor de direção do joystick, o normaliza para ter comprimento 1 e depois o multiplica pela velocidade desejada.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (MAIN MISSION) -->
+        <div class="mission">
+            <h3>O Alcance da Torre de Defesa (Aplicação da Norma)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a norma para verificar se um objeto está dentro de um raio de ação.
+            </div>
+            <p>Uma torre de arqueiros está posicionada na origem \( (0,0) \) de um mapa e tem um alcance máximo de 10 unidades. Um orc aparece na posição \( P = (7, 6) \). Calcule a distância do orc à torre e determine se ele está dentro do alcance para ser atacado.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A distância de um ponto P à origem é simplesmente a norma do vetor posição \( \vec{p} \). Calcule \( \|\vec{p}\| \) e compare o resultado com o alcance da torre (10).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>O vetor posição do orc é \( \vec{p} = (7, 6) \).</li>
+                    <li>Calcule a norma de \( \vec{p} \): \( \|\vec{p}\| = \sqrt{7^2 + 6^2} \).</li>
+                    <li>Compare o valor numérico da norma com 10. Se for menor ou igual a 10, está no alcance.</li>
+                    <li>Dica de cálculo: você pode comparar os quadrados para evitar raízes. \( \|\vec{p}\|^2 \) vs \( 10^2 \). Se \( 7^2 + 6^2 \le 100 \), está no alcance. Isso é computacionalmente mais rápido.</li>
+                </ol>
+                <div class="formula">Condição: \( d(\text{Torre}, \text{Inimigo}) \le \text{Alcance} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a lógica exata usada em jogos de estratégia e MOBA para determinar a 'agressão' de torres e unidades. A cada frame, o jogo calcula a distância de todos os inimigos próximos e ataca o primeiro que entrar em seu raio de ação.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MAIN MISSION) -->
+        <div class="mission">
+            <h3>Medindo a Diagonal do 'Level' (Distância em R³)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Estender o cálculo de distância para o espaço tridimensional.
+            </div>
+            <p>Você está projetando um nível para um 'dungeon crawler' da <strong>Era 3D Inicial</strong>. O ponto de entrada da fase está em \( A = (1, 2, 3) \) e a saída está no extremo oposto, em \( B = (9, 8, 18) \). Qual é a distância em linha reta entre o início e o fim do nível?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A fórmula da distância em R³ é uma extensão natural da de R². Calcule o vetor \( \vec{AB} = \vec{B} - \vec{A} \) e depois encontre a norma desse novo vetor, que agora terá três componentes para somar sob a raiz quadrada.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o vetor de deslocamento \( \vec{d} = \vec{B} - \vec{A} = (9-1, 8-2, 18-3) \).</li>
+                    <li>Calcule a norma de \( \vec{d} \) usando a fórmula para R³: \( \|\vec{d}\| = \sqrt{d_x^2 + d_y^2 + d_z^2} \).</li>
+                </ol>
+                <div class="formula">\( d(A, B) = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos 3D, a distância é usada para 'level of detail' (LOD), onde objetos distantes são renderizados com menos polígonos para economizar processamento. Também é usada para atenuar o som: quanto mais longe a fonte sonora, menor o volume.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MAIN MISSION) -->
+        <div class="mission">
+            <h3>A Velocidade Real da Nave (Norma e Escalares)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender como a norma se comporta com a multiplicação por escalar.
+            </div>
+            <p>Uma nave espacial tem um vetor de velocidade base \( \vec{v} = (1, 2, 2) \) unidades por segundo. <br> a) Qual é a sua velocidade escalar (a magnitude de \( \vec{v} \))? <br> b) Se um 'boost' de energia quadruplica seu vetor velocidade para \( 4\vec{v} \), qual será sua nova velocidade escalar?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para a parte (a), apenas calcule \( \|\vec{v}\| \). Para a (b), você pode calcular o novo vetor \( 4\vec{v} \) e depois sua norma, ou pode usar a propriedade \( \|k\vec{v}\| = |k|\|\vec{v}\| \), que é um atalho!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Para (a), calcule \( \|\vec{v}\| = \sqrt{1^2 + 2^2 + 2^2} \).</li>
+                    <li>Para (b), calcule o novo vetor \( \vec{v}_{boost} = 4 \cdot (1, 2, 2) = (4, 8, 8) \).</li>
+                    <li>Calcule a norma do novo vetor: \( \|\vec{v}_{boost}\| = \sqrt{4^2 + 8^2 + 8^2} \).</li>
+                    <li>Alternativamente para (b), use a propriedade: a nova norma será \( 4 \times \) a norma que você calculou na parte (a).</li>
+                </ol>
+                <div class="formula">\( \|k\vec{v}\| = |k| \cdot \|\vec{v}\| \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Entender essa propriedade economiza cálculos. Se o jogo já sabe a velocidade base de um personagem, para aplicar um power-up de "velocidade em dobro", ele não precisa recalcular a norma do novo vetor, apenas multiplica a velocidade escalar conhecida por 2.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>O Alvo Mais Próximo (Comparação de Distâncias)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular e comparar múltiplas distâncias para tomar uma decisão de IA.
+            </div>
+            <p>Seu personagem, um mago, está na posição \( P = (0, 0) \). Há dois goblins no campo de batalha, em \( E_1 = (-3, 4) \) e \( E_2 = (5, 2) \). A sua magia de alvo único atinge automaticamente o inimigo mais próximo. Qual dos goblins será o alvo?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Calcule a distância de P até E1 e a distância de P até E2 separadamente. O menor valor corresponde ao alvo mais próximo. Lembre-se que você pode comparar os quadrados das distâncias para evitar o cálculo de raízes quadradas.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o quadrado da distância até E1: \( d(P, E_1)^2 = (-3-0)^2 + (4-0)^2 \).</li>
+                    <li>Calcule o quadrado da distância até E2: \( d(P, E_2)^2 = (5-0)^2 + (2-0)^2 \).</li>
+                    <li>Compare os dois valores quadrados. O menor indica o inimigo mais próximo.</li>
+                </ol>
+                <div class="formula">Comparar \( d(P, E_1) \) com \( d(P, E_2) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A "otimização da raiz quadrada" (comparar distâncias ao quadrado) é uma técnica padrão em programação de jogos. Como a função de raiz quadrada é computacionalmente "cara", evitá-la em loops que rodam milhares de vezes por segundo (como checagens de IA) otimiza significativamente o desempenho do jogo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>O Míssil Teleguiado (Construção com Versor)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar um versor para criar um vetor de movimento com magnitude específica.
+            </div>
+            <p>Um míssil precisa se mover de sua posição atual para um alvo. A direção para o alvo é representada pelo vetor \( \vec{d} = (3, 0, 4) \). O motor do míssil, no entanto, o impulsiona a uma velocidade constante de 15 unidades por segundo. Qual deve ser o vetor de velocidade \( \vec{v} \) exato do míssil para que ele se mova na direção correta e com a magnitude correta?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O vetor velocidade é a direção multiplicada pela magnitude da velocidade. Primeiro, encontre a "direção pura" (o versor de \( \vec{d} \)). Depois, multiplique esse versor pela velocidade escalar (15).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Encontre a norma do vetor de direção \( \vec{d} \).</li>
+                    <li>Normalize \( \vec{d} \) para obter o versor \( \hat{d} = \frac{\vec{d}}{\|\vec{d}\|} \).</li>
+                    <li>O vetor velocidade final é \( \vec{v} = 15 \cdot \hat{d} \). Multiplique o escalar 15 por cada componente do versor \( \hat{d} \).</li>
+                </ol>
+                <div class="formula">\( \vec{v} = \text{velocidade} \cdot \hat{d} = \text{velocidade} \cdot \frac{\vec{d}}{\|\vec{d}\|} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Este é o processo exato para programar qualquer movimento com velocidade constante: obter a direção (do jogador ou da IA), normalizá-la e multiplicá-la pela velocidade do personagem. Isso garante que o personagem não se mova mais rápido nas diagonais, um bug comum em jogos iniciantes.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-C (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>Verificando a Geometria da Fase (Propriedades Geométricas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a fórmula da distância para classificar um triângulo quanto aos lados.
+            </div>
+            <p>Os designers de nível posicionaram três pilares de uma arena triangular nos pontos \( A = (1, 1) \), \( B = (5, 9) \) e \( C = (8, 5) \). Para a engine de física, é importante saber se este triângulo tem propriedades especiais. Calcule os comprimentos dos lados AB, BC e CA e classifique o triângulo como equilátero, isósceles ou escaleno.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Você precisa calcular três distâncias: \( d(A,B) \), \( d(B,C) \) e \( d(C,A) \). Depois, compare os comprimentos. Se todos forem iguais, é equilátero. Se dois forem iguais, isósceles. Se todos forem diferentes, escaleno.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule o comprimento do lado AB: \( d(A,B) = \|\vec{B}-\vec{A}\| = \sqrt{(5-1)^2 + (9-1)^2} \).</li>
+                    <li>Calcule o comprimento do lado BC: \( d(B,C) = \|\vec{C}-\vec{B}\| = \sqrt{(8-5)^2 + (5-9)^2} \).</li>
+                    <li>Calcule o comprimento do lado CA: \( d(C,A) = \|\vec{A}-\vec{C}\| = \sqrt{(1-8)^2 + (1-5)^2} \).</li>
+                    <li>Compare os três resultados numéricos para classificar o triângulo.</li>
+                </ol>
+                <div class="formula">Comparar \(d(A,B)\), \(d(B,C)\), \(d(C,A)\)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Ferramentas de edição de níveis (Level Editors) frequentemente usam esses cálculos para fornecer informações úteis aos designers, como alinhar objetos, garantir simetria ou verificar se a geometria de uma área atende a certos requisitos de jogabilidade.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Vetor Velocidade do Projétil (Síntese)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Construir um vetor velocidade a partir de um ponto de origem, um alvo e uma magnitude de velocidade.
+            </div>
+            <p>Um arqueiro está na posição \( A = (1, 5) \) e atira uma flecha em uma maçã na posição \( B = (7, 13) \). A flecha, uma vez disparada, viaja a uma velocidade constante de 20 unidades por segundo. Qual deve ser o vetor velocidade \( \vec{v} \) da flecha para que ela siga a trajetória correta com a velocidade exata?</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro, determine o vetor de direção do tiro, que é o vetor que vai do arqueiro até a maçã: \( \vec{d} = \vec{B} - \vec{A} \).</li>
+                    <li>Em seguida, normalize este vetor de direção para obter a "direção pura" do tiro, o versor \( \hat{d} \). Para isso, calcule a norma de \( \vec{d} \) e divida \( \vec{d} \) por ela.</li>
+                    <li>Finalmente, para dar a magnitude correta à flecha, multiplique o versor \( \hat{d} \) pela velocidade escalar desejada (20). O resultado é o vetor velocidade \( \vec{v} \).</li>
+                </ol>
+                <div class="formula">\( \vec{v} = \text{velocidade} \cdot \frac{\vec{B}-\vec{A}}{\|\vec{B}-\vec{A}\|} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta missão combina todas as habilidades da fase em um único problema, que é um dos mais comuns na programação de jogos: criar o movimento de um projétil. A mesma lógica se aplica a mísseis teleguiados, raios laser ou qualquer objeto que precise se mover de um ponto A para um ponto B com velocidade constante.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>Posicionando Efeitos Visuais (Ponto em um Segmento a Distância Fixa)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar um ponto em um segmento de reta que está a uma distância conhecida da origem.
+            </div>
+            <p>Um feixe de laser é disparado da posição \( A = (2, 2, 2) \) em direção a um ponto distante \( B = (12, 2, 7) \). Um efeito visual de "faísca" deve aparecer no ponto exato ao longo do feixe que está a 5 unidades de distância do ponto de partida A. Quais são as coordenadas desse ponto?</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Encontre o vetor de direção do laser, \( \vec{d} = \vec{B} - \vec{A} \).</li>
+                    <li>Normalize o vetor de direção \( \vec{d} \) para obter o versor \( \hat{d} \), que representa a direção do feixe com comprimento 1.</li>
+                    <li>Para encontrar um ponto que está a 5 unidades de distância de A ao longo dessa direção, simplesmente escale o versor por 5: \( 5 \cdot \hat{d} \). Este será o vetor de deslocamento a partir de A.</li>
+                    <li>A posição final do efeito de faísca é a posição inicial mais o vetor de deslocamento: \( \vec{P}_{faísca} = \vec{A} + 5 \cdot \hat{d} \).</li>
+                </ol>
+                <div class="formula">\( \vec{P} = \vec{P}_{inicial} + \text{distância} \cdot \hat{d} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa técnica é usada para posicionar efeitos visuais (VFX) ao longo de uma trajetória, para determinar o ponto de impacto de um projétil de alcance limitado, ou para a IA decidir até onde pode se mover em uma determinada direção em um único turno.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3> A Fronteira do Campo de Força (Equação da Esfera)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o conceito de distância para definir a equação de uma superfície esférica.
+            </div>
+            <p>Um gerador de escudo está localizado na origem do mapa, \( C = (0, 0, 0) \), e projeta um campo de força perfeitamente esférico com raio 9. Um asteroide se aproxima e sua posição atual é \( P = (5, -7, 4) \). Verifique se o asteroide já colidiu com o escudo. Ele está dentro, fora ou exatamente na fronteira do campo de força?</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>A condição para um ponto P estar dentro ou sobre uma esfera de centro C e raio R é que a distância entre P e C seja menor ou igual a R: \( d(P, C) \le R \).</li>
+                    <li>Calcule a distância do asteroide ao centro do escudo: \( d(P, C) = \|\vec{P} - \vec{C}\| = \|\vec{P}\| \).</li>
+                    <li>Compare o valor da distância calculada com o raio do escudo (9).</li>
+                    <li>Se a distância for menor que 9, está dentro. Se for igual a 9, está na fronteira. Se for maior que 9, está fora. (Dica: é mais fácil comparar os quadrados da distância e do raio).</li>
+                </ol>
+                <div class="formula">Comparar \( (x_p-x_c)^2 + (y_p-y_c)^2 + (z_p-z_c)^2 \) com \( R^2 \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a forma mais simples e comum de detecção de colisão, conhecida como "sphere casting" ou "bounding sphere". Muitos objetos complexos em jogos são aproximados por uma esfera invisível, e o jogo primeiro testa a colisão entre essas esferas (que é um cálculo de distância muito rápido) antes de fazer testes de colisão mais precisos e caros com a malha poligonal do objeto.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

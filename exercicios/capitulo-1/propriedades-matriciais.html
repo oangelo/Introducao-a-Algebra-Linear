@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+    </script>
+    <title>ZION_TEC | Matrizes e Operações</title>
+    <style>
+        /* Estilo inspirado no tema Matrix */
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes matrix-code {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 0.99; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+
+        @font-face {
+            font-family: 'Matrix Code';
+            src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        }
+
+        body {
+            background-color: #000000;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #33ff33;
+            max-width: 800px;
+            margin: auto;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC');
+            animation: matrix-code 120s linear infinite;
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+            position: relative;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 10, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        h1, h2, h3 {
+            color: #33ff33;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.7);
+        }
+
+        .exercise {
+            background-color: rgba(0, 20, 0, 0.7);
+            padding: 15px;
+            border: 1px solid #33ff33;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        details {
+            background-color: rgba(0, 10, 0, 0.8);
+            padding: 10px;
+            border: 1px solid #33ff33;
+            margin-top: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #33ff33;
+        }
+
+        summary:hover {
+            text-shadow: 0 0 5px #33ff33;
+        }
+
+        code {
+            background-color: #001a00;
+            padding: 3px 5px;
+            color: #ffffff;
+            border: 1px solid #001f00;
+        }
+
+        .hint {
+            background-color: rgba(0, 20, 0, 0.7);
+            border-left: 4px solid #33ff33;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        .hint:before {
+            content: "DICA DO ORÁCULO: ";
+            color: #33ff33;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .solution-steps {
+            margin-left: 20px;
+            counter-reset: step-counter;
+        }
+
+        .solution-steps li {
+            list-style-type: none;
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+        }
+
+        .solution-steps li::before {
+            content: "> EXECUÇÃO_" counter(step-counter) ": ";
+            color: #33ff33;
+            font-weight: bold;
+        }
+
+        .formula {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #001500;
+            border-left: 4px solid #33ff33;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-frame {
+            padding: 10px;
+            background-color: #000500;
+            margin-bottom: 20px;
+            border: 1px solid #33ff33;
+            color: #33ff33;
+            box-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-header {
+            margin: 0;
+            padding: 3px 10px;
+            background-color: #003300;
+            color: #33ff33;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border: 1px solid #33ff33;
+        }
+
+        .terminal-content {
+            padding: 5px;
+            white-space: pre-wrap;
+            font-size: 1em;
+            line-height: 1.2;
+        }
+
+        .cursor:after {
+            content: "_";
+            animation: blink 1s step-end infinite;
+        }
+
+        .terminal-line {
+            color: #33ff33;
+            text-shadow: 0 0 3px rgba(51, 255, 51, 0.5);
+        }
+
+        .terminal-border {
+            border: 1px solid #33ff33;
+            padding: 5px;
+            background-color: #001000;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+        }
+
+        .mission-counter {
+            counter-reset: mission;
+        }
+
+        .mission-counter .exercise h3:before {
+            content: "PROGRAMA " counter(mission) ": ";
+            counter-increment: mission;
+        }
+
+        .warning {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #33ff33;
+            border-top: 1px solid #33ff33;
+            padding-top: 10px;
+        }
+
+        a {
+            color: #33ff33;
+            text-decoration: none;
+            border-bottom: 1px dashed #33ff33;
+        }
+
+        a:hover {
+            text-shadow: 0 0 5px #33ff33;
+            border-bottom: 1px solid #33ff33;
+        }
+    </style>
+</head>
+<body>
+    <!-- TÍTULO E INTRODUÇÃO -->
+    <div class="terminal-frame">
+        <div class="terminal-header">TERMINAL ZION_TEC</div>
+        <div class="terminal-content">
+┌───────────────────────────────────────────────────┐
+│ MÓDULO: Matrizes e Operações                     │
+└───────────────────────────────────────────────────┘
+
+> INICIANDO CONEXÃO...
+> BUSCANDO ENTRADA SEGURA NA MATRIX...
+> ACESSO CONCEDIDO: PROTOCOLOS DE TREINAMENTO ATIVADOS<span class="cursor"></span>
+        </div>
+    </div>
+
+    <div class="terminal-border">
+        <h2 class="terminal-line">> MANUAL DE MANIPULAÇÃO DA MATRIX: MATRIZES E OPERAÇÕES</h2>
+    
+    <p>Saudações, Operador. Nesta missão, adentraremos os fundamentos das matrizes. Uma <strong>matriz</strong> é um arranjo retangular de números, organizada em <em>m</em> linhas e <em>n</em> colunas. Cada entrada é denotada por \( a_{ij} \), onde <em>i</em> indica a linha e <em>j</em> indica a coluna.</p>
+
+    <p>A <strong>soma</strong> e a <strong>subtração</strong> de matrizes ocorrem termo a termo. Para a soma \( A + B \), somamos \( a_{ij} + b_{ij} \) em cada posição. Para a subtração \( A - B \), fazemos \( a_{ij} - b_{ij} \) para cada elemento correspondente, desde que as duas matrizes tenham as mesmas dimensões.</p>
+
+    <p>Já a <strong>multiplicação</strong> de matrizes requer que o número de colunas da primeira seja igual ao número de linhas da segunda. Para cada entrada \( c_{ij} \) do produto \( C = A \times B \), multiplicamos os elementos da linha \( i \) de \( A \) pelos elementos da coluna \( j \) de \( B \), somando todos os resultados para obter o valor final.</p>
+
+    <div class="formula">
+    $$\text{Seja } A \text{ uma matriz } m \times n \text{ e } B \text{ uma matriz } n \times p,\quad
+    \text{o produto }C = A \times B\text{ é uma matriz } m \times p.$$
+    </div>
+
+    <p>Dessa forma, cada elemento \( c_{ij} \) reflete a combinação de dados entre a <em>i</em>-ésima linha de \( A \) e a <em>j</em>-ésima coluna de \( B \). No universo da Matrix, isso representa a capacidade de mesclar informações de diferentes subrotinas para criar novas camadas de manipulação.</p>
+
+    <p>Use essa regra para verificar rapidamente a compatibilidade de dimensões e aprofundar sua compreensão sobre como cada operação pode abrir brechas no código da Matrix. À medida que dominamos as operações de soma, subtração e multiplicação, aproximamo-nos do controle total sobre os fluxos de dados que sustentam a realidade simulada.</p>
+
+    <!-- PROGRAMAS (EXERCÍCIOS) -->
+    <div class="mission-counter">
+
+        <!-- PROGRAMA 1 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Primeiros Passos na Soma de Matrizes 2x2</h3>
+            <p>Considere as matrizes 
+               <span class="formula">$$A = \begin{bmatrix}1 & 3\\2 & 5\end{bmatrix}, \quad B = \begin{bmatrix}4 & 2\\1 & 7\end{bmatrix}$$</span>
+               Execute a soma <strong>A + B</strong> e descubra a matriz resultante.</p>
+            
+            <div class="hint">
+                Lembre-se de somar os elementos correspondentes de A e B.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Identifique os elementos de posição (i,j) em cada matriz.</li>
+                    <li>Some cada par de elementos na mesma posição: $(a_{ij} + b_{ij})$.</li>
+                    <li>Forme a nova matriz resultante com essas somas.</li>
+                </ol>
+                
+                <div class="formula">
+                $$A + B = \begin{bmatrix}
+                1+4 & 3+2 \\
+                2+1 & 5+7
+                \end{bmatrix} = \begin{bmatrix}
+                5 & 5\\
+                3 & 12
+                \end{bmatrix}$$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> A soma de matrizes representa a sobreposição de informações na simulação. Unindo partes de códigos, você observa como a realidade pode ser moldada com ajustes simples.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 2 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Subtração de Matrizes 2x2</h3>
+            <p>Considere novamente 
+               <span class="formula">$$A = \begin{bmatrix}1 & 3\\2 & 5\end{bmatrix}, \quad B = \begin{bmatrix}4 & 2\\1 & 7\end{bmatrix}$$</span>
+               Agora, calcule <strong>A - B</strong> e verifique a nova estrutura resultante.</p>
+            
+            <div class="hint">
+                Subtraia termo a termo: $(a_{ij} - b_{ij})$.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Para cada posição, faça $a_{ij} - b_{ij}$.</li>
+                    <li>Monte a matriz final da subtração usando os valores obtidos.</li>
+                </ol>
+                
+                <div class="formula">
+                $$A - B = \begin{bmatrix}
+                1-4 & 3-2 \\
+                2-1 & 5-7
+                \end{bmatrix} = \begin{bmatrix}
+                -3 & 1 \\
+                1 & -2
+                \end{bmatrix}$$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Ao subtrair blocos de códigos, você está filtrando partes dispensáveis da simulação, removendo camadas indesejadas e se aproximando da “verdade” digital por trás dos dados.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 3 (BÁSICO) -->
+        <div class="exercise">
+            <h3>Multiplicação de Matriz 2x2 por um Escalar</h3>
+            <p>Seja 
+               <span class="formula">$$C = \begin{bmatrix}0 & 2\\-1 & 3\end{bmatrix}$$</span>
+               e considere o escalar $k = 3$. Determine a matriz resultante de <strong>kC</strong>.</p>
+            
+            <div class="hint">
+                Cada elemento da matriz é multiplicado por k.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Multiplique cada elemento de C pelo escalar 3.</li>
+                    <li>Observe como o fator escalar afeta todos os valores individualmente.</li>
+                </ol>
+                
+                <div class="formula">
+                $$3 \begin{bmatrix}0 & 2\\-1 & 3\end{bmatrix} 
+                = \begin{bmatrix}3 \times 0 & 3 \times 2\\
+                                3 \times (-1) & 3 \times 3\end{bmatrix}
+                = \begin{bmatrix}0 & 6\\-3 & 9\end{bmatrix}$$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> A multiplicação por um escalar mostra como um simples parâmetro pode amplificar ou reduzir sinais na Matrix, escalonando a intensidade de cada componente.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 4 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Verificando Dimensões e Soma de Matrizes 3x3</h3>
+            <p>Considere as matrizes 
+               <span class="formula">$$D = \begin{bmatrix}1 & 0 & 5 \\ 2 & 4 & 1 \\ -1 & 3 & 2\end{bmatrix},\quad 
+                                       E = \begin{bmatrix}0 & 2 & 3 \\ 1 & -1 & 2 \\ 4 & 0 & 0\end{bmatrix}$$</span>
+               Verifique se há compatibilidade para a soma e encontre <strong>D + E</strong>.</p>
+            
+            <div class="hint">
+                Dimensões iguais permitem a soma. Somando termo a termo, resulta em outra 3x3.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Observe que tanto D quanto E são 3x3, logo podem ser somadas.</li>
+                    <li>Calcule cada entrada: $(d_{ij} + e_{ij})$.</li>
+                    <li>Construa a matriz final com essas somas.</li>
+                </ol>
+                
+                <div class="formula">
+                $$D + E = \begin{bmatrix}
+                1+0 & 0+2 & 5+3 \\
+                2+1 & 4+(-1) & 1+2 \\
+                -1+4 & 3+0 & 2+0
+                \end{bmatrix}
+                = \begin{bmatrix}
+                1 & 2 & 8 \\
+                3 & 3 & 3 \\
+                3 & 3 & 2
+                \end{bmatrix}$$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Reconhecer a compatibilidade de dimensões é fundamental para combinar blocos de códigos. Sem as medidas corretas, as subrotinas entram em conflito e criam anomalias na simulação.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 5 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Multiplicação de Matrizes 2x3 e 3x2</h3>
+            <p>Dadas as matrizes 
+               <span class="formula">
+               $$F = \begin{bmatrix}1 & 2 & 0 \\ -1 & 3 & 2\end{bmatrix}, \quad
+                 G = \begin{bmatrix}2 & 1\\ 0 & 4\\ 1 & -1\end{bmatrix}$$
+               </span>
+               verifique as dimensões e calcule <strong>F × G</strong>.</p>
+            
+            <div class="hint">
+                A matriz resultante terá dimensões 2x2, pois F é 2x3 e G é 3x2.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Confirme a compatibilidade (colunas de F = linhas de G).</li>
+                    <li>Multiplique cada linha de F por cada coluna de G e some os produtos.</li>
+                    <li>Organize os resultados em uma matriz 2x2.</li>
+                </ol>
+                
+                <div class="formula">
+                $$F \times G = \begin{bmatrix}
+                (1)(2)+(2)(0)+(0)(1) & (1)(1)+(2)(4)+(0)(-1) \\
+                (-1)(2)+(3)(0)+(2)(1) & (-1)(1)+(3)(4)+(2)(-1)
+                \end{bmatrix} 
+                = \begin{bmatrix}
+                2 & 1+8 \\
+                -2+0+2 & -1+12-2
+                \end{bmatrix}
+                = \begin{bmatrix}
+                2 & 9\\
+                0 & 9
+                \end{bmatrix}$$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> A multiplicação de matrizes representa a combinação de duas realidades codificadas. Ao alinhar as dimensões, cria-se uma nova camada de informações, aproximando-se cada vez mais do cerne da simulação.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 6 (INTERMEDIÁRIO) -->
+        <div class="exercise">
+            <h3>Verificação de Erros na Soma e Subtração</h3>
+            <p>Analise as matrizes 
+               <span class="formula">
+               $$H = \begin{bmatrix}3 & -1 \\ 2 & 4 \\ 1 & 0\end{bmatrix}, \quad
+                 K = \begin{bmatrix}1 & 2 \\ 0 & -3\end{bmatrix}$$
+               </span>
+               e determine se é possível realizar <strong>H + K</strong> ou <strong>H - K</strong>. Justifique.</p>
+            
+            <div class="hint">
+                Compare o número de linhas e colunas de cada matriz.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Observe que H é 3x2 e K é 2x2.</li>
+                    <li>Para somar ou subtrair matrizes, elas devem ter as mesmas dimensões.</li>
+                    <li>Conclua se a operação é possível com base nessa verificação.</li>
+                </ol>
+                
+                <div class="formula">
+                $$\text{Dim}(H) = 3 \times 2 \quad \text{vs.} \quad \text{Dim}(K) = 2 \times 2$$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Quando as dimensões não batem, o código se torna incompatível. Esse tipo de anomalia pode gerar falhas e chamar a atenção dos Agentes, comprometendo a segurança de Zion.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 7 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Combinação de Operações em Matrizes 2x2 e 2x3</h3>
+            <p>Dadas as matrizes 
+               <span class="formula">
+               $$M = \begin{bmatrix}2 & 1\\0 & -1\end{bmatrix}, \quad
+                 N = \begin{bmatrix}1 & 0 & 2\\-1 & 3 & 1\end{bmatrix}, \quad
+                 P = \begin{bmatrix}2 & 1 & -1\\0 & 1 & 3\end{bmatrix}$$
+               </span>
+               realize a operação <strong>(M × N) + P</strong>. Apenas verifique a compatibilidade e encontre o resultado.</p>
+            
+            <div class="hint">
+                Use as dimensões para checar se (M×N) e P podem ser somadas.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Multiplique M (2x2) por N (2x3), resultando em uma matriz 2x3.</li>
+                    <li>Verifique que P também é 2x3, permitindo a soma.</li>
+                    <li>Some o resultado de M×N com P elemento a elemento.</li>
+                </ol>
+                
+                <div class="formula">
+                $$
+                M \times N = \begin{bmatrix}
+                (2)(1)+(1)(-1) & (2)(0)+(1)(3) & (2)(2)+(1)(1)\\
+                (0)(1)+(-1)(-1) & (0)(0)+(-1)(3) & (0)(2)+(-1)(1)
+                \end{bmatrix}
+                = \begin{bmatrix}
+                2-1 & 0+3 & 4+1 \\
+                0+1 & 0-3 & 0-1
+                \end{bmatrix}
+                = \begin{bmatrix}
+                1 & 3 & 5 \\
+                1 & -3 & -1
+                \end{bmatrix}
+                $$
+                <br>
+                $$
+                (M \times N) + P = \begin{bmatrix}
+                1 & 3 & 5 \\
+                1 & -3 & -1
+                \end{bmatrix}
+                +
+                \begin{bmatrix}
+                2 & 1 & -1\\
+                0 & 1 & 3
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                3 & 4 & 4\\
+                1 & -2 & 2
+                \end{bmatrix}
+                $$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Ao combinar soma e multiplicação, você cria rotas complexas para redirecionar fluxos de código. Cada etapa requer atenção para não gerar inconsistências que podem denunciar sua presença.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 8 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Matriz Resultante de Várias Somas e Subtrações</h3>
+            <p>Considere 
+               <span class="formula">
+               $$Q = \begin{bmatrix}0 & 1\\2 & 2\end{bmatrix}, \quad
+                 R = \begin{bmatrix}-1 & 3\\4 & 0\end{bmatrix}, \quad
+                 S = \begin{bmatrix}1 & 1\\1 & 1\end{bmatrix}$$
+               </span>
+               Calcule a expressão <strong>Q + R - S</strong>.</p>
+            
+            <div class="hint">
+                Siga a ordem: primeiro some Q e R, depois subtraia S.
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Verifique que Q, R e S são todas 2x2.</li>
+                    <li>Efetue Q + R elemento a elemento.</li>
+                    <li>Do resultado, subtraia S na sequência.</li>
+                </ol>
+                
+                <div class="formula">
+                $$
+                Q + R = \begin{bmatrix}
+                0+(-1) & 1+3\\
+                2+4 & 2+0
+                \end{bmatrix} = \begin{bmatrix}
+                -1 & 4\\
+                6 & 2
+                \end{bmatrix}, \quad
+                (Q+R) - S = \begin{bmatrix}
+                -1 & 4\\
+                6 & 2
+                \end{bmatrix}
+                -
+                \begin{bmatrix}
+                1 & 1\\
+                1 & 1
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                -2 & 3\\
+                5 & 1
+                \end{bmatrix}
+                $$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Alterações simultâneas de diversas partes do código demandam estratégia. As operações sucessivas mostram como a realidade pode ser reescrita passo a passo, sem chamar a atenção dos Agentes.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 9 (AVANÇADO) -->
+        <div class="exercise">
+            <h3>Operação Mista: (A + B) × C</h3>
+            <p>Seja 
+               <span class="formula">
+               $$A = \begin{bmatrix}1 & 0\\2 & 3\end{bmatrix}, \quad
+                 B = \begin{bmatrix}0 & 2\\1 & 1\end{bmatrix}, \quad
+                 C = \begin{bmatrix}1 & 1\\-1 & 4\end{bmatrix}$$
+               </span>
+               Calcule <strong>(A + B) × C</strong> e garanta que todas as dimensões sejam compatíveis.</p>
+            
+            <div class="hint">
+                Tanto A quanto B são 2x2, logo somáveis; (A + B) também será 2x2, podendo então multiplicar C (2x2).
+            </div>
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Some A e B para formar uma nova matriz 2x2.</li>
+                    <li>Multiplique o resultado por C usando a fórmula de multiplicação de matrizes 2x2.</li>
+                </ol>
+                
+                <div class="formula">
+                $$
+                A + B = \begin{bmatrix}1+0 & 0+2\\ 2+1 & 3+1 \end{bmatrix}
+                      = \begin{bmatrix}1 & 2\\ 3 & 4\end{bmatrix}
+                $$
+                <br>
+                $$
+                (A + B) \times C = \begin{bmatrix}1 & 2\\ 3 & 4\end{bmatrix}
+                                  \times
+                                  \begin{bmatrix}1 & 1\\-1 & 4\end{bmatrix}
+                = \begin{bmatrix}
+                  (1)(1)+(2)(-1) & (1)(1)+(2)(4)\\
+                  (3)(1)+(4)(-1) & (3)(1)+(4)(4)
+                  \end{bmatrix}
+                = \begin{bmatrix}
+                  1-2 & 1+8\\
+                  3-4 & 3+16
+                  \end{bmatrix}
+                = \begin{bmatrix}
+                  -1 & 9\\
+                  -1 & 19
+                  \end{bmatrix}
+                $$
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Misturar várias operações em sequência representa processos de reconfiguração profunda. Nesse nível, a Matrix começa a revelar padrões de execução que podem ser explorados pelos rebeldes de Zion.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 10 (DESAFIADOR) -->
+        <div class="exercise">
+            <h3>Encadeamento de Multiplicações com Matrizes 2x2</h3>
+            <p>Dadas as matrizes 
+               <span class="formula">
+               $$U = \begin{bmatrix}2 & -1\\1 & 0\end{bmatrix}, \quad
+                 V = \begin{bmatrix}0 & 3\\1 & 2\end{bmatrix}, \quad
+                 W = \begin{bmatrix}-1 & 1\\2 & 4\end{bmatrix}$$
+               </span>
+               calcule <strong>U × V × W</strong>, respeitando a ordem de multiplicação da esquerda para a direita.</p>
+
+            <!-- Sem hint para este nível -->
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro multiplique U por V para obter uma matriz intermediária 2x2.</li>
+                    <li>Em seguida, multiplique o resultado por W (também 2x2).</li>
+                    <li>Certifique-se de fazer cada multiplicação de forma sistemática, para evitar anomalias no cálculo.</li>
+                </ol>
+                
+                <div class="formula">
+                    \[
+                    \text{Exemplo de passo intermediário: } (U \times V) = \ldots
+                    \]
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> O encadeamento de multiplicações gera efeitos compostos que podem alterar diversos segmentos da simulação de uma única vez, exigindo precisão para não corromper partes sensíveis do código.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 11 (DESAFIADOR) -->
+        <div class="exercise">
+            <h3>Comparação de Duas Multiplicações Distintas</h3>
+            <p>Para as matrizes 
+               <span class="formula">
+               $$A = \begin{bmatrix}1 & 1\\2 & 0\end{bmatrix}, \quad
+                 B = \begin{bmatrix}0 & 2\\1 & 3\end{bmatrix}, \quad
+                 C = \begin{bmatrix}3 & 1\\-2 & 2\end{bmatrix}$$
+               </span>
+               verifique se <strong>(A × B) × C</strong> é igual a <strong>A × (B × C)</strong>. Mostre seus resultados finais.</p>
+
+            <!-- Sem hint para este nível -->
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Calcule (A × B) para obter uma 2x2, então multiplique o resultado por C (2x2).</li>
+                    <li>Separadamente, calcule (B × C) para obter outra 2x2 e depois multiplique A (2x2) pelo resultado.</li>
+                    <li>Compare as duas matrizes finais para verificar a igualdade.</li>
+                </ol>
+                
+                <div class="formula">
+                    \[
+                    \text{Verifique se } (A\times B)\times C = A \times (B \times C).
+                    \]
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Embora a multiplicação de matrizes seja associativa, comprovar passo a passo demonstra como, na prática, processos podem ser encadeados sem alterar o resultado final. Essa é a base para sincronizar várias rotinas de hack na simulação.</p>
+            </details>
+        </div>
+
+        <!-- PROGRAMA 12 (DESAFIADOR) -->
+        <div class="exercise">
+            <h3>Estratégia de Composição em Matriz de Dimensões Maiores</h3>
+            <p>Construa uma matriz resultante do produto de 
+               <span class="formula">
+               $$X = \begin{bmatrix}1 & 2 & 1\\0 & -1 & 3\end{bmatrix}
+                 \quad \text{(2x3)} \quad \text{e} \quad
+                 Y = \begin{bmatrix}2 & 0 & 1 & 3\\1 & 2 & -1 & 0\\0 & 1 & 2 & 2\end{bmatrix}
+                 \quad \text{(3x4)}$$
+               </span>
+               verificando cuidadosamente cada etapa do cálculo.</p>
+
+            <!-- Sem hint para este nível -->
+
+            <details>
+                <summary>ACESSO NÍVEL: OPERADOR</summary>
+                <ol class="solution-steps">
+                    <li>Note que X é 2x3 e Y é 3x4, portanto a matriz resultante será 2x4.</li>
+                    <li>Para cada posição (i, j), calcule a soma dos produtos correspondentes das linhas de X com as colunas de Y.</li>
+                    <li>Finalize a matriz resultante com cuidado para não inserir nenhum valor incorreto.</li>
+                </ol>
+                
+                <div class="formula">
+                    \[
+                    \text{Resultado será } X \times Y = \text{matriz } 2 \times 4.
+                    \]
+                </div>
+                
+                <p><strong>Reflexão sobre a Matrix:</strong> Manipular blocos de maiores dimensões exige cautela para manter o sigilo. Cada célula representa um fragmento de informações que, conectado aos demais, controla partes cruciais da simulação.</p>
+            </details>
+        </div>
+
+    </div>
+
+    <!-- RODAPÉ DO DOCUMENTO -->
+    <div class="footer">
+        ZION_TEC | Matrizes e Operações: Hackeamento da Matrix - "O poder de reescrever linhas é a chave para a liberdade de Zion."
+    </div>
+</body>
+</html>

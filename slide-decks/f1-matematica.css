@@ -1,0 +1,165 @@
+/* f1-matematica.css — documento de revisão da parte matemática da Fase 1.
+   Mesma família visual do cap1-telas.css: papel claro, tinta escura, âmbar de destaque. */
+
+:root {
+  --tinta: #111318;
+  --fraco: #5a6172;
+  --ambar: #8a5a12;
+  --azul: #2b5f8a;
+  --vermelho: #a3352c;
+  --linha: #c9ccd4;
+  --papel: #f7f5f0;
+  --papel2: #efebe3;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 0 4rem;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.cabeca {
+  background: #12141a;
+  color: #ece7dc;
+  padding: 2.4rem 2rem 2rem;
+}
+.cabeca h1 {
+  margin: 0 0 0.3rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cabeca .sub { margin: 0; color: #a9aebd; max-width: 46rem; }
+
+.aviso {
+  margin: 0;
+  padding: 1.4rem 2rem;
+  background: var(--papel2);
+  border-bottom: 1px solid var(--linha);
+}
+.aviso h2 {
+  margin: 0 0 0.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ambar);
+}
+.aviso ul { margin: 0; padding-left: 1.1rem; max-width: 46rem; }
+.aviso li { margin-bottom: 0.35rem; }
+
+main { padding: 0 2rem; max-width: 62rem; }
+
+h2.parte {
+  margin: 2.6rem 0 0.2rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  border-bottom: 2px solid var(--tinta);
+  padding-bottom: 0.3rem;
+}
+h2.parte span { color: var(--ambar); }
+
+.intro { color: var(--fraco); max-width: 44rem; }
+
+/* ---------- conceitos: o que é dito antes de resolver ---------- */
+.conceito {
+  border-left: 3px solid var(--linha);
+  padding: 0.2rem 0 0.2rem 1rem;
+  margin: 1.2rem 0;
+}
+.conceito h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+.conceito h3 .num {
+  font-family: 'Courier New', monospace;
+  color: var(--ambar);
+  margin-right: 0.5rem;
+}
+.conceito p { margin: 0.25rem 0; }
+.conceito p.curto { color: var(--fraco); }
+
+/* ---------- fichas de exemplo ---------- */
+.ficha {
+  border: 1px solid var(--linha);
+  background: #fff;
+  margin: 1.3rem 0;
+  padding: 1rem 1.2rem 0.9rem;
+}
+.ficha h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.02rem;
+}
+.ficha h3 .num {
+  font-family: 'Courier New', monospace;
+  color: #fff;
+  background: var(--ambar);
+  padding: 0.05rem 0.4rem;
+  margin-right: 0.5rem;
+}
+.ficha .forma {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--azul);
+}
+.ficha .selo {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid currentColor;
+  padding: 0.05rem 0.35rem;
+  margin-left: 0.5rem;
+  color: var(--vermelho);
+}
+.sistema {
+  font-family: 'Courier New', monospace;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  background: var(--papel2);
+  border-left: 3px solid var(--ambar);
+  padding: 0.6rem 0.8rem;
+  margin: 0.6rem 0 0.7rem;
+  white-space: pre;
+  overflow-x: auto;
+}
+.sistema b { color: var(--ambar); }
+dl { margin: 0; }
+dt {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--azul);
+  margin-top: 0.6rem;
+}
+dd { margin: 0.1rem 0 0; }
+
+.rodape {
+  margin: 2.6rem 2rem 0;
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--tinta);
+  color: var(--fraco);
+  font-size: 0.85rem;
+  max-width: 58rem;
+}
+.rodape b { color: var(--tinta); }
+
+@media print {
+  .cabeca { background: #fff; color: var(--tinta); }
+  .cabeca .sub { color: var(--fraco); }
+  .ficha { break-inside: avoid; }
+}

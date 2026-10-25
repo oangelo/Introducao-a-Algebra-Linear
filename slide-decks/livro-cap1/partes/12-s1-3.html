@@ -1,0 +1,120 @@
+<!-- fonte: f1-matematica.html §1.3 -->
+<section class="sec" id="s-1-3">
+  <h2><span class="num">1.3</span>O conjunto-solução</h2>
+
+  <p>Resolvido o sistema \(2x + y = 7\), \(x - y = 2\), o resultado que se escreve no quadro é
+  \(x = 3\), \(y = 1\). Está certo, e mesmo assim não é a resposta: a resposta é o <b>conjunto</b>
+  cujo único elemento é o par \((3; 1)\). A diferença parece formalidade de professor, e não é. É
+  ela que permite escrever "não há solução" sem que a frase soe como desculpa, e é ela que permite
+  escrever "há infinitas" sem ter de listar uma por uma.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Uma <b>solução</b> de um sistema nas incógnitas \(x_1, \dots, x_n\) é uma \(n\)-upla
+    \((x_1, \dots, x_n)\) que satisfaz <b>todas</b> as equações do sistema. O <b>conjunto-solução</b>
+    \(S\) é o conjunto de todas as soluções — e ele é sempre um subconjunto de
+    \(\mathbb{R}^n\).</p>
+    <p>\(\mathbb{R}^n\) é o conjunto das \(n\)-uplas ordenadas de números reais; \(\mathbb{R}^2\), o
+    plano, é o caso \(n = 2\). Ordenadas quer dizer que a posição conta: \((3; 1)\) e \((1; 3)\) são
+    pares diferentes, e só o primeiro é solução do sistema desta seção. Por isso a solução se escreve
+    sempre na mesma ordem de incógnitas adotada no enunciado.</p>
+  </div>
+
+  <p>Com essa definição, os três resultados possíveis ganham uma escrita cada, e nenhuma delas é
+  ambígua. Uma solução só: \(S = \{(3; 1)\}\), conjunto unitário. Infinitas: \(S\) é a reta, escrita
+  \(S = \{(x, y) \in \mathbb{R}^2 : x + y = 3\}\). Nenhuma: \(S = \varnothing\), o conjunto vazio.
+  A pertinência se lê com o símbolo próprio: \((3; 1) \in S\) quando o par satisfaz; e, para o
+  sistema acima, \((1; 3) \notin S\), porque \(2 \cdot 1 + 3 \neq 7\). Note o que a notação carrega:
+  dizer \(S = \varnothing\) é uma afirmação sobre o sistema e sobre o problema, não sobre quem o
+  resolveu — significa que <i>nenhum</i> par de números reais satisfaz as duas equações, e isso é um
+  resultado tão completo quanto \(S = \{(3; 1)\}\). Do mesmo modo, \(S\) infinito não é "não
+  consegui terminar": é uma resposta com forma própria, a de uma família de pares.</p>
+
+  <h3>A interseção, agora em conjuntos</h3>
+
+  <p>Cada equação do sistema tem o seu próprio conjunto-solução: \(S_1\) para a primeira, \(S_2\)
+  para a segunda, e assim por diante. A solução do sistema é o que pertence a todos eles ao mesmo
+  tempo — ou seja, a interseção:</p>
+
+  \[ S = S_1 \cap S_2 \cap \dots \cap S_m. \]
+
+  <p>Essa linha é a versão em conjuntos do que a seção anterior fazia com o desenho. Lá, duas retas
+  que se cruzam num ponto; aqui, dois conjuntos cuja interseção tem um elemento. A vantagem é que a
+  segunda versão não depende de haver figura: ela vale para \(m\) equações em \(n\) incógnitas, e
+  continua valendo quando \(m\) e \(n\) são grandes. Ela também cobre o caso extremo \(m = 1\): um
+  sistema com uma única equação tem por conjunto-solução o conjunto daquela equação, sem interseção
+  nenhuma a fazer — e é por isso que \(x + 2y - z = 3\), sozinha, já tem infinitas soluções.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Para o sistema \(2x + y = 7\), \(x - y = 2\), os conjuntos de cada equação são</p>
+    \[ S_1 = \{(x, y) \in \mathbb{R}^2 : 2x + y = 7\}, \qquad
+       S_2 = \{(x, y) \in \mathbb{R}^2 : x - y = 2\}, \]
+    <p>duas retas. A interseção é o conjunto unitário \(S_1 \cap S_2 = \{(3; 1)\}\). Já no sistema
+    \(x + y = 3\), \(2x + 2y = 6\), as duas equações descrevem a mesma reta, e a interseção é ela
+    inteira: \(S = \{(3 - y, y) : y \in \mathbb{R}\}\), com um par para cada \(y\) real.</p>
+    <p>Repare na segunda escrita: não se listam os pares, descreve-se a regra que os produz. É assim
+    que se escreve um conjunto infinito — dando a forma dos elementos, não os elementos.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>No sistema \(x + y = 3\), \(2x + 2y = 7\), o conjunto da primeira equação é
+    \(S_1 = \{(x, y) : x + y = 3\}\) e o da segunda é \(S_2 = \{(x, y) : x + y = 3{,}5\}\), duas
+    retas paralelas distintas. Nenhum par tem soma \(3\) e soma \(3{,}5\) ao mesmo tempo, de modo
+    que \(S_1 \cap S_2 = \varnothing\).</p>
+    <p>Aqui a notação faz o trabalho que a frase não faria: em vez de "as retas não se cruzam", que
+    descreve o desenho, escreve-se \(S = \varnothing\), que descreve o resultado. A segunda frase
+    continua valendo quando não há desenho possível.</p>
+  </div>
+
+  <h3>Contar soluções é medir o conjunto</h3>
+
+  <p>Contar as soluções de um sistema é perguntar quantos elementos tem \(S\), isto é, qual é a
+  cardinalidade desse conjunto. E há somente três respostas possíveis: nenhum elemento, um elemento,
+  ou infinitos. Não existe "exatamente dois", e a razão não é empírica — não é que nunca se tenha
+  visto um caso; é que ele não pode acontecer com equações lineares. A prova cabe em três linhas e
+  está em <a class="ref" href="#s-1-6">1.6</a>.</p>
+
+  <pre class="conta">S = ∅                nenhuma solução       0 elemento
+S = {(3; 1)}         uma solução           1 elemento
+S = reta             infinitas             infinitos elementos</pre>
+
+  <p>A terceira linha merece precisão: quando \(S\) é infinito, ele não é apenas "grande". No caso
+  da reta há tantos pares em \(S\) quantos números reais — a mesma quantidade de elementos que tem
+  o plano inteiro, distribuída ao longo de uma linha. Por isso "infinitas" nunca significa "muitas,
+  mas contáveis": significa que a família tem um parâmetro livre, e o parâmetro percorre
+  \(\mathbb{R}\). Quem escreve "infinitas soluções" e pensa numa lista longa ainda não entendeu o
+  objeto.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro de escrita mais comum é confundir o elemento com o conjunto: escrever \(S = (3; 1)\).
+    Parece detalhe, e não é — \((3; 1)\) é um par ordenado, \(S\) é um conjunto de pares, e um
+    conjunto não é igual a um de seus elementos. A escrita correta é \(S = \{(3; 1)\}\), e a
+    diferença aparece na hora de perguntar "quantos elementos tem \(S\)?": a resposta é \(1\), e não
+    "dois números".</p>
+    <p>O segundo erro é tomar \(\varnothing\) por "solução zero". Não é. No sistema homogêneo
+    \(x + y = 0\), \(x - y = 0\), a solução é \((0; 0)\), e o conjunto-solução é
+    \(\{(0; 0)\}\) — um conjunto com um elemento, que por acaso é o par de zeros. Vazio é vazio:
+    \(\varnothing\) não tem elemento nenhum, e \(\{(0; 0)\}\) tem um.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> A escolha de qual variável aparece na descrição do conjunto é livre, e
+    muda apenas a aparência. A reta \(x + y = 3\) pode ser escrita \(\{(3 - y, y)\}\), ou
+    \(\{(x, 3 - x)\}\), ou \(\{(3 - t, t)\}\): são o mesmo conjunto, com letras diferentes no papel de
+    parâmetro. O que não é livre é o número de parâmetros — ele é sempre \(1\), aqui, porque a reta
+    tem uma dimensão.</p>
+    <p>Esse número não se adivinha olhando a equação: ele é o número de incógnitas que sobram depois
+    de a equação fixar as outras. Em uma equação com duas incógnitas, sobra uma; com três, sobram
+    duas. Mais adiante, a forma da matriz dá essa contagem sem contar no dedo, e o critério é o
+    número de colunas sem pivô (ver <a class="ref" href="#s-1-12">1.12</a>).</p>
+  </div>
+
+  <p>Toda a contagem do capítulo depende, então, de uma pergunta que se faz ao conjunto depois de
+  encontrado: quantos elementos ele tem. E é aí que o desenho começa a faltar, porque contar
+  elementos de um conjunto em \(\mathbb{R}^2\) ainda se faz olhando, mas o curso não para em duas
+  variáveis. Em três incógnitas, \(S\) já é uma reta ou um plano do espaço, e "olhar" passa a ser um
+  ato de fé; em quatro, não há nem isso: <a class="ref" href="#s-1-4">1.4</a>.</p>
+</section>

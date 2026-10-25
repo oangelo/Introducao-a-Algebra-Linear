@@ -1,0 +1,158 @@
+<!-- fonte: f1-matematica.html §1.6 — as três respostas. Números das fichas A2 e A3. -->
+<section class="sec" id="s-1-6">
+  <h2><span class="num">1.6</span>As três respostas</h2>
+
+  <p>A seção anterior definiu \(S\) e deu o teste para decidir se uma n-upla dada pertence a ele.
+  Fica a pergunta de contagem: quantos elementos \(S\) pode ter? A resposta é mais curta do que a
+  intuição sugere — e uma das possibilidades que a intuição admite está proibida.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Quanto ao conjunto-solução \(S\), um sistema é</p>
+    <ul>
+      <li><b>impossível</b>, se \(S = \varnothing\): nenhuma n-upla satisfaz as equações;</li>
+      <li><b>possível e determinado</b>, se \(S = \{p\}\) para algum \(p\): uma única solução;</li>
+      <li><b>possível e indeterminado</b>, se \(S\) é infinito: infinitas soluções.</li>
+    </ul>
+    <p>“Possível” reúne os dois últimos casos e significa apenas \(S \neq \varnothing\).</p>
+  </div>
+
+  <p>A lista é completa por um motivo banal: um conjunto é vazio, tem um elemento, ou tem pelo
+  menos dois. O que não é banal é o passo seguinte — se tem pelo menos dois, então tem infinitos.
+  É aí que a lista se fecha, e é aí que “exatamente duas soluções” deixa de existir.</p>
+
+  <h3>Por que “exatamente duas” não acontece</h3>
+
+  <p>Sejam \(u\) e \(v\) duas soluções distintas do mesmo sistema. Considere a n-upla</p>
+
+  \[ w_t = u + t(v - u) = (1 - t)u + t v, \qquad t \in \mathbb{R}. \]
+
+  <p>Para \(t = 0\) ela é \(u\); para \(t = 1\), é \(v\); para \(t = \tfrac{1}{2}\), é o ponto médio
+  entre as duas. A afirmação é que <i>todas</i> elas são soluções.</p>
+
+  <p>A verificação é uma linha por equação. Tome a \(i\)-ésima,
+  \(a_{i1}x_1 + \cdots + a_{in}x_n = b_i\). Como \(u\) e \(v\) são soluções, o lado esquerdo vale
+  \(b_i\) em cada uma delas. Em \(w_t\) ele vale</p>
+
+  \[ (1 - t)\,b_i + t\,b_i = b_i, \]
+
+  <p>porque o lado esquerdo de cada equação é linear nas incógnitas: o valor dele em \(w_t\) é a
+  mesma combinação dos valores em \(u\) e em \(v\), isto é, \((1 - t)b_i + t b_i\). Nada foi
+  suposto sobre \(i\): vale para todas as equações ao mesmo tempo, logo \(w_t \in S\).</p>
+
+  <p>Sobrou mostrar que \(t\) distintos dão n-uplas distintas. Se \(w_t = w_s\), então
+  \((t - s)(v - u) = 0\). Como \(v - u \neq 0\), por serem soluções distintas, resta \(t = s\).
+  Cada \(t\) real dá um ponto diferente, e há tantos \(t\) quantos números reais.</p>
+
+  <p>Em três linhas: (i) se \(u\) e \(v\) estão em \(S\), então \(u + t(v - u)\) está em \(S\) para
+  todo \(t\) real; (ii) \(t\) distintos dão pontos distintos; (iii) logo \(S\) contém uma reta
+  inteira. Não existe sistema com exatamente duas soluções: a segunda, quando aparece, chega
+  acompanhada de uma reta, e o argumento não deixa espaço para um caso intermediário.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Onde a linearidade entrou? No passo em que a combinação \(w_t\) foi
+    substituída e o lado esquerdo deu \((1 - t)b_i + t b_i\). Numa equação não linear isso falha:
+    \(x^2 = 1\) tem exatamente <i>duas</i> soluções, \(1\) e \(-1\), e a média delas, \(0\), não é
+    solução. A proibição do “exatamente dois” é um teorema sobre equações lineares, não sobre
+    equações em geral.</p>
+  </div>
+
+  <p>A consequência prática é assimétrica. Provar que \(S\) é unitário exige trabalho: é preciso
+  exibir a solução e mostrar que não há outra. Provar que \(S\) é infinito exige apenas
+  <i>duas</i> soluções distintas — quem encontra duas já encontrou infinitas.</p>
+
+  <p>Em \(\mathbb{R}^2\), os três casos têm nome geométrico, herdado do cruzamento de duas retas
+  (<a class="ref" href="#s-1-3">1.3</a>):</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>\(S\)</th>
+        <th>Sistema</th>
+        <th>Duas retas no plano</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(\varnothing\)</td>
+        <td>impossível</td>
+        <td>paralelas distintas, sem ponto comum</td>
+      </tr>
+      <tr>
+        <td>um ponto</td>
+        <td>possível e determinado</td>
+        <td>concorrentes, um único cruzamento</td>
+      </tr>
+      <tr>
+        <td>infinitos</td>
+        <td>possível e indeterminado</td>
+        <td>coincidentes, a mesma reta</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Os dois casos que não dão um número</h3>
+
+  <p>Primeiro, o sistema \(x + y = 3\), \(2x + 2y = 7\). Da primeira equação vem \(y = 3 - x\).
+  Substituindo na segunda:</p>
+
+  \[ 2x + 2(3 - x) = 6 \neq 7. \]
+
+  <p>O lado esquerdo não depende de \(x\): vale \(6\) para qualquer escolha. A segunda equação pede
+  \(7\). Não há \(x\) que resolva, e não é falta de método — é impossibilidade. O sistema é
+  impossível, \(S = \varnothing\).</p>
+
+  <p>Geometricamente: dividindo a segunda equação por \(2\), ela vira \(x + y = 3{,}5\). As duas
+  retas têm a mesma inclinação e alturas diferentes, logo são paralelas e não se cruzam. A álgebra
+  disse isso em uma linha, sem desenho nenhum.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Quando a substituição termina numa igualdade falsa, como \(6 = 7\), a conclusão é
+    \(S = \varnothing\) e o problema acaba ali. O que não se faz é continuar procurando o valor que
+    “faltou”: uma igualdade falsa entre números não tem solução, e insistir nela só produz erro de
+    sinal.</p>
+  </div>
+
+  <p>Agora o segundo, com um número trocado: \(x + y = 3\) e \(2x + 2y = 6\). A mesma substituição
+  dá</p>
+
+  \[ 2x + 2(3 - x) = 6, \]
+
+  <p>que é verdadeira para todo \(x\). A segunda equação não acrescenta informação: ela é a
+  primeira multiplicada por \(2\). Resta uma condição só, e uma condição em duas incógnitas não
+  fixa um ponto — fixa uma reta.</p>
+
+  <p>Para descrever \(S\), escolhe-se uma incógnita como parâmetro. Com \(y = t\), sai
+  \(x = 3 - t\), e</p>
+
+  \[ S = \{(3 - t;\, t) : t \in \mathbb{R}\}. \]
+
+  <p>Três valores conferem a leitura: \(t = 0\) dá \((3; 0)\); \(t = 1\), \((2; 1)\); \(t = 2\),
+  \((1; 2)\). Os três satisfazem as duas equações, e todos os pontos de \(S\) aparecem assim, porque
+  \(t\) é justamente o valor de \(y\) em cada um.</p>
+
+  <h3>Como escrever a resposta</h3>
+
+  <p>A resposta de um sistema indeterminado é o conjunto parametrizado, não uma equação solta.
+  Escrever \(x = 3 - y\) é verdadeiro e insuficiente: falta dizer que \(y\) percorre os reais e
+  falta dizer que o par é \((3 - t;\, t)\). A forma completa é a do conjunto acima.</p>
+
+  <p>O parâmetro também não é único. Com \(x = s\), sai \(y = 3 - s\) e
+  \(S = \{(s;\, 3 - s) : s \in \mathbb{R}\}\) — o mesmo conjunto, descrito a partir da outra
+  incógnita. Duas parametrizações diferentes de \(S\) não são erro; são duas escolhas de variável
+  livre.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>“Infinitas soluções” não significa que qualquer par serve. Em \(x + y = 3\), o par
+    \((2; 1)\) é solução e \((7; 7)\) não é. O conjunto é infinito, mas é uma reta — um subconjunto
+    muito fino do plano. Infinito não é sinônimo de tudo.</p>
+  </div>
+
+  <p>Fica então o problema operacional: dado um sistema, decidir qual dos três casos ocorre e, no
+  caso indeterminado, escrever o conjunto. Substituir funciona em \(2 \times 2\) e trava em
+  \(4 \times 4\), onde isolar uma incógnita suja as outras três. O caminho que escala é reduzir o
+  sistema a uma forma mais simples, e o primeiro passo é parar de reescrever as incógnitas:
+  guardar só os coeficientes, na matriz aumentada (<a class="ref" href="#s-1-7">1.7</a>).</p>
+</section>

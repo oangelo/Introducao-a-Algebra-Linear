@@ -1,0 +1,370 @@
+/* tema.css — template de leitura dos capítulos.
+   Feito para ser reusado: cada capítulo troca só o conteúdo e a cor de acento.
+   Sem fontes externas, sem framework, sem JS. */
+
+:root {
+  --tinta: #17191f;
+  --tinta-fraca: #565d6b;
+  --papel: #fbf9f4;
+  --papel-alt: #f2eee5;
+  --noite: #0b0d11;
+  --linha: #d9d5ca;
+  --acento: #8a5a12;      /* trocar por capítulo */
+  --acento-claro: #c98b2a;
+  --azul: #2b5f8a;
+
+  --coluna: 39rem;
+  --leitura: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --rotulo: 'Courier New', ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--leitura);
+  font-size: 18px;
+  line-height: 1.72;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- coluna de leitura ---------- */
+.coluna {
+  max-width: var(--coluna);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- capa ---------- */
+.capa {
+  position: relative;
+  background: var(--noite);
+  color: #f6f1e6;
+  overflow: hidden;
+}
+.capa img {
+  display: block;
+  width: 100%;
+  height: min(78vh, 34rem);
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: 0.92;
+}
+.capa::after {           /* garante a área escura para o texto */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(8,9,12,0.15) 0%,
+    rgba(8,9,12,0.35) 45%,
+    rgba(8,9,12,0.92) 100%);
+}
+.capa .texto {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 2.4rem 1.5rem 2.2rem;
+  max-width: calc(var(--coluna) + 3rem);
+  margin: 0 auto;
+  z-index: 2;
+}
+.capa .kicker {
+  font-family: var(--rotulo);
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--acento-claro);
+  margin: 0 0 0.7rem;
+}
+.capa h1 {
+  font-size: clamp(2rem, 6vw, 3.1rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.7rem;
+  font-weight: 600;
+}
+.capa .sub {
+  margin: 0;
+  font-style: italic;
+  color: #cfc8b8;
+  font-size: 1.02rem;
+  max-width: 30rem;
+}
+.capa .autor {
+  margin: 1.4rem 0 0;
+  font-family: var(--rotulo);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9d9686;
+}
+
+/* ---------- cena (imagem + frase) ---------- */
+.cena {
+  position: relative;
+  margin: 3.6rem 0;
+  background: var(--noite);
+  overflow: hidden;
+}
+.cena img {
+  display: block;
+  width: 100%;
+  height: min(72vh, 30rem);
+  object-fit: cover;
+  object-position: center 42%;
+}
+.cena::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(8,9,12,0) 30%,
+    rgba(8,9,12,0.30) 62%,
+    rgba(8,9,12,0.88) 100%);
+  pointer-events: none;
+}
+.cena figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 1.5rem;
+  max-width: calc(var(--coluna) + 3rem);
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  line-height: 1.28;
+  color: #f7f2e7;
+  letter-spacing: -0.005em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+.cena figcaption::before {
+  content: "";
+  display: block;
+  width: 2.2rem;
+  height: 2px;
+  background: var(--acento-claro);
+  margin-bottom: 0.8rem;
+}
+
+/* imagem que ocupa a largura toda, mesmo dentro da coluna */
+.sangra {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* ---------- seções ---------- */
+section.sec { margin: 3.2rem 0 0; }
+
+section.sec > h2 {
+  position: relative;
+  margin: 0 0 1.2rem;
+  padding-top: 2.1rem;
+  font-size: 1.42rem;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+section.sec > h2 .num {
+  position: absolute;
+  top: 0; left: 0;
+  font-family: var(--rotulo);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--acento);
+  font-weight: 400;
+}
+section.sec > h2 .num::after {
+  content: "";
+  display: inline-block;
+  width: 1.6rem;
+  height: 1px;
+  background: var(--acento-claro);
+  vertical-align: 0.25em;
+  margin-left: 0.6rem;
+  opacity: 0.6;
+}
+
+/* título sem número (abertura): sem o espaço reservado ao número */
+section.sec > h2:not(:has(.num)) { padding-top: 0; }
+
+section.sec h3 {
+  font-size: 1.06rem;
+  margin: 2.2rem 0 0.8rem;
+  letter-spacing: 0.01em;
+}
+
+p { margin: 0 0 1.05rem; }
+p + p { text-indent: 0; }
+
+ul, ol { margin: 0 0 1.1rem; padding-left: 1.4rem; }
+li { margin: 0.35rem 0; }
+
+strong, b { font-weight: 600; }
+
+a.ref {
+  color: var(--azul);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43,95,138,0.35);
+}
+a.ref:hover { border-bottom-color: var(--azul); }
+
+/* capitular na abertura */
+#s-abertura > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.6em;
+  line-height: 0.85;
+  padding: 0.06em 0.08em 0 0;
+  color: var(--acento);
+}
+
+/* ---------- caixas ---------- */
+.def {
+  margin: 1.6rem 0;
+  padding: 1.15rem 1.25rem;
+  background: var(--papel-alt);
+  border-left: 3px solid var(--azul);
+}
+.ex {
+  margin: 1.8rem 0;
+  padding: 1.15rem 1.25rem;
+  background: #fff;
+  border: 1px solid var(--linha);
+}
+.def .titulo, .ex .titulo, .cuidado .titulo {
+  display: block;
+  font-family: var(--rotulo);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+.def .titulo { color: var(--azul); }
+.ex .titulo { color: var(--acento); }
+.def p:last-child, .ex p:last-child, .cuidado p:last-child { margin-bottom: 0; }
+
+.obs {
+  margin: 1.2rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--acento-claro);
+  color: #2b2f37;
+  font-size: 0.98rem;
+}
+.obs b { color: var(--acento); }
+
+.cuidado {
+  margin: 1.6rem 0;
+  padding: 1.05rem 1.2rem;
+  background: #fbf1de;
+  border: 1px solid #e6cf9e;
+}
+.cuidado .titulo { color: #9d3228; }
+
+/* ---------- contas ---------- */
+.conta {
+  font-family: var(--rotulo);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  background: #fff;
+  border: 1px solid var(--linha);
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 4;
+}
+
+.passos { list-style: none; padding-left: 1.35rem; counter-reset: passo; }
+.passos li { position: relative; margin: 0.5rem 0; counter-increment: passo; }
+.passos li::before {
+  content: counter(passo) ".";
+  position: absolute;
+  left: -1.35rem;
+  font-family: var(--rotulo);
+  font-size: 0.78rem;
+  color: var(--tinta-fraca);
+}
+
+/* ---------- tabelas ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.45rem 0.3rem;
+  border-bottom: 1px solid var(--linha);
+  vertical-align: top;
+}
+th {
+  font-family: var(--rotulo);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+  border-bottom: 1.5px solid var(--tinta);
+}
+
+/* ---------- voz / citação ---------- */
+.voz {
+  margin: 2.4rem 0;
+  padding: 0.2rem 0 0.2rem 1.4rem;
+  border-left: 3px solid var(--acento-claro);
+  font-size: 1.22rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #2a2e36;
+}
+
+/* ---------- notas ---------- */
+.notas {
+  margin: 4rem 0 0;
+  padding: 2rem 0 4rem;
+  border-top: 1px solid var(--linha);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--tinta-fraca);
+}
+.notas h2 {
+  font-family: var(--rotulo);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+  margin: 0 0 0.8rem;
+}
+.notas ol { padding-left: 1.2rem; }
+.notas li { margin: 0.4rem 0; }
+.notas a { color: var(--tinta-fraca); }
+
+/* ---------- MathJax ---------- */
+mjx-container[display="true"] { margin: 1.15rem 0 !important; }
+
+/* ---------- telas grandes: cena sangrando ---------- */
+@media (min-width: 60rem) {
+  .cena {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-top: 4.2rem;
+    margin-bottom: 4.2rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  body { font-size: 17px; }
+  .cena img { height: 56vh; }
+  .cena figcaption { font-size: 1.05rem; padding-bottom: 1.2rem; }
+  #s-abertura > p:first-of-type::first-letter { font-size: 3em; }
+}
+
+@media print {
+  body { background: #fff; font-size: 11pt; line-height: 1.55; }
+  .coluna { max-width: none; padding: 0; }
+  .cena, .capa { break-inside: avoid; page-break-inside: avoid; }
+  .cena img, .capa img { height: 60vh; }
+  .def, .ex, .conta, .cuidado, table { break-inside: avoid; }
+  a.ref { border-bottom: none; }
+}
