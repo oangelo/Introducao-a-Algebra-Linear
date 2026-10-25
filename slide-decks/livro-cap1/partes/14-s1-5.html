@@ -1,0 +1,129 @@
+<!-- fonte: f1-matematica.html §1.5 — sistema e solução. Números das fichas A1 (2x + y = 7) e B1 (3×3). -->
+<section class="sec" id="s-1-5">
+  <h2><span class="num">1.5</span>Sistema e solução</h2>
+
+  <p>Uma equação linear isolada tem um conjunto-solução, e o capítulo já sabe descrevê-lo: uma reta
+  no plano, quando há duas incógnitas. O problema muda de natureza quando duas ou mais condições
+  precisam valer <i>ao mesmo tempo</i>. Não há mais um conjunto a escolher: há um conjunto novo,
+  formado pelo que as condições têm em comum.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Um <b>sistema de equações lineares</b> é uma lista finita de \(m\) equações lineares nas
+    mesmas incógnitas \(x_1, x_2, \dots, x_n\). Cada equação tem a forma
+    \(a_{i1}x_1 + a_{i2}x_2 + \cdots + a_{in}x_n = b_i\), para \(i = 1, \dots, m\). Os números
+    \(a_{ij}\) são os <b>coeficientes</b>; os \(b_i\), os <b>termos independentes</b>. Com \(m\)
+    equações e \(n\) incógnitas, o sistema é \(m \times n\).</p>
+  </div>
+
+  <p>A definição cobra um detalhe que passa despercebido: as incógnitas são as mesmas em todas as
+  equações, e a ordem delas é fixa. É essa ordem que permite, mais adiante, guardar apenas os
+  coeficientes numa matriz sem perder informação — a coluna passa a carregar o nome da incógnita
+  (ver <a class="ref" href="#s-1-7">1.7</a>).</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Uma <b>solução</b> do sistema é uma \(n\)-upla \((x_1, x_2, \dots, x_n)\) de números reais
+    que satisfaz <i>todas</i> as \(m\) equações. O <b>conjunto-solução</b> do sistema é o conjunto
+    dessas n-uplas. Se \(S_i\) é o conjunto-solução da \(i\)-ésima equação, então
+    \(S = S_1 \cap S_2 \cap \cdots \cap S_m\).</p>
+  </div>
+
+  <p>Note o conectivo: <i>todas</i>, não <i>alguma</i>. Em linguagem de conjuntos, \(x \in S\) se, e
+  somente se, \(x \in S_i\) para cada \(i = 1, \dots, m\). Basta uma equação não satisfeita para
+  \(x\) sair de \(S\) — e sair não é estar quase dentro. A interseção da definição não é enfeite de
+  notação: ela é a afirmação inteira.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Quando as coordenadas são números, elas se separam por ponto e vírgula —
+    \((3; 1)\), e não \((3, 1)\) — para que a vírgula fique reservada aos decimais, como em
+    \(3{,}5\). Com variáveis, como em \((x_1, x_2)\), a vírgula não cria ambiguidade e continua
+    sendo o separador.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema \(2 \times 2\) que abre os exemplos resolvidos do capítulo:</p>
+    <pre class="conta">2x + y = 7
+ x - y = 2</pre>
+    <p>O par \((3; 1)\) é solução? A pergunta só tem resposta com as duas equações conferidas:</p>
+    <pre class="conta">(3; 1)    2·3 + 1 = 7     ok    3 - 1 = 2       ok
+(4; -1)   2·4 - 1 = 7     ok    4 - (-1) = 5    falha</pre>
+    <p>O primeiro par pertence a \(S_1\) e a \(S_2\), logo pertence a \(S\). O segundo pertence
+    apenas a \(S_1\): satisfaz a primeira equação e erra a segunda por \(3\). Não é uma solução pela
+    metade — é um par que resolve outra pergunta.</p>
+  </div>
+
+  <p>No plano, o que cada equação satisfaz é uma reta, e o sistema pede o ponto em que duas retas
+  se cruzam (<a class="ref" href="#s-1-2">1.2</a>). A primeira equação descreve uma reta, a segunda
+  descreve outra, e o conjunto-solução é o único ponto comum às duas: \((3; 1)\). É a mesma
+  interseção de <a class="ref" href="#s-1-3">1.3</a>, agora com um resultado numérico.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro mais comum desta seção: resolver a primeira equação, achar um par e considerar o
+    problema encerrado. Em \(2x + y = 7\), o par \((4; -1)\) é uma resposta correta — para essa
+    equação. O que não se sabe, e é exatamente o que o sistema pergunta, é se ele também satisfaz
+    \(x - y = 2\). Com \(m\) equações há \(m\) testes, e nenhum deles é dispensável.</p>
+  </div>
+
+  <p>Resolver um sistema, portanto, não é “achar \(x\) e \(y\)”. É determinar \(S\) por completo:
+  dizer quais n-uplas pertencem e quais não. Em muitos casos \(S\) não tem um elemento só — pode
+  não ter nenhum, e pode ter infinitos, e a resposta continua sendo uma resposta
+  (<a class="ref" href="#s-1-6">1.6</a>).</p>
+
+  <p>O número de equações não decide o número de soluções. Um sistema \(1 \times 2\), como
+  \(x + y = 3\), tem infinitas; um \(2 \times 1\), como \(x = 1\) e \(x = 2\), não tem nenhuma. O
+  que decide é a relação entre as equações, e essa relação ainda não foi medida.</p>
+
+  <p>A ordem das equações também não faz parte do sistema. \(S\) é a interseção dos \(S_i\), e a
+  interseção não depende da ordem em que os conjuntos são listados: escrever as mesmas equações em
+  outra ordem dá o mesmo \(S\). Essa liberdade será usada, adiante, para escolher por onde começar a
+  redução (<a class="ref" href="#s-1-8">1.8</a>).</p>
+
+  <p>Vale registrar o caso em que a contagem é fácil. Se todos os \(b_i\) são nulos, o sistema é
+  <b>homogêneo</b>, e a n-upla \((0, 0, \dots, 0)\) sempre pertence a \(S\): zero em cada equação
+  dá zero. Um sistema homogêneo, portanto, nunca é impossível — e é a única família para a qual
+  isso se pode afirmar antes de qualquer conta.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Um sistema é <b>possível</b> (ou compatível) quando \(S \neq \varnothing\),
+    e <b>impossível</b> quando \(S = \varnothing\). “Possível” não distingue uma solução de
+    infinitas; essa distinção é o assunto da seção seguinte.</p>
+  </div>
+
+  <h3>O mesmo teste, com três equações</h3>
+
+  <p>Nada no critério depende de haver duas incógnitas ou duas equações. O sistema \(3 \times 3\)
+  dos exemplos resolvidos tem três equações, e a n-upla \((1; 2; 3)\) precisa passar nas
+  três:</p>
+
+  <pre class="conta"> x + y + z = 6
+2x - y + z = 3
+ x + 2y - z = 2</pre>
+
+  <pre class="conta">(1; 2; 3)   1 + 2 + 3 = 6     ok
+            2 - 2 + 3 = 3     ok
+            1 + 4 - 3 = 2     ok
+
+(3; 2; 1)   3 + 2 + 1 = 6     ok
+            6 - 2 + 1 = 5     falha: deveria dar 3
+            3 + 4 - 1 = 6     falha: deveria dar 2</pre>
+
+  <p>O primeiro terno passa nas três e pertence a \(S\). O segundo satisfaz a primeira equação — e
+  só a primeira. É o mesmo erro de antes, agora com uma equação a mais para conferir. O que decide
+  a pertinência é a pior das conferências, nunca a melhor.</p>
+
+  <p>A verificação, aliás, é o único teste barato que existe para uma n-upla dada: substituir e
+  comparar. Ela não resolve o sistema, mas encerra qualquer dúvida sobre uma resposta já obtida, e
+  por isso é o último passo de todo exemplo resolvido do capítulo.</p>
+
+  <p>Nada muda com quatro, cinco ou \(n\) incógnitas: a n-upla cresce, o número de conferências
+  cresce, e o critério continua o mesmo — todas as equações, sem exceção. O que cresce rápido é o
+  custo de resolver por substituição, e é por isso que o método do capítulo troca a substituição
+  pela redução sistemática.</p>
+
+  <p>Com o critério na mão, fica a pergunta de contagem: quantas n-uplas \(S\) pode ter? A resposta
+  é curta e inclui uma proibição — três casos possíveis, e um deles nunca acontece. É o que a
+  próxima seção demonstra em três linhas (<a class="ref" href="#s-1-6">1.6</a>).</p>
+</section>

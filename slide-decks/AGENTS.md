@@ -233,3 +233,10 @@ storyboard ao lado.
   encontra a matemática da Fase 1: cinco pontes com limite declarado, cinco analogias cortadas com
   motivo, a ordem S1–S6 em que as camadas se alternam e quatro riscos com o teste que pega cada um.
   O mesmo `f1-matematica-pdf.py` gera os dois PDFs (`python f1-matematica-pdf.py f1-costura.html`).
+- Feito em 25/out: [`livro-cap1/livro-cap1.html`](livro-cap1/livro-cap1.html) — **o livro do capítulo 1**,
+  montado por fragmentos: `CONTRATO.md` (voz, vocabulário proibido, mapa de seções), `partes/` com 20
+  fragmentos, `build.py` (concatena e gera o sumário dos `<h2>`) e `verificar.py` (referências
+  cruzadas, barra dupla, delimitadores, numeração, vocabulário). Saída com 18 seções numeradas +
+  abertura e fecho. A fonte é `partes/`: o arquivo montado nunca é editado à mão.
+  Conferido: `verificar.py` verde, 21 ids, 99 links internos, HTML balanceado, e todas as matrizes
+  dos exemplos re-resolvidas por script contra os resultados de `img-gen/grade-f1.py`.

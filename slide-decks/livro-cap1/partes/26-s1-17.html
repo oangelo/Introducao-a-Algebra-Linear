@@ -1,0 +1,124 @@
+<!-- fonte: f1-matematica.html bloco E (fichas E1–E2); resultados conferidos por img-gen/grade-f1.py -->
+<section class="sec" id="s-1-17">
+  <h2><span class="num">1.17</span>Exemplos resolvidos: matrizes</h2>
+
+  <p>Até aqui a matriz foi uma notação: um jeito de escrever o sistema sem repetir as incógnitas a
+  cada linha. Nesta seção ela passa a ser um objeto com operação própria. A operação é o produto, e
+  o produto de matrizes não se comporta como o produto de números — ele depende da ordem dos
+  fatores, e às vezes nem existe.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Seja \(A\) uma matriz de tamanho \(m \times n\) e \(B\) uma matriz de tamanho
+    \(n \times p\). O <b>produto</b> \(AB\) é a matriz de tamanho \(m \times p\) cuja entrada da
+    linha \(i\) e coluna \(j\) é a soma dos produtos termo a termo da linha \(i\) de \(A\) pela
+    coluna \(j\) de \(B\):</p>
+    \[ (AB)_{ij} \;=\; a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}. \]
+    <p>O produto só está definido quando o número de colunas de \(A\) é igual ao número de linhas
+    de \(B\). Quando está, \(AB\) tem as linhas de \(A\) e as colunas de \(B\).</p>
+  </div>
+
+  <p>A conta é sempre a mesma, e vale enunciá-la em palavras: toma-se uma linha da primeira matriz e
+  uma coluna da segunda, multiplicam-se as entradas de mesma posição e somam-se os resultados. O
+  produto de uma linha por uma coluna é um único número — não é uma linha, não é uma coluna. A
+  matriz inteira é o quadro desses números, um para cada par (linha, coluna).</p>
+
+  <p>A condição de dimensões tem uma consequência que os números não têm. Se \(A\) é
+  \(m \times n\) e \(B\) é \(n \times p\), então \(AB\) é \(m \times p\). Para \(BA\) existir,
+  as colunas de \(B\) precisam encontrar as linhas de \(A\), o que exige \(p = m\). Os dois produtos
+  existem ao mesmo tempo apenas quando \(A\) e \(B\) são quadradas de mesmo tamanho, ou quando uma é
+  \(m \times n\) e a outra é \(n \times m\). Nos demais casos, no máximo um dos dois existe — e com
+  frequência nenhum dos dois.</p>
+
+  <p>Um hábito de uma linha evita quase todos os erros de dimensão: escrever os tamanhos lado a
+  lado, \((m \times n)(n \times p)\), e cancelar as internas. Se sobra \(m \times p\), o produto
+  existe e esse é o tamanho do resultado. Se as internas não cancelam, não há produto — e não adianta
+  procurar o erro na conta, porque o erro está antes dela.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Duas matrizes que fecham nos dois sentidos, com resultados de tamanhos diferentes.</p>
+    <pre class="conta">A (2×3) = [ 1   2   0 ]        B (3×2) = [ 2   1 ]
+          [ 3  -1   1 ]                  [ 0   3 ]
+                                         [ 4  -2 ]</pre>
+    <p>\(A\) tem \(2\) linhas e \(3\) colunas; \(B\) tem \(3\) linhas e \(2\) colunas. As dimensões
+    internas batem (\(3 = 3\)), então \(AB\) existe e é \(2 \times 2\). Na outra ordem as internas
+    também batem (\(2 = 2\)), então \(BA\) existe e é \(3 \times 3\).</p>
+    <p>Uma entrada feita por extenso mostra o mecanismo. Para a entrada da linha \(1\), coluna \(1\)
+    de \(AB\): a linha \(1\) de \(A\) é \((1, 2, 0)\), a coluna \(1\) de \(B\) é \((2, 0, 4)\), e
+    \(1 \cdot 2 + 2 \cdot 0 + 0 \cdot 4 = 2\).</p>
+    <ol class="passos">
+      <li>Segunda entrada da primeira linha de \(AB\):
+      \(1 \cdot 1 + 2 \cdot 3 + 0 \cdot (-2) = 7\).</li>
+      <li>Segunda linha de \(AB\): \(3 \cdot 2 + (-1) \cdot 0 + 1 \cdot 4 = 10\) e
+      \(3 \cdot 1 + (-1) \cdot 3 + 1 \cdot (-2) = -2\).</li>
+      <li>Em \(BA\), a entrada da linha \(3\), coluna \(1\) usa a linha \(3\) de \(B\), \((4, -2)\),
+      com a coluna \(1\) de \(A\), \((1, 3)\): \(4 \cdot 1 + (-2) \cdot 3 = -2\).</li>
+    </ol>
+    <pre class="conta">A·B (2×2) = [  2   7 ]      B·A (3×3) = [  5   3   1 ]
+            [ 10  -2 ]                  [  9  -3   3 ]
+                                        [ -2  10  -2 ]</pre>
+    <p>Note o que aconteceu: não é que os dois produtos tenham valores diferentes — eles nem têm o
+    mesmo tamanho. \(AB\) tem duas linhas e \(BA\) tem três, de modo que a pergunta "são iguais?" não
+    chega a ser feita. A dimensão não é um detalhe do resultado; ela é parte do resultado.</p>
+  </div>
+
+  <p>O caso acima é o mais fácil de aceitar, porque a diferença é visível sem conta. Para mostrar que
+  a ordem importa de verdade, é preciso comparar dois produtos do mesmo tamanho.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Duas matrizes \(2 \times 2\). Agora \(AB\) e \(BA\) têm as mesmas dimensões, e a comparação
+    pode ser feita entrada por entrada.</p>
+    <pre class="conta">A = [ 1   1 ]      B = [ 1   0 ]
+    [ 0   1 ]          [ 1   1 ]</pre>
+    <ol class="passos">
+      <li>Entrada da linha \(1\), coluna \(1\) de \(AB\): \(1 \cdot 1 + 1 \cdot 1 = 2\).</li>
+      <li>A mesma posição em \(BA\): \(1 \cdot 1 + 0 \cdot 0 = 1\).</li>
+      <li>Já na primeira entrada os produtos divergem. Terminando as quatro, para registro:</li>
+    </ol>
+    <pre class="conta">A·B = [ 2   1 ]      B·A = [ 1   1 ]
+      [ 1   1 ]            [ 1   2 ]</pre>
+    <p>Resultado: \(AB \neq BA\), com \(A\) e \(B\) do mesmo tamanho e os dois produtos definidos.
+    O contraexemplo é mínimo — entradas apenas \(0\) e \(1\), quatro números em cada matriz — e por
+    isso convence: não há nada de exótico nas matrizes, e ainda assim a troca de ordem muda o
+    resultado.</p>
+  </div>
+
+  <p>Há uma segunda leitura do produto, e ela explica por que a definição é linha por coluna. Se
+  \(x\) é uma coluna de \(n\) entradas e \(A\) é \(m \times n\), então \(Ax\) é uma coluna de \(m\)
+  entradas cuja entrada \(i\) é exatamente o lado esquerdo da equação \(i\) do sistema cuja matriz
+  dos coeficientes é \(A\). Multiplicar \(A\) por \(x\) é calcular todos os lados esquerdos de uma
+  vez. A regra linha por coluna não foi escolhida por gosto: ela é a operação que reproduz o
+  sistema.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro comum é começar a multiplicar antes de conferir as dimensões. Escrever "\(A\) é
+    \(m \times n\), \(B\) é \(n \times p\)" e só então decidir qual produto existe custa uma linha
+    de papel e economiza a conta inteira. Quando as internas não batem, o produto não é zero nem
+    vazio: ele não está definido. E quando batem nos dois sentidos, os resultados podem ter tamanhos
+    diferentes, como no Exemplo 1 — o que já exclui a igualdade sem nenhuma multiplicação.</p>
+  </div>
+
+  <p>A consequência é operacional. Toda conta matricial que transporte um fator de um membro para
+  outro precisa dizer de que lado se multiplica: à esquerda ou à direita. As duas escolhas dão
+  resultados diferentes, e é por isso que não existe "passar dividindo". De \(AB = AC\) não se
+  conclui \(B = C\) sem mais nada; o que devolve a cancelabilidade é a matriz inversa, e ela só
+  existe em condições que precisam ser enunciadas com cuidado.</p>
+
+  <p>Vale separar duas propriedades que, nos números, andam sempre juntas. A troca de ordem é
+  proibida: \(AB \neq BA\) em geral. O agrupamento não é: \(A(BC) = (AB)C\) sempre que os produtos
+  existem. A conta matricial é, portanto, associativa e não comutativa — e é a segunda metade dessa
+  frase que obriga a escrever o lado em toda operação de transporte.</p>
+
+  <p>A identidade é o caso em que nada disso aparece: \(AI = IA = A\) para toda \(A\) de tamanho
+  compatível. É porque a identidade comuta com todas as matrizes que ela pode servir de modelo para
+  o que a inversa faz — e é por isso que a inversa é definida pelos dois lados, e não por um só.</p>
+
+  <p>Com o produto definido, a matriz deixa de ser apenas uma forma de escrever sistema e passa a
+  ser um objeto algébrico, com operação e regras próprias. Os exercícios de
+  <a class="ref" href="#s-1-18">1.18</a> repetem as fichas resolvidas até aqui com números
+  trocados: o 4×4 que já vem triangular, o 4×4 que morre na primeira coluna e os dois pares de
+  matrizes cujo produto depende da ordem.</p>
+</section>
