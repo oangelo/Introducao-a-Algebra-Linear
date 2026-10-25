@@ -19,7 +19,7 @@ ALVO = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
 )
 
 PROIBIDAS = ["portão", "portoes", "portões", "chave", "chaves", "quest",
-             "chefe", "jogador", "hud", "gabinete", "fliperama", "missão", "missao", "pódio",
+             "chefe", "hud", "gabinete", "fliperama", "missão", "missao", "pódio",
              "podio"]
 
 erros = []

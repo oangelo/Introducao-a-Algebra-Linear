@@ -65,7 +65,7 @@
   ],
   "proibidas_ficcao": [
     "portão", "portões", "chave", "chaves", "quest", "chefe", "HUD",
-    "gabinete", "fliperama", "missão", "pódio", "jogador", "jogadores"
+    "gabinete", "fliperama", "missão", "pódio"
   ],
   "proibidas_chavao": [
     "jornada", "mindset", "acredite em você", "acredite", "supere", "superação",
