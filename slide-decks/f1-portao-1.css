@@ -1,0 +1,210 @@
+/* f1-portao-1.css — chrome do Portão 1 (noir). Só classes; zero style inline no HTML.
+   Paleta: preto de sala fechada, âmbar de lâmpada de mesa, papel envelhecido. */
+
+:root {
+  --fundo: #0a0a0c;
+  --fundo2: #121216;
+  --papel: #ece7dc;
+  --ambar: #d99a2b;
+  --ambar-fraco: #7a5a1c;
+  --cinza: #8a8a92;
+  --vermelho: #b4423a;
+}
+
+html, body { background: var(--fundo); }
+
+.reveal {
+  font-family: 'VT323', monospace;
+  color: var(--papel);
+  font-size: 34px;
+}
+
+.reveal .slides { text-align: left; }
+.reveal .slides section { padding: 0 1.2em; }
+
+/* ---------- HUD ---------- */
+.hud {
+  position: absolute;
+  top: 0.55em;
+  left: 1.2em;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.36em;
+  letter-spacing: 0.08em;
+  color: var(--ambar);
+  text-transform: uppercase;
+}
+.hud b { color: var(--papel); font-weight: normal; }
+.hud .apagado { color: var(--cinza); }
+
+/* ---------- tipografia ---------- */
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Press Start 2P', monospace;
+  color: var(--papel);
+  text-transform: uppercase;
+  line-height: 1.35;
+  margin: 0 0 0.35em 0;
+}
+.reveal h1 { font-size: 1.5em; letter-spacing: 0.02em; }
+.reveal h2 { font-size: 0.78em; color: var(--ambar); }
+.reveal h3 { font-size: 0.5em; color: var(--cinza); }
+
+.frase {
+  font-size: 1.5em;
+  line-height: 1.15;
+  max-width: 22em;
+}
+.frase em { color: var(--ambar); font-style: normal; }
+
+.missao { font-size: 0.62em; color: var(--cinza); max-width: 26em; }
+
+.rot {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.32em;
+  letter-spacing: 0.1em;
+  color: var(--ambar);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.9em;
+}
+
+.nota { font-size: 0.5em; color: var(--cinza); }
+.nota b { color: var(--papel); font-weight: normal; }
+
+/* ---------- o problema (enunciado que vai ao quadro) ---------- */
+.problema {
+  border-left: 6px solid var(--ambar);
+  padding: 0.35em 0 0.35em 0.7em;
+  font-size: 0.9em;
+  max-width: 26em;
+}
+.problema .enunciado { font-size: 0.62em; color: var(--cinza); display: block; margin-bottom: 0.5em; }
+.problema .conta { font-size: 1em; }
+
+/* ---------- matrizes desenhadas em HTML (pivô, aumento) ---------- */
+.sistema { display: flex; align-items: center; gap: 0.35em; margin: 0.35em 0; }
+.mat { display: inline-grid; gap: 0.12em; }
+.mat.cols1 { grid-template-columns: repeat(1, 2.2em); }
+.mat.cols2 { grid-template-columns: repeat(2, 2.2em); }
+.mat.cols3 { grid-template-columns: repeat(3, 2.2em); }
+.mat.cols4 { grid-template-columns: repeat(4, 2.2em); }
+.mat span {
+  text-align: center;
+  padding: 0.12em 0;
+  color: var(--papel);
+  border-bottom: 1px solid #1e1e24;
+}
+.mat span.pivo { color: var(--ambar); border-bottom: 2px solid var(--ambar); }
+.mat span.zero { color: #4a4a52; }
+.mat span.livre { color: var(--cinza); border-bottom-style: dashed; }
+.barra {
+  width: 2px;
+  align-self: stretch;
+  background: var(--cinza);
+  margin: 0 0.1em;
+}
+
+/* ---------- fechadura ---------- */
+.fechadura { display: flex; gap: 0.28em; margin-top: 1.2em; }
+.furo {
+  width: 0.85em; height: 0.85em;
+  border: 3px solid var(--ambar-fraco);
+  border-radius: 50%;
+  display: inline-block;
+}
+.furo.on {
+  background: var(--ambar);
+  border-color: var(--ambar);
+  box-shadow: 0 0 12px var(--ambar);
+}
+
+/* ---------- três casos do plano ---------- */
+.casos { display: flex; gap: 1.1em; align-items: flex-start; }
+.caso { text-align: center; }
+.caso svg { width: 3.6em; height: 3.6em; }
+.caso .legenda {
+  display: block;
+  font-size: 0.42em;
+  color: var(--cinza);
+  max-width: 7em;
+  margin-top: 0.3em;
+}
+.caso .legenda b { color: var(--papel); font-weight: normal; display: block; }
+.plano-eixo { stroke: #2a2a33; stroke-width: 2; }
+.plano-reta { stroke: var(--ambar); stroke-width: 4; fill: none; }
+.plano-reta2 { stroke: var(--cinza); stroke-width: 3; fill: none; }
+.plano-ponto { fill: var(--papel); }
+
+/* ---------- cena (imagem gerada) ---------- */
+.cena { display: block; width: 100%; height: 78vh; object-fit: cover; }
+.cena-frase {
+  position: absolute;
+  bottom: 1.1em;
+  left: 1.2em;
+  font-size: 0.78em;
+  max-width: 18em;
+  text-shadow: 0 2px 10px #000;
+}
+.veu { position: absolute; inset: 0; background: rgba(6, 6, 8, 0.62); }
+.veu-texto { position: absolute; bottom: 1.4em; left: 1.2em; font-size: 0.72em; max-width: 20em; }
+
+/* ---------- pausa (sobreposição) ---------- */
+.pausa {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 6, 8, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.pausa p { font-size: 1.25em; max-width: 16em; }
+.pausa p em { color: var(--ambar); font-style: normal; }
+
+/* ---------- mapa de blocos ---------- */
+.blocos { display: flex; gap: 0.5em; flex-wrap: wrap; }
+.bloco-cx {
+  border: 2px solid #26262e;
+  padding: 0.4em 0.6em;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.34em;
+  color: var(--cinza);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.bloco-cx.on { border-color: var(--ambar); color: var(--papel); }
+
+/* ---------- duas colunas de contraste ---------- */
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.duas .col h3 { color: var(--cinza); }
+.duas .col.errado h3 { color: var(--vermelho); }
+.duas .col.certo h3 { color: var(--ambar); }
+
+/* ---------- retomar ---------- */
+.retomar {
+  position: absolute;
+  bottom: 1.2em;
+  right: 1.2em;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.32em;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--ambar);
+  border: 2px solid var(--ambar-fraco);
+  padding: 0.7em 0.9em;
+  cursor: pointer;
+  display: none;
+  text-transform: uppercase;
+}
+.retomar.visivel { display: block; }
+.retomar:hover { border-color: var(--ambar); color: var(--papel); }
+
+/* ---------- fecho da fase ---------- */
+.chave {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+}
+.chave .frase { font-size: 1.3em; }
+
+/* MathJax um pouco maior para projeção */
+.reveal .MathJax { font-size: 1.05em; }
