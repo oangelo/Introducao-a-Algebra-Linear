@@ -1,0 +1,2430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistemas e matrizes · capítulo 1</title>
+<meta name="description" content="Como se sabe que algo funciona — e o que é, de fato, a solução de um sistema.">
+<link rel="stylesheet" href="tema.css">
+</head>
+<body class="leitura">
+
+<header class="capa">
+  <img src="../img/c1-teoria.png" alt="Quarto escuro à noite; um jovem de costas, sentado no chão diante do monitor aceso, controle na mão.">
+  <div class="texto">
+    <p class="kicker">Capítulo 1 · Álgebra Linear</p>
+    <h1>Sistemas e matrizes</h1>
+    <p class="sub">Como se sabe que algo funciona — e o que é, de fato, a solução de um sistema.</p>
+    <p class="autor">Prof. Angelo Mondaini Calvão · IPRJ/UERJ</p>
+  </div>
+</header>
+
+<main class="coluna">
+
+<figure class="cena">
+  <img src="../img/c1-teoria.png" alt="Quarto escuro, monitor aceso, um jovem de costas sentado no chão com o controle na mão." loading="lazy" decoding="async">
+  <figcaption>Todo mundo tem uma teoria de como jogar melhor.</figcaption>
+</figure>
+
+<figure class="cena">
+  <img src="../img/c2-madrugada.png" alt="A mesma sala, mais tarde: ele caído com a cabeça sobre os braços na mesa, caneca vazia, monitor ainda aceso." loading="lazy" decoding="async">
+  <figcaption>A dele era virar a noite.</figcaption>
+</figure>
+
+<figure class="cena">
+  <img src="../img/c3-vitoria.png" alt="Ele de costas, os dois braços erguidos diante da tela azul do fliperama, que mostra WIN!." loading="lazy" decoding="async">
+  <figcaption>Funcionou uma vez. Isso não é evidência.</figcaption>
+</figure>
+
+<!-- fonte: CAPITULO-1.md §1–4 e §7; STORYBOARD-CAP1.md §1–2 -->
+<section class="sec" id="s-abertura">
+  <h2>Como se sabe que algo funciona</h2>
+
+  <p>Um rapaz tinha uma teoria sobre como passar de um trecho difícil: virar a noite. Não era uma
+  ideia que ele defendia numa conversa — era o que ele fazia. Chegava em casa, comia de pé,
+  sentava diante do monitor e continuava até o corpo desistir antes dele. Numa dessas noites, às
+  quatro da manhã, ele venceu. A tela mudou, ele ergueu os dois braços sozinho no quarto e, naquele
+  instante, sem anotar nada em lugar nenhum, concluiu o que quase todo mundo conclui: a teoria
+  funcionava.</p>
+
+  <p>Uma vitória é um ponto, e um ponto não separa o que ele mudou do que já estava lá. Naquela
+  noite ele tinha dormido à tarde, já conhecia metade do caminho, e o trecho final saiu fácil por
+  acaso. Qualquer uma dessas coisas explica o resultado. Ele deu o crédito a uma só — a que tinha
+  escolhido antes de sentar. É essa a parte que passa despercebida: a conclusão estava pronta antes
+  de a noite começar. Quem aposta numa explicação e ganha uma vez não aprendeu nada sobre a
+  explicação; aprendeu que ganhou.</p>
+
+  <p>O que desmonta essa conclusão não é desconfiança: são cinco perguntas. Comparado com quê? Quem
+  venceu sem virar a noite diria se a noite teve peso. Mudou mais de uma coisa ao mesmo tempo? Se
+  ele também trocou o controle, ou começou a anotar os trechos, não há como saber qual das
+  mudanças venceu. Quem não mudou nada, para servir de régua? Sem esse grupo, o resultado de quem
+  mudou se confunde com a passagem do tempo. Quantas vezes isso foi observado? Uma noite é um
+  caso; trinta noites ainda podem ser trinta noites de sorte, mas já são uma amostra. E a diferença
+  observada é maior do que o acaso produziria? Essa é a mais difícil, porque exige medir o que
+  varia sozinho — o cansaço, o dia, o adversário — antes de comparar com o tamanho do efeito.</p>
+
+  <p>Parece um erro de quem joga à noite, e não é. Em 1998, Baumeister, Bratslavsky, Muraven e Tice
+  publicaram um experimento que virou teoria: numa sala com biscoitos recém-assados, um grupo
+  comia biscoito e o outro era obrigado a comer rabanete e resistir. Depois, os dois grupos
+  tentavam uma tarefa difícil, e o grupo do rabanete desistia antes. A conclusão foi que força de
+  vontade é um combustível finito: gasta-se numa tarefa e falta na outra. Virou livro, virou
+  conselho de produtividade, virou aula. Em 2016, Hagger e colaboradores repetiram o experimento
+  em 23 laboratórios, com protocolo padronizado e pré-registro, 2.141 participantes. O efeito
+  medido foi \(d = 0{,}04\), com intervalo de confiança de 95% de \([-0{,}07;\ 0{,}15]\). O
+  intervalo contém o zero. Não é que o efeito seja pequeno: é que ele não se distingue de nada.</p>
+
+  <div class="obs">
+    <b>Observação.</b> O experimento de 1998 não foi fraude. Foi um resultado real, medido num
+    grupo pequeno, que não sobreviveu à repetição. Publicado não quer dizer verdadeiro; quer dizer
+    publicado.
+  </div>
+
+  <p>A frase que fecha essa história é curta e vale para tudo o que vem depois: antes de saber o
+  que funciona, saiba como se sabe. Ela serve para conselho de estudo, para vídeo de internet e
+  para o que este curso recomenda — inclusive para o que este curso já recomendou e estava errado,
+  porque a mesma régua que reprova o vizinho reprova quem ensina.</p>
+
+  <p>A matemática deste capítulo começa nesse ponto exato. Aqui, a primeira coisa que funciona de
+  verdade não é um truque que deu certo uma vez: é uma solução que satisfaz todas as condições ao
+  mesmo tempo. Uma equação linear é uma condição sobre números; um sistema é um conjunto delas; e
+  resolver o sistema é encontrar o ponto que cumpre todas de uma vez — não a maioria, não a que
+  parece razoável. Um terno \((x; y; z)\) que satisfaz duas das três equações não resolve o
+  sistema. A partir de <a class="ref" href="#s-1-5">1.5</a>, essa exigência deixa de ser uma
+  observação e vira a definição com que o resto do capítulo trabalha.</p>
+</section>
+
+<figure class="cena">
+  <img src="../img/c7-palco.png" alt="Díptico do mesmo palco: à esquerda um homem de costas ergue um livro grosso diante de quatro pessoas; à direita o palco vazio e uma pilha alta de papéis." loading="lazy" decoding="async">
+  <figcaption>O que funciona não é o que se divulga.</figcaption>
+</figure>
+
+<figure class="cena">
+  <img src="../img/c9-colunas.png" alt="Caderno aberto visto de cima sob luz de luminária, três fileiras de marcas de contagem em grupos de cinco, e uma marca avulsa circulada a lápis vermelho." loading="lazy" decoding="async">
+  <figcaption>A diferença é maior do que o acaso?</figcaption>
+</figure>
+
+<!-- fonte: f1-matematica.html §1.1 -->
+<section class="sec" id="s-1-1">
+  <h2><span class="num">1.1</span>Equação linear</h2>
+
+  <p>A equação \(2x + y - z = 7\) tem três incógnitas e, diante delas, quatro números: \(2\), \(1\),
+  \(-1\) e \(7\). As letras dizem quais são as incógnitas; os números dizem o resto. Duas equações
+  com a mesma lista de coeficientes, na mesma ordem, e o mesmo termo independente são a mesma
+  equação — ainda que as incógnitas se chamem \(u, v, w\) em vez de \(x, y, z\). É essa separação
+  entre o nome da incógnita e o número que a acompanha que permite, mais adiante, escrever só os
+  números.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Uma <b>equação linear</b> nas incógnitas \(x_1, x_2, \dots, x_n\) é toda equação que pode ser
+    escrita na forma</p>
+    \[ a_1x_1 + a_2x_2 + \dots + a_nx_n = b, \]
+    <p>com \(a_1, \dots, a_n\) e \(b\) constantes reais. Os números \(a_1, \dots, a_n\) são os
+    <b>coeficientes</b> e \(b\) é o <b>termo independente</b>. Dizer que a equação é linear é o
+    mesmo que dizer que cada incógnita aparece elevada a \(1\), sozinha, multiplicada apenas por
+    uma constante — ou, com outras palavras, que a equação é de primeiro grau em cada incógnita.</p>
+  </div>
+
+  <p>Nada na definição obriga os coeficientes a serem diferentes de zero. A equação
+  \(0x_1 + 0x_2 = 0\) está na forma, e é a equação que não impõe restrição alguma; já
+  \(0x_1 + 0x_2 = 1\) também está na forma, e não tem solução nenhuma. As duas aparecem no fim de
+  qualquer escalonamento, disfarçadas de linha \(0 = 0\) e de linha \(0 = c\). Se a definição
+  exigisse coeficientes não nulos, essas linhas ficariam sem nome — e é por terem nome que se pode
+  dizer, olhando só a forma da matriz, que o sistema já acabou (ver <a class="ref"
+  href="#s-1-12">1.12</a>).</p>
+
+  <p>O índice em \(x_1, \dots, x_n\) não é enfeite: ele amarra cada coeficiente à sua incógnita.
+  Trocar duas incógnitas de lugar no texto de uma equação é trocar duas colunas de coeficientes, e
+  isso muda o significado, ainda que a quantidade de números seja a mesma. Por isso a forma padrão
+  fixa uma ordem, e a mantém até o fim do cálculo. Uma solução também vem nessa ordem: a
+  \(n\)-upla \((x_1, x_2, \dots, x_n)\), não o conjunto de valores soltos.</p>
+
+  <h3>O teste da forma</h3>
+
+  <p>O teste é a forma, não a aparência: pergunte se a equação <b>pode ser escrita</b> como
+  \(a_1x_1 + \dots + a_nx_n = b\). Somar a mesma quantidade aos dois lados, multiplicar os dois
+  lados por uma constante não nula e reduzir termos semelhantes são manobras permitidas, porque são
+  reversíveis e não mudam o conjunto de soluções. Por esse teste, \(2(x + y) = 3x - 1\) é linear:
+  desenvolvendo e passando tudo para a esquerda, fica \(-x + 2y = -1\). E \(x(x - 1) = x^2 + y\)
+  também é: o \(x^2\) cancela dos dois lados e sobra \(x + y = 0\). Nenhuma das duas parece linear
+  à primeira vista, e as duas são.</p>
+
+  <p>A recíproca vale igualmente: aparência de linear não garante nada. Elevar os dois lados ao
+  quadrado, multiplicar por expressão que contém incógnita, tirar a raiz de um lado — cada uma
+  dessas manobras pode acrescentar ou perder soluções, e nenhuma é reversível sem hipótese extra.
+  Elevar ao quadrado, por exemplo, transforma \(x = 3\) em \(x^2 = 9\), que também aceita
+  \(x = -3\): uma solução virou duas. O teste exige que a equação final tenha a forma da definição
+  <i>e</i> o mesmo conjunto-solução da original. Quando uma das duas condições falha, a equação não
+  é linear, por mais simples que pareça.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>São lineares: \(2x + y - z = 7\); \(x_1 - 3x_2 = 0\); \(y = 4\) (o coeficiente de \(x\) é
+    zero, e isso é permitido); \(0x + 0y = 0\).</p>
+    <p>Não são: \(xy = 1\), porque há produto de duas incógnitas; \(x^2 + y = 3\), porque há
+    incógnita ao quadrado; \(\operatorname{sen} x = 0\), porque a incógnita aparece dentro de uma
+    função que não é da forma \(ax\); e \(\frac{1}{x} + y = 2\), porque a incógnita está no
+    denominador.</p>
+    <p>Nos quatro casos, nenhuma manipulação leva à forma da definição. Não é falta de paciência
+    algébrica: é impossível, e cada um falha por um motivo diferente — produto, potência, função,
+    denominador.</p>
+    <p>O caso de uma incógnita só serve de medida. \(3x = 9\) é linear e tem uma única solução;
+    \(|x| = 1\) não é linear e tem duas. Duas soluções já denunciam que a equação saiu da forma
+    \(ax = b\): nesta, coeficiente nulo dá nenhuma ou todas, e coeficiente não nulo dá exatamente
+    uma.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Nem toda equação chega na forma padrão; algumas precisam ser arrumadas. Em
+    \(3(y - 1) = 2x + 5\), desenvolvendo vem \(3y - 3 = 2x + 5\) e, com tudo de um lado,
+    \(2x - 3y = -8\). Em \(5 - \frac{x}{2} = y\), multiplicando por \(2\) (constante não nula, logo
+    permitido) vem \(10 - x = 2y\), ou \(x + 2y = 10\). As duas são lineares; o que mudou foi só a
+    arrumação.</p>
+    <pre class="conta">  3(y − 1) = 2x + 5              5 − x/2 = y
+      3y − 3 = 2x + 5            10 − x = 2y
+   −2x + 3y = 8                 −x − 2y = −10
+    2x − 3y = −8                 x + 2y = 10</pre>
+    <p>Vale a pena arrumar sempre na mesma ordem — \(x\) antes de \(y\), coeficientes à esquerda,
+    constante à direita — porque é essa ordem que a matriz vai repetir. Equação arrumada de dois
+    jeitos diferentes gera matrizes diferentes para o mesmo problema.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>A tentação é limpar denominadores antes de testar. A equação \(\frac{x + y}{x} = 1\) parece
+    virar \(x + y = x\), isto é, \(y = 0\) — linear. Não é. Multiplicar por \(x\) não é manobra
+    permitida, porque \(x\) pode ser zero e a equação original não está definida ali. O
+    conjunto-solução dela é \(\{(x, 0) : x \neq 0\}\), que não é reta nenhuma: é uma reta com um
+    ponto arrancado.</p>
+    <p>A regra que sobra: mover parcelas e reduzir termos, sim; multiplicar por expressão que
+    contém incógnita, não. Denominador com incógnita é sinal de que a equação não é linear, e
+    tratá-la como se fosse acrescenta soluções que o problema não tem. O mesmo raciocínio vale para
+    raiz de incógnita: \(\sqrt{x} = y\) não é linear, e elevá-la ao quadrado dá \(x = y^2\), que
+    também não é — e que muda o conjunto-solução, porque a primeira exige \(y \geq 0\) e a segunda
+    não exige nada disso.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Quando o termo independente é zero, a equação chama-se <b>homogênea</b>, e
+    a \(n\)-upla de zeros sempre a satisfaz: todos os produtos dão zero. Nada disso vale para
+    \(b \neq 0\), em que a \(n\)-upla de zeros nunca é solução. A distinção parece pequena aqui e
+    decide sistemas inteiros mais adiante.</p>
+    <p>Também vale fixar o vocabulário de uma vez: <i>incógnita</i> é a letra, <i>coeficiente</i> é
+    o número que a multiplica, <i>termo independente</i> é o número que fica sozinho. Três palavras
+    para três objetos distintos — e a frase "o coeficiente de \(y\) é zero" só faz sentido porque
+    eles são distintos.</p>
+  </div>
+
+  <p>O nome não é metáfora. Em duas incógnitas, o conjunto de pares que satisfaz a equação é uma
+  reta — e é assim que a Geometria Analítica o desenha há séculos. Em três, o objeto correspondente
+  é um plano; acima disso não há figura com nome. A equação, porém, é sempre a mesma forma: uma
+  soma de múltiplos das incógnitas igualada a uma constante. O que muda de uma dimensão para outra
+  não é a equação, é o desenho — e é no desenho que a Geometria Analítica se apoiou. Convém começar
+  pelo único caso em que ainda se pode apontar para a figura, que é o da reta:
+  <a class="ref" href="#s-1-2">1.2</a>.</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.2 -->
+<section class="sec" id="s-1-2">
+  <h2><span class="num">1.2</span>A reta da geometria analítica</h2>
+
+  <p>Antes de tratar de sistemas com \(n\) incógnitas, vale voltar ao único caso que se vê. Na
+  Geometria Analítica, a equação \(ax + by = c\), com \(a\) e \(b\) não ambos nulos, é uma
+  <b>reta</b> do plano. O par \((a, b)\) dá a direção perpendicular à reta — é o vetor normal —, e o
+  número \(c\) escolhe, entre todas as retas paralelas de mesma normal, qual delas é esta. Os dois
+  papéis são independentes: mudar \((a, b)\) gira a reta, mudar \(c\) a desloca sem girar.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>O <b>conjunto-solução</b> da equação \(ax + by = c\), com \((a, b) \neq (0, 0)\), é</p>
+    \[ S = \{(x, y) \in \mathbb{R}^2 : ax + by = c\}, \]
+    <p>e esse conjunto é uma reta do plano, com <b>infinitos</b> pontos. A razão é direta: se
+    \(a \neq 0\), para cada valor escolhido de \(y\) sai um valor de \(x\), a saber
+    \(x = (c - by)/a\); se \(a = 0\), então \(b \neq 0\) e o papel das duas se inverte.</p>
+  </div>
+
+  <p>Uma equação, então, nunca marca um ponto. Ela elimina uma direção de escolha e deixa a outra
+  livre — e é essa liberdade que produz os infinitos pontos da reta. Isso precisa estar claro antes
+  do próximo passo, porque o ponto único, quando aparece, não vem de uma equação: vem do encontro
+  de duas.</p>
+
+  <p>Os casos extremos ajudam a fixar a leitura de \((a, b)\). Quando \(b = 0\), a equação vira
+  \(ax = c\), ou \(x = c/a\): é a reta vertical, em que \(x\) está determinado e \(y\) é livre.
+  Quando \(a = 0\), vira \(by = c\), ou \(y = c/b\): reta horizontal, com \(x\) livre. A regra da
+  normal continua valendo nos dois — em \(x = 3\) a normal é \((1, 0)\), apontando para a direita,
+  e a reta é vertical, como tem de ser. Nenhum dos dois casos é exceção; são só retas com uma
+  direção particular.</p>
+
+  <h3>Resolver é perguntar pela interseção</h3>
+
+  <p>Um sistema de duas equações nas incógnitas \(x\) e \(y\) é um par de retas. A solução do
+  sistema é o par que satisfaz as duas ao mesmo tempo, isto é, o ponto que está nas duas — a
+  <b>interseção</b>. Resolver o sistema e achar a interseção das duas retas são a mesma tarefa,
+  dita em duas linguagens.</p>
+
+  <p>Duas retas do plano só podem se encontrar de três maneiras, e não há uma quarta: cruzarem-se
+  num ponto, serem a mesma reta, ou serem paralelas e distintas. A lista é completa porque cada
+  reta tem uma direção só, e duas direções ou coincidem ou são diferentes — não há terceira
+  possibilidade de inclinação. Traduzindo para conjuntos: a interseção é um ponto, é a reta inteira,
+  ou é vazia. É a primeira aparição de uma contagem que vai valer para todo o capítulo — zero, uma
+  ou infinitas soluções.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Os três casos, com os números que vão ao quadro. Cada linha é um sistema: no primeiro, as
+    duas retas se cruzam; no segundo e no terceiro, as duas equações têm a mesma normal e diferem
+    apenas na constante.</p>
+    <pre class="conta">cruzam    :  2x +  y = 7   e   x −  y = 2      →  (3; 1)
+coincidem :   x +  y = 3   e  2x + 2y = 6      →  a reta inteira
+paralelas :   x +  y = 3   e  2x + 2y = 7      →  vazio</pre>
+    <p>No primeiro caso, \((3; 1)\) satisfaz as duas equações: \(2 \cdot 3 + 1 = 7\) e
+    \(3 - 1 = 2\). No segundo, a segunda equação é a primeira multiplicada por \(2\), de modo que
+    todo par que satisfaz uma satisfaz a outra: não há duas retas, há uma escrita duas vezes. No
+    terceiro, dividir \(2x + 2y = 7\) por \(2\) dá \(x + y = 3{,}5\), que pede soma \(3{,}5\) onde a
+    outra pede \(3\) — nenhum par faz as duas coisas.</p>
+  </div>
+
+  <p>O que decide entre os três casos é a comparação das duas linhas de coeficientes. Se
+  \((a_2, b_2)\) não é múltiplo de \((a_1, b_1)\), as retas têm direções diferentes e se cruzam num
+  ponto só. Se é múltiplo — digamos \((a_2, b_2) = k(a_1, b_1)\) —, as retas são paralelas; aí a
+  constante decide: quando \(c_2 = k c_1\), é a mesma reta e há infinitas soluções; quando
+  \(c_2 \neq k c_1\), são paralelas distintas e não há solução. Nos números acima, \(k = 2\) nos
+  dois últimos casos, e \(6 = 2 \cdot 3\) contra \(7 \neq 2 \cdot 3\).</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> A condição "as normais não são múltiplas" pode ser escrita sem dividir
+    nada: \(a_1b_2 - a_2b_1 \neq 0\). Essa quantidade é nula exatamente quando as duas linhas de
+    coeficientes são proporcionais, e é ela que mais tarde recebe o nome de determinante. Por ora
+    basta o critério: deu diferente de zero, um ponto; deu zero, ou nenhuma solução ou infinitas, e
+    quem separa os dois é a constante.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Confira candidatos contra o primeiro sistema, \(2x + y = 7\) e \(x - y = 2\). Para
+    \((3; 1)\): \(2 \cdot 3 + 1 = 7\) e \(3 - 1 = 2\), as duas certas. Para \((1; 3)\):
+    \(2 \cdot 1 + 3 = 5\), errado já na primeira. Para \((0; 7)\): \(2 \cdot 0 + 7 = 7\), certa, mas
+    \(0 - 7 = -7 \neq 2\). O par \((0; 7)\) está na primeira reta e fora da segunda.</p>
+    <p>Esse último caso é o que interessa: um par pode satisfazer uma equação e falhar na outra, e
+    então não é solução de nada. Satisfazer uma equação é condição necessária, nunca suficiente. É
+    por isso que o teste de um candidato se faz nas duas equações, sem escolher a mais fácil, e é
+    por isso que ele não substitui o método: testar serve para conferir, não para descobrir.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro que se ouve em toda turma: "retas paralelas dão infinitas soluções". Não dão nenhuma.
+    Paralelas distintas não têm ponto em comum, e o conjunto-solução do sistema é vazio — a
+    resposta é que <i>não existe</i> par que sirva, e isso é uma resposta, não uma desistência.</p>
+    <p>Quem dá infinitas soluções é o outro caso: retas <b>coincidentes</b>, em que uma equação é
+    múltipla da outra inclusive na constante. A confusão vem de as duas situações terem o mesmo
+    desenho de "retas deitadas no mesmo sentido"; o que as separa é estarem uma sobre a outra ou
+    lado a lado, e isso é a constante que diz.</p>
+    <p>O erro simétrico é tratar o caso coincidente como sistema sem resposta, porque "não deu um
+    número". Deu: deu a reta inteira, e a resposta se escreve como família, um par para cada valor
+    de \(y\). Trocar as duas leituras — vazio por infinito — é o mesmo erro de sinal, escrito em
+    palavras.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Os três casos têm nome: sistema <b>possível e determinado</b> (uma
+    solução), <b>possível e indeterminado</b> (infinitas) e <b>impossível</b> (nenhuma). "Possível"
+    aqui significa apenas que o conjunto-solução não é vazio; não significa que a resposta é um
+    número.</p>
+    <p>Vale notar também o que o desenho não decide: ele mostra o tipo de resposta, não os números.
+    Olhando duas retas que se cruzam, sabe-se que há um ponto e não qual é. A conta é que dá o par
+    \((3; 1)\); a figura só confirma que existe um.</p>
+  </div>
+
+  <p>Esse é o ponto em que a linguagem de conjuntos passa a valer mais que a figura: dizer "a
+  interseção é vazia" funciona em qualquer dimensão, enquanto "as retas não se cruzam" só existe
+  enquanto houver retas para olhar. E há uma diferença de papel entre as duas linguagens que convém
+  registrar desde já: o desenho convence, a álgebra prova. Quem desenha duas retas quase paralelas
+  não distingue "se cruzam muito longe" de "nunca se cruzam", e essa diferença é justamente a que
+  separa um ponto único de conjunto vazio. Antes de abandonar o desenho, porém, é preciso fixar a
+  notação do resultado — o conjunto-solução, com seus três tamanhos possíveis e com a distinção
+  entre o elemento e o conjunto que o contém: <a class="ref" href="#s-1-3">1.3</a>.</p>
+</section>
+
+<figure class="cena">
+  <img src="../img/c4-comparar.png" alt="Díptico separado por uma barra preta: à esquerda o boneco de pé no penhasco com um bloco de interrogação; à direita o mesmo boneco caindo no vão, entre os peixes." loading="lazy" decoding="async">
+  <figcaption>Para saber, tem que comparar.</figcaption>
+</figure>
+
+<!-- fonte: f1-matematica.html §1.3 -->
+<section class="sec" id="s-1-3">
+  <h2><span class="num">1.3</span>O conjunto-solução</h2>
+
+  <p>Resolvido o sistema \(2x + y = 7\), \(x - y = 2\), o resultado que se escreve no quadro é
+  \(x = 3\), \(y = 1\). Está certo, e mesmo assim não é a resposta: a resposta é o <b>conjunto</b>
+  cujo único elemento é o par \((3; 1)\). A diferença parece formalidade de professor, e não é. É
+  ela que permite escrever "não há solução" sem que a frase soe como desculpa, e é ela que permite
+  escrever "há infinitas" sem ter de listar uma por uma.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Uma <b>solução</b> de um sistema nas incógnitas \(x_1, \dots, x_n\) é uma \(n\)-upla
+    \((x_1, \dots, x_n)\) que satisfaz <b>todas</b> as equações do sistema. O <b>conjunto-solução</b>
+    \(S\) é o conjunto de todas as soluções — e ele é sempre um subconjunto de
+    \(\mathbb{R}^n\).</p>
+    <p>\(\mathbb{R}^n\) é o conjunto das \(n\)-uplas ordenadas de números reais; \(\mathbb{R}^2\), o
+    plano, é o caso \(n = 2\). Ordenadas quer dizer que a posição conta: \((3; 1)\) e \((1; 3)\) são
+    pares diferentes, e só o primeiro é solução do sistema desta seção. Por isso a solução se escreve
+    sempre na mesma ordem de incógnitas adotada no enunciado.</p>
+  </div>
+
+  <p>Com essa definição, os três resultados possíveis ganham uma escrita cada, e nenhuma delas é
+  ambígua. Uma solução só: \(S = \{(3; 1)\}\), conjunto unitário. Infinitas: \(S\) é a reta, escrita
+  \(S = \{(x, y) \in \mathbb{R}^2 : x + y = 3\}\). Nenhuma: \(S = \varnothing\), o conjunto vazio.
+  A pertinência se lê com o símbolo próprio: \((3; 1) \in S\) quando o par satisfaz; e, para o
+  sistema acima, \((1; 3) \notin S\), porque \(2 \cdot 1 + 3 \neq 7\). Note o que a notação carrega:
+  dizer \(S = \varnothing\) é uma afirmação sobre o sistema e sobre o problema, não sobre quem o
+  resolveu — significa que <i>nenhum</i> par de números reais satisfaz as duas equações, e isso é um
+  resultado tão completo quanto \(S = \{(3; 1)\}\). Do mesmo modo, \(S\) infinito não é "não
+  consegui terminar": é uma resposta com forma própria, a de uma família de pares.</p>
+
+  <h3>A interseção, agora em conjuntos</h3>
+
+  <p>Cada equação do sistema tem o seu próprio conjunto-solução: \(S_1\) para a primeira, \(S_2\)
+  para a segunda, e assim por diante. A solução do sistema é o que pertence a todos eles ao mesmo
+  tempo — ou seja, a interseção:</p>
+
+  \[ S = S_1 \cap S_2 \cap \dots \cap S_m. \]
+
+  <p>Essa linha é a versão em conjuntos do que a seção anterior fazia com o desenho. Lá, duas retas
+  que se cruzam num ponto; aqui, dois conjuntos cuja interseção tem um elemento. A vantagem é que a
+  segunda versão não depende de haver figura: ela vale para \(m\) equações em \(n\) incógnitas, e
+  continua valendo quando \(m\) e \(n\) são grandes. Ela também cobre o caso extremo \(m = 1\): um
+  sistema com uma única equação tem por conjunto-solução o conjunto daquela equação, sem interseção
+  nenhuma a fazer — e é por isso que \(x + 2y - z = 3\), sozinha, já tem infinitas soluções.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Para o sistema \(2x + y = 7\), \(x - y = 2\), os conjuntos de cada equação são</p>
+    \[ S_1 = \{(x, y) \in \mathbb{R}^2 : 2x + y = 7\}, \qquad
+       S_2 = \{(x, y) \in \mathbb{R}^2 : x - y = 2\}, \]
+    <p>duas retas. A interseção é o conjunto unitário \(S_1 \cap S_2 = \{(3; 1)\}\). Já no sistema
+    \(x + y = 3\), \(2x + 2y = 6\), as duas equações descrevem a mesma reta, e a interseção é ela
+    inteira: \(S = \{(3 - y, y) : y \in \mathbb{R}\}\), com um par para cada \(y\) real.</p>
+    <p>Repare na segunda escrita: não se listam os pares, descreve-se a regra que os produz. É assim
+    que se escreve um conjunto infinito — dando a forma dos elementos, não os elementos.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>No sistema \(x + y = 3\), \(2x + 2y = 7\), o conjunto da primeira equação é
+    \(S_1 = \{(x, y) : x + y = 3\}\) e o da segunda é \(S_2 = \{(x, y) : x + y = 3{,}5\}\), duas
+    retas paralelas distintas. Nenhum par tem soma \(3\) e soma \(3{,}5\) ao mesmo tempo, de modo
+    que \(S_1 \cap S_2 = \varnothing\).</p>
+    <p>Aqui a notação faz o trabalho que a frase não faria: em vez de "as retas não se cruzam", que
+    descreve o desenho, escreve-se \(S = \varnothing\), que descreve o resultado. A segunda frase
+    continua valendo quando não há desenho possível.</p>
+  </div>
+
+  <h3>Contar soluções é medir o conjunto</h3>
+
+  <p>Contar as soluções de um sistema é perguntar quantos elementos tem \(S\), isto é, qual é a
+  cardinalidade desse conjunto. E há somente três respostas possíveis: nenhum elemento, um elemento,
+  ou infinitos. Não existe "exatamente dois", e a razão não é empírica — não é que nunca se tenha
+  visto um caso; é que ele não pode acontecer com equações lineares. A prova cabe em três linhas e
+  está em <a class="ref" href="#s-1-6">1.6</a>.</p>
+
+  <pre class="conta">S = ∅                nenhuma solução       0 elemento
+S = {(3; 1)}         uma solução           1 elemento
+S = reta             infinitas             infinitos elementos</pre>
+
+  <p>A terceira linha merece precisão: quando \(S\) é infinito, ele não é apenas "grande". No caso
+  da reta há tantos pares em \(S\) quantos números reais — a mesma quantidade de elementos que tem
+  o plano inteiro, distribuída ao longo de uma linha. Por isso "infinitas" nunca significa "muitas,
+  mas contáveis": significa que a família tem um parâmetro livre, e o parâmetro percorre
+  \(\mathbb{R}\). Quem escreve "infinitas soluções" e pensa numa lista longa ainda não entendeu o
+  objeto.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro de escrita mais comum é confundir o elemento com o conjunto: escrever \(S = (3; 1)\).
+    Parece detalhe, e não é — \((3; 1)\) é um par ordenado, \(S\) é um conjunto de pares, e um
+    conjunto não é igual a um de seus elementos. A escrita correta é \(S = \{(3; 1)\}\), e a
+    diferença aparece na hora de perguntar "quantos elementos tem \(S\)?": a resposta é \(1\), e não
+    "dois números".</p>
+    <p>O segundo erro é tomar \(\varnothing\) por "solução zero". Não é. No sistema homogêneo
+    \(x + y = 0\), \(x - y = 0\), a solução é \((0; 0)\), e o conjunto-solução é
+    \(\{(0; 0)\}\) — um conjunto com um elemento, que por acaso é o par de zeros. Vazio é vazio:
+    \(\varnothing\) não tem elemento nenhum, e \(\{(0; 0)\}\) tem um.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> A escolha de qual variável aparece na descrição do conjunto é livre, e
+    muda apenas a aparência. A reta \(x + y = 3\) pode ser escrita \(\{(3 - y, y)\}\), ou
+    \(\{(x, 3 - x)\}\), ou \(\{(3 - t, t)\}\): são o mesmo conjunto, com letras diferentes no papel de
+    parâmetro. O que não é livre é o número de parâmetros — ele é sempre \(1\), aqui, porque a reta
+    tem uma dimensão.</p>
+    <p>Esse número não se adivinha olhando a equação: ele é o número de incógnitas que sobram depois
+    de a equação fixar as outras. Em uma equação com duas incógnitas, sobra uma; com três, sobram
+    duas. Mais adiante, a forma da matriz dá essa contagem sem contar no dedo, e o critério é o
+    número de colunas sem pivô (ver <a class="ref" href="#s-1-12">1.12</a>).</p>
+  </div>
+
+  <p>Toda a contagem do capítulo depende, então, de uma pergunta que se faz ao conjunto depois de
+  encontrado: quantos elementos ele tem. E é aí que o desenho começa a faltar, porque contar
+  elementos de um conjunto em \(\mathbb{R}^2\) ainda se faz olhando, mas o curso não para em duas
+  variáveis. Em três incógnitas, \(S\) já é uma reta ou um plano do espaço, e "olhar" passa a ser um
+  ato de fé; em quatro, não há nem isso: <a class="ref" href="#s-1-4">1.4</a>.</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.4 -->
+<section class="sec" id="s-1-4">
+  <h2><span class="num">1.4</span>Por que desenhar não escala</h2>
+
+  <p>Com duas variáveis, o desenho resolve. Uma reta por equação, duas retas na mesma folha, e o
+  ponto onde elas se cruzam está ali, à vista. Com três variáveis, cada equação linear descreve um
+  <b>plano</b> no espaço, e a interseção de dois planos é, em geral, uma reta; a de três planos é,
+  em geral, um ponto. Já não é fácil de enxergar: o plano do papel obriga a projetar, e a projeção
+  comprime justamente a direção que decidiria a resposta. Com quatro variáveis não existe desenho
+  nenhum — e o curso trabalha com quatro, com cinco, com \(n\).</p>
+
+  <p>O problema não é falta de habilidade com o lápis. É que o desenho tem uma dimensão de folha e o
+  problema tem \(n\). Desenhar \(\mathbb{R}^3\) já é desenhar uma sombra de \(\mathbb{R}^3\); a
+  sombra não guarda a informação de profundidade, e é essa informação que separa "os planos se
+  encontram num ponto" de "os planos se encontram numa reta inteira" e de "não se encontram". Quem
+  decide a resposta olhando a figura está lendo uma sombra e chamando aquilo de objeto. E a sombra
+  não é só pobre: ela é seletiva, porque o olho completa o que a projeção deformou. E não há saída
+  tecnológica: a tela também é plana, e um desenho tridimensional numa tela é a mesma projeção com
+  mais recursos de cor.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Em \(\mathbb{R}^3\), a equação \(ax + by + cz = d\), com \((a, b, c) \neq (0, 0, 0)\),
+    descreve um <b>plano</b>. A trinca \((a, b, c)\) é a direção perpendicular ao plano — a normal —
+    e \(d\) escolhe, entre os planos paralelos de mesma normal, qual é este. A estrutura é a mesma da
+    reta em \(\mathbb{R}^2\): uma direção normal e uma constante que desloca.</p>
+    <p>A diferença é o que se perde de vista. A reta é um objeto de uma dimensão dentro de duas; o
+    plano é um objeto de duas dimensões dentro de três. Desenhar o primeiro exige um plano de papel;
+    desenhar o segundo já exige representar dois objetos de dimensões diferentes no mesmo plano de
+    papel, e é aí que a figura começa a mentir.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O que cada dimensão pede, em termos do que se pode desenhar:</p>
+    <pre class="conta">2 incógnitas   reta no plano          desenha-se
+3 incógnitas   plano no espaço        desenha-se mal
+4 incógnitas   —                     não há onde desenhar
+n incógnitas   —                     não há onde desenhar</pre>
+    <p>Repare que a terceira linha já não é uma questão de esforço: em \(\mathbb{R}^4\) o
+    conjunto-solução de uma equação é um objeto de três dimensões dentro de um espaço de quatro, e
+    não existe superfície de papel — nem tela — em que isso caiba sem perder o que interessa.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O caso em que a figura engana sem má-fé. Compare dois sistemas: \(x + y = 3\) com
+    \(x + y = 3\), e \(x + y = 3\) com \(x + y = 3{,}001\). No papel, com qualquer espessura de
+    traço, as retas de um e de outro são a mesma linha. As respostas, porém, são opostas: o primeiro
+    tem infinitas soluções, porque é a mesma equação escrita duas vezes; o segundo não tem nenhuma,
+    porque \(3 \neq 3{,}001\).</p>
+    <p>A diferença não é pequena, é total — e está inteira numa casa decimal que a figura não
+    distingue. O mesmo vale em \(\mathbb{R}^3\): três planos que se cruzam num ponto e três planos
+    que se cruzam numa reta comum desenham-se igual, e respondem "uma solução" e "infinitas". O que
+    separa os casos é sempre um número, nunca uma inclinação percebida a olho.</p>
+  </div>
+
+  <p>Isso não significa jogar a geometria fora. Ela continua valendo, e continua sendo o melhor
+  lugar para <b>conferir</b>: em \(\mathbb{R}^2\), depois de resolver o sistema por conta, desenhar
+  as duas retas e verificar que o par obtido está sobre as duas é uma checagem rápida e severa —
+  se o ponto não estiver na figura, a conta está errada, e não há como discutir. A conferência
+  funciona porque o desenho é independente da álgebra: dois caminhos diferentes para o mesmo
+  resultado. Vale a pena manter esse hábito enquanto ele é barato, e ele é barato só enquanto o
+  sistema tem duas incógnitas.</p>
+
+  <p>O que a geometria deixa de ser é <b>método</b>. Método é o que se aplica sempre, inclusive
+  quando não há figura; e a figura só existe em duas dimensões. A partir daqui, o caminho é
+  algébrico: guardar apenas os coeficientes, na forma de uma matriz, e aplicar sobre eles operações
+  que <b>não mudam o conjunto-solução</b>. Como essas operações são reversíveis, o conjunto do começo
+  e o do fim são o mesmo — e o do fim, por estar numa forma organizada, deixa ler a resposta
+  (ver <a class="ref" href="#s-1-8">1.8</a>). Repare no que esse argumento tem de diferente do
+  desenho: ele não depende de o problema caber em lugar nenhum. Depende apenas de que as operações
+  possam ser desfeitas, e desfazer uma conta é sempre possível, em qualquer dimensão.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>As três respostas, em \(\mathbb{R}^3\), descritas pela posição dos planos:</p>
+    <pre class="conta">um ponto comum     três planos que se cortam num ponto      uma solução
+uma reta comum     três planos em torno da mesma reta        infinitas
+nenhum ponto       dois planos paralelos e distintos         nenhuma</pre>
+    <p>A lista é a mesma da seção anterior, com planos no lugar de retas — e vai continuar sendo a
+    mesma em qualquer dimensão. O que muda de uma dimensão para outra é o nome do objeto que se
+    cruza; o que não muda é a contagem: nenhuma, uma, ou infinitas.</p>
+  </div>
+
+  <p>É por isso que a matriz existe, e é bom dizê-lo sem rodeio: ela não é uma notação mais compacta
+  para economizar giz. A matriz é o desenho que sobrevive quando não dá mais para desenhar — mesma
+  informação de antes, sem a exigência de caber numa folha. As colunas guardam as incógnitas, as
+  linhas guardam as equações, e a ordem das duas coisas continua dizendo o que dizia no desenho
+  (ver <a class="ref" href="#s-1-7">1.7</a>).</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>A armadilha é confiar no desenho justamente onde ele é mais convincente. Duas retas quase
+    paralelas: no papel elas parecem se cruzar num ponto, ou parecem não se cruzar nunca, e a
+    diferença entre as duas leituras é a diferença entre um sistema com solução única e um sistema
+    impossível. Três planos desenhados em perspectiva podem parecer convergir para um ponto quando
+    não têm ponto comum algum.</p>
+    <p>A regra prática que sai disso: o desenho pode confirmar, nunca decidir. Quando a figura e a
+    conta discordam, a conta está errada <i>ou</i> a figura está mal feita — e as duas hipóteses
+    precisam ser checadas, porque o desenho não tem autoridade para encerrar a questão.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Há um custo real em abandonar a figura, e ele é honesto: perde-se a
+    intuição imediata de "quantas soluções". Em compensação, ganha-se um critério que não depende de
+    escala — e é o critério que vale em \(\mathbb{R}^{10}\). O que a álgebra faz é substituir a
+    pergunta "quantos pontos se veem" pela pergunta "quantas colunas ficaram sem pivô", que se
+    responde contando (ver <a class="ref" href="#s-1-12">1.12</a>).</p>
+    <p>Não se trata de um caso exótico reservado a quem faz pós-graduação. Um problema com quatro
+    incógnitas aparece em qualquer balanço de massa, de corrente ou de custo com quatro parcelas, e
+    ninguém desenha nada para resolvê-lo: aplica-se a mesma sequência de operações que se aplicaria
+    a duas, com quatro colunas em vez de duas.</p>
+  </div>
+
+  <p>Resta então a tarefa que o desenho fazia sozinho: dizer, sem figura, o que é um sistema e o que
+  é a sua solução. Isso exige uma definição que não apele para interseção de retas nem para ponto
+  onde as linhas se cruzam — só para equações, incógnitas e o pertencer a um conjunto. É o que
+  permite, adiante, tratar do mesmo jeito um sistema de duas equações e um de sete, e é a razão de o
+  capítulo trocar a figura pela definição: <a class="ref" href="#s-1-5">1.5</a>.</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.5 — sistema e solução. Números das fichas A1 (2x + y = 7) e B1 (3×3). -->
+<section class="sec" id="s-1-5">
+  <h2><span class="num">1.5</span>Sistema e solução</h2>
+
+  <p>Uma equação linear isolada tem um conjunto-solução, e o capítulo já sabe descrevê-lo: uma reta
+  no plano, quando há duas incógnitas. O problema muda de natureza quando duas ou mais condições
+  precisam valer <i>ao mesmo tempo</i>. Não há mais um conjunto a escolher: há um conjunto novo,
+  formado pelo que as condições têm em comum.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Um <b>sistema de equações lineares</b> é uma lista finita de \(m\) equações lineares nas
+    mesmas incógnitas \(x_1, x_2, \dots, x_n\). Cada equação tem a forma
+    \(a_{i1}x_1 + a_{i2}x_2 + \cdots + a_{in}x_n = b_i\), para \(i = 1, \dots, m\). Os números
+    \(a_{ij}\) são os <b>coeficientes</b>; os \(b_i\), os <b>termos independentes</b>. Com \(m\)
+    equações e \(n\) incógnitas, o sistema é \(m \times n\).</p>
+  </div>
+
+  <p>A definição cobra um detalhe que passa despercebido: as incógnitas são as mesmas em todas as
+  equações, e a ordem delas é fixa. É essa ordem que permite, mais adiante, guardar apenas os
+  coeficientes numa matriz sem perder informação — a coluna passa a carregar o nome da incógnita
+  (ver <a class="ref" href="#s-1-7">1.7</a>).</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Uma <b>solução</b> do sistema é uma \(n\)-upla \((x_1, x_2, \dots, x_n)\) de números reais
+    que satisfaz <i>todas</i> as \(m\) equações. O <b>conjunto-solução</b> do sistema é o conjunto
+    dessas n-uplas. Se \(S_i\) é o conjunto-solução da \(i\)-ésima equação, então
+    \(S = S_1 \cap S_2 \cap \cdots \cap S_m\).</p>
+  </div>
+
+  <p>Note o conectivo: <i>todas</i>, não <i>alguma</i>. Em linguagem de conjuntos, \(x \in S\) se, e
+  somente se, \(x \in S_i\) para cada \(i = 1, \dots, m\). Basta uma equação não satisfeita para
+  \(x\) sair de \(S\) — e sair não é estar quase dentro. A interseção da definição não é enfeite de
+  notação: ela é a afirmação inteira.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Quando as coordenadas são números, elas se separam por ponto e vírgula —
+    \((3; 1)\), e não \((3, 1)\) — para que a vírgula fique reservada aos decimais, como em
+    \(3{,}5\). Com variáveis, como em \((x_1, x_2)\), a vírgula não cria ambiguidade e continua
+    sendo o separador.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema \(2 \times 2\) que abre os exemplos resolvidos do capítulo:</p>
+    <pre class="conta">2x + y = 7
+ x - y = 2</pre>
+    <p>O par \((3; 1)\) é solução? A pergunta só tem resposta com as duas equações conferidas:</p>
+    <pre class="conta">(3; 1)    2·3 + 1 = 7     ok    3 - 1 = 2       ok
+(4; -1)   2·4 - 1 = 7     ok    4 - (-1) = 5    falha</pre>
+    <p>O primeiro par pertence a \(S_1\) e a \(S_2\), logo pertence a \(S\). O segundo pertence
+    apenas a \(S_1\): satisfaz a primeira equação e erra a segunda por \(3\). Não é uma solução pela
+    metade — é um par que resolve outra pergunta.</p>
+  </div>
+
+  <p>No plano, o que cada equação satisfaz é uma reta, e o sistema pede o ponto em que duas retas
+  se cruzam (<a class="ref" href="#s-1-2">1.2</a>). A primeira equação descreve uma reta, a segunda
+  descreve outra, e o conjunto-solução é o único ponto comum às duas: \((3; 1)\). É a mesma
+  interseção de <a class="ref" href="#s-1-3">1.3</a>, agora com um resultado numérico.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro mais comum desta seção: resolver a primeira equação, achar um par e considerar o
+    problema encerrado. Em \(2x + y = 7\), o par \((4; -1)\) é uma resposta correta — para essa
+    equação. O que não se sabe, e é exatamente o que o sistema pergunta, é se ele também satisfaz
+    \(x - y = 2\). Com \(m\) equações há \(m\) testes, e nenhum deles é dispensável.</p>
+  </div>
+
+  <p>Resolver um sistema, portanto, não é “achar \(x\) e \(y\)”. É determinar \(S\) por completo:
+  dizer quais n-uplas pertencem e quais não. Em muitos casos \(S\) não tem um elemento só — pode
+  não ter nenhum, e pode ter infinitos, e a resposta continua sendo uma resposta
+  (<a class="ref" href="#s-1-6">1.6</a>).</p>
+
+  <p>O número de equações não decide o número de soluções. Um sistema \(1 \times 2\), como
+  \(x + y = 3\), tem infinitas; um \(2 \times 1\), como \(x = 1\) e \(x = 2\), não tem nenhuma. O
+  que decide é a relação entre as equações, e essa relação ainda não foi medida.</p>
+
+  <p>A ordem das equações também não faz parte do sistema. \(S\) é a interseção dos \(S_i\), e a
+  interseção não depende da ordem em que os conjuntos são listados: escrever as mesmas equações em
+  outra ordem dá o mesmo \(S\). Essa liberdade será usada, adiante, para escolher por onde começar a
+  redução (<a class="ref" href="#s-1-8">1.8</a>).</p>
+
+  <p>Vale registrar o caso em que a contagem é fácil. Se todos os \(b_i\) são nulos, o sistema é
+  <b>homogêneo</b>, e a n-upla \((0, 0, \dots, 0)\) sempre pertence a \(S\): zero em cada equação
+  dá zero. Um sistema homogêneo, portanto, nunca é impossível — e é a única família para a qual
+  isso se pode afirmar antes de qualquer conta.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Um sistema é <b>possível</b> (ou compatível) quando \(S \neq \varnothing\),
+    e <b>impossível</b> quando \(S = \varnothing\). “Possível” não distingue uma solução de
+    infinitas; essa distinção é o assunto da seção seguinte.</p>
+  </div>
+
+  <h3>O mesmo teste, com três equações</h3>
+
+  <p>Nada no critério depende de haver duas incógnitas ou duas equações. O sistema \(3 \times 3\)
+  dos exemplos resolvidos tem três equações, e a n-upla \((1; 2; 3)\) precisa passar nas
+  três:</p>
+
+  <pre class="conta"> x + y + z = 6
+2x - y + z = 3
+ x + 2y - z = 2</pre>
+
+  <pre class="conta">(1; 2; 3)   1 + 2 + 3 = 6     ok
+            2 - 2 + 3 = 3     ok
+            1 + 4 - 3 = 2     ok
+
+(3; 2; 1)   3 + 2 + 1 = 6     ok
+            6 - 2 + 1 = 5     falha: deveria dar 3
+            3 + 4 - 1 = 6     falha: deveria dar 2</pre>
+
+  <p>O primeiro terno passa nas três e pertence a \(S\). O segundo satisfaz a primeira equação — e
+  só a primeira. É o mesmo erro de antes, agora com uma equação a mais para conferir. O que decide
+  a pertinência é a pior das conferências, nunca a melhor.</p>
+
+  <p>A verificação, aliás, é o único teste barato que existe para uma n-upla dada: substituir e
+  comparar. Ela não resolve o sistema, mas encerra qualquer dúvida sobre uma resposta já obtida, e
+  por isso é o último passo de todo exemplo resolvido do capítulo.</p>
+
+  <p>Nada muda com quatro, cinco ou \(n\) incógnitas: a n-upla cresce, o número de conferências
+  cresce, e o critério continua o mesmo — todas as equações, sem exceção. O que cresce rápido é o
+  custo de resolver por substituição, e é por isso que o método do capítulo troca a substituição
+  pela redução sistemática.</p>
+
+  <p>Com o critério na mão, fica a pergunta de contagem: quantas n-uplas \(S\) pode ter? A resposta
+  é curta e inclui uma proibição — três casos possíveis, e um deles nunca acontece. É o que a
+  próxima seção demonstra em três linhas (<a class="ref" href="#s-1-6">1.6</a>).</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.6 — as três respostas. Números das fichas A2 e A3. -->
+<section class="sec" id="s-1-6">
+  <h2><span class="num">1.6</span>As três respostas</h2>
+
+  <p>A seção anterior definiu \(S\) e deu o teste para decidir se uma n-upla dada pertence a ele.
+  Fica a pergunta de contagem: quantos elementos \(S\) pode ter? A resposta é mais curta do que a
+  intuição sugere — e uma das possibilidades que a intuição admite está proibida.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Quanto ao conjunto-solução \(S\), um sistema é</p>
+    <ul>
+      <li><b>impossível</b>, se \(S = \varnothing\): nenhuma n-upla satisfaz as equações;</li>
+      <li><b>possível e determinado</b>, se \(S = \{p\}\) para algum \(p\): uma única solução;</li>
+      <li><b>possível e indeterminado</b>, se \(S\) é infinito: infinitas soluções.</li>
+    </ul>
+    <p>“Possível” reúne os dois últimos casos e significa apenas \(S \neq \varnothing\).</p>
+  </div>
+
+  <p>A lista é completa por um motivo banal: um conjunto é vazio, tem um elemento, ou tem pelo
+  menos dois. O que não é banal é o passo seguinte — se tem pelo menos dois, então tem infinitos.
+  É aí que a lista se fecha, e é aí que “exatamente duas soluções” deixa de existir.</p>
+
+  <h3>Por que “exatamente duas” não acontece</h3>
+
+  <p>Sejam \(u\) e \(v\) duas soluções distintas do mesmo sistema. Considere a n-upla</p>
+
+  \[ w_t = u + t(v - u) = (1 - t)u + t v, \qquad t \in \mathbb{R}. \]
+
+  <p>Para \(t = 0\) ela é \(u\); para \(t = 1\), é \(v\); para \(t = \tfrac{1}{2}\), é o ponto médio
+  entre as duas. A afirmação é que <i>todas</i> elas são soluções.</p>
+
+  <p>A verificação é uma linha por equação. Tome a \(i\)-ésima,
+  \(a_{i1}x_1 + \cdots + a_{in}x_n = b_i\). Como \(u\) e \(v\) são soluções, o lado esquerdo vale
+  \(b_i\) em cada uma delas. Em \(w_t\) ele vale</p>
+
+  \[ (1 - t)\,b_i + t\,b_i = b_i, \]
+
+  <p>porque o lado esquerdo de cada equação é linear nas incógnitas: o valor dele em \(w_t\) é a
+  mesma combinação dos valores em \(u\) e em \(v\), isto é, \((1 - t)b_i + t b_i\). Nada foi
+  suposto sobre \(i\): vale para todas as equações ao mesmo tempo, logo \(w_t \in S\).</p>
+
+  <p>Sobrou mostrar que \(t\) distintos dão n-uplas distintas. Se \(w_t = w_s\), então
+  \((t - s)(v - u) = 0\). Como \(v - u \neq 0\), por serem soluções distintas, resta \(t = s\).
+  Cada \(t\) real dá um ponto diferente, e há tantos \(t\) quantos números reais.</p>
+
+  <p>Em três linhas: (i) se \(u\) e \(v\) estão em \(S\), então \(u + t(v - u)\) está em \(S\) para
+  todo \(t\) real; (ii) \(t\) distintos dão pontos distintos; (iii) logo \(S\) contém uma reta
+  inteira. Não existe sistema com exatamente duas soluções: a segunda, quando aparece, chega
+  acompanhada de uma reta, e o argumento não deixa espaço para um caso intermediário.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Onde a linearidade entrou? No passo em que a combinação \(w_t\) foi
+    substituída e o lado esquerdo deu \((1 - t)b_i + t b_i\). Numa equação não linear isso falha:
+    \(x^2 = 1\) tem exatamente <i>duas</i> soluções, \(1\) e \(-1\), e a média delas, \(0\), não é
+    solução. A proibição do “exatamente dois” é um teorema sobre equações lineares, não sobre
+    equações em geral.</p>
+  </div>
+
+  <p>A consequência prática é assimétrica. Provar que \(S\) é unitário exige trabalho: é preciso
+  exibir a solução e mostrar que não há outra. Provar que \(S\) é infinito exige apenas
+  <i>duas</i> soluções distintas — quem encontra duas já encontrou infinitas.</p>
+
+  <p>Em \(\mathbb{R}^2\), os três casos têm nome geométrico, herdado do cruzamento de duas retas
+  (<a class="ref" href="#s-1-3">1.3</a>):</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>\(S\)</th>
+        <th>Sistema</th>
+        <th>Duas retas no plano</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(\varnothing\)</td>
+        <td>impossível</td>
+        <td>paralelas distintas, sem ponto comum</td>
+      </tr>
+      <tr>
+        <td>um ponto</td>
+        <td>possível e determinado</td>
+        <td>concorrentes, um único cruzamento</td>
+      </tr>
+      <tr>
+        <td>infinitos</td>
+        <td>possível e indeterminado</td>
+        <td>coincidentes, a mesma reta</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Os dois casos que não dão um número</h3>
+
+  <p>Primeiro, o sistema \(x + y = 3\), \(2x + 2y = 7\). Da primeira equação vem \(y = 3 - x\).
+  Substituindo na segunda:</p>
+
+  \[ 2x + 2(3 - x) = 6 \neq 7. \]
+
+  <p>O lado esquerdo não depende de \(x\): vale \(6\) para qualquer escolha. A segunda equação pede
+  \(7\). Não há \(x\) que resolva, e não é falta de método — é impossibilidade. O sistema é
+  impossível, \(S = \varnothing\).</p>
+
+  <p>Geometricamente: dividindo a segunda equação por \(2\), ela vira \(x + y = 3{,}5\). As duas
+  retas têm a mesma inclinação e alturas diferentes, logo são paralelas e não se cruzam. A álgebra
+  disse isso em uma linha, sem desenho nenhum.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Quando a substituição termina numa igualdade falsa, como \(6 = 7\), a conclusão é
+    \(S = \varnothing\) e o problema acaba ali. O que não se faz é continuar procurando o valor que
+    “faltou”: uma igualdade falsa entre números não tem solução, e insistir nela só produz erro de
+    sinal.</p>
+  </div>
+
+  <p>Agora o segundo, com um número trocado: \(x + y = 3\) e \(2x + 2y = 6\). A mesma substituição
+  dá</p>
+
+  \[ 2x + 2(3 - x) = 6, \]
+
+  <p>que é verdadeira para todo \(x\). A segunda equação não acrescenta informação: ela é a
+  primeira multiplicada por \(2\). Resta uma condição só, e uma condição em duas incógnitas não
+  fixa um ponto — fixa uma reta.</p>
+
+  <p>Para descrever \(S\), escolhe-se uma incógnita como parâmetro. Com \(y = t\), sai
+  \(x = 3 - t\), e</p>
+
+  \[ S = \{(3 - t;\, t) : t \in \mathbb{R}\}. \]
+
+  <p>Três valores conferem a leitura: \(t = 0\) dá \((3; 0)\); \(t = 1\), \((2; 1)\); \(t = 2\),
+  \((1; 2)\). Os três satisfazem as duas equações, e todos os pontos de \(S\) aparecem assim, porque
+  \(t\) é justamente o valor de \(y\) em cada um.</p>
+
+  <h3>Como escrever a resposta</h3>
+
+  <p>A resposta de um sistema indeterminado é o conjunto parametrizado, não uma equação solta.
+  Escrever \(x = 3 - y\) é verdadeiro e insuficiente: falta dizer que \(y\) percorre os reais e
+  falta dizer que o par é \((3 - t;\, t)\). A forma completa é a do conjunto acima.</p>
+
+  <p>O parâmetro também não é único. Com \(x = s\), sai \(y = 3 - s\) e
+  \(S = \{(s;\, 3 - s) : s \in \mathbb{R}\}\) — o mesmo conjunto, descrito a partir da outra
+  incógnita. Duas parametrizações diferentes de \(S\) não são erro; são duas escolhas de variável
+  livre.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>“Infinitas soluções” não significa que qualquer par serve. Em \(x + y = 3\), o par
+    \((2; 1)\) é solução e \((7; 7)\) não é. O conjunto é infinito, mas é uma reta — um subconjunto
+    muito fino do plano. Infinito não é sinônimo de tudo.</p>
+  </div>
+
+  <p>Fica então o problema operacional: dado um sistema, decidir qual dos três casos ocorre e, no
+  caso indeterminado, escrever o conjunto. Substituir funciona em \(2 \times 2\) e trava em
+  \(4 \times 4\), onde isolar uma incógnita suja as outras três. O caminho que escala é reduzir o
+  sistema a uma forma mais simples, e o primeiro passo é parar de reescrever as incógnitas:
+  guardar só os coeficientes, na matriz aumentada (<a class="ref" href="#s-1-7">1.7</a>).</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.7 — matriz aumentada: por que só os números -->
+<section class="sec" id="s-1-7">
+  <h2><span class="num">1.7</span>Matriz aumentada</h2>
+
+  <p>Ao resolver um sistema à mão, os nomes das incógnitas são escritos uma vez por equação e
+  depois repetidos em cada linha. Se a eliminação nunca troca o nome de uma incógnita, repetir
+  \(x\), \(y\), \(z\) nove vezes num sistema \(3 \times 3\) é trabalho que não informa nada — e é
+  justamente onde o copista se perde: um sinal trocado na terceira linha, um \(y\) que virou \(z\)
+  na segunda, e a conta segue com dois erros que se cancelam ou com um que não se cancela.</p>
+
+  <p>O que carrega o nome é a <b>coluna</b>. Fixada a ordem das incógnitas — digamos \(x\), \(y\),
+  \(z\) —, a primeira coluna é sempre o coeficiente de \(x\), a segunda o de \(y\), a terceira o de
+  \(z\). A posição basta como rótulo: nenhum número precisa andar acompanhado da letra para que se
+  saiba a que incógnita pertence. Escrever só os coeficientes não é economia de tinta; é reconhecer
+  que a informação "de quem é este coeficiente" já está na posição.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Dado um sistema linear de \(m\) equações e \(n\) incógnitas, a <b>matriz aumentada</b> do
+    sistema é a tabela de \(m\) linhas e \(n+1\) colunas em que a linha \(i\) traz, na ordem fixada
+    das incógnitas, os coeficientes da equação \(i\), e a última coluna traz o termo independente
+    dessa mesma equação. As \(n\) primeiras colunas formam a <b>matriz dos coeficientes</b>; a
+    última é a <b>coluna dos termos independentes</b>. Uma barra vertical separa as duas partes.</p>
+  </div>
+
+  <p>Chamar isso de representação, e não de resumo, é o ponto. Um resumo perde informação; aqui não
+  se perde nada. Com a ordem das incógnitas declarada, a passagem do sistema para a matriz é
+  reversível: cada linha da matriz volta a ser exatamente uma equação, com cada coeficiente no lugar
+  em que estava. A correspondência vai nos dois sentidos e é um-a-um — um sistema, com a ordem das
+  incógnitas declarada, determina uma única matriz aumentada, e uma matriz aumentada vem de um
+  único sistema. Só duas coisas precisam estar claras para que não haja ambiguidade: a ordem das
+  colunas e o lado da barra em que está cada número.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema do exemplo B1, com a matriz aumentada ao lado. Ordem das colunas: \(x\), \(y\),
+    \(z\), e depois os termos independentes.</p>
+    <pre class="conta"> x +  y +  z = 6      [  1   1   1 |  6 ]
+2x -  y +  z = 3      [  2  -1   1 |  3 ]
+ x + 2y -  z = 2      [  1   2  -1 |  2 ]</pre>
+    <p>A leitura de volta é literal: a segunda linha da matriz diz \(2x - y + z = 3\), e nada além
+    disso; a terceira diz \(x + 2y - z = 2\). Se as duas leituras coincidem com o sistema escrito, a
+    transcrição está certa; se uma delas não coincide, o erro está na transcrição, e não no sistema.
+    Três linhas e quatro colunas: a matriz é \(3 \times 4\), e a dos coeficientes é \(3 \times 3\).</p>
+    <p>O mesmo com o B2, em que a primeira equação não tem \(x\). O coeficiente zero é escrito, e a
+    coluna de \(x\) continua sendo a primeira das três.</p>
+    <pre class="conta">    y +  z = 5        [  0   1   1 |  5 ]
+ x +  y +  z = 6      [  1   1   1 |  6 ]
+ x + 2y -  z = 2      [  1   2  -1 |  2 ]</pre>
+    <p>Sem o zero, a primeira linha teria três números em vez de quatro e a matriz deixaria de ser
+    \(3 \times 4\): a coluna de \(z\) escorregaria para a posição de \(y\), e o sistema representado
+    passaria a ser outro, com outra solução.</p>
+  </div>
+
+  <p>Note o que a matriz não guarda: os sinais de soma e igualdade, os nomes das incógnitas, a
+  ordem em que as equações aparecem. Nada disso é necessário. Os sinais são reconstruídos pela
+  regra "coeficiente vezes incógnita, somando"; os nomes vêm da ordem das colunas; e a ordem das
+  equações — isto é, das linhas — pode mudar livremente, porque trocar duas equações de lugar não
+  troca o conjunto de pontos que satisfaz todas. Essa liberdade sobre as linhas, negada às colunas,
+  é a base de todo o método.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> A barra vertical não é sinal de igual nem operação alguma: é separador.
+    Ela marca a posição em que o "\(=\)" estaria se a linha fosse escrita como equação. Serve para
+    que o leitor não confunda coeficiente com termo independente — e só. Nenhum número atravessa a
+    barra em conta nenhuma; o que se move é a linha inteira, dos dois lados dela.</p>
+  </div>
+
+  <p>Vale contar colunas como conferência. Uma matriz com \(m\) linhas e \(n+1\) colunas veio de um
+  sistema de \(m\) equações e \(n\) incógnitas; um sistema de três incógnitas gera quatro colunas,
+  nem mais nem menos. Se aparecer uma quinta, a transcrição está errada. O mesmo vale para o número
+  de linhas: equações e linhas se correspondem uma a uma, e a contagem não muda ao passar de um
+  lado para o outro.</p>
+
+  <p>A matriz dos coeficientes, sozinha, não é um sistema: sem a coluna dos termos independentes
+  não há igualdade nenhuma a satisfazer. Dois sistemas diferentes podem ter a mesma matriz de
+  coeficientes e diferir apenas no último termo de cada linha — e é exatamente o que a barra deixa
+  visível. Ela impede que o número à direita do \(=\) seja somado como se fosse coeficiente de
+  alguma incógnita, erro que a forma de equação não deixa acontecer e a forma de matriz deixa.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> A ordem das colunas não está escrita em lugar nenhum da matriz. Por isso
+    a primeira linha da folha de conta traz, em geral, a ordem adotada: "colunas: \(x\), \(y\),
+    \(z\), termos independentes". É uma anotação de uma linha, e é a única informação de que um
+    leitor de fora precisa para reconstruir o sistema a partir da matriz.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>A ordem das colunas é parte da matriz, não uma escolha de apresentação. Trocar duas colunas
+    — mesmo "só para ver melhor" — troca os nomes de duas incógnitas e produz um sistema diferente.
+    A regra é simples: lê-se da esquerda para a direita, na ordem declarada no início, e essa ordem
+    não se altera até o fim do problema.</p>
+  </div>
+
+  <p>A ordem das colunas não precisa ser alfabética; precisa ser fixa. Adotar \(z\), \(x\), \(y\)
+  nessa sequência é legítimo, desde que a escolha seja declarada antes da primeira conta e mantida
+  até o fim. O que a matriz não tolera é ordem variável no meio do caminho: se a segunda coluna é
+  \(y\) nas duas primeiras linhas e \(z\) na terceira, a tabela deixou de representar um sistema
+  linear e passou a representar nada.</p>
+
+  <p>Na escrita à mão, a matriz aumentada costuma ser denotada por \([A \mid b]\), com \(A\)
+  nomeando a matriz dos coeficientes e \(b\) a coluna dos termos independentes. A notação será útil
+  mais adiante, quando for preciso falar de \(A\) e de \(b\) separadamente; por enquanto, o que
+  importa é que a barra é a fronteira entre aquilo que multiplica incógnitas e aquilo que sobra do
+  outro lado da igualdade.</p>
+
+  <p>A consequência prática disso é de disciplina, não de álgebra. Escrita a matriz, não se volta à
+  forma de equação no meio do processo. Quem reescreve as equações para "conferir" costuma
+  reintroduzir na matriz o coeficiente que já havia sido zerado, e o trabalho anterior se perde: a
+  conferência desfaz o que a conta fez. O registro fica todo em linhas, e cada operação é anotada
+  ao lado da linha que ela altera, como detalha a seção <a class="ref" href="#s-1-10">1.10</a>.</p>
+
+  <p>Abreviar tem um preço, e vale dizer qual é. A matriz não mostra, por si, quantas incógnitas
+  ficaram livres nem se o sistema é impossível: essas leituras dependem da forma que a matriz
+  assume depois de trabalhada, não da matriz inicial. O que a abreviação garante é mais modesto e
+  mais útil — que nada do sistema se perdeu no caminho, e que a conta pode ser feita só com
+  números, sem que o significado de cada coluna saia do lugar.</p>
+
+  <p>Com o sistema reduzido a uma tabela de números, o problema muda de forma: já não se pergunta
+  "que equações são estas", e sim "que movimentos nesta tabela preservam a solução". São três, e
+  todas têm a mesma propriedade — podem ser desfeitas (ver <a class="ref" href="#s-1-8">1.8</a>).</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.8 — as três operações que não mudam a solução -->
+<section class="sec" id="s-1-8">
+  <h2><span class="num">1.8</span>As três operações elementares</h2>
+
+  <p>Escrito o sistema como matriz, o problema deixa de ser "resolver equações" e passa a ser
+  "transformar linhas". Nem toda transformação serve: trocar um coeficiente por outro muda a
+  solução, e o resultado não vale mais nada. As que servem são três, e o critério que as seleciona é
+  um só — cada uma pode ser desfeita.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Sobre as linhas de uma matriz aumentada são permitidas três <b>operações elementares</b>:</p>
+    <ol class="passos">
+      <li>trocar duas linhas entre si: \(R_i \leftrightarrow R_j\);</li>
+      <li>multiplicar uma linha por um escalar não nulo: \(R_i \leftarrow cR_i\), com
+      \(c \neq 0\);</li>
+      <li>somar a uma linha um múltiplo de outra: \(R_i \leftarrow R_i + cR_j\), com
+      \(i \neq j\).</li>
+    </ol>
+  </div>
+
+  <p>A garantia de que o conjunto-solução não muda não vem de "a matriz parece a mesma coisa
+  reorganizada". Vem de um fato mais forte, e ele é o motivo de as três operações serem essas e não
+  outras: <b>se uma operação leva a matriz \(A\) na matriz \(B\), a mesma operação — ou a sua
+  inversa — leva \(B\) de volta em \(A\)</b>. Cada uma das três é, nesse sentido, reversível, e a
+  volta usa apenas operações da mesma lista.</p>
+
+  <p>Veja o inverso de cada uma. Trocar \(R_1\) com \(R_2\) se desfaz trocando \(R_1\) com \(R_2\)
+  outra vez: a operação é a sua própria inversa. Multiplicar \(R_i\) por \(c \neq 0\) se desfaz
+  multiplicando a mesma linha por \(1/c\) — e é exatamente aqui que a condição \(c \neq 0\) entra.
+  Com \(c = 0\) a linha inteira vira zero e não há como recuperar o que havia nela; a operação não
+  teria volta, e de fato ela muda o conjunto-solução sempre que a linha original não era a equação
+  \(0 = 0\). Somar \(c\) vezes \(R_j\) a \(R_i\) se
+  desfaz subtraindo \(c\) vezes \(R_j\) de \(R_i\); a linha \(R_j\), usada como fonte, não foi
+  alterada e continua disponível para a volta.</p>
+
+  <p>Reversibilidade dá as duas inclusões de uma vez, e é isso que fecha o argumento. Tome a
+  operação (iii): se uma lista de números \(x\) satisfaz as linhas \(R_i\) e \(R_j\), então satisfaz
+  também \(R_i + cR_j\), porque cada lado da igualdade nova é a soma do lado antigo com \(c\) vezes
+  o outro. Logo toda solução de \(A\) é solução de \(B\). Na direção contrária, se \(x\) satisfaz
+  \(R_i + cR_j\) e satisfaz \(R_j\) — que não mudou —, subtrair \(c\) vezes a segunda igualdade da
+  primeira devolve \(R_i\); logo toda solução de \(B\) é solução de \(A\). As duas inclusões juntas
+  dizem que os conjuntos-solução coincidem, e não apenas que um está contido no outro. Para (i) e
+  (ii) o argumento é o mesmo, com a volta de uma linha só.</p>
+
+  <p>Nem toda transformação de linhas serve, e um exemplo mostra o tamanho do estrago. No sistema
+  B1, substituir \(R_2\) pela própria \(R_1\) — copiar a primeira linha sobre a segunda — produz uma
+  matriz com duas linhas iguais. Duas linhas iguais são duas vezes a mesma condição, e a condição
+  \(2x - y + z = 3\) desaparece. O conjunto-solução cresce: das três condições originais restam
+  duas, que se cruzam numa reta, e não num ponto. A operação não tem volta, porque a linha
+  sobrescrita não está em lugar nenhum da matriz resultante. Não por acaso, não existe operação
+  elementar que substitua uma linha por outra.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>A matriz aumentada do sistema B1, e a aplicação de \(R_2 \leftarrow R_2 - 2R_1\) — a operação
+    (iii) com \(c = -2\).</p>
+    <pre class="conta">[  1   1   1 |  6 ]
+[  2  -1   1 |  3 ]
+[  1   2  -1 |  2 ]</pre>
+    <ol class="passos">
+      <li>Escolhe-se o multiplicador para zerar a primeira entrada de \(R_2\): \(c = -2\), porque
+      \(2 + (-2)\cdot 1 = 0\).</li>
+      <li>A operação atinge a linha inteira, termo independente incluído: \(1 + (-2)\cdot 1 = -1\) e
+      \(3 + (-2)\cdot 6 = -9\).</li>
+      <li>A linha \(R_1\), fonte do múltiplo, não se altera; \(R_3\) também não, porque não foi
+      citada.</li>
+    </ol>
+    <pre class="conta">[  1   1   1 |  6 ]
+[  0  -3  -1 | -9 ]
+[  1   2  -1 |  2 ]</pre>
+    <p>A solução continua sendo \((1; 2; 3)\). A conferência é direta na linha nova:
+    \(0 \cdot 1 + (-3)\cdot 2 + (-1)\cdot 3 = -6 - 3 = -9\).</p>
+    <p>A volta, que é o que sustenta o argumento: somar \(2R_1\) à segunda linha devolve a linha
+    original, entrada por entrada.</p>
+    <pre class="conta"> 0 + 2(1) =  2
+-3 + 2(1) = -1
+-1 + 2(1) =  1
+-9 + 2(6) =  3</pre>
+    <p>O resultado é \([\,2 \;\; -1 \;\; 1 \mid 3\,]\), exatamente a linha de partida. Nada foi
+    perdido, porque nada foi irreversível.</p>
+  </div>
+
+  <p>A operação (iii) é a que aparece em toda conta: zerar um coeficiente é sempre somar a uma linha
+  um múltiplo de outra, nunca "substituir o número por zero". É também a que mais produz erro, e o
+  erro é quase sempre de sinal — o multiplicador entra com o sinal trocado, ou entra só na primeira
+  entrada da linha. Por isso a operação se escreve ao lado da linha, antes de ser executada, com o
+  multiplicador explícito: \(R_2 \leftarrow R_2 - 2R_1\), e não "somei duas vezes a primeira".</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Não existe uma quarta operação chamada "subtrair": subtrair \(2R_1\) é
+    somar \((-2)R_1\). A escrita \(R_2 \leftarrow R_2 - 2R_1\) é abreviação de caderno, cômoda e
+    correta, mas o número que multiplica a linha fonte é \(-2\) — e é \(-2\) que entra em todas as
+    entradas da linha, inclusive na última. Quem escreve o sinal de menos e depois multiplica por
+    \(2\) com sinal positivo comete o mesmo erro duas vezes, com aparências diferentes.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Três erros de sinal, todos frequentes. Primeiro: aplicar a operação a uma entrada só e
+    esquecer o resto da linha — no exemplo acima, parar em \(0\) e deixar \(-1\) e \(1\) como
+    estavam. Segundo: inverter a ordem, escrevendo \(R_2 \leftarrow 2R_1 - R_2\); isso é a operação
+    (iii) seguida de uma troca de sinal, e sem a troca o resultado é o negativo da linha certa.
+    Terceiro: esquecer que o termo independente também é uma entrada da linha, e calcular
+    \(3 - 2 \cdot 6\) como \(3 - 2 = 1\) em vez de \(-9\).</p>
+  </div>
+
+  <p>Uma última restrição, que vale enunciar porque a tentação é grande: as operações são sobre
+  <b>linhas</b>, nunca sobre colunas. Trocar duas colunas equivale a renomear duas incógnitas — o
+  conjunto de triplas que resolve o sistema não é mais o mesmo, é o mesmo com duas coordenadas
+  trocadas; e como o problema pede as incógnitas pelos nomes originais, isso é outra resposta.
+  Somar uma coluna a outra é pior: mistura duas incógnitas numa única coluna, e nenhuma renomeação
+  desfaz a mistura. A linha, ao contrário, é uma equação inteira, e substituir uma equação por uma
+  combinação dela com outra é legítimo.</p>
+
+  <p>A reversibilidade tem uma consequência prática que aparece no meio da conta: se um número
+  parece errado, é possível desfazer o último passo e refazê-lo, aplicando a operação inversa à
+  mão. Sem a garantia de volta, esse recurso não existiria — uma conta suspeita obrigaria a
+  recomeçar do sistema original, e o trabalho já feito não serviria para nada. É também por isso
+  que registrar a operação ao lado da linha não é enfeite: sem saber qual operação foi feita, não
+  se sabe qual desfazer.</p>
+
+  <p>Com as três operações disponíveis e a garantia de que nenhuma delas altera o conjunto-solução,
+  falta apenas decidir em que ordem aplicá-las e quando parar. A forma de parada tem nome — forma
+  escalonada — e é o assunto da seção <a class="ref" href="#s-1-9">1.9</a>.</p>
+</section>
+
+<figure class="cena">
+  <img src="../img/c6-dois-jogadores.png" alt="Díptico rasgado com a mesma pessoa em dois tempos, jovem à esquerda e idoso à direita, de costas no mesmo gabinete, GAME OVER nas duas telas e um relógio no rasgo." loading="lazy" decoding="async">
+  <figcaption>Alguém que não mudou nada.</figcaption>
+</figure>
+
+<!-- fonte: f1-matematica.html §1.9 e ficha B1 -->
+<section class="sec" id="s-1-9">
+  <h2><span class="num">1.9</span>Forma escalonada e pivô</h2>
+
+  <p>As três operações de <a class="ref" href="#s-1-8">1.8</a> preservam o conjunto-solução, mas não
+  dizem quando parar. Falta um alvo: uma forma que, atingida, deixe o sistema resolvido por
+  substituição de baixo para cima. Essa forma é a escada.</p>
+
+  <p>A exigência é de posição, não de tamanho. Em cada linha interessa o primeiro número não nulo —
+  ele é o ponto de apoio da linha. A linha de baixo só pode apoiar mais à direita. Com isso a última
+  equação fica com uma incógnita, a penúltima com duas, e a volta é imediata.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>O <b>pivô</b> de uma linha é o primeiro elemento não nulo dessa linha, contando da esquerda
+    para a direita.</p>
+    <p>Uma matriz está na <b>forma escalonada</b> quando o pivô de cada linha está à direita do pivô
+    da linha anterior, tudo o que está abaixo de um pivô é zero, e as linhas nulas — se existirem —
+    ficam no fim.</p>
+  </div>
+
+  <p>Nada é exigido sobre o que está <i>acima</i> de um pivô, nem que o pivô valha 1. Uma escada com
+  degraus de alturas diferentes continua sendo escada: o que a definição proíbe é o pivô descer e
+  voltar para a esquerda. Duas colunas de zero entre um pivô e o seguinte não são erro.</p>
+
+  <p>Esta matriz está escalonada. Os pivôs são \(1\), \(2\) e \(5\), e cada um está à direita do
+  anterior:</p>
+
+  <pre class="conta">  1   3   0   2 |  5
+  0   0   2  -1 | -4
+  0   0   0   5 |  6</pre>
+
+  <p>Esta não está, e por um motivo só: o pivô da terceira linha é o \(2\) da segunda coluna, a mesma
+  coluna do pivô da segunda linha. A escada desce sem andar para a direita — e descer no mesmo lugar
+  não é descer:</p>
+
+  <pre class="conta">  1   3   0 |  5
+  0   4   2 | -4
+  0   2   1 |  1</pre>
+
+  <p>Repare que a segunda matriz também tem um número não nulo abaixo de um pivô — o \(2\) da última
+  linha está debaixo do \(4\). Uma coisa decorre da outra: se o pivô não desce para a direita, sobra
+  número embaixo dele.</p>
+
+  <p>A coluna à direita da barra entra na escada como qualquer outra. Ela não é um caso especial, e
+  também não é obrigatório que fique sem pivô: quando um pivô cai nela, o sistema não tem solução —
+  é uma das quatro leituras de <a class="ref" href="#s-1-12">1.12</a>. Por isso a matriz aumentada
+  se escala inteira, barra inclusive.</p>
+
+  <h3>A forma reduzida não é o meio do caminho</h3>
+
+  <p>Existe uma forma mais forte, a <b>escalonada reduzida</b>: além de tudo isso, cada pivô vale 1
+  e é o único número não nulo da sua coluna, de modo que há zero também <i>acima</i> dele. A matriz
+  abaixo está reduzida, e a solução aparece nas últimas entradas:</p>
+
+  <pre class="conta">  1   0   0 |  1
+  0   1   0 |  2
+  0   0   1 |  3</pre>
+
+  <div class="obs">
+    <b>Observação.</b> A reduzida é o passo final, não o objetivo intermediário. Quem divide cada
+    linha pelo pivô no meio do processo paga a fração cedo e ainda tem de continuar zerando embaixo.
+    A escada já resolve: a partir dela, a substituição de baixo para cima fecha a conta.
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Escalonar o sistema da ficha B1 até o fim, declarando a operação em cada passagem:</p>
+
+    <pre class="conta">  x +  y +  z = 6
+ 2x -  y +  z = 3
+  x + 2y -  z = 2</pre>
+
+    <p>Na matriz aumentada, com a operação escrita à margem:</p>
+
+    <pre class="conta">  1   1   1 |   6
+  2  -1   1 |   3      R2 &larr; R2 - 2R1
+  1   2  -1 |   2      R3 &larr; R3 - R1
+-------------------------------------
+  1   1   1 |   6
+  0  -3  -1 |  -9
+  0   1  -2 |  -4      R2 &harr; R3
+-------------------------------------
+  1   1   1 |   6
+  0   1  -2 |  -4
+  0  -3  -1 |  -9      R3 &larr; R3 + 3R2
+-------------------------------------
+  1   1   1 |   6
+  0   1  -2 |  -4
+  0   0  -7 | -21</pre>
+
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - 2R_1\). A conta, entrada por entrada: \(2 - 2 = 0\),
+      \(-1 - 2 = -3\), \(1 - 2 = -1\), \(3 - 12 = -9\).</li>
+      <li>\(R_3 \leftarrow R_3 - R_1\). Mesma coluna, terceira linha: \(1 - 1 = 0\),
+      \(2 - 1 = 1\), \(-1 - 1 = -2\), \(2 - 6 = -4\).</li>
+      <li>\(R_2 \leftrightarrow R_3\). A coluna do \(y\) ficou com um \(1\) na terceira linha;
+      subir esse \(1\) evita dividir por \(-3\) e mantém a conta em inteiros.</li>
+      <li>\(R_3 \leftarrow R_3 + 3R_2\). Zera o \(-3\) que estava abaixo do pivô \(1\):
+      \(-3 + 3 = 0\), \(-1 - 6 = -7\), \(-9 - 12 = -21\).</li>
+      <li>Agora a forma é escada, com três pivôs: \(1\), \(1\) e \(-7\). A leitura começa por
+      baixo: \(-7z = -21\), logo \(z = 3\).</li>
+    </ol>
+  </div>
+
+  <p>A volta é substituição, não eliminação. Na segunda linha, \(y - 2z = -4\) dá
+  \(y - 6 = -4\), isto é, \(y = 2\). Na primeira, \(x + y + z = 6\) dá \(x + 2 + 3 = 6\), isto é,
+  \(x = 1\). O conjunto-solução é \(\{(1; 2; 3)\}\).</p>
+
+  <p>Conferir custa três linhas e vale a pena em toda conta longa: \(1 + 2 + 3 = 6\);
+  \(2 - 2 + 3 = 3\); \(1 + 4 - 3 = 2\). As três equações originais ficam satisfeitas, e a
+  substituição não altera o conjunto-solução — ela só lê a matriz.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Pivô é o primeiro número <b>não nulo</b> da linha, não o primeiro número da linha. Numa
+    linha \(0\ \ 0\ \ 3\ |\ 7\) o pivô é o \(3\), na terceira coluna; o zero à esquerda não conta.
+    E uma linha inteira de zeros não tem pivô nenhum — o que muda a contagem de pivôs usada em
+    <a class="ref" href="#s-1-12">1.12</a>.</p>
+  </div>
+
+  <p>Chegar à escada é o trabalho algébrico; escrevê-la sem perder o fio é outra coisa, e é onde a
+  conta mais quebra. Registrar cada passo é o assunto de <a class="ref" href="#s-1-10">1.10</a>.</p>
+</section>
+
+<figure class="cena">
+  <img src="../img/c5-isolar.png" alt="Um salto, muitos desfechos: trajetórias tracejadas saindo do penhasco e caindo na água, e uma única trajetória laranja que alcança a plataforma." loading="lazy" decoding="async">
+  <figcaption>Uma coisa de cada vez.</figcaption>
+</figure>
+
+<!-- fonte: f1-matematica.html §1.10 e ficha B1 -->
+<section class="sec" id="s-1-10">
+  <h2><span class="num">1.10</span>O protocolo de registro</h2>
+
+  <p>O erro mais frequente no escalonamento não é de álgebra. É de organização: o aluno zera uma
+  coluna e, três linhas depois, volta a mexer nela sem perceber — porque já não sabe qual linha é
+  qual, nem o que já foi feito. A conta estava certa no passo 2 e errada no passo 5, e o desastre não
+  aparece em nenhum número isolado: aparece na ordem.</p>
+
+  <p>Vale distinguir dois problemas que se parecem. Um é errar uma conta; o outro é perder o registro
+  do que já está resolvido. O primeiro se conserta refazendo a linha. O segundo custa a conta
+  inteira, porque não há como saber onde ela quebrou. É o segundo que estas três regras atacam.</p>
+
+  <p>O sintoma é reconhecível. A matriz tem, na primeira coluna, dois zeros que custaram duas
+  operações; duas linhas depois, um número diferente de zero aparece nessa mesma coluna, e não se
+  sabe de onde veio. Ou pior: o aluno chega ao fim com uma linha que não consegue ler, refaz tudo e
+  obtém outro resultado — sem saber qual das duas tentativas está certa.</p>
+
+  <div class="def">
+    <span class="titulo">Protocolo</span>
+    <ol class="passos">
+      <li><b>Uma linha, uma operação</b>, escrita ao lado da linha — como
+      \(R_2 \leftarrow R_2 - 2R_1\). A razão: a linha da margem é o que permite refazer um passo
+      isolado sem refazer a sequência. Quem aplica duas operações no mesmo passo e erra não sabe
+      qual das duas errou.</li>
+      <li><b>Não se volta para a forma de equação</b> no meio do processo. A razão: a coluna já
+      carrega o nome da incógnita (ver <a class="ref" href="#s-1-7">1.7</a>), e reescrever as
+      equações só reintroduz a chance de trocar um sinal na cópia — além de esconder a escada, que é
+      justamente o que se está construindo.</li>
+      <li><b>Coluna com pivô resolvido não se mexe mais</b>. A razão: o trabalho de zerar uma coluna
+      é o que a deixa pronta; tocar nela outra vez desfaz o zero que custou uma operação. O pivô se
+      marca e a coluna sai do serviço, mesmo que ainda haja número na linha de baixo.</li>
+    </ol>
+  </div>
+
+  <p>A terceira regra é a que exige mais disciplina, porque contraria um impulso simétrico: se a
+  coluna já foi zerada embaixo, por que não zerar em cima também? Porque em cima é outro serviço, e
+  ele tem hora. A hora é o fim, quando a escada já existe e a forma reduzida é opcional (ver
+  <a class="ref" href="#s-1-9">1.9</a>). No meio, zerar acima do pivô é gastar operação que a
+  substituição faria de graça.</p>
+
+  <h3>Dois hábitos que sustentam as três regras</h3>
+
+  <p>O primeiro é marcar o pivô antes da primeira conta. Um círculo em volta do número, ou um
+  asterisco acima dele, fixa qual linha trabalha e qual coluna está em serviço. Enquanto a marca não
+  existe, a linha escolhida muda de passo para passo sem que ninguém tenha decidido mudá-la.</p>
+
+  <p>O segundo é escrever a operação antes de executá-la, não depois. A margem é a intenção; a linha é
+  o resultado. Escrevendo primeiro, o erro de sinal aparece na hora de copiar o coeficiente, e não
+  três linhas adiante, quando já não há como localizá-lo. É por isso que
+  \(R_2 \leftarrow R_2 - 2R_1\) vale mais que "somei duas vezes a primeira".</p>
+
+  <p>Desses dois decorre um terceiro, quase mecânico: enquanto se zera uma coluna, a linha do pivô é
+  copiada igual em todos os blocos, sem alteração. É ela que a coluna fechada usa como referência e é
+  ela que a substituição vai ler no fim. Se a linha do pivô muda no meio, as linhas abaixo deixam de
+  ser compatíveis com ela — e a escada vira uma coincidência.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema da ficha B1, agora escrito como se registra no papel: cada operação na margem,
+    uma por passo, e um traço separando o que já está fechado.</p>
+
+    <pre class="conta">  1   1   1 |   6
+  2  -1   1 |   3      R2 &larr; R2 - 2R1
+  1   2  -1 |   2      R3 &larr; R3 - R1
+-------------------------------------
+  1   1   1 |   6
+  0  -3  -1 |  -9
+  0   1  -2 |  -4      R2 &harr; R3
+-------------------------------------
+  1   1   1 |   6
+  0   1  -2 |  -4
+  0  -3  -1 |  -9      R3 &larr; R3 + 3R2
+-------------------------------------
+  1   1   1 |   6
+  0   1  -2 |  -4
+  0   0  -7 | -21</pre>
+
+    <p>Lido de cima para baixo, a margem conta a história inteira: duas contas para zerar a coluna do
+    \(x\), uma troca, uma conta para fechar a coluna do \(y\). Nenhuma linha foi tocada duas vezes
+    depois de fechada, e cada traço marca um ponto em que a escada já vale para as linhas acima dele.
+    Se a última conta saísse errada, o teste seria refazer só a linha \(-7z = -21\) — não o sistema.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O modo como a coluna reabre é sempre o mesmo: o aluno quer zerar o \(-3\) da segunda linha e
+    usa a primeira linha, que tem \(1\) na mesma coluna.</p>
+
+    <pre class="conta">  1   1   1 |   6
+  0  -3  -1 |  -9      R2 &larr; R2 + 3R1   (errado)
+  0   1  -2 |  -4
+-------------------------------------
+  1   1   1 |   6
+  3   0   2 |   9
+  0   1  -2 |  -4</pre>
+
+    <p>A conta zera o \(-3\) como prometido, mas o \(3\) que ela soma na primeira coluna devolve o
+    zero que tinha custado uma operação: a matriz deixa de ser escada, e a equação que dizia
+    \(-3y - z = -9\) virou \(3x + 2z = 9\), com o \(x\) de volta. O conjunto-solução não mudou — a
+    operação é reversível (<a class="ref" href="#s-1-8">1.8</a>) —, mas o trabalho até ali foi
+    perdido. A linha que se usa para zerar é a do pivô <b>da coluna em questão</b>, e ela já está
+    marcada.</p>
+  </div>
+
+  <p>Há uma consequência prática que vale mais que a estética: com a margem preenchida, a conferência
+  é uma leitura, não uma conta. Quem corrige olha a coluna de operações e vê se a sequência fecha;
+  quem refaz encontra em qual passo a escada deixou de valer. Sem ela, a única forma de saber onde
+  está o erro é refazer tudo — e é exatamente isso que o aluno apressado faz três vezes na prova.</p>
+
+  <p>Uma última convenção, de caderno: risque a linha antiga em vez de apagá-la. A linha riscada
+  registra o que havia antes da operação; apagada, ela some junto com a prova de que a operação foi
+  feita. Em papel, o traço custa um segundo; sem ele, o passo anterior deixa de existir.</p>
+
+  <div class="obs">
+    <b>Observação.</b> O protocolo não deixa a conta mais curta. Ele deixa a conta <i>interrompível</i>:
+    qualquer passo pode ser refeito sozinho, e o resultado de cada um é conferível contra a linha
+    anterior. Em 4×4 é o que separa uma conta longa de uma conta perdida, porque lá o erro de sinal
+    aparece longe de onde foi cometido.
+  </div>
+
+  <p>Com o registro em ordem, sobra uma decisão que o protocolo não toma por você: qual linha serve de
+  pivô. Ela é escolhida, e a escolha muda o custo da conta inteira — é o que
+  <a class="ref" href="#s-1-11">1.11</a> trata.</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.11, fichas B3a e B3b -->
+<section class="sec" id="s-1-11">
+  <h2><span class="num">1.11</span>O pivô é escolhido, não encontrado</h2>
+
+  <p>A definição de <a class="ref" href="#s-1-9">1.9</a> diz o que é um pivô, mas não diz qual linha
+  deve ocupar a posição de pivô. Numa coluna há vários candidatos, e a escolha é do resolvedor. Ela
+  não muda o conjunto-solução; muda o custo da conta — e, em muitos casos, decide se a conta fica em
+  inteiros ou em frações.</p>
+
+  <p>O critério é de uma linha: <b>se há um \(1\) na coluna, ele é o pivô</b>. Não porque o \(1\) seja
+  especial, mas porque dividir por \(1\) não faz nada e multiplicar por \(1\) não muda sinal. Zerar
+  uma entrada usando uma linha que começa com \(1\) produz inteiros de graça. O mesmo vale para
+  \(-1\): a conta fica em inteiros, só com os sinais trocados.</p>
+
+  <p>Se o \(1\) está na posição de pivô, começa-se por ele. Se está mais abaixo, troca-se a linha dele
+  com a de cima, e ele vem para a posição de pivô. Trocar linhas é uma das operações de
+  <a class="ref" href="#s-1-8">1.8</a>, e portanto não altera o conjunto-solução.</p>
+
+  <p>O caso extremo é aquele em que não há escolha nenhuma a fazer: a primeira linha começa com zero.
+  É o que acontece na ficha B2, cuja primeira equação é \(y + z = 5\). Ali não existe pivô na
+  primeira coluna, porque não existe primeiro número não nulo na linha — a conta não começa. Trocar
+  não é otimização, é condição de partida.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema da ficha B3a, resolvido nas duas ordens:</p>
+
+    <pre class="conta">  2x +  y +  z = 8
+  3x + 2y +  z = 13
+   x +  y + 2z = 7</pre>
+
+    <p><b>Primeira ordem: sem trocar.</b> O pivô é o \(2\), e a primeira operação já divide:</p>
+
+    <pre class="conta">    2    1    1 |   8
+    3    2    1 |  13      R2 &larr; R2 - (3/2)R1
+    1    1    2 |   7      R3 &larr; R3 - (1/2)R1
+------------------------------------
+    2    1    1 |   8
+    0  1/2 -1/2 |   1
+    0  1/2  3/2 |   3      R3 &larr; R3 - R2
+------------------------------------
+    2    1    1 |   8
+    0  1/2 -1/2 |   1
+    0    0    2 |   2</pre>
+
+    <p>Funciona, e a escada aparece. Mas cada entrada da segunda e da terceira linhas passou por uma
+    fração: \(2 - \tfrac{3}{2} = \tfrac{1}{2}\), \(1 - \tfrac{3}{2} = -\tfrac{1}{2}\),
+    \(2 - \tfrac{1}{2} = \tfrac{3}{2}\). São três frações novas por linha, e cada uma é uma chance de
+    erro de sinal.</p>
+
+    <p><b>Segunda ordem: trocar primeiro.</b> A terceira linha tem \(1\) na primeira coluna; subindo
+    essa linha, o pivô fica igual a \(1\) e nada precisa ser dividido:</p>
+
+    <pre class="conta">    1    1    2 |   7
+    3    2    1 |  13      R2 &larr; R2 - 3R1
+    2    1    1 |   8      R3 &larr; R3 - 2R1
+------------------------------------
+    1    1    2 |   7
+    0   -1   -5 |  -8
+    0   -1   -3 |  -6      R3 &larr; R3 - R2
+------------------------------------
+    1    1    2 |   7
+    0   -1   -5 |  -8
+    0    0    2 |   2</pre>
+
+    <p>A mesma última linha, obtida com subtração de inteiros. Seguindo: \(2z = 2\) dá \(z = 1\);
+    \(-y - 5z = -8\) dá \(y = 3\); \(x + y + 2z = 7\) dá \(x = 2\). O conjunto-solução é
+    \(\{(2; 3; 1)\}\), o mesmo das duas ordens.</p>
+  </div>
+
+  <p>Comparar as duas colunas da margem mostra o que a escolha compra. Na primeira ordem, o
+  coeficiente \(\tfrac{3}{2}\) aparece em duas linhas e volta na conta seguinte; na segunda, todos os
+  multiplicadores são inteiros e a coluna do \(y\) fecha com uma subtração. O resultado é idêntico —
+  o que mudou foi o número de lugares onde era possível errar.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Trocar linhas <b>não fabrica</b> um \(1\). Ela move para a posição de pivô um \(1\) que já
+    estava na coluna; se a coluna não tem \(1\) nem \(-1\) em nenhuma linha, nenhuma troca resolve. É
+    comum ouvir "troca para ver se aparece um \(1\)" — não aparece. A troca só aproveita o que já
+    existe.</p>
+  </div>
+
+  <h3>Quando a fração é inevitável</h3>
+
+  <p>Há matrizes em que a coluna inteira é feita de números que não são \(1\) nem \(-1\). Aí a escolha
+  deixa de ser "como evitar" e passa a ser "onde pagar". A ficha B3b é o caso mínimo:</p>
+
+  <pre class="conta">  2x + 3y = 8
+  3x + 5y = 13</pre>
+
+  <pre class="conta">    2    3 |   8
+    3    5 |  13      R2 &larr; R2 - (3/2)R1
+----------------------------
+    2    3 |   8
+    0  1/2 |   1      R2 &larr; 2R2
+----------------------------
+    2    3 |   8
+    0    1 |   2</pre>
+
+  <p>A fração aparece na primeira operação e desaparece na segunda: multiplicar a linha por \(2\),
+  operação legítima porque \(2 \neq 0\), limpa o denominador. Daí \(y = 2\) e \(2x + 6 = 8\), isto é,
+  \(x = 1\). O conjunto-solução é \(\{(1; 2)\}\) — e a conferência fecha: \(2 + 6 = 8\) e
+  \(3 + 10 = 13\).</p>
+
+  <p>Vale registrar o que a fração custa e o que ela não custa. Custa atenção: \(\tfrac{3}{2}\) obriga a
+  dividir de cabeça em cada entrada da linha, e o erro de sinal fica mais provável. Não custa
+  correção: com \(\tfrac{3}{2}\) ou com \(3\), a matriz final é a mesma a menos de escala, e a leitura
+  do fim é a mesma. Por isso a regra prática é procurar o \(1\) primeiro e aceitar a fração depois —
+  nunca o contrário.</p>
+
+  <p>Daí o hábito que a ficha B3a recomenda como primeira pergunta de todo exercício: existe um \(1\)
+  nesta coluna? A pergunta é feita com os olhos, antes de qualquer conta, e a resposta decide qual
+  linha abre o registro. Feita depois, ela chega tarde: a operação que se queria evitar já foi
+  escrita.</p>
+
+  <div class="obs">
+    <b>Observação.</b> A escolha do pivô não é um atalho que troca correção por velocidade. Toda
+    troca de linhas é reversível, e é a reversibilidade que garante o mesmo conjunto-solução
+    (<a class="ref" href="#s-1-8">1.8</a>). O que se escolhe é o caminho, nunca o destino.
+  </div>
+
+  <p>Feita a escolha e respeitado o registro, a matriz chega à escada. Nesse ponto, antes de qualquer
+  substituição, a forma já responde à pergunta principal do capítulo: quantas soluções existem. Essa
+  leitura é <a class="ref" href="#s-1-12">1.12</a>.</p>
+</section>
+
+<!-- fonte: f1-matematica.html §1.12, fichas A2, A3, B4, C5 e B1 -->
+<section class="sec" id="s-1-12">
+  <h2><span class="num">1.12</span>O que a forma já diz, antes da conta terminar</h2>
+
+  <p>A pergunta principal do capítulo não é "quanto vale \(x\)". É quantas soluções o sistema tem —
+  nenhuma, uma, ou infinitas (<a class="ref" href="#s-1-6">1.6</a>). A escada responde a essa pergunta
+  antes de qualquer substituição, e responde olhando só a posição dos pivôs e as linhas que sobraram.
+  São quatro leituras, e cada uma tem um exemplo mínimo.</p>
+
+  <div class="def">
+    <span class="titulo">As quatro leituras</span>
+    <p><b>Coluna sem pivô</b> — a incógnita daquela coluna é livre, e o sistema tem infinitas
+    soluções. <b>Linha \(0 = 0\)</b> — equação que não informava nada. <b>Linha \(0 = c\), com
+    \(c \neq 0\)</b> — sistema impossível. <b>Pivô em toda coluna de coeficientes</b> — solução
+    única.</p>
+  </div>
+
+  <h3>1. Coluna sem pivô: a incógnita livre</h3>
+
+  <p>Se uma coluna de coeficientes fica sem pivô, nenhuma linha "resolve" aquela incógnita: ela pode
+  assumir qualquer valor, e cada escolha arrasta as outras. O sistema não tem uma resposta, tem uma
+  família — e o número de parâmetros é o número de colunas sem pivô.</p>
+
+  <p>A ficha C5 mostra o caso que desmente o atalho "a variável livre é a última":</p>
+
+  <pre class="conta">  x + 2y + 3z = 8
+  x + 2y +  z = 4</pre>
+
+  <pre class="conta">  1   2   3 |  8
+  1   2   1 |  4      R2 &larr; R2 - R1
+------------------------------
+  1   2   3 |  8
+  0   0  -2 | -4</pre>
+
+  <p>Os pivôs são \(1\) (coluna do \(x\)) e \(-2\) (coluna do \(z\)). A coluna do \(y\) ficou vazia, e é
+  ela a livre: \(y = t\), com \(t\) qualquer. O \(z\), que vem <i>depois</i> dela na ordem das
+  incógnitas, está determinado — \(-2z = -4\) dá \(z = 2\). E o \(x\) acompanha o parâmetro:
+  \(x = 8 - 2t - 6 = 2 - 2t\).</p>
+
+  <p>O conjunto-solução é \(\{(2 - 2t;\ t;\ 2) : t \in \mathbb{R}\}\): uma reta, não um ponto. Note
+  que a leitura não exigiu dividir a linha do \(z\) por \(-2\) nem voltar substituindo — bastou ver
+  qual coluna não tinha pivô.</p>
+
+  <h3>2. Linha \(0 = 0\): a equação que não informava</h3>
+
+  <p>Uma linha inteira de zeros à esquerda da barra é o que sobra de uma equação que era múltipla de
+  outra. Ela não contradiz nada e não acrescenta nada. Não é erro de conta: é a informação de que o
+  sistema tinha menos equações independentes do que linhas.</p>
+
+  <pre class="conta">  1   1 |  3
+  2   2 |  6      R2 &larr; R2 - 2R1
+-------------------
+  1   1 |  3
+  0   0 |  0</pre>
+
+  <p>Sobrou uma equação para duas incógnitas: \(x + y = 3\), com \(y\) livre. Infinitas soluções.
+  Numa prova, essa linha é a resposta para "por que não cheguei a um número?" — não se chegou a um
+  número porque não há um número a chegar.</p>
+
+  <h3>3. Linha \(0 = c\): o sistema impossível</h3>
+
+  <p>Mesma situação, com a constante fora de proporção. A linha vira \(0 = 1\), e nenhum valor de
+  incógnita alguma satisfaz isso. O sistema não tem solução, e a conclusão não depende do resto da
+  matriz: uma linha assim basta.</p>
+
+  <pre class="conta">  1   1 |  3
+  2   2 |  7      R2 &larr; R2 - 2R1
+-------------------
+  1   1 |  3
+  0   0 |  1</pre>
+
+  <p>Geometricamente, são duas retas de mesma inclinação e alturas diferentes: paralelas, sem ponto
+  em comum. Algebricamente, o \(0 = 1\) é a contradição escrita na forma mais curta possível. E ele
+  encerra o trabalho: não é preciso escalonar o resto da matriz para saber que não há solução.</p>
+
+  <h3>4. Pivô em toda coluna: solução única</h3>
+
+  <p>Se cada coluna de coeficientes tem pivô, cada incógnita foi resolvida por alguma linha, e a
+  substituição de baixo para cima dá um valor único para cada uma. É o caso do sistema de
+  <a class="ref" href="#s-1-9">1.9</a>, cuja escada tem três pivôs em três colunas:</p>
+
+  <pre class="conta">  1   1   1 |   6
+  0   1  -2 |  -4
+  0   0  -7 | -21</pre>
+
+  <p>Três colunas, três pivôs, nenhuma incógnita livre: \(z = 3\), \(y = 2\), \(x = 1\). Não há
+  escolha a fazer em nenhum ponto da volta, e é isso que "única" significa aqui.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>"Pivô em toda coluna" quer dizer toda coluna <b>de coeficientes</b>. A última coluna, a dos
+    termos independentes, não entra na contagem: um pivô nela não é informação extra, é a contradição
+    da leitura 3 disfarçada — significa \(0 = c\) com \(c \neq 0\). Por isso a matriz aumentada tem
+    uma coluna a mais do que incógnitas, e a contagem de pivôs é feita até a barra.</p>
+  </div>
+
+  <h3>A ordem de leitura</h3>
+
+  <p>As quatro leituras não têm o mesmo peso, e a ordem importa. A contradição decide sozinha e vem
+  primeiro; só depois de descartá-la faz sentido contar pivôs.</p>
+
+  <ol class="passos">
+    <li>Existe linha \(0 = c\) com \(c \neq 0\)? Então \(S = \varnothing\). Pare: nenhuma outra
+    leitura muda esse veredito.</li>
+    <li>Toda coluna de coeficientes tem pivô? Então \(S\) tem exatamente um elemento, e a volta
+    produz os valores.</li>
+    <li>Sobrou coluna sem pivô? Então há pelo menos uma incógnita livre e \(S\) é infinito. Uma
+    coluna sem pivô, um parâmetro; duas, dois parâmetros.</li>
+  </ol>
+
+  <p>Essa ordem é também a razão de o \(0 = c\) aparecer cedo nas contas longas: quanto antes a
+  contradição é lida, menos operações se gastam depois dela. Em 4×4, onde cada passo custa três
+  linhas, encerrar na segunda linha é economia real.</p>
+
+  <div class="obs">
+    <b>Observação.</b> Nenhuma das quatro leituras precisa da forma reduzida. Todas se fazem na
+    escada, que é onde o método para (<a class="ref" href="#s-1-9">1.9</a>). O que a forma não diz são
+    os valores: para isso é preciso a volta. Mas o tipo de resposta — nenhuma, uma, infinitas — já
+    está escrito na posição dos pivôs.
+  </div>
+
+  <p>Com isso, o instrumental do capítulo está completo: equação, conjunto-solução, matriz, operações,
+  escada, registro, escolha de pivô e leitura da forma. O que falta é estrada — os mesmos passos
+  aplicados a sistemas maiores e a matrizes que não são aumentadas, um por um, começando pelos
+  \(2 \times 2\) de <a class="ref" href="#s-1-13">1.13</a>.</p>
+</section>
+
+<figure class="cena">
+  <img src="../img/c8-pilhas.png" alt="Díptico da mesma mesa: à esquerda a mesa limpa com caderno fechado e uma folha; à direita a mesa soterrada de pilhas de papel, com papel no chão." loading="lazy" decoding="async">
+  <figcaption>Uma noite é anedota. Trinta são dados.</figcaption>
+</figure>
+
+<!-- fonte: f1-matematica.html — fichas A1, A2 e A3 da parte 2 (2×2) -->
+<section class="sec" id="s-1-13">
+  <h2><span class="num">1.13</span>Exemplos resolvidos: sistemas 2×2</h2>
+
+  <p>O método já está inteiro: matriz aumentada, escolha de pivô, operações elementares, forma
+  escalonada, leitura. Falta vê-lo trabalhar do enunciado até a conferência, num sistema completo.
+  Os três exemplos desta seção são 2×2 e cobrem, um de cada vez, as três respostas possíveis: uma
+  solução, nenhuma solução e infinitas soluções.</p>
+
+  <p>Em todos eles o procedimento é o mesmo: escrever a matriz aumentada, tomar o pivô da primeira
+  coluna, zerar o que está abaixo dele, repetir na coluna seguinte e voltar substituindo. Quando a
+  coluna oferece um \(1\) ou um \(-1\), é ele que vira pivô — não porque seja obrigatório, mas
+  porque poupa divisões e, com elas, erros de fração.</p>
+
+  <p>Duas convenções valem para os três exemplos. A matriz aumentada guarda apenas os coeficientes e
+  os termos independentes, e a barra vertical marca onde começa o lado direito. As linhas são citadas
+  como \(R_1\), \(R_2\), \(R_3\) na ordem em que estão na matriz — ordem que muda quando há troca, e
+  que é preciso acompanhar para não zerar a entrada errada.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Resolver o sistema \(2x + y = 7\), \(x - y = 2\).</p>
+    <pre class="conta"> 2   1 |  7
+ 1  -1 |  2</pre>
+    <ol class="passos">
+      <li>O \(1\) da primeira coluna está na segunda linha, não na primeira. Trocar as duas linhas
+      coloca o pivô no lugar sem alterar o conjunto-solução: \(R_1 \leftrightarrow R_2\).</li>
+      <li>Zerar a entrada abaixo do pivô: \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a
+      \((0;\ 3 \mid 3)\), que é a equação \(3y = 3\).</li>
+      <li>Normalizar o pivô: \(R_2 \leftarrow R_2/3\), e a linha diz \(y = 1\).</li>
+      <li>Voltar substituindo na primeira linha: \(x - y = 2\), \(x - 1 = 2\), \(x = 3\).</li>
+    </ol>
+    <pre class="conta"> 1  -1 |  2
+ 0   1 |  1</pre>
+    <p>Resultado: <b>\((x; y) = (3; 1)\)</b>.</p>
+    <p>A segunda matriz já está escalonada e com os pivôs normalizados em \(1\): a última linha entrega
+    \(y\) sem conta, e a primeira só precisa da substituição. Ler a forma antes de continuar a
+    eliminação poupa trabalho — não há nada a fazer abaixo do segundo pivô.</p>
+    <p>Conferência nas equações originais: \(2 \cdot 3 + 1 = 7\) e \(3 - 1 = 2\). As duas fecham, e
+    é isso que faz do par uma solução do sistema, não apenas da primeira equação.</p>
+    <p>Este é o caso de <b>uma solução</b>: dois pivôs para duas incógnitas, nenhuma coluna sem
+    pivô, um único par ordenado.</p>
+  </div>
+
+  <p>O exemplo seguinte tem a mesma forma e uma diferença que costuma passar por erro de conta. Vale
+  acompanhar a eliminação até o fim antes de decidir o que aconteceu.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Resolver o sistema \(x + y = 3\), \(2x + 2y = 7\).</p>
+    <pre class="conta"> 1   1 |  3
+ 2   2 |  7</pre>
+    <ol class="passos">
+      <li>O pivô já é \(1\), na primeira linha e primeira coluna: nada a escolher.</li>
+      <li>Zerar o \(2\) abaixo dele: \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a
+      \((0;\ 0 \mid 1)\).</li>
+      <li>A linha é \(0x + 0y = 1\), isto é, \(0 = 1\). Nenhum par de números reais satisfaz essa
+      igualdade, e a contradição não depende de \(x\) nem de \(y\).</li>
+    </ol>
+    <pre class="conta"> 1   1 |  3
+ 0   0 |  1</pre>
+    <p>Resultado: <b>conjunto-solução vazio</b> — o sistema é impossível.</p>
+    <p>Conferência sem matriz: a segunda equação é \(2(x + y) = 7\), e a primeira garante
+    \(x + y = 3\), de onde \(2(x + y) = 6\). O mesmo lado esquerdo não pode valer \(6\) e \(7\) ao
+    mesmo tempo.</p>
+    <p>Lendo as duas equações como retas, a primeira é \(y = 3 - x\) e a segunda é
+    \(y = 3{,}5 - x\): mesmo coeficiente angular, alturas diferentes. As retas são paralelas e não
+    se cruzam em nenhum ponto. A linha \(0 = 1\) é a versão algébrica desse desenho, e chega sem
+    depender de escala.</p>
+    <p>Este é o caso <b>sem solução</b>: uma linha toda zero com constante diferente de zero
+    encerra o problema na hora. Nenhuma operação elementar posterior desfaz essa contradição,
+    porque todas preservam o conjunto-solução.</p>
+  </div>
+
+  <p>Quando a segunda linha desaparece sem contradizer nada, a resposta muda de natureza: não há um
+  ponto a encontrar, há uma família deles.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 3</span>
+    <p>Resolver o sistema \(x + y = 3\), \(2x + 2y = 6\).</p>
+    <pre class="conta"> 1   1 |  3
+ 2   2 |  6</pre>
+    <ol class="passos">
+      <li>O pivô já é \(1\), na primeira linha e primeira coluna.</li>
+      <li>Zerar o \(2\) abaixo dele: \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a
+      \((0;\ 0 \mid 0)\), que é \(0 = 0\).</li>
+      <li>A linha não impõe restrição alguma: ela sai do sistema. Sobra uma equação,
+      \(x + y = 3\), para duas incógnitas.</li>
+      <li>A coluna de \(y\) está sem pivô, então \(y\) é livre: \(y = t\). Resolver para \(x\) na
+      equação que sobrou: \(x = 3 - t\).</li>
+    </ol>
+    <pre class="conta"> 1   1 |  3
+ 0   0 |  0</pre>
+    <p>Resultado: <b>\(\{(3 - t;\ t) : t \in \mathbb{R}\}\)</b> — infinitas soluções, uma para cada
+    valor real de \(t\).</p>
+    <p>Conferência nas equações originais, com \(t\) qualquer: \(x + y = (3 - t) + t = 3\) e
+    \(2x + 2y = 2(3 - t) + 2t = 6\). Para \(t = 0\) sai \((3; 0)\); para \(t = 1\) sai \((2; 1)\).
+    Os dois pares resolvem o sistema.</p>
+    <p>Este é o caso com <b>infinitas soluções</b>: a linha \(0 = 0\) não é erro de conta, é o
+    registro de que a segunda equação repete a primeira. Há menos pivôs que incógnitas, e cada
+    coluna sem pivô custa um parâmetro.</p>
+  </div>
+
+  <div class="obs">
+    <b>Observação.</b> A resposta \((3 - t;\ t)\) não é uma solução inacabada: é a lista completa dos
+    pares. Testar dois valores de \(t\) é o modo mais rápido de conferir uma família — se um deles
+    falhasse, a parametrização estaria errada. E a variável livre é declarada pela coluna que ficou
+    sem pivô, não pela posição no fim da matriz.
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>\(0 = 0\) e \(0 = 1\) parecem o mesmo tipo de linha e dizem coisas opostas. A primeira é uma
+    equação que sempre vale — ela não elimina nenhuma solução. A segunda nunca vale — ela elimina
+    todas. Confundir as duas troca "infinitas soluções" por "nenhuma", que é o erro mais caro desta
+    seção.</p>
+  </div>
+
+  <p>Os três casos aparecem na mesma ordem em qualquer tamanho de sistema. O que muda no 3×3 é o
+  número de degraus da escada e a frequência com que a troca de linhas precisa acontecer já na
+  primeira coluna — é o que os exemplos da <a class="ref" href="#s-1-14">1.14</a> mostram.</p>
+</section>
+
+<!-- fonte: f1-matematica.html — fichas B1, B2, B3a e B4 da parte 2 (3×3) -->
+<section class="sec" id="s-1-14">
+  <h2><span class="num">1.14</span>Exemplos resolvidos: sistemas 3×3</h2>
+
+  <p>Três equações, três incógnitas, até três pivôs. O processo não muda em nada: é o mesmo dos
+  sistemas 2×2, com um degrau a mais na escada. O que muda é o número de decisões no caminho — em
+  qual linha está o pivô, se é preciso trocar linhas, quando a coluna seguinte já não tem candidato
+  melhor — e o custo de cada decisão errada, que agora aparece três linhas depois de ter sido
+  tomada.</p>
+
+  <p>Os quatro exemplos seguintes são os do quadro, com os mesmos números. Os dois primeiros têm a
+  mesma resposta de propósito: mostram que caminhos diferentes levam ao mesmo conjunto-solução. O
+  terceiro é sobre a escolha do pivô. O quarto é um sistema quadrado que não tem solução única.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Resolver \(x + y + z = 6\), \(2x - y + z = 3\), \(x + 2y - z = 2\).</p>
+    <pre class="conta"> 1   1   1 |   6
+ 2  -1   1 |   3
+ 1   2  -1 |   2</pre>
+    <ol class="passos">
+      <li>O pivô da primeira coluna já é \(1\), na primeira linha. Zerar o \(2\) abaixo dele:
+      \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a \((0;\ -3;\ -1 \mid -9)\).</li>
+      <li>Zerar o outro \(1\) da coluna: \(R_3 \leftarrow R_3 - R_1\). A terceira linha passa a
+      \((0;\ 1;\ -2 \mid -4)\).</li>
+      <li>Na segunda coluna as entradas são \(-3\) e \(1\). O \(1\) está na terceira linha:
+      \(R_2 \leftrightarrow R_3\) o leva para a posição de pivô.</li>
+      <li>Zerar o \(-3\) que ficou abaixo: \(R_3 \leftarrow R_3 + 3R_2\). A terceira linha passa a
+      \((0;\ 0;\ -7 \mid -21)\).</li>
+      <li>Normalizar: \(R_3 \leftarrow -R_3/7\), e a linha diz \(z = 3\).</li>
+      <li>Voltar substituindo. Em \(R_2\): \(y - 2z = -4\), \(y - 6 = -4\), \(y = 2\). Em \(R_1\):
+      \(x + 2 + 3 = 6\), \(x = 1\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |   6
+ 0   1  -2 |  -4
+ 0   0   1 |   3</pre>
+    <p>Resultado: <b>\((x; y; z) = (1; 2; 3)\)</b>.</p>
+    <p>Conferência nas três equações originais: \(1 + 2 + 3 = 6\); \(2 \cdot 1 - 2 + 3 = 3\);
+    \(1 + 2 \cdot 2 - 3 = 2\). As três fecham.</p>
+    <p>Este é o caso de <b>uma solução</b>: três pivôs, um por coluna, e a volta determina cada
+    incógnita sem nenhuma escolha. É o 3×3 sem obstáculo — o degrau de referência para os outros
+    três.</p>
+  </div>
+
+  <p>O exemplo seguinte tem as mesmas três soluções por incógnita e começa com um zero onde deveria
+  estar o primeiro pivô. Quem não troca linhas não trava por falta de método: trava por não ter
+  aplicado a operação que o método permite.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Resolver \(y + z = 5\), \(x + y + z = 6\), \(x + 2y - z = 2\).</p>
+    <pre class="conta"> 0   1   1 |   5
+ 1   1   1 |   6
+ 1   2  -1 |   2</pre>
+    <ol class="passos">
+      <li>A primeira coluna tem \(0\) na primeira linha: não há pivô ali. Trocar as duas primeiras
+      linhas resolve: \(R_1 \leftrightarrow R_2\).</li>
+      <li>Zerar o \(1\) que sobrou embaixo: \(R_3 \leftarrow R_3 - R_1\). A terceira linha passa a
+      \((0;\ 1;\ -2 \mid -4)\).</li>
+      <li>Zerar o \(1\) da segunda coluna abaixo do pivô: \(R_3 \leftarrow R_3 - R_2\). A terceira
+      linha passa a \((0;\ 0;\ -3 \mid -9)\).</li>
+      <li>Normalizar: \(R_3 \leftarrow -R_3/3\), e a linha diz \(z = 3\).</li>
+      <li>Voltar substituindo. Em \(R_2\): \(y + 3 = 5\), \(y = 2\). Em \(R_1\): \(x + 2 + 3 = 6\),
+      \(x = 1\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |   6
+ 0   1   1 |   5
+ 0   0   1 |   3</pre>
+    <p>Resultado: <b>\((x; y; z) = (1; 2; 3)\)</b>.</p>
+    <p>Conferência nas equações originais: \(2 + 3 = 5\); \(1 + 2 + 3 = 6\);
+    \(1 + 2 \cdot 2 - 3 = 2\). As três fecham, e a resposta é a mesma do exemplo anterior.</p>
+    <p>Este caso ensina que a <b>ordem das linhas é escolha</b>, não dado do problema. Trocar linhas
+    é operação elementar: muda a matriz, não o conjunto-solução. O zero na posição de pivô não é
+    obstáculo matemático, é obstáculo de arrumação.</p>
+  </div>
+
+  <p>Nem toda troca é obrigatória. No exemplo seguinte o sistema se resolve sem trocar nada — e a
+  conta fica cheia de frações. A troca existe para baratear o trabalho, e é isso que ela demonstra
+  aqui.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 3</span>
+    <p>Resolver \(2x + y + z = 8\), \(3x + 2y + z = 13\), \(x + y + 2z = 7\).</p>
+    <pre class="conta"> 2   1   1 |   8
+ 3   2   1 |  13
+ 1   1   2 |   7</pre>
+    <ol class="passos">
+      <li>A coluna tem \(2\), \(3\) e \(1\). O pivô é o \(1\) da terceira linha:
+      \(R_1 \leftrightarrow R_3\).</li>
+      <li>Zerar o \(3\) abaixo do pivô: \(R_2 \leftarrow R_2 - 3R_1\). A segunda linha passa a
+      \((0;\ -1;\ -5 \mid -8)\).</li>
+      <li>Zerar o \(2\) da terceira linha: \(R_3 \leftarrow R_3 - 2R_1\). Ela passa a
+      \((0;\ -1;\ -3 \mid -6)\).</li>
+      <li>Na segunda coluna as duas entradas são \(-1\). Subtrair uma linha da outra zera a de
+      baixo: \(R_3 \leftarrow R_3 - R_2\), e a terceira linha fica \((0;\ 0;\ 2 \mid 2)\).</li>
+      <li>Normalizar as duas: \(R_3 \leftarrow R_3/2\) dá \(z = 1\); \(R_2 \leftarrow -R_2\) dá
+      \(y + 5z = 8\).</li>
+      <li>Voltar substituindo: \(y + 5 = 8\), \(y = 3\). Na primeira linha: \(x + 3 + 2 = 7\),
+      \(x = 2\).</li>
+    </ol>
+    <pre class="conta"> 1   1   2 |   7
+ 0   1   5 |   8
+ 0   0   1 |   1</pre>
+    <p>Resultado: <b>\((x; y; z) = (2; 3; 1)\)</b>.</p>
+    <p>Conferência nas equações originais: \(2 \cdot 2 + 3 + 1 = 8\);
+    \(3 \cdot 2 + 2 \cdot 3 + 1 = 13\); \(2 + 3 + 2 \cdot 1 = 7\). As três fecham.</p>
+    <p>Este caso ensina que <b>a escolha do pivô muda o custo, não a resposta</b>. Sem trocar, o
+    pivô seria \(2\): a primeira operação já produziria \(1/2\) na própria linha e exigiria subtrair
+    \(3/2\) para zerar o \(3\). Com a troca, todos os números do caminho ficam inteiros.</p>
+  </div>
+
+  <div class="obs">
+    <b>Observação.</b> A pergunta que resolve o exemplo 3 vale como rotina: antes de qualquer conta,
+    verificar se a coluna tem um \(1\) ou um \(-1\). Se tiver, ele é o pivô. Se não tiver, a fração é
+    inevitável e o método segue do mesmo jeito — só fica mais caro.
+  </div>
+
+  <p>Falta o caso em que o sistema é quadrado e, ainda assim, não tem solução única. Ele fecha a
+  seção porque desfaz a associação mais comum: três equações não garantem três informações.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 4</span>
+    <p>Resolver \(x + y + z = 3\), \(2x + 2y + 2z = 6\), \(x - y = 0\).</p>
+    <pre class="conta"> 1   1   1 |   3
+ 2   2   2 |   6
+ 1  -1   0 |   0</pre>
+    <ol class="passos">
+      <li>Pivô \(1\) na primeira linha. Zerar o \(2\) abaixo dele: \(R_2 \leftarrow R_2 - 2R_1\). A
+      segunda linha vira \((0;\ 0;\ 0 \mid 0)\) — ela era o dobro da primeira e não trazia
+      informação nova.</li>
+      <li>Zerar o \(1\) da terceira linha: \(R_3 \leftarrow R_3 - R_1\). Ela passa a
+      \((0;\ -2;\ -1 \mid -3)\).</li>
+      <li>Subir a linha útil, para a escada descer na ordem das colunas:
+      \(R_2 \leftrightarrow R_3\).</li>
+      <li>A terceira coluna ficou sem pivô: \(z\) é livre, \(z = t\).</li>
+      <li>Da segunda linha: \(-2y - z = -3\), isto é, \(2y + z = 3\), e \(y = (3 - t)/2\).</li>
+      <li>Da primeira linha: \(x = 3 - z - y = 3 - t - (3 - t)/2 = (3 - t)/2\). Logo \(x = y\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |   3
+ 0  -2  -1 |  -3
+ 0   0   0 |   0</pre>
+    <p>Resultado: <b>\(\left\{\left(\dfrac{3 - t}{2};\ \dfrac{3 - t}{2};\ t\right) : t \in
+    \mathbb{R}\right\}\)</b> — infinitas soluções.</p>
+    <p>Conferência nas equações originais, com \(t\) qualquer: \(x + y + z = (3 - t) + t = 3\);
+    \(2x + 2y + 2z = 2(x + y + z) = 6\); \(x - y = 0\), porque as duas incógnitas têm o mesmo valor.
+    Para \(t = 1\) sai \((1; 1; 1)\); para \(t = 3\) sai \((0; 0; 3)\) — os dois resolvem o
+    sistema.</p>
+    <p>Este caso ensina que <b>quadrada não significa solução única</b>. O que decide é o número de
+    pivôs: aqui são dois, para três incógnitas, e a coluna sem pivô vira parâmetro. O formato da
+    matriz não promete nada; a escada é que responde.</p>
+  </div>
+
+  <p>A conta é sempre a mesma, e é por isso que ela pode ser mecanizada: matriz aumentada, pivô,
+  zeros abaixo, próximo degrau, volta. Quando a matriz deixa de ser quadrada, o número de linhas e o
+  de colunas não combinam mais, e as três respostas passam a se misturar dentro do mesmo formato —
+  é o assunto de <a class="ref" href="#s-1-15">1.15</a>.</p>
+</section>
+
+<!-- fonte: f1-matematica.html — bloco C (C0 a C5), conferido por img-gen/grade-f1.py -->
+<section class="sec" id="s-1-15">
+  <h2><span class="num">1.15</span>Exemplos resolvidos: sistemas retangulares</h2>
+
+  <p>Até aqui as matrizes aumentadas tinham tantas linhas quantas colunas — 2×2, 3×3 — e o número de
+  equações acompanhava o número de incógnitas. Nada disso era necessário. Um sistema é retangular
+  quando esses dois números diferem, e é nesse formato que a contagem de pivôs deixa de coincidir
+  com a contagem de incógnitas: sobram colunas sem pivô (parâmetros) ou sobram linhas que não
+  fecham (contradição).</p>
+
+  <p>O método não muda. Escalona-se a matriz, contam-se os pivôs, contam-se as colunas sem pivô. O
+  que muda é a leitura. Em matriz quadrada o resultado parece sempre "um ponto ou nada"; em matriz
+  retangular aparecem com naturalidade as duas coisas que a forma já anunciava — uma família de
+  soluções com um ou dois parâmetros, ou uma linha do tipo \(0 = c\) que encerra o assunto. Os seis
+  casos a seguir são os do quadro, na ordem em que foram copiados.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Uma equação, três incógnitas:</p>
+    <pre class="conta"> x + 2y - z = 3</pre>
+    <p>Na matriz aumentada há uma linha e quatro colunas:</p>
+    <pre class="conta"> 1   2  -1 |  3</pre>
+    <ol class="passos">
+      <li>Nada a eliminar: a matriz já está escalonada, com um único pivô na coluna de \(x\).</li>
+      <li>As colunas de \(y\) e de \(z\) ficam sem pivô. São duas colunas livres, logo dois
+      parâmetros: \(y\) e \(z\) podem receber qualquer valor real.</li>
+      <li>Isola-se a incógnita que tem pivô: \(x = 3 - 2y + z\).</li>
+    </ol>
+    <p>Resultado: \((x; y; z) = (3 - 2y + z;\ y;\ z)\), com \(y\) e \(z\) livres. Para \(y = z = 0\)
+    sai \((3; 0; 0)\); para \(y = 1\), \(z = 0\) sai \((1; 1; 0)\); para \(y = 0\), \(z = -1\) sai
+    \((2; 0; -1)\). Os três pontos satisfazem \(x + 2y - z = 3\).</p>
+    <p><b>O que o caso ensina.</b> "Sistema" não exige várias linhas: uma equação só já é um
+    sistema, e a resposta pode ser um objeto de duas dimensões — aqui, um plano — em vez de um
+    ponto. O número de parâmetros é o número de colunas sem pivô, não o número de equações.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Duas equações, três incógnitas:</p>
+    <pre class="conta"> x + y + z = 4
+ x - y + z = 2</pre>
+    <pre class="conta"> 1   1   1 |  4
+ 1  -1   1 |  2</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\) zera o \(x\) da segunda linha; o \(z\) desaparece junto,
+      porque os dois coeficientes eram iguais.</li>
+      <li>A matriz fica com dois pivôs e três colunas de incógnitas. Uma coluna sem pivô.</li>
+      <li>Da segunda linha, \(-2y = -2\), isto é, \(y = 1\). A coluna de \(z\) é a que ficou sem
+      pivô: \(z\) é o parâmetro.</li>
+      <li>Volta-se à primeira linha: \(x = 4 - y - z = 3 - z\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |  4
+ 0  -2   0 | -2
+
+ 1   1   1 |  4
+ 0   1   0 |  1</pre>
+    <p>Resultado: \((x; y; z) = (3 - z;\ 1;\ z)\), com \(z\) livre. Para \(z = 0\) sai \((3; 1; 0)\);
+    para \(z = 1\) sai \((2; 1; 1)\). Confere: \(2 + 1 + 1 = 4\) e \(2 - 1 + 1 = 2\).</p>
+    <p><b>O que o caso ensina.</b> Matriz mais larga que alta não é sinônimo de sistema sem
+    solução. Resolve-se tudo o que a informação permite — aqui, \(y\) fica determinado — e o que
+    sobra vira parâmetro. O conjunto-solução é uma reta.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 3</span>
+    <p>Duas equações, quatro incógnitas:</p>
+    <pre class="conta"> x + y + z + w = 4
+ x - y + z - w = 0</pre>
+    <pre class="conta"> 1   1   1   1 |  4
+ 1  -1   1  -1 |  0</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\) elimina \(x\) e também \(z\), que tinham o mesmo coeficiente
+      nas duas linhas.</li>
+      <li>O que resta na segunda linha é \(-2y - 2w = -4\), ou \(y + w = 2\).</li>
+      <li>Dois pivôs para quatro colunas de incógnitas: duas colunas sem pivô, \(z\) e \(w\).
+      Dois parâmetros.</li>
+      <li>Isola-se quem tem pivô: \(y = 2 - w\) e \(x = 4 - y - z - w = 2 - z\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1   1 |  4
+ 0  -2   0  -2 | -4
+
+ 1   1   1   1 |  4
+ 0   1   0   1 |  2</pre>
+    <p>Resultado: \((x; y; z; w) = (2 - z;\ 2 - w;\ z;\ w)\), com \(z\) e \(w\) livres. Para
+    \(z = w = 0\) sai \((2; 2; 0; 0)\); para \(z = 2\), \(w = 1\) sai \((0; 1; 2; 1)\). Nos dois
+    casos a soma das componentes é \(4\) e a diferença alternada \(x - y + z - w\) é \(0\).</p>
+    <p><b>O que o caso ensina.</b> Cada coluna sem pivô custa um parâmetro, e o número de
+    parâmetros cresce com a largura da matriz, não com o número de incógnitas "que sobraram" na
+    conta. Quatro incógnitas e duas equações dão dois parâmetros, não um.</p>
+  </div>
+
+  <div class="obs">
+    <b>Observação.</b> Nos três primeiros casos vale a mesma contagem, e vale sempre:
+    <b>número de variáveis livres = número de colunas de incógnitas − número de pivôs</b>. A
+    conta só pode ser fechada depois do escalonamento, porque é ele que revela se alguma linha
+    virou \(0 = c\). Contar colunas é mais confiável do que contar incógnitas que "ficaram de fora"
+    de alguma equação.
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 4</span>
+    <p>Três equações, duas incógnitas. Duas delas são simples e a terceira repete a primeira com
+    outro lado direito:</p>
+    <pre class="conta"> x + y = 2
+ x - y = 0
+ x + y = 5</pre>
+    <pre class="conta"> 1   1 | 2
+ 1  -1 | 0
+ 1   1 | 5</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\): a segunda linha vira \(-2y = -2\), ou \(y = 1\).</li>
+      <li>Com \(y = 1\) na primeira linha, \(x = 1\). As duas primeiras equações dão \((1; 1)\).</li>
+      <li>\(R_3 \leftarrow R_3 - R_1\): a terceira linha vira \(0 = 3\), porque \(5 - 2 = 3\).</li>
+    </ol>
+    <pre class="conta"> 1   1 | 2
+ 0  -2 | -2
+ 0   0 |  3</pre>
+    <p>Resultado: sistema impossível, conjunto-solução vazio. Nenhum par \((x; y)\) pode somar \(2\)
+    e \(5\) ao mesmo tempo.</p>
+    <p><b>O que o caso ensina.</b> Em matriz mais alta que larga, a equação que sobra não é
+    informação: é teste. Aqui o teste reprova, e reprova sozinho — as outras duas linhas estavam
+    corretas e continuam corretas. Basta uma linha incompatível para não haver solução.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 5</span>
+    <p>Quatro equações, três incógnitas. As três primeiras são as mesmas de um 3×3 já resolvido; a
+    quarta é nova e só envolve \(x\) e \(z\):</p>
+    <pre class="conta"> x + y + z = 6
+ x - y + z = 2
+2x + y - z = 1
+ x     + z = 3</pre>
+    <pre class="conta"> 1   1   1 |  6
+ 1  -1   1 |  2
+ 2   1  -1 |  1
+ 1   0   1 |  3</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\): sobra \(-2y = -4\), ou \(y = 2\).</li>
+      <li>\(R_3 \leftarrow R_3 - 2R_1\): a terceira linha vira \(-y - 3z = -11\). Com \(y = 2\),
+      \(-3z = -9\), ou \(z = 3\).</li>
+      <li>Na primeira linha, \(x = 6 - y - z = 1\). As três primeiras equações dão \((1; 2; 3)\) e,
+      em particular, \(x + z = 4\).</li>
+      <li>\(R_4 \leftarrow R_4 - R_1\) e depois \(R_4 \leftarrow R_4 + R_2\): a quarta linha vira
+      \(0 = -1\). Ela exige \(x + z = 3\), e o sistema já fixou \(x + z = 4\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |  6
+ 0  -2   0 | -4
+ 0  -1  -3 | -11
+ 0  -1   0 | -3
+
+ 1   1   1 |  6
+ 0   1   0 |  2
+ 0   0  -3 | -9
+ 0   0   0 | -1</pre>
+    <p>Resultado: sistema impossível. As três primeiras equações têm solução única, \((1; 2; 3)\);
+    a quarta pede outra coisa e a matriz acusa a diferença na última linha.</p>
+    <p><b>O que o caso ensina.</b> Em matriz alta, a informação extra tem de bater com o que já se
+    sabe. Se bater, a linha vira \(0 = 0\) e some; se não bater, vira \(0 = c\) com \(c \neq 0\).
+    Não existe meio-termo, e não adianta continuar escalonando depois de encontrar a linha
+    impossível: a resposta já está decidida (ver <a class="ref" href="#s-1-12">1.12</a>).</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 6</span>
+    <p>Duas equações, três incógnitas, com os coeficientes de \(x\) e de \(y\) iguais nas duas
+    linhas:</p>
+    <pre class="conta"> x + 2y + 3z = 8
+ x + 2y +  z = 4</pre>
+    <pre class="conta"> 1   2   3 | 8
+ 1   2   1 | 4</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\): \(x\) e \(y\) desaparecem juntos; sobra \(-2z = -4\).</li>
+      <li>Daí \(z = 2\), e a coluna de \(z\) tem pivô: \(z\) está determinada.</li>
+      <li>Os pivôs ficaram nas colunas de \(x\) e de \(z\). A coluna de \(y\) é a que ficou sem
+      pivô — no meio, não no fim. Logo \(y\) é a variável livre.</li>
+      <li>Isola-se \(x\): \(x = 8 - 2y - 3z = 2 - 2y\).</li>
+    </ol>
+    <pre class="conta"> 1   2   3 | 8
+ 0   0  -2 | -4</pre>
+    <p>Resultado: \((x; y; z) = (2 - 2y;\ y;\ 2)\), com \(y\) livre. Para \(y = 0\) sai \((2; 0; 2)\);
+    para \(y = 1\) sai \((0; 1; 2)\). Confere: \(0 + 2 + 6 = 8\) e \(0 + 2 + 2 = 4\).</p>
+    <p><b>O que o caso ensina.</b> A variável livre é definida pela coluna que ficou sem pivô, e
+    essa coluna pode estar em qualquer posição. Aqui a última incógnita, \(z\), está determinada, e
+    a do meio, \(y\), é o parâmetro. Uma variável pode ficar presa a um número mesmo havendo outra
+    livre: as duas coisas não se excluem.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Quem aprendeu que "o parâmetro é sempre a última variável" erra o Exemplo 6. O parâmetro é a
+    incógnita cuja coluna não recebeu pivô, e a eliminação não percorre as colunas de forma
+    previsível: no Exemplo 6 a segunda linha perdeu \(x\) e \(y\) de uma vez, o pivô saltou para a
+    coluna de \(z\) e sobrou \(y\). Antes de escrever a resposta, olhe a escada e diga em voz alta
+    quais colunas têm pivô. Depois disso a parametrização sai sozinha.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Também não vale a recíproca do Exemplo 1: mais equações que incógnitas não garantem solução,
+    e é o que os Exemplos 4 e 5 mostram — nos dois casos há linhas de sobra e nenhuma solução.
+    O formato da matriz não decide nada. Quem decide é a última linha depois do escalonamento: se
+    ali aparecer \(0 = c\) com \(c \neq 0\), o sistema está encerrado, por mais equações corretas
+    que existam acima.</p>
+  </div>
+
+  <p>Os seis casos cobrem os dois sentidos do desequilíbrio: colunas a mais produzem parâmetros,
+  linhas a mais produzem testes. Nenhum deles exigiu operação nova — só a leitura ficou mais
+  cuidadosa. O próximo bloco sobe o tamanho sem mudar o formato, para separar o que é dificuldade
+  de método do que é apenas dificuldade de conta (ver <a class="ref" href="#s-1-16">1.16</a>).</p>
+</section>
+
+<!-- fonte: f1-matematica.html bloco D (fichas D1–D2); resultados conferidos por img-gen/grade-f1.py -->
+<section class="sec" id="s-1-16">
+  <h2><span class="num">1.16</span>Exemplos resolvidos: sistemas 4×4</h2>
+
+  <p>Um sistema 4×4 tem quatro equações e quatro incógnitas. O método é o mesmo de 2×2 e de 3×3:
+  escrever a matriz aumentada, aplicar operações elementares até a forma escalonada, substituir de
+  baixo para cima. Nada de novo precisa ser aprendido para resolvê-lo — e é por isso que ele serve
+  de teste: se o método está firme, o tamanho não atrapalha; se não está, o tamanho só aumenta o
+  prejuízo.</p>
+
+  <p>O que muda é a distância entre o erro e o sintoma. Em 2×2, um sinal trocado na segunda linha
+  aparece na conta seguinte. Em 4×4, o valor de \(x_1\) é o último a sair e depende de três
+  substituições: quando ele sai errado, a operação que o estragou está três linhas acima e já foi
+  coberta por outras contas. Por isso os dois exemplos abaixo são registrados passo a passo, com a
+  operação declarada antes de ser executada, como pede o protocolo de
+  <a class="ref" href="#s-1-10">1.10</a>.</p>
+
+  <p>As duas formas que o 4×4 toma aqui são as mesmas do 3×3. Na primeira, a matriz já vem
+  escalonada e o trabalho é só de leitura. Na segunda, a contradição está na primeira coluna e o
+  sistema morre antes de qualquer escalonamento — o que também é uma resposta, e das mais úteis,
+  porque chega cedo e poupa o resto.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Quatro equações, quatro incógnitas, e a matriz aumentada já sai escalonada: há um pivô em
+    cada uma das quatro colunas dos coeficientes, e tudo abaixo da diagonal é zero. Não há
+    eliminação a fazer; resta ler de baixo para cima.</p>
+    <pre class="conta">  1   1   1   1 | 10
+  0   1   2   1 |  8
+  0   0   1   1 |  5
+  0   0   0   2 |  6</pre>
+    <p>Quatro incógnitas e quatro pivôs, um por coluna: nenhuma variável livre. A forma, sozinha,
+    já garante que a solução é única. O que falta é o valor, e ele sai por substituição, sempre da
+    última linha para a primeira.</p>
+    <ol class="passos">
+      <li>Última linha: \(2x_4 = 6\). O pivô \(2\) não é zero, então
+      \(R_4 \leftarrow \tfrac{1}{2}R_4\) é uma operação permitida e dá \(x_4 = 3\).</li>
+      <li>Terceira linha: \(x_3 + x_4 = 5\). Com \(x_4 = 3\), \(x_3 = 5 - 3 = 2\).</li>
+      <li>Segunda linha: \(x_2 + 2x_3 + x_4 = 8\), isto é, \(x_2 + 4 + 3 = 8\), e \(x_2 = 1\).</li>
+      <li>Primeira linha: \(x_1 + x_2 + x_3 + x_4 = 10\), isto é, \(x_1 + 1 + 2 + 3 = 10\), e
+      \(x_1 = 4\).</li>
+    </ol>
+    <p>Resultado: \((x_1; x_2; x_3; x_4) = (4; 1; 2; 3)\).</p>
+    <p>A conferência cobre as três substituições de uma vez. Na primeira linha,
+    \(4 + 1 + 2 + 3 = 10\); na segunda, \(1 + 2 \cdot 2 + 3 = 8\). As duas fecham, e as duas linhas
+    restantes foram usadas para produzir \(x_4\) e \(x_3\) — não há o que conferir nelas. Em 4×4,
+    essa conferência é a única defesa barata: ela custa duas somas e testa o resultado inteiro.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Nenhuma fração apareceu neste exemplo, e isso não é sorte: os coeficientes
+    foram escolhidos para que a divisão da última linha fosse exata. Quando o pivô não divide a
+    constante, a conta continua válida, mas passa a carregar fração de uma linha para a outra — e em
+    4×4 ela se propaga por três substituições. Ao montar um exercício, vale preferir o pivô que
+    divide.</p>
+  </div>
+
+  <p>Nas fichas do quadro esse sistema aparece sem os zeros, na forma triangular: a posição vazia já
+  indica coeficiente nulo. Na matriz aumentada os zeros são escritos, e isso não é preciosismo — é o
+  que permite aplicar uma operação a uma linha inteira sem perguntar onde estão as incógnitas. A
+  matriz não guarda só os números; guarda as posições, e é a posição que diz qual incógnita cada
+  coluna representa.</p>
+
+  <p>O segundo exemplo tem o mesmo tamanho e não tem solução. A diferença aparece antes da primeira
+  operação, e reconhecê-la é o que separa a conta curta da conta perdida.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Os coeficientes da segunda linha são o dobro dos da primeira. A constante não acompanha.</p>
+    <pre class="conta">  1   1   1   1 | 4
+  2   2   2   2 | 9
+  1  -1   1  -1 | 0
+  1   0   1   0 | 2</pre>
+    <ol class="passos">
+      <li>Comparar as duas primeiras linhas antes de calcular:
+      \((2, 2, 2, 2) = 2 \cdot (1, 1, 1, 1)\), então a constante correspondente deveria ser
+      \(2 \cdot 4 = 8\). Ela é \(9\).</li>
+      <li>Executar a operação mesmo assim, para registrar a contradição por escrito:
+      \(R_2 \leftarrow R_2 - 2R_1\).</li>
+      <li>Os coeficientes da segunda linha zeram e sobra \(0 = 1\), porque \(9 - 2 \cdot 4 = 1\).</li>
+    </ol>
+    <pre class="conta">  1   1   1   1 |  4
+  0   0   0   0 |  1
+  1  -1   1  -1 |  0
+  1   0   1   0 |  2</pre>
+    <p>Resultado: o sistema é impossível. A linha de zeros com constante \(1\) não é uma equação em
+    \(x_4\) — não há incógnita nela para isolar —, é uma afirmação falsa sobre os números. E o
+    veredito já está fechado: as duas últimas linhas não precisam ser tocadas, porque nenhuma
+    operação elementar transforma \(0 = 1\) em igualdade verdadeira. Operações elementares são
+    reversíveis, e uma igualdade falsa não se torna verdadeira por uma transformação que pode ser
+    desfeita.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Duas linhas de zeros dizem coisas opostas, e a diferença está só na constante. Uma linha
+    \(0 = 1\) é contradição e encerra o sistema. Uma linha \(0 = 0\) é redundância e não encerra
+    nada: informa apenas que aquela equação era combinação das outras, e a incógnita da coluna sem
+    pivô fica livre. As duas podem aparecer no mesmo escalonamento, e a ordem não importa — a
+    primeira que for do tipo \(0 = 1\) decide o veredito.</p>
+  </div>
+
+  <p>Outro erro de 4×4 é querer "consertar" o número que quebrou a proporção. O \(9\) da segunda
+  linha não é um erro de cópia a ser corrigido para \(8\): ele é o dado do problema, e é ele que
+  produz a resposta "impossível". Corrigir o dado é resolver outro sistema — e o outro sistema,
+  aliás, teria infinitas soluções, porque as duas primeiras linhas seriam a mesma equação.</p>
+
+  <p>Quando a matriz não vem triangular, a primeira coluna oferece quatro candidatos a pivô, e a
+  escolha não é indiferente. Trazer para o topo a linha cujo primeiro coeficiente é \(1\) evita
+  fração nas três operações seguintes; escolher a linha cujo coeficiente é \(3\) produz terços já na
+  segunda linha e os carrega até o fim. A escolha do pivô é o assunto de
+  <a class="ref" href="#s-1-11">1.11</a>, e em 4×4 ela rende mais do que em 2×2, porque a conta que
+  ela simplifica é três vezes maior.</p>
+
+  <p>O tamanho também cobra o número de operações. O trabalho da eliminação cresce com o cubo do
+  número de incógnitas, então passar de 2 para 4 não dobra a conta: multiplica por oito,
+  aproximadamente. É a razão prática de o 4×4 já exigir caderno organizado — não porque o método
+  mudou, mas porque a mesma quantidade de descuido custa muito mais caro.</p>
+
+  <p>Os dois exemplos desta seção resolvem sistemas, e nos dois o veredito sai da forma antes de sair
+  da conta: no primeiro, quatro pivôs anunciam solução única; no segundo, a linha \(0 = 1\) encerra
+  tudo. A próxima seção faz outra coisa com a matriz — em vez de usá-la para guardar um sistema,
+  multiplica duas matrizes entre si, e o produto não se comporta como o produto de números (ver
+  <a class="ref" href="#s-1-17">1.17</a>).</p>
+</section>
+
+<!-- fonte: f1-matematica.html bloco E (fichas E1–E2); resultados conferidos por img-gen/grade-f1.py -->
+<section class="sec" id="s-1-17">
+  <h2><span class="num">1.17</span>Exemplos resolvidos: matrizes</h2>
+
+  <p>Até aqui a matriz foi uma notação: um jeito de escrever o sistema sem repetir as incógnitas a
+  cada linha. Nesta seção ela passa a ser um objeto com operação própria. A operação é o produto, e
+  o produto de matrizes não se comporta como o produto de números — ele depende da ordem dos
+  fatores, e às vezes nem existe.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Seja \(A\) uma matriz de tamanho \(m \times n\) e \(B\) uma matriz de tamanho
+    \(n \times p\). O <b>produto</b> \(AB\) é a matriz de tamanho \(m \times p\) cuja entrada da
+    linha \(i\) e coluna \(j\) é a soma dos produtos termo a termo da linha \(i\) de \(A\) pela
+    coluna \(j\) de \(B\):</p>
+    \[ (AB)_{ij} \;=\; a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}. \]
+    <p>O produto só está definido quando o número de colunas de \(A\) é igual ao número de linhas
+    de \(B\). Quando está, \(AB\) tem as linhas de \(A\) e as colunas de \(B\).</p>
+  </div>
+
+  <p>A conta é sempre a mesma, e vale enunciá-la em palavras: toma-se uma linha da primeira matriz e
+  uma coluna da segunda, multiplicam-se as entradas de mesma posição e somam-se os resultados. O
+  produto de uma linha por uma coluna é um único número — não é uma linha, não é uma coluna. A
+  matriz inteira é o quadro desses números, um para cada par (linha, coluna).</p>
+
+  <p>A condição de dimensões tem uma consequência que os números não têm. Se \(A\) é
+  \(m \times n\) e \(B\) é \(n \times p\), então \(AB\) é \(m \times p\). Para \(BA\) existir,
+  as colunas de \(B\) precisam encontrar as linhas de \(A\), o que exige \(p = m\). Os dois produtos
+  existem ao mesmo tempo apenas quando \(A\) e \(B\) são quadradas de mesmo tamanho, ou quando uma é
+  \(m \times n\) e a outra é \(n \times m\). Nos demais casos, no máximo um dos dois existe — e com
+  frequência nenhum dos dois.</p>
+
+  <p>Um hábito de uma linha evita quase todos os erros de dimensão: escrever os tamanhos lado a
+  lado, \((m \times n)(n \times p)\), e cancelar as internas. Se sobra \(m \times p\), o produto
+  existe e esse é o tamanho do resultado. Se as internas não cancelam, não há produto — e não adianta
+  procurar o erro na conta, porque o erro está antes dela.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Duas matrizes que fecham nos dois sentidos, com resultados de tamanhos diferentes.</p>
+    <pre class="conta">A (2×3) = [ 1   2   0 ]        B (3×2) = [ 2   1 ]
+          [ 3  -1   1 ]                  [ 0   3 ]
+                                         [ 4  -2 ]</pre>
+    <p>\(A\) tem \(2\) linhas e \(3\) colunas; \(B\) tem \(3\) linhas e \(2\) colunas. As dimensões
+    internas batem (\(3 = 3\)), então \(AB\) existe e é \(2 \times 2\). Na outra ordem as internas
+    também batem (\(2 = 2\)), então \(BA\) existe e é \(3 \times 3\).</p>
+    <p>Uma entrada feita por extenso mostra o mecanismo. Para a entrada da linha \(1\), coluna \(1\)
+    de \(AB\): a linha \(1\) de \(A\) é \((1, 2, 0)\), a coluna \(1\) de \(B\) é \((2, 0, 4)\), e
+    \(1 \cdot 2 + 2 \cdot 0 + 0 \cdot 4 = 2\).</p>
+    <ol class="passos">
+      <li>Segunda entrada da primeira linha de \(AB\):
+      \(1 \cdot 1 + 2 \cdot 3 + 0 \cdot (-2) = 7\).</li>
+      <li>Segunda linha de \(AB\): \(3 \cdot 2 + (-1) \cdot 0 + 1 \cdot 4 = 10\) e
+      \(3 \cdot 1 + (-1) \cdot 3 + 1 \cdot (-2) = -2\).</li>
+      <li>Em \(BA\), a entrada da linha \(3\), coluna \(1\) usa a linha \(3\) de \(B\), \((4, -2)\),
+      com a coluna \(1\) de \(A\), \((1, 3)\): \(4 \cdot 1 + (-2) \cdot 3 = -2\).</li>
+    </ol>
+    <pre class="conta">A·B (2×2) = [  2   7 ]      B·A (3×3) = [  5   3   1 ]
+            [ 10  -2 ]                  [  9  -3   3 ]
+                                        [ -2  10  -2 ]</pre>
+    <p>Note o que aconteceu: não é que os dois produtos tenham valores diferentes — eles nem têm o
+    mesmo tamanho. \(AB\) tem duas linhas e \(BA\) tem três, de modo que a pergunta "são iguais?" não
+    chega a ser feita. A dimensão não é um detalhe do resultado; ela é parte do resultado.</p>
+  </div>
+
+  <p>O caso acima é o mais fácil de aceitar, porque a diferença é visível sem conta. Para mostrar que
+  a ordem importa de verdade, é preciso comparar dois produtos do mesmo tamanho.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Duas matrizes \(2 \times 2\). Agora \(AB\) e \(BA\) têm as mesmas dimensões, e a comparação
+    pode ser feita entrada por entrada.</p>
+    <pre class="conta">A = [ 1   1 ]      B = [ 1   0 ]
+    [ 0   1 ]          [ 1   1 ]</pre>
+    <ol class="passos">
+      <li>Entrada da linha \(1\), coluna \(1\) de \(AB\): \(1 \cdot 1 + 1 \cdot 1 = 2\).</li>
+      <li>A mesma posição em \(BA\): \(1 \cdot 1 + 0 \cdot 0 = 1\).</li>
+      <li>Já na primeira entrada os produtos divergem. Terminando as quatro, para registro:</li>
+    </ol>
+    <pre class="conta">A·B = [ 2   1 ]      B·A = [ 1   1 ]
+      [ 1   1 ]            [ 1   2 ]</pre>
+    <p>Resultado: \(AB \neq BA\), com \(A\) e \(B\) do mesmo tamanho e os dois produtos definidos.
+    O contraexemplo é mínimo — entradas apenas \(0\) e \(1\), quatro números em cada matriz — e por
+    isso convence: não há nada de exótico nas matrizes, e ainda assim a troca de ordem muda o
+    resultado.</p>
+  </div>
+
+  <p>Há uma segunda leitura do produto, e ela explica por que a definição é linha por coluna. Se
+  \(x\) é uma coluna de \(n\) entradas e \(A\) é \(m \times n\), então \(Ax\) é uma coluna de \(m\)
+  entradas cuja entrada \(i\) é exatamente o lado esquerdo da equação \(i\) do sistema cuja matriz
+  dos coeficientes é \(A\). Multiplicar \(A\) por \(x\) é calcular todos os lados esquerdos de uma
+  vez. A regra linha por coluna não foi escolhida por gosto: ela é a operação que reproduz o
+  sistema.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro comum é começar a multiplicar antes de conferir as dimensões. Escrever "\(A\) é
+    \(m \times n\), \(B\) é \(n \times p\)" e só então decidir qual produto existe custa uma linha
+    de papel e economiza a conta inteira. Quando as internas não batem, o produto não é zero nem
+    vazio: ele não está definido. E quando batem nos dois sentidos, os resultados podem ter tamanhos
+    diferentes, como no Exemplo 1 — o que já exclui a igualdade sem nenhuma multiplicação.</p>
+  </div>
+
+  <p>A consequência é operacional. Toda conta matricial que transporte um fator de um membro para
+  outro precisa dizer de que lado se multiplica: à esquerda ou à direita. As duas escolhas dão
+  resultados diferentes, e é por isso que não existe "passar dividindo". De \(AB = AC\) não se
+  conclui \(B = C\) sem mais nada; o que devolve a cancelabilidade é a matriz inversa, e ela só
+  existe em condições que precisam ser enunciadas com cuidado.</p>
+
+  <p>Vale separar duas propriedades que, nos números, andam sempre juntas. A troca de ordem é
+  proibida: \(AB \neq BA\) em geral. O agrupamento não é: \(A(BC) = (AB)C\) sempre que os produtos
+  existem. A conta matricial é, portanto, associativa e não comutativa — e é a segunda metade dessa
+  frase que obriga a escrever o lado em toda operação de transporte.</p>
+
+  <p>A identidade é o caso em que nada disso aparece: \(AI = IA = A\) para toda \(A\) de tamanho
+  compatível. É porque a identidade comuta com todas as matrizes que ela pode servir de modelo para
+  o que a inversa faz — e é por isso que a inversa é definida pelos dois lados, e não por um só.</p>
+
+  <p>Com o produto definido, a matriz deixa de ser apenas uma forma de escrever sistema e passa a
+  ser um objeto algébrico, com operação e regras próprias — e a primeira dessas regras é a que
+  acaba de aparecer: a ordem importa.</p>
+</section>
+
+<figure class="cena">
+  <img src="../img/c10-fecho.png" alt="Montagem em quatro painéis: no alto o jogador de capuz de costas no degrau mais alto de um pódio, erguendo um troféu num salão vazio; embaixo, três painéis do mesmo tamanho — dormindo, estudando e treinando — presos por um colchete formando a base do pódio." loading="lazy" decoding="async">
+  <figcaption>Duas coisas que sempre andam juntas são uma só.</figcaption>
+</figure>
+
+<footer class="notas">
+  <h2>Notas</h2>
+  <ol>
+    <li>O caso contado na abertura é o da <i>depleção do ego</i>: BAUMEISTER, R. F., BRATSLAVSKY, E.,
+    MURAVEN, M. &amp; TICE, D. M. (1998). Ego depletion: is the active self a limited resource?
+    <i>Journal of Personality and Social Psychology</i> 74, 1252–1265.
+    doi:10.1037/0022-3514.74.5.1252</li>
+    <li>A replicação que não sustentou o efeito: HAGGER, M. S. et al. (2016). A multilab
+    preregistered replication of the ego-depletion effect. <i>Perspectives on Psychological
+    Science</i> 11, 546–573. doi:10.1177/1745691616652873 — 23 laboratórios, 2.141 participantes,
+    d = 0,04, IC95% [−0,07; 0,15].</li>
+    <li>O desenvolvimento da matemática segue ANTON, H. <i>Álgebra Linear com Aplicações</i>,
+    capítulo 1: sistemas de equações lineares, eliminação gaussiana e matrizes.</li>
+  </ol>
+</footer>
+
+</main>
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\(', '\)']], displayMath: [['\[', '\]']] },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+</body>
+</html>

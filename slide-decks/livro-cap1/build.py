@@ -1,120 +1,116 @@
 #!/usr/bin/env python3
-"""Monta livro-cap1.html a partir dos fragmentos em partes/.
+"""Monta o capítulo de leitura a partir de capitulo.json.
 
-- Nenhum fragmento é editado aqui: só concatenado, na ordem do nome do arquivo.
-- O sumário é gerado dos <h2> — não existe sumário escrito à mão.
-- Arquivos que começam com "_" são ignorados (modelos, rascunhos).
+O manifesto é a única fonte da ordem: ele diz quais seções e quais cenas entram, e em que
+ordem. O próximo capítulo é um manifesto novo — não um build novo.
 
-Uso: python3 build.py
+Uso: python3 build.py [capitulo.json]
 """
 
-import glob
+import json
 import os
 import re
 import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
-PARTES = os.path.join(AQUI, "partes")
-SAIDA = os.path.join(AQUI, "livro-cap1.html")
+MANIFESTO = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AQUI, "capitulo.json")
+BS = chr(92)          # barra invertida, dos delimitadores de math
 
-TITULO = "Capítulo 1 · Sistemas e matrizes"
-SUBTITULO = ("Do que é uma solução até o que a forma da matriz já diz, sem desenhar reta.")
-AUTOR = "Prof. Angelo Mondaini Calvão · IPRJ/UERJ"
-
-
-def ler_partes():
-    arquivos = sorted(
-        a for a in glob.glob(os.path.join(PARTES, "*.html"))
-        if not os.path.basename(a).startswith("_")
-    )
-    if not arquivos:
-        sys.exit("nenhum fragmento em %s" % PARTES)
-    return arquivos, [(os.path.basename(a), open(a, encoding="utf-8").read()) for a in arquivos]
-
-
-def limpar(s):
-    s = re.sub(r"<[^>]+>", "", s)
-    s = s.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
-    return re.sub(r"\s+", " ", s).strip()
-
-
-def sumario(corpo):
-    itens = []
-    for m in re.finditer(r'<h2[^>]*>(.*?)</h2>', corpo, re.S):
-        dentro = m.group(1)
-        mn = re.search(r'<span class="num">([^<]+)</span>', dentro)
-        num = mn.group(1).strip() if mn else ""
-        titulo = limpar(dentro)
-        if num:
-            titulo = re.sub(r"^" + re.escape(num) + r"\s*", "", titulo)
-        itens.append((num, titulo))
-
-    # ainda não existem âncoras: casa cada h2 com o id da section que o contém
-    alvos = []
-    for m in re.finditer(r'<section[^>]*id="([^"]+)"[^>]*>(.*?)</section>', corpo, re.S):
-        sid, bloco = m.group(1), m.group(2)
-        if re.search(r"<h2[^>]*>", bloco):
-            alvos.append(sid)
-
-    linhas = []
-    for i, (num, titulo) in enumerate(itens):
-        href = alvos[i] if i < len(alvos) else ""
-        rotulo = '<span class="num">%s</span>' % num if num else '<span class="num">·</span>'
-        linhas.append('      <li><a href="#%s">%s%s</a></li>' % (href, rotulo, titulo))
-    return "\n".join(linhas), len(itens)
-
-
-def main():
-    arquivos, pares = ler_partes()
-    corpo = "\n\n".join(txt.strip() for _, txt in pares)
-    toc, n = sumario(corpo)
-
-    html = """<!DOCTYPE html>
+MODELO = """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{titulo}</title>
-<link rel="stylesheet" href="livro-cap1.css">
+<title>{titulo} · capítulo 1</title>
+<meta name="description" content="{descricao}">
+<link rel="stylesheet" href="tema.css">
 </head>
-<body>
-
-<div class="pagina">
+<body class="leitura">
 
 <header class="capa">
-  <p class="selo">Álgebra Linear · capítulo 1</p>
-  <h1>{titulo}</h1>
-  <p class="sub">{sub}</p>
-  <p class="autor">{autor}</p>
+  <img src="{capa_img}" alt="{capa_alt}">
+  <div class="texto">
+    <p class="kicker">{kicker}</p>
+    <h1>{titulo}</h1>
+    <p class="sub">{subtitulo}</p>
+    <p class="autor">{autor}</p>
+  </div>
 </header>
 
-<nav id="sumario">
-  <h2>Sumário</h2>
-  <ol>
-{toc}
-  </ol>
-</nav>
+<main class="coluna">
 
-<main>
 {corpo}
+
 </main>
 
-</div>
-
+<script>
+window.MathJax = {{
+  tex: {{ inlineMath: [['{bs}(', '{bs})']], displayMath: [['{bs}[', '{bs}]']] }},
+  options: {{ skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }}
+}};
+</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 </body>
 </html>
-""".format(titulo=TITULO, sub=SUBTITULO, autor=AUTOR, toc=toc, corpo=corpo)
+"""
 
-    with open(SAIDA, "w", encoding="utf-8") as fh:
+
+def figura(cena, base):
+    return """<figure class="cena">
+  <img src="{src}" alt="{alt}" loading="lazy" decoding="async">
+  <figcaption>{frase}</figcaption>
+</figure>""".format(src=base + cena["img"], alt=cena["alt"], frase=cena["frase"])
+
+
+def main():
+    with open(MANIFESTO, encoding="utf-8") as fh:
+        cfg = json.load(fh)
+
+    base = cfg.get("img_base", "../img/")
+    partes = []
+
+    for bloco in cfg["blocos"]:
+        if "cena" in bloco:
+            partes.append(figura(bloco["cena"], base))
+        elif "parte" in bloco:
+            caminho = os.path.join(AQUI, bloco["parte"])
+            if not os.path.exists(caminho):
+                sys.exit("falta o fragmento " + bloco["parte"])
+            with open(caminho, encoding="utf-8") as fh:
+                partes.append(fh.read().strip())
+        else:
+            sys.exit("bloco sem 'cena' nem 'parte': %r" % bloco)
+
+    corpo = "\n\n".join(partes)
+
+    # imagem quebrada é erro silencioso: confere cada src contra o disco
+    faltando = [src for src in re.findall(r'<img src="([^"]+)"', corpo)
+                if not os.path.exists(os.path.normpath(os.path.join(AQUI, src)))]
+    if faltando:
+        sys.exit("imagens que nao existem: " + ", ".join(sorted(set(faltando))))
+
+    n_cenas = len(re.findall(r'class="cena"', corpo))
+    n_sec = len(re.findall(r'<section class="sec"', corpo))
+
+    html = MODELO.format(
+        titulo=cfg["titulo"],
+        descricao=cfg.get("subtitulo", "").replace('"', "'"),
+        kicker=cfg["kicker"],
+        subtitulo=cfg["subtitulo"],
+        autor=cfg["autor"],
+        capa_img=base + cfg["capa"]["img"],
+        capa_alt=cfg["capa"]["alt"],
+        corpo=corpo,
+        bs=BS,
+    )
+
+    saida = os.path.join(AQUI, cfg["saida"])
+    with open(saida, "w", encoding="utf-8") as fh:
         fh.write(html)
 
-    print("ok %s" % os.path.basename(SAIDA))
-    print("  fragmentos: %d" % len(arquivos))
-    print("  secoes no sumario: %d" % n)
-    print("  linhas: %d" % html.count("\n"))
-    for nome, txt in pares:
-        print("    %-22s %4d linhas" % (nome, txt.count("\n") + 1))
+    print("ok %s" % cfg["saida"])
+    print("  blocos: %d · secoes: %d · cenas: %d" % (len(cfg["blocos"]), n_sec, n_cenas))
+    print("  tamanho: %d KB" % (len(html) // 1024))
 
 
 if __name__ == "__main__":
