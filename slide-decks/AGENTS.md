@@ -96,6 +96,11 @@ estrutura, silenciosamente. Erro silencioso em slide de matemática é pior que 
 
 - **Uma por fase, seis no curso** — mais uma por cartela do capítulo 1 (Q01–Q10).
 - Nunca carrega conteúdo matemático verificável.
+- **Texto incidental da cena pode; texto explicativo, não.** `WIN!` numa tela de fliperama,
+  `GAME OVER` num gabinete: fazem parte do objeto, ficam. Frase, legenda, parágrafo, título ou
+  rótulo que **explica** a cena, não — isso vai no slide em HTML, onde é editável, traduzível e
+  atualizável. A fronteira é funcional, não estética: se o texto precisa ser mantido, ele não
+  mora no PNG.
 - Marcada como fabricada.
 - Nunca no mesmo slide que diagrama ou fórmula — a cena tem slide próprio.
 

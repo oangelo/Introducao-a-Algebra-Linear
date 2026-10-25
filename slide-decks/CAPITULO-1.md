@@ -104,7 +104,7 @@ o que não entra, onde a frase senta — está em [`STORYBOARD-CAP1.md`](STORYBO
 
 **C3 · IMAGEM:** a tela do gabinete em azul, com WIN! em branco sobre o labirinto. Ele de costas, os dois braços erguidos.
 
-**NOTA (24/out):** WIN! é texto legível dentro da imagem, contra a regra do capítulo (imagem sem texto). Está registrado como pendência: regerar `c3-vitoria` sem texto ou aceitar como tipografia diegética. A C6 tem o mesmo caso com GAME OVER.
+**NOTA:** o WIN! é texto **incidental** — faz parte do objeto, como o GAME OVER da C6. O que não entra em imagem é texto **explicativo** (frase, legenda, parágrafo): esse mora no slide em HTML, onde é editável.
 **FRASE:** *Funcionou uma vez. Isso não é evidência.*
 
 **C4 · IMAGEM:** díptico de plataforma, os dois quadros separados por uma barra preta. No da esquerda, o boneco de pé no penhasco central, com o bloco "?" ao lado; no da direita, o mesmo boneco caindo no vão, sobre a água, entre os peixes. Dois desfechos do mesmo salto, lado a lado.

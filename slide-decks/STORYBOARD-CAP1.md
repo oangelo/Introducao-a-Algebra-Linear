@@ -73,7 +73,8 @@ comportamento porque é o que o aluno também faz.
 ### Q03 · `img/c3-vitoria.png`
 **FRASE:** *Funcionou uma vez. Isso não é evidência.*
 **A imagem mostra:** ele de costas, os dois braços erguidos diante da tela azul do gabinete, que
-mostra WIN! em branco. **Texto legível na imagem** — pendência registrada em `CAPITULO-1.md`.
+mostra WIN! em branco — texto incidental da cena, permitido. **Texto explicativo** é que não entra
+em imagem: frase, legenda ou parágrafo vão no slide em HTML.
 **Por que essa imagem:** o gesto de vitória é o momento em que **qualquer pessoa** conclui a
 causa. A imagem tem que ser comemorativa, porque a frase tem que doer.
 **Nota:** o gesto é de costas, sem rosto — o triunfo é do aluno, não de um personagem.

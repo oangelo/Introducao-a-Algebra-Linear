@@ -50,9 +50,13 @@ passar num plano de objeto devolve o moletom no meio de uma pilha de papéis.
 
 ## As regras que não são negociáveis
 
-1. **Texto nunca vem do modelo.** Ele inventa letra e o aluno acredita. O negativo base já
-   proíbe `text, letters, words, writing`; ainda assim, se aparecer qualquer letra legível, a
-   imagem é **descartada**, não corrigida.
+1. **Texto explicativo nunca vem do modelo; texto incidental da cena pode ficar.** O que o
+   negativo base proíbe é `paragraphs, captions, subtitles, watermark, legible paragraphs` —
+   texto que **explica**. Palavra que faz parte do objeto (`WIN!` numa tela de fliperama,
+   `GAME OVER` num gabinete) é decoração do cenário e pode ficar: é o que se vê na vida real.
+   A fronteira é funcional: **se o texto precisa ser editado, traduzido ou atualizado, ele
+   pertence ao slide em HTML** — dentro do PNG ele não se mantém. Se aparecer parágrafo,
+   legenda ou frase explicativa, a imagem é **descartada**, não corrigida.
    **Símbolo se pede ao modelo, não se desenha por código**: a versão do "?" feita com spline em
    `interrogacao.py` saiu com bico, quina e espessura de plotter — geometria limpa não vira
    caligrafia. Se o símbolo for o assunto, o prompt pode pedi-lo (`?` não é palavra, e o negativo
