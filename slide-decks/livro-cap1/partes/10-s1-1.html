@@ -1,0 +1,121 @@
+<!-- fonte: f1-matematica.html §1.1 -->
+<section class="sec" id="s-1-1">
+  <h2><span class="num">1.1</span>Equação linear</h2>
+
+  <p>A equação \(2x + y - z = 7\) tem três incógnitas e, diante delas, quatro números: \(2\), \(1\),
+  \(-1\) e \(7\). As letras dizem quais são as incógnitas; os números dizem o resto. Duas equações
+  com a mesma lista de coeficientes, na mesma ordem, e o mesmo termo independente são a mesma
+  equação — ainda que as incógnitas se chamem \(u, v, w\) em vez de \(x, y, z\). É essa separação
+  entre o nome da incógnita e o número que a acompanha que permite, mais adiante, escrever só os
+  números.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Uma <b>equação linear</b> nas incógnitas \(x_1, x_2, \dots, x_n\) é toda equação que pode ser
+    escrita na forma</p>
+    \[ a_1x_1 + a_2x_2 + \dots + a_nx_n = b, \]
+    <p>com \(a_1, \dots, a_n\) e \(b\) constantes reais. Os números \(a_1, \dots, a_n\) são os
+    <b>coeficientes</b> e \(b\) é o <b>termo independente</b>. Dizer que a equação é linear é o
+    mesmo que dizer que cada incógnita aparece elevada a \(1\), sozinha, multiplicada apenas por
+    uma constante — ou, com outras palavras, que a equação é de primeiro grau em cada incógnita.</p>
+  </div>
+
+  <p>Nada na definição obriga os coeficientes a serem diferentes de zero. A equação
+  \(0x_1 + 0x_2 = 0\) está na forma, e é a equação que não impõe restrição alguma; já
+  \(0x_1 + 0x_2 = 1\) também está na forma, e não tem solução nenhuma. As duas aparecem no fim de
+  qualquer escalonamento, disfarçadas de linha \(0 = 0\) e de linha \(0 = c\). Se a definição
+  exigisse coeficientes não nulos, essas linhas ficariam sem nome — e é por terem nome que se pode
+  dizer, olhando só a forma da matriz, que o sistema já acabou (ver <a class="ref"
+  href="#s-1-12">1.12</a>).</p>
+
+  <p>O índice em \(x_1, \dots, x_n\) não é enfeite: ele amarra cada coeficiente à sua incógnita.
+  Trocar duas incógnitas de lugar no texto de uma equação é trocar duas colunas de coeficientes, e
+  isso muda o significado, ainda que a quantidade de números seja a mesma. Por isso a forma padrão
+  fixa uma ordem, e a mantém até o fim do cálculo. Uma solução também vem nessa ordem: a
+  \(n\)-upla \((x_1, x_2, \dots, x_n)\), não o conjunto de valores soltos.</p>
+
+  <h3>O teste da forma</h3>
+
+  <p>O teste é a forma, não a aparência: pergunte se a equação <b>pode ser escrita</b> como
+  \(a_1x_1 + \dots + a_nx_n = b\). Somar a mesma quantidade aos dois lados, multiplicar os dois
+  lados por uma constante não nula e reduzir termos semelhantes são manobras permitidas, porque são
+  reversíveis e não mudam o conjunto de soluções. Por esse teste, \(2(x + y) = 3x - 1\) é linear:
+  desenvolvendo e passando tudo para a esquerda, fica \(-x + 2y = -1\). E \(x(x - 1) = x^2 + y\)
+  também é: o \(x^2\) cancela dos dois lados e sobra \(x + y = 0\). Nenhuma das duas parece linear
+  à primeira vista, e as duas são.</p>
+
+  <p>A recíproca vale igualmente: aparência de linear não garante nada. Elevar os dois lados ao
+  quadrado, multiplicar por expressão que contém incógnita, tirar a raiz de um lado — cada uma
+  dessas manobras pode acrescentar ou perder soluções, e nenhuma é reversível sem hipótese extra.
+  Elevar ao quadrado, por exemplo, transforma \(x = 3\) em \(x^2 = 9\), que também aceita
+  \(x = -3\): uma solução virou duas. O teste exige que a equação final tenha a forma da definição
+  <i>e</i> o mesmo conjunto-solução da original. Quando uma das duas condições falha, a equação não
+  é linear, por mais simples que pareça.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>São lineares: \(2x + y - z = 7\); \(x_1 - 3x_2 = 0\); \(y = 4\) (o coeficiente de \(x\) é
+    zero, e isso é permitido); \(0x + 0y = 0\).</p>
+    <p>Não são: \(xy = 1\), porque há produto de duas incógnitas; \(x^2 + y = 3\), porque há
+    incógnita ao quadrado; \(\operatorname{sen} x = 0\), porque a incógnita aparece dentro de uma
+    função que não é da forma \(ax\); e \(\frac{1}{x} + y = 2\), porque a incógnita está no
+    denominador.</p>
+    <p>Nos quatro casos, nenhuma manipulação leva à forma da definição. Não é falta de paciência
+    algébrica: é impossível, e cada um falha por um motivo diferente — produto, potência, função,
+    denominador.</p>
+    <p>O caso de uma incógnita só serve de medida. \(3x = 9\) é linear e tem uma única solução;
+    \(|x| = 1\) não é linear e tem duas. Duas soluções já denunciam que a equação saiu da forma
+    \(ax = b\): nesta, coeficiente nulo dá nenhuma ou todas, e coeficiente não nulo dá exatamente
+    uma.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Nem toda equação chega na forma padrão; algumas precisam ser arrumadas. Em
+    \(3(y - 1) = 2x + 5\), desenvolvendo vem \(3y - 3 = 2x + 5\) e, com tudo de um lado,
+    \(2x - 3y = -8\). Em \(5 - \frac{x}{2} = y\), multiplicando por \(2\) (constante não nula, logo
+    permitido) vem \(10 - x = 2y\), ou \(x + 2y = 10\). As duas são lineares; o que mudou foi só a
+    arrumação.</p>
+    <pre class="conta">  3(y − 1) = 2x + 5              5 − x/2 = y
+      3y − 3 = 2x + 5            10 − x = 2y
+   −2x + 3y = 8                 −x − 2y = −10
+    2x − 3y = −8                 x + 2y = 10</pre>
+    <p>Vale a pena arrumar sempre na mesma ordem — \(x\) antes de \(y\), coeficientes à esquerda,
+    constante à direita — porque é essa ordem que a matriz vai repetir. Equação arrumada de dois
+    jeitos diferentes gera matrizes diferentes para o mesmo problema.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>A tentação é limpar denominadores antes de testar. A equação \(\frac{x + y}{x} = 1\) parece
+    virar \(x + y = x\), isto é, \(y = 0\) — linear. Não é. Multiplicar por \(x\) não é manobra
+    permitida, porque \(x\) pode ser zero e a equação original não está definida ali. O
+    conjunto-solução dela é \(\{(x, 0) : x \neq 0\}\), que não é reta nenhuma: é uma reta com um
+    ponto arrancado.</p>
+    <p>A regra que sobra: mover parcelas e reduzir termos, sim; multiplicar por expressão que
+    contém incógnita, não. Denominador com incógnita é sinal de que a equação não é linear, e
+    tratá-la como se fosse acrescenta soluções que o problema não tem. O mesmo raciocínio vale para
+    raiz de incógnita: \(\sqrt{x} = y\) não é linear, e elevá-la ao quadrado dá \(x = y^2\), que
+    também não é — e que muda o conjunto-solução, porque a primeira exige \(y \geq 0\) e a segunda
+    não exige nada disso.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Quando o termo independente é zero, a equação chama-se <b>homogênea</b>, e
+    a \(n\)-upla de zeros sempre a satisfaz: todos os produtos dão zero. Nada disso vale para
+    \(b \neq 0\), em que a \(n\)-upla de zeros nunca é solução. A distinção parece pequena aqui e
+    decide sistemas inteiros mais adiante.</p>
+    <p>Também vale fixar o vocabulário de uma vez: <i>incógnita</i> é a letra, <i>coeficiente</i> é
+    o número que a multiplica, <i>termo independente</i> é o número que fica sozinho. Três palavras
+    para três objetos distintos — e a frase "o coeficiente de \(y\) é zero" só faz sentido porque
+    eles são distintos.</p>
+  </div>
+
+  <p>O nome não é metáfora. Em duas incógnitas, o conjunto de pares que satisfaz a equação é uma
+  reta — e é assim que a Geometria Analítica o desenha há séculos. Em três, o objeto correspondente
+  é um plano; acima disso não há figura com nome. A equação, porém, é sempre a mesma forma: uma
+  soma de múltiplos das incógnitas igualada a uma constante. O que muda de uma dimensão para outra
+  não é a equação, é o desenho — e é no desenho que a Geometria Analítica se apoiou. Convém começar
+  pelo único caso em que ainda se pode apontar para a figura, que é o da reta:
+  <a class="ref" href="#s-1-2">1.2</a>.</p>
+</section>

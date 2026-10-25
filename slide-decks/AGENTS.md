@@ -1,0 +1,242 @@
+# AGENTS.md — Slides de Introdução à Álgebra Linear
+
+Contrato operacional. **Leia antes de tocar em qualquer arquivo desta pasta.**
+O *porquê* está em [`HISTORIA.md`](HISTORIA.md); o arco do curso em
+[`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md); as regras da ficção em [`BIBLIA.md`](BIBLIA.md);
+o desenho em [`ESTRATEGIA.md`](ESTRATEGIA.md); o que entra em cada fase em
+[`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md); a parte não-matemática em
+[`MAPA-JOGADOR.md`](MAPA-JOGADOR.md); a abertura, tela por tela, em
+[`STORYBOARD-CAP1.md`](STORYBOARD-CAP1.md); o diagnóstico do que existe hoje em [`RTC.md`](RTC.md).
+
+---
+
+## 1. A premissa (define tudo o resto)
+
+> "Os slides são um guia para mim e para os alunos que porventura se distraíram — para eles
+> voltarem. Uma âncora na realidade e em que ponto nós estamos." — o professor
+
+O conteúdo matemático é resolvido **no quadro, via exercício**. O slide é **HUD**: mapa de
+estado, não veículo de conteúdo.
+
+Consequências que não são negociáveis:
+
+- Slide que **pode ser lido em voz alta** está errado. Se dá para ler, virou script.
+- Slide que **explica** compete com o quadro. O quadro ganha; o slide atrapalha.
+- A pergunta que todo slide responde: *onde estamos*, *qual é o problema agora*, ou *o que
+  ficou*. Se não responde nenhuma, o lugar dele é o quadro.
+
+Não há cota numérica de palavras, slides ou exemplos. **Cota numérica vira camisa de força e
+foi explicitamente rejeitada pelo professor.** O limiar se calibra no storyboard de cada fase.
+
+---
+
+## 2. A ficção: um concurso dentro de um fliperama
+
+O curso **é um concurso deixado por quem construiu o jogo**. Seis portões (as fases), seis
+chaves (uma por portão), uma última porta (a sala da máquina). Cada fase é um **gabinete** com
+gênero próprio.
+
+> **Regra dura: um gabinete, um gênero, do primeiro ao último slide da fase.**
+
+**As narrações em áudio estão descartadas** (out/2026): são antigas e defasadas. Nenhum
+documento usa narração gravada como razão para manter gênero, cena ou fala. Os `scripts/*.md`
+ficam como registro, não como fonte.
+
+**O que não se copia de *Ready Player One*** (a referência de espírito): OASIS, Halliday/Anorak,
+o ovo, os nomes das chaves, a cultura pop dos anos 80. Fica a estrutura — concurso, portões,
+chaves, prêmio desconhecido — que é domínio público.
+
+Hoje o repositório viola a regra do gênero: há três ficções simultâneas (fantasia medieval,
+cyberpunk e arcade), 8 exercícios misturam medieval com cyberpunk no mesmo arquivo, e o deck
+`eliminacao_gaussiana.html` também. Ver `RTC.md` §3.
+
+| Portão | Gabinete | Gênero |
+|---|---|---|
+| P1 | Sistemas e Matrizes | noir / investigação |
+| P2 | Determinantes | cyberpunk |
+| P3 | Vetores Euclidianos | FPS |
+| P4 | Transformações | plataforma com gravidade variável |
+| P5 | Espaços Vetoriais | construção/estratégia |
+| P6 | Autovalores | corrida |
+
+**Fio condutor do curso:** *"O que este sistema faz com o espaço?"* Cada fase acrescenta uma
+resposta nova — ver `HISTORIA.md` §3. Ao escrever qualquer slide, saiba qual é o pedaço da
+resposta que aquela fase entrega.
+
+**Camada do jogador:** é **foco**, não enfeite. Um **instrumento** (capítulo 1: como se sabe
+que algo funciona) e **seis temas**, um por fase. Ver [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md) e
+[`CAPITULO-1.md`](CAPITULO-1.md).
+
+A lição só entra se for **ocasião do conceito** da fase — a matemática dá o gancho, a evidência
+vem citada (com DOI), nunca alegada pela metáfora. Nada de motivação genérica.
+
+Veículos: **capítulo 1 com 10 cartelas** (Q01–Q10, antes do primeiro portão), **6 dicas de
+carregamento** (uma por fase, cada uma um achado diferente) e **12 pausas** (2 por fase,
+sobreposição, pergunta calibrada pelo tema da fase — nenhuma se repete).
+
+---
+
+## 3. As duas camadas visuais — e a fronteira
+
+> **Se o slide tem fórmula ou número, a imagem é SVG. Se o slide tem história, a imagem é
+> gerada. Não existe slide com as duas.**
+
+### Camada A — diagrama (SVG / canvas), gerado por código
+
+- **SVG inline** para estrutura: span, base, núcleo, imagem, grade deformada.
+- **`<canvas>` + JS** só quando há interação (arrastar vetor, ver a transformação agir).
+- SVG inline (não arquivo em `img/`) para herdar o CSS do tema e manter diff legível.
+- `fragment` do Reveal para revelar o diagrama **um passo por clique** — é o que faz o slide
+  virar roteiro do quadro.
+
+**Nunca** use imagem gerada para objeto matemático: modelo de difusão erra número e erra
+estrutura, silenciosamente. Erro silencioso em slide de matemática é pior que slide feio.
+
+### Camada B — cena (imagem gerada, Qwen-Image)
+
+- **Uma por fase, seis no curso** — mais uma por cartela do capítulo 1 (Q01–Q10).
+- Nunca carrega conteúdo matemático verificável.
+- **Texto incidental da cena pode; texto explicativo, não.** `WIN!` numa tela de fliperama,
+  `GAME OVER` num gabinete: fazem parte do objeto, ficam. Frase, legenda, parágrafo, título ou
+  rótulo que **explica** a cena, não — isso vai no slide em HTML, onde é editável, traduzível e
+  atualizável. A fronteira é funcional, não estética: se o texto precisa ser mantido, ele não
+  mora no PNG.
+- Marcada como fabricada.
+- Nunca no mesmo slide que diagrama ou fórmula — a cena tem slide próprio.
+
+> **Gerador disponível.** Qwen-Image-2.1-Turbo e FLUX.3 via `sd-cli` no Oráculo. Mas **não se
+> chama o gerador à mão**: a cena entra em [`img-gen/cenas.tsv`](img-gen/cenas.tsv) e o harness
+> [`img-gen/gen.sh`](img-gen/gen.sh) roda em lote, numa janela só de GPU. Ver
+> [`img-gen/README.md`](img-gen/README.md).
+>
+> **Traço C:** contorno preto fechado, cor chapada, cel shading em poucos degraus. Um só no
+> curso inteiro — o gênero muda cenário e paleta, não a linha.
+>
+> **Personagem fixo por referência**, nunca por descrição: `img/personagens/jogador-quarto.png`
+> (capítulo 1) e `img/personagens/personagem-noir.png` (detetive do P1). Em ambos **o rosto não
+> existe** — é a assinatura que sobrevive à troca de figurino. Seed e negativo travados no
+> manifesto.
+
+---
+
+## 4. Estrutura de uma fase
+
+```
+00-capa        → nome do portão, 1 linha de missão, o gabinete aceso e a fechadura
+01-cena        → imagem gerada (uma por fase, nunca com matemática)
+02-dica        → carga: a técnica de estudo que a fase possui
+03-estado      → HUD: onde estamos, o que já foi feito
+04..NN         → um slide por tópico de exercício, o exercício que será resolvido no quadro
+NN+1-chave     → a chave do portão (ver STORYBOARD-GERAL.md, Ato 7)
+```
+
+- **HUD fixo em todo slide**, com portão, tópico, exercício e chaves. Se poluir, reduz a
+  faixa — não remove.
+- **Sem `01-historia` de slide inteiro.** A história entra como **cena** (Camada B), uma por
+  fase. É fio, não enredo.
+- O slide de cada tópico mostra **o exercício que vai ser resolvido**, não a solução.
+- **Nenhuma fase termina com chefe.** O curso tem um único **confronto**, na F6. As outras
+  cinco terminam com uma chave na mão.
+- **Pausas** são sobreposição, não tela: 2 por fase, no meio e no fim do miolo.
+
+---
+
+## 5. O que NÃO importar dos cursos irmãos
+
+Geometria e Cálculo têm um pipeline que **não se aplica aqui**, porque lá o slide carrega
+conteúdo:
+
+| Mecanismo | Por que fica de fora |
+|---|---|
+| PDI em 4 camadas | Pressupõe slide como veículo de conteúdo |
+| Insert obrigatório no V1 de todo tópico | Idem — estoura o limiar de texto |
+| Fragmento em `dual-panel` ao lado de exemplos | Duas colunas = dois objetos competindo |
+| Arco narrativo com começo/meio/fim | "Não pode ser história comprida" |
+
+**O que fica:** o RTC (diagnóstico) e a disciplina de verificação. Nada além.
+
+---
+
+## 6. DEV LOG
+
+Deixa de celebrar o gênio individual e vira **créditos com dívida técnica**: quem construiu,
+quem ficou de fora, o que ainda não funciona. Cramer publicou a regra, mas o resultado já
+circulava; Gauss não inventou a eliminação; Grassmann foi ignorado em vida.
+
+---
+
+## 7. Verificação antes de commitar
+
+Verificável por script:
+
+```bash
+grep -c 'style="' arquivo.html      # deve ser 0
+grep -c '\\\\(' arquivo.html        # deve ser 0 (LaTeX quebrado)
+python3 img-gen/check-cap1.py      # frases iguais nos 3 arquivos + imagem de cada cartela existe
+```
+
+Verificação manual obrigatória:
+
+1. CSS do tema carregou (não é HTML cru)?
+2. MathJax renderizou?
+3. Navegação do Reveal funciona nas duas direções?
+4. Links relativos (`game-theme.css`, `css/`, `js/`) resolvem?
+5. O slide responde onde estamos / qual é o problema / o que ficou?
+
+O limiar de texto **não** é verificável por script — é julgamento na revisão, com o
+storyboard ao lado.
+
+---
+
+## 8. Onde estamos (2026-10-23)
+
+- Nada foi implementado. Nenhum slide novo, nenhum deck alterado.
+- Decidido: premissa HUD, ficção do fliperama, fio condutor, camada do jogador, HUD fixo,
+  DEV LOG como créditos, sem cota numérica, piloto = **Fase 1**.
+- Feito: [`MAPA-CAPITULOS.md`](MAPA-CAPITULOS.md) — o que entra em cada fase e **qual
+  capítulo é dono de cada conceito** (regra R1: um conceito tem um dono).
+- Feito: [`CAPITULO-1.md`](CAPITULO-1.md) — a abertura: os cinco instrumentos do método, o caso
+  da teoria que virou livro e não se replicou, e as 10 cartelas (imagem + frase).
+- Feito: [`MAPA-JOGADOR.md`](MAPA-JOGADOR.md) — um instrumento (capítulo 1) e seis temas, um por
+  fase, com dica, ocasião no conteúdo e referência com DOI.
+- Feito: [`STORYBOARD-GERAL.md`](STORYBOARD-GERAL.md) — os 46 quadros do curso, na ordem, com
+  as chaves, o capítulo 1 e as 12 pausas.
+- Feito: [`BIBLIA.md`](BIBLIA.md) — as regras: concurso, chaves, registros, orçamentos
+  (4 telas de manual, 2 interstícios, 6 cenas, 6 dicas, 12 pausas, 1 confronto, 6 chaves).
+- Feito: [`STORYBOARD-F1.md`](STORYBOARD-F1.md) — piloto com 9 telas, 2 pausas e o inventário
+  de imagem de cada tela (1 gerada, 8 SVG).
+- Próximo passo: aprovar a Fase 1 → `slide-spec.md` → implementar as 8 telas SVG (a cena
+  espera o gerador).
+- Feito: [`img-gen/`](img-gen/README.md) — harness de imagem em janela única e o personagem
+  canônico (`img/personagens/jogador-capuz.png`). As dez cartelas do capítulo 1 e as seis cenas
+  de fase (`f1-02` … `f6-02`) existem em `img/`. Para regerar, três registros:
+  `cenas.tsv` (11 cenas com seed), `cenas-historicas.tsv` (`c4-comparar`, `c5-isolar`, `c7-palco`,
+  `c8-pilhas` — aprovadas sem seed registrada) e, para a `c10-fecho`, a montagem `img-gen/podio.py`
+  sobre quatro peças do FLUX em `cenas-podio-v2.tsv`.
+- Conferido em 24/out: 11 em `cenas.tsv` + 4 em `cenas-historicas.tsv` + 1 montagem = 16 registros
+  para 16 cenas em `img/` (`c1-teoria` … `c10-fecho`, `f1-02` … `f6-02`).
+- Corrigido em 24/out: `c7-estante` → `c7-palco` (o arquivo sempre foi o palco com plateia) e
+  `c8-pilhas` saiu de `cenas.tsv` — a imagem aprovada é um díptico e nenhum prompt registrado o
+  descrevia. Nas duas, o `alt` e o "Por que esta cena" do `cap1-telas.html` descreviam a cena
+  antiga, não a que existe.
+- Feito em 25/out: [`f1-matematica.html`](f1-matematica.html) (+ `.pdf`, gerado por
+  `f1-matematica-pdf.py` a partir do HTML) — a parte matemática da Fase 1: o que é dito antes do
+  primeiro exemplo (9 blocos), 19 fichas de exemplo com o porquê de cada uma, repetição em três
+  passagens e os pontos em aberto. Todo resultado conferido por `img-gen/grade-f1.py`.
+- Feito em 25/out: `f1-portao-1.html` — **esqueleto** do deck único da fase (capa, cena, dica, mapa,
+  bloco 1 e chave) com `f1-portao-1.css`/`.js`. Blocos 2–4 estão como marcadores `<!--BLOCO-N-->`,
+  a serem escritos por partes. O JS guarda a posição no `localStorage` e oferece "retomar" na capa.
+- **Regra de deck de fase (25/out):** a unidade não é a aula. É **um deck por fase**, e o professor
+  para onde quiser — o deck é retomável. A divisão em aulas não existe porque o número de aulas
+  depende da turma.
+- Feito em 25/out: [`f1-costura.html`](f1-costura.html) (+ `.pdf`) — onde a narrativa do capítulo 1
+  encontra a matemática da Fase 1: cinco pontes com limite declarado, cinco analogias cortadas com
+  motivo, a ordem S1–S6 em que as camadas se alternam e quatro riscos com o teste que pega cada um.
+  O mesmo `f1-matematica-pdf.py` gera os dois PDFs (`python f1-matematica-pdf.py f1-costura.html`).
+- Feito em 25/out: [`livro-cap1/livro-cap1.html`](livro-cap1/livro-cap1.html) — **o livro do capítulo 1**,
+  montado por fragmentos: `CONTRATO.md` (voz, vocabulário proibido, mapa de seções), `partes/` com 20
+  fragmentos, `build.py` (concatena e gera o sumário dos `<h2>`) e `verificar.py` (referências
+  cruzadas, barra dupla, delimitadores, numeração, vocabulário). Saída com 18 seções numeradas +
+  abertura e fecho. A fonte é `partes/`: o arquivo montado nunca é editado à mão.
+  Conferido: `verificar.py` verde, 21 ids, 99 links internos, HTML balanceado, e todas as matrizes
+  dos exemplos re-resolvidas por script contra os resultados de `img-gen/grade-f1.py`.

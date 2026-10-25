@@ -1,0 +1,157 @@
+<!-- fonte: f1-matematica.html — fichas B1, B2, B3a e B4 da parte 2 (3×3) -->
+<section class="sec" id="s-1-14">
+  <h2><span class="num">1.14</span>Exemplos resolvidos: sistemas 3×3</h2>
+
+  <p>Três equações, três incógnitas, até três pivôs. O processo não muda em nada: é o mesmo dos
+  sistemas 2×2, com um degrau a mais na escada. O que muda é o número de decisões no caminho — em
+  qual linha está o pivô, se é preciso trocar linhas, quando a coluna seguinte já não tem candidato
+  melhor — e o custo de cada decisão errada, que agora aparece três linhas depois de ter sido
+  tomada.</p>
+
+  <p>Os quatro exemplos seguintes são os do quadro, com os mesmos números. Os dois primeiros têm a
+  mesma resposta de propósito: mostram que caminhos diferentes levam ao mesmo conjunto-solução. O
+  terceiro é sobre a escolha do pivô. O quarto é um sistema quadrado que não tem solução única.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Resolver \(x + y + z = 6\), \(2x - y + z = 3\), \(x + 2y - z = 2\).</p>
+    <pre class="conta"> 1   1   1 |   6
+ 2  -1   1 |   3
+ 1   2  -1 |   2</pre>
+    <ol class="passos">
+      <li>O pivô da primeira coluna já é \(1\), na primeira linha. Zerar o \(2\) abaixo dele:
+      \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a \((0;\ -3;\ -1 \mid -9)\).</li>
+      <li>Zerar o outro \(1\) da coluna: \(R_3 \leftarrow R_3 - R_1\). A terceira linha passa a
+      \((0;\ 1;\ -2 \mid -4)\).</li>
+      <li>Na segunda coluna as entradas são \(-3\) e \(1\). O \(1\) está na terceira linha:
+      \(R_2 \leftrightarrow R_3\) o leva para a posição de pivô.</li>
+      <li>Zerar o \(-3\) que ficou abaixo: \(R_3 \leftarrow R_3 + 3R_2\). A terceira linha passa a
+      \((0;\ 0;\ -7 \mid -21)\).</li>
+      <li>Normalizar: \(R_3 \leftarrow -R_3/7\), e a linha diz \(z = 3\).</li>
+      <li>Voltar substituindo. Em \(R_2\): \(y - 2z = -4\), \(y - 6 = -4\), \(y = 2\). Em \(R_1\):
+      \(x + 2 + 3 = 6\), \(x = 1\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |   6
+ 0   1  -2 |  -4
+ 0   0   1 |   3</pre>
+    <p>Resultado: <b>\((x; y; z) = (1; 2; 3)\)</b>.</p>
+    <p>Conferência nas três equações originais: \(1 + 2 + 3 = 6\); \(2 \cdot 1 - 2 + 3 = 3\);
+    \(1 + 2 \cdot 2 - 3 = 2\). As três fecham.</p>
+    <p>Este é o caso de <b>uma solução</b>: três pivôs, um por coluna, e a volta determina cada
+    incógnita sem nenhuma escolha. É o 3×3 sem obstáculo — o degrau de referência para os outros
+    três.</p>
+  </div>
+
+  <p>O exemplo seguinte tem as mesmas três soluções por incógnita e começa com um zero onde deveria
+  estar o primeiro pivô. Quem não troca linhas não trava por falta de método: trava por não ter
+  aplicado a operação que o método permite.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Resolver \(y + z = 5\), \(x + y + z = 6\), \(x + 2y - z = 2\).</p>
+    <pre class="conta"> 0   1   1 |   5
+ 1   1   1 |   6
+ 1   2  -1 |   2</pre>
+    <ol class="passos">
+      <li>A primeira coluna tem \(0\) na primeira linha: não há pivô ali. Trocar as duas primeiras
+      linhas resolve: \(R_1 \leftrightarrow R_2\).</li>
+      <li>Zerar o \(1\) que sobrou embaixo: \(R_3 \leftarrow R_3 - R_1\). A terceira linha passa a
+      \((0;\ 1;\ -2 \mid -4)\).</li>
+      <li>Zerar o \(1\) da segunda coluna abaixo do pivô: \(R_3 \leftarrow R_3 - R_2\). A terceira
+      linha passa a \((0;\ 0;\ -3 \mid -9)\).</li>
+      <li>Normalizar: \(R_3 \leftarrow -R_3/3\), e a linha diz \(z = 3\).</li>
+      <li>Voltar substituindo. Em \(R_2\): \(y + 3 = 5\), \(y = 2\). Em \(R_1\): \(x + 2 + 3 = 6\),
+      \(x = 1\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |   6
+ 0   1   1 |   5
+ 0   0   1 |   3</pre>
+    <p>Resultado: <b>\((x; y; z) = (1; 2; 3)\)</b>.</p>
+    <p>Conferência nas equações originais: \(2 + 3 = 5\); \(1 + 2 + 3 = 6\);
+    \(1 + 2 \cdot 2 - 3 = 2\). As três fecham, e a resposta é a mesma do exemplo anterior.</p>
+    <p>Este caso ensina que a <b>ordem das linhas é escolha</b>, não dado do problema. Trocar linhas
+    é operação elementar: muda a matriz, não o conjunto-solução. O zero na posição de pivô não é
+    obstáculo matemático, é obstáculo de arrumação.</p>
+  </div>
+
+  <p>Nem toda troca é obrigatória. No exemplo seguinte o sistema se resolve sem trocar nada — e a
+  conta fica cheia de frações. A troca existe para baratear o trabalho, e é isso que ela demonstra
+  aqui.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 3</span>
+    <p>Resolver \(2x + y + z = 8\), \(3x + 2y + z = 13\), \(x + y + 2z = 7\).</p>
+    <pre class="conta"> 2   1   1 |   8
+ 3   2   1 |  13
+ 1   1   2 |   7</pre>
+    <ol class="passos">
+      <li>A coluna tem \(2\), \(3\) e \(1\). O pivô é o \(1\) da terceira linha:
+      \(R_1 \leftrightarrow R_3\).</li>
+      <li>Zerar o \(3\) abaixo do pivô: \(R_2 \leftarrow R_2 - 3R_1\). A segunda linha passa a
+      \((0;\ -1;\ -5 \mid -8)\).</li>
+      <li>Zerar o \(2\) da terceira linha: \(R_3 \leftarrow R_3 - 2R_1\). Ela passa a
+      \((0;\ -1;\ -3 \mid -6)\).</li>
+      <li>Na segunda coluna as duas entradas são \(-1\). Subtrair uma linha da outra zera a de
+      baixo: \(R_3 \leftarrow R_3 - R_2\), e a terceira linha fica \((0;\ 0;\ 2 \mid 2)\).</li>
+      <li>Normalizar as duas: \(R_3 \leftarrow R_3/2\) dá \(z = 1\); \(R_2 \leftarrow -R_2\) dá
+      \(y + 5z = 8\).</li>
+      <li>Voltar substituindo: \(y + 5 = 8\), \(y = 3\). Na primeira linha: \(x + 3 + 2 = 7\),
+      \(x = 2\).</li>
+    </ol>
+    <pre class="conta"> 1   1   2 |   7
+ 0   1   5 |   8
+ 0   0   1 |   1</pre>
+    <p>Resultado: <b>\((x; y; z) = (2; 3; 1)\)</b>.</p>
+    <p>Conferência nas equações originais: \(2 \cdot 2 + 3 + 1 = 8\);
+    \(3 \cdot 2 + 2 \cdot 3 + 1 = 13\); \(2 + 3 + 2 \cdot 1 = 7\). As três fecham.</p>
+    <p>Este caso ensina que <b>a escolha do pivô muda o custo, não a resposta</b>. Sem trocar, o
+    pivô seria \(2\): a primeira operação já produziria \(1/2\) na própria linha e exigiria subtrair
+    \(3/2\) para zerar o \(3\). Com a troca, todos os números do caminho ficam inteiros.</p>
+  </div>
+
+  <div class="obs">
+    <b>Observação.</b> A pergunta que resolve o exemplo 3 vale como rotina: antes de qualquer conta,
+    verificar se a coluna tem um \(1\) ou um \(-1\). Se tiver, ele é o pivô. Se não tiver, a fração é
+    inevitável e o método segue do mesmo jeito — só fica mais caro.
+  </div>
+
+  <p>Falta o caso em que o sistema é quadrado e, ainda assim, não tem solução única. Ele fecha a
+  seção porque desfaz a associação mais comum: três equações não garantem três informações.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 4</span>
+    <p>Resolver \(x + y + z = 3\), \(2x + 2y + 2z = 6\), \(x - y = 0\).</p>
+    <pre class="conta"> 1   1   1 |   3
+ 2   2   2 |   6
+ 1  -1   0 |   0</pre>
+    <ol class="passos">
+      <li>Pivô \(1\) na primeira linha. Zerar o \(2\) abaixo dele: \(R_2 \leftarrow R_2 - 2R_1\). A
+      segunda linha vira \((0;\ 0;\ 0 \mid 0)\) — ela era o dobro da primeira e não trazia
+      informação nova.</li>
+      <li>Zerar o \(1\) da terceira linha: \(R_3 \leftarrow R_3 - R_1\). Ela passa a
+      \((0;\ -2;\ -1 \mid -3)\).</li>
+      <li>Subir a linha útil, para a escada descer na ordem das colunas:
+      \(R_2 \leftrightarrow R_3\).</li>
+      <li>A terceira coluna ficou sem pivô: \(z\) é livre, \(z = t\).</li>
+      <li>Da segunda linha: \(-2y - z = -3\), isto é, \(2y + z = 3\), e \(y = (3 - t)/2\).</li>
+      <li>Da primeira linha: \(x = 3 - z - y = 3 - t - (3 - t)/2 = (3 - t)/2\). Logo \(x = y\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |   3
+ 0  -2  -1 |  -3
+ 0   0   0 |   0</pre>
+    <p>Resultado: <b>\(\left\{\left(\dfrac{3 - t}{2};\ \dfrac{3 - t}{2};\ t\right) : t \in
+    \mathbb{R}\right\}\)</b> — infinitas soluções.</p>
+    <p>Conferência nas equações originais, com \(t\) qualquer: \(x + y + z = (3 - t) + t = 3\);
+    \(2x + 2y + 2z = 2(x + y + z) = 6\); \(x - y = 0\), porque as duas incógnitas têm o mesmo valor.
+    Para \(t = 1\) sai \((1; 1; 1)\); para \(t = 3\) sai \((0; 0; 3)\) — os dois resolvem o
+    sistema.</p>
+    <p>Este caso ensina que <b>quadrada não significa solução única</b>. O que decide é o número de
+    pivôs: aqui são dois, para três incógnitas, e a coluna sem pivô vira parâmetro. O formato da
+    matriz não promete nada; a escada é que responde.</p>
+  </div>
+
+  <p>A conta é sempre a mesma, e é por isso que ela pode ser mecanizada: matriz aumentada, pivô,
+  zeros abaixo, próximo degrau, volta. Quando a matriz deixa de ser quadrada, o número de linhas e o
+  de colunas não combinam mais, e as três respostas passam a se misturar dentro do mesmo formato —
+  é o assunto de <a class="ref" href="#s-1-15">1.15</a>.</p>
+</section>
