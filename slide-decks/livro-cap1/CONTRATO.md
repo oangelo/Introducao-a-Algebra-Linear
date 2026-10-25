@@ -28,8 +28,13 @@ na abertura — e sai de cena. Depois disso o livro fala de matemática.
 
 ## 3. Vocabulário proibido no livro
 
-`portão`, `chave`, `fase`, `quest`, `chefe`, `jogador`, `HUD`, `gabinete`, `fliperama`,
+`portão`, `chave`, `quest`, `chefe`, `jogador`, `HUD`, `gabinete`, `fliperama`,
 `missão`, `pódio`.
+
+**Exceção declarada (25/out):** `jogo` e `fase` são permitidos **apenas na moldura** — abertura
+e fecho —, como analogia do curso, e não como aparelho da ficção. Nos interlúdios e nas seções
+de matemática, não aparecem. A analogia não pode substituir explicação: onde ela para de valer
+tem de estar dito na mesma página.
 
 O verificador reprova o livro se qualquer uma aparecer. A ficção não entra aqui: se um trecho
 precisa dela para fazer sentido, o trecho está errado.

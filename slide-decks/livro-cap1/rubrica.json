@@ -1,0 +1,92 @@
+{
+  "versao": 1,
+  "regra_aceitacao": {
+    "media_minima": 7.5,
+    "minimo_por_criterio": 6.0,
+    "sem_regressao": 0.25
+  },
+  "criterios": [
+    {
+      "id": "C1",
+      "nome": "amarracao_conceito",
+      "tipo": "julgamento",
+      "peso": 3,
+      "pergunta": "O fragmento nomeia o conceito da seção vizinha e o usa? Ou a lição está colada por cima?"
+    },
+    {
+      "id": "C2",
+      "nome": "fonte",
+      "tipo": "misto",
+      "peso": 3,
+      "pergunta": "Todo número e toda afirmação empírica tem fonte verificável da lista permitida?"
+    },
+    {
+      "id": "C3",
+      "nome": "vocabulario",
+      "tipo": "script",
+      "peso": 3,
+      "pergunta": "Usa vocabulário proibido (aparelho da ficção ou chavão de motivação)?"
+    },
+    {
+      "id": "C4",
+      "nome": "zero_motivacao",
+      "tipo": "misto",
+      "peso": 3,
+      "pergunta": "Alguma frase motiva sem informar?"
+    },
+    {
+      "id": "C5",
+      "nome": "continuidade",
+      "tipo": "misto",
+      "peso": 2,
+      "pergunta": "Retoma o fio concreto do fragmento anterior, por entidade e não por transição genérica?"
+    },
+    {
+      "id": "C6",
+      "nome": "volta_a_matematica",
+      "tipo": "script",
+      "peso": 2,
+      "pergunta": "A última frase entrega a próxima seção pelo objeto matemático?"
+    },
+    {
+      "id": "C7",
+      "nome": "tamanho",
+      "tipo": "script",
+      "peso": 1,
+      "pergunta": "Está na faixa de palavras declarada?"
+    },
+    {
+      "id": "C8",
+      "nome": "legibilidade",
+      "tipo": "script",
+      "peso": 1,
+      "pergunta": "Frases médias demais, ou longas demais, para leitura em voz alta?"
+    }
+  ],
+  "proibidas_ficcao": [
+    "portão", "portões", "chave", "chaves", "quest", "chefe", "HUD",
+    "gabinete", "fliperama", "missão", "pódio", "jogador", "jogadores"
+  ],
+  "proibidas_chavao": [
+    "jornada", "mindset", "acredite em você", "acredite", "supere", "superação",
+    "não desista", "nunca desista", "saia da zona",
+    "mentalidade", "empodera", "transforme sua vida", "o segredo é",
+    "basta querer", "onde há vontade", "vença seus limites", "protagonista",
+    "descubra seu potencial", "mergulhe", "vibre"
+  ],
+  "padroes_motivacionais": [
+    "(?i)\\bvocê (consegue|pode|é capaz)\\b",
+    "(?i)\\bacredite\\b",
+    "(?i)\\bnão (pare|desista)\\b",
+    "(?i)!{1,}",
+    "(?i)\\bvamos (juntos|vencer)\\b",
+    "(?i)\\bsonhe\\b"
+  ],
+  "termos_matematicos": [
+    "equação", "equacoes", "equações", "sistema", "sistemas", "matriz", "matrizes",
+    "pivô", "pivo", "linha", "linhas", "coluna", "colunas", "coeficiente", "coeficientes",
+    "incógnita", "incognita", "incógnitas", "solução", "solução", "soluções", "solucoes",
+    "escalonada", "escada", "operação", "operações", "operações", "variável", "variáveis",
+    "reta", "retas", "plano", "conjunto-solução", "aumentada", "triangular"
+  ]
+}

@@ -27,3 +27,27 @@ Montar: `python3 build.py && python3 verificar.py capitulo-1.html`
 4. `python3 build.py capitulo-2.json`.
 
 O build **falha** se faltar fragmento ou se alguma imagem referenciada não existir no disco.
+
+## Qualidade: rubrica, baseline e anti-regressão
+
+O problema que isso resolve: melhorar uma parte e piorar outra. Cada fragmento narrativo tem nota
+em oito critérios, e a nota fica gravada em `baseline.json`.
+
+```
+rubrica.json      ← critérios, pesos, vocabulário proibido, padrões motivacionais
+interludios.json  ← o mapa: onde cada fragmento entra, que conceito amarra, que objeto entrega
+avaliar.py        ← mede o que é medível; lê criticas.json (julgamento dos críticos) e funde
+baseline.json     ← a versão aceita: notas por fragmento + impressão do texto de matemática
+qualidade.json    ← o resultado da última avaliação
+```
+
+Rodar: `python3 avaliar.py` (falha se média < 7,5, se algum critério < 6, ou se qualquer nota cair
+em relação ao baseline). Congelar uma versão aprovada: `python3 avaliar.py --congelar`.
+
+**Camada determinística** (C3 vocabulário, C6 entrega, C7 tamanho, C8 legibilidade, parte de C2 e
+C4): `avaliar.py`. **Camada de julgamento** (C1 amarração, C2 fonte, C4 motivação, C5
+continuidade): críticos cegos, que devolvem só defeito localizado — trecho, critério, gravidade.
+
+As **17 seções de matemática são congeladas por impressão digital do texto**. Se alguém editar uma
+delas (ou se a integração mexer sem querer), o avaliador reprova até que a mudança seja autorizada
+com `--permitir-matematica`.

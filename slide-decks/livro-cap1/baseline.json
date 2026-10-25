@@ -1,0 +1,47 @@
+{
+  "gerado_em": "2026-10-25T15:01:11",
+  "fragmentos": {
+    "s-abertura": {
+      "arquivo": "partes/00-abertura.html",
+      "palavras": 661,
+      "frase_media": 15.8,
+      "criterios": {
+        "C1": 0,
+        "C2": 3,
+        "C3": 7.5,
+        "C4": 10.0,
+        "C5": 10,
+        "C6": 2,
+        "C7": 0.0,
+        "C8": 9.5
+      },
+      "media": 5.28,
+      "achados": [
+        "vocabulário proibido: força de vontade é",
+        "a última frase não entrega 's-1-1'",
+        "fora da faixa: 661 palavras (faixa 250-450)",
+        "não nomeia o conceito da seção vizinha",
+        "6 números sem fonte citada"
+      ]
+    }
+  },
+  "matematica": {
+    "10-s1-1.html": "8283efddff910b0e",
+    "11-s1-2.html": "723f9e0b6ba27f11",
+    "12-s1-3.html": "a5d8092e5ed51ee4",
+    "13-s1-4.html": "ea00086a71b094ca",
+    "14-s1-5.html": "8578a1076f2f26da",
+    "15-s1-6.html": "dce02cfbd3212eb3",
+    "16-s1-7.html": "9017ce58000c8852",
+    "17-s1-8.html": "20a568ac71a00fd1",
+    "18-s1-9.html": "917a6f98bc6d343c",
+    "19-s1-10.html": "9fd2d1c1965f43da",
+    "20-s1-11.html": "287709ef83692060",
+    "21-s1-12.html": "d55a0b8d601f6d05",
+    "22-s1-13.html": "724e421117883d82",
+    "23-s1-14.html": "cbefce9ffd54f121",
+    "24-s1-15.html": "17d4a00ba7986aa1",
+    "25-s1-16.html": "cc6fb15cd91e2a52",
+    "26-s1-17.html": "9d1c907ecb790c2e"
+  }
+}
