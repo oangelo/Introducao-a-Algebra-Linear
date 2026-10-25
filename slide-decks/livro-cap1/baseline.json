@@ -1,28 +1,124 @@
 {
-  "gerado_em": "2026-10-25T15:01:11",
+  "gerado_em": "2026-10-25T15:17:31",
   "fragmentos": {
     "s-abertura": {
       "arquivo": "partes/00-abertura.html",
-      "palavras": 661,
+      "palavras": 446,
+      "frase_media": 13.5,
+      "criterios": {
+        "C1": 6.0,
+        "C2": 9.0,
+        "C3": 10.0,
+        "C4": 6.0,
+        "C5": 9.0,
+        "C6": 10,
+        "C7": 10,
+        "C8": 10.0
+      },
+      "media": 8.39,
+      "achados": []
+    },
+    "s-int-1": {
+      "arquivo": "partes/05-int-1.html",
+      "palavras": 281,
+      "frase_media": 14.0,
+      "criterios": {
+        "C1": 8.0,
+        "C2": 9.0,
+        "C3": 10.0,
+        "C4": 9.0,
+        "C5": 9.0,
+        "C6": 10,
+        "C7": 10,
+        "C8": 10.0
+      },
+      "media": 9.22,
+      "achados": []
+    },
+    "s-int-2": {
+      "arquivo": "partes/15b-int-2.html",
+      "palavras": 255,
+      "frase_media": 13.4,
+      "criterios": {
+        "C1": 9.0,
+        "C2": 9.0,
+        "C3": 10.0,
+        "C4": 10.0,
+        "C5": 9.0,
+        "C6": 10,
+        "C7": 10,
+        "C8": 10.0
+      },
+      "media": 9.56,
+      "achados": []
+    },
+    "s-int-3": {
+      "arquivo": "partes/17b-int-3.html",
+      "palavras": 254,
+      "frase_media": 18.4,
+      "criterios": {
+        "C1": 7.0,
+        "C2": 9.0,
+        "C3": 10.0,
+        "C4": 9.0,
+        "C5": 9.0,
+        "C6": 10,
+        "C7": 10,
+        "C8": 10.0
+      },
+      "media": 9.06,
+      "achados": []
+    },
+    "s-int-4": {
+      "arquivo": "partes/18b-int-4.html",
+      "palavras": 275,
+      "frase_media": 15.2,
+      "criterios": {
+        "C1": 7.0,
+        "C2": 9.0,
+        "C3": 10.0,
+        "C4": 9.0,
+        "C5": 9.0,
+        "C6": 10,
+        "C7": 10,
+        "C8": 10.0
+      },
+      "media": 9.06,
+      "achados": []
+    },
+    "s-int-5": {
+      "arquivo": "partes/21b-int-5.html",
+      "palavras": 367,
       "frase_media": 15.8,
       "criterios": {
-        "C1": 0,
-        "C2": 3,
-        "C3": 7.5,
-        "C4": 10.0,
-        "C5": 10,
-        "C6": 2,
-        "C7": 0.0,
-        "C8": 9.5
+        "C1": 6.0,
+        "C2": 8.0,
+        "C3": 10.0,
+        "C4": 9.0,
+        "C5": 9.0,
+        "C6": 10,
+        "C7": 10,
+        "C8": 10.0
       },
-      "media": 5.28,
-      "achados": [
-        "vocabulário proibido: força de vontade é",
-        "a última frase não entrega 's-1-1'",
-        "fora da faixa: 661 palavras (faixa 250-450)",
-        "não nomeia o conceito da seção vizinha",
-        "6 números sem fonte citada"
-      ]
+      "media": 8.72,
+      "achados": []
+    },
+    "s-fecho": {
+      "arquivo": "partes/27-fecho.html",
+      "palavras": 409,
+      "frase_media": 15.1,
+      "criterios": {
+        "C1": 7.0,
+        "C2": 9.0,
+        "C3": 10.0,
+        "C4": 8.0,
+        "C5": 9.0,
+        "C6": 10,
+        "C7": 10,
+        "C8": 10.0
+      },
+      "media": 8.89,
+      "achados": []
     }
   },
   "matematica": {

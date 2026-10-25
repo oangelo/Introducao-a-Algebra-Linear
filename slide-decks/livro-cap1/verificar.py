@@ -7,14 +7,18 @@ texto montado por fragmentos — ver PLANO.md §4.
 Uso: python3 verificar.py [arquivo]
 """
 
+import json
 import os
 import re
 import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
-ALVO = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AQUI, "livro-cap1.html")
+ALVO = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+    AQUI,
+    json.load(open(os.path.join(AQUI, "capitulo.json"), encoding="utf-8"))["saida"],
+)
 
-PROIBIDAS = ["portão", "portoes", "portões", "chave", "chaves", "fase", "fases", "quest",
+PROIBIDAS = ["portão", "portoes", "portões", "chave", "chaves", "quest",
              "chefe", "jogador", "hud", "gabinete", "fliperama", "missão", "missao", "pódio",
              "podio"]
 

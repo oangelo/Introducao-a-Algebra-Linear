@@ -10,68 +10,150 @@
   "img_base": "../img/",
   "saida": "capitulo-1.html",
   "blocos": [
-    { "cena": { "img": "c1-teoria.png",
-      "alt": "Quarto escuro, monitor aceso, um jovem de costas sentado no chão com o controle na mão.",
-      "frase": "Todo mundo tem uma teoria de como jogar melhor." } },
-    { "cena": { "img": "c2-madrugada.png",
-      "alt": "A mesma sala, mais tarde: ele caído com a cabeça sobre os braços na mesa, caneca vazia, monitor ainda aceso.",
-      "frase": "A dele era virar a noite." } },
-    { "cena": { "img": "c3-vitoria.png",
-      "alt": "Ele de costas, os dois braços erguidos diante da tela azul do fliperama, que mostra WIN!.",
-      "frase": "Funcionou uma vez. Isso não é evidência." } },
-
-    { "parte": "partes/00-abertura.html" },
-
-    { "cena": { "img": "c7-palco.png",
-      "alt": "Díptico do mesmo palco: à esquerda um homem de costas ergue um livro grosso diante de quatro pessoas; à direita o palco vazio e uma pilha alta de papéis.",
-      "frase": "O que funciona não é o que se divulga." } },
-    { "cena": { "img": "c9-colunas.png",
-      "alt": "Caderno aberto visto de cima sob luz de luminária, três fileiras de marcas de contagem em grupos de cinco, e uma marca avulsa circulada a lápis vermelho.",
-      "frase": "A diferença é maior do que o acaso?" } },
-
-    { "parte": "partes/10-s1-1.html" },
-    { "parte": "partes/11-s1-2.html" },
-
-    { "cena": { "img": "c4-comparar.png",
-      "alt": "Díptico separado por uma barra preta: à esquerda o boneco de pé no penhasco com um bloco de interrogação; à direita o mesmo boneco caindo no vão, entre os peixes.",
-      "frase": "Para saber, tem que comparar." } },
-
-    { "parte": "partes/12-s1-3.html" },
-    { "parte": "partes/13-s1-4.html" },
-    { "parte": "partes/14-s1-5.html" },
-    { "parte": "partes/15-s1-6.html" },
-
-    { "parte": "partes/16-s1-7.html" },
-    { "parte": "partes/17-s1-8.html" },
-
-    { "cena": { "img": "c6-dois-jogadores.png",
-      "alt": "Díptico rasgado com a mesma pessoa em dois tempos, jovem à esquerda e idoso à direita, de costas no mesmo gabinete, GAME OVER nas duas telas e um relógio no rasgo.",
-      "frase": "Alguém que não mudou nada." } },
-
-    { "parte": "partes/18-s1-9.html" },
-
-    { "cena": { "img": "c5-isolar.png",
-      "alt": "Um salto, muitos desfechos: trajetórias tracejadas saindo do penhasco e caindo na água, e uma única trajetória laranja que alcança a plataforma.",
-      "frase": "Uma coisa de cada vez." } },
-
-    { "parte": "partes/19-s1-10.html" },
-    { "parte": "partes/20-s1-11.html" },
-    { "parte": "partes/21-s1-12.html" },
-
-    { "cena": { "img": "c8-pilhas.png",
-      "alt": "Díptico da mesma mesa: à esquerda a mesa limpa com caderno fechado e uma folha; à direita a mesa soterrada de pilhas de papel, com papel no chão.",
-      "frase": "Uma noite é anedota. Trinta são dados." } },
-
-    { "parte": "partes/22-s1-13.html" },
-    { "parte": "partes/23-s1-14.html" },
-    { "parte": "partes/24-s1-15.html" },
-    { "parte": "partes/25-s1-16.html" },
-    { "parte": "partes/26-s1-17.html" },
-
-    { "cena": { "img": "c10-fecho.png",
-      "alt": "Montagem em quatro painéis: no alto o jogador de capuz de costas no degrau mais alto de um pódio, erguendo um troféu num salão vazio; embaixo, três painéis do mesmo tamanho — dormindo, estudando e treinando — presos por um colchete formando a base do pódio.",
-      "frase": "Duas coisas que sempre andam juntas são uma só." } },
-
-    { "parte": "partes/90-notas.html" }
+    {
+      "cena": {
+        "img": "c1-teoria.png",
+        "alt": "Quarto escuro, monitor aceso, um jovem de costas sentado no chão com o controle na mão.",
+        "frase": "Todo mundo tem uma teoria de como jogar melhor."
+      }
+    },
+    {
+      "cena": {
+        "img": "c2-madrugada.png",
+        "alt": "A mesma sala, mais tarde: ele caído com a cabeça sobre os braços na mesa, caneca vazia, monitor ainda aceso.",
+        "frase": "A dele era virar a noite."
+      }
+    },
+    {
+      "cena": {
+        "img": "c3-vitoria.png",
+        "alt": "Ele de costas, os dois braços erguidos diante da tela azul do fliperama, que mostra WIN!.",
+        "frase": "Funcionou uma vez. Isso não é evidência."
+      }
+    },
+    {
+      "parte": "partes/00-abertura.html"
+    },
+    {
+      "cena": {
+        "img": "c7-palco.png",
+        "alt": "Díptico do mesmo palco: à esquerda um homem de costas ergue um livro grosso diante de quatro pessoas; à direita o palco vazio e uma pilha alta de papéis.",
+        "frase": "O que funciona não é o que se divulga."
+      }
+    },
+    {
+      "cena": {
+        "img": "c9-colunas.png",
+        "alt": "Caderno aberto visto de cima sob luz de luminária, três fileiras de marcas de contagem em grupos de cinco, e uma marca avulsa circulada a lápis vermelho.",
+        "frase": "A diferença é maior do que o acaso?"
+      }
+    },
+    {
+      "parte": "partes/10-s1-1.html"
+    },
+    {
+      "parte": "partes/11-s1-2.html"
+    },
+    {
+      "parte": "partes/05-int-1.html"
+    },
+    {
+      "cena": {
+        "img": "c4-comparar.png",
+        "alt": "Díptico separado por uma barra preta: à esquerda o boneco de pé no penhasco com um bloco de interrogação; à direita o mesmo boneco caindo no vão, entre os peixes.",
+        "frase": "Para saber, tem que comparar."
+      }
+    },
+    {
+      "parte": "partes/12-s1-3.html"
+    },
+    {
+      "parte": "partes/13-s1-4.html"
+    },
+    {
+      "parte": "partes/14-s1-5.html"
+    },
+    {
+      "parte": "partes/15-s1-6.html"
+    },
+    {
+      "parte": "partes/15b-int-2.html"
+    },
+    {
+      "parte": "partes/16-s1-7.html"
+    },
+    {
+      "parte": "partes/17-s1-8.html"
+    },
+    {
+      "parte": "partes/17b-int-3.html"
+    },
+    {
+      "cena": {
+        "img": "c6-dois-jogadores.png",
+        "alt": "Díptico rasgado com a mesma pessoa em dois tempos, jovem à esquerda e idoso à direita, de costas no mesmo gabinete, GAME OVER nas duas telas e um relógio no rasgo.",
+        "frase": "Alguém que não mudou nada."
+      }
+    },
+    {
+      "parte": "partes/18-s1-9.html"
+    },
+    {
+      "cena": {
+        "img": "c5-isolar.png",
+        "alt": "Um salto, muitos desfechos: trajetórias tracejadas saindo do penhasco e caindo na água, e uma única trajetória laranja que alcança a plataforma.",
+        "frase": "Uma coisa de cada vez."
+      }
+    },
+    {
+      "parte": "partes/19-s1-10.html"
+    },
+    {
+      "parte": "partes/18b-int-4.html"
+    },
+    {
+      "parte": "partes/20-s1-11.html"
+    },
+    {
+      "parte": "partes/21-s1-12.html"
+    },
+    {
+      "parte": "partes/21b-int-5.html"
+    },
+    {
+      "cena": {
+        "img": "c8-pilhas.png",
+        "alt": "Díptico da mesma mesa: à esquerda a mesa limpa com caderno fechado e uma folha; à direita a mesa soterrada de pilhas de papel, com papel no chão.",
+        "frase": "Uma noite é anedota. Trinta são dados."
+      }
+    },
+    {
+      "parte": "partes/22-s1-13.html"
+    },
+    {
+      "parte": "partes/23-s1-14.html"
+    },
+    {
+      "parte": "partes/24-s1-15.html"
+    },
+    {
+      "parte": "partes/25-s1-16.html"
+    },
+    {
+      "parte": "partes/26-s1-17.html"
+    },
+    {
+      "parte": "partes/27-fecho.html"
+    },
+    {
+      "cena": {
+        "img": "c10-fecho.png",
+        "alt": "Montagem em quatro painéis: no alto o jogador de capuz de costas no degrau mais alto de um pódio, erguendo um troféu num salão vazio; embaixo, três painéis do mesmo tamanho — dormindo, estudando e treinando — presos por um colchete formando a base do pódio.",
+        "frase": "Duas coisas que sempre andam juntas são uma só."
+      }
+    },
+    {
+      "parte": "partes/90-notas.html"
+    }
   ]
 }

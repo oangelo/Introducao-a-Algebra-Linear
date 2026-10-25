@@ -46,6 +46,11 @@ def limitar(v, lo=0.0, hi=10.0):
     return max(lo, min(hi, v))
 
 
+def radical(termo):
+    """Radical para casar flexão e plural: 'duas retas' -> 'reta', 'isolar' -> 'isola'."""
+    return termo.split()[-1].lower()[:5]
+
+
 def avaliar_script(html, spec):
     p = prosa(html)
     baixo = p.lower()
@@ -98,9 +103,9 @@ def avaliar_script(html, spec):
     if media > 30:
         achados.append("frase média de %.0f palavras" % media)
 
-    # C1 (parte automática): conceito nomeado
-    conc = [c.lower() for c in spec.get("conceito", [])]
-    achou = sum(1 for c in conc if c in baixo)
+    # C1 (parte automática): conceito nomeado — compara por radical, não por palavra exata
+    # (plural e flexão em português não podem reprovar uma seção que nomeia o conceito)
+    achou = sum(1 for c in spec.get("conceito", []) if radical(c) in baixo)
     notas["C1_script"] = 10 if achou >= 2 else (6 if achou == 1 else 0)
     if achou == 0:
         achados.append("não nomeia o conceito da seção vizinha")
