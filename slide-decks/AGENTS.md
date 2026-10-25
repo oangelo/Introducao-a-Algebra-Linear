@@ -204,8 +204,12 @@ storyboard ao lado.
 - Feito: [`img-gen/`](img-gen/README.md) — harness de imagem em janela única e o personagem
   canônico (`img/personagens/jogador-capuz.png`). As dez cartelas do capítulo 1 e as seis cenas
   de fase (`f1-02` … `f6-02`) existem em `img/`. Para regerar, três registros:
-  `cenas.tsv` (13 cenas com seed), `cenas-historicas.tsv` (`c4-comparar`, `c5-isolar` — aprovadas
-  sem seed registrada) e, para a `c10-fecho`, a montagem `img-gen/podio.py` sobre quatro peças do
-  FLUX em `cenas-podio-v2.tsv`.
-- Conferido em 24/out: 13 em `cenas.tsv` + 2 em `cenas-historicas.tsv` + 1 montagem = 16 registros
+  `cenas.tsv` (11 cenas com seed), `cenas-historicas.tsv` (`c4-comparar`, `c5-isolar`, `c7-palco`,
+  `c8-pilhas` — aprovadas sem seed registrada) e, para a `c10-fecho`, a montagem `img-gen/podio.py`
+  sobre quatro peças do FLUX em `cenas-podio-v2.tsv`.
+- Conferido em 24/out: 11 em `cenas.tsv` + 4 em `cenas-historicas.tsv` + 1 montagem = 16 registros
   para 16 cenas em `img/` (`c1-teoria` … `c10-fecho`, `f1-02` … `f6-02`).
+- Corrigido em 24/out: `c7-estante` → `c7-palco` (o arquivo sempre foi o palco com plateia) e
+  `c8-pilhas` saiu de `cenas.tsv` — a imagem aprovada é um díptico e nenhum prompt registrado o
+  descrevia. Nas duas, o `alt` e o "Por que esta cena" do `cap1-telas.html` descreviam a cena
+  antiga, não a que existe.

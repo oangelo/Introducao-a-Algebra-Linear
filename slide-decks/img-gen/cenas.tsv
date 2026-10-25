@@ -6,8 +6,12 @@ c3-vitoria	turbo	1152	864	1003	y	The hooded person from the reference seen from 
 # c4-comparar e c5-isolar NAO estao aqui: foram aprovadas sem seed registrada. Ver cenas-historicas.tsv.
 
 c6-dois-jogadores	turbo	1152	864	1006	y	Two people side by side in a dark room, seen from behind. On the left, the hooded person from the reference, in a dark hooded sweatshirt. On the right, a shorter person with short hair and a different jacket. Each has a desk in front of them: on the left a brand-new notebook, on the right the same old worn notebook. Screen glow from ahead, deep shadows. No faces visible.	identical twins, duplicated person, human face, facial features
-c7-estante	turbo	1152	864	1007	n	A wooden shelf in a dim room: a thick hardcover book with a gilded spine standing upright, and beside it a thin stapled paper booklet, plain and unremarkable. Dust floating in a beam of light. Painted digital illustration, muted palette, amber rim light, film grain.	title on spine, readable cover, letters
-c8-pilhas	turbo	1152	864	1008	n	A desk buried under a tall messy stack of loose paper sheets. A hand rests on top of the stack. Each sheet is marked with a small illegible scrawl in one corner. Warm desk lamp from the left, deep shadows, painterly digital illustration, film grain.	readable dates, numbers, legible handwriting
+# c7-palco (antes c7-estante): aprovada sem seed registrada — ver cenas-historicas.tsv.
+#   O prompt de 'estante' (seed 1007, abaixo em cenas-cap1/cenas-fix-cap1) foi abandonado: a cena
+#   que ficou e a do palco, com plateia. O arquivo c7-estante.png foi renomeado para c7-palco.png.
+# c8-pilhas: aprovada sem seed registrada — ver cenas-historicas.tsv.
+#   A imagem e um DIPTICO (mesa limpa x mesa soterrada). Nenhum prompt dos manifestos descreve
+#   o diptico: os registros pediam 'pilha alta com uma mao no topo', que nao e o arquivo aprovado.
 c9-colunas	turbo	1152	864	1009	n	Close-up of an open notebook page with two long columns of tally marks, almost identical, and one small difference near the bottom circled in red pencil. Shallow depth of field, warm lamp light, painted digital illustration, film grain.	digits, numbers, text
 # c10-fecho: NAO e gerada — e montagem (img-gen/podio.py) de quatro pecas de cenas-podio-v2.tsv:
 #   c10p-podio (seed 5504), c10p-dormindo2 (5505), c10p-estudando (5502), c10p-correndo2 (5506).

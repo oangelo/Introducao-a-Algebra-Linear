@@ -4,3 +4,5 @@
 # nome        data        como foi feita
 c4-comparar	2026-10-23	raw/c4-comparar.png (gerador) + ajustar-luz.py (gama nas sombras). Descartada: descartados/c4-caderno-descartado.png
 c5-isolar	2026-10-23	raw/c5-isolar.png (gerador) + isolar-arcos.py (trajetorias por codigo) + ajustar-luz.py. Descartada: descartados/c5-semanas-descartado.png
+c7-palco	2026-10-23	Arquivo aprovado (antes c7-estante.png) + ajustar-luz.py. Sem seed registrada. Prompt de 'estante' abandonado; a cena e o palco com plateia.
+c8-pilhas	2026-10-23	Arquivo aprovado. Sem seed registrada: nenhum prompt dos manifestos descreve o diptico mesa limpa x soterrada.

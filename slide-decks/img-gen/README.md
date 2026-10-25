@@ -37,7 +37,7 @@ Tab-separado, uma cena por linha:
 
 | coluna | o que é |
 |---|---|
-| `name` | nome do arquivo de saída, sem extensão. Use o nome do quadro (`f1-02`, `c7-estante`) |
+| `name` | nome do arquivo de saída, sem extensão. Use o nome do quadro (`f1-02`, `c7-palco`) |
 | `model` | `turbo` (padrão, composição limpa) ou `flux3` (mais rico, arrisca pseudo-texto) |
 | `w` `h` | resolução. Teto ~1,4 MP; `1152x864` é o formato de slide |
 | `seed` | **fixo por cena**. Mudar a seed muda o desenho; se a cena ficar boa, a seed é o que permite regerar |
