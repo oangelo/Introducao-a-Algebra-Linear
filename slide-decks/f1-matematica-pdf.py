@@ -37,8 +37,10 @@ def registrar_fontes():
             pdfmetrics.registerFont(TTFont(nome, caminho))
     pdfmetrics.registerFontFamily(ROMANO, normal=ROMANO, bold=ROMANO_B,
                                   italic=ROMANO, boldItalic=ROMANO_B)
-ENTRADA = os.path.join(AQUI, "f1-matematica.html")
-SAIDA = os.path.join(AQUI, "f1-matematica.pdf")
+import sys
+RODAPE = "Fase 1"
+ENTRADA = os.path.join(AQUI, (sys.argv[1] if len(sys.argv) > 1 else "f1-matematica.html"))
+SAIDA = ENTRADA[:-5] + ".pdf"
 
 TINTA = HexColor("#111318")
 FRACO = HexColor("#5a6172")
@@ -275,7 +277,7 @@ class Doc:
     def rodape_pagina(self):
         self.c.setFillColor(FRACO)
         self.c.setFont(ROMANO, 6.4)
-        self.c.drawString(self.esq, 10 * mm, "FASE 1 · A PARTE MATEMÁTICA")
+        self.c.drawString(self.esq, 10 * mm, RODAPE.upper())
         self.c.drawRightString(self.larg - self.dir, 10 * mm, "p. %d" % self.pagina)
 
     def espaco(self, precisa):
@@ -449,15 +451,19 @@ class Doc:
 
 
 def main():
+    global RODAPE
     if not os.path.exists(ENTRADA):
         sys.exit("nao achei " + ENTRADA)
     p = Blocos()
     with open(ENTRADA, encoding="utf-8") as fh:
         p.feed(fh.read())
 
+    h1 = [b for b in p.blocos if b["tipo"] == "h1"]
+    RODAPE = h1[0].get("txt") or "Fase 1"
+
     fichas = [b for b in p.blocos if b["tipo"] == "ficha"]
-    if len(fichas) < 10:
-        sys.exit("esperava ao menos 10 fichas, achei %d" % len(fichas))
+    if not fichas:
+        sys.exit("nenhuma ficha encontrada em " + ENTRADA)
 
     registrar_fontes()
     d = Doc()

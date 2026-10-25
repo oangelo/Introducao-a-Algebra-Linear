@@ -229,3 +229,7 @@ storyboard ao lado.
 - **Regra de deck de fase (25/out):** a unidade não é a aula. É **um deck por fase**, e o professor
   para onde quiser — o deck é retomável. A divisão em aulas não existe porque o número de aulas
   depende da turma.
+- Feito em 25/out: [`f1-costura.html`](f1-costura.html) (+ `.pdf`) — onde a narrativa do capítulo 1
+  encontra a matemática da Fase 1: cinco pontes com limite declarado, cinco analogias cortadas com
+  motivo, a ordem S1–S6 em que as camadas se alternam e quatro riscos com o teste que pega cada um.
+  O mesmo `f1-matematica-pdf.py` gera os dois PDFs (`python f1-matematica-pdf.py f1-costura.html`).
