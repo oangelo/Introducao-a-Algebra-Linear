@@ -31,7 +31,7 @@
 
 <!-- ============================================================ -->
 <h2 class="parte"><span>Parte 1</span> · o que é dito antes do primeiro exemplo</h2>
-<p class="intro">Nove blocos curtos. É o vocabulário sem o qual o primeiro exemplo vira receita
+<p class="intro">Doze blocos curtos. É o vocabulário sem o qual o primeiro exemplo vira receita
 decorada — e é o que o aluno precisa ter na cabeça quando a conta começar a crescer.</p>
 
 <section class="conceito">
@@ -44,33 +44,74 @@ decorada — e é o que o aluno precisa ter na cabeça quando a conta começar a
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.2</span>Sistema e solução: a solução é do sistema, não da equação</h3>
-  <p>Um sistema é um conjunto de equações lineares nas mesmas incógnitas. <b>Solução</b> é a
-  \(n\)-upla que satisfaz <b>todas</b> ao mesmo tempo. Satisfazer uma e falhar em outra não é
-  "solução parcial": é não ser solução.</p>
-  <p class="curto">É aqui que o aluno erra primeiro: ele resolve a primeira equação, acha um par,
-  e considera o problema encerrado.</p>
+  <h3><span class="num">1.2</span>De onde viemos: a reta da Geometria Analítica</h3>
+  <p>Em Geometria Analítica, \(ax + by = c\), com \(a\) e \(b\) não ambos nulos, é uma <b>reta</b> no
+  plano. O conjunto de todos os pares que satisfazem a equação é
+  \(S = \{(x, y) \in \mathbb{R}^2 : ax + by = c\}\) — e ele tem <b>infinitos</b> pontos.</p>
+  <p>Resolver um sistema de duas equações é, em geometria, perguntar pela <b>interseção</b> de duas
+  retas. Três casos, e só três: se elas se cruzam, a interseção é <b>um ponto</b>; se coincidem, a
+  interseção é a <b>reta inteira</b>; se são paralelas distintas, a interseção é <b>vazia</b>.</p>
+  <p class="curto">O erro que se ouve: "paralelas dão infinitas soluções". Não dão nenhuma — paralelas
+  distintas não têm ponto em comum. Coincidentes, sim, é que dão infinitas.</p>
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.3</span>Três respostas, nunca duas</h3>
-  <p>Um sistema linear tem <b>uma</b> solução, <b>nenhuma</b> ou <b>infinitas</b>. Não existe
-  "exatamente duas". O motivo é algébrico e cabe em duas linhas: se \(u\) e \(v\) são soluções
-  distintas, a média delas também é — e de duas soluções nasce uma família.</p>
-  <p class="curto">Enunciar isso antes de resolver evita a pergunta "mas professor, e se tiver duas?"</p>
+  <h3><span class="num">1.3</span>O conjunto-solução: a resposta é um conjunto</h3>
+  <p>Solução não é uma lista de números: é um <b>conjunto</b>. E a notação importa, porque ela é o
+  que permite dizer "não tem solução" sem soar como "não consegui":</p>
+  <p>\(\{(3, 1)\}\) — conjunto unitário, uma solução. &nbsp; \(S = \{(x,y) : x + y = 3\}\) —
+  infinitos pontos, a reta. &nbsp; \(\varnothing\) — conjunto vazio, nenhuma solução.</p>
+  <p>Com isso, o sistema deixa de ser uma conta e passa a ser uma <b>interseção</b>:
+  \(S = S_1 \cap S_2 \cap \dots \cap S_m\), onde cada \(S_i\) é o conjunto-solução de uma equação.
+  Achar a solução do sistema é achar o que sobrou de comum a todas.</p>
+  <p class="curto">Contar soluções, então, é perguntar quantos elementos tem \(S\): zero, um, ou
+  infinitos. Não existe "dois" — e o motivo é algébrico (ver 1.6).</p>
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.4</span>Matriz aumentada: por que só os números</h3>
+  <h3><span class="num">1.4</span>Por que desenhar não escala</h3>
+  <p>Duas variáveis: retas no plano, desenho fácil. Três variáveis: planos no espaço, já é difícil
+  enxergar. Quatro: não há desenho. E o curso inteiro trabalha com quatro, cinco, \(n\).</p>
+  <p>A geometria continua valendo — mas como <b>conferência</b> do resultado em \(\mathbb{R}^2\), não
+  como método. Daqui para frente o caminho é algébrico: guardar só os coeficientes na matriz e
+  aplicar operações que <b>não mudam o conjunto-solução</b>. É esse o método que funciona em qualquer
+  dimensão.</p>
+  <p class="curto">É a razão de a matriz existir: ela não é uma notação bonita, é o desenho que
+  sobrevive quando não dá mais para desenhar.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.5</span>Sistema e solução: a solução é do sistema, não da equação</h3>
+  <p>Um sistema é um conjunto de equações lineares nas mesmas incógnitas, e sua solução é a
+  \(n\)-upla que satisfaz <b>todas</b> ao mesmo tempo. Em linguagem de conjuntos: \(x\) pertence a
+  \(S\) somente se pertence a <i>cada</i> \(S_i\). Satisfazer uma e falhar em outra não é "solução
+  parcial" — é não pertencer.</p>
+  <p class="curto">É aqui que o aluno erra primeiro: ele resolve a primeira equação, acha um par, e
+  considera o problema encerrado. O par dele pertence a \(S_1\); não se sabe ainda se pertence a
+  \(S_2\).</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.6</span>Três respostas, nunca duas</h3>
+  <p>Em termos de conjunto: \(S = \varnothing\), \(S = \{p\}\) (um único ponto) ou \(S\) infinito.
+  Não existe "exatamente dois". O motivo é de uma linha: se \(u \neq v\) são soluções, então
+  \(u + t(v - u)\) também é, para <b>todo</b> \(t \in \mathbb{R}\) — e isso já é uma reta inteira
+  dentro de \(S\).</p>
+  <p class="curto">Enunciar isso antes de resolver evita a pergunta "mas professor, e se tiver
+  duas?" — a resposta é que duas nunca vêm sozinhas.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.7</span>Matriz aumentada: por que só os números</h3>
   <p>Ao escalonar, as incógnitas nunca mudam de nome: a <b>coluna</b> já carrega o nome. Escrever
   só os coeficientes é uma abreviação segura, e a barra vertical separa coeficientes de termos
   independentes. É por isso que a matriz aumentada <i>é</i> o sistema, e não um resumo dele.</p>
   <p class="curto">Consequência prática: quem volta a escrever as equações no meio do processo
-  perde o que já zerou. Ver 1.7.</p>
+  perde o que já zerou. Ver 1.10.</p>
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.5</span>As três operações que não mudam a solução</h3>
+  <h3><span class="num">1.8</span>As três operações que não mudam a solução</h3>
   <p>(i) trocar duas linhas; (ii) multiplicar uma linha por um escalar <b>não nulo</b>; (iii) somar
   a uma linha um múltiplo de outra. Cada uma é reversível, e é a reversibilidade que garante o
   mesmo conjunto-solução — não a intuição de "está mexendo na matriz".</p>
@@ -79,7 +120,7 @@ decorada — e é o que o aluno precisa ter na cabeça quando a conta começar a
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.6</span>Forma escalonada e pivô</h3>
+  <h3><span class="num">1.9</span>Forma escalonada e pivô</h3>
   <p><b>Pivô</b> é o primeiro elemento não nulo de uma linha. A matriz está <b>escalonada</b>
   quando o pivô de cada linha está à direita do pivô da anterior e tudo abaixo de um pivô é zero.
   A escada não precisa ter degraus de altura igual — precisa ser escada.</p>
@@ -88,7 +129,7 @@ decorada — e é o que o aluno precisa ter na cabeça quando a conta começar a
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.7</span>O protocolo de registro</h3>
+  <h3><span class="num">1.10</span>O protocolo de registro</h3>
   <p>O erro que mais aparece não é de álgebra, é de organização: o aluno zera uma coluna e depois
   a reabre sem perceber. Três regras, e elas valem mais que qualquer dica de cálculo:</p>
   <p><b>(a)</b> uma linha, uma operação — escrita ao lado: \(R_2 \leftarrow R_2 - 2R_1\).<br>
@@ -98,7 +139,7 @@ decorada — e é o que o aluno precisa ter na cabeça quando a conta começar a
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.8</span>O pivô é escolhido, não encontrado</h3>
+  <h3><span class="num">1.11</span>O pivô é escolhido, não encontrado</h3>
   <p>Se existe um <b>1</b> na coluna, ele é o pivô — e a conta inteira fica em inteiros. Se não
   existe, trocar duas linhas às vezes cria um. Escolher o pivô é parte do método, não atalho.</p>
   <p class="curto">Quando nenhuma entrada da coluna é 1 ou −1, a fração é inevitável: aí a escolha
@@ -106,7 +147,7 @@ decorada — e é o que o aluno precisa ter na cabeça quando a conta começar a
 </section>
 
 <section class="conceito">
-  <h3><span class="num">1.9</span>O que a forma já diz, antes da conta terminar</h3>
+  <h3><span class="num">1.12</span>O que a forma já diz, antes da conta terminar</h3>
   <p>Quatro leituras que economizam metade do trabalho:</p>
   <p><b>coluna sem pivô</b> → aquela incógnita é livre (há infinitas soluções);<br>
   <b>linha \(0 = 0\)</b> → equação que não informava nada; <b>linha \(0 = c\), \(c \neq 0\)</b> → sistema impossível;<br>
@@ -149,7 +190,7 @@ aula seguinte.</p>
     <dd>O caso que o aluno não acredita quando aparece. Mesma inclinação, alturas diferentes: as
     retas nunca se cruzam, e a álgebra diz isso em uma linha.</dd>
     <dt>O que a forma ensina</dt>
-    <dd>Linha toda zero com constante diferente de zero. Encerra o problema na hora (ver 1.9).</dd>
+    <dd>Linha toda zero com constante diferente de zero. Encerra o problema na hora (ver 1.12).</dd>
     <dt>Onde repete</dt>
     <dd>Retomada curta no início do bloco 2, antes da escada.</dd>
   </dl>
@@ -204,7 +245,7 @@ aula seguinte.</p>
     <dd>A primeira coluna tem zero na primeira linha. Quem não troca, trava. O resultado é o mesmo
     do B1 de propósito: mesma resposta, caminho diferente — repetição sem repetir o número.</dd>
     <dt>O que a forma ensina</dt>
-    <dd>Trocar linha é operação legítima (1.5), e pivotar é uma escolha (1.8).</dd>
+    <dd>Trocar linha é operação legítima (1.8), e pivotar é uma escolha (1.11).</dd>
     <dt>Onde repete</dt>
     <dd>Retomada na aula seguinte, com o zero em outra posição.</dd>
   </dl>
@@ -406,7 +447,7 @@ x + 2y +  z = 4
     número de linhas e a chance de erro de sinal.</dd>
     <dt>O que a forma ensina</dt>
     <dd>Em 4×4 o erro de sinal aparece longe de onde foi cometido. É o argumento a favor do
-    protocolo de registro (1.7).</dd>
+    protocolo de registro (1.10).</dd>
     <dt>Onde repete</dt>
     <dd>Lista do bloco D.</dd>
   </dl>

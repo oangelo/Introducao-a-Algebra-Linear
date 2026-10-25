@@ -56,6 +56,13 @@ MACROS = [
     (r"\\cdot", "\u00b7"),
     (r"\\dots", "\u2026"),
     (r"\\operatorname\{sen\}", "sen"),
+    (r"\\varnothing", "\u2205"),
+    (r"\\mathbb\{R\}", "\u211d"),
+    (r"\\in\b", "\u2208"),
+    (r"\\cap\b", "\u2229"),
+    (r"\\neq", "\u2260"),
+    (r"\\\{", "{"),
+    (r"\\\}", "}"),
     (r"\\dots", "\u2026"),
 ]
 
