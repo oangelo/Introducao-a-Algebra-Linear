@@ -92,6 +92,15 @@ def main():
     if html.count(r"\[") != html.count(r"\]"):
         erro("blocos \\[ ... \\] desbalanceados no arquivo montado")
 
+    # 9. configuração do MathJax: NUNCA redeclarar delimitadores.
+    # Uma barra dentro de string JS ('\(') vira '(' e o MathJax passa a tratar todo
+    # parêntese do texto como fórmula — a página inteira sai com erro de renderização.
+    if "inlineMath" in html or "displayMath" in html:
+        erro("o arquivo reconfigura delimitadores do MathJax: use os padrões "
+             "\\( \\) e \\[ \\], sem declarar inlineMath/displayMath")
+    if re.search(r"inlineMath\s*:\s*\[\s*\[\s*'[^'\\\\]", html):
+        erro("delimitador sem barra escapada na configuracao do MathJax")
+
     # avisos (não reprovam)
     for nome in sorted(os.listdir(partes)) if os.path.isdir(partes) else []:
         if nome.endswith(".html") and not nome.startswith("_"):
