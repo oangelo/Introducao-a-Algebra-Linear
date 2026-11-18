@@ -1,7 +1,7 @@
 # Especificação e consultoria: a folha como documento de engenharia
 
 **Status:** ideia registrada em 18/11/2026, na branch `feature/spec-consultoria`. Não aprovada
-para a `main`; discussão na issue #— (esta mesma).
+para a `main`; discussão na issue #2.
 **Onde se aplica:** atividades de sala escritas (as folhas), em todos os três cursos.
 
 ---
