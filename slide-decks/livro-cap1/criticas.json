@@ -1,0 +1,27 @@
+{
+  "nota_metodo": "Notas de JULGAMENTO da terceira rodada de auditoria (critico cego). As correcoes finais aplicadas depois dela foram pontuais (autor da citacao de 1998, mapeamento das pecas no fecho, generalizacoes da abertura) e nao foram re-auditadas: o teto de tres rodadas foi atingido. C3, C7 e C8 sao medidas por script em avaliar.py.",
+  "rodada": 3,
+  "fragmentos": {
+    "s-abertura": {"C1": 6.0, "C2": 9.0, "C4": 6.0, "C5": 9.0},
+    "s-int-1":    {"C1": 8.0, "C2": 9.0, "C4": 9.0, "C5": 9.0},
+    "s-int-2":    {"C1": 9.0, "C2": 9.0, "C4": 10.0, "C5": 9.0},
+    "s-int-3":    {"C1": 7.0, "C2": 9.0, "C4": 9.0, "C5": 9.0},
+    "s-int-4":    {"C1": 7.0, "C2": 9.0, "C4": 9.0, "C5": 9.0},
+    "s-int-5":    {"C1": 6.0, "C2": 8.0, "C4": 9.0, "C5": 9.0},
+    "s-fecho":    {"C1": 7.0, "C2": 9.0, "C4": 8.0, "C5": 9.0}
+  },
+  "discordancias": [
+    {
+      "fragmento": "s-abertura",
+      "criterio": "C4",
+      "defeito_recusado": "Nenhum jogo se aprende jogando",
+      "motivo": "E a tese pedida pelo autor do curso: matematica como jogo com fases, e a recusa explicita de 'aprender brincando'. Nota 6 registrada em vez de reescrever a abertura contra o pedido."
+    },
+    {
+      "fragmento": "s-int-2 / s-int-3",
+      "criterio": "C1",
+      "defeito_recusado": "teaser de secao no fecho do interledio",
+      "motivo": "O contrato de interludios exige que cada fragmento entregue o objeto matematico da secao seguinte. A forma foi reescrita para fazer trabalho argumentativo (tabela, escada), mas o desemboque permanece por contrato."
+    }
+  ]
+}
