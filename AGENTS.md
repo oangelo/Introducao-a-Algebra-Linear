@@ -16,6 +16,7 @@ Livro adotado: **ANTON, Howard. _Álgebra Linear com Aplicações_.**
 | Diretório | Conteúdo |
 |-----------|----------|
 | `exercicios/` | Listas de exercícios em HTML, uma pasta por capítulo (`capitulo-1/` … `capitulo-6/`) |
+| `atividades-aula/` | Atividades de sala (uma pasta por atividade; regras do aluno em Markdown, sem nota) |
 | `slide-decks/` | Apresentações Reveal.js (HTML soltos na raiz + `css/`, `js/`, `plugin/` do framework) |
 | `quiz/` | Mini-chefes (quizzes) em Markdown, um por tópico |
 | `Provas/` | Provas antigas em PDF, organizadas por ano/semestre |
