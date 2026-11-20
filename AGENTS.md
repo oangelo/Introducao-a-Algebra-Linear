@@ -21,6 +21,7 @@ Livro adotado: **ANTON, Howard. _Álgebra Linear com Aplicações_.**
 | `quiz/` | Mini-chefes (quizzes) em Markdown, um por tópico |
 | `Provas/` | Provas antigas em PDF, organizadas por ano/semestre |
 | `PROVAS.md` | Índice e histórico das provas |
+| `planejamento/` | Cronogramas semestrais completos (`planejamento-IAL-2026-2.md`); `calendario.md` é o resumo |
 | `notas/` | Notas de acompanhamento por semestre (Markdown) |
 | `audio/` | Narrações em MP3 usadas como abertura das fases |
 | `memes/` | Imagens de apoio (humor interno do curso) |

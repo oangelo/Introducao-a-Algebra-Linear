@@ -26,6 +26,7 @@ Muito obrigado pela sua colaboração!
   - [Fase 4: Portais e Avatares - Transformações Lineares](#fase-4-portais-e-avatares---transformações-lineares)
   - [Fase 5: As Leis do Universo - Espaços Vetoriais Abstratos](#fase-5-as-leis-do-universo---espaços-vetoriais-abstratos)
   - [Fase Final: O Código-Fonte - Autovalores e Autovetores](#fase-final-o-código-fonte---autovalores-e-autovetores)
+- [Calendário da Temporada (2026/2)](#-calendário-da-temporada-20262)
 - [Itens Bônus](#-itens-bônus)
 
 ---
@@ -129,6 +130,12 @@ A busca pelo *Easter Egg* final: os segredos mais profundos da estrutura do jogo
 <details><summary>🔍 Glossário da Fase Final</summary>
 (Seu glossário atual já está excelente)
 </details>
+
+---
+
+## 📅 Calendário da Temporada — 2026/2
+
+A temporada tem **17 aulas**, sempre às quartas, 09:40–12:20, de 18/nov/2026 a 14/abr/2027. São 5 fases, e cada uma fecha com uma prova escrita no último dia da fase. Datas de aula, provas e recessos estão no [planejamento da temporada](planejamento/planejamento-IAL-2026-2.md).
 
 ---
 
