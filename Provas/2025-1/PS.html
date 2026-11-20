@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito - Prova Substitutiva de Álgebra Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'details']
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+        
+        .question-header {
+            font-weight: bold;
+            font-size: 13pt;
+            color: #000;
+            border-left: 4px solid #000;
+            padding-left: 10px;
+            margin-bottom: 12px;
+            background-color: #f0f0f0;
+            padding: 8px 10px;
+        }
+        
+        .subquestion {
+            margin: 10px 0 10px 20px;
+        }
+        
+        .subquestion strong {
+            font-weight: bold;
+        }
+        
+        .question p {
+            margin: 10px 0;
+        }
+        
+        details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        summary {
+            font-weight: bold;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #e9e9e9;
+            border-radius: 3px;
+            font-size: 10pt;
+        }
+        .answer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .answer p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gabarito - Prova Substitutiva de Álgebra Linear</h1>
+        </div>
+        
+        <div class="content">
+            
+            <div class="question">
+                <div class="question-header">Questão 1 - Sistemas Lineares e Subespaços</div>
+                <p>Considere o sistema linear homogêneo \(A\vec{x} = \vec{0}\), onde \(A = \begin{pmatrix} 1 & 2 & 0 & -1 \\ 0 & 1 & 1 & 2 \\ 1 & 3 & 1 & 1 \end{pmatrix}\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre a solução geral do sistema na forma paramétrica.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Escalonamos a matriz A:</p>
+                            $$ \left(\begin{array}{cccc} 1 & 2 & 0 & -1 \\ 0 & 1 & 1 & 2 \\ 1 & 3 & 1 & 1 \end{array}\right) \xrightarrow{L_3 \leftarrow L_3 - L_1} \left(\begin{array}{cccc} 1 & 2 & 0 & -1 \\ 0 & 1 & 1 & 2 \\ 0 & 1 & 1 & 2 \end{array}\right) \xrightarrow{L_3 \leftarrow L_3 - L_2} \left(\begin{array}{cccc} 1 & 2 & 0 & -1 \\ 0 & 1 & 1 & 2 \\ 0 & 0 & 0 & 0 \end{array}\right) $$
+                            <p>As variáveis \(x_3\) e \(x_4\) são livres. Sejam \(x_3=s\) e \(x_4=t\).</p>
+                            <p>Da linha 2: \(x_2 + x_3 + 2x_4 = 0 \implies x_2 = -s - 2t\).</p>
+                            <p>Da linha 1: \(x_1 + 2x_2 - x_4 = 0 \implies x_1 + 2(-s-2t) - t = 0 \implies x_1 - 2s - 4t - t = 0 \implies x_1 = 2s + 5t\).</p>
+                            <p><strong>Solução: \((x_1, x_2, x_3, x_4) = (2s+5t, -s-2t, s, t)\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Reescreva a solução na forma de um vetor paramétrico.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Separamos os parâmetros \(s\) e \(t\):</p>
+                            $$ \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} 2s \\ -s \\ s \\ 0 \end{pmatrix} + \begin{pmatrix} 5t \\ -2t \\ 0 \\ t \end{pmatrix} = s\begin{pmatrix} 2 \\ -1 \\ 1 \\ 0 \end{pmatrix} + t\begin{pmatrix} 5 \\ -2 \\ 0 \\ 1 \end{pmatrix} $$
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Apresente uma base para o espaço-solução (espaço nulo) da matriz A.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>A base é formada pelos vetores que multiplicam os parâmetros livres na solução vetorial.</p>
+                           <p><strong>Base para Nul(A): \(\left\{ \begin{pmatrix} 2 \\ -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 5 \\ -2 \\ 0 \\ 1 \end{pmatrix} \right\}\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> Qual é a dimensão deste subespaço?
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A dimensão é o número de vetores na base (ou o número de variáveis livres).</p>
+                            <p><strong>A dimensão é 2.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>e)</strong> Explique por que o conjunto de soluções de um sistema homogêneo sempre forma um subespaço, mas o de um sistema não-homogêneo (com solução) geralmente não.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Um sistema homogêneo \(A\vec{x}=\vec{0}\) sempre forma um subespaço porque satisfaz as três condições: 1) Contém o vetor nulo (\(A\vec{0}=\vec{0}\)); 2) É fechado sob soma (Se \(A\vec{u}=\vec{0}\) e \(A\vec{v}=\vec{0}\), então \(A(\vec{u}+\vec{v}) = A\vec{u}+A\vec{v} = \vec{0}+\vec{0}=\vec{0}\)); 3) É fechado sob multiplicação por escalar.</p>
+                            <p>Um sistema não-homogêneo \(A\vec{x}=\vec{b}\) (\(\vec{b} \neq \vec{0}\)) não forma subespaço pois <strong>não contém o vetor nulo</strong> (\(A\vec{0}=\vec{0} \neq \vec{b}\)), falhando na primeira condição.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 2 - Geometria, Álgebra e Coordenadas</div>
+                <p>Considere o plano \(W\) em \(\mathbb{R}^3\) dado pela equação \(2x - y + z = 0\).</p>
+                 <div class="subquestion">
+                    <strong>a)</strong> Encontre dois vetores não nulos e não colineares que pertençam a este plano.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Podemos reescrever a equação como \(y = 2x + z\). Escolhemos valores para \(x\) e \(z\) para encontrar os vetores.</p>
+                            <p>Vetor 1: Seja \(x=1, z=0\). Então \(y=2(1)+0=2\). \(\vec{v_1}=(1,2,0)\).</p>
+                            <p>Vetor 2: Seja \(x=0, z=1\). Então \(y=2(0)+1=1\). \(\vec{v_2}=(0,1,1)\).</p>
+                            <p>Estes vetores não são múltiplos um do outro, portanto não são colineares.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> Verifique que os dois vetores encontrados são linearmente independentes.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Dois vetores são linearmente independentes se, e somente se, um não for um múltiplo escalar do outro. Como não existe um escalar \(k\) tal que \((1,2,0)=k(0,1,1)\), os vetores <strong>são linearmente independentes</strong>.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Argumente por que esses dois vetores formam uma base para o plano W. Qual a dimensão de W?
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Um plano no \(\mathbb{R}^3\) é um subespaço de dimensão 2. Como encontramos um conjunto com 2 vetores do plano que são linearmente independentes, este conjunto forma uma base para o plano.</p>
+                           <p><strong>A dimensão de W é 2.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> O vetor \(\vec{w}=(1,3,1)\) pertence a W. Encontre as coordenadas de \(\vec{w}\) na base \(B=\{\vec{v_1}, \vec{v_2}\}\) que você encontrou.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Buscamos \(c_1, c_2\) tais que \(c_1(1,2,0) + c_2(0,1,1) = (1,3,1)\). Isso gera o sistema:</p>
+                            <p>\(\begin{cases} c_1 = 1 \\ 2c_1 + c_2 = 3 \\ c_2 = 1 \end{cases}\)</p>
+                            <p>A solução é \(c_1=1, c_2=1\). <strong>As coordenadas de \(\vec{w}\) na base B são \((1,1)\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>e)</strong> Verifique sua resposta do item (d).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Calculamos a combinação linear com as coordenadas encontradas:</p>
+                             <p>\(1\cdot\vec{v_1} + 1\cdot\vec{v_2} = 1(1,2,0) + 1(0,1,1) = (1+0, 2+1, 0+1) = (1,3,1)\)</p>
+                             <p>O resultado é \(\vec{w}\). A verificação está correta.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 3 - O Teorema da Matriz Invertível</div>
+                <p>Considere a matriz \(A = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 2 \\ 1 & 3 & 3 \end{pmatrix}\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Calcule o determinante de A.
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Usando a Regra de Sarrus ou expansão por cofatores:</p>
+                            <p>\(\det(A) = 1(1\cdot3 - 2\cdot3) - 2(0\cdot3 - 2\cdot1) + 1(0\cdot3 - 1\cdot1)\)</p>
+                            <p>\(= 1(3-6) - 2(0-2) + 1(0-1) = 1(-3) - 2(-2) + 1(-1) = -3 + 4 - 1 = 0\)</p>
+                            <p><strong>O determinante de A é 0.</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> A matriz A é invertível? Justifique.
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p><strong>Não</strong>, a matriz não é invertível. Uma matriz é invertível se, e somente se, seu determinante for diferente de zero.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> O que o determinante nos diz sobre a independência linear das colunas de A?
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Como o determinante é zero, isso implica que as colunas da matriz A são <strong>linearmente dependentes</strong>.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> As colunas de A formam uma base para o \(\mathbb{R}^3\)? Explique.
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p><strong>Não.</strong> Para formar uma base de \(\mathbb{R}^3\), um conjunto de 3 vetores precisa ser linearmente independente. Como mostramos no item (c) que as colunas são linearmente dependentes, elas não podem formar uma base.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>e)</strong> Podemos garantir que o sistema \(A\vec{x} = \vec{b}\) tem uma solução única para qualquer vetor \(\vec{b} \in \mathbb{R}^3\)? Justifique.
+                     <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p><strong>Não.</strong> Pelo Teorema da Matriz Invertível, se a matriz não é invertível (det=0), o sistema \(A\vec{x} = \vec{b}\) pode ter infinitas soluções ou nenhuma solução, dependendo do vetor \(\vec{b}\). Não podemos garantir uma solução única para qualquer \(\vec{b}\).</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="question">
+                <div class="question-header">Questão 4 - Autovalores e Autovetores</div>
+                <p>Considere a matriz \(A = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 2 & 0 \\ -1 & 1 & 2 \end{pmatrix}\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Monte a matriz \(A - \lambda I\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            $$ A - \lambda I = \begin{pmatrix} 1-\lambda & -1 & 0 \\ 0 & 2-\lambda & 0 \\ -1 & 1 & 2-\lambda \end{pmatrix} $$
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>b)</strong> Encontre o polinômio característico \(p(\lambda) = \det(A - \lambda I)\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p>Expandindo o determinante pela segunda linha (mais fácil):</p>
+                             <p>\(p(\lambda) = (2-\lambda) \cdot \det\begin{pmatrix} 1-\lambda & 0 \\ -1 & 2-\lambda \end{pmatrix}\)</p>
+                             <p>\(= (2-\lambda)[(1-\lambda)(2-\lambda) - 0] = (1-\lambda)(2-\lambda)^2\)</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Encontre os autovalores de A.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Os autovalores são as raízes de \(p(\lambda)=0\).</p>
+                            <p><strong>Os autovalores são \(\lambda_1 = 1\) e \(\lambda_2 = 2\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Para cada autovalor distinto encontrado, determine uma base para o autoespaço correspondente.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p><strong>Para \(\lambda_1 = 1\):</strong> Resolvemos \((A-I)\vec{x}=\vec{0}\). O sistema \(\begin{pmatrix} 0 & -1 & 0 \\ 0 & 1 & 0 \\ -1 & 1 & 1 \end{pmatrix}\vec{x}=\vec{0}\) implica que \(y=0\) e \(-x+z=0 \implies x=z\). O autovetor é \(t(1,0,1)\). Base para \(E_1\): \(\{(1,0,1)\}\).</p>
+                            <p><strong>Para \(\lambda_2 = 2\):</strong> Resolvemos \((A-2I)\vec{x}=\vec{0}\). O sistema \(\begin{pmatrix} -1 & -1 & 0 \\ 0 & 0 & 0 \\ -1 & 1 & 0 \end{pmatrix}\vec{x}=\vec{0}\) implica \(-x-y=0\) e \(-x+y=0\). Somando as equações, \(-2x=0 \implies x=0\). Consequentemente, \(y=0\). \(z\) é livre. O autovetor é \(t(0,0,1)\). Base para \(E_2\): \(\{(0,0,1)\}\).</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>e)</strong> Escolha um autovetor \(\vec{v}\) não nulo de um dos autoespaços e verifique que \(A\vec{v} = \lambda\vec{v}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Vamos escolher \(\lambda=1\) e o autovetor \(\vec{v}=(1,0,1)\).</p>
+                            <p>Lado esquerdo: \(A\vec{v} = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 2 & 0 \\ -1 & 1 & 2 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}\).</p>
+                            <p>Lado direito: \(\lambda\vec{v} = 1 \cdot \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}\).</p>
+                            <p>A relação está verificada.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

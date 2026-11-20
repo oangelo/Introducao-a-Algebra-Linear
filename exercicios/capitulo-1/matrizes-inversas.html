@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- MathJax -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Fontes do Google -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+<!-- Link para a folha de estilo externa no diretório pai -->
+<link rel="stylesheet" href="../game-theme-exercises.css" />
+
+<title>ÁLGEBRA ARCADE | Matrizes Inversas</title>
+</head>
+<body>
+<header class="console-header">
+<h1>ÁLGEBRA ARCADE</h1>
+<h2>Fase 4: O Poder do "Undo" (Matrizes Inversas)</h2>
+</header>
+<div class="mission-intro">
+    <h3>Manual da Fase: Matrizes Inversas</h3>
+    <p>Em muitos jogos, existe a gloriosa opção de "desfazer" uma ação. Em Álgebra Linear, essa é a função da **matriz inversa**. Se uma matriz `A` representa uma transformação (como uma rotação ou escala), sua inversa, denotada por `A⁻¹`, é a transformação que desfaz exatamente o que `A` fez.</p>
+    <p>Para encontrar a inversa, usamos um método poderoso: aumentamos a matriz `A` com a matriz identidade `I` (que representa o "estado original") e aplicamos operações de linha até que `A` se torne `I`. O que sobrar no lugar da identidade original será a nossa desejada matriz inversa. Dominar essa técnica é como ganhar um "Power-up de Reversão" universal!</p>
+    <div class="formula">$$ [A \mid I] \xrightarrow{\text{Operações de Linha}} [I \mid A^{-1}] $$</div>
+</div>
+
+<main id="mission-board" style="counter-reset: mission-counter;">
+    <!-- SÉRIE 1: TRAINING QUESTS -->
+    <div class="mission">
+        <h3>MISSÃO 1-A: Revertendo o Primeiro Passo (Inversa de Matriz 2x2)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Praticar o algoritmo de Gauss-Jordan para encontrar a inversa no caso mais simples de uma matriz 2x2.
+        </div>
+        <p>Um sprite em um jogo da **Era Arcade** sofreu um efeito especial que o "inclinou". Essa transformação é representada pela matriz \( T = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} \). Para reverter o efeito e restaurar o sprite, você precisa encontrar o "código de anulação", que é a matriz inversa \(T^{-1}\). Use o método de aumento \([T \mid I]\) para calculá-la.</p>
+        
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>Comece montando a matriz aumentada \([T \mid I]\). A segunda linha já está na forma correta da matriz identidade, o que simplifica muito seu trabalho!</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Monte a matriz aumentada, colocando \(T\) à esquerda e a identidade 2x2 à direita.</li>
+                <li>O objetivo é transformar o lado esquerdo em uma matriz identidade. Observe que o elemento da segunda linha e segunda coluna (pivô) já é 1, e o elemento abaixo dele já é 0. O único elemento que precisa ser zerado é o '2' na primeira linha.</li>
+                <li>Use a segunda linha para zerar o elemento '2'. A operação de linha necessária é: \(L_1 \leftarrow L_1 - 2 \cdot L_2\).</li>
+                <li>Após a operação, a matriz à esquerda será a identidade. A matriz que restou à direita é a sua solução, \(T^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [T \mid I] = \begin{pmatrix} 1 & 2 & | & 1 & 0 \\ 0 & 1 & | & 0 & 1 \end{pmatrix} \xrightarrow{L_1 \leftarrow L_1 - 2L_2} \begin{pmatrix} ? & ? & | & ? & ? \\ ? & ? & | & ? & ? \end{pmatrix} $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Na **Era Arcade**, transformações como esta (cisalhamento ou *shear*) criavam efeitos de pseudo-perspectiva. A matriz inversa é o que o motor do jogo calcularia para "desenhar" o objeto de volta ao normal no próximo frame.</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 1-B: Desfazendo o Power-up de Escala (Inversa de Matriz 2x2)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Aplicar a normalização de um pivô (transformá-lo em 1) como um passo fundamental no processo de inversão.
+        </div>
+        <p>Seu avatar da **Era 8-bit** pegou um item que o esticou, dobrando sua largura e triplicando sua altura. A matriz de escala é \( S = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} \). Encontre a matriz inversa \(S^{-1}\) para reverter o efeito e devolver o personagem ao seu tamanho normal.</p>
+        
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>O primeiro passo para cada linha é transformar o pivô (o elemento da diagonal) em 1. Use a multiplicação por um escalar (a fração correspondente) para isso.</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Monte a matriz aumentada \([S \mid I]\).</li>
+                <li>Para transformar o '2' da primeira linha em '1', aplique a operação \(L_1 \leftarrow \frac{1}{2} L_1\).</li>
+                <li>Para transformar o '3' da segunda linha em '1', aplique a operação \(L_2 \leftarrow \frac{1}{3} L_2\).</li>
+                <li>Como a matriz já era diagonal, após normalizar os pivôs, o lado esquerdo já será a matriz identidade. A matriz à direita será a inversa.</li>
+            </ol>
+            <div class="formula">$$ [S \mid I] = \begin{pmatrix} 2 & 0 & | & 1 & 0 \\ 0 & 3 & | & 0 & 1 \end{pmatrix} \xrightarrow{\text{Normalização}} \begin{pmatrix} 1 & 0 & | & ? & ? \\ 0 & 1 & | & ? & ? \end{pmatrix} $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A escala é uma das transformações mais básicas. Reverter uma escala \(k\) significa aplicar uma escala \(1/k\). É por isso que a inversa de uma matriz de escala é simplesmente a matriz com os inversos de cada fator de escala na diagonal.</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 1-C: Corrigindo a Distorção do Sprite (Inversa de Matriz 2x2)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Executar o processo completo de eliminação para uma matriz 2x2 genérica.
+        </div>
+        <p>Uma animação de "hit" em um jogo da **Era 16-bit** distorce o inimigo brevemente. A transformação é \( C = \begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix} \). Calcule a transformação inversa \(C^{-1}\) para restaurar o sprite do inimigo à sua forma original.</p>
+        
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>Primeiro, use a linha 1 para zerar o '2' na linha 2. Depois, normalize a linha 2 para obter um pivô '1'. Finalmente, use a nova linha 2 para zerar o elemento acima do pivô.</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Comece com a matriz aumentada \([C \mid I]\).</li>
+                <li>Execute a operação \(L_2 \leftarrow L_2 - 2L_1\) para zerar o elemento \((2,1)\).</li>
+                <li>Normalize a nova linha 2 para que seu pivô seja 1.</li>
+                <li>Use a nova linha 2 (já normalizada) para zerar o elemento \((1,2)\) na primeira linha. A operação será \(L_1 \leftarrow L_1 + L_2\).</li>
+                <li>A matriz resultante à direita será a inversa \(C^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [C \mid I] = \begin{pmatrix} 1 & -1 & | & 1 & 0 \\ 2 & 1 & | & 0 & 1 \end{pmatrix} \xrightarrow{\text{Gauss-Jordan}} [I \mid C^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Efeitos visuais rápidos como flashes, distorções ou tremores de tela são aplicados por um frame e revertidos no seguinte. A matriz inversa garante que essa reversão seja matematicamente perfeita.</p>
+        </details>
+    </div>
+
+    <!-- SÉRIE 2: MAIN MISSIONS -->
+    <div class="mission">
+        <h3>MISSÃO 2-A: Resetando a Câmera 3D (Inversa de Matriz 3x3)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Aplicar o método de inversão em uma matriz 3x3, focando na etapa de eliminação "para cima" (retro-substituição).
+        </div>
+        <p>Em um jogo da **Era 3D Inicial**, a câmera do jogador realizou um movimento que a deixou inclinada. A matriz de transformação foi \( D = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{pmatrix} \). Encontre a matriz inversa \(D^{-1}\) para apertar o botão "Reset Câmera" e retornar à visão padrão.</p>
+
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>Essa matriz já está "meio caminho andado" (na forma escalonada). Você não precisa se preocupar em zerar os elementos abaixo da diagonal. Concentre-se em usar a linha 3 para zerar os elementos acima dela, e depois a linha 2.</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Monte a matriz aumentada \([D \mid I]\).</li>
+                <li>O lado esquerdo já está na forma escalonada. O próximo passo é zerar os elementos acima da diagonal principal, começando pela última coluna.</li>
+                <li>Use a linha 3 para zerar o '2' na linha 2 (\(L_2 \leftarrow L_2 - 2L_3\)) e o '1' na linha 1 (\(L_1 \leftarrow L_1 - L_3\)).</li>
+                <li>A matriz à esquerda agora será a identidade, e a matriz à direita será a inversa \(D^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [D \mid I] = \begin{pmatrix} 1 & 0 & 1 & | & 1 & 0 & 0 \\ 0 & 1 & 2 & | & 0 & 1 & 0 \\ 0 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{Eliminação}} [I \mid D^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Câmeras em jogos 3D são controladas por matrizes. Uma opção de "resetar a câmera" ou "focar no personagem" nada mais é do que aplicar uma matriz inversa para anular todas as rotações e translações que o jogador aplicou.</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 2-B: Rebobinando a Trajetória do Projétil (Inversa de Matriz 3x3)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Praticar o processo de eliminação em uma matriz 3x3 que requer alguns passos de zeramento abaixo e acima da diagonal.
+        </div>
+        <p>Um canhão em seu jogo de estratégia dispara um projétil cuja orientação final é dada pela transformação \( E = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix} \). Para criar um efeito de "replay reverso", o motor do jogo precisa calcular a transformação inversa \(E^{-1}\). Ajude o motor a encontrar essa matriz.</p>
+
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>Primeiro, foque em zerar o '1' na posição \((3,1)\). Depois disso, a matriz ficará bem mais simples. Em seguida, use a linha 2 para zerar o elemento acima dela.</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Comece montando a matriz aumentada \([E \mid I]\).</li>
+                <li>Zere o elemento \((3,1)\) usando a operação \(L_3 \leftarrow L_3 - L_1\).</li>
+                <li>A matriz agora está na forma escalonada. O próximo passo é zerar os elementos acima da diagonal.</li>
+                <li>Use a linha 2 para zerar o elemento \((1,2)\) com a operação \(L_1 \leftarrow L_1 - 2L_2\).</li>
+                <li>O lado esquerdo será a matriz identidade, e o direito será a inversa \(E^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [E \mid I] = \begin{pmatrix} 1 & 2 & 0 & | & 1 & 0 & 0 \\ 0 & 1 & 0 & | & 0 & 1 & 0 \\ 1 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{Gauss-Jordan}} [I \mid E^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Efeitos de replay, especialmente os reversos ou "kill cams", precisam calcular o caminho inverso de objetos. A matriz inversa permite que o jogo reconstrua a trajetória original de um projétil a partir de seu ponto de impacto.</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 2-C: Anulando a Rotação "Mode 7" (Inversa de Matriz 3x3)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Realizar o processo completo de inversão para uma matriz 3x3, aplicando eliminação para baixo e para cima.
+        </div>
+        <p>Em um jogo de corrida da **Era 16-bit** que usa o famoso "Mode 7", o mapa de fundo foi rotacionado e inclinado pela matriz \( F = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix} \). Para exibir o mini-mapa alinhado corretamente, o console precisa calcular a inversa \(F^{-1}\). Encontre esta matriz.</p>
+
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>Siga o processo padrão: primeiro, zere tudo abaixo da diagonal principal. Depois, normalize os pivôs se necessário. Por fim, zere tudo acima da diagonal principal, começando pela última coluna.</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Monte a matriz aumentada \([F \mid I]\).</li>
+                <li>**Passo 1 (Zerar abaixo):** Use \(L_1\) para zerar o elemento \((3,1)\). Depois, use \(L_2\) para zerar o novo elemento \((3,2)\).</li>
+                <li>**Passo 2 (Normalizar):** Transforme o pivô da linha 3 em '1'.</li>
+                <li>**Passo 3 (Zerar acima):** Use a nova \(L_3\) para zerar os elementos \((2,3)\) e \((1,3)\). Depois, use \(L_2\) para zerar o elemento \((1,2)\).</li>
+                <li>O resultado à direita será a matriz inversa \(F^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [F \mid I] = \begin{pmatrix} 1 & 2 & 0 & | & 1 & 0 & 0 \\ 0 & 1 & 1 & | & 0 & 1 & 0 \\ 1 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{Gauss-Jordan}} [I \mid F^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O "Mode 7" do Super Nintendo permitia que uma camada de fundo 2D fosse rotacionada e escalada para simular uma perspectiva 3D. O processador de vídeo do console realizava esses cálculos de matriz em tempo real.</p>
+        </details>
+    </div>
+    
+    <!-- SÉRIE 3: ELITE CHALLENGES -->
+    <div class="mission">
+        <h3>MISSÃO 3-A: Debugando a Matriz de Transformação (Inversa com Troca de Linhas)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Lidar com uma situação onde o pivô é zero, exigindo uma troca de linhas para continuar o algoritmo.
+        </div>
+        <p>A matriz de transformação de um objeto 3D "bugou" e resultou em \( G = \begin{pmatrix} 0 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix} \). O algoritmo de inversão padrão trava porque o elemento \((1,1)\) é zero. Reordene as operações (troque linhas) para conseguir encontrar a inversa \(G^{-1}\) e "debugar" o objeto.</p>
+
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>O algoritmo não pode começar com um pivô zero. O que acontece se você simplesmente trocar a primeira linha com a segunda (ou a terceira) antes de começar a zerar os elementos?</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Ao montar \([G \mid I]\), note que o pivô em \((1,1)\) é zero.</li>
+                <li>Realize uma troca de linhas para colocar um número não-nulo nessa posição. Por exemplo, troque a Linha 1 com a Linha 2 (\(L_1 \leftrightarrow L_2\)). Lembre-se de trocar as linhas do lado direito também!</li>
+                <li>Com um pivô válido na posição \((1,1)\), prossiga com o algoritmo de Gauss-Jordan normalmente.</li>
+                <li>A matriz final à direita será a inversa \(G^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [G \mid I] = \begin{pmatrix} 0 & 1 & 1 & | & 1 & 0 & 0 \\ 1 & 1 & 0 & | & 0 & 1 & 0 \\ 1 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{L_1 \leftrightarrow L_2} \dots \xrightarrow{\text{Gauss-Jordan}} [I \mid G^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em programação gráfica, matrizes podem assumir formas inesperadas devido a bugs ou entradas do usuário. Um bom motor gráfico precisa ser robusto e saber lidar com esses "casos especiais", como um pivô zero, para não travar o jogo.</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 3-B: Removendo o Buff de Atributos (Inversa com Frações)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Ganhar fluência e confiança ao realizar o processo de inversão quando ele naturalmente gera frações.
+        </div>
+        <p>Em um RPG, um feitiço de "buff" melhora os atributos do seu grupo. A matriz de transformação desses atributos é \( H = \begin{pmatrix} 2 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix} \). Para criar o feitiço de "dispell" que remove o buff, você precisa calcular a matriz inversa \(H^{-1}\). Prepare-se para lidar com frações!</p>
+
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>Não tenha medo das frações. Mantenha a calma e aplique as operações de linha como faria com números inteiros. Normalizar o pivô da primeira linha (\(L_1 \leftarrow \frac{1}{2}L_1\)) é um bom começo.</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Comece com a matriz aumentada \([H \mid I]\).</li>
+                <li>Siga o método de Gauss-Jordan. Ao normalizar pivôs ou ao subtrair múltiplos de linhas, as frações aparecerão.</li>
+                <li>Mantenha a organização e realize as operações aritméticas com frações cuidadosamente. Por exemplo, \(1 - \frac{1}{2} = \frac{1}{2}\) ou \(0 - \frac{1}{2} \cdot 1 = -\frac{1}{2}\).</li>
+                <li>Continue o processo até que o lado esquerdo se torne a matriz identidade. O lado direito será a inversa, preenchida com frações.</li>
+            </ol>
+            <div class="formula">$$ [H \mid I] = \begin{pmatrix} 2 & 1 & 0 & | & 1 & 0 & 0 \\ 1 & 1 & 1 & | & 0 & 1 & 0 \\ 0 & 1 & 2 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{Gauss-Jordan}} [I \mid H^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O balanceamento de jogos (especialmente RPGs e jogos de estratégia) envolve muita matemática. Um buff de "+50% de dano" é uma multiplicação por 1.5. A remoção do buff é uma multiplicação por \(1/1.5 = 2/3\). As matrizes generalizam essa ideia para múltiplos atributos interconectados.</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 3-C: Decifrando o Puzzle Cúbico (Inversa de Matriz Interdependente)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Resolver a inversão de uma matriz onde as operações em uma linha afetam significativamente as outras, exigindo atenção constante.
+        </div>
+        <p>Um puzzle em um jogo de aventura consiste em alinhar um cubo mágico. O estado embaralhado do cubo pode ser revertido pela inversa de sua matriz de estado, \( J = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 1 & 3 & 6 \end{pmatrix} \). A inversa \(J^{-1}\) revela a sequência de movimentos para resolver o puzzle. Encontre-a.</p>
+
+        <details class="hint-container">
+            <summary>Pedir Dica ao Mestre do Jogo...</summary>
+            <div class="hint">
+                <p>Esta é uma prova de resistência e organização. Siga o algoritmo de Gauss-Jordan rigorosamente. Após zerar a primeira coluna, você terá números maiores para trabalhar na segunda e terceira colunas. Mantenha o foco.</p>
+            </div>
+        </details>
+        
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Monte a matriz aumentada \([J \mid I]\).</li>
+                <li>Use a primeira linha para zerar os elementos \((2,1)\) e \((3,1)\). As operações são \(L_2 \leftarrow L_2 - L_1\) e \(L_3 \leftarrow L_3 - L_1\).</li>
+                <li>Agora, use a nova linha 2 para zerar o elemento \((3,2)\).</li>
+                <li>Com a matriz na forma escalonada, normalize a linha 3.</li>
+                <li>Inicie o processo de zerar os elementos acima da diagonal, usando a linha 3 e depois a linha 2.</li>
+            </ol>
+            <div class="formula">$$ [J \mid I] = \begin{pmatrix} 1 & 1 & 1 & | & 1 & 0 & 0 \\ 1 & 2 & 3 & | & 0 & 1 & 0 \\ 1 & 3 & 6 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{Gauss-Jordan}} [I \mid J^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Muitos puzzles lógicos, de Sudoku a cubos mágicos, podem ser modelados como sistemas de equações. Encontrar a solução a partir de um estado inicial é análogo a resolver o sistema, e a matriz inversa representa um "mapa de soluções" geral.</p>
+        </details>
+    </div>
+
+    <!-- SÉRIE 4: BOSS FIGHTS -->
+    <div class="mission">
+        <h3>MISSÃO 4-A: O Desafio da Distorção Total (Inversa de Matriz Densa)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Testar a resistência e precisão na aplicação do algoritmo de inversão em um caso sem atalhos ou zeros fáceis.
+        </div>
+        <p>O chefe final da **Era Moderna** aplica uma distorção complexa na tela, representada pela matriz \( K = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{pmatrix} \). A matriz inversa \(K^{-1}\) é o "código de anulação" que limpa sua visão e permite o ataque. Calcule \(K^{-1}\). Sem dicas desta vez!</p>
+
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Construa a matriz aumentada \([K \mid I]\).</li>
+                <li>Execute o algoritmo completo de Gauss-Jordan. Pode ser útil trocar \(L_1\) e \(L_2\) para começar com um pivô '1', ou normalizar \(L_1\) para \(\frac{1}{2}L_1\).</li>
+                <li>Zere sistematicamente todos os elementos abaixo da diagonal principal.</li>
+                <li>Normalize todos os pivôs para que a diagonal principal seja composta apenas por '1's.</li>
+                <li>Zere sistematicamente todos os elementos acima da diagonal principal.</li>
+                <li>A matriz resultante à direita será a inversa \(K^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [K \mid I] = \begin{pmatrix} 2 & 1 & 1 & | & 1 & 0 & 0 \\ 1 & 2 & 1 & | & 0 & 1 & 0 \\ 1 & 1 & 2 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{Gauss-Jordan}} [I \mid K^{-1}] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Efeitos de *shader* em jogos modernos usam matrizes para distorcer vértices, manipular cores e criar visuais complexos. A capacidade de inverter essas transformações é crucial para a renderização e para efeitos que precisam ser desfeitos.</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 4-B: Criando o Cheat Code Universal (Inversa de Matriz Simbólica)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Generalizar o processo de inversão para uma matriz 2x2 com variáveis, encontrando a fórmula geral da inversa.
+        </div>
+        <p>Sua tarefa é criar o "cheat code" mestre para reverter qualquer transformação 2D. Para isso, encontre a fórmula geral para a inversa da matriz \( A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \). Assuma que \(ad-bc \neq 0\). O resultado será uma fórmula que funciona para qualquer transformação 2x2!</p>
+
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Monte a matriz aumentada \([A \mid I]\) com as variáveis.</li>
+                <li>Normalize a primeira linha: \(L_1 \leftarrow \frac{1}{a}L_1\).</li>
+                <li>Use a nova linha 1 para zerar o elemento 'c' da linha 2: \(L_2 \leftarrow L_2 - c \cdot L_1\). Simplifique a expressão para o elemento \((2,2)\), que se tornará \(\frac{ad-bc}{a}\).</li>
+                <li>Normalize a segunda linha, multiplicando-a pelo inverso do novo pivô: \(L_2 \leftarrow \frac{a}{ad-bc} L_2\).</li>
+                <li>Use a nova linha 2 para zerar o elemento \((1,2)\).</li>
+                <li>Simplifique as expressões algébricas resultantes no lado direito para encontrar a fórmula final de \(A^{-1}\).</li>
+            </ol>
+            <div class="formula">$$ [A \mid I] = \begin{pmatrix} a & b & | & 1 & 0 \\ c & d & | & 0 & 1 \end{pmatrix} \xrightarrow{\text{Álgebra}} \left[ I \mid \frac{1}{ad-bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \right] $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Fórmulas como esta são otimizações de performance. Em vez de um motor de jogo rodar o algoritmo de Gauss-Jordan toda vez que precisa inverter uma matriz 2x2, ele usa diretamente esta fórmula, que é computacionalmente muito mais rápida. É o equivalente a um "atalho de programador".</p>
+        </details>
+    </div>
+
+    <div class="mission">
+        <h3>MISSÃO 4-C: O Glitch Irreversível (Identificação de Matriz Singular)</h3>
+        <div class="mission-objective">
+            <strong>Objetivo da Missão:</strong> Reconhecer, durante o processo de escalonamento, quando uma matriz não possui inversa (é singular).
+        </div>
+        <p>Uma magia do chefe causa um "glitch" permanente, achatando parte do mundo do jogo. A matriz de transformação deste glitch é \( M = \begin{pmatrix} 1 & 1 & 2 \\ 1 & 2 & 3 \\ 2 & 3 & 5 \end{pmatrix} \). Prove matematicamente que este glitch é irreversível, mostrando que a matriz \(M\) não possui inversa.</p>
+
+        <details>
+            <summary>Ver Detonado...</summary>
+            <ol class="solution-steps">
+                <li>Inicie o processo de escalonamento normalmente com a matriz aumentada \([M \mid I]\).</li>
+                <li>Use a primeira linha para zerar os elementos abaixo dela. Aplique \(L_2 \leftarrow L_2 - L_1\) e \(L_3 \leftarrow L_3 - 2L_1\).</li>
+                <li>Observe as novas linhas 2 e 3. Você notará que a nova linha 3 é um múltiplo escalar da nova linha 2.</li>
+                <li>Ao tentar usar a nova linha 2 para zerar o elemento \((3,2)\), toda a linha 3 do lado esquerdo da matriz se tornará zero.</li>
+                <li>Uma linha de zeros no lado esquerdo impossibilita a formação da matriz identidade, pois não há como criar um pivô '1' naquela linha. Isso prova que a matriz não tem inversa.</li>
+            </ol>
+            <div class="formula">$$ \begin{pmatrix} 1 & 1 & 2 \\ 0 & 1 & 1 \\ 0 & 1 & 1 \end{pmatrix} \xrightarrow{L_3 \leftarrow L_3 - L_2} \begin{pmatrix} 1 & 1 & 2 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{pmatrix} $$</div>
+            <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Algumas ações em jogos são permanentes: usar um item chave, fazer uma escolha de diálogo que fecha um ramo da história. Matematicamente, estas são "transformações singulares". Elas representam uma perda de informação (como achatar 3D em 2D) da qual não se pode retornar. Não existe um "undo" para tudo.</p>
+        </details>
+    </div>
+</main>
+</body>
+</html>
+

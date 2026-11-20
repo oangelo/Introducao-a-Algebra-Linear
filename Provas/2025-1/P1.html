@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito - Primeira Prova de Álgebra Linear</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'details']
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                    MathJax.startup.promise.then(() => {
+                        console.log('MathJax initial typesetting complete');
+                    });
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 11pt; /* Aumentei um pouco a fonte para melhor legibilidade em tela */
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px; /* Largura confortável para leitura em uma coluna */
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+        
+        .question-header {
+            font-weight: bold;
+            font-size: 13pt;
+            color: #000;
+            border-left: 4px solid #000;
+            padding-left: 10px;
+            margin-bottom: 12px;
+            background-color: #f0f0f0;
+            padding: 8px 10px;
+        }
+        
+        .subquestion {
+            margin: 10px 0 10px 20px;
+        }
+        
+        .subquestion strong {
+            font-weight: bold;
+        }
+        
+        .question p {
+            margin: 10px 0;
+        }
+        
+        /* Estilo para o Gabarito */
+        details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        summary {
+            font-weight: bold;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #e9e9e9;
+            border-radius: 3px;
+            font-size: 10pt;
+        }
+        .answer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .answer p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gabarito - Primeira Prova de Álgebra Linear</h1>
+        </div>
+        
+        <div class="content">
+            
+            <div class="question">
+                <div class="question-header">Questão 1 (2,5 pontos) - Determinante e Matriz Inversa</div>
+                <p>Considere a matriz: \(A = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 2 \\ 1 & 0 & 1 \end{pmatrix}\)</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Calcule \(\det(A)\) usando expansão por cofatores.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Expandindo pela segunda linha (que contém um zero):</p>
+                            <p>\(\det(A) = (-1)^{2+1} \cdot 0 \cdot \det\begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix} + (-1)^{2+2} \cdot 1 \cdot \det\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} + (-1)^{2+3} \cdot 2 \cdot \det\begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}\)</p>
+                            <p>\(= 0 + 1 \cdot (1 \cdot 1 - 1 \cdot 1) - 1 \cdot 2 \cdot (1 \cdot 0 - 2 \cdot 1)\)</p>
+                            <p>\(= 1 \cdot (0) - 2 \cdot (-2) = 4\)</p>
+                            <p><strong>Resultado: \(\det(A) = 4\)</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Monte a matriz aumentada \([A|I]\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A matriz aumentada é formada pela matriz \(A\) à esquerda e a matriz identidade \(I\) à direita.</p>
+                            $$[A|I] = \left(\begin{array}{ccc|ccc}
+                            1 & 2 & 1 & 1 & 0 & 0 \\
+                            0 & 1 & 2 & 0 & 1 & 0 \\
+                            1 & 0 & 1 & 0 & 0 & 1
+                            \end{array}\right)$$
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Escalone a matriz \([A|I]\) até obter a forma \([I|A^{-1}]\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>\(L_3 \leftarrow L_3 - L_1\)</p>
+                            $$\left(\begin{array}{ccc|ccc}
+                            1 & 2 & 1 & 1 & 0 & 0 \\
+                            0 & 1 & 2 & 0 & 1 & 0 \\
+                            0 & -2 & 0 & -1 & 0 & 1
+                            \end{array}\right)$$
+                            <p>\(L_3 \leftarrow L_3 + 2L_2\)</p>
+                            $$\left(\begin{array}{ccc|ccc}
+                            1 & 2 & 1 & 1 & 0 & 0 \\
+                            0 & 1 & 2 & 0 & 1 & 0 \\
+                            0 & 0 & 4 & -1 & 2 & 1
+                            \end{array}\right)$$
+                            <p>\(L_3 \leftarrow L_3 / 4\)</p>
+                            $$\left(\begin{array}{ccc|ccc}
+                            1 & 2 & 1 & 1 & 0 & 0 \\
+                            0 & 1 & 2 & 0 & 1 & 0 \\
+                            0 & 0 & 1 & -1/4 & 1/2 & 1/4
+                            \end{array}\right)$$
+                            <p>\(L_2 \leftarrow L_2 - 2L_3\) e \(L_1 \leftarrow L_1 - L_3\)</p>
+                             $$\left(\begin{array}{ccc|ccc}
+                            1 & 2 & 0 & 5/4 & -1/2 & -1/4 \\
+                            0 & 1 & 0 & 1/2 & 0 & -1/2 \\
+                            0 & 0 & 1 & -1/4 & 1/2 & 1/4
+                            \end{array}\right)$$
+                            <p>\(L_1 \leftarrow L_1 - 2L_2\)</p>
+                             $$\left(\begin{array}{ccc|ccc}
+                            1 & 0 & 0 & 1/4 & -1/2 & 3/4 \\
+                            0 & 1 & 0 & 1/2 & 0 & -1/2 \\
+                            0 & 0 & 1 & -1/4 & 1/2 & 1/4
+                            \end{array}\right)$$
+                             <p><strong>Resultado: \(A^{-1} = \begin{pmatrix} 1/4 & -1/2 & 3/4 \\ 1/2 & 0 & -1/2 \\ -1/4 & 1/2 & 1/4 \end{pmatrix}\)</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Verifique o resultado calculando \(A \cdot A^{-1}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>\(A \cdot A^{-1} = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 2 \\ 1 & 0 & 1 \end{pmatrix} \cdot \frac{1}{4} \begin{pmatrix} 1 & -2 & 3 \\ 2 & 0 & -2 \\ -1 & 2 & 1 \end{pmatrix} \)</p>
+                            <p>\(= \frac{1}{4} \begin{pmatrix} 1+4-1 & -2+0+2 & 3-4+1 \\ 0+2-2 & 0+0+4 & 0-2+2 \\ 1+0-1 & -2+0+2 & 3+0+1 \end{pmatrix} \)</p>
+                            <p>\(= \frac{1}{4} \begin{pmatrix} 4 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 4 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = I\)</p>
+                            <p>A verificação foi bem-sucedida.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="question">
+                <div class="question-header">Questão 2 (2,5 pontos) - Interpretação Geométrica</div>
+                <p>Para cada matriz aumentada abaixo, já na forma escalonada, determine a fórmula explícita das soluções e identifique que tipo de objeto geométrico as soluções representam no \(\mathbb{R}^3\):</p>
+                 <div class="subquestion">
+                    <strong>a)</strong> Matriz A: $$ \left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{array}\right) $$
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Temos uma equação: \(x + 2y - z = 3\). Há duas variáveis livres, \(y\) e \(z\). Seja \(y=s\) e \(z=t\).</p>
+                           <p>Solução: \(x = 3 - 2s + t\). A solução vetorial é \((x,y,z) = (3,0,0) + s(-2,1,0) + t(1,0,1)\).</p>
+                           <p><strong>Interpretação:</strong> A solução é um <strong>plano</strong> no espaço \(\mathbb{R}^3\).</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Matriz B: $$ \left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 1 & 2 & 1 \\ 0 & 0 & 0 & 0 \end{array}\right) $$
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Temos duas equações e uma variável livre, \(z\). Seja \(z=t\).</p>
+                            <p>Da 2ª linha: \(y + 2z = 1 \implies y = 1 - 2t\).</p>
+                            <p>Da 1ª linha: \(x + 2y - z = 3 \implies x + 2(1-2t) - t = 3 \implies x + 2 - 5t = 3 \implies x = 1 + 5t\).</p>
+                            <p>Solução: \((x,y,z) = (1,1,0) + t(5,-2,1)\).</p>
+                            <p><strong>Interpretação:</strong> A solução é uma <strong>reta</strong> no espaço \(\mathbb{R}^3\).</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Matriz C: $$ \left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 1 & 2 & 1 \\ 0 & 0 & 1 & 2 \end{array}\right) $$
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Temos três equações e nenhuma variável livre. A solução é única. Usamos substituição retroativa:</p>
+                            <p>Da 3ª linha: \(z = 2\).</p>
+                            <p>Na 2ª linha: \(y + 2(2) = 1 \implies y = -3\).</p>
+                            <p>Na 1ª linha: \(x + 2(-3) - 2 = 3 \implies x - 8 = 3 \implies x = 11\).</p>
+                            <p>Solução: \((x,y,z) = (11, -3, 2)\).</p>
+                            <p><strong>Interpretação:</strong> A solução é um <strong>ponto</strong> único no espaço \(\mathbb{R}^3\).</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 3 (2,5 pontos) - Circuncentro e Escalonamento</div>
+                <p>Encontre o circuncentro dos pontos \(A(1, 1)\), \(B(5, 1)\) e \(C(3, 4)\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Obtenha três equações lineares para \(D, E, F\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Substituindo os pontos na equação \(x^2 + y^2 + Dx + Ey + F = 0\):</p>
+                            <p>A(1,1): \(1^2+1^2+D(1)+E(1)+F=0 \implies D+E+F = -2\)</p>
+                            <p>B(5,1): \(5^2+1^2+D(5)+E(1)+F=0 \implies 5D+E+F = -26\)</p>
+                            <p>C(3,4): \(3^2+4^2+D(3)+E(4)+F=0 \implies 3D+4E+F = -25\)</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Monte a matriz aumentada do sistema.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            $$ \left(\begin{array}{ccc|c}
+                            1 & 1 & 1 & -2 \\
+                            5 & 1 & 1 & -26 \\
+                            3 & 4 & 1 & -25
+                            \end{array}\right) $$
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Escalone a matriz aumentada.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>\(L_2 \leftarrow L_2 - 5L_1\) e \(L_3 \leftarrow L_3 - 3L_1\)</p>
+                            $$ \left(\begin{array}{ccc|c}
+                            1 & 1 & 1 & -2 \\
+                            0 & -4 & -4 & -16 \\
+                            0 & 1 & -2 & -19
+                            \end{array}\right) $$
+                            <p>\(L_2 \leftarrow L_2 / (-4)\)</p>
+                             $$ \left(\begin{array}{ccc|c}
+                            1 & 1 & 1 & -2 \\
+                            0 & 1 & 1 & 4 \\
+                            0 & 1 & -2 & -19
+                            \end{array}\right) $$
+                             <p>\(L_3 \leftarrow L_3 - L_2\)</p>
+                             $$ \left(\begin{array}{ccc|c}
+                            1 & 1 & 1 & -2 \\
+                            0 & 1 & 1 & 4 \\
+                            0 & 0 & -3 & -23
+                            \end{array}\right) $$
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> Determine \(D, E, F\) e o circuncentro.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p>Por substituição retroativa:</p>
+                             <p>\(-3F = -23 \implies F = 23/3\)</p>
+                             <p>\(E + F = 4 \implies E + 23/3 = 4 \implies E = 12/3 - 23/3 = -11/3\)</p>
+                             <p>\(D + E + F = -2 \implies D - 11/3 + 23/3 = -2 \implies D + 12/3 = -2 \implies D+4 = -2 \implies D = -6\)</p>
+                             <p>Centro: \((-\frac{D}{2}, -\frac{E}{2}) = (-\frac{-6}{2}, -\frac{-11/3}{2}) = (3, 11/6)\).</p>
+                             <p><strong>Resultado: O circuncentro é o ponto \((3, 11/6)\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>e)</strong> Verifique que os pontos satisfazem a equação.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p>A equação é \(x^2 + y^2 - 6x - \frac{11}{3}y + \frac{23}{3} = 0\).</p>
+                             <p>Para A(1,1): \(1+1-6-\frac{11}{3}+\frac{23}{3} = -4 + \frac{12}{3} = -4+4=0\). (Ok)</p>
+                             <p>Para B(5,1): \(25+1-30-\frac{11}{3}+\frac{23}{3} = -4 + \frac{12}{3} = -4+4=0\). (Ok)</p>
+                             <p>Para C(3,4): \(9+16-18-\frac{44}{3}+\frac{23}{3} = 7 - \frac{21}{3} = 7-7=0\). (Ok)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="question">
+                <div class="question-header">Questão 4 (2,5 pontos) - Produto Vetorial e Equação do Plano</div>
+                <p>Considere os pontos \(A(1, 0, 2)\), \(B(2, 1, 0)\) e \(C(0, 2, 1)\).</p>
+                <div class="subquestion">
+                    <strong>a)</strong> Determine os vetores \(\overrightarrow{AB}\) e \(\overrightarrow{AC}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p>\(\overrightarrow{AB} = B - A = (2-1, 1-0, 0-2) = (1, 1, -2)\)</p>
+                             <p>\(\overrightarrow{AC} = C - A = (0-1, 2-0, 1-2) = (-1, 2, -1)\)</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Calcule o produto vetorial \(\overrightarrow{AB} \times \overrightarrow{AC}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>\(\vec{n} = \overrightarrow{AB} \times \overrightarrow{AC} = \det \begin{pmatrix} \vec{i} & \vec{j} & \vec{k} \\ 1 & 1 & -2 \\ -1 & 2 & -1 \end{pmatrix}\)</p>
+                            <p>\(= \vec{i}(1(-1) - (-2)2) - \vec{j}(1(-1) - (-2)(-1)) + \vec{k}(1(2) - 1(-1))\)</p>
+                            <p>\(= \vec{i}(-1+4) - \vec{j}(-1-2) + \vec{k}(2+1) = 3\vec{i} + 3\vec{j} + 3\vec{k}\)</p>
+                            <p><strong>Resultado: O vetor normal é \((3, 3, 3)\).</strong></p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Verifique a perpendicularidade com os produtos internos.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>\(\vec{n} \cdot \overrightarrow{AB} = (3,3,3) \cdot (1,1,-2) = 3(1)+3(1)+3(-2) = 3+3-6 = 0\). (Perpendicular)</p>
+                            <p>\(\vec{n} \cdot \overrightarrow{AC} = (3,3,3) \cdot (-1,2,-1) = 3(-1)+3(2)+3(-1) = -3+6-3 = 0\). (Perpendicular)</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Encontre a equação do plano.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Usando o vetor normal \(\vec{n}=(3,3,3)\) e o ponto \(A(1,0,2)\). A equação é da forma \(3x+3y+3z=d\).</p>
+                            <p>Substituindo o ponto A: \(3(1)+3(0)+3(2)=d \implies d=9\).</p>
+                            <p>A equação é \(3x+3y+3z=9\). Dividindo por 3, obtemos a forma simplificada.</p>
+                            <p><strong>Resultado: \(x+y+z=3\)</strong></p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>e)</strong> Verifique que os pontos satisfazem a equação.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                             <p>Equação: \(x+y+z=3\)</p>
+                             <p>Ponto A(1,0,2): \(1+0+2 = 3\). (Ok)</p>
+                             <p>Ponto B(2,1,0): \(2+1+0 = 3\). (Ok)</p>
+                             <p>Ponto C(0,2,1): \(0+2+1 = 3\). (Ok)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabarito - Prova 2 de Álgebra Linear (Versão B)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }, options: { skipHtmlTags: ['details'] }, startup: { ready: () => { MathJax.startup.defaultReady(); } } };
+    </script>
+    <style>
+        body { font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.5; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header h1 { text-align: center; font-size: 16pt; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 25px; }
+        .question { margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
+        .question:last-child { border-bottom: none; }
+        .question-header { font-weight: bold; font-size: 13pt; border-left: 4px solid #000; padding: 8px 10px; background-color: #f0f0f0; margin-bottom: 12px; }
+        .subquestion { margin: 10px 0 10px 20px; }
+        details { margin-top: 10px; border: 1px solid #ddd; border-radius: 4px; background-color: #f9f9f9; }
+        summary { font-weight: bold; padding: 8px 12px; cursor: pointer; background-color: #e9e9e9; font-size: 10pt; }
+        .answer { padding: 15px; border-top: 1px solid #ddd; background-color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"><h1>Gabarito - Prova 2 de Álgebra Linear (Versão B)</h1></div>
+        <div class="content">
+            <div class="question">
+                <div class="question-header">Questão 1: A Geometria dos Subespaços</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Qual objeto geométrico \(W\) (onde \(x=y=z\)) representa?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(W\) representa uma <strong>reta</strong> que passa pela origem e tem o vetor diretor \((1,1,1)\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Mostre que \(W\) é um subespaço de \(\mathbb{R}^3\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>1. <strong>Vetor Nulo:</strong> O vetor \((0,0,0)\) satisfaz a condição \(0=0=0\), então \(\vec{0} \in W\).</p>
+                        <p>2. <strong>Fechamento da Soma:</strong> Sejam \(\vec{u}=(a,a,a)\) e \(\vec{v}=(b,b,b)\) em \(W\). A soma é \(\vec{u}+\vec{v} = (a+b, a+b, a+b)\). Como todas as componentes são iguais, o vetor soma pertence a \(W\).</p>
+                        <p>3. <strong>Fechamento por Escalar:</strong> Seja \(\vec{u}=(a,a,a)\) em \(W\) e \(k\) um escalar. O produto é \(k\vec{u} = (ka, ka, ka)\). Como todas as componentes são iguais, o vetor resultante pertence a \(W\).</p>
+                        <p>Como as três condições são satisfeitas, \(W\) é um subespaço.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Encontre uma base para \(W\) e sua dimensão.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Qualquer vetor em \(W\) pode ser escrito como \((x,x,x) = x(1,1,1)\). Portanto, o conjunto \(\{(1,1,1)\}\) gera \(W\). Como contém um único vetor não nulo, é LI.</p>
+                        <p><strong>Base para \(W\): \(\{(1,1,1)\}\)</strong>. <strong>Dimensão de \(W\): 1</strong>.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Por que \(H\) (primeiro octante) não é um subespaço?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(H\) não é fechado sob a multiplicação por escalar. Por exemplo, o vetor \(\vec{v}=(1,1,1)\) está em \(H\) porque \(1 \ge 0\). No entanto, se tomarmos o escalar \(k=-2\), o vetor \(k\vec{v} = (-2,-2,-2)\) não está em \(H\), pois suas componentes não são maiores ou iguais a zero. Portanto, \(H\) não é um subespaço.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 2: Geradores, Bases e Redundância</div>
+                 <div class="subquestion">
+                    <strong>a)</strong> \(S = \{(1,0,1), (0,1,1), (1,1,2), (2,1,3)\}\) é uma base para \(\mathbb{R}^3\)?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p><strong>Não.</strong> A dimensão do \(\mathbb{R}^3\) é 3. Uma base para o \(\mathbb{R}^3\) deve ter exatamente 3 vetores. Como o conjunto \(S\) tem 4 vetores, ele não pode ser uma base.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> O conjunto \(S\) é LI ou LD?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>O conjunto é <strong>linearmente dependente (LD)</strong>. Uma razão é que qualquer conjunto com mais vetores do que a dimensão do espaço ambiente (4 vetores em \(\mathbb{R}^3\)) é automaticamente LD. Outra forma é encontrar uma dependência linear. Observando os três primeiros vetores, \(\vec{v_1}+\vec{v_2} = (1,0,1)+(0,1,1)=(1,1,2) = \vec{v_3}\). Como um vetor é combinação linear dos outros, o conjunto é LD.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Extraia uma base para \(\mathbb{R}^3\) de \(S\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Precisamos remover vetores redundantes até que restem 3 vetores LI. Já sabemos que \(\vec{v_3}\) é dependente de \(\vec{v_1}\) e \(\vec{v_2}\), então podemos removê-lo. Ficamos com o conjunto \(\{\vec{v_1}, \vec{v_2}, \vec{v_4}\} = \{(1,0,1), (0,1,1), (2,1,3)\}\).</p>
+                        <p>Para verificar se este novo conjunto é uma base, basta checar se é LI, calculando o determinante da matriz formada por eles: \(M=\begin{pmatrix}1&0&2\\0&1&1\\1&1&3\end{pmatrix}\).</p>
+                        <p>\(\det(M) = 1(3-1) - 0 + 2(0-1) = 2 - 2 = 0\). Este conjunto também é LD.</p>
+                        <p>Vamos tentar outro subconjunto, removendo \(\vec{v_4}\). Ficamos com \(\{\vec{v_1}, \vec{v_2}, \vec{v_3}\}\). Já sabemos que é LD. A única combinação que resta é \(\{\vec{v_1}, \vec{v_3}, \vec{v_4}\}\). O aluno deve concluir que qualquer subconjunto de 3 vetores que contenha \(\vec{v_1}\) e \(\vec{v_2}\) será LD se o terceiro vetor estiver no plano gerado por eles.</p>
+                        <p>Uma base válida pode ser extraída, por exemplo, testando \(\{\vec{v_1}, \vec{v_2}\}\) com um terceiro vetor que não seja \(\vec{v_3}\) ou \(\vec{v_4}\). Testando \(\{\vec{v_2}, \vec{v_3}, \vec{v_4}\}\) o determinante também será zero. O conjunto que funciona é, por exemplo, **\(\{\vec{v_1}, \vec{v_2}, (0,0,1)\}\) onde \((0,0,1)\) não pertence a S**. A questão pede para extrair. A melhor resposta seria: **Não é possível extrair uma base para \(\mathbb{R}^3\) de S**, pois o subespaço gerado por S tem dimensão 2.</p>
+                    </div></details>
+                </div>
+                 <div class="subquestion">
+                    <strong>d)</strong> Justifique sua resposta.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Como visto no item c, todos os subconjuntos de 3 vetores de S são LD. Portanto, não é possível formar uma base para \(\mathbb{R}^3\) apenas com vetores de S, pois uma base de \(\mathbb{R}^3\) deve ter 3 vetores LI.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 3: Independência Linear, Posto e Nulidade</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Apresente o sistema linear homogêneo para verificar a independência linear de \(S\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>A equação vetorial \(c_1\begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix} + c_2\begin{pmatrix} 0 & 1 \\ 0 & 1 \end{pmatrix} + c_3\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}\) gera a matriz \(\begin{pmatrix} c_1+c_3 & c_2+c_3 \\ c_1+c_3 & c_2 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}\). Igualando as entradas, temos o sistema:</p>
+                        <p>\(\begin{cases} c_1 + c_3 = 0 \\ c_2 + c_3 = 0 \\ c_1 + c_3 = 0 \\ c_2 = 0 \end{cases}\)</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Resolva o sistema. O conjunto \(S\) é LI ou LD?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Da quarta equação, temos \(c_2=0\). Substituindo na segunda, \(0+c_3=0 \implies c_3=0\). Substituindo na primeira, \(c_1+0=0 \implies c_1=0\).</p>
+                        <p>A única solução é a solução trivial \((c_1,c_2,c_3)=(0,0,0)\). Por definição, isso significa que o conjunto é <strong>linearmente independente (LI)</strong>.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Qual é o posto da matriz dos coeficientes?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>A matriz dos coeficientes é \(M = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}\). Escalonando: \(\xrightarrow{L_3 \leftarrow L_3-L_1} \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} \xrightarrow{L_4 \leftarrow L_4-L_2} \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}\). A matriz escalonada tem 3 pivôs (nas colunas 1, 2 e 3). O <strong>posto é 3</strong>.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Qual é a nulidade e sua relação com a independência linear?
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Pelo Teorema do Posto-Nulidade, Posto + Nulidade = nº de colunas. \(3 + \text{Nulidade} = 3 \implies \text{Nulidade}=0\). A <strong>nulidade é 0</strong>. Uma nulidade igual a zero significa que o sistema homogêneo \(M\vec{c}=\vec{0}\) tem apenas a solução trivial (\(\vec{c}=\vec{0}\)), o que, por definição, significa que as colunas de M (e os vetores originais) são linearmente independentes.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 4: Autovalores e Autovetores</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre os autovalores de \(A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(\det(A-\lambda I) = \det\begin{pmatrix} 1-\lambda & 1 & 0 \\ 1 & 1-\lambda & 0 \\ 0 & 0 & 2-\lambda \end{pmatrix}\). Expandindo pela 3ª linha:</p>
+                        <p>\(= (2-\lambda) \det\begin{pmatrix} 1-\lambda & 1 \\ 1 & 1-\lambda \end{pmatrix} = (2-\lambda)[(1-\lambda)^2 - 1]\)</p>
+                        <p>\(= (2-\lambda)(1-2\lambda+\lambda^2-1) = (2-\lambda)(\lambda^2-2\lambda) = \lambda(2-\lambda)(\lambda-2)\)</p>
+                        <p>Os autovalores são \(\lambda=0\) e \(\lambda=2\) (com multiplicidade 2).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Encontre uma base para cada autoespaço.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Para \(\lambda=0\): \((A-0I)\vec{x}=\vec{0} \implies \begin{pmatrix} 1&1&0\\1&1&0\\0&0&2 \end{pmatrix}\vec{x}=\vec{0}\). Equações: \(z=0\) e \(x+y=0 \implies x=-y\). Vetor: \((-y,y,0)=y(-1,1,0)\). Base para \(E_0\): \(\{(-1,1,0)\}\).</p>
+                        <p>Para \(\lambda=2\): \((A-2I)\vec{x}=\vec{0} \implies \begin{pmatrix} -1&1&0\\1&-1&0\\0&0&0 \end{pmatrix}\vec{x}=\vec{0}\). Equação: \(-x+y=0 \implies x=y\). \(z\) é livre. Vetor: \((y,y,z)=y(1,1,0)+z(0,0,1)\). Base para \(E_2\): \(\{(1,1,0), (0,0,1)\}\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Verifique a relação \(A\vec{v}=\lambda\vec{v}\) para um autovetor de cada autoespaço.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Para \(\lambda=0\), \(\vec{v}=(-1,1,0)\): \(A\vec{v} = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix}-1\\1\\0\end{pmatrix} = \begin{pmatrix}0\\0\\0\end{pmatrix}\). \(\lambda\vec{v} = 0\vec{v}=\begin{pmatrix}0\\0\\0\end{pmatrix}\). Correto.</p>
+                        <p>Para \(\lambda=2\), \(\vec{v}=(1,1,0)\): \(A\vec{v} = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix}1\\1\\0\end{pmatrix} = \begin{pmatrix}2\\2\\0\end{pmatrix}\). \(\lambda\vec{v} = 2\vec{v}=2\begin{pmatrix}1\\1\\0\end{pmatrix}=\begin{pmatrix}2\\2\\0\end{pmatrix}\). Correto.</p>
+                    </div></details>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

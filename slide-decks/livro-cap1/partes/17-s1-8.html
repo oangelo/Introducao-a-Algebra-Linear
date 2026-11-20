@@ -1,0 +1,126 @@
+<!-- fonte: f1-matematica.html §1.8 — as três operações que não mudam a solução -->
+<section class="sec" id="s-1-8">
+  <h2><span class="num">1.8</span>As três operações elementares</h2>
+
+  <p>Escrito o sistema como matriz, o problema deixa de ser "resolver equações" e passa a ser
+  "transformar linhas". Nem toda transformação serve: trocar um coeficiente por outro muda a
+  solução, e o resultado não vale mais nada. As que servem são três, e o critério que as seleciona é
+  um só — cada uma pode ser desfeita.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Sobre as linhas de uma matriz aumentada são permitidas três <b>operações elementares</b>:</p>
+    <ol class="passos">
+      <li>trocar duas linhas entre si: \(R_i \leftrightarrow R_j\);</li>
+      <li>multiplicar uma linha por um escalar não nulo: \(R_i \leftarrow cR_i\), com
+      \(c \neq 0\);</li>
+      <li>somar a uma linha um múltiplo de outra: \(R_i \leftarrow R_i + cR_j\), com
+      \(i \neq j\).</li>
+    </ol>
+  </div>
+
+  <p>A garantia de que o conjunto-solução não muda não vem de "a matriz parece a mesma coisa
+  reorganizada". Vem de um fato mais forte, e ele é o motivo de as três operações serem essas e não
+  outras: <b>se uma operação leva a matriz \(A\) na matriz \(B\), a mesma operação — ou a sua
+  inversa — leva \(B\) de volta em \(A\)</b>. Cada uma das três é, nesse sentido, reversível, e a
+  volta usa apenas operações da mesma lista.</p>
+
+  <p>Veja o inverso de cada uma. Trocar \(R_1\) com \(R_2\) se desfaz trocando \(R_1\) com \(R_2\)
+  outra vez: a operação é a sua própria inversa. Multiplicar \(R_i\) por \(c \neq 0\) se desfaz
+  multiplicando a mesma linha por \(1/c\) — e é exatamente aqui que a condição \(c \neq 0\) entra.
+  Com \(c = 0\) a linha inteira vira zero e não há como recuperar o que havia nela; a operação não
+  teria volta, e de fato ela muda o conjunto-solução sempre que a linha original não era a equação
+  \(0 = 0\). Somar \(c\) vezes \(R_j\) a \(R_i\) se
+  desfaz subtraindo \(c\) vezes \(R_j\) de \(R_i\); a linha \(R_j\), usada como fonte, não foi
+  alterada e continua disponível para a volta.</p>
+
+  <p>Reversibilidade dá as duas inclusões de uma vez, e é isso que fecha o argumento. Tome a
+  operação (iii): se uma lista de números \(x\) satisfaz as linhas \(R_i\) e \(R_j\), então satisfaz
+  também \(R_i + cR_j\), porque cada lado da igualdade nova é a soma do lado antigo com \(c\) vezes
+  o outro. Logo toda solução de \(A\) é solução de \(B\). Na direção contrária, se \(x\) satisfaz
+  \(R_i + cR_j\) e satisfaz \(R_j\) — que não mudou —, subtrair \(c\) vezes a segunda igualdade da
+  primeira devolve \(R_i\); logo toda solução de \(B\) é solução de \(A\). As duas inclusões juntas
+  dizem que os conjuntos-solução coincidem, e não apenas que um está contido no outro. Para (i) e
+  (ii) o argumento é o mesmo, com a volta de uma linha só.</p>
+
+  <p>Nem toda transformação de linhas serve, e um exemplo mostra o tamanho do estrago. No sistema
+  B1, substituir \(R_2\) pela própria \(R_1\) — copiar a primeira linha sobre a segunda — produz uma
+  matriz com duas linhas iguais. Duas linhas iguais são duas vezes a mesma condição, e a condição
+  \(2x - y + z = 3\) desaparece. O conjunto-solução cresce: das três condições originais restam
+  duas, que se cruzam numa reta, e não num ponto. A operação não tem volta, porque a linha
+  sobrescrita não está em lugar nenhum da matriz resultante. Não por acaso, não existe operação
+  elementar que substitua uma linha por outra.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>A matriz aumentada do sistema B1, e a aplicação de \(R_2 \leftarrow R_2 - 2R_1\) — a operação
+    (iii) com \(c = -2\).</p>
+    <pre class="conta">[  1   1   1 |  6 ]
+[  2  -1   1 |  3 ]
+[  1   2  -1 |  2 ]</pre>
+    <ol class="passos">
+      <li>Escolhe-se o multiplicador para zerar a primeira entrada de \(R_2\): \(c = -2\), porque
+      \(2 + (-2)\cdot 1 = 0\).</li>
+      <li>A operação atinge a linha inteira, termo independente incluído: \(1 + (-2)\cdot 1 = -1\) e
+      \(3 + (-2)\cdot 6 = -9\).</li>
+      <li>A linha \(R_1\), fonte do múltiplo, não se altera; \(R_3\) também não, porque não foi
+      citada.</li>
+    </ol>
+    <pre class="conta">[  1   1   1 |  6 ]
+[  0  -3  -1 | -9 ]
+[  1   2  -1 |  2 ]</pre>
+    <p>A solução continua sendo \((1; 2; 3)\). A conferência é direta na linha nova:
+    \(0 \cdot 1 + (-3)\cdot 2 + (-1)\cdot 3 = -6 - 3 = -9\).</p>
+    <p>A volta, que é o que sustenta o argumento: somar \(2R_1\) à segunda linha devolve a linha
+    original, entrada por entrada.</p>
+    <pre class="conta"> 0 + 2(1) =  2
+-3 + 2(1) = -1
+-1 + 2(1) =  1
+-9 + 2(6) =  3</pre>
+    <p>O resultado é \([\,2 \;\; -1 \;\; 1 \mid 3\,]\), exatamente a linha de partida. Nada foi
+    perdido, porque nada foi irreversível.</p>
+  </div>
+
+  <p>A operação (iii) é a que aparece em toda conta: zerar um coeficiente é sempre somar a uma linha
+  um múltiplo de outra, nunca "substituir o número por zero". É também a que mais produz erro, e o
+  erro é quase sempre de sinal — o multiplicador entra com o sinal trocado, ou entra só na primeira
+  entrada da linha. Por isso a operação se escreve ao lado da linha, antes de ser executada, com o
+  multiplicador explícito: \(R_2 \leftarrow R_2 - 2R_1\), e não "somei duas vezes a primeira".</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> Não existe uma quarta operação chamada "subtrair": subtrair \(2R_1\) é
+    somar \((-2)R_1\). A escrita \(R_2 \leftarrow R_2 - 2R_1\) é abreviação de caderno, cômoda e
+    correta, mas o número que multiplica a linha fonte é \(-2\) — e é \(-2\) que entra em todas as
+    entradas da linha, inclusive na última. Quem escreve o sinal de menos e depois multiplica por
+    \(2\) com sinal positivo comete o mesmo erro duas vezes, com aparências diferentes.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Três erros de sinal, todos frequentes. Primeiro: aplicar a operação a uma entrada só e
+    esquecer o resto da linha — no exemplo acima, parar em \(0\) e deixar \(-1\) e \(1\) como
+    estavam. Segundo: inverter a ordem, escrevendo \(R_2 \leftarrow 2R_1 - R_2\); isso é a operação
+    (iii) seguida de uma troca de sinal, e sem a troca o resultado é o negativo da linha certa.
+    Terceiro: esquecer que o termo independente também é uma entrada da linha, e calcular
+    \(3 - 2 \cdot 6\) como \(3 - 2 = 1\) em vez de \(-9\).</p>
+  </div>
+
+  <p>Uma última restrição, que vale enunciar porque a tentação é grande: as operações são sobre
+  <b>linhas</b>, nunca sobre colunas. Trocar duas colunas equivale a renomear duas incógnitas — o
+  conjunto de triplas que resolve o sistema não é mais o mesmo, é o mesmo com duas coordenadas
+  trocadas; e como o problema pede as incógnitas pelos nomes originais, isso é outra resposta.
+  Somar uma coluna a outra é pior: mistura duas incógnitas numa única coluna, e nenhuma renomeação
+  desfaz a mistura. A linha, ao contrário, é uma equação inteira, e substituir uma equação por uma
+  combinação dela com outra é legítimo.</p>
+
+  <p>A reversibilidade tem uma consequência prática que aparece no meio da conta: se um número
+  parece errado, é possível desfazer o último passo e refazê-lo, aplicando a operação inversa à
+  mão. Sem a garantia de volta, esse recurso não existiria — uma conta suspeita obrigaria a
+  recomeçar do sistema original, e o trabalho já feito não serviria para nada. É também por isso
+  que registrar a operação ao lado da linha não é enfeite: sem saber qual operação foi feita, não
+  se sabe qual desfazer.</p>
+
+  <p>Com as três operações disponíveis e a garantia de que nenhuma delas altera o conjunto-solução,
+  falta apenas decidir em que ordem aplicá-las e quando parar. A forma de parada tem nome — forma
+  escalonada — e é o assunto da seção <a class="ref" href="#s-1-9">1.9</a>.</p>
+</section>

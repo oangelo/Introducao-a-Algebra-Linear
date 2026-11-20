@@ -1,0 +1,125 @@
+<!-- fonte: f1-matematica.html §1.10 e ficha B1 -->
+<section class="sec" id="s-1-10">
+  <h2><span class="num">1.10</span>O protocolo de registro</h2>
+
+  <p>O erro mais frequente no escalonamento não é de álgebra. É de organização: o aluno zera uma
+  coluna e, três linhas depois, volta a mexer nela sem perceber — porque já não sabe qual linha é
+  qual, nem o que já foi feito. A conta estava certa no passo 2 e errada no passo 5, e o desastre não
+  aparece em nenhum número isolado: aparece na ordem.</p>
+
+  <p>Vale distinguir dois problemas que se parecem. Um é errar uma conta; o outro é perder o registro
+  do que já está resolvido. O primeiro se conserta refazendo a linha. O segundo custa a conta
+  inteira, porque não há como saber onde ela quebrou. É o segundo que estas três regras atacam.</p>
+
+  <p>O sintoma é reconhecível. A matriz tem, na primeira coluna, dois zeros que custaram duas
+  operações; duas linhas depois, um número diferente de zero aparece nessa mesma coluna, e não se
+  sabe de onde veio. Ou pior: o aluno chega ao fim com uma linha que não consegue ler, refaz tudo e
+  obtém outro resultado — sem saber qual das duas tentativas está certa.</p>
+
+  <div class="def">
+    <span class="titulo">Protocolo</span>
+    <ol class="passos">
+      <li><b>Uma linha, uma operação</b>, escrita ao lado da linha — como
+      \(R_2 \leftarrow R_2 - 2R_1\). A razão: a linha da margem é o que permite refazer um passo
+      isolado sem refazer a sequência. Quem aplica duas operações no mesmo passo e erra não sabe
+      qual das duas errou.</li>
+      <li><b>Não se volta para a forma de equação</b> no meio do processo. A razão: a coluna já
+      carrega o nome da incógnita (ver <a class="ref" href="#s-1-7">1.7</a>), e reescrever as
+      equações só reintroduz a chance de trocar um sinal na cópia — além de esconder a escada, que é
+      justamente o que se está construindo.</li>
+      <li><b>Coluna com pivô resolvido não se mexe mais</b>. A razão: o trabalho de zerar uma coluna
+      é o que a deixa pronta; tocar nela outra vez desfaz o zero que custou uma operação. O pivô se
+      marca e a coluna sai do serviço, mesmo que ainda haja número na linha de baixo.</li>
+    </ol>
+  </div>
+
+  <p>A terceira regra é a que exige mais disciplina, porque contraria um impulso simétrico: se a
+  coluna já foi zerada embaixo, por que não zerar em cima também? Porque em cima é outro serviço, e
+  ele tem hora. A hora é o fim, quando a escada já existe e a forma reduzida é opcional (ver
+  <a class="ref" href="#s-1-9">1.9</a>). No meio, zerar acima do pivô é gastar operação que a
+  substituição faria de graça.</p>
+
+  <h3>Dois hábitos que sustentam as três regras</h3>
+
+  <p>O primeiro é marcar o pivô antes da primeira conta. Um círculo em volta do número, ou um
+  asterisco acima dele, fixa qual linha trabalha e qual coluna está em serviço. Enquanto a marca não
+  existe, a linha escolhida muda de passo para passo sem que ninguém tenha decidido mudá-la.</p>
+
+  <p>O segundo é escrever a operação antes de executá-la, não depois. A margem é a intenção; a linha é
+  o resultado. Escrevendo primeiro, o erro de sinal aparece na hora de copiar o coeficiente, e não
+  três linhas adiante, quando já não há como localizá-lo. É por isso que
+  \(R_2 \leftarrow R_2 - 2R_1\) vale mais que "somei duas vezes a primeira".</p>
+
+  <p>Desses dois decorre um terceiro, quase mecânico: enquanto se zera uma coluna, a linha do pivô é
+  copiada igual em todos os blocos, sem alteração. É ela que a coluna fechada usa como referência e é
+  ela que a substituição vai ler no fim. Se a linha do pivô muda no meio, as linhas abaixo deixam de
+  ser compatíveis com ela — e a escada vira uma coincidência.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema da ficha B1, agora escrito como se registra no papel: cada operação na margem,
+    uma por passo, e um traço separando o que já está fechado.</p>
+
+    <pre class="conta">  1   1   1 |   6
+  2  -1   1 |   3      R2 &larr; R2 - 2R1
+  1   2  -1 |   2      R3 &larr; R3 - R1
+-------------------------------------
+  1   1   1 |   6
+  0  -3  -1 |  -9
+  0   1  -2 |  -4      R2 &harr; R3
+-------------------------------------
+  1   1   1 |   6
+  0   1  -2 |  -4
+  0  -3  -1 |  -9      R3 &larr; R3 + 3R2
+-------------------------------------
+  1   1   1 |   6
+  0   1  -2 |  -4
+  0   0  -7 | -21</pre>
+
+    <p>Lido de cima para baixo, a margem conta a história inteira: duas contas para zerar a coluna do
+    \(x\), uma troca, uma conta para fechar a coluna do \(y\). Nenhuma linha foi tocada duas vezes
+    depois de fechada, e cada traço marca um ponto em que a escada já vale para as linhas acima dele.
+    Se a última conta saísse errada, o teste seria refazer só a linha \(-7z = -21\) — não o sistema.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O modo como a coluna reabre é sempre o mesmo: o aluno quer zerar o \(-3\) da segunda linha e
+    usa a primeira linha, que tem \(1\) na mesma coluna.</p>
+
+    <pre class="conta">  1   1   1 |   6
+  0  -3  -1 |  -9      R2 &larr; R2 + 3R1   (errado)
+  0   1  -2 |  -4
+-------------------------------------
+  1   1   1 |   6
+  3   0   2 |   9
+  0   1  -2 |  -4</pre>
+
+    <p>A conta zera o \(-3\) como prometido, mas o \(3\) que ela soma na primeira coluna devolve o
+    zero que tinha custado uma operação: a matriz deixa de ser escada, e a equação que dizia
+    \(-3y - z = -9\) virou \(3x + 2z = 9\), com o \(x\) de volta. O conjunto-solução não mudou — a
+    operação é reversível (<a class="ref" href="#s-1-8">1.8</a>) —, mas o trabalho até ali foi
+    perdido. A linha que se usa para zerar é a do pivô <b>da coluna em questão</b>, e ela já está
+    marcada.</p>
+  </div>
+
+  <p>Há uma consequência prática que vale mais que a estética: com a margem preenchida, a conferência
+  é uma leitura, não uma conta. Quem corrige olha a coluna de operações e vê se a sequência fecha;
+  quem refaz encontra em qual passo a escada deixou de valer. Sem ela, a única forma de saber onde
+  está o erro é refazer tudo — e é exatamente isso que o aluno apressado faz três vezes na prova.</p>
+
+  <p>Uma última convenção, de caderno: risque a linha antiga em vez de apagá-la. A linha riscada
+  registra o que havia antes da operação; apagada, ela some junto com a prova de que a operação foi
+  feita. Em papel, o traço custa um segundo; sem ele, o passo anterior deixa de existir.</p>
+
+  <div class="obs">
+    <b>Observação.</b> O protocolo não deixa a conta mais curta. Ele deixa a conta <i>interrompível</i>:
+    qualquer passo pode ser refeito sozinho, e o resultado de cada um é conferível contra a linha
+    anterior. Em 4×4 é o que separa uma conta longa de uma conta perdida, porque lá o erro de sinal
+    aparece longe de onde foi cometido.
+  </div>
+
+  <p>Com o registro em ordem, sobra uma decisão que o protocolo não toma por você: qual linha serve de
+  pivô. Ela é escolhida, e a escolha muda o custo da conta inteira — é o que
+  <a class="ref" href="#s-1-11">1.11</a> trata.</p>
+</section>

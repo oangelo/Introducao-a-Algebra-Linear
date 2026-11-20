@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matrix - Seleção de Sujeitos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'VT323', monospace;
+    }
+    
+    body {
+      background-color: #000;
+      color: #00FF41;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Matrix code rain effect */
+    #matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.07;
+    }
+    
+    h1 {
+      color: #00FF41;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 36px;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+      letter-spacing: 2px;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #00FF41;
+      border-radius: 0;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Terminal scan effect */
+    .scan-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(to bottom, 
+                                 rgba(0, 255, 65, 0.5), 
+                                 rgba(0, 255, 65, 0.2),
+                                 transparent);
+      z-index: 10;
+      pointer-events: none;
+      animation: scan 3s linear infinite;
+    }
+    
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(2000px); }
+    }
+    
+    /* Digital glitch effect */
+    @keyframes glitch {
+      0% { text-shadow: 3px 0 0 rgba(255, 0, 0, 0.5), -3px 0 0 rgba(0, 255, 0, 0.5); }
+      25% { text-shadow: -3px 0 0 rgba(255, 0, 0, 0.5), 3px 0 0 rgba(0, 255, 0, 0.5); }
+      50% { text-shadow: 0 0 5px rgba(0, 255, 65, 0.5); }
+      75% { text-shadow: 2px 3px 0 rgba(255, 0, 0, 0.5), -2px -3px 0 rgba(0, 255, 0, 0.5); }
+      100% { text-shadow: -2px -3px 0 rgba(255, 0, 0, 0.5), 2px 3px 0 rgba(0, 255, 0, 0.5); }
+    }
+    
+    .glitch-text {
+      animation: glitch 3s infinite;
+    }
+    
+    .slot-machine-container {
+      position: relative;
+      width: 80%;
+      height: 300px;
+      max-width: 900px;
+      margin: 30px auto;
+      border: 2px solid #00FF41;
+      background-color: #000;
+      border-radius: 0;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      overflow: hidden;
+      display: none;
+    }
+    
+    .slot-window {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .slot-border-top,
+    .slot-border-bottom {
+      position: absolute;
+      width: 100%;
+      height: 100px;
+      left: 0;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      pointer-events: none;
+    }
+    
+    .slot-border-top {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+    }
+    
+    .slot-border-bottom {
+      bottom: 0;
+    }
+    
+    .select-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: rgba(0, 255, 65, 0.05);
+      border-top: 3px solid #00FF41;
+      border-bottom: 3px solid #00FF41;
+      transform: translateY(-50%);
+      z-index: 2;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+      pointer-events: none;
+    }
+    
+    /* Terminal brackets for selection line */
+    .select-line::before,
+    .select-line::after {
+      content: "[";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #00FF41;
+      font-size: 32px;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+    }
+    
+    .select-line::before {
+      left: 10px;
+    }
+    
+    .select-line::after {
+      right: 10px;
+      content: "]";
+    }
+    
+    .slot-strip {
+      position: absolute;
+      width: 100%;
+      /* A transição será definida dinamicamente no JS */
+    }
+    
+    .slot-item {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00FF41;
+      font-size: 32px;
+      text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+      padding: 15px 50px;
+      background-color: #000;
+      border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+      text-align: center;
+      user-select: none;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      letter-spacing: 2px;
+      transition: all 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Estilo especial para o item selecionado */
+    .slot-item.selected {
+      color: #000 !important;
+      background-color: rgba(0, 255, 65, 0.7) !important;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+      animation: terminal-blink 1.5s step-end infinite;
+    }
+    
+    @keyframes terminal-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+      width: 100%;
+    }
+    
+    .btn {
+      background-color: #000;
+      color: #00FF41;
+      border: 2px solid #00FF41;
+      padding: 12px 30px;
+      font-size: 22px;
+      cursor: pointer;
+      margin: 10px 0;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .btn:hover::before {
+      left: 100%;
+    }
+    
+    .btn:hover {
+      background-color: #00FF41;
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.7);
+    }
+    
+    .btn:disabled {
+      background-color: #333;
+      border-color: #444;
+      color: #555;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    
+    .btn:disabled::before {
+      display: none;
+    }
+    
+    .result {
+      margin-top: 30px;
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #00FF41;
+      border-radius: 0;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+      width: 80%;
+      max-width: 900px;
+    }
+    
+    .result h2 {
+      color: #00FF41;
+      margin-bottom: 15px;
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+    
+    .result h2::before,
+    .result h2::after {
+      content: "::";
+      margin: 0 10px;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+    
+    .selected-name {
+      font-size: 32px;
+      color: #00FF41;
+      font-weight: bold;
+      margin: 20px 0;
+      min-height: 42px;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+      letter-spacing: 1px;
+    }
+    
+    .selected-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .selected-item {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #00FF41;
+      padding: 8px 15px;
+      font-size: 18px;
+      border: 1px solid #00FF41;
+      box-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+    }
+    
+    .setup-form {
+      width: 80%;
+      max-width: 900px;
+      margin: 20px 0;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #00FF41;
+      border-radius: 0;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+    }
+    
+    .setup-form h2 {
+      color: #00FF41;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+      font-size: 24px;
+    }
+    
+    .setup-form textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #00FF41;
+      border: 2px solid #00FF41;
+      border-radius: 0;
+      resize: vertical;
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+    }
+    
+    .setup-form textarea:focus {
+      outline: none;
+      border-color: #00FF41;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    }
+    
+    .setup-form label {
+      display: block;
+      margin-bottom: 10px;
+      color: #00FF41;
+      font-size: 18px;
+    }
+    
+    .remaining {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00FF41;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+    
+    .matrix-header {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00FF41;
+    }
+    
+    .matrix-header::before, 
+    .matrix-header::after {
+      content: "//";
+      color: #00FF41;
+      position: absolute;
+      top: 15px;
+      font-weight: bold;
+    }
+    
+    .matrix-header::before {
+      left: 20px;
+    }
+    
+    .matrix-header::after {
+      right: 20px;
+    }
+    
+    .typing-effect {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 4px solid #00FF41;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      margin: 0 auto;
+      max-width: fit-content;
+    }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #00FF41 }
+    }
+    
+    /* Media queries */
+    @media (max-width: 768px) {
+      .slot-machine-container {
+        width: 90%;
+        height: 250px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      .container {
+        padding: 15px;
+      }
+      .slot-item {
+        font-size: 24px;
+        height: 70px;
+        padding: 15px 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .slot-machine-container {
+        width: 95%;
+        height: 200px;
+      }
+      .slot-item {
+        font-size: 20px;
+        height: 60px;
+        padding: 10px 15px;
+      }
+      .matrix-header::before, 
+      .matrix-header::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-bg"></canvas>
+  
+  <div class="container">
+    <div class="scan-effect"></div>
+    <div class="matrix-header">
+      <h1 class="typing-effect">MATRIX - SELEÇÃO DE SUJEITOS</h1>
+    </div>
+    
+    <!-- FORM DE INICIALIZAÇÃO -->
+    <div class="setup-form" id="setupForm">
+      <h2>&gt; CARREGAR A MATRIZ_</h2>
+      <label for="studentNames">INSIRA OS SUJEITOS (UM POR LINHA):</label>
+      <textarea id="studentNames" placeholder="Neo Anderson
+Trinity
+Morpheus
+Agente Smith"></textarea>
+      <button class="btn" id="setupBtn">CONFIRMAR SUJEITOS</button>
+    </div>
+
+    <!-- CONTAINER DA ROLETA -->
+    <div class="slot-machine-container" id="slotMachineContainer">
+      <div class="slot-window">
+        <div class="slot-border-top"></div>
+        <div class="slot-border-bottom"></div>
+        <div class="select-line"></div>
+        <div class="slot-strip" id="slotStrip"></div>
+      </div>
+    </div>
+
+    <!-- CONTROLES -->
+    <div class="controls" style="display: none;" id="controlsContainer">
+      <button class="btn" id="spinBtn">INICIAR SELEÇÃO</button>
+      <div class="remaining" id="remaining">SUJEITOS RESTANTES: 0</div>
+      <button class="btn" id="resetBtn">REINICIAR MATRIZ</button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div class="result" style="display: none;" id="resultContainer">
+      <h2>SUJEITO SELECIONADO</h2>
+      <div class="selected-name" id="selectedName"></div>
+      
+      <h2>REGISTRO DE SELEÇÕES</h2>
+      <div class="selected-list" id="selectedList"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Matrix code rain effect
+      const canvas = document.getElementById('matrix-bg');
+      const ctx = canvas.getContext('2d');
+      
+      // Set canvas to full window size
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      // Characters to display
+      const matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+      
+      // Convert the string into an array
+      const matrixChars = matrix.split("");
+      
+      // Font size
+      const fontSize = 14;
+      
+      // Number of columns for rain
+      const columns = canvas.width / fontSize;
+      
+      // Array for drops - one per column
+      const drops = [];
+      
+      // Initialize drops
+      for (let i = 0; i < columns; i++) {
+        drops[i] = 1;
+      }
+      
+      // Draw the matrix code rain
+      function drawMatrix() {
+        // Set background with transparency to create trail effect
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Set text color
+        ctx.fillStyle = "#00FF41";
+        ctx.font = fontSize + "px monospace";
+        
+        // Loop over drops
+        for (let i = 0; i < drops.length; i++) {
+          // Get a random character
+          const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+          
+          // Draw the character
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          // Randomly reset drop position if it's at the bottom or randomly
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          // Move drop down
+          drops[i]++;
+        }
+      }
+      
+      // Run the animation
+      setInterval(drawMatrix, 50);
+      
+      // Window resize handler
+      window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Reset drops
+        for (let i = 0; i < columns; i++) {
+          drops[i] = 1;
+        }
+      });
+      
+      // Roleta code
+      const slotStrip          = document.getElementById('slotStrip');
+      const spinBtn            = document.getElementById('spinBtn');
+      const resetBtn           = document.getElementById('resetBtn');
+      const selectedName       = document.getElementById('selectedName');
+      const selectedList       = document.getElementById('selectedList');
+      const setupBtn           = document.getElementById('setupBtn');
+      const studentNamesInput  = document.getElementById('studentNames');
+      const setupForm          = document.getElementById('setupForm');
+      const slotMachineContainer = document.getElementById('slotMachineContainer');
+      const controlsContainer  = document.getElementById('controlsContainer');
+      const resultContainer    = document.getElementById('resultContainer');
+      const remainingElement   = document.getElementById('remaining');
+
+      let students = [];
+      let selectedStudents = [];
+      let isSpinning = false;
+
+      const slotItemHeight = 80; // Altura de cada nome (conforme CSS)
+
+      // Função para formatar nomes longos (primeiro e último nome)
+      function formatStudentName(name) {
+        const nameParts = name.trim().split(' ');
+        
+        // Se tiver um ou dois nomes, retorna completo
+        if (nameParts.length <= 2) {
+          return name;
+        }
+        
+        // Caso contrário, retorna primeiro e último nome
+        const firstName = nameParts[0];
+        const lastName = nameParts[nameParts.length - 1];
+        return `${firstName} ${lastName}`;
+      }
+
+      // Ao confirmar nomes
+      setupBtn.addEventListener('click', function() {
+        const names = studentNamesInput.value
+          .split('\n')
+          .map(name => name.trim())
+          .filter(name => name !== '');
+
+        if (names.length < 2) {
+          alert('Por favor, adicione pelo menos 2 sujeitos!');
+          return;
+        }
+
+        students = names;
+        selectedStudents = [];
+
+        // Ajusta visibilidade
+        setupForm.style.display = 'none';
+        slotMachineContainer.style.display = 'block';
+        controlsContainer.style.display = 'flex';
+        resultContainer.style.display = 'block';
+
+        // Limpa histórico e nome atual
+        selectedList.innerHTML = '';
+        selectedName.textContent = '';
+        
+        // Inicializa a roleta com os nomes disponíveis
+        initializeSlotMachine();
+        
+        updateRemainingCount();
+        
+        // Som de inicialização
+        playKeyboardSound();
+      });
+      
+      // Inicializa a roleta com os nomes disponíveis
+      function initializeSlotMachine() {
+        const remainingStudents = students.filter(s => !selectedStudents.includes(s));
+        
+        // Limpa a roleta
+        slotStrip.innerHTML = '';
+        
+        // Repete a lista algumas vezes para preencher a roleta
+        const repeats = 5;
+        for (let i = 0; i < repeats; i++) {
+          remainingStudents.forEach(student => {
+            const item = document.createElement('div');
+            item.className = 'slot-item';
+            item.textContent = formatStudentName(student);
+            item.dataset.fullName = student;
+            slotStrip.appendChild(item);
+          });
+        }
+        
+        // Posiciona a roleta para mostrar alguns nomes no início
+        // (centraliza um pouco a visualização)
+        const initialOffset = Math.min(remainingStudents.length * slotItemHeight, 
+                                      slotMachineContainer.clientHeight / 2);
+        slotStrip.style.transition = 'none';
+        slotStrip.style.transform = `translateY(-${initialOffset}px)`;
+      }
+
+      // Atualiza o texto "SUJEITOS RESTANTES"
+      function updateRemainingCount() {
+        const remaining = students.length - selectedStudents.length;
+        remainingElement.textContent = `SUJEITOS RESTANTES: ${remaining}`;
+        spinBtn.disabled = (remaining === 0);
+      }
+
+      // Clique em "INICIAR SELEÇÃO"
+      spinBtn.addEventListener('click', function() {
+        if (isSpinning) return;
+
+        const remainingStudents = students.filter(s => !selectedStudents.includes(s));
+        if (remainingStudents.length === 0) {
+          alert('Todos os sujeitos já foram selecionados!');
+          return;
+        }
+
+        isSpinning = true;
+        spinBtn.disabled = true;
+        
+        // Som do terminal
+        playKeyboardSound();
+
+        // 1) Sorteia o sujeito
+        const randomIndex = Math.floor(Math.random() * remainingStudents.length);
+        const chosenStudent = remainingStudents[randomIndex];
+        
+        console.log("Sujeito selecionado:", chosenStudent); // Para depuração
+
+        // 2) Cria uma nova lista com todos os sujeitos restantes
+        slotStrip.innerHTML = '';
+        
+        // Primeiro adiciona vários sujeitos aleatórios (para a roleta girar)
+        const fillerCount = 15;
+        for (let i = 0; i < fillerCount; i++) {
+          // Pega um sujeito aleatório (exceto o escolhido)
+          const tempIndex = Math.floor(Math.random() * remainingStudents.length);
+          const tempStudent = remainingStudents[tempIndex];
+          
+          const item = document.createElement('div');
+          item.className = 'slot-item';
+          item.textContent = formatStudentName(tempStudent);
+          item.dataset.fullName = tempStudent;
+          slotStrip.appendChild(item);
+        }
+        
+        // Adiciona o sujeito escolhido no final (é este que vai parar na linha central)
+        const chosenItem = document.createElement('div');
+        chosenItem.className = 'slot-item chosen';
+        chosenItem.textContent = formatStudentName(chosenStudent);
+        chosenItem.dataset.fullName = chosenStudent;
+        slotStrip.appendChild(chosenItem);
+        
+        // E mais alguns sujeitos após o escolhido (para completar a roleta)
+        for (let i = 0; i < 10; i++) {
+          const tempIndex = Math.floor(Math.random() * remainingStudents.length);
+          const tempStudent = remainingStudents[tempIndex];
+          
+          const item = document.createElement('div');
+          item.className = 'slot-item';
+          item.textContent = formatStudentName(tempStudent);
+          item.dataset.fullName = tempStudent;
+          slotStrip.appendChild(item);
+        }
+
+        // 3) Animação: primeiro volta ao topo
+        slotStrip.style.transition = 'none'; 
+        slotStrip.style.transform = 'translateY(0px)';
+        slotStrip.offsetHeight; // Força reflow
+        
+        // Depois desce para mostrar o sujeito escolhido no centro
+        const slotItems = slotStrip.querySelectorAll('.slot-item');
+        const chosenItemIndex = Array.from(slotItems).findIndex(item => item.classList.contains('chosen'));
+        console.log("Índice do escolhido:", chosenItemIndex); // Para depuração
+        
+        // Calcula a posição para centralizar o item escolhido
+        const containerHeight = slotMachineContainer.clientHeight;
+        const centerPos = (containerHeight / 2) - (slotItemHeight / 2);
+        const targetPos = chosenItemIndex * slotItemHeight - centerPos;
+        
+        console.log("Posição alvo:", targetPos, "Altura do container:", containerHeight); // Para depuração
+        
+        // Anima!
+        slotStrip.style.transition = 'transform 3s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
+        slotStrip.style.transform = `translateY(-${targetPos}px)`;
+
+        // 4) Ao final da animação, destaca o sujeito escolhido
+        setTimeout(() => {
+          // Limpa qualquer seleção anterior
+          document.querySelectorAll('.slot-item').forEach(item => {
+            item.classList.remove('selected');
+          });
+          
+          // Adiciona classe 'selected' ao item escolhido
+          const chosenElement = document.querySelector('.slot-item.chosen');
+          if (chosenElement) {
+            chosenElement.classList.add('selected');
+            // Efeito de digitação
+            playTypeSound();
+          }
+          
+          // Registra o sujeito sorteado, atualiza contadores e exibe o resultado
+          selectedStudents.push(chosenStudent);
+          showResult(chosenStudent);
+          updateRemainingCount();
+          
+          isSpinning = false;
+          spinBtn.disabled = false;
+        }, 3000);
+      });
+
+      // Exibe o resultado
+      function showResult(name) {
+        // Simula efeito de "typing" do terminal
+        selectedName.textContent = "";
+        const formattedName = formatStudentName(name);
+        let i = 0;
+        
+        function typeEffect() {
+          if (i < formattedName.length) {
+            selectedName.textContent += formattedName.charAt(i);
+            i++;
+            setTimeout(typeEffect, 50);
+          } else {
+            // Adiciona efeito glitch quando terminar de digitar
+            selectedName.classList.add('glitch-text');
+            setTimeout(() => {
+              selectedName.classList.remove('glitch-text');
+            }, 1000);
+          }
+        }
+        
+        // Inicia o efeito de digitação
+        typeEffect();
+
+        // Adiciona ao histórico
+        const item = document.createElement('div');
+        item.className = 'selected-item';
+        item.textContent = formatStudentName(name);
+        item.title = name; // Nome completo no hover
+        selectedList.appendChild(item);
+      }
+
+      // REINICIAR SISTEMA
+      resetBtn.addEventListener('click', function() {
+        if (confirm('Tem certeza que deseja reiniciar a matriz? Todos os sujeitos estarão disponíveis novamente.')) {
+          selectedStudents = [];
+          selectedName.textContent = '';
+          selectedList.innerHTML = '';
+          spinBtn.disabled = false;
+          updateRemainingCount();
+          initializeSlotMachine();
+          playKeyboardSound();
+        }
+      });
+
+      // Som de teclado (alternativa ao som de slot)
+      function playKeyboardSound() {
+        const audio = new Audio('data:audio/mp3;base64,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sXCxVDR1Nfn0XsR8eYkAhEOEhMFDQmChIJGUBAHDTCYOKj6z//+9ZQKArDpUYH/96nbrwTBMAQWK+m1nX///////+0DE/YAzECNJ2XoAIScKZzsvQASWmSmCgg7/b//9r/7EBwNJDdIf63s//+UOigKTFxwgHgwEBAVFgmKhMCCfov//////slTJAA2LT24/9nX////8cICEDWdKO0nPUzJULFUVFwcGhMWCYhHRYVEAOLTFQwLDv/6rMT4CYvJ3R//99nGQqGCwZHAZGY///+r////+3LCwrPT9fU+p6Eiq5UKDQkICQEfnJkT//tAxPsAMgwhSdYeQAjbDqX7HCARCAcHCQuKC1K3////3UIFR9ilIz///qfb//2OFA8AIjEocHX8/S////////+WGig/W+v//+u3/+YFQCfJlXd7nr//+bFRYCODZAJiASEQIoICQkCUNpPz/t//+lh0dFRIAFyqzpSp1tf//9//7/6hQPCRBHJqevrdf///6G2TE0GCQYqIi4gAEQCAAMhVCaNun///tAxP6AMgghRdl6ACDdDqTrPCABSoNiBonLCgGDgaCgOEkYCKi5BX///39aIBseFBQZFf/9S76///GxcYFRiaKlBJ//3///9dX7IyOjwsOT3W9b2///+yPjKZEh0VFAoXER4VEACChIRpU1//97/+5BaJCpwOkf/9W3//+OCg+RFCwsDVuPve///9+v/9TQGTnJ8ZIhAaFhYUFhQSFw//+0DE/oAyZBdL1h5AIOUKZfsvIAQgJQyDUd/////bMCoKAAkTSJ0//n0uv//1gQOgImMCQuPT///97//+uYEx2uaLDQsNWv1va////YJCY0NSYyKFA2ND4kD1iQiEQCB6Uet///vqlSpYGCwSVp//////VIDS4nNCY9f6v////rftlRYIiE5O0NR0fFpIHBASIhcYlAiRFv/9f///tAxP6AMXwXR9YeQACPCmZrDCAMgAZEQYYFgmmf////OBwZJih8R/p//11///KhsQEA2TEhoUHu//7f//7LkxQemaPjU0N0b//f///1kaCCRMeEQSUFgcYkwWJiAhDcA4UDAdQ9P///tWJBqYR7f////90cJhUFExccpet//+////6zQmLTE6QjA5PDgyJBobGBYULCYcEIMpLv/1v/+1DE/oAxWBdJ1h5AIDUKZesdIBA/9qiAYDa4nW////2/vt2pQuH0hwfpfV6n//+rfLCuMfnKHDk+PVve9/////qAhbMEEhchHdrf//////4hB9kcExQtRUZyICQoEEqAQGoO0v/6lDgfXGR+//q/////phoKGhMJdP/1fW/////9YoOkZ8fIRcVmpUYHBYSDw4QFxciBpAOoOv//+1DE/oAyyBdF2XkAAoUTnKw4gDH/UqQDAMQKOdv////f93OERseFSD7/9Tr///+yLhUgKWVKLUn////3+1f4xjEkKEhGWnSfr//////scDyhQgHqNDEqIhoOEYYAIggfK+9///UoWj1Yckf/////6ULCoGgHB0jKT92t9///9//quXFxMXGaMdmx0cnxcWGRobDhInPVD////////swKgRCepE//tAxP2AMaAXR9l5AAEUCmbrDBgE//9a9/////MVhBImLzg7JCYDIiNBNp//////sXDw8HCNT////r///+oYFDgtU+kve////f/6nAyGCEwOChcYnxAXERkaGxQVFhWdpKlb///+tQyTFy9H/////+lCwgAzlbV7//X/////9IECigsKTo1LCUyIhIPEh4dEgMQFM9SFvf////1uCEr//tAxPwAMZATN9hgwCDLCqPrDBgE//9v/////pUCZUoJFBMKEPW97//////7JUyTGrr//0//1f/6xAdCotKTpBNj1L////6//9NhgJfZ0iFBQbHhueFxEVGxwbGJCcnB2///9b9qJJB0P//////+RMCBIJBW91r///////9TQWFRWYLDQxPEA0JSw4ODQyKCogLT2k////b/Kx//tAxP0AMdwXRdh5AIFcDKXrDzAE///1//////5KTFZaRB0j1ut/////+7U2LDKzlnt////6qXBwLFBCqT/SfS9/0/7/+YFxOkOi9GQVnQULCgnJDw6QiwyOCYOAYRlpyR////rVVAaCyc9NUn/////+pQVlCZn///6////3ViFKJC4kPyQwOD44PS4kLClFUlxIPCw5QVN7/////+1DE/YAyFBdF2GDAIMAKousMAAxwpI4Cxud///9r////8nITkxOUM7////W+va//7NBApCvpO3//3///+ueIC4wXGRoihVNDocFAxGZsaEIYAEaXPf////9NQwTnA3///W//////JFAkIbqzqn//////6xcTFhUhohlBkYssgFw0KEgMjHwxICA4Qf/////+bLCpgkQf/////1r6IAsO//tAxP2AMXQZSdh5AADACqLsPGAT//////+RFKLlyZJe97///+3/+qUDwvXBW3////+v/9DQkMDo0Ni0/UdFRgfGxILEReYFhQgBx0f////+6Qbj9H//////86SEQF1XW////////qcDDhAjODo1MTsnQEEhUjGxwZkISnN//////sXFcf/////0gNl6PXf///////sHy48PlJRsb//tAxPsAMPgTSdh4wCCaBGm6w8YB/////0VQXBK7////6/////ZKirra1///f//+qUmR+SlRQs9S9BTcrJR4aFiMnQkFAJKlz3///9//93IQNdWmWJ6n//////s7KDFcxS/W//////+kLiowPxUSGChpJyMcGhsQEYXA5O///////9KgfX/////+lL1xFKf///////UOl//tAxPkAMMQTRdhhAADCC6TsPGAQlJkcGfq////+kSgtL/////3/////0pICUvdPv//////+yQvPl7FrDIrIxkdFxqfHhsaIA0qP/////+qWChORld//////+nJwfKG7r//////7FBgmUmKiYpNTUuKjA6LjFCQWFJ0h//////1uB9f//////qSe//////+1DE9QAwkBNJ2HiAID8Kp+sMIAb/8qOyMoQT//////9IjJf/////+3//////rDJAgZWcp//////+xUPXOEREWEBGcpSCcsKCcyPDQ0JlJMk//////+pQNlZ0f/////6UEw0QFazq//////lBmvYuYbGxkVGCgFdIfHJmZFhSgH/////+xYZ//tAxPcAMPQBN9h4wCDCDKbrDCAG//////+mRsv/////73/////qYJ0//////+xYTlKMopOUvXt////VWoYHigFXqntf///5PiRGRLCg1NjIgDzkyICgYHKJp//////89KCEkODo9//////q8PEA+vOT3///////sCo0NlNCtdof////pdBgVoKUXO///////0JDQ//tAxPWAMTATSdhhAADECqTrDxgE/////36//////UqJCdLrT9/////+1OSZ4hpD9///X//+hkrI0FF8gHR0fHhcTERcBkCAiDUUuP//////hwesTkyPz3///9//+ysrKiM7KVnav//////+qchQUKwb+v////+9CgpIF//////+nA6SP/////94XqjRCQlJ8V//tAxPOAMIQFSdYeMAiUBGi6wwYB/////7FMQmJ+f/////3//////pUuPCVQV9r//////ukISZARkZsfHZ6aGBgVAZ8hIAghBpJTf//////jwrTFZYXFR6Rk53//+t///6lqSgoNTw7O1vW//////+rZMZIx8VnZ8cGhwUkZOZmxQE/////9ywsJTw///9f//+hU0lH5f//tAxPuAL8ATR9hhACH6Ep/sMIAT///5sXE6I2I0xyfHRkVI5+cGZIQA9Sk////7ahoIl4+TkZYcnZmRnyqRnB8ep+3///1v/+7HRCRmSfucGxgXpD9YUn62nd/////8sTGaEgoL//////+TQNLCc///////6HRopNTk+OSk9OicckRGZkAb5qmP/////+xYXkJ6WFZ///tAxOgAMTwHQdhhACIcDp/sMGAT/7///+gctKEJigKClB3///6///9YoPiRASHJQin6Qk/f////92WhogHQ9X//f//+lw2SgUe///////aGiMjIz9P///////9VSwxJiVY1////+pQeKC01P1ZCf/////+sFCchPCwoJTwjOyokJTMxLSo4PVfb////61DS0kKSw0NDpF//tAxOEAMJAFSdYYQAiUB6frDBgEUFxqqKD//////9SoyTnR+Tn6//////94bGyRBQUn//////UHCIlP1xKfkh+SmJkcnximJy4qLz9L//////95UCrDgzNzM3O0JBSUt/////3//+t//+hcgOjYwQEConoTE5PjQoJVfb////96hpafm68xSEpYXl5qcH5IdGxseH//tAxOCAMlgPP9hhACJCEZ/sMGAZ///////qDUjIT49P1BBQVIdJz//////1gQ0QER2WE5canp4fHRcUGZ2SliOeqCk//////+xUaK+3////5//+saJzg0MCEsKUJZYbICj///////sqLyo3PzlCRVBVT0lMTEpNT47MzM4IiY0NT5IUFZ8f/////TlaH//tAxNcAMngVP9hhACJWEZvsMIARSxOV/////t//5WPk5ydHJ6eHx6cHqcoOD1b////////sqHygoKzw/OSlDXU//////5uZmxYRlZmboqMjIi1N///////WCxcSkZiZmqAkKCgvISIqKCcuNjYsJCAjKztAdHaErNSs3OVI5RkpUTn5////+1DE/YAzABU/2HkAIhYPnOsMIAn/7//9ysvKCwrP05FQkV///////+eHZ8YGhydHh0gLDlD///////+rayvITo9OTlLUf//////qiQ/S0xSUopUSFZeZnaEtPVfb////+yZeTE52mKS8tMTtPRb/////+t/92SEpIUkxmYnR+f/////+lJTk3Lz5JUf//////tAxOQAMwgXN9h5ACJmDpvsvIAR//1KERU1OSlBQVF5sbGJqcnJseF5f/////+lQ4U9X////9f//WLDoiVEpqcFaElPj//////+nJCVGXHpqdp6////+v//+XJTc9NT9BQUdH///////YsLycvLTE3Pyc+Nzo0O05BSUf/////+pQ2V//////U6ICw1QklH//tAxNYAMzwVNdhhACJsDpnsPIAT//////9CQ2PzssOS5A///////5obnxkbHJsXmSCjoaP///////XrFicjIzMzOEJD//////90uLTI0LzE3QE///////+pyMqLzY3O1H//////+cH6MsLy8oLjQ4LzdOUU9L/////61jBGRkJARpTJJ/////+1DE+YAzOB8x2XkAIg4OmeswgBH//1NCUtMTQwJiEtOjtWUnR+f//////+hQW/+3//94ODJmjKDM3OkJB///////1KD00O0pGR0lJ///////7NlRiZnJsfra//////9UaJSIhICcwPj8/OTc+QlRof/////sXGaIXDwtKzpEUHp+f////+s+UmJaVlv//tAxN0AM2QdM9l5ACIwD5jsvGAS/////+l////////vVIgJVXZb///////qnITc7P0JC///////96HJcWFpORmpwo///////8zNT07NCAsO0//////+xUoaGhoWFJgbmZb///////3pUXoC85Q//rFRicGRcTkp4d//////sXF//tAxNqAM0QbL9l5ACImD5fsvIARv/////76HRsbGBgXlpWap///////82LT08Nzg8QkFf///////dKDFSWmpwdK////////nJkamxoYpT//////9UaNC0tLDAvMjs7Of//////+kNjwrLitMTr///////reCHZ+fGx+Xk5CQlR6f//tQxNQAM2QfKdl5ACIoBKU7LBgE//+v/+UlxgZGJaVkxwh///////8wNj4/PDlF///////1QhghLjM0NEX///////86QE6c0P////////TIjJiksKyozMTlB///////+h0VFRaRlxmYmpqdnZyhNz/////++lJunIjs/QlZ//+1DE0AAzXB0p2XkAIioAZTssGAT/////+koOzs/NT44KTBGREP///////9qseLCcuNDtB///////+qXFRmbm52dHiH///////4sLzExKy4rLTIvMzMxNzMzND1L///////6HD40ICIhSFJUaGxmc/////7LDc+P0hUcHp0Zn5kcpTc//////s0JCI//tAxNGAM2QfKdl5ACImAKV7LCAEiNCIiNUlH///////82Lzc5PDxB///////+hweoywyN0P///////+rLis1PDo+Oz9HRUFHT0dFRUT///////+XpiQpKig1PTo3OEX///////1OnJS4xMztMRUdL///////+jktMjgyOjg3//tQxMeAM1QdJ9l5ACIiAGV7LBgEQEdB//////9QoKT5IS//////7/+6WFZiWGqP///////1KSAlMzU3Nzo6NzpAVFJMTEpOV///////6HZeXFhaXlxolP///////9r4MgoaClqiY0Oj1d/////9YqLyooLjYyNzYwMjwz//+1DEyAAzWB0n2XkAIggAZPssGATP/qmJCYrLi4zNU///////+h0XFZgYGKj///////+pKXFZOUFJQUlJYampmYmJmdJ///////+gZXWoKXrCc5Pjw5PzovMT1b//////9SokKyklKC4yMjQ2ODE3PDw2Nj5CY///////94XKCosLzNGRUFL//////s0K//tAxMcAM1wdI9l5ACH+AGS7LBgEzEwLSgxSf///////tUuMjw4PEX///////+pUcnZ8fHpweHR4dHRycnJ0lP///////7ISE7QktQVU9dh///////8vQklOUmpqdnp0amxucGhsfHhoXFBsfJP//////+VkBSUFJUZHaM0QkX//////UNFU//tQxL6AM0AFHdlhACIWAGT7LxgE//////+yZganlqnNT//////93h0bGhcZmiX///////+hIhOUBWXnJ+jMUf///////6OlSnpvf//////1KiAqLy4tLzEzODQwLi4zP0n///////+ZGxwamx0e//+1DEwQAzZAMp2WDAIc4AY7ssGARoTFAV///////84MD5BQU9T//+////5oZm5qZmKb///////9UR///////+sVGRwdHR0fHxybmpwfICMoLDdH///////+eF5MSlZiZnqAvMT9R///////+hUqMjYvLS8vMTU9OjIrJSw//tAxMWAM0QFG9lhACIIAGS7LBgE////////UmY6enpigLv///7a//0rKzIyMjVP///////+Vl6Mrr0hYf//////9UQFBeYmpqdnp0bHBgVkxidof///////1HCYpLTc4Oj1B///////+poUFxgaGxkXlxSU//tQxLsAMzwDJdlhACIUAGT7LCAAmaQsKTo9Qf///////UG6WpJCc3//+v//6h0emxmbnSb///////1NDQzMzlRXG6Y1SEpUWpj//////7NT03NSwoJSY1UmaQoIyQiIS08Qf///////0tKTo/QUv//+1DEvAAzNAMl2WDAIc4AZDsMAARV///v//9bfr////+ywyNTszMTZT///////94XJjA0P1JmkLDdQZH56enp6eK///////+t2eIawnXG6QnPEX///////6ZEZKSk5qjM0hIbHSP//////+XpzNIbpjZKT1NJSVJofGx8k//tQxK8AMzQDH9lhACH6AGP7DCAEX///////yQlJio0NU3///+//9//+qKS81Nzc3Oz89Oz9EXnR+pNUl///////+kszpGVFJsb//t///63/1Khgblp6kNEe///////zJASFpAWmJ4lLDIsKixL///////yhsXFJAV//+1DEsoAzTAMl2GEAIgwAY/sMGAT////////mhqoNUR0lLTksLi8xNzk6Oz5FXnJqlP0f//////91N0xynKSw3T///////+hYrMzEtMDQ2PC4tKDo/QkZmapSgz///////+mJi0hKSosJysnKSYnJiklMjtL///////+bF52foCDcRniY5T//tAxKqAMywDH9hhACHkAGO7DAAE0J0hqmN0ZQVEZ2lOUhYf///////yotNDI1Nzk7Ozw9PkBCSFJSUFBQUFBQTkxMSlCWrDpKSf///////3SEKmvbT//////8lJi4wNjtScpygz///////+nJ2iKDJJUmqMqLDo9//+1DErQAzVAMj2GEAIdYAY7sMAARQ1NjY0Mzc7PkBIXlpYUFRueJy0qJiYlJikvN0JqdoigsN///////9YQX///////+pIUFJqcqC47///////+pykiJiIjKC1CaITT//////+lS8jKjA0OUxefnhkbmiIvOz05P0v//tQxKQAM1QDH9hhACHUAGO7DAAE//////9MUGSkpIiItMjQ0ODhAUlhqdHR0dmxwh///////9Tw2Py4mJTpP///////+pyorJiElP0///////+kJkdHaBCXF5uemp2fHiIz///////+lCUoMDMxS1hqjKDFJ//+1DElAAzZAMf2GEAIcQAY3sMAARf///////+cGRmYmyP///////+pqdHaAvLy0oKC4vMTEtPz///////+qVHCj///////6lhwjJygtLzc5PTs+PT0+PT9L///////+bF50fISIrLDdKUGiL///////8wL//tQxJEAMzADFdhhACHaAGL7DAAE0JkRQXFxSSEqL///////+Vjgz///////5ql5iYFxibGhmeJDFMTEhKSkhMQ///////+mI1JofG5scGhobJTtJ///////sSl50jLDtIcJjc8O0P///////96XmBoe//+1DElAAzHAMV2GDAIdIAYvsMAAR////////96Vl5aVkxMSkxUXm5odnhwcJy0qJiQlIyQrP0JFSFBicmpolOj///////9LCY7///////+pgYFZoaHZ4eHRqpLTY2Mzb///////+hsoOj9CWF5eXFxcVEpObpS4//tQxI8AMywDFdhhACHQAGL7DCAEX///////+rKCYoLEZgYHST///////94aFx0Yn5+l///////+qMCIuNjs8Njc3QGp+fHZ+h///////+YFZ6eHR0blaWpLjhH///////94YEyY3QkBKUmB2j//+1DEkIAzHAMV2GDAIhwAYnsMIARP///////97VoaNVVVUlpdlJQTkxKTFBgfJzxOdHaYvOz5CRkpQWmZohLTdKUGaL///////+VEp2dn6QoKCcoJystKD9L///////+Xlxqemx0cHRsZmhwmOUJ0kK0f//////+YEiA//tAxIqAMywDFdhhACHEAGJ7DCAEUFxubH6P///////+qNj1GVFJmkKDI2NT88OjcyNDwzNTdKUGaP///////5QSHyQpLi40NEZwlO0n///////8uKykoMTs+NT4+Oj4+Nz06Oj5H///////+VHyEj//+1DEhoAzGAMT2GEAIiIAYnsMIARP///////+saF5wdHx+kKDI2MD1L///////+pKispIyknK0v///////+ZEBifoC87PkJGTkRCRH6b///////8wJUtTTU9PT1FRUFJYVlxigKCs6QlJeZGaY//tQxIgAMzwDEdhgwCIGAF57DCAEf///////7GhmXmRukLTM3PDo1MjI7Pz0+PT06Mzc2Njk8Oj9L///////+cGhian6QoLDo7QlJaYGiL///////+pYbHBodHaY4P///////9MyxKXH6EvMTM1Njo6NTs5O//+1DEeYAzCAMP2GDAIgAAYPsMAARj4+PT0+PT06NTc3NT5B///////+UFhman6QvQHag2R///////+dICHcXoCE9///////9SwiISY6QEZESFJsnJyUkJiIlK///////+mJVxmmLzEuLSwtKS4zP0hUZ//tQxHcAMqgDC9hhACHgAGD7DCAEf///////4wKjM8RlRSYnSP///////+nI+vQFZ+h///////9VFA9U1pUQlxwnJyUlJSMjKf///////6qZdmKcqKyspKCgpKC4yPkhQZo///////+qIC8//+1DEcAAyoAML2GEAIfYAYHsMAARicIystKzFJ///////+kB0pqafrTc+QkZOUlJWWl5manpmmLS0oJycpLTk+UFZqfJCgzR///////+cFhmdIistJycmJicoMT1J///////+uS5JQ1RaZGhkYGBgcIC8v//tQxGuAMpwDCdhgwCHcAGD7DCAEf///////+ZGBqeJy0vNj5GRkxOUl5iaHSUqLDEyLzA6Rk5+gpykt///////+MDZLTFBOTk5MTlBogP///////9YQJy0xOz5CRkpQdIzb///////+SlnDU0I//+1DEXAAyeAMF2GEAIfoAYDsMIART///////+oyc+QkZKSFBeammUv///////+UR///////+sgJD5QVl5weITtL///////+sIEZOTlRymLTA0NEZuk///////+ZF5gcHaMw///////+pIXFJqj//tQxFkAMmQDAdhgwCIMAmC7DCAEbpjQ2MzI0RGJ+l///////9JU7///////9FyXrjpKf///////9PSkwOD1OWGZoaGyQxRnZ+fHx8eH5+eGp0iM0ZsfHJeUnCIpOktMVlRQYHCYqMzVIWH//+1DEXYAyRAL/2GEAIgYAX/sMAATf///////9F///////9sySc5Q///////+9EhOVlZykJyUuO0pcZl5manp6dnRsaGx0cHCItLkpRTEZIdIDE9Tf///////94cJjM3OkBCQkBIYpP//////+UGqkoM//tQxFCAM1QA/9hhACI6AF77DAAET///////+Xph2gP0///////6FPCmv///////+UJygqKjdKXFhYVFZcb///////+XJykpKygoKCo1Sk5GTkhKboS81OkJKXG6L///////9ToqMjw+T//+1DEQ4Ay5ADx2GEAIcgAW+wwgBE///////+WJyclKjA1Tn///////94emZslKCs5Pz9H///////1KiAvMTYwMDRL///////+yswNDc+QlJQVlZYaoS03PC4tLjtD///////9SooMDY4OTs6MjQz//tAxDsAMrQA79hhACHoAGC7DCAEf///////5gYmZslKSo3Rkv///////9ypEYFRwkO0v///////+mJSosLzY4Njo0Mjc+Tf///////1KSMqNTdIUFBQUlRegNz5IUFxsbGJsb//+1DEOoAysADv2GEAIeQAYLsMAARoRFBsnOEn///////+dJDA4PDo2NkBUf///////+pKQFBkaHB0dIv///////7JyY3PkJKSkhKSFBqj///////+pYkNENbT//////9UsICk3PT4+Q//tQxDWAMsAA79hhACHGAGC7DCAEf///////+h4XmB0lLTc5PTf///////+kcJyczOz9CRkZCe///////9SknNTw6OjpB///////+XJDU6OzlAVFJWYm50dn6ErLzEyLy4tLi4uMTdJ//+1DEOgAyqADtdhgwCHIAGfsMIAT///////9SlhcfJionIyM3PkH///////+XJzw9P0JCQkP///////1KSc1PDo6Okv///////7FByfHRscnJ0dH6AvLS8wNTw4NDY5Oz09PT08PP///////9QDRZW0//tQxDEAMqwAvXYYMAh1gBguwwgBFVUTlx2j///////+WJzo8PDw8R///////+qUk5qeHR0dJf///////sUHJ8dGxycnR0foC8tLzA1PDg0Njk7PT09PTw8////////UALq6qqqqqrDdH//+1DENQC6sAAzuKYAR1gBgewwYAAAAIMQotQYhRZdVVVSRaqqqtVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
+        audio.play();
+      }
+      
+      // Som de digitação
+      function playTypeSound() {
+        const audio = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+NAwAAAAAAAAAAAAFhpbmcAAAAPAAAABQAABFoAlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaW09PT09PT09PT09PT09PT09PT09PT09PT09P29vb29vb29vb29vb29vb29vb29vb29vb29v////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJANAAAAAAAAAWgR6z2BhAAAAAAD/+xDEAAADQAFv9BAAJf5Fq/znEADgBGkAAJgAAQCMDPACAEMEh4QDlAGGG//yHZ7keToWCPl1Pofg/5f7vqGqfXPT4zBlMQU1FMy45OS41VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MQxCcAAANIAcgAAA1AAjE4ARERET/+xDEFgADaANZnDAAJkXBKjeGIASAAAAQRERESqqqqqqqqqqqqkkREREVVVVVVVVVVUREREVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
+        audio.volume = 0.5;
+        audio.play();
+      }
+    });
+  </script>
+</body>
+</html>

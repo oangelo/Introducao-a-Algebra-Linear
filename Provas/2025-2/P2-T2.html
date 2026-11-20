@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabarito - Prova 2 de Álgebra Linear (Versão A)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }, options: { skipHtmlTags: ['details'] }, startup: { ready: () => { MathJax.startup.defaultReady(); } } };
+    </script>
+    <style>
+        body { font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.5; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header h1 { text-align: center; font-size: 16pt; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 25px; }
+        .question { margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
+        .question:last-child { border-bottom: none; }
+        .question-header { font-weight: bold; font-size: 13pt; border-left: 4px solid #000; padding: 8px 10px; background-color: #f0f0f0; margin-bottom: 12px; }
+        .subquestion { margin: 10px 0 10px 20px; }
+        details { margin-top: 10px; border: 1px solid #ddd; border-radius: 4px; background-color: #f9f9f9; }
+        summary { font-weight: bold; padding: 8px 12px; cursor: pointer; background-color: #e9e9e9; font-size: 10pt; }
+        .answer { padding: 15px; border-top: 1px solid #ddd; background-color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"><h1>Gabarito - Prova 2 de Álgebra Linear (Versão A)</h1></div>
+        <div class="content">
+          <div class="question">
+                <div class="question-header">Questão 1: Subespaços de Matrizes</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Seja \(W\) o conjunto de todas as matrizes 2x2 simétricas. Prove que \(W\) é fechado sob a soma.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Sejam \(A = \begin{pmatrix} a_1 & b_1 \\ b_1 & d_1 \end{pmatrix}\) e \(B = \begin{pmatrix} a_2 & b_2 \\ b_2 & d_2 \end{pmatrix}\) duas matrizes simétricas quaisquer em \(W\).</p>
+                        <p>A soma é \(A+B = \begin{pmatrix} a_1+a_2 & b_1+b_2 \\ b_1+b_2 & d_1+d_2 \end{pmatrix}\).</p>
+                        <p>Para que \(A+B\) seja simétrica, as entradas fora da diagonal principal devem ser iguais. Neste caso, ambas são \(b_1+b_2\). Portanto, a matriz resultante é simétrica e pertence a \(W\). Logo, \(W\) é fechado sob a soma.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Prove que \(W\) é fechado sob a multiplicação por escalar.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Seja \(A = \begin{pmatrix} a & b \\ b & d \end{pmatrix}\) uma matriz em \(W\) e \(k\) um escalar real.</p>
+                        <p>O produto por escalar é \(kA = \begin{pmatrix} ka & kb \\ kb & kd \end{pmatrix}\).</p>
+                        <p>As entradas fora da diagonal **principal** são iguais a \(kb\), então a matriz resultante é simétrica e pertence a \(W\). Logo, \(W\) é fechado sob a multiplicação por escalar.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Mostre que \(H\), o conjunto de matrizes com determinante zero, **não** é um subespaço.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Para provar que H não é fechado sob a soma, precisamos mostrar que a soma de duas matrizes com determinante zero não resulta, necessariamente, em uma matriz com determinante zero.</p>
+                        <p>Seja \(A = \begin{pmatrix} a & 0 \\ 0 & 0 \end{pmatrix}\) com \(a \neq 0\). Claramente, \(\det(A) = 0\), então \(A \in H\).</p>
+                        <p>Seja \(B = \begin{pmatrix} 0 & 0 \\ 0 & d \end{pmatrix}\) com \(d \neq 0\). Claramente, \(\det(B) = 0\), então \(B \in H\).</p>
+                        <p>A soma das duas matrizes é \(A+B = \begin{pmatrix} a & 0 \\ 0 & d \end{pmatrix}\).</p>
+                        <p>O determinante da soma é \(\det(A+B) = ad\). Como \(a \neq 0\) e \(d \neq 0\), temos que \(\det(A+B) = ad \neq 0\).</p>
+                        <p>Isso mostra que a soma de duas matrizes em H pode resultar em uma matriz que não está em H. Portanto, H não é fechado sob a soma e não é um subespaço vetorial.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 2: Base e Coordenadas em \(\mathbb{P}_3\)</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Verifique se \(B = \{1, (t-1), (t-1)^2, (t-1)^3\}\) é LI.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Podemos mapear os polinômios para vetores no \(\mathbb{R}^4\) usando a base canônica \(\{1, t, t^2, t^3\}\). Expandindo os termos de B:</p>
+                        <p>\(p_0(t) = 1 \implies \vec{v_0}=(1,0,0,0)\)</p>
+                        <p>\(p_1(t) = t-1 \implies \vec{v_1}=(-1,1,0,0)\)</p>
+                        <p>\(p_2(t) = t^2-2t+1 \implies \vec{v_2}=(1,-2,1,0)\)</p>
+                        <p>\(p_3(t) = t^3-3t^2+3t-1 \implies \vec{v_3}=(-1,3,-3,1)\)</p>
+                        <p>Formamos a matriz \(M = \begin{pmatrix} 1 & -1 & 1 & -1 \\ 0 & 1 & -2 & 3 \\ 0 & 0 & 1 & -3 \\ 0 & 0 & 0 & 1 \end{pmatrix}\). Como a matriz é triangular superior, seu determinante é o produto da diagonal: \(\det(M) = 1 \cdot 1 \cdot 1 \cdot 1 = 1\). Como \(\det(M) \neq 0\), o conjunto de vetores (e, portanto, de polinômios) é linearmente independente.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Argumente por que \(B\) forma uma base para \(\mathbb{P}_3\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>O espaço \(\mathbb{P}_3\) tem dimensão 4. O conjunto \(B\) possui 4 polinômios e, como provado no item (a), é linearmente independente. Um conjunto LI com o mesmo número de vetores que a dimensão do espaço forma uma base para esse espaço.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Encontre as coordenadas de \(p(t) = 2t^3 - 3t^2 + 4t - 1\) na base \(B\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Buscamos \(c_0, c_1, c_2, c_3\) tais que \(p(t) = c_0(1) + c_1(t-1) + c_2(t-1)^2 + c_3(t-1)^3\).</p>
+                        <p>Expandindo o lado direito e agrupando por potências de \(t\):</p>
+                        <p>\(= c_3 t^3 + (c_2 - 3c_3)t^2 + (c_1 - 2c_2 + 3c_3)t + (c_0 - c_1 + c_2 - c_3)\)</p>
+                        <p>Igualando os coeficientes com \(p(t) = 2t^3 - 3t^2 + 4t - 1\), obtemos o sistema:</p>
+                        $$ \begin{cases}
+                        c_3 = 2 \\
+                        c_2 - 3c_3 = -3 \\
+                        c_1 - 2c_2 + 3c_3 = 4 \\
+                        c_0 - c_1 + c_2 - c_3 = -1
+                        \end{cases} $$
+                        <p>Resolvendo por substituição retroativa:</p>
+                        <p>\(c_3 = 2\)</p>
+                        <p>\(c_2 - 3(2) = -3 \implies c_2 = 3\)</p>
+                        <p>\(c_1 - 2(3) + 3(2) = 4 \implies c_1 = 4\)</p>
+                        <p>\(c_0 - 4 + 3 - 2 = -1 \implies c_0 = 2\)</p>
+                        <p>As coordenadas são \((2, 4, 3, 2)\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Verifique o resultado.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Reconstruindo o polinômio: \(2(1) + 4(t-1) + 3(t-1)^2 + 2(t-1)^3\)</p>
+                        <p>\(= 2 + 4t - 4 + 3(t^2-2t+1) + 2(t^3-3t^2+3t-1)\)</p>
+                        <p>\(= 4t - 2 + 3t^2 - 6t + 3 + 2t^3 - 6t^2 + 6t - 2\)</p>
+                        <p>\(= 2t^3 + (3-6)t^2 + (4-6+6)t + (-2+3-2) = 2t^3 - 3t^2 + 4t - 1\). O resultado está correto.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 3: Dimensão, Posto e Nulidade</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre a RREF de \(A = \begin{pmatrix} 1 & -2 & 0 & 3 \\ 2 & -4 & 1 & 8 \\ -1 & 2 & 1 & -1 \end{pmatrix}\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(\xrightarrow{L_2 \leftarrow L_2-2L_1, L_3 \leftarrow L_3+L_1} \begin{pmatrix} 1 & -2 & 0 & 3 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 1 & 2 \end{pmatrix} \xrightarrow{L_3 \leftarrow L_3-L_2} \begin{pmatrix} 1 & -2 & 0 & 3 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 \end{pmatrix}\)</p>
+                        <p>A matriz já está na forma RREF.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Determine uma base para Nul(A) e a nulidade.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>As variáveis livres são \(x_2\) e \(x_4\). Sejam \(x_2=s, x_4=t\).</p>
+                        <p>Da RREF: \(x_1-2x_2+3x_4=0 \implies x_1=2s-3t\). E \(x_3+2x_4=0 \implies x_3=-2t\).</p>
+                        <p>Vetor solução: \((2s-3t, s, -2t, t) = s(2,1,0,0) + t(-3,0,-2,1)\).</p>
+                        <p>Base para Nul(A): \(\{\begin{pmatrix}2\\1\\0\\0\end{pmatrix}, \begin{pmatrix}-3\\0\\-2\\1\end{pmatrix}\}\). Nulidade = 2.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Determine uma base para Col(A) e o posto.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>As colunas pivô são a 1ª e a 3ª. A base é formada pelas colunas correspondentes da matriz original A.</p>
+                        <p>Base para Col(A): \(\{\begin{pmatrix}1\\2\\-1\end{pmatrix}, \begin{pmatrix}0\\1\\1\end{pmatrix}\}\). Posto = 2.</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Verifique o Teorema do Posto-Nulidade.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Posto(A) + Nulidade(A) = 2 + 2 = 4. O número de colunas de A é 4. A relação é satisfeita.</p>
+                    </div></details>
+                </div>
+            </div>
+            <div class="question">
+                <div class="question-header">Questão 4: Diagonalização</div>
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre os autovalores de \(A = \begin{pmatrix} 4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{pmatrix}\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(\det(A-\lambda I) = \det\begin{pmatrix} 4-\lambda & 0 & 1 \\ 2 & 3-\lambda & 2 \\ 1 & 0 & 4-\lambda \end{pmatrix}\). Expandindo pela 2ª coluna:</p>
+                        <p>\(= (3-\lambda) \det\begin{pmatrix} 4-\lambda & 1 \\ 1 & 4-\lambda \end{pmatrix} = (3-\lambda)[(4-\lambda)^2 - 1]\)</p>
+                        <p>\(= (3-\lambda)(16-8\lambda+\lambda^2-1) = (3-\lambda)(\lambda^2-8\lambda+15) = (3-\lambda)(\lambda-3)(\lambda-5)\)</p>
+                        <p>Autovalores: \(\lambda=3\) (multiplicidade 2) e \(\lambda=5\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>b)</strong> Para cada autovalor, encontre uma base para o autoespaço correspondente.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>Para \(\lambda=3\): \((A-3I)\vec{x}=\vec{0} \implies \begin{pmatrix} 1&0&1\\2&0&2\\1&0&1 \end{pmatrix}\vec{x}=\vec{0}\). Equação: \(x+z=0 \implies x=-z\). \(y\) é livre. Vetor: \((-z,y,z)=y(0,1,0)+z(-1,0,1)\). Base para \(E_3\): \(\{(0,1,0), (-1,0,1)\}\).</p>
+                        <p>Para \(\lambda=5\): \((A-5I)\vec{x}=\vec{0} \implies \begin{pmatrix} -1&0&1\\2&-2&2\\1&0&-1 \end{pmatrix}\vec{x}=\vec{0}\). Equações: \(x=z\) e \(2x-2y+2z=0 \implies 4x-2y=0 \implies y=2x\). Vetor: \((x,2x,x)=x(1,2,1)\). Base para \(E_5\): \(\{(1,2,1)\}\).</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>c)</strong> Construa as matrizes P e D.
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>P é formada pelos autovetores e D pelos autovalores correspondentes.</p>
+                        <p>\(P = \begin{pmatrix} 0 & -1 & 1 \\ 1 & 0 & 2 \\ 0 & 1 & 1 \end{pmatrix}\), \(D = \begin{pmatrix} 3 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}\)</p>
+                    </div></details>
+                </div>
+                <div class="subquestion">
+                    <strong>d)</strong> Verifique que \(AP = PD\).
+                    <details><summary>Ver Resposta</summary><div class="answer">
+                        <p>\(AP = \begin{pmatrix} 4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{pmatrix} \begin{pmatrix} 0 & -1 & 1 \\ 1 & 0 & 2 \\ 0 & 1 & 1 \end{pmatrix} = \begin{pmatrix} 0 & -3 & 5 \\ 3 & 0 & 10 \\ 0 & 3 & 5 \end{pmatrix}\)</p>
+                        <p>\(PD = \begin{pmatrix} 0 & -1 & 1 \\ 1 & 0 & 2 \\ 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} 3 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix} = \begin{pmatrix} 0 & -3 & 5 \\ 3 & 0 & 10 \\ 0 & 3 & 5 \end{pmatrix}\)</p>
+                        <p>Como \(AP=PD\), a verificação está correta.</p>
+                    </div></details>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!-- fonte: f1-matematica.html §1.11, fichas B3a e B3b -->
+<section class="sec" id="s-1-11">
+  <h2><span class="num">1.11</span>O pivô é escolhido, não encontrado</h2>
+
+  <p>A definição de <a class="ref" href="#s-1-9">1.9</a> diz o que é um pivô, mas não diz qual linha
+  deve ocupar a posição de pivô. Numa coluna há vários candidatos, e a escolha é do resolvedor. Ela
+  não muda o conjunto-solução; muda o custo da conta — e, em muitos casos, decide se a conta fica em
+  inteiros ou em frações.</p>
+
+  <p>O critério é de uma linha: <b>se há um \(1\) na coluna, ele é o pivô</b>. Não porque o \(1\) seja
+  especial, mas porque dividir por \(1\) não faz nada e multiplicar por \(1\) não muda sinal. Zerar
+  uma entrada usando uma linha que começa com \(1\) produz inteiros de graça. O mesmo vale para
+  \(-1\): a conta fica em inteiros, só com os sinais trocados.</p>
+
+  <p>Se o \(1\) está na posição de pivô, começa-se por ele. Se está mais abaixo, troca-se a linha dele
+  com a de cima, e ele vem para a posição de pivô. Trocar linhas é uma das operações de
+  <a class="ref" href="#s-1-8">1.8</a>, e portanto não altera o conjunto-solução.</p>
+
+  <p>O caso extremo é aquele em que não há escolha nenhuma a fazer: a primeira linha começa com zero.
+  É o que acontece na ficha B2, cuja primeira equação é \(y + z = 5\). Ali não existe pivô na
+  primeira coluna, porque não existe primeiro número não nulo na linha — a conta não começa. Trocar
+  não é otimização, é condição de partida.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema da ficha B3a, resolvido nas duas ordens:</p>
+
+    <pre class="conta">  2x +  y +  z = 8
+  3x + 2y +  z = 13
+   x +  y + 2z = 7</pre>
+
+    <p><b>Primeira ordem: sem trocar.</b> O pivô é o \(2\), e a primeira operação já divide:</p>
+
+    <pre class="conta">    2    1    1 |   8
+    3    2    1 |  13      R2 &larr; R2 - (3/2)R1
+    1    1    2 |   7      R3 &larr; R3 - (1/2)R1
+------------------------------------
+    2    1    1 |   8
+    0  1/2 -1/2 |   1
+    0  1/2  3/2 |   3      R3 &larr; R3 - R2
+------------------------------------
+    2    1    1 |   8
+    0  1/2 -1/2 |   1
+    0    0    2 |   2</pre>
+
+    <p>Funciona, e a escada aparece. Mas cada entrada da segunda e da terceira linhas passou por uma
+    fração: \(2 - \tfrac{3}{2} = \tfrac{1}{2}\), \(1 - \tfrac{3}{2} = -\tfrac{1}{2}\),
+    \(2 - \tfrac{1}{2} = \tfrac{3}{2}\). São três frações novas por linha, e cada uma é uma chance de
+    erro de sinal.</p>
+
+    <p><b>Segunda ordem: trocar primeiro.</b> A terceira linha tem \(1\) na primeira coluna; subindo
+    essa linha, o pivô fica igual a \(1\) e nada precisa ser dividido:</p>
+
+    <pre class="conta">    1    1    2 |   7
+    3    2    1 |  13      R2 &larr; R2 - 3R1
+    2    1    1 |   8      R3 &larr; R3 - 2R1
+------------------------------------
+    1    1    2 |   7
+    0   -1   -5 |  -8
+    0   -1   -3 |  -6      R3 &larr; R3 - R2
+------------------------------------
+    1    1    2 |   7
+    0   -1   -5 |  -8
+    0    0    2 |   2</pre>
+
+    <p>A mesma última linha, obtida com subtração de inteiros. Seguindo: \(2z = 2\) dá \(z = 1\);
+    \(-y - 5z = -8\) dá \(y = 3\); \(x + y + 2z = 7\) dá \(x = 2\). O conjunto-solução é
+    \(\{(2; 3; 1)\}\), o mesmo das duas ordens.</p>
+  </div>
+
+  <p>Comparar as duas colunas da margem mostra o que a escolha compra. Na primeira ordem, o
+  coeficiente \(\tfrac{3}{2}\) aparece em duas linhas e volta na conta seguinte; na segunda, todos os
+  multiplicadores são inteiros e a coluna do \(y\) fecha com uma subtração. O resultado é idêntico —
+  o que mudou foi o número de lugares onde era possível errar.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Trocar linhas <b>não fabrica</b> um \(1\). Ela move para a posição de pivô um \(1\) que já
+    estava na coluna; se a coluna não tem \(1\) nem \(-1\) em nenhuma linha, nenhuma troca resolve. É
+    comum ouvir "troca para ver se aparece um \(1\)" — não aparece. A troca só aproveita o que já
+    existe.</p>
+  </div>
+
+  <h3>Quando a fração é inevitável</h3>
+
+  <p>Há matrizes em que a coluna inteira é feita de números que não são \(1\) nem \(-1\). Aí a escolha
+  deixa de ser "como evitar" e passa a ser "onde pagar". A ficha B3b é o caso mínimo:</p>
+
+  <pre class="conta">  2x + 3y = 8
+  3x + 5y = 13</pre>
+
+  <pre class="conta">    2    3 |   8
+    3    5 |  13      R2 &larr; R2 - (3/2)R1
+----------------------------
+    2    3 |   8
+    0  1/2 |   1      R2 &larr; 2R2
+----------------------------
+    2    3 |   8
+    0    1 |   2</pre>
+
+  <p>A fração aparece na primeira operação e desaparece na segunda: multiplicar a linha por \(2\),
+  operação legítima porque \(2 \neq 0\), limpa o denominador. Daí \(y = 2\) e \(2x + 6 = 8\), isto é,
+  \(x = 1\). O conjunto-solução é \(\{(1; 2)\}\) — e a conferência fecha: \(2 + 6 = 8\) e
+  \(3 + 10 = 13\).</p>
+
+  <p>Vale registrar o que a fração custa e o que ela não custa. Custa atenção: \(\tfrac{3}{2}\) obriga a
+  dividir de cabeça em cada entrada da linha, e o erro de sinal fica mais provável. Não custa
+  correção: com \(\tfrac{3}{2}\) ou com \(3\), a matriz final é a mesma a menos de escala, e a leitura
+  do fim é a mesma. Por isso a regra prática é procurar o \(1\) primeiro e aceitar a fração depois —
+  nunca o contrário.</p>
+
+  <p>Daí o hábito que a ficha B3a recomenda como primeira pergunta de todo exercício: existe um \(1\)
+  nesta coluna? A pergunta é feita com os olhos, antes de qualquer conta, e a resposta decide qual
+  linha abre o registro. Feita depois, ela chega tarde: a operação que se queria evitar já foi
+  escrita.</p>
+
+  <div class="obs">
+    <b>Observação.</b> A escolha do pivô não é um atalho que troca correção por velocidade. Toda
+    troca de linhas é reversível, e é a reversibilidade que garante o mesmo conjunto-solução
+    (<a class="ref" href="#s-1-8">1.8</a>). O que se escolhe é o caminho, nunca o destino.
+  </div>
+
+  <p>Feita a escolha e respeitado o registro, a matriz chega à escada. Nesse ponto, antes de qualquer
+  substituição, a forma já responde à pergunta principal do capítulo: quantas soluções existem. Essa
+  leitura é <a class="ref" href="#s-1-12">1.12</a>.</p>
+</section>

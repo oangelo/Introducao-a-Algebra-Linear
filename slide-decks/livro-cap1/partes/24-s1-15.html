@@ -1,0 +1,210 @@
+<!-- fonte: f1-matematica.html — bloco C (C0 a C5), conferido por img-gen/grade-f1.py -->
+<section class="sec" id="s-1-15">
+  <h2><span class="num">1.15</span>Exemplos resolvidos: sistemas retangulares</h2>
+
+  <p>Até aqui as matrizes aumentadas tinham tantas linhas quantas colunas — 2×2, 3×3 — e o número de
+  equações acompanhava o número de incógnitas. Nada disso era necessário. Um sistema é retangular
+  quando esses dois números diferem, e é nesse formato que a contagem de pivôs deixa de coincidir
+  com a contagem de incógnitas: sobram colunas sem pivô (parâmetros) ou sobram linhas que não
+  fecham (contradição).</p>
+
+  <p>O método não muda. Escalona-se a matriz, contam-se os pivôs, contam-se as colunas sem pivô. O
+  que muda é a leitura. Em matriz quadrada o resultado parece sempre "um ponto ou nada"; em matriz
+  retangular aparecem com naturalidade as duas coisas que a forma já anunciava — uma família de
+  soluções com um ou dois parâmetros, ou uma linha do tipo \(0 = c\) que encerra o assunto. Os seis
+  casos a seguir são os do quadro, na ordem em que foram copiados.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Uma equação, três incógnitas:</p>
+    <pre class="conta"> x + 2y - z = 3</pre>
+    <p>Na matriz aumentada há uma linha e quatro colunas:</p>
+    <pre class="conta"> 1   2  -1 |  3</pre>
+    <ol class="passos">
+      <li>Nada a eliminar: a matriz já está escalonada, com um único pivô na coluna de \(x\).</li>
+      <li>As colunas de \(y\) e de \(z\) ficam sem pivô. São duas colunas livres, logo dois
+      parâmetros: \(y\) e \(z\) podem receber qualquer valor real.</li>
+      <li>Isola-se a incógnita que tem pivô: \(x = 3 - 2y + z\).</li>
+    </ol>
+    <p>Resultado: \((x; y; z) = (3 - 2y + z;\ y;\ z)\), com \(y\) e \(z\) livres. Para \(y = z = 0\)
+    sai \((3; 0; 0)\); para \(y = 1\), \(z = 0\) sai \((1; 1; 0)\); para \(y = 0\), \(z = -1\) sai
+    \((2; 0; -1)\). Os três pontos satisfazem \(x + 2y - z = 3\).</p>
+    <p><b>O que o caso ensina.</b> "Sistema" não exige várias linhas: uma equação só já é um
+    sistema, e a resposta pode ser um objeto de duas dimensões — aqui, um plano — em vez de um
+    ponto. O número de parâmetros é o número de colunas sem pivô, não o número de equações.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Duas equações, três incógnitas:</p>
+    <pre class="conta"> x + y + z = 4
+ x - y + z = 2</pre>
+    <pre class="conta"> 1   1   1 |  4
+ 1  -1   1 |  2</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\) zera o \(x\) da segunda linha; o \(z\) desaparece junto,
+      porque os dois coeficientes eram iguais.</li>
+      <li>A matriz fica com dois pivôs e três colunas de incógnitas. Uma coluna sem pivô.</li>
+      <li>Da segunda linha, \(-2y = -2\), isto é, \(y = 1\). A coluna de \(z\) é a que ficou sem
+      pivô: \(z\) é o parâmetro.</li>
+      <li>Volta-se à primeira linha: \(x = 4 - y - z = 3 - z\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |  4
+ 0  -2   0 | -2
+
+ 1   1   1 |  4
+ 0   1   0 |  1</pre>
+    <p>Resultado: \((x; y; z) = (3 - z;\ 1;\ z)\), com \(z\) livre. Para \(z = 0\) sai \((3; 1; 0)\);
+    para \(z = 1\) sai \((2; 1; 1)\). Confere: \(2 + 1 + 1 = 4\) e \(2 - 1 + 1 = 2\).</p>
+    <p><b>O que o caso ensina.</b> Matriz mais larga que alta não é sinônimo de sistema sem
+    solução. Resolve-se tudo o que a informação permite — aqui, \(y\) fica determinado — e o que
+    sobra vira parâmetro. O conjunto-solução é uma reta.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 3</span>
+    <p>Duas equações, quatro incógnitas:</p>
+    <pre class="conta"> x + y + z + w = 4
+ x - y + z - w = 0</pre>
+    <pre class="conta"> 1   1   1   1 |  4
+ 1  -1   1  -1 |  0</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\) elimina \(x\) e também \(z\), que tinham o mesmo coeficiente
+      nas duas linhas.</li>
+      <li>O que resta na segunda linha é \(-2y - 2w = -4\), ou \(y + w = 2\).</li>
+      <li>Dois pivôs para quatro colunas de incógnitas: duas colunas sem pivô, \(z\) e \(w\).
+      Dois parâmetros.</li>
+      <li>Isola-se quem tem pivô: \(y = 2 - w\) e \(x = 4 - y - z - w = 2 - z\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1   1 |  4
+ 0  -2   0  -2 | -4
+
+ 1   1   1   1 |  4
+ 0   1   0   1 |  2</pre>
+    <p>Resultado: \((x; y; z; w) = (2 - z;\ 2 - w;\ z;\ w)\), com \(z\) e \(w\) livres. Para
+    \(z = w = 0\) sai \((2; 2; 0; 0)\); para \(z = 2\), \(w = 1\) sai \((0; 1; 2; 1)\). Nos dois
+    casos a soma das componentes é \(4\) e a diferença alternada \(x - y + z - w\) é \(0\).</p>
+    <p><b>O que o caso ensina.</b> Cada coluna sem pivô custa um parâmetro, e o número de
+    parâmetros cresce com a largura da matriz, não com o número de incógnitas "que sobraram" na
+    conta. Quatro incógnitas e duas equações dão dois parâmetros, não um.</p>
+  </div>
+
+  <div class="obs">
+    <b>Observação.</b> Nos três primeiros casos vale a mesma contagem, e vale sempre:
+    <b>número de variáveis livres = número de colunas de incógnitas − número de pivôs</b>. A
+    conta só pode ser fechada depois do escalonamento, porque é ele que revela se alguma linha
+    virou \(0 = c\). Contar colunas é mais confiável do que contar incógnitas que "ficaram de fora"
+    de alguma equação.
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 4</span>
+    <p>Três equações, duas incógnitas. Duas delas são simples e a terceira repete a primeira com
+    outro lado direito:</p>
+    <pre class="conta"> x + y = 2
+ x - y = 0
+ x + y = 5</pre>
+    <pre class="conta"> 1   1 | 2
+ 1  -1 | 0
+ 1   1 | 5</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\): a segunda linha vira \(-2y = -2\), ou \(y = 1\).</li>
+      <li>Com \(y = 1\) na primeira linha, \(x = 1\). As duas primeiras equações dão \((1; 1)\).</li>
+      <li>\(R_3 \leftarrow R_3 - R_1\): a terceira linha vira \(0 = 3\), porque \(5 - 2 = 3\).</li>
+    </ol>
+    <pre class="conta"> 1   1 | 2
+ 0  -2 | -2
+ 0   0 |  3</pre>
+    <p>Resultado: sistema impossível, conjunto-solução vazio. Nenhum par \((x; y)\) pode somar \(2\)
+    e \(5\) ao mesmo tempo.</p>
+    <p><b>O que o caso ensina.</b> Em matriz mais alta que larga, a equação que sobra não é
+    informação: é teste. Aqui o teste reprova, e reprova sozinho — as outras duas linhas estavam
+    corretas e continuam corretas. Basta uma linha incompatível para não haver solução.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 5</span>
+    <p>Quatro equações, três incógnitas. As três primeiras são as mesmas de um 3×3 já resolvido; a
+    quarta é nova e só envolve \(x\) e \(z\):</p>
+    <pre class="conta"> x + y + z = 6
+ x - y + z = 2
+2x + y - z = 1
+ x     + z = 3</pre>
+    <pre class="conta"> 1   1   1 |  6
+ 1  -1   1 |  2
+ 2   1  -1 |  1
+ 1   0   1 |  3</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\): sobra \(-2y = -4\), ou \(y = 2\).</li>
+      <li>\(R_3 \leftarrow R_3 - 2R_1\): a terceira linha vira \(-y - 3z = -11\). Com \(y = 2\),
+      \(-3z = -9\), ou \(z = 3\).</li>
+      <li>Na primeira linha, \(x = 6 - y - z = 1\). As três primeiras equações dão \((1; 2; 3)\) e,
+      em particular, \(x + z = 4\).</li>
+      <li>\(R_4 \leftarrow R_4 - R_1\) e depois \(R_4 \leftarrow R_4 + R_2\): a quarta linha vira
+      \(0 = -1\). Ela exige \(x + z = 3\), e o sistema já fixou \(x + z = 4\).</li>
+    </ol>
+    <pre class="conta"> 1   1   1 |  6
+ 0  -2   0 | -4
+ 0  -1  -3 | -11
+ 0  -1   0 | -3
+
+ 1   1   1 |  6
+ 0   1   0 |  2
+ 0   0  -3 | -9
+ 0   0   0 | -1</pre>
+    <p>Resultado: sistema impossível. As três primeiras equações têm solução única, \((1; 2; 3)\);
+    a quarta pede outra coisa e a matriz acusa a diferença na última linha.</p>
+    <p><b>O que o caso ensina.</b> Em matriz alta, a informação extra tem de bater com o que já se
+    sabe. Se bater, a linha vira \(0 = 0\) e some; se não bater, vira \(0 = c\) com \(c \neq 0\).
+    Não existe meio-termo, e não adianta continuar escalonando depois de encontrar a linha
+    impossível: a resposta já está decidida (ver <a class="ref" href="#s-1-12">1.12</a>).</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 6</span>
+    <p>Duas equações, três incógnitas, com os coeficientes de \(x\) e de \(y\) iguais nas duas
+    linhas:</p>
+    <pre class="conta"> x + 2y + 3z = 8
+ x + 2y +  z = 4</pre>
+    <pre class="conta"> 1   2   3 | 8
+ 1   2   1 | 4</pre>
+    <ol class="passos">
+      <li>\(R_2 \leftarrow R_2 - R_1\): \(x\) e \(y\) desaparecem juntos; sobra \(-2z = -4\).</li>
+      <li>Daí \(z = 2\), e a coluna de \(z\) tem pivô: \(z\) está determinada.</li>
+      <li>Os pivôs ficaram nas colunas de \(x\) e de \(z\). A coluna de \(y\) é a que ficou sem
+      pivô — no meio, não no fim. Logo \(y\) é a variável livre.</li>
+      <li>Isola-se \(x\): \(x = 8 - 2y - 3z = 2 - 2y\).</li>
+    </ol>
+    <pre class="conta"> 1   2   3 | 8
+ 0   0  -2 | -4</pre>
+    <p>Resultado: \((x; y; z) = (2 - 2y;\ y;\ 2)\), com \(y\) livre. Para \(y = 0\) sai \((2; 0; 2)\);
+    para \(y = 1\) sai \((0; 1; 2)\). Confere: \(0 + 2 + 6 = 8\) e \(0 + 2 + 2 = 4\).</p>
+    <p><b>O que o caso ensina.</b> A variável livre é definida pela coluna que ficou sem pivô, e
+    essa coluna pode estar em qualquer posição. Aqui a última incógnita, \(z\), está determinada, e
+    a do meio, \(y\), é o parâmetro. Uma variável pode ficar presa a um número mesmo havendo outra
+    livre: as duas coisas não se excluem.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Quem aprendeu que "o parâmetro é sempre a última variável" erra o Exemplo 6. O parâmetro é a
+    incógnita cuja coluna não recebeu pivô, e a eliminação não percorre as colunas de forma
+    previsível: no Exemplo 6 a segunda linha perdeu \(x\) e \(y\) de uma vez, o pivô saltou para a
+    coluna de \(z\) e sobrou \(y\). Antes de escrever a resposta, olhe a escada e diga em voz alta
+    quais colunas têm pivô. Depois disso a parametrização sai sozinha.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Também não vale a recíproca do Exemplo 1: mais equações que incógnitas não garantem solução,
+    e é o que os Exemplos 4 e 5 mostram — nos dois casos há linhas de sobra e nenhuma solução.
+    O formato da matriz não decide nada. Quem decide é a última linha depois do escalonamento: se
+    ali aparecer \(0 = c\) com \(c \neq 0\), o sistema está encerrado, por mais equações corretas
+    que existam acima.</p>
+  </div>
+
+  <p>Os seis casos cobrem os dois sentidos do desequilíbrio: colunas a mais produzem parâmetros,
+  linhas a mais produzem testes. Nenhum deles exigiu operação nova — só a leitura ficou mais
+  cuidadosa. O próximo bloco sobe o tamanho sem mudar o formato, para separar o que é dificuldade
+  de método do que é apenas dificuldade de conta (ver <a class="ref" href="#s-1-16">1.16</a>).</p>
+</section>

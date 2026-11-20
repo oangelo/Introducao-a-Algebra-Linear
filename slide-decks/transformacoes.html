@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Álgebra Arcade - Fase 4: Transformações Lineares</title>
+		<!-- Links para CDNs e CSS externo -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="game-theme.css" />
+		<!-- Scripts para Reveal.js e MathJax -->
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+		
+		<!-- Estilo para o layout de duas colunas -->
+		<style>
+			.two-columns {
+				display: flex;
+				align-items: center;
+				gap: 25px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+				<!-- Fase 4: Introdução -->
+				<section>
+					<section data-background-color="#1c1e26"> <h1 class="fase-title">Fase 4</h1> <h2 class="fase-subtitle">Portais e Avatares</h2> 
+
+          <p class="press-start">Pressione Enter para começar</p>
+					</section>
+					<section data-background-color="#22242d" class="lore-section"> <h3><span class="highlight">Dev Log 4.0:</span> Novos Horizontes</h3> <p class="lore-text">"Para a próxima atualização, estamos adicionando 'Portais'. A ideia é que um avatar entre em um portal e saia em outro lugar, talvez esticado, girado ou até mesmo achatado. Isso abre um universo de possibilidades para puzzles e desafios."</p> </section>
+					<section data-background-color="#22242d" class="lore-section"> <h3><span class="highlight">A Mecânica:</span> Transformações Lineares</h3> <p class="lore-text">Nesta fase, vamos dominar a magia por trás dos portais. Aprenderemos a criar, combinar e entender as regras que governam como os avatares (vetores) se movem e se transformam. Cada portal será definido por uma ferramenta que já conhecemos bem: a matriz.</p> </section>
+				</section>
+				
+				<!-- Quest 1: O Primeiro Portal (VERSÃO MODIFICADA) -->
+				<section>
+					<section data-background-color="#1c1e26">
+						<h2 class="quest-title">Quest 1: O Primeiro Portal</h2>
+						<p>Entendendo a função fundamental de uma transformação.</p>
+					</section>
+					
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: De um Ponto a Outro</div> <h3 class="mechanics-title">Mecânica Principal: O Que é uma Transformação?</h3> <div class="math-section"> <p>Uma <strong>Transformação</strong> \(T\) é uma função que "move" vetores de um espaço de entrada (domínio) para um espaço de saída (contradomínio).</p> \[ T: \mathbb{R}^n \rightarrow \mathbb{R}^m \] </div> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: De um Ponto a Outro</div> <h3 class="rules-title">Regra Especial: A Matriz do Portal</h3> <div class="math-section"> <p>Toda <strong>Transformação Linear</strong> pode ser representada pela multiplicação de matrizes.</p> <p>Para uma transformação \(T\), existe uma <strong>matriz padrão</strong> \(A\) tal que:</p> \[ T(\mathbf{x}) = A\mathbf{x} \] </div> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Preparando o Portal (Visual)</div> <h3 class="mechanics-title">Mecânica Principal: Configurando a Demo</h3> <div class="math-section"> <p>Na próxima tela, vamos visualizar o efeito de uma rotação de 90° com a matriz:</p> \[ A = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \] </div> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Preparando o Portal (Visual)</div> <h3 class="demo-title">Demo da Habilidade: Portal Visual</h3> <div class="demo-section"> <canvas id="transformCanvas" width="600" height="400" style="background-color: #333; border-radius: 5px;"></canvas> <p>Arraste o vetor azul (\(\mathbf{v}\)). O vetor laranja (\(\mathbf{w}\)) é o resultado de \( A\mathbf{v} \).</p> </div> <script> (function() { const canvas = document.getElementById('transformCanvas'); if (!canvas) return; const ctx = canvas.getContext('2d'); const width = canvas.width, height = canvas.height; const origin = { x: width / 2, y: height / 2 }; const scale = 50; let isDragging = false; let v = { x: 2, y: 1 }; const A = [[0, -1], [1, 0]]; function draw() { ctx.clearRect(0, 0, width, height); ctx.strokeStyle = '#666'; ctx.beginPath(); ctx.moveTo(0, origin.y); ctx.lineTo(width, origin.y); ctx.moveTo(origin.x, 0); ctx.lineTo(origin.x, height); ctx.stroke(); const w = { x: A[0][0] * v.x + A[0][1] * v.y, y: A[1][0] * v.x + A[1][1] * v.y }; drawVector(v.x, v.y, '#55aaff', 'v'); drawVector(w.x, w.y, '#ffaa55', 'w'); } function drawVector(x, y, color, label) { ctx.beginPath(); ctx.moveTo(origin.x, origin.y); ctx.lineTo(origin.x + x * scale, origin.y - y * scale); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.stroke(); ctx.fillStyle = color; ctx.font = '16px KaTeX_Main'; ctx.fillText(label, origin.x + x * scale + 5, origin.y - y * scale); } canvas.addEventListener('mousedown', (e) => { isDragging = true; updateVector(e); }); canvas.addEventListener('mouseup', () => { isDragging = false; }); canvas.addEventListener('mousemove', (e) => { if (isDragging) updateVector(e); }); function updateVector(e) { const rect = canvas.getBoundingClientRect(); v.x = (e.clientX - rect.left - origin.x) / scale; v.y = -(e.clientY - rect.top - origin.y) / scale; draw(); } draw(); })(); </script> </section>
+
+					<!-- Bloco Conceitual: As Regras do Universo (EXPANDIDO) -->
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: As Regras do Universo</div>
+						<h3 class="mechanics-title">Mecânica Principal: As Leis da Linearidade</h3>
+						<p>Para que um portal seja "linear", ele precisa obedecer a duas regras fundamentais. Para quaisquer vetores \( \mathbf{u}, \mathbf{v} \) e um escalar \( c \):</p>
+						<div class="math-section two-columns">
+							<div>
+								<h4>1. Aditividade</h4>
+								\[ T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) \]
+							</div>
+							<div>
+								<h4>2. Homogeneidade</h4>
+								\[ T(c\mathbf{u}) = cT(\mathbf{u}) \]
+							</div>
+						</div>
+					</section>
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: As Regras do Universo</div>
+						<h3 class="rules-title">Regra Especial: O Teste Rápido da Linearidade</h3>
+						<p>Uma transformação é <strong>linear</strong> se, e somente se, cada componente do vetor de saída é uma <strong>combinação linear</strong> das componentes de entrada.</p>
+						<p><strong>Isso significa:</strong> As fórmulas só podem ter termos como \( a \cdot x_i \). </p>
+						<p class="highlight">Termos como \( x_1^2, \sqrt{x_2}, x_1x_2 \) ou constantes somadas (ex: \( x_1+1 \)) quebram a linearidade!</p>
+					</section>
+
+					<!-- Bloco Conceitual: Testando a Linearidade (NOVO) -->
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: Testando a Linearidade</div>
+						<h3 class="challenge-title">Quest de Treinamento</h3>
+						<p>A transformação \( T: \mathbb{R}^2 \rightarrow \mathbb{R}^2 \) definida por \( T(x, y) = (x - y, 3y) \) é linear?</p>
+					</section>
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: Testando a Linearidade</div>
+						<h3 class="strategy-title">Guia de Estratégia</h3>
+						<p><strong>Sim, é linear.</strong></p>
+						<p>Pelo "Teste Rápido":</p>
+						<ul>
+							<li>A primeira componente da saída, \( w_1 = x - y \), é uma combinação linear de x e y.</li>
+							<li>A segunda componente, \( w_2 = 3y \), também é.</li>
+						</ul>
+						<p>Nenhum termo "proibido" aparece. A transformação passa no teste.</p>
+					</section>
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: Testando a Linearidade</div>
+						<h3 class="challenge-title">Quest de Treinamento</h3>
+						<p>A transformação \( T(x, y) = (x^2, y) \) é linear?</p>
+					</section>
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: Testando a Linearidade</div>
+						<h3 class="strategy-title">Guia de Estratégia</h3>
+						<p><strong>Não, não é linear.</strong></p>
+						<p>Ela falha no teste da Homogeneidade. Seja \( c \) um escalar:</p>
+						<p>\( T(c\mathbf{u}) = T(cx, cy) = ((cx)^2, cy) = (c^2x^2, cy) \)</p>
+						<p>\( cT(\mathbf{u}) = c \cdot T(x, y) = c(x^2, y) = (cx^2, cy) \)</p>
+						<p>Como \( (c^2x^2, cy) \neq (cx^2, cy) \), a regra \( T(c\mathbf{u})=cT(\mathbf{u}) \) falha.</p>
+					</section>
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: Testando a Linearidade</div>
+						<h3 class="challenge-title">Quest de Treinamento</h3>
+						<p>A transformação \( T(x, y) = (x+1, y) \) é linear?</p>
+					</section>
+					<section class="concept-block">
+						<div class="slide-header">Bloco Conceitual: Testando a Linearidade</div>
+						<h3 class="strategy-title">Guia de Estratégia</h3>
+						<p><strong>Não, não é linear.</strong></p>
+						<p><strong>Motivo 1 (Teste Rápido):</strong> A componente \( w_1 = x+1 \) não é uma combinação linear pura de x e y, pois tem uma constante somada.</p>
+						<p><strong>Motivo 2 (Prova Formal):</strong> Uma propriedade de toda transformação linear é que ela deve levar o vetor nulo ao vetor nulo: \( T(\mathbf{0}) = \mathbf{0} \).</p>
+						\[ T(0, 0) = (0+1, 0) = (1, 0) \neq (0, 0) \]
+						<p>Como \( T(\mathbf{0}) \neq \mathbf{0} \), a transformação não pode ser linear.</p>
+					</section>
+
+					<section data-background-color="#1c1e26" class="quest-reward-section">
+						<h3><span class="highlight">Recompensa da Quest</span></h3>
+						<ul class="reward-list">
+							<li>Uma <strong>Transformação Linear</strong> obedece às regras de <strong>Aditividade</strong> e <strong>Homogeneidade</strong>.</li>
+							<li><strong>Teste Rápido:</strong> Suas fórmulas só contêm <strong>combinações lineares</strong> das variáveis de entrada.</li>
+							<li>Termos como \(x^2\) ou constantes como \(+1\) quebram a linearidade.</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- Quest 2, 3, 4, 5 (permanecem inalteradas) -->
+				<section>
+					<section data-background-color="#1c1e26"> <h2 class="quest-title">Quest 2: O Arsenal de Transformações</h2> <p>Explorando os tipos mais comuns de portais geométricos.</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Catálogo de Power-ups em ℝ²</div> <h3 class="mechanics-title">Mecânica Principal: Matrizes Padrão</h3> <p>Algumas transformações são tão comuns que suas matrizes são "power-ups" básicos em nosso arsenal.</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Catálogo de Power-ups em ℝ²</div> <h3 class="rules-title">Regra Especial: Rotação</h3> <div class="math-section"><p>Rotação anti-horária por um ângulo \( \theta \):</p>\[ A = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \]</div> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Catálogo de Power-ups em ℝ²</div> <h3 class="rules-title">Regra Especial: Dilatação</h3> <div class="math-section"><p>Dilatar ou contrair por um fator \( k \):</p>\[ A = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \]</div> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Catálogo de Power-ups em ℝ²</div> <h3 class="rules-title">Regra Especial: Reflexão (Eixo X)</h3> <div class="math-section"><p>Refletir através do eixo X:</p>\[ A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \]</div> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Catálogo de Power-ups em ℝ²</div> <h3 class="rules-title">Regra Especial: Reflexão (Eixo Y)</h3> <div class="math-section"><p>Refletir através do eixo Y:</p>\[ A = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \]</div> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Laboratório Interativo</div> <h3 class="demo-title">Demo da Habilidade: Sandbox de Transformação</h3> <div class="demo-section two-columns"> <div style="flex: 2;"> <canvas id="sandboxCanvas" width="550" height="500" style="background-color: #333; border-radius: 5px; max-width: 100%;"></canvas> </div> <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;"> <select id="transformType" style="padding: 8px; font-size: 1.1em; margin-bottom: 25px;"> <option value="rotation">Rotação</option> <option value="scale">Dilatação</option> <option value="reflectionX">Reflexão (Eixo X)</option> <option value="reflectionY">Reflexão (Eixo Y)</option> </select> <div id="slider-container" style="margin-bottom: 25px;"> <label for="paramSlider" style="font-size: 1.1em;">Parâmetro: <span id="paramValue" class="highlight">0</span></label><br> <input type="range" id="paramSlider" min="-180" max="180" value="0" style="width: 100%;"> </div> <div id="coords-display" style="font-size: 0.9em; font-family: monospace; background-color: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;"> </div> </div> </div> <script> (function() { const canvas = document.getElementById('sandboxCanvas'); if (!canvas) return; const ctx = canvas.getContext('2d'); const width = canvas.width, height = canvas.height; const origin = { x: width / 2, y: height / 2 }; const scale = 100; const square = [{x:0,y:0}, {x:1,y:0}, {x:1,y:1}, {x:0,y:1}]; const vector = {x: 0.7, y: 0.7}; const typeSelect = document.getElementById('transformType'); const slider = document.getElementById('paramSlider'); const sliderContainer = document.getElementById('slider-container'); const valueLabel = document.getElementById('paramValue'); const coordsDisplay = document.getElementById('coords-display'); let transformType = 'rotation'; let param = 0; function getMatrix(type, val) { if (type === 'rotation') { const rad = val * Math.PI / 180; return [[Math.cos(rad), -Math.sin(rad)], [Math.sin(rad), Math.cos(rad)]]; } if (type === 'scale') { return [[val, 0], [0, val]]; } if (type === 'reflectionX') { return [[1, 0], [0, -1]]; } if (type === 'reflectionY') { return [[-1, 0], [0, 1]]; } return [[1, 0], [0, 1]]; } function transformPoint(p, A) { return { x: A[0][0] * p.x + A[0][1] * p.y, y: A[1][0] * p.x + A[1][1] * p.y }; } function draw() { ctx.clearRect(0, 0, width, height); ctx.strokeStyle = '#666'; ctx.beginPath(); ctx.moveTo(0, origin.y); ctx.lineTo(width, origin.y); ctx.moveTo(origin.x, 0); ctx.lineTo(origin.x, height); ctx.stroke(); const A = getMatrix(transformType, param); const transformedSquare = square.map(p => transformPoint(p, A)); const transformedVector = transformPoint(vector, A); drawPolygon(square, '#777', false); drawPolygon(transformedSquare, '#55aaff', true); drawVector(vector, '#aaa'); drawVector(transformedVector, '#ffaa55'); coordsDisplay.innerHTML = `<p style="margin: 5px 0;">Vetor Original v = (${vector.x.toFixed(2)}, ${vector.y.toFixed(2)})</p><p style="margin: 5px 0;">Vetor Transformado w = (${transformedVector.x.toFixed(2)}, ${transformedVector.y.toFixed(2)})</p>`; } function drawPolygon(points, color, fill) { ctx.beginPath(); const first = points[0]; ctx.moveTo(origin.x + first.x * scale, origin.y - first.y * scale); for (let i = 1; i < points.length; i++) { const p = points[i]; ctx.lineTo(origin.x + p.x * scale, origin.y - p.y * scale); } ctx.closePath(); if (fill) { ctx.fillStyle = 'rgba(85, 170, 255, 0.3)'; ctx.fill(); } ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.stroke(); } function drawVector(p, color) { ctx.beginPath(); ctx.moveTo(origin.x, origin.y); ctx.lineTo(origin.x + p.x * scale, origin.y - p.y * scale); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.stroke(); } function updateUI() { transformType = typeSelect.value; if (transformType === 'rotation') { slider.min = -180; slider.max = 180; slider.step=1; slider.value = 0; param = 0; sliderContainer.style.display = 'block'; } else if (transformType === 'scale') { slider.min = 0; slider.max = 3; slider.step=0.1; slider.value = 1; param = 1; sliderContainer.style.display = 'block'; } else { param=1; sliderContainer.style.display = 'none'; } valueLabel.textContent = param; draw(); } typeSelect.addEventListener('change', updateUI); slider.addEventListener('input', (e) => { param = parseFloat(e.target.value); valueLabel.textContent = param.toFixed(2); draw(); }); updateUI(); })(); </script> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: O Segredo dos Construtores</div> <h3 class="mechanics-title">Mecânica Principal: Construindo Matrizes</h3> <p>Como criar a matriz para <em>qualquer</em> transformação linear?</p> <h4 class="highlight">O segredo é observar para onde a transformação envia os vetores da base canônica.</h4> \[ A = \begin{bmatrix} | & | \\ T(\mathbf{e}_1) & T(\mathbf{e}_2) \\ | & | \end{bmatrix} \] </section>
+					<section class="concept-block"> <h3 class="challenge-title">Missão Principal</h3> <p>Encontre a matriz padrão em \( \mathbb{R}^2 \) para a projeção ortogonal sobre a reta \( y = 2x \).</p> </section>
+					<section class="concept-block"> <h3 class="strategy-title">Guia de Estratégia - Passo 1</h3> <p>A reta \( y=2x \) tem a direção de \( \mathbf{d} = (1, 2) \). Usando a fórmula de projeção: </p> \[ T(\mathbf{e}_1) = \text{proj}_{\mathbf{d}}\mathbf{e}_1 = \frac{(1,0)\cdot(1,2)}{1^2+2^2}(1,2) = \begin{pmatrix} 1/5 \\ 2/5 \end{pmatrix} \] <p>Esta é a <strong>primeira coluna</strong> da nossa matriz.</p> </section>
+					<section class="concept-block"> <h3 class="strategy-title">Guia de Estratégia - Passo 2</h3> <p>Agora, transformamos \( \mathbf{e}_2 = (0, 1) \):</p> \[ T(\mathbf{e}_2) = \text{proj}_{\mathbf{d}}\mathbf{e}_2 = \frac{(0,1)\cdot(1,2)}{1^2+2^2}(1,2) = \begin{pmatrix} 2/5 \\ 4/5 \end{pmatrix} \] <p>Esta é a <strong>segunda coluna</strong>.</p> </section>
+					<section class="concept-block"> <h3 class="strategy-title">Guia de Estratégia - Passo 3</h3> <p>Montamos a matriz \(A\) com os resultados:</p> \[ A = [T(\mathbf{e}_1) | T(\mathbf{e}_2)] = \begin{pmatrix} 1/5 & 2/5 \\ 2/5 & 4/5 \end{pmatrix} \] </section>
+					<section data-background-color="#1c1e26" class="quest-reward-section"> <h3><span class="highlight">Recompensa da Quest</span></h3> <ul class="reward-list"> <li>Existem <strong>matrizes padrão</strong> para transformações comuns.</li> <li>Podemos <strong>visualizar o efeito</strong> de uma matriz em um espaço vetorial.</li> <li>A chave para criar qualquer matriz é <strong>transformar os vetores da base canônica</strong>.</li> </ul> </section>
+				</section>
+				<section>
+					<section data-background-color="#1c1e26"> <h2 class="quest-title">Quest 3: Combos de Transformação</h2> <p>Aprendendo a aplicar múltiplos portais em sequência.</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Empilhando Power-ups</div> <h3 class="mechanics-title">Mecânica Principal: Composição</h3> <p>Aplicar \( T_1 \) e depois \( T_2 \) é uma <strong>composição</strong>, com matriz \( A = A_2 A_1 \).</p> <h4 class="highlight">A ordem da multiplicação é o inverso da ordem de aplicação.</h4> </section>
+					<section class="concept-block"> <h3 class="challenge-title">Desafio Avançado</h3> <p>Em \( \mathbb{R}^2 \), reflita um avatar através do eixo y, e em seguida, rotacione 45° no sentido horário. Qual a matriz única para essa operação?</p> </section>
+					<section class="concept-block"> <h3 class="strategy-title">Guia de Estratégia</h3> <p>1. <strong>\(A_1\) (Reflexão em Y):</strong> \( \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \) </p> <p>2. <strong>\(A_2\) (Rotação -45°):</strong> \( \begin{pmatrix} \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \\ -\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \) </p> <p>3. <strong>\( A = A_2 A_1 \):</strong> \( \begin{pmatrix} -\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \) </p> </section>
+					<section data-background-color="#1c1e26" class="quest-reward-section"> <h3><span class="highlight">Recompensa da Quest</span></h3> <ul class="reward-list"><li><strong>Composição</strong> de transformações é a <strong>multiplicação de suas matrizes</strong> na ordem inversa.</li></ul> </section>
+				</section>
+				<section>
+					<section data-background-color="#1c1e26"> <h2 class="quest-title">Quest 4: Desfazendo a Magia</h2> <p>Quando é possível inverter uma transformação?</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Portais de Mão Única?</div> <h3 class="mechanics-title">Mecânica Principal: Um-para-Um</h3> <p>Uma transformação é <strong>um-para-um</strong> se vetores diferentes sempre são levados para vetores diferentes. Ela não "achata" o espaço.</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Portais de Mão Única?</div> <h3 class="rules-title">Regra Especial: O Teste da Invertibilidade</h3> <p>Para uma matriz quadrada \(A\), \(T\) é invertível se, e somente se, <strong class="highlight">\( \det(A) \neq 0 \)</strong>.</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Portais de Mão Única?</div> <h3 class="mechanics-title">Mecânica Principal: A Transformação Inversa</h3> <p>Se \( T(\mathbf{x}) = A\mathbf{x} \) é invertível, sua inversa \( T^{-1}(\mathbf{w}) = A^{-1}\mathbf{w} \) desfaz a ação.</p> </section>
+					<section data-background-color="#1c1e26" class="quest-reward-section"> <h3><span class="highlight">Recompensa da Quest</span></h3> <ul class="reward-list"><li>Uma transformação é <strong>invertível</strong> se for <strong>um-para-um</strong>, o que ocorre quando \( \det(A) \neq 0 \).</li> <li>A inversa \(T^{-1}\) é representada pela matriz \(A^{-1}\).</li></ul> </section>
+				</section>
+				<section>
+					<section data-background-color="#1c1e26"> <h2 class="quest-title">Quest 5: Desafios do Mestre do Jogo</h2> <p>Aplique seu conhecimento para deduzir novas matrizes de transformação.</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Teste Final de Habilidade</div> <h3 class="challenge-title">Desafio Avançado</h3> <p>Usando o método de transformar os vetores da base canônica, deduza a matriz padrão para uma rotação de um ângulo \( \theta \) em \( \mathbb{R}^2 \).</p> <p class="hint">(Dica: o que acontece com \( \mathbf{e}_1 = (1,0) \) e \( \mathbf{e}_2 = (0,1) \) quando rotacionados por \( \theta \)? Use trigonometria.)</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Teste Final de Habilidade</div> <h3 class="challenge-title">Desafio Avançado</h3> <p>Encontre a matriz padrão em \( \mathbb{R}^3 \) para a transformação que rotaciona um vetor em torno do eixo z por um ângulo \( \theta \) (sentido anti-horário).</p> <p class="hint">(Dica: O que acontece com \( \mathbf{e}_1, \mathbf{e}_2 \) e \( \mathbf{e}_3 \)? Um deles permanece fixo.)</p> </section>
+					<section class="concept-block"> <div class="slide-header">Bloco Conceitual: Teste Final de Habilidade</div> <h3 class="challenge-title">Desafio Avançado</h3> <p>Encontre a matriz padrão em \( \mathbb{R}^3 \) para a transformação que reflete um vetor através do plano xy.</p> <p class="hint">(Dica: Imagine um ponto (x, y, z). Onde ele vai parar após a reflexão? Qual coordenada muda de sinal?)</p> </section>
+					<section data-background-color="#1c1e26" class="quest-reward-section"> <h3><span class="highlight">Recompensa da Fase</span></h3> <ul class="reward-list"> <li>Dominamos a <strong>Mecânica das Transformações Lineares</strong> como funções \(T(\mathbf{x}) = A\mathbf{x}\).</li> <li>Aprendemos a construir <strong>qualquer matriz</strong> transformando os vetores da base canônica.</li> <li>Entendemos como <strong>combinar</strong> (composição) e <strong>inverter</strong> transformações.</li> <li>Agora estamos prontos para explorar espaços mais abstratos!</li> </ul> </section>
+				</section>
+				
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealMath.KaTeX, RevealHighlight ],
+				katex: {
+					// Configurações do KaTeX, se necessário
+				}
+			});
+		</script>
+	</body>
+</html>

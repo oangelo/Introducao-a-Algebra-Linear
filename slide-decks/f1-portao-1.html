@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portão 1 · Sistemas e Matrizes</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="f1-portao-1.css">
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================ -->
+<!-- 1 · CAPA                                                      -->
+<!-- ============================================================ -->
+<section data-tela="1" data-bloco="capa" data-h="0" data-v="0">
+  <span class="hud">P1 · capa · chaves <b class="apagado">0/6</b></span>
+  <h1>Portão 1</h1>
+  <h2>Sistemas e Matrizes</h2>
+  <p class="missao">Três depoimentos, ninguém viu tudo. O que satisfaz os três ao mesmo tempo?</p>
+  <div class="fechadura">
+    <span class="furo"></span><span class="furo"></span><span class="furo"></span>
+    <span class="furo"></span><span class="furo"></span><span class="furo"></span>
+  </div>
+  <button class="retomar" type="button" aria-label="retomar de onde parou"></button>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2 · CENA                                                      -->
+<!-- ============================================================ -->
+<section data-tela="2" data-bloco="cena" data-h="1" data-v="0">
+  <span class="hud">P1 · cena · chaves <b class="apagado">0/6</b></span>
+  <img class="cena" src="img/f1-02.png" alt="Sala de interrogatório à noite: lâmpada baixa sobre a mesa, três pastas abertas em leque, uma cadeira vazia do outro lado, persiana ao fundo cortando o ar em faixas, um detetive de chapéu de costas, sem rosto.">
+  <p class="cena-frase">três depoimentos.<br>ninguém viu tudo.</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3 · DICA DE CARREGAMENTO                                      -->
+<!-- ============================================================ -->
+<section data-tela="3" data-bloco="dica" data-h="2" data-v="0">
+  <span class="hud">P1 · dica · chaves <b class="apagado">0/6</b></span>
+  <img class="cena" src="img/f1-02.png" alt="A mesma sala de interrogatório, escurecida, com as três pastas sobre a mesa.">
+  <div class="veu"></div>
+  <p class="veu-texto">Atenção vem antes de calibração. Vinte minutos de caminhada antes de sentar mudam o que você consegue notar.</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4 · MAPA                                                      -->
+<!-- ============================================================ -->
+<section data-tela="4" data-bloco="mapa" data-h="3" data-v="0">
+  <span class="hud">P1 · onde estamos · chaves <b class="apagado">0/6</b></span>
+  <span class="rot">quatro blocos, uma fase</span>
+  <div class="blocos">
+    <div class="bloco-cx on">1 · sistema</div>
+    <div class="bloco-cx">2 · escada</div>
+    <div class="bloco-cx">3 · matriz</div>
+    <div class="bloco-cx">4 · volta</div>
+  </div>
+  <p class="frase">Nenhum dos quatro é uma conta longa.</p>
+  <p class="nota">O mapa volta quando você mudar de bloco. Se a aula acabar no meio, é daqui que se retoma.</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- BLOCO 1 · SISTEMA                                             -->
+<!-- ============================================================ -->
+<section>
+
+<section data-tela="5" data-bloco="sistema" data-h="4" data-v="0">
+  <span class="hud">P1 · sistema · chaves <b class="apagado">0/6</b></span>
+  <span class="rot">bloco 1 · o problema</span>
+  <div class="problema">
+    <span class="enunciado">dois pesos, duas leituras. o que satisfaz as duas ao mesmo tempo?</span>
+    <div class="conta">\[ 2x + y = 7 \qquad x - y = 2 \]</div>
+  </div>
+  <p class="nota">Duas retas no plano. A solução é o ponto onde elas se cruzam — <b>se</b> houver.</p>
+</section>
+
+<section data-tela="6" data-bloco="sistema" data-h="4" data-v="1">
+  <span class="hud">P1 · sistema · chaves <b class="apagado">0/6</b></span>
+  <span class="rot">nem sempre há um ponto</span>
+  <div class="casos">
+    <div class="caso">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Duas retas que se cruzam em um ponto">
+        <line class="plano-eixo" x1="10" y1="90" x2="95" y2="90"/>
+        <line class="plano-eixo" x1="10" y1="90" x2="10" y2="5"/>
+        <line class="plano-reta" x1="10" y1="60" x2="90" y2="20"/>
+        <line class="plano-reta2" x1="10" y1="80" x2="90" y2="10"/>
+        <circle class="plano-ponto" cx="63" cy="33" r="4"/>
+      </svg>
+      <span class="legenda"><b>uma solução</b>as retas se cruzam em um ponto</span>
+    </div>
+    <div class="caso">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Duas retas paralelas">
+        <line class="plano-eixo" x1="10" y1="90" x2="95" y2="90"/>
+        <line class="plano-eixo" x1="10" y1="90" x2="10" y2="5"/>
+        <line class="plano-reta" x1="10" y1="70" x2="90" y2="30"/>
+        <line class="plano-reta2" x1="10" y1="85" x2="90" y2="45"/>
+      </svg>
+      <span class="legenda"><b>nenhuma</b>mesmo coeficiente, constantes diferentes</span>
+    </div>
+    <div class="caso">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Uma reta; a segunda coincide com ela">
+        <line class="plano-eixo" x1="10" y1="90" x2="95" y2="90"/>
+        <line class="plano-eixo" x1="10" y1="90" x2="10" y2="5"/>
+        <line class="plano-reta" x1="10" y1="70" x2="90" y2="25"/>
+        <line class="plano-reta2" x1="10" y1="70" x2="90" y2="25" stroke-dasharray="6 5"/>
+      </svg>
+      <span class="legenda"><b>infinitas</b>a segunda é a primeira dobrada</span>
+    </div>
+  </div>
+  <p class="nota">Nos três desenhos a conta é curta. O que muda é o <b>desenho</b>, não o esforço.</p>
+</section>
+
+<section data-tela="7" data-bloco="sistema" data-h="4" data-v="2">
+  <span class="hud">P1 · sistema · chaves <b class="apagado">0/6</b></span>
+  <div class="pausa">
+    <p>Qual destes quatro você resolve <em>sem olhar</em>?<br>Qual você evita?</p>
+  </div>
+</section>
+
+<section data-tela="8" data-bloco="sistema" data-h="4" data-v="3">
+  <span class="hud">P1 · sistema · exercício · chaves <b class="apagado">0/6</b></span>
+  <span class="rot">no quadro · lista 1-C</span>
+  <div class="problema">
+    <span class="enunciado">elimine uma variável sem isolar nenhuma das duas.</span>
+    <div class="conta">\[ 3x + 2y = 16 \qquad 5x - 2y = 0 \]</div>
+  </div>
+  <p class="nota">A segunda equação existe para cancelar o \(y\). E quando ela não existir?</p>
+</section>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- BLOCO 2 · ESCADA  (parte escrita por agente 2)                -->
+<!-- ============================================================ -->
+<!--BLOCO-2-->
+
+<!-- ============================================================ -->
+<!-- BLOCO 3 · MATRIZ  (parte escrita por agente 3)                -->
+<!-- ============================================================ -->
+<!--BLOCO-3-->
+
+<!-- ============================================================ -->
+<!-- BLOCO 4 · VOLTA  (parte escrita por agente 4)                 -->
+<!-- ============================================================ -->
+<!--BLOCO-4-->
+
+<!-- ============================================================ -->
+<!-- 23 · CHAVE                                                    -->
+<!-- ============================================================ -->
+<section data-tela="23" data-bloco="chave" data-h="8" data-v="0">
+  <span class="hud">P1 · chave · chaves <b>1/6</b></span>
+  <span class="rot">chave 1 de 6</span>
+  <div class="chave">
+    <div>
+      <p class="frase">O sistema não é uma conta: é uma <em>pergunta</em> feita ao espaço.</p>
+      <p class="nota">Pergunta da fase: <b>o que este sistema faz com o espaço?</b> — a resposta começa no bloco 3 e termina no Portão 5.</p>
+    </div>
+  </div>
+  <div class="fechadura">
+    <span class="furo on"></span><span class="furo"></span><span class="furo"></span>
+    <span class="furo"></span><span class="furo"></span><span class="furo"></span>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+<script src="f1-portao-1.js"></script>
+</body>
+</html>

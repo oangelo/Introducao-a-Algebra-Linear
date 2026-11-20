@@ -1,0 +1,123 @@
+<!-- fonte: f1-matematica.html §1.7 — matriz aumentada: por que só os números -->
+<section class="sec" id="s-1-7">
+  <h2><span class="num">1.7</span>Matriz aumentada</h2>
+
+  <p>Ao resolver um sistema à mão, os nomes das incógnitas são escritos uma vez por equação e
+  depois repetidos em cada linha. Se a eliminação nunca troca o nome de uma incógnita, repetir
+  \(x\), \(y\), \(z\) nove vezes num sistema \(3 \times 3\) é trabalho que não informa nada — e é
+  justamente onde o copista se perde: um sinal trocado na terceira linha, um \(y\) que virou \(z\)
+  na segunda, e a conta segue com dois erros que se cancelam ou com um que não se cancela.</p>
+
+  <p>O que carrega o nome é a <b>coluna</b>. Fixada a ordem das incógnitas — digamos \(x\), \(y\),
+  \(z\) —, a primeira coluna é sempre o coeficiente de \(x\), a segunda o de \(y\), a terceira o de
+  \(z\). A posição basta como rótulo: nenhum número precisa andar acompanhado da letra para que se
+  saiba a que incógnita pertence. Escrever só os coeficientes não é economia de tinta; é reconhecer
+  que a informação "de quem é este coeficiente" já está na posição.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Dado um sistema linear de \(m\) equações e \(n\) incógnitas, a <b>matriz aumentada</b> do
+    sistema é a tabela de \(m\) linhas e \(n+1\) colunas em que a linha \(i\) traz, na ordem fixada
+    das incógnitas, os coeficientes da equação \(i\), e a última coluna traz o termo independente
+    dessa mesma equação. As \(n\) primeiras colunas formam a <b>matriz dos coeficientes</b>; a
+    última é a <b>coluna dos termos independentes</b>. Uma barra vertical separa as duas partes.</p>
+  </div>
+
+  <p>Chamar isso de representação, e não de resumo, é o ponto. Um resumo perde informação; aqui não
+  se perde nada. Com a ordem das incógnitas declarada, a passagem do sistema para a matriz é
+  reversível: cada linha da matriz volta a ser exatamente uma equação, com cada coeficiente no lugar
+  em que estava. A correspondência vai nos dois sentidos e é um-a-um — um sistema, com a ordem das
+  incógnitas declarada, determina uma única matriz aumentada, e uma matriz aumentada vem de um
+  único sistema. Só duas coisas precisam estar claras para que não haja ambiguidade: a ordem das
+  colunas e o lado da barra em que está cada número.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O sistema do exemplo B1, com a matriz aumentada ao lado. Ordem das colunas: \(x\), \(y\),
+    \(z\), e depois os termos independentes.</p>
+    <pre class="conta"> x +  y +  z = 6      [  1   1   1 |  6 ]
+2x -  y +  z = 3      [  2  -1   1 |  3 ]
+ x + 2y -  z = 2      [  1   2  -1 |  2 ]</pre>
+    <p>A leitura de volta é literal: a segunda linha da matriz diz \(2x - y + z = 3\), e nada além
+    disso; a terceira diz \(x + 2y - z = 2\). Se as duas leituras coincidem com o sistema escrito, a
+    transcrição está certa; se uma delas não coincide, o erro está na transcrição, e não no sistema.
+    Três linhas e quatro colunas: a matriz é \(3 \times 4\), e a dos coeficientes é \(3 \times 3\).</p>
+    <p>O mesmo com o B2, em que a primeira equação não tem \(x\). O coeficiente zero é escrito, e a
+    coluna de \(x\) continua sendo a primeira das três.</p>
+    <pre class="conta">    y +  z = 5        [  0   1   1 |  5 ]
+ x +  y +  z = 6      [  1   1   1 |  6 ]
+ x + 2y -  z = 2      [  1   2  -1 |  2 ]</pre>
+    <p>Sem o zero, a primeira linha teria três números em vez de quatro e a matriz deixaria de ser
+    \(3 \times 4\): a coluna de \(z\) escorregaria para a posição de \(y\), e o sistema representado
+    passaria a ser outro, com outra solução.</p>
+  </div>
+
+  <p>Note o que a matriz não guarda: os sinais de soma e igualdade, os nomes das incógnitas, a
+  ordem em que as equações aparecem. Nada disso é necessário. Os sinais são reconstruídos pela
+  regra "coeficiente vezes incógnita, somando"; os nomes vêm da ordem das colunas; e a ordem das
+  equações — isto é, das linhas — pode mudar livremente, porque trocar duas equações de lugar não
+  troca o conjunto de pontos que satisfaz todas. Essa liberdade sobre as linhas, negada às colunas,
+  é a base de todo o método.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> A barra vertical não é sinal de igual nem operação alguma: é separador.
+    Ela marca a posição em que o "\(=\)" estaria se a linha fosse escrita como equação. Serve para
+    que o leitor não confunda coeficiente com termo independente — e só. Nenhum número atravessa a
+    barra em conta nenhuma; o que se move é a linha inteira, dos dois lados dela.</p>
+  </div>
+
+  <p>Vale contar colunas como conferência. Uma matriz com \(m\) linhas e \(n+1\) colunas veio de um
+  sistema de \(m\) equações e \(n\) incógnitas; um sistema de três incógnitas gera quatro colunas,
+  nem mais nem menos. Se aparecer uma quinta, a transcrição está errada. O mesmo vale para o número
+  de linhas: equações e linhas se correspondem uma a uma, e a contagem não muda ao passar de um
+  lado para o outro.</p>
+
+  <p>A matriz dos coeficientes, sozinha, não é um sistema: sem a coluna dos termos independentes
+  não há igualdade nenhuma a satisfazer. Dois sistemas diferentes podem ter a mesma matriz de
+  coeficientes e diferir apenas no último termo de cada linha — e é exatamente o que a barra deixa
+  visível. Ela impede que o número à direita do \(=\) seja somado como se fosse coeficiente de
+  alguma incógnita, erro que a forma de equação não deixa acontecer e a forma de matriz deixa.</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> A ordem das colunas não está escrita em lugar nenhum da matriz. Por isso
+    a primeira linha da folha de conta traz, em geral, a ordem adotada: "colunas: \(x\), \(y\),
+    \(z\), termos independentes". É uma anotação de uma linha, e é a única informação de que um
+    leitor de fora precisa para reconstruir o sistema a partir da matriz.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>A ordem das colunas é parte da matriz, não uma escolha de apresentação. Trocar duas colunas
+    — mesmo "só para ver melhor" — troca os nomes de duas incógnitas e produz um sistema diferente.
+    A regra é simples: lê-se da esquerda para a direita, na ordem declarada no início, e essa ordem
+    não se altera até o fim do problema.</p>
+  </div>
+
+  <p>A ordem das colunas não precisa ser alfabética; precisa ser fixa. Adotar \(z\), \(x\), \(y\)
+  nessa sequência é legítimo, desde que a escolha seja declarada antes da primeira conta e mantida
+  até o fim. O que a matriz não tolera é ordem variável no meio do caminho: se a segunda coluna é
+  \(y\) nas duas primeiras linhas e \(z\) na terceira, a tabela deixou de representar um sistema
+  linear e passou a representar nada.</p>
+
+  <p>Na escrita à mão, a matriz aumentada costuma ser denotada por \([A \mid b]\), com \(A\)
+  nomeando a matriz dos coeficientes e \(b\) a coluna dos termos independentes. A notação será útil
+  mais adiante, quando for preciso falar de \(A\) e de \(b\) separadamente; por enquanto, o que
+  importa é que a barra é a fronteira entre aquilo que multiplica incógnitas e aquilo que sobra do
+  outro lado da igualdade.</p>
+
+  <p>A consequência prática disso é de disciplina, não de álgebra. Escrita a matriz, não se volta à
+  forma de equação no meio do processo. Quem reescreve as equações para "conferir" costuma
+  reintroduzir na matriz o coeficiente que já havia sido zerado, e o trabalho anterior se perde: a
+  conferência desfaz o que a conta fez. O registro fica todo em linhas, e cada operação é anotada
+  ao lado da linha que ela altera, como detalha a seção <a class="ref" href="#s-1-10">1.10</a>.</p>
+
+  <p>Abreviar tem um preço, e vale dizer qual é. A matriz não mostra, por si, quantas incógnitas
+  ficaram livres nem se o sistema é impossível: essas leituras dependem da forma que a matriz
+  assume depois de trabalhada, não da matriz inicial. O que a abreviação garante é mais modesto e
+  mais útil — que nada do sistema se perdeu no caminho, e que a conta pode ser feita só com
+  números, sem que o significado de cada coluna saia do lugar.</p>
+
+  <p>Com o sistema reduzido a uma tabela de números, o problema muda de forma: já não se pergunta
+  "que equações são estas", e sim "que movimentos nesta tabela preservam a solução". São três, e
+  todas têm a mesma propriedade — podem ser desfeitas (ver <a class="ref" href="#s-1-8">1.8</a>).</p>
+</section>

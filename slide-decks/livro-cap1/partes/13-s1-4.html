@@ -1,0 +1,121 @@
+<!-- fonte: f1-matematica.html §1.4 -->
+<section class="sec" id="s-1-4">
+  <h2><span class="num">1.4</span>Por que desenhar não escala</h2>
+
+  <p>Com duas variáveis, o desenho resolve. Uma reta por equação, duas retas na mesma folha, e o
+  ponto onde elas se cruzam está ali, à vista. Com três variáveis, cada equação linear descreve um
+  <b>plano</b> no espaço, e a interseção de dois planos é, em geral, uma reta; a de três planos é,
+  em geral, um ponto. Já não é fácil de enxergar: o plano do papel obriga a projetar, e a projeção
+  comprime justamente a direção que decidiria a resposta. Com quatro variáveis não existe desenho
+  nenhum — e o curso trabalha com quatro, com cinco, com \(n\).</p>
+
+  <p>O problema não é falta de habilidade com o lápis. É que o desenho tem uma dimensão de folha e o
+  problema tem \(n\). Desenhar \(\mathbb{R}^3\) já é desenhar uma sombra de \(\mathbb{R}^3\); a
+  sombra não guarda a informação de profundidade, e é essa informação que separa "os planos se
+  encontram num ponto" de "os planos se encontram numa reta inteira" e de "não se encontram". Quem
+  decide a resposta olhando a figura está lendo uma sombra e chamando aquilo de objeto. E a sombra
+  não é só pobre: ela é seletiva, porque o olho completa o que a projeção deformou. E não há saída
+  tecnológica: a tela também é plana, e um desenho tridimensional numa tela é a mesma projeção com
+  mais recursos de cor.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>Em \(\mathbb{R}^3\), a equação \(ax + by + cz = d\), com \((a, b, c) \neq (0, 0, 0)\),
+    descreve um <b>plano</b>. A trinca \((a, b, c)\) é a direção perpendicular ao plano — a normal —
+    e \(d\) escolhe, entre os planos paralelos de mesma normal, qual é este. A estrutura é a mesma da
+    reta em \(\mathbb{R}^2\): uma direção normal e uma constante que desloca.</p>
+    <p>A diferença é o que se perde de vista. A reta é um objeto de uma dimensão dentro de duas; o
+    plano é um objeto de duas dimensões dentro de três. Desenhar o primeiro exige um plano de papel;
+    desenhar o segundo já exige representar dois objetos de dimensões diferentes no mesmo plano de
+    papel, e é aí que a figura começa a mentir.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O que cada dimensão pede, em termos do que se pode desenhar:</p>
+    <pre class="conta">2 incógnitas   reta no plano          desenha-se
+3 incógnitas   plano no espaço        desenha-se mal
+4 incógnitas   —                     não há onde desenhar
+n incógnitas   —                     não há onde desenhar</pre>
+    <p>Repare que a terceira linha já não é uma questão de esforço: em \(\mathbb{R}^4\) o
+    conjunto-solução de uma equação é um objeto de três dimensões dentro de um espaço de quatro, e
+    não existe superfície de papel — nem tela — em que isso caiba sem perder o que interessa.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>O caso em que a figura engana sem má-fé. Compare dois sistemas: \(x + y = 3\) com
+    \(x + y = 3\), e \(x + y = 3\) com \(x + y = 3{,}001\). No papel, com qualquer espessura de
+    traço, as retas de um e de outro são a mesma linha. As respostas, porém, são opostas: o primeiro
+    tem infinitas soluções, porque é a mesma equação escrita duas vezes; o segundo não tem nenhuma,
+    porque \(3 \neq 3{,}001\).</p>
+    <p>A diferença não é pequena, é total — e está inteira numa casa decimal que a figura não
+    distingue. O mesmo vale em \(\mathbb{R}^3\): três planos que se cruzam num ponto e três planos
+    que se cruzam numa reta comum desenham-se igual, e respondem "uma solução" e "infinitas". O que
+    separa os casos é sempre um número, nunca uma inclinação percebida a olho.</p>
+  </div>
+
+  <p>Isso não significa jogar a geometria fora. Ela continua valendo, e continua sendo o melhor
+  lugar para <b>conferir</b>: em \(\mathbb{R}^2\), depois de resolver o sistema por conta, desenhar
+  as duas retas e verificar que o par obtido está sobre as duas é uma checagem rápida e severa —
+  se o ponto não estiver na figura, a conta está errada, e não há como discutir. A conferência
+  funciona porque o desenho é independente da álgebra: dois caminhos diferentes para o mesmo
+  resultado. Vale a pena manter esse hábito enquanto ele é barato, e ele é barato só enquanto o
+  sistema tem duas incógnitas.</p>
+
+  <p>O que a geometria deixa de ser é <b>método</b>. Método é o que se aplica sempre, inclusive
+  quando não há figura; e a figura só existe em duas dimensões. A partir daqui, o caminho é
+  algébrico: guardar apenas os coeficientes, na forma de uma matriz, e aplicar sobre eles operações
+  que <b>não mudam o conjunto-solução</b>. Como essas operações são reversíveis, o conjunto do começo
+  e o do fim são o mesmo — e o do fim, por estar numa forma organizada, deixa ler a resposta
+  (ver <a class="ref" href="#s-1-8">1.8</a>). Repare no que esse argumento tem de diferente do
+  desenho: ele não depende de o problema caber em lugar nenhum. Depende apenas de que as operações
+  possam ser desfeitas, e desfazer uma conta é sempre possível, em qualquer dimensão.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>As três respostas, em \(\mathbb{R}^3\), descritas pela posição dos planos:</p>
+    <pre class="conta">um ponto comum     três planos que se cortam num ponto      uma solução
+uma reta comum     três planos em torno da mesma reta        infinitas
+nenhum ponto       dois planos paralelos e distintos         nenhuma</pre>
+    <p>A lista é a mesma da seção anterior, com planos no lugar de retas — e vai continuar sendo a
+    mesma em qualquer dimensão. O que muda de uma dimensão para outra é o nome do objeto que se
+    cruza; o que não muda é a contagem: nenhuma, uma, ou infinitas.</p>
+  </div>
+
+  <p>É por isso que a matriz existe, e é bom dizê-lo sem rodeio: ela não é uma notação mais compacta
+  para economizar giz. A matriz é o desenho que sobrevive quando não dá mais para desenhar — mesma
+  informação de antes, sem a exigência de caber numa folha. As colunas guardam as incógnitas, as
+  linhas guardam as equações, e a ordem das duas coisas continua dizendo o que dizia no desenho
+  (ver <a class="ref" href="#s-1-7">1.7</a>).</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>A armadilha é confiar no desenho justamente onde ele é mais convincente. Duas retas quase
+    paralelas: no papel elas parecem se cruzar num ponto, ou parecem não se cruzar nunca, e a
+    diferença entre as duas leituras é a diferença entre um sistema com solução única e um sistema
+    impossível. Três planos desenhados em perspectiva podem parecer convergir para um ponto quando
+    não têm ponto comum algum.</p>
+    <p>A regra prática que sai disso: o desenho pode confirmar, nunca decidir. Quando a figura e a
+    conta discordam, a conta está errada <i>ou</i> a figura está mal feita — e as duas hipóteses
+    precisam ser checadas, porque o desenho não tem autoridade para encerrar a questão.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Há um custo real em abandonar a figura, e ele é honesto: perde-se a
+    intuição imediata de "quantas soluções". Em compensação, ganha-se um critério que não depende de
+    escala — e é o critério que vale em \(\mathbb{R}^{10}\). O que a álgebra faz é substituir a
+    pergunta "quantos pontos se veem" pela pergunta "quantas colunas ficaram sem pivô", que se
+    responde contando (ver <a class="ref" href="#s-1-12">1.12</a>).</p>
+    <p>Não se trata de um caso exótico reservado a quem faz pós-graduação. Um problema com quatro
+    incógnitas aparece em qualquer balanço de massa, de corrente ou de custo com quatro parcelas, e
+    ninguém desenha nada para resolvê-lo: aplica-se a mesma sequência de operações que se aplicaria
+    a duas, com quatro colunas em vez de duas.</p>
+  </div>
+
+  <p>Resta então a tarefa que o desenho fazia sozinho: dizer, sem figura, o que é um sistema e o que
+  é a sua solução. Isso exige uma definição que não apele para interseção de retas nem para ponto
+  onde as linhas se cruzam — só para equações, incógnitas e o pertencer a um conjunto. É o que
+  permite, adiante, tratar do mesmo jeito um sistema de duas equações e um de sete, e é a razão de o
+  capítulo trocar a figura pela definição: <a class="ref" href="#s-1-5">1.5</a>.</p>
+</section>

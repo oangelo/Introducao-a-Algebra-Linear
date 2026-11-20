@@ -1,0 +1,122 @@
+<!-- fonte: f1-matematica.html — fichas A1, A2 e A3 da parte 2 (2×2) -->
+<section class="sec" id="s-1-13">
+  <h2><span class="num">1.13</span>Exemplos resolvidos: sistemas 2×2</h2>
+
+  <p>O método já está inteiro: matriz aumentada, escolha de pivô, operações elementares, forma
+  escalonada, leitura. Falta vê-lo trabalhar do enunciado até a conferência, num sistema completo.
+  Os três exemplos desta seção são 2×2 e cobrem, um de cada vez, as três respostas possíveis: uma
+  solução, nenhuma solução e infinitas soluções.</p>
+
+  <p>Em todos eles o procedimento é o mesmo: escrever a matriz aumentada, tomar o pivô da primeira
+  coluna, zerar o que está abaixo dele, repetir na coluna seguinte e voltar substituindo. Quando a
+  coluna oferece um \(1\) ou um \(-1\), é ele que vira pivô — não porque seja obrigatório, mas
+  porque poupa divisões e, com elas, erros de fração.</p>
+
+  <p>Duas convenções valem para os três exemplos. A matriz aumentada guarda apenas os coeficientes e
+  os termos independentes, e a barra vertical marca onde começa o lado direito. As linhas são citadas
+  como \(R_1\), \(R_2\), \(R_3\) na ordem em que estão na matriz — ordem que muda quando há troca, e
+  que é preciso acompanhar para não zerar a entrada errada.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Resolver o sistema \(2x + y = 7\), \(x - y = 2\).</p>
+    <pre class="conta"> 2   1 |  7
+ 1  -1 |  2</pre>
+    <ol class="passos">
+      <li>O \(1\) da primeira coluna está na segunda linha, não na primeira. Trocar as duas linhas
+      coloca o pivô no lugar sem alterar o conjunto-solução: \(R_1 \leftrightarrow R_2\).</li>
+      <li>Zerar a entrada abaixo do pivô: \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a
+      \((0;\ 3 \mid 3)\), que é a equação \(3y = 3\).</li>
+      <li>Normalizar o pivô: \(R_2 \leftarrow R_2/3\), e a linha diz \(y = 1\).</li>
+      <li>Voltar substituindo na primeira linha: \(x - y = 2\), \(x - 1 = 2\), \(x = 3\).</li>
+    </ol>
+    <pre class="conta"> 1  -1 |  2
+ 0   1 |  1</pre>
+    <p>Resultado: <b>\((x; y) = (3; 1)\)</b>.</p>
+    <p>A segunda matriz já está escalonada e com os pivôs normalizados em \(1\): a última linha entrega
+    \(y\) sem conta, e a primeira só precisa da substituição. Ler a forma antes de continuar a
+    eliminação poupa trabalho — não há nada a fazer abaixo do segundo pivô.</p>
+    <p>Conferência nas equações originais: \(2 \cdot 3 + 1 = 7\) e \(3 - 1 = 2\). As duas fecham, e
+    é isso que faz do par uma solução do sistema, não apenas da primeira equação.</p>
+    <p>Este é o caso de <b>uma solução</b>: dois pivôs para duas incógnitas, nenhuma coluna sem
+    pivô, um único par ordenado.</p>
+  </div>
+
+  <p>O exemplo seguinte tem a mesma forma e uma diferença que costuma passar por erro de conta. Vale
+  acompanhar a eliminação até o fim antes de decidir o que aconteceu.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Resolver o sistema \(x + y = 3\), \(2x + 2y = 7\).</p>
+    <pre class="conta"> 1   1 |  3
+ 2   2 |  7</pre>
+    <ol class="passos">
+      <li>O pivô já é \(1\), na primeira linha e primeira coluna: nada a escolher.</li>
+      <li>Zerar o \(2\) abaixo dele: \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a
+      \((0;\ 0 \mid 1)\).</li>
+      <li>A linha é \(0x + 0y = 1\), isto é, \(0 = 1\). Nenhum par de números reais satisfaz essa
+      igualdade, e a contradição não depende de \(x\) nem de \(y\).</li>
+    </ol>
+    <pre class="conta"> 1   1 |  3
+ 0   0 |  1</pre>
+    <p>Resultado: <b>conjunto-solução vazio</b> — o sistema é impossível.</p>
+    <p>Conferência sem matriz: a segunda equação é \(2(x + y) = 7\), e a primeira garante
+    \(x + y = 3\), de onde \(2(x + y) = 6\). O mesmo lado esquerdo não pode valer \(6\) e \(7\) ao
+    mesmo tempo.</p>
+    <p>Lendo as duas equações como retas, a primeira é \(y = 3 - x\) e a segunda é
+    \(y = 3{,}5 - x\): mesmo coeficiente angular, alturas diferentes. As retas são paralelas e não
+    se cruzam em nenhum ponto. A linha \(0 = 1\) é a versão algébrica desse desenho, e chega sem
+    depender de escala.</p>
+    <p>Este é o caso <b>sem solução</b>: uma linha toda zero com constante diferente de zero
+    encerra o problema na hora. Nenhuma operação elementar posterior desfaz essa contradição,
+    porque todas preservam o conjunto-solução.</p>
+  </div>
+
+  <p>Quando a segunda linha desaparece sem contradizer nada, a resposta muda de natureza: não há um
+  ponto a encontrar, há uma família deles.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 3</span>
+    <p>Resolver o sistema \(x + y = 3\), \(2x + 2y = 6\).</p>
+    <pre class="conta"> 1   1 |  3
+ 2   2 |  6</pre>
+    <ol class="passos">
+      <li>O pivô já é \(1\), na primeira linha e primeira coluna.</li>
+      <li>Zerar o \(2\) abaixo dele: \(R_2 \leftarrow R_2 - 2R_1\). A segunda linha passa a
+      \((0;\ 0 \mid 0)\), que é \(0 = 0\).</li>
+      <li>A linha não impõe restrição alguma: ela sai do sistema. Sobra uma equação,
+      \(x + y = 3\), para duas incógnitas.</li>
+      <li>A coluna de \(y\) está sem pivô, então \(y\) é livre: \(y = t\). Resolver para \(x\) na
+      equação que sobrou: \(x = 3 - t\).</li>
+    </ol>
+    <pre class="conta"> 1   1 |  3
+ 0   0 |  0</pre>
+    <p>Resultado: <b>\(\{(3 - t;\ t) : t \in \mathbb{R}\}\)</b> — infinitas soluções, uma para cada
+    valor real de \(t\).</p>
+    <p>Conferência nas equações originais, com \(t\) qualquer: \(x + y = (3 - t) + t = 3\) e
+    \(2x + 2y = 2(3 - t) + 2t = 6\). Para \(t = 0\) sai \((3; 0)\); para \(t = 1\) sai \((2; 1)\).
+    Os dois pares resolvem o sistema.</p>
+    <p>Este é o caso com <b>infinitas soluções</b>: a linha \(0 = 0\) não é erro de conta, é o
+    registro de que a segunda equação repete a primeira. Há menos pivôs que incógnitas, e cada
+    coluna sem pivô custa um parâmetro.</p>
+  </div>
+
+  <div class="obs">
+    <b>Observação.</b> A resposta \((3 - t;\ t)\) não é uma solução inacabada: é a lista completa dos
+    pares. Testar dois valores de \(t\) é o modo mais rápido de conferir uma família — se um deles
+    falhasse, a parametrização estaria errada. E a variável livre é declarada pela coluna que ficou
+    sem pivô, não pela posição no fim da matriz.
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>\(0 = 0\) e \(0 = 1\) parecem o mesmo tipo de linha e dizem coisas opostas. A primeira é uma
+    equação que sempre vale — ela não elimina nenhuma solução. A segunda nunca vale — ela elimina
+    todas. Confundir as duas troca "infinitas soluções" por "nenhuma", que é o erro mais caro desta
+    seção.</p>
+  </div>
+
+  <p>Os três casos aparecem na mesma ordem em qualquer tamanho de sistema. O que muda no 3×3 é o
+  número de degraus da escada e a frequência com que a troca de linhas precisa acontecer já na
+  primeira coluna — é o que os exemplos da <a class="ref" href="#s-1-14">1.14</a> mostram.</p>
+</section>

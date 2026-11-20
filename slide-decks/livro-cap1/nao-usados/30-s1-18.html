@@ -1,0 +1,249 @@
+<!-- fonte: exercicios/capitulo-1/sistemas-lineares.html, eliminacao-gaussiana.html,
+     propriedades-matriciais.html, matrizes-inversas.html — enunciados e gabaritos transcritos,
+     sem exercício novo e sem número trocado. -->
+<section class="sec" id="s-1-18">
+  <h2><span class="num">1.18</span>Exercícios</h2>
+
+  <p>As seções anteriores resolveram exemplos; esta propõe exercícios. Todos vêm dos quatro
+  arquivos de exercícios do capítulo e estão agrupados pelo assunto que treinam: o conjunto-solução,
+  a eliminação, as operações com matrizes e a matriz inversa. Nenhum número foi trocado, e o
+  enunciado de cada um é o do arquivo original.</p>
+
+  <p>Cada exercício tem um gabarito recolhido, com a resposta e o passo que a decide — não a conta
+  inteira. Resolva no papel antes de abrir: o gabarito serve para conferir onde a conta virou, não
+  para substituir a conta.</p>
+
+  <h3>Sistemas e conjunto-solução</h3>
+
+  <p>Os seis primeiros cobrem as três respostas de <a class="ref" href="#s-1-6">1.6</a>: uma
+  solução, nenhuma, infinitas. Em todos, verificar é substituir.</p>
+
+  <div class="ex"><span class="titulo">Exercício 1</span>
+    <p>Verifique se o par \((x; y) = (3; 1)\) resolve o sistema</p>
+    \[ \begin{cases} 2x + y = 7 \\ x - y = 2 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Primeira equação: \(2 \cdot 3 + 1 = 7\). Segunda: \(3 - 1 = 2\). As duas fecham, então o par
+      é solução; uma só que falhasse bastaria para recusá-lo.</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 2</span>
+    <p>A soma de dois números \(a\) e \(d\) é 10; a diferença \(a - d\) é 4. Determine os dois.</p>
+    \[ \begin{cases} a + d = 10 \\ a - d = 4 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Os coeficientes de \(d\) são opostos: somando, \(2a = 14\) e \(a = 7\). Voltar em
+      \(a + d = 10\) dá \(d = 3\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 3</span>
+    <p>Duas unidades de \(f\) e três de \(t\) custam 13 créditos; uma de cada custa 5. Qual é o custo
+    de cada uma?</p>
+    \[ \begin{cases} 2f + 3t = 13 \\ f + t = 5 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Da segunda, \(f = 5 - t\). Na primeira: \(2(5 - t) + 3t = 13\), isto é, \(t = 3\) e
+      \(f = 2\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 4</span>
+    <p>Três números \(x\), \(y\) e \(z\) somam 9; o primeiro é igual ao terceiro; e a soma dos dois
+    primeiros é 5.</p>
+    \[ \begin{cases} x + y + z = 9 \\ x = z \\ x + y = 5 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Substituir \(x + y = 5\) na primeira equação dá \(z = 4\). Como \(x = z\), \(x = 4\), e
+      \(y = 1\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 5</span>
+    <p>Mostre que o sistema não tem solução.</p>
+    \[ \begin{cases} x - 2y = 4 \\ 2x - 4y = 10 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Multiplicando a primeira por \(-2\) e somando à segunda, os membros esquerdos se cancelam e
+      sobra \(0 = 2\). A contradição não depende do par \((x; y)\): nenhum resolve as duas.</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 6</span>
+    <p>Mostre que as duas equações descrevem a mesma reta e escreva o conjunto-solução.</p>
+    \[ \begin{cases} x + 3y = 6 \\ 2x + 6y = 12 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>A segunda é o dobro da primeira; a eliminação produz \(0 = 0\), e não contradição. Com
+      \(y = t\), \(x = 6 - 3t\): o conjunto-solução é a reta inteira.</p>
+    </details>
+  </div>
+  <h3>Eliminação e forma escalonada</h3>
+
+  <p>Os sete seguintes pedem a matriz aumentada e a forma escalonada de
+  <a class="ref" href="#s-1-9">1.9</a>: a operação declarada antes de ser executada, e a leitura do
+  resultado pela última linha.</p>
+
+  <div class="ex"><span class="titulo">Exercício 7</span>
+    <p>Monte a matriz aumentada e execute uma única operação de eliminação.</p>
+    \[ \begin{cases} 2v + a = 8 \\ v + 2a = 7 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Com \(L_2 \leftarrow 2L_2 - L_1\), a segunda linha fica \(3a = 6\), logo \(a = 2\); da
+      primeira, \(2v = 6\) e \(v = 3\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 8</span>
+    <p>Um cliente compra 3 unidades de \(e\) e 2 de \(s\) por 120; outro compra 4 de \(e\) e 3 de
+    \(s\) por 170. Qual é o preço de cada uma?</p>
+    \[ \begin{cases} 3e + 2s = 120 \\ 4e + 3s = 170 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(L_2 \leftarrow 3L_2 - 4L_1\) zera a primeira coluna da segunda linha e deixa \(s = 30\).
+      De \(3e + 60 = 120\) sai \(e = 20\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 9</span>
+    <p>Resolva o sistema, decidindo antes qual linha deve ser o pivô.</p>
+    \[ \begin{cases} 2y = 6 \\ x + 3y = 7 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>O elemento \((1,1)\) é zero, então \(L_1 \leftrightarrow L_2\) é o primeiro passo e a matriz
+      já sai escalonada. Da segunda linha, \(y = 3\); da primeira, \(x + 9 = 7\) e \(x = -2\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 10</span>
+    <p>Três componentes \(R\), \(G\) e \(B\) de uma cor satisfazem</p>
+    \[ \begin{cases} R + G + B = 10 \\ 2R - G + B = 7 \\ R + 2G - B = 5 \end{cases} \]
+    <p>Determine as três por eliminação.</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(L_2 \leftarrow L_2 - 2L_1\) dá \(-3G - B = -13\); \(L_3 \leftarrow L_3 - L_1\) dá
+      \(G - 2B = -5\). Da segunda, \(G = 2B - 5\); na primeira, \(7B = 28\): \(B = 4\), \(G = 3\),
+      \(R = 3\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 11</span>
+    <p>Três quantidades \(x\), \(y\) e \(z\) satisfazem</p>
+    \[ \begin{cases} x + 2y + 3z = 14 \\ 2x + 5y + 8z = 36 \\ -x + y + 2z = 8 \end{cases} \]
+    <p>Resolva por eliminação.</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(L_2 \leftarrow L_2 - 2L_1\) deixa \(y + 2z = 8\); \(L_3 \leftarrow L_3 + L_1\) deixa
+      \(3y + 5z = 22\). Com \(y = 8 - 2z\): \(z = 2\), \(y = 4\), \(x = 0\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 12</span>
+    <p>Aplique a eliminação e diga o que a forma escalonada revela.</p>
+    \[ \begin{cases} x + y - z = 5 \\ 2x + 2y - 2z = 12 \\ x - y + z = 1 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(L_2 \leftarrow L_2 - 2L_1\) produz a linha \((0; 0; 0 \mid 2)\), isto é, \(0 = 2\). A
+      contradição fecha o sistema: não há solução, e as outras equações não mudam isso.</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 13</span>
+    <p>Descreva todos os pontos \((x; y; z)\) que satisfazem as duas equações.</p>
+    \[ \begin{cases} x - y + 2z = 4 \\ 2x - y + 5z = 10 \end{cases} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(L_2 \leftarrow L_2 - 2L_1\) deixa \(y + z = 2\). Com \(z = t\), \(y = 2 - t\) e
+      \(x = 4 + y - 2z = 6 - 3t\): uma variável livre, o conjunto-solução é uma reta.</p>
+    </details>
+  </div>
+  <h3>Matrizes</h3>
+
+  <p>Os cinco seguintes treinam o que <a class="ref" href="#s-1-17">1.17</a> estabeleceu: soma
+  entrada por entrada, escalar em todas as entradas, e produto com colunas da primeira iguais a
+  linhas da segunda.</p>
+
+  <div class="ex"><span class="titulo">Exercício 14</span>
+    <p>Dadas \(A = \begin{bmatrix} 1 & 3 \\ 2 & 5 \end{bmatrix}\) e
+    \(B = \begin{bmatrix} 4 & 2 \\ 1 & 7 \end{bmatrix}\), calcule \(A + B\).</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(A + B = \begin{bmatrix} 5 & 5 \\ 3 & 12 \end{bmatrix}\), somando cada entrada com a de
+      mesma posição.</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 15</span>
+    <p>Seja \(C = \begin{bmatrix} 0 & 2 \\ -1 & 3 \end{bmatrix}\) e \(k = 3\). Calcule \(kC\).</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(3C = \begin{bmatrix} 0 & 6 \\ -3 & 9 \end{bmatrix}\). O escalar multiplica todas as
+      entradas; nenhuma fica de fora.</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 16</span>
+    <p>Verifique as dimensões e calcule \(F \times G\), com</p>
+    \[ F = \begin{bmatrix} 1 & 2 & 0 \\ -1 & 3 & 2 \end{bmatrix}, \quad
+       G = \begin{bmatrix} 2 & 1 \\ 0 & 4 \\ 1 & -1 \end{bmatrix} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(F\) é \(2 \times 3\) e \(G\) é \(3 \times 2\): as internas batem e o produto é
+      \(2 \times 2\). Entrada \((1,1)\): \(1 \cdot 2 + 2 \cdot 0 + 0 \cdot 1 = 2\). As demais dão
+      \(9\), \(0\), \(9\), e \(F \times G = \begin{bmatrix} 2 & 9 \\ 0 & 9 \end{bmatrix}\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 17</span>
+    <p>É possível calcular \(H + K\) ou \(H - K\)? Justifique, com</p>
+    \[ H = \begin{bmatrix} 3 & -1 \\ 2 & 4 \\ 1 & 0 \end{bmatrix}, \quad
+       K = \begin{bmatrix} 1 & 2 \\ 0 & -3 \end{bmatrix} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(H\) é \(3 \times 2\) e \(K\) é \(2 \times 2\). Soma e subtração exigem dimensões iguais, e
+      não há entrada de \(K\) para a terceira linha de \(H\): nenhuma das duas está definida.</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 18</span>
+    <p>Calcule \((M \times N) + P\), conferindo antes a compatibilidade, com</p>
+    \[ M = \begin{bmatrix} 2 & 1 \\ 0 & -1 \end{bmatrix}, \quad
+       N = \begin{bmatrix} 1 & 0 & 2 \\ -1 & 3 & 1 \end{bmatrix}, \quad
+       P = \begin{bmatrix} 2 & 1 & -1 \\ 0 & 1 & 3 \end{bmatrix} \]
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(M\) é \(2 \times 2\) e \(N\) é \(2 \times 3\), então \(MN\) é \(2 \times 3\) — o tamanho de
+      \(P\). Multiplicando e somando:
+      \((M \times N) + P = \begin{bmatrix} 3 & 4 & 4 \\ 1 & -2 & 2 \end{bmatrix}\).</p>
+    </details>
+  </div>
+  <h3>Inversas</h3>
+
+  <p>Os últimos cinco usam a identidade e a inversa de <a class="ref" href="#s-1-17">1.17</a>. O
+  teste é sempre o mesmo: multiplicar e ver se o resultado é \(I\); quando não é possível chegar a
+  \(I\), a inversa não existe.</p>
+
+  <div class="ex"><span class="titulo">Exercício 19</span>
+    <p>Encontre a inversa de \(S = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}\).</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Cada pivô é normalizado pelo seu próprio valor:
+      \(S^{-1} = \begin{bmatrix} \tfrac{1}{2} & 0 \\ 0 & \tfrac{1}{3} \end{bmatrix}\). A conferência
+      é imediata — a diagonal de \(S S^{-1}\) dá \(1\), o resto é zero.</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 20</span>
+    <p>Calcule a inversa de \(C = \begin{bmatrix} 1 & -1 \\ 2 & 1 \end{bmatrix}\).</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(L_2 \leftarrow L_2 - 2L_1\) zera a primeira coluna; normalizar a segunda linha e zerar o
+      elemento acima do pivô levam a
+      \(C^{-1} = \tfrac{1}{3} \begin{bmatrix} 1 & 1 \\ -2 & 1 \end{bmatrix}\). O fator
+      \(\tfrac{1}{3}\) é o que sobra da normalização: sem ele, o produto não dá \(I\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 21</span>
+    <p>Encontre a inversa de
+    \(D = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{bmatrix}\).</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>A matriz já é escalonada, com pivôs iguais a \(1\); falta zerar acima da diagonal, usando a
+      terceira linha: \(L_2 \leftarrow L_2 - 2L_3\) e \(L_1 \leftarrow L_1 - L_3\). Dá
+      \(D^{-1} = \begin{bmatrix} 1 & 0 & -1 \\ 0 & 1 & -2 \\ 0 & 0 & 1 \end{bmatrix}\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 22</span>
+    <p>Suponha \(ad - bc \neq 0\) e encontre a fórmula da inversa de
+    \(A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}\).</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>Com \(a \neq 0\), normalizar a primeira linha por \(\tfrac{1}{a}\) e eliminar \(c\) da segunda
+      deixa o pivô \(\tfrac{ad - bc}{a}\) — é esse número que decide. Se for zero, não há pivô nem
+      inversa; se não for, a eliminação acima da diagonal dá
+      \(A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}\).</p>
+    </details>
+  </div>
+  <div class="ex"><span class="titulo">Exercício 23</span>
+    <p>Mostre que \(M\) não tem inversa, com
+    \(M = \begin{bmatrix} 1 & 1 & 2 \\ 1 & 2 & 3 \\ 2 & 3 & 5 \end{bmatrix}\).</p>
+    <details class="gabarito"><summary>Gabarito</summary>
+      <p>\(L_2 \leftarrow L_2 - L_1\) e \(L_3 \leftarrow L_3 - 2L_1\) deixam as duas últimas linhas
+      iguais a \((0; 1; 1)\). A operação \(L_3 \leftarrow L_3 - L_2\) zera a terceira linha inteira:
+      sem pivô nela, a identidade não se forma à esquerda, e nenhuma matriz à direita conserta
+      isso.</p>
+    </details>
+  </div>
+
+  <p>As definições citadas acima estão reunidas no <a class="ref" href="#s-fim">glossário</a>, com a notação usada no capítulo.</p>
+</section>
+
+<!-- ATENCAO: dois exercícios dos arquivos de origem ficaram fora e não foram corrigidos no lugar.
+     (1) O sistema 4x4 de eliminacao-gaussiana.html (w - x + 2y - z = -1; x + y - z = 0;
+     -w + x - y + 2z = 2; y + z = 3) é inconsistente: L3 + L1 dá y + z = 1, contra y + z = 3 na
+     quarta equação, e o enunciado pede "a única configuração", que não existe. (2) O exercício
+     "4-B" de sistemas-lineares.html pede o valor de k que torna x + 2y = 5, 3x + 6y = k impossível,
+     mas k = 15 torna o sistema possível, com infinitas soluções: não há valor único a responder. -->

@@ -1,0 +1,126 @@
+<!-- fonte: f1-matematica.html §1.12, fichas A2, A3, B4, C5 e B1 -->
+<section class="sec" id="s-1-12">
+  <h2><span class="num">1.12</span>O que a forma já diz, antes da conta terminar</h2>
+
+  <p>A pergunta principal do capítulo não é "quanto vale \(x\)". É quantas soluções o sistema tem —
+  nenhuma, uma, ou infinitas (<a class="ref" href="#s-1-6">1.6</a>). A escada responde a essa pergunta
+  antes de qualquer substituição, e responde olhando só a posição dos pivôs e as linhas que sobraram.
+  São quatro leituras, e cada uma tem um exemplo mínimo.</p>
+
+  <div class="def">
+    <span class="titulo">As quatro leituras</span>
+    <p><b>Coluna sem pivô</b> — a incógnita daquela coluna é livre, e o sistema tem infinitas
+    soluções. <b>Linha \(0 = 0\)</b> — equação que não informava nada. <b>Linha \(0 = c\), com
+    \(c \neq 0\)</b> — sistema impossível. <b>Pivô em toda coluna de coeficientes</b> — solução
+    única.</p>
+  </div>
+
+  <h3>1. Coluna sem pivô: a incógnita livre</h3>
+
+  <p>Se uma coluna de coeficientes fica sem pivô, nenhuma linha "resolve" aquela incógnita: ela pode
+  assumir qualquer valor, e cada escolha arrasta as outras. O sistema não tem uma resposta, tem uma
+  família — e o número de parâmetros é o número de colunas sem pivô.</p>
+
+  <p>A ficha C5 mostra o caso que desmente o atalho "a variável livre é a última":</p>
+
+  <pre class="conta">  x + 2y + 3z = 8
+  x + 2y +  z = 4</pre>
+
+  <pre class="conta">  1   2   3 |  8
+  1   2   1 |  4      R2 &larr; R2 - R1
+------------------------------
+  1   2   3 |  8
+  0   0  -2 | -4</pre>
+
+  <p>Os pivôs são \(1\) (coluna do \(x\)) e \(-2\) (coluna do \(z\)). A coluna do \(y\) ficou vazia, e é
+  ela a livre: \(y = t\), com \(t\) qualquer. O \(z\), que vem <i>depois</i> dela na ordem das
+  incógnitas, está determinado — \(-2z = -4\) dá \(z = 2\). E o \(x\) acompanha o parâmetro:
+  \(x = 8 - 2t - 6 = 2 - 2t\).</p>
+
+  <p>O conjunto-solução é \(\{(2 - 2t;\ t;\ 2) : t \in \mathbb{R}\}\): uma reta, não um ponto. Note
+  que a leitura não exigiu dividir a linha do \(z\) por \(-2\) nem voltar substituindo — bastou ver
+  qual coluna não tinha pivô.</p>
+
+  <h3>2. Linha \(0 = 0\): a equação que não informava</h3>
+
+  <p>Uma linha inteira de zeros à esquerda da barra é o que sobra de uma equação que era múltipla de
+  outra. Ela não contradiz nada e não acrescenta nada. Não é erro de conta: é a informação de que o
+  sistema tinha menos equações independentes do que linhas.</p>
+
+  <pre class="conta">  1   1 |  3
+  2   2 |  6      R2 &larr; R2 - 2R1
+-------------------
+  1   1 |  3
+  0   0 |  0</pre>
+
+  <p>Sobrou uma equação para duas incógnitas: \(x + y = 3\), com \(y\) livre. Infinitas soluções.
+  Numa prova, essa linha é a resposta para "por que não cheguei a um número?" — não se chegou a um
+  número porque não há um número a chegar.</p>
+
+  <h3>3. Linha \(0 = c\): o sistema impossível</h3>
+
+  <p>Mesma situação, com a constante fora de proporção. A linha vira \(0 = 1\), e nenhum valor de
+  incógnita alguma satisfaz isso. O sistema não tem solução, e a conclusão não depende do resto da
+  matriz: uma linha assim basta.</p>
+
+  <pre class="conta">  1   1 |  3
+  2   2 |  7      R2 &larr; R2 - 2R1
+-------------------
+  1   1 |  3
+  0   0 |  1</pre>
+
+  <p>Geometricamente, são duas retas de mesma inclinação e alturas diferentes: paralelas, sem ponto
+  em comum. Algebricamente, o \(0 = 1\) é a contradição escrita na forma mais curta possível. E ele
+  encerra o trabalho: não é preciso escalonar o resto da matriz para saber que não há solução.</p>
+
+  <h3>4. Pivô em toda coluna: solução única</h3>
+
+  <p>Se cada coluna de coeficientes tem pivô, cada incógnita foi resolvida por alguma linha, e a
+  substituição de baixo para cima dá um valor único para cada uma. É o caso do sistema de
+  <a class="ref" href="#s-1-9">1.9</a>, cuja escada tem três pivôs em três colunas:</p>
+
+  <pre class="conta">  1   1   1 |   6
+  0   1  -2 |  -4
+  0   0  -7 | -21</pre>
+
+  <p>Três colunas, três pivôs, nenhuma incógnita livre: \(z = 3\), \(y = 2\), \(x = 1\). Não há
+  escolha a fazer em nenhum ponto da volta, e é isso que "única" significa aqui.</p>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>"Pivô em toda coluna" quer dizer toda coluna <b>de coeficientes</b>. A última coluna, a dos
+    termos independentes, não entra na contagem: um pivô nela não é informação extra, é a contradição
+    da leitura 3 disfarçada — significa \(0 = c\) com \(c \neq 0\). Por isso a matriz aumentada tem
+    uma coluna a mais do que incógnitas, e a contagem de pivôs é feita até a barra.</p>
+  </div>
+
+  <h3>A ordem de leitura</h3>
+
+  <p>As quatro leituras não têm o mesmo peso, e a ordem importa. A contradição decide sozinha e vem
+  primeiro; só depois de descartá-la faz sentido contar pivôs.</p>
+
+  <ol class="passos">
+    <li>Existe linha \(0 = c\) com \(c \neq 0\)? Então \(S = \varnothing\). Pare: nenhuma outra
+    leitura muda esse veredito.</li>
+    <li>Toda coluna de coeficientes tem pivô? Então \(S\) tem exatamente um elemento, e a volta
+    produz os valores.</li>
+    <li>Sobrou coluna sem pivô? Então há pelo menos uma incógnita livre e \(S\) é infinito. Uma
+    coluna sem pivô, um parâmetro; duas, dois parâmetros.</li>
+  </ol>
+
+  <p>Essa ordem é também a razão de o \(0 = c\) aparecer cedo nas contas longas: quanto antes a
+  contradição é lida, menos operações se gastam depois dela. Em 4×4, onde cada passo custa três
+  linhas, encerrar na segunda linha é economia real.</p>
+
+  <div class="obs">
+    <b>Observação.</b> Nenhuma das quatro leituras precisa da forma reduzida. Todas se fazem na
+    escada, que é onde o método para (<a class="ref" href="#s-1-9">1.9</a>). O que a forma não diz são
+    os valores: para isso é preciso a volta. Mas o tipo de resposta — nenhuma, uma, infinitas — já
+    está escrito na posição dos pivôs.
+  </div>
+
+  <p>Com isso, o instrumental do capítulo está completo: equação, conjunto-solução, matriz, operações,
+  escada, registro, escolha de pivô e leitura da forma. O que falta é estrada — os mesmos passos
+  aplicados a sistemas maiores e a matrizes que não são aumentadas, um por um, começando pelos
+  \(2 \times 2\) de <a class="ref" href="#s-1-13">1.13</a>.</p>
+</section>

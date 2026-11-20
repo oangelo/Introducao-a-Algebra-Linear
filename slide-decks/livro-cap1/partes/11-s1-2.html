@@ -1,0 +1,121 @@
+<!-- fonte: f1-matematica.html §1.2 -->
+<section class="sec" id="s-1-2">
+  <h2><span class="num">1.2</span>A reta da geometria analítica</h2>
+
+  <p>Antes de tratar de sistemas com \(n\) incógnitas, vale voltar ao único caso que se vê. Na
+  Geometria Analítica, a equação \(ax + by = c\), com \(a\) e \(b\) não ambos nulos, é uma
+  <b>reta</b> do plano. O par \((a, b)\) dá a direção perpendicular à reta — é o vetor normal —, e o
+  número \(c\) escolhe, entre todas as retas paralelas de mesma normal, qual delas é esta. Os dois
+  papéis são independentes: mudar \((a, b)\) gira a reta, mudar \(c\) a desloca sem girar.</p>
+
+  <div class="def">
+    <span class="titulo">Definição</span>
+    <p>O <b>conjunto-solução</b> da equação \(ax + by = c\), com \((a, b) \neq (0, 0)\), é</p>
+    \[ S = \{(x, y) \in \mathbb{R}^2 : ax + by = c\}, \]
+    <p>e esse conjunto é uma reta do plano, com <b>infinitos</b> pontos. A razão é direta: se
+    \(a \neq 0\), para cada valor escolhido de \(y\) sai um valor de \(x\), a saber
+    \(x = (c - by)/a\); se \(a = 0\), então \(b \neq 0\) e o papel das duas se inverte.</p>
+  </div>
+
+  <p>Uma equação, então, nunca marca um ponto. Ela elimina uma direção de escolha e deixa a outra
+  livre — e é essa liberdade que produz os infinitos pontos da reta. Isso precisa estar claro antes
+  do próximo passo, porque o ponto único, quando aparece, não vem de uma equação: vem do encontro
+  de duas.</p>
+
+  <p>Os casos extremos ajudam a fixar a leitura de \((a, b)\). Quando \(b = 0\), a equação vira
+  \(ax = c\), ou \(x = c/a\): é a reta vertical, em que \(x\) está determinado e \(y\) é livre.
+  Quando \(a = 0\), vira \(by = c\), ou \(y = c/b\): reta horizontal, com \(x\) livre. A regra da
+  normal continua valendo nos dois — em \(x = 3\) a normal é \((1, 0)\), apontando para a direita,
+  e a reta é vertical, como tem de ser. Nenhum dos dois casos é exceção; são só retas com uma
+  direção particular.</p>
+
+  <h3>Resolver é perguntar pela interseção</h3>
+
+  <p>Um sistema de duas equações nas incógnitas \(x\) e \(y\) é um par de retas. A solução do
+  sistema é o par que satisfaz as duas ao mesmo tempo, isto é, o ponto que está nas duas — a
+  <b>interseção</b>. Resolver o sistema e achar a interseção das duas retas são a mesma tarefa,
+  dita em duas linguagens.</p>
+
+  <p>Duas retas do plano só podem se encontrar de três maneiras, e não há uma quarta: cruzarem-se
+  num ponto, serem a mesma reta, ou serem paralelas e distintas. A lista é completa porque cada
+  reta tem uma direção só, e duas direções ou coincidem ou são diferentes — não há terceira
+  possibilidade de inclinação. Traduzindo para conjuntos: a interseção é um ponto, é a reta inteira,
+  ou é vazia. É a primeira aparição de uma contagem que vai valer para todo o capítulo — zero, uma
+  ou infinitas soluções.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Os três casos, com os números que vão ao quadro. Cada linha é um sistema: no primeiro, as
+    duas retas se cruzam; no segundo e no terceiro, as duas equações têm a mesma normal e diferem
+    apenas na constante.</p>
+    <pre class="conta">cruzam    :  2x +  y = 7   e   x −  y = 2      →  (3; 1)
+coincidem :   x +  y = 3   e  2x + 2y = 6      →  a reta inteira
+paralelas :   x +  y = 3   e  2x + 2y = 7      →  vazio</pre>
+    <p>No primeiro caso, \((3; 1)\) satisfaz as duas equações: \(2 \cdot 3 + 1 = 7\) e
+    \(3 - 1 = 2\). No segundo, a segunda equação é a primeira multiplicada por \(2\), de modo que
+    todo par que satisfaz uma satisfaz a outra: não há duas retas, há uma escrita duas vezes. No
+    terceiro, dividir \(2x + 2y = 7\) por \(2\) dá \(x + y = 3{,}5\), que pede soma \(3{,}5\) onde a
+    outra pede \(3\) — nenhum par faz as duas coisas.</p>
+  </div>
+
+  <p>O que decide entre os três casos é a comparação das duas linhas de coeficientes. Se
+  \((a_2, b_2)\) não é múltiplo de \((a_1, b_1)\), as retas têm direções diferentes e se cruzam num
+  ponto só. Se é múltiplo — digamos \((a_2, b_2) = k(a_1, b_1)\) —, as retas são paralelas; aí a
+  constante decide: quando \(c_2 = k c_1\), é a mesma reta e há infinitas soluções; quando
+  \(c_2 \neq k c_1\), são paralelas distintas e não há solução. Nos números acima, \(k = 2\) nos
+  dois últimos casos, e \(6 = 2 \cdot 3\) contra \(7 \neq 2 \cdot 3\).</p>
+
+  <div class="obs">
+    <p><b>Observação.</b> A condição "as normais não são múltiplas" pode ser escrita sem dividir
+    nada: \(a_1b_2 - a_2b_1 \neq 0\). Essa quantidade é nula exatamente quando as duas linhas de
+    coeficientes são proporcionais, e é ela que mais tarde recebe o nome de determinante. Por ora
+    basta o critério: deu diferente de zero, um ponto; deu zero, ou nenhuma solução ou infinitas, e
+    quem separa os dois é a constante.</p>
+  </div>
+
+  <div class="ex">
+    <span class="titulo">Exemplo</span>
+    <p>Confira candidatos contra o primeiro sistema, \(2x + y = 7\) e \(x - y = 2\). Para
+    \((3; 1)\): \(2 \cdot 3 + 1 = 7\) e \(3 - 1 = 2\), as duas certas. Para \((1; 3)\):
+    \(2 \cdot 1 + 3 = 5\), errado já na primeira. Para \((0; 7)\): \(2 \cdot 0 + 7 = 7\), certa, mas
+    \(0 - 7 = -7 \neq 2\). O par \((0; 7)\) está na primeira reta e fora da segunda.</p>
+    <p>Esse último caso é o que interessa: um par pode satisfazer uma equação e falhar na outra, e
+    então não é solução de nada. Satisfazer uma equação é condição necessária, nunca suficiente. É
+    por isso que o teste de um candidato se faz nas duas equações, sem escolher a mais fácil, e é
+    por isso que ele não substitui o método: testar serve para conferir, não para descobrir.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>O erro que se ouve em toda turma: "retas paralelas dão infinitas soluções". Não dão nenhuma.
+    Paralelas distintas não têm ponto em comum, e o conjunto-solução do sistema é vazio — a
+    resposta é que <i>não existe</i> par que sirva, e isso é uma resposta, não uma desistência.</p>
+    <p>Quem dá infinitas soluções é o outro caso: retas <b>coincidentes</b>, em que uma equação é
+    múltipla da outra inclusive na constante. A confusão vem de as duas situações terem o mesmo
+    desenho de "retas deitadas no mesmo sentido"; o que as separa é estarem uma sobre a outra ou
+    lado a lado, e isso é a constante que diz.</p>
+    <p>O erro simétrico é tratar o caso coincidente como sistema sem resposta, porque "não deu um
+    número". Deu: deu a reta inteira, e a resposta se escreve como família, um par para cada valor
+    de \(y\). Trocar as duas leituras — vazio por infinito — é o mesmo erro de sinal, escrito em
+    palavras.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Os três casos têm nome: sistema <b>possível e determinado</b> (uma
+    solução), <b>possível e indeterminado</b> (infinitas) e <b>impossível</b> (nenhuma). "Possível"
+    aqui significa apenas que o conjunto-solução não é vazio; não significa que a resposta é um
+    número.</p>
+    <p>Vale notar também o que o desenho não decide: ele mostra o tipo de resposta, não os números.
+    Olhando duas retas que se cruzam, sabe-se que há um ponto e não qual é. A conta é que dá o par
+    \((3; 1)\); a figura só confirma que existe um.</p>
+  </div>
+
+  <p>Esse é o ponto em que a linguagem de conjuntos passa a valer mais que a figura: dizer "a
+  interseção é vazia" funciona em qualquer dimensão, enquanto "as retas não se cruzam" só existe
+  enquanto houver retas para olhar. E há uma diferença de papel entre as duas linguagens que convém
+  registrar desde já: o desenho convence, a álgebra prova. Quem desenha duas retas quase paralelas
+  não distingue "se cruzam muito longe" de "nunca se cruzam", e essa diferença é justamente a que
+  separa um ponto único de conjunto vazio. Antes de abandonar o desenho, porém, é preciso fixar a
+  notação do resultado — o conjunto-solução, com seus três tamanhos possíveis e com a distinção
+  entre o elemento e o conjunto que o contém: <a class="ref" href="#s-1-3">1.3</a>.</p>
+</section>

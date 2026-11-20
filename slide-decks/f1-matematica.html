@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fase 1 · a parte matemática — o que é dito e o que é resolvido</title>
+<link rel="stylesheet" href="f1-matematica.css">
+</head>
+<body>
+
+<header class="cabeca">
+  <h1>Fase 1 · a parte matemática</h1>
+  <p class="sub">Portão 1: sistemas e matrizes. Primeiro o que é dito antes de resolver — definições,
+  notação, protocolo de registro. Depois os exemplos, um por ficha, com o porquê de cada um e o que
+  a forma da matriz ensina. Todo resultado foi conferido por script (<code>img-gen/grade-f1.py</code>).</p>
+</header>
+
+<div class="aviso">
+  <h2>Como este documento está organizado</h2>
+  <ul>
+    <li><b>Nenhuma fração no quadro.</b> Conta longa é conta errada. Onde a fração é evitável, o
+    exemplo mostra <i>como</i> evitar; onde é inevitável, ela fica fora do quadro.</li>
+    <li><b>A progressão é pela forma da matriz</b>, não pela dificuldade da conta. Cada degrau
+    acrescenta <i>uma decisão</i> que o anterior não exigia.</li>
+    <li><b>O slide não carrega a conta.</b> Ele carrega a forma, o enunciado e o ponto de parada; a
+    resolução é no quadro.</li>
+  </ul>
+</div>
+
+<main>
+
+<!-- ============================================================ -->
+<h2 class="parte"><span>Parte 1</span> · o que é dito antes do primeiro exemplo</h2>
+<p class="intro">Doze blocos curtos. É o vocabulário sem o qual o primeiro exemplo vira receita
+decorada — e é o que o aluno precisa ter na cabeça quando a conta começar a crescer.</p>
+
+<section class="conceito">
+  <h3><span class="num">1.1</span>Equação linear: o que entra e o que não entra</h3>
+  <p>É uma equação em que cada incógnita aparece <b>na primeira potência</b>, <b>sozinha</b> (nunca
+  multiplicando outra incógnita) e <b>com coeficiente constante</b>. \(2x + y - z = 7\) é linear;
+  \(xy = 1\), \(x^2 + y = 3\) e \(\operatorname{sen} x = 0\) não são.</p>
+  <p class="curto">O teste prático: se você consegue escrever como \(a_1x_1 + a_2x_2 + \dots = b\),
+  é linear. Se precisa de gráfico torto para descrever, não é.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.2</span>De onde viemos: a reta da Geometria Analítica</h3>
+  <p>Em Geometria Analítica, \(ax + by = c\), com \(a\) e \(b\) não ambos nulos, é uma <b>reta</b> no
+  plano. O conjunto de todos os pares que satisfazem a equação é
+  \(S = \{(x, y) \in \mathbb{R}^2 : ax + by = c\}\) — e ele tem <b>infinitos</b> pontos.</p>
+  <p>Resolver um sistema de duas equações é, em geometria, perguntar pela <b>interseção</b> de duas
+  retas. Três casos, e só três: se elas se cruzam, a interseção é <b>um ponto</b>; se coincidem, a
+  interseção é a <b>reta inteira</b>; se são paralelas distintas, a interseção é <b>vazia</b>.</p>
+  <p class="curto">O erro que se ouve: "paralelas dão infinitas soluções". Não dão nenhuma — paralelas
+  distintas não têm ponto em comum. Coincidentes, sim, é que dão infinitas.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.3</span>O conjunto-solução: a resposta é um conjunto</h3>
+  <p>Solução não é uma lista de números: é um <b>conjunto</b>. E a notação importa, porque ela é o
+  que permite dizer "não tem solução" sem soar como "não consegui":</p>
+  <p>\(\{(3, 1)\}\) — conjunto unitário, uma solução. &nbsp; \(S = \{(x,y) : x + y = 3\}\) —
+  infinitos pontos, a reta. &nbsp; \(\varnothing\) — conjunto vazio, nenhuma solução.</p>
+  <p>Com isso, o sistema deixa de ser uma conta e passa a ser uma <b>interseção</b>:
+  \(S = S_1 \cap S_2 \cap \dots \cap S_m\), onde cada \(S_i\) é o conjunto-solução de uma equação.
+  Achar a solução do sistema é achar o que sobrou de comum a todas.</p>
+  <p class="curto">Contar soluções, então, é perguntar quantos elementos tem \(S\): zero, um, ou
+  infinitos. Não existe "dois" — e o motivo é algébrico (ver 1.6).</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.4</span>Por que desenhar não escala</h3>
+  <p>Duas variáveis: retas no plano, desenho fácil. Três variáveis: planos no espaço, já é difícil
+  enxergar. Quatro: não há desenho. E o curso inteiro trabalha com quatro, cinco, \(n\).</p>
+  <p>A geometria continua valendo — mas como <b>conferência</b> do resultado em \(\mathbb{R}^2\), não
+  como método. Daqui para frente o caminho é algébrico: guardar só os coeficientes na matriz e
+  aplicar operações que <b>não mudam o conjunto-solução</b>. É esse o método que funciona em qualquer
+  dimensão.</p>
+  <p class="curto">É a razão de a matriz existir: ela não é uma notação bonita, é o desenho que
+  sobrevive quando não dá mais para desenhar.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.5</span>Sistema e solução: a solução é do sistema, não da equação</h3>
+  <p>Um sistema é um conjunto de equações lineares nas mesmas incógnitas, e sua solução é a
+  \(n\)-upla que satisfaz <b>todas</b> ao mesmo tempo. Em linguagem de conjuntos: \(x\) pertence a
+  \(S\) somente se pertence a <i>cada</i> \(S_i\). Satisfazer uma e falhar em outra não é "solução
+  parcial" — é não pertencer.</p>
+  <p class="curto">É aqui que o aluno erra primeiro: ele resolve a primeira equação, acha um par, e
+  considera o problema encerrado. O par dele pertence a \(S_1\); não se sabe ainda se pertence a
+  \(S_2\).</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.6</span>Três respostas, nunca duas</h3>
+  <p>Em termos de conjunto: \(S = \varnothing\), \(S = \{p\}\) (um único ponto) ou \(S\) infinito.
+  Não existe "exatamente dois". O motivo é de uma linha: se \(u \neq v\) são soluções, então
+  \(u + t(v - u)\) também é, para <b>todo</b> \(t \in \mathbb{R}\) — e isso já é uma reta inteira
+  dentro de \(S\).</p>
+  <p class="curto">Enunciar isso antes de resolver evita a pergunta "mas professor, e se tiver
+  duas?" — a resposta é que duas nunca vêm sozinhas.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.7</span>Matriz aumentada: por que só os números</h3>
+  <p>Ao escalonar, as incógnitas nunca mudam de nome: a <b>coluna</b> já carrega o nome. Escrever
+  só os coeficientes é uma abreviação segura, e a barra vertical separa coeficientes de termos
+  independentes. É por isso que a matriz aumentada <i>é</i> o sistema, e não um resumo dele.</p>
+  <p class="curto">Consequência prática: quem volta a escrever as equações no meio do processo
+  perde o que já zerou. Ver 1.10.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.8</span>As três operações que não mudam a solução</h3>
+  <p>(i) trocar duas linhas; (ii) multiplicar uma linha por um escalar <b>não nulo</b>; (iii) somar
+  a uma linha um múltiplo de outra. Cada uma é reversível, e é a reversibilidade que garante o
+  mesmo conjunto-solução — não a intuição de "está mexendo na matriz".</p>
+  <p class="curto">A operação (iii) é a única que aparece em toda conta; é também a que mais gera
+  erro de sinal. Vale escrevê-la ao lado da linha, sempre.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.9</span>Forma escalonada e pivô</h3>
+  <p><b>Pivô</b> é o primeiro elemento não nulo de uma linha. A matriz está <b>escalonada</b>
+  quando o pivô de cada linha está à direita do pivô da anterior e tudo abaixo de um pivô é zero.
+  A escada não precisa ter degraus de altura igual — precisa ser escada.</p>
+  <p class="curto">Escalonada ≠ escalonada reduzida. A reduzida (1 na diagonal, zeros também acima)
+  é o passo final, não o objetivo do meio.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.10</span>O protocolo de registro</h3>
+  <p>O erro que mais aparece não é de álgebra, é de organização: o aluno zera uma coluna e depois
+  a reabre sem perceber. Três regras, e elas valem mais que qualquer dica de cálculo:</p>
+  <p><b>(a)</b> uma linha, uma operação — escrita ao lado: \(R_2 \leftarrow R_2 - 2R_1\).<br>
+  <b>(b)</b> não se volta para a forma de equação no meio do processo.<br>
+  <b>(c)</b> coluna fechada não se toca mais: o pivô se marca e a coluna fica resolvida, mesmo que
+  a linha de baixo ainda tenha número nela.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.11</span>O pivô é escolhido, não encontrado</h3>
+  <p>Se existe um <b>1</b> na coluna, ele é o pivô — e a conta inteira fica em inteiros. Se não
+  existe, trocar duas linhas pode <i>subir</i> para a posição de pivô um 1 (ou −1) que já está
+  naquela coluna: a troca não fabrica um 1 onde não há nenhum. Escolher o pivô é parte do método,
+  não atalho.</p>
+  <p class="curto">Quando nenhuma entrada da coluna é 1 ou −1, a fração é inevitável: aí a escolha
+  deixa de ser "como evitar" e passa a ser "onde pagar".</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">1.12</span>O que a forma já diz, antes da conta terminar</h3>
+  <p>Quatro leituras que economizam metade do trabalho:</p>
+  <p><b>coluna sem pivô</b> → aquela incógnita é livre (há infinitas soluções);<br>
+  <b>linha \(0 = 0\)</b> → equação que não informava nada; <b>linha \(0 = c\), \(c \neq 0\)</b> → sistema impossível;<br>
+  <b>pivô em toda coluna</b> → solução única.</p>
+  <p class="curto">A linha \(0 = c\) encerra o problema na hora. Não é preciso terminar de escalonar
+  para concluir que não há solução.</p>
+</section>
+
+<!-- ============================================================ -->
+<h2 class="parte"><span>Parte 2</span> · os exemplos, um por ficha</h2>
+<p class="intro">Cada ficha traz o sistema como ele vai ao quadro, o resultado conferido, por que
+ele existe e o que a forma ensina. "Onde repete" indica a terceira passagem — a tela de retomada da
+aula seguinte.</p>
+
+<!-- ---------- A · 2x2 ---------- -->
+<section class="ficha">
+  <h3><span class="num">A1</span>uma solução<span class="forma">2×2 · única</span></h3>
+  <pre class="sistema">2x + y = 7
+ x − y = 2
+→ (x; y) = (3; 1)</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>É o único caso em que o aluno consegue resolver sem método: isola e substitui. Serve para
+    fixar o que é uma solução antes de introduzir a ferramenta que resolve o resto.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>2×2 com coeficientes que geram um 1 automático na eliminação. Nada a decidir — é o degrau
+    zero da escada.</dd>
+    <dt>Onde repete</dt>
+    <dd>Mesma forma, números trocados, na primeira questão da lista.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">A2</span>nenhuma solução<span class="forma">2×2 · impossível</span></h3>
+  <pre class="sistema"> x + y = 3
+2x + 2y = 7
+→ R2 ← R2 − 2R1 :  0 = 1   (impossível)</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>O caso que o aluno não acredita quando aparece. Mesma inclinação, alturas diferentes: as
+    retas nunca se cruzam, e a álgebra diz isso em uma linha.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Linha toda zero com constante diferente de zero. Encerra o problema na hora (ver 1.12).</dd>
+    <dt>Onde repete</dt>
+    <dd>Retomada curta no início do bloco 2, antes da escada.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">A3</span>infinitas soluções<span class="forma">2×2 · dependente</span></h3>
+  <pre class="sistema"> x + y = 3
+2x + 2y = 6
+→ R2 ← R2 − 2R1 :  0 = 0
+→ y livre,  x = 3 − y</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>A segunda equação é a primeira dobrada: não é informação nova, é a mesma informação escrita
+    duas vezes. O aluno tende a achar que errou por não chegar a um número.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Linha \(0 = 0\). A resposta é uma <b>família</b> de pares, e a variável livre é a que fica
+    sem pivô.</dd>
+    <dt>Onde repete</dt>
+    <dd>Como base da parametrização em B4 e C1 (com três e quatro incógnitas).</dd>
+  </dl>
+</section>
+
+<!-- ---------- B · 3x3 ---------- -->
+<section class="ficha">
+  <h3><span class="num">B1</span>3×3 sem obstáculo<span class="forma">3×3 · única</span></h3>
+  <pre class="sistema"> x + y + z = 6
+2x − y + z = 3
+ x + 2y − z = 2
+→ (x; y; z) = (1; 2; 3)</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Primeiro 3×3. O pivô 1 já está no lugar e nenhuma troca é necessária: o aluno vê o processo
+    completo — zerar duas linhas, subir, voltar substituindo — sem nenhuma decisão extra.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>A escada em três degraus e a volta. Nada além disso.</dd>
+    <dt>Onde repete</dt>
+    <dd>C4 usa as <i>mesmas três equações</i> acrescentando uma quarta: o aluno reconhece o sistema
+    e descobre que o resultado dele não serve.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">B2</span>3×3 com troca obrigatória<span class="forma">3×3 · única</span></h3>
+  <pre class="sistema">    y + z = 5
+ x + y + z = 6
+ x + 2y − z = 2
+→ troca R1 ↔ R2,  depois escalona
+→ (x; y; z) = (1; 2; 3)</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>A primeira coluna tem zero na primeira linha. Quem não troca, trava. O resultado é o mesmo
+    do B1 de propósito: mesma resposta, caminho diferente — repetição sem repetir o número.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Trocar linha é operação legítima (1.8), e pivotar é uma escolha (1.11).</dd>
+    <dt>Onde repete</dt>
+    <dd>Retomada na aula seguinte, com o zero em outra posição.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">B3a</span>a troca que evita a fração<span class="forma">3×3 · única</span></h3>
+  <pre class="sistema">2x + y + z = 8
+3x + 2y + z = 13
+ x + y + 2z = 7
+→ troca R1 ↔ R3 (pivô 1) :  inteiros até o fim
+→ (x; y; z) = (2; 3; 1)</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Sem trocar, o pivô é 2 e a primeira operação já produz 1/2 e 3/2. Trocando, aparece um 1 e
+    a conta inteira fica em inteiros. É o exemplo que ensina <i>por que</i> escolher pivô — e o
+    único da fase em que os dois caminhos são comparáveis lado a lado.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>A escolha do pivô não muda a resposta, muda o custo. Vale mostrar as duas primeiras contas
+    no quadro, lado a lado, e seguir só pela de baixo.</dd>
+    <dt>Onde repete</dt>
+    <dd>Como critério em todos os exercícios seguintes: "existe 1 nesta coluna?" é a primeira
+    pergunta antes de qualquer conta.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">B3b</span>a fração inevitável<span class="selo">não vai ao quadro</span><span class="forma">2×2 · única</span></h3>
+  <pre class="sistema">2x + 3y = 8
+3x + 5y = 13
+→ nenhuma entrada é 1 ou −1 : não há troca que salve
+→ (x; y) = (1; 2)</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Existe para responder à pergunta que o B3a provoca: "e quando não tem 1 para escolher?".
+    Aqui a fração é inevitável — e a resposta honesta é que o quadro evita, mas o método não.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Nem toda matriz permite conta inteira. Fica na lista de exercícios ou como trinta segundos
+    de demonstração; não vira aula.</dd>
+    <dt>Onde repete</dt>
+    <dd>Lista do bloco 2, como item final.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">B4</span>3×3 dependente<span class="forma">3×3 · infinitas</span></h3>
+  <pre class="sistema">x + y + z = 3
+2x + 2y + 2z = 6
+x − y = 0
+→ z livre,  x = y = (3 − z)/2</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Uma das equações é consequência das outras: três equações, duas informações. O aluno vê o
+    sistema "completo" (3×3) respondendo com uma família, não com um ponto.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Quadrada não significa solução única. O que decide é o número de pivôs, não o formato.</dd>
+    <dt>Onde repete</dt>
+    <dd>Retomada no bloco 4, ao discutir quando a inversa existe.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">B5</span>homogêneo com solução não trivial<span class="selo">decisão pendente</span><span class="forma">3×3 · infinitas</span></h3>
+  <pre class="sistema">x + y + z = 0
+2x + 2y + 2z = 0
+x − y = 0
+→ z livre,  x = y = −z/2
+→ a solução trivial existe e não é a única</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>É o mesmo sistema do B4 com o lado direito zerado — e isso muda a natureza do problema:
+    homogêneo nunca é impossível, porque a solução trivial sempre existe.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>A pergunta deixa de ser "tem solução?" e passa a ser "a trivial é a única?". É a ponte para
+    núcleo e dependência linear — no Portão 5.</dd>
+    <dt>Onde repete</dt>
+    <dd>Aberto: entra aqui como contraste rápido ou fica inteiro para Espaços Vetoriais.</dd>
+  </dl>
+</section>
+
+<!-- ---------- C · retangulares ---------- -->
+<section class="ficha">
+  <h3><span class="num">C0</span>uma equação, três incógnitas<span class="forma">1×3 · infinitas</span></h3>
+  <pre class="sistema">x + 2y − z = 3
+→ dois parâmetros : y e z livres</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>O extremo: uma equação só. Mostra que "sistema" não exige várias linhas, e que a resposta
+    pode ser um objeto de duas dimensões (um plano), não um ponto.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Menos equações que incógnitas → parâmetros. O número de livres é o número de colunas sem
+    pivô.</dd>
+    <dt>Onde repete</dt>
+    <dd>Abre o bloco C; é a ponte intuitiva para 2×3 e 2×4.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">C1</span>mais incógnitas que equações<span class="forma">2×3 · infinitas</span></h3>
+  <pre class="sistema">x + y + z = 4
+x − y + z = 2
+→ z livre,  y = 1,  x = 3 − z</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>A matriz é mais larga que alta — o formato que o aluno associa a "não dá para resolver". Dá:
+    dá para resolver <i>tudo o que a informação permite</i>, e o resto é parâmetro.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Retangular não é sinônimo de impossível. Aqui sobra uma coluna sem pivô e a solução é uma
+    reta.</dd>
+    <dt>Onde repete</dt>
+    <dd>Lista do bloco C, com o pivô em outra coluna.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">C2</span>bem mais larga: dois parâmetros<span class="forma">2×4 · infinitas</span></h3>
+  <pre class="sistema">x + y + z + w = 4
+x − y + z − w = 0
+→ z e w livres,  x = 2 − z,  y = 2 − w</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Duas equações, quatro incógnitas, duas famílias de solução. É o caso em que o aluno perde a
+    conta de quantos parâmetros existem.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Cada coluna sem pivô custa um parâmetro. Contar colunas sem pivô é mais confiável do que
+    contar "quantas incógnitas sobraram".</dd>
+    <dt>Onde repete</dt>
+    <dd>Aberto: no quadro ou como fecho do bloco C ("olha o que acontece quando alarga mais").</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">C3</span>mais equações: a linha que briga<span class="forma">3×2 · impossível</span></h3>
+  <pre class="sistema">x + y = 2
+x − y = 0
+x + y = 5
+→ as duas primeiras dão (1; 1); a terceira exige 5
+→ impossível</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Matriz mais alta que larga. As equações são todas simples; o que mata o sistema é a
+    contradição entre a primeira e a terceira.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Equação a mais não é informação a mais: é teste. Basta uma linha incompatível para não
+    haver solução, por mais corretas que as outras estejam.</dd>
+    <dt>Onde repete</dt>
+    <dd>Antes de C4, que faz o mesmo com três equações certas e uma quarta errada.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">C4</span>a equação extra que não fecha<span class="forma">4×3 · impossível</span></h3>
+  <pre class="sistema">x + y + z = 6
+x − y + z = 2
+2x + y − z = 1
+x + z = 3
+→ as três primeiras dão (1; 2; 3), logo x + z = 4
+→ a quarta pede 3 : impossível</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Mesmas três equações do B1 — que o aluno já resolveu — mais uma. Ele reconhece o sistema,
+    aplica o resultado e descobre que o resultado dele contradiz a equação nova.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Em matriz alta, a informação extra tem de <i>bater</i>. Se bater, a linha vira \(0 = 0\); se
+    não bater, vira \(0 = c\).</dd>
+    <dt>Onde repete</dt>
+    <dd>É a retomada do B1 — repetição de forma com uma decisão nova em cima.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">C5</span>a variável livre no meio<span class="forma">2×3 · infinitas</span></h3>
+  <pre class="sistema">x + 2y + 3z = 8
+x + 2y +  z = 4
+→ y livre,  z = 2,  x = 2 − 2y</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>A coluna sem pivô é a do <i>meio</i>, não a última. O aluno que aprendeu "o parâmetro é sempre
+    a última variável" erra aqui — e esse é o ponto.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>A variável livre é definida pela coluna que ficou sem pivô, não pela posição no fim da
+    matriz. Também mostra que uma variável pode ficar determinada (z = 2) mesmo com outra livre.</dd>
+    <dt>Onde repete</dt>
+    <dd>Lista do bloco C, com a coluna livre em outra posição.</dd>
+  </dl>
+</section>
+
+<!-- ---------- D · 4x4 ---------- -->
+<section class="ficha">
+  <h3><span class="num">D1</span>4×4 sem novidade<span class="forma">4×4 · única</span></h3>
+  <pre class="sistema">x1 +  x2 +  x3 + x4 = 10
+      x2 + 2x3 + x4 =  8
+            x3 + x4 =  5
+                 2x4 =  6
+→ (x1; x2; x3; x4) = (4; 1; 2; 3)</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>O mesmo processo, maior. Serve para mostrar que o tamanho não muda o método — muda só o
+    número de linhas e a chance de erro de sinal.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Em 4×4 o erro de sinal aparece longe de onde foi cometido. É o argumento a favor do
+    protocolo de registro (1.10).</dd>
+    <dt>Onde repete</dt>
+    <dd>Lista do bloco D.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">D2</span>4×4 que morre na primeira coluna<span class="forma">4×4 · impossível</span></h3>
+  <pre class="sistema"> x1 + x2 + x3 + x4 = 4
+2x1 + 2x2 + 2x3 + 2x4 = 9
+ x1 − x2 + x3 − x4 = 0
+ x1 + x3 = 2
+→ R2 ← R2 − 2R1 :  0 = 1
+→ impossível, antes de escalonar o resto</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Quatro equações e nenhuma chance: a segunda é o dobro da primeira, mas com constante
+    diferente. O aluno aprende a olhar a proporção antes de começar a conta.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Uma linha proporcional a outra, com constante fora de proporção, encerra tudo. Não é preciso
+    terminar.</dd>
+    <dt>Onde repete</dt>
+    <dd>Fecho do bloco D: o mesmo veredito do A2, em tamanho grande.</dd>
+  </dl>
+</section>
+
+<!-- ---------- E · matrizes ---------- -->
+<section class="ficha">
+  <h3><span class="num">E1</span>produto que fecha nos dois sentidos<span class="forma">2×3 · 3×2</span></h3>
+  <pre class="sistema">A (2×3) = [ 1  2  0 ]      B (3×2) = [ 2  1 ]
+          [ 3 −1  1 ]                [ 0  3 ]
+                                      [ 4 −2 ]
+A·B (2×2) = [ 2   7 ]     B·A (3×3) = [  5  3  1 ]
+            [10  −2 ]                 [  9 −3  3 ]
+                                      [ −2 10 −2 ]</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>As mesmas duas matrizes produzem resultados de tamanhos diferentes conforme a ordem. É o
+    argumento visual de que a ordem importa, antes de qualquer conta simbólica.</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>A dimensão do produto é (linhas de A) × (colunas de B), e ela só existe quando as colunas de
+    A encontram as linhas de B.</dd>
+    <dt>Onde repete</dt>
+    <dd>Antes de E3, que quebra a esperança de que AB = BA.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">E2</span>por que a ordem não pode ser trocada<span class="forma">2×2 · 2×2</span></h3>
+  <pre class="sistema">A = [1 1]   B = [1 0]
+    [0 1]       [1 1]
+A·B = [2 1]     B·A = [1 1]
+      [1 1]           [1 2]
+→ mesmo tamanho, resultados diferentes</pre>
+  <dl>
+    <dt>Por que este exemplo</dt>
+    <dd>Duas matrizes quadradas, de mesmo tamanho, com produto diferente nos dois sentidos. É o
+    contraexemplo mínimo de \(AB = BA\).</dd>
+    <dt>O que a forma ensina</dt>
+    <dd>Matriz não é número. Toda conta que dependa de "passar para o outro lado" precisa ser
+    reexaminada — e é isso que a inversa (bloco 4) vai exigir.</dd>
+    <dt>Onde repete</dt>
+    <dd>Retomada no bloco 4: se AB ≠ BA, então \(A^{-1}A\) precisa ser lido com cuidado nos dois
+    lados.</dd>
+  </dl>
+</section>
+
+<!-- ============================================================ -->
+<h2 class="parte"><span>Parte 3</span> · repetição e ordem</h2>
+<p class="intro">Três passagens por forma. O que se repete é a <b>forma</b>; o que nunca se repete é o
+número.</p>
+<section class="conceito">
+  <h3><span class="num">3.1</span>As três passagens</h3>
+  <p><b>(1) No quadro</b>, o professor resolve a forma nova. <b>(2) Na lista</b>, o aluno resolve a
+  mesma forma com números trocados. <b>(3) Na aula seguinte</b>, a primeira tela repete a forma —
+  não o exemplo — como aquecimento de dois minutos.</p>
+  <p class="curto">É o que a literatura de prática distribuída chama de espaçamento; aqui o
+  espaçamento é o intervalo entre a aula e a lista, e entre a lista e a retomada.</p>
+</section>
+<section class="conceito">
+  <h3><span class="num">3.2</span>A ordem dos blocos</h3>
+  <p>A → B → C → D, com E (matrizes) depois de B: o aluno precisa do escalonamento antes de entender
+  por que a matriz é um objeto que se multiplica. D é repetição em escala, e é o único bloco que
+  pode ser encurtado sem prejuízo conceitual.</p>
+</section>
+
+<!-- ============================================================ -->
+<h2 class="parte"><span>Parte 4</span> · pontos em aberto</h2>
+<p class="intro">Decisões que mudam o documento, não o método.</p>
+<section class="conceito">
+  <h3><span class="num">4.1</span>Frações</h3>
+  <p>Resolvido: nenhuma no quadro. B3a mostra como evitá-las; B3b fica na lista. Se você quiser, um
+  dia de aula pode ser dedicado a escalonar <i>com</i> fração — mas não é esta fase.</p>
+</section>
+<section class="conceito">
+  <h3><span class="num">4.2</span>2×4 com dois parâmetros (C2)</h3>
+  <p>No quadro, ou só como fecho do bloco C? Ele é o exemplo que mais desorganiza a turma, e também
+  o que mais ensina a contar parâmetros.</p>
+</section>
+<section class="conceito">
+  <h3><span class="num">4.3</span>Homogêneo (B5)</h3>
+  <p>Fica no Portão 1 como contraste rápido, ou vai inteiro para Espaços Vetoriais, onde vira núcleo?
+  Hoje está marcado como pendente.</p>
+</section>
+<section class="conceito">
+  <h3><span class="num">4.4</span>Espaçamento da repetição</h3>
+  <p>Três passagens é o mínimo. Com turma que pergunta muito, a passagem (3) pode virar o aquecimento
+  de toda aula, não só da seguinte.</p>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <p><b>Fonte do conteúdo:</b> Anton, <i>Álgebra Linear com Aplicações</i>, capítulo 1 (sistemas,
+  eliminação gaussiana, matrizes, inversas) — a ordem dos blocos segue a do livro. As listas citadas
+  por código (1-C, 3-C, 4-A…) são as de <code>exercicios/capitulo-1/</code>.</p>
+  <p><b>Conferência numérica:</b> todos os sistemas e produtos deste documento foram resolvidos por
+  <code>img-gen/grade-f1.py</code> (eliminação com frações exatas, não ponto flutuante). Nenhum
+  resultado foi escrito à mão.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+</body>
+</html>

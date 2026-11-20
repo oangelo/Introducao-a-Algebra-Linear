@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Álgebra Linear: As Regras do Jogo</title>
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game-theme.css" />
+    <!-- Scripts para Reveal.js e MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="background-grid"></div>
+      <div class="ghost"></div>
+      <div class="ghost"></div>
+
+      <div class="slides">
+        <!-- =========================== -->
+        <!-- INTRODUÇÃO DA FASE -->
+        <!-- =========================== -->
+        <section>
+          <h1>Fase 1: As Regras do Jogo</h1>
+          <h3>Sistemas Lineares e Matrizes</h3>
+          <p class="press-start">Pressione Enter para começar</p>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- QUEST 1.4: A MECÂNICA DO 'UNDO' -->
+        <!-- ============================================== -->
+        <section>
+          <section>
+            <h2>Mecânica: A Matriz Inversa</h2>
+            <div class="math-section">
+              <p>Se A é uma matriz quadrada \(n \times n\), sua inversa \(A^{-1}\), se existir, é uma matriz \(n \times n\) tal que:</p>
+              <p>\[ A A^{-1} = A^{-1} A = I_n \]</p>
+              <p>Uma matriz com inversa é <strong>inversível</strong>. Caso contrário, é <strong>singular</strong>.</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> A inversa (\(A^{-1}\)) é o comando 'Undo'. Se a matriz \(A\) representa uma ação, \(A^{-1}\) é a ação que te retorna exatamente ao estado original.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Quest de Treinamento</h2>
+            <div class="problem-section">
+              <h4>🎯 Quest de Treinamento (Fácil)</h4>
+              <p>O Mestre do Jogo te entrega duas matrizes e pergunta: B é o comando 'Undo' de A?</p>
+              \[ B = \begin{bmatrix} 3 & 5 \\ 1 & 2 \end{bmatrix}, \quad A = \begin{bmatrix} 2 & -5 \\ -1 & 3 \end{bmatrix} \]
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Fácil)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Quest de Treinamento:</h4>
+              <ol>
+                <li>Calcule o produto \(AB\).</li>
+                <li>Calcule o produto \(BA\).</li>
+                <li>Se ambos os resultados forem a matriz identidade \(I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\), então B é a inversa de A.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Propriedades do Inverso</h2>
+            <div class="math-section">
+              <p>1. <strong>Unicidade:</strong> Se uma matriz A é inversível, sua inversa \(A^{-1}\) é única.</p>
+              <p>2. <strong>Inversa do Produto:</strong> Se A e B são inversíveis, então AB também é, e:</p>
+              <p>\[ (AB)^{-1} = B^{-1}A^{-1} \]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação (Regra 2):</strong> A regra das "meias e sapatos". Para desfazer a ação de vestir meias (A) e depois sapatos (B), você primeiro tira os sapatos (\(B^{-1}\)) e depois as meias (\(A^{-1}\)).
+            </p>
+          </section>
+          
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Você entendeu o conceito fundamental do 'Undo'!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li><b>Definição de Inversa:</b> A matriz que anula o efeito de outra, resultando na identidade.</li>
+                    <li><b>Unicidade:</b> Cada ação tem apenas um 'Undo' correspondente.</li>
+                    <li><b>Inversa do Produto:</b> Para desfazer uma sequência de ações, inverta a ordem.</li>
+                </ul>
+            </div>
+          </section>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- QUEST 1.5: O ALGORITMO DE REVERSÃO -->
+        <!-- ============================================== -->
+        <section>
+          <section>
+            <h2>Mecânica: O Algoritmo de Reversão</h2>
+            <div class="math-section">
+              <p>Para encontrar a inversa de A, usamos o <strong>método de Gauss-Jordan</strong>. Construímos uma matriz aumentada \([A|I]\) e a reduzimos por linhas.</p>
+              <p>\[ [A|I] \xrightarrow{\text{Operações de Linha}} [I|A^{-1}] \]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Este é o "pergaminho de encantamento". Ao aplicar a sequência de comandos (operações) que transforma seu grid \(A\) no grid padrão \(I\), o mesmo encantamento transforma \(I\) no comando 'Undo' \(A^{-1}\).
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Você encontrou uma matriz de transformação. Crie o "item" de reversão encontrando sua inversa:</p>
+              \[ A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 5 & 3 \\ 1 & 0 & 8 \end{bmatrix} \]
+            </div>
+          </section>
+          
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>Monte a matriz aumentada \([A|I_3]\).</li>
+                <li>Use operações de linha para zerar os elementos abaixo da diagonal principal.</li>
+                <li>Continue as operações para zerar os elementos acima da diagonal principal.</li>
+                <li>Normalize as linhas para que a diagonal principal contenha apenas 1s. A matriz 3x3 à direita será a \(A^{-1}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Um "glitch" no sistema criou esta matriz. Tente aplicar o Algoritmo de Reversão e veja o que acontece.</p>
+              \[ A = \begin{bmatrix} 1 & 6 & 4 \\ 2 & 4 & -1 \\ -1 & 2 & 5 \end{bmatrix} \]
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+               <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Inicie o processo de inversão com a matriz aumentada \([A|I]\).</li>
+                <li>Aplique operações de linha para escalonar a matriz.</li>
+                <li>Você notará que a terceira linha da parte esquerda se tornará uma linha de zeros.</li>
+                <li><strong>Conclusão:</strong> É impossível transformar uma linha de zeros na linha \([0, 0, 1]\) da matriz identidade. Portanto, o algoritmo "falha" e a matriz é singular.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Você agora possui a principal ferramenta para forjar inversas!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li><b>Método de Gauss-Jordan:</b> O algoritmo \([A|I] \rightarrow [I|A^{-1}]\) é o procedimento padrão para calcular a inversa.</li>
+                    <li><b>Diagnóstico de Singularidade:</b> Se uma linha de zeros aparece na parte esquerda durante o processo, a matriz é singular.</li>
+                </ul>
+            </div>
+          </section>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- QUEST 1.6: OS 'COMANDOS' SECRETOS -->
+        <!-- ============================================== -->
+        <section>
+          <section>
+            <h2>Mecânica: Matrizes Elementares</h2>
+            <div class="math-section">
+              <p>Uma <strong>Matriz Elementar</strong> (E) é uma matriz obtida ao se realizar uma <strong>única</strong> operação elementar de linha na matriz identidade.</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Cada comando de operação de linha (trocar, multiplicar, somar) pode ser "engarrafado" em uma matriz. Multiplicar por essa matriz é o mesmo que usar o comando.
+            </p>
+          </section>
+
+          <section>
+            <h2>Demo: O Poder dos Comandos</h2>
+            <div class="math-section" style="font-size: 0.8em;">
+              <p><strong>Comando:</strong> Adicionar 3x a Linha 1 na Linha 3 (\(L_3 \leftarrow L_3 + 3L_1\)).</p>
+              <p><strong>1. Forjando a Matriz Elementar E:</strong> Aplicamos o comando em \(I_3\).</p>
+              \[ I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} \xrightarrow{L_3 \leftarrow L_3 + 3L_1} E = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 3 & 0 & 1 \end{bmatrix} \]
+              <p><strong>2. Testando:</strong> Seja \( A = \begin{bmatrix} 1 & 0 & 2 \\ 2 & -1 & 3 \\ 1 & 4 & 4 \end{bmatrix} \). Multiplicar \(EA\) é o mesmo que aplicar o comando em A?</p>
+              \[ EA = \begin{bmatrix} \mathbf{1} & \mathbf{0} & \mathbf{2} \\ \mathbf{2} & \mathbf{-1} & \mathbf{3} \\ \mathbf{4} & \mathbf{4} & \mathbf{10} \end{bmatrix} \quad \Leftrightarrow \quad A \xrightarrow{L_3 \leftarrow L_3 + 3L_1} \begin{bmatrix} \mathbf{1} & \mathbf{0} & \mathbf{2} \\ \mathbf{2} & \mathbf{-1} & \mathbf{3} \\ \mathbf{4} & \mathbf{4} & \mathbf{10} \end{bmatrix} \]
+              <p><strong>Conclusão:</strong> Sim! A multiplicação por E executa a operação de linha.</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Inversa como Produto</h2>
+            <div class="math-section">
+              <p>Se A é inversível, então \(A^{-1}\) é o produto das matrizes elementares que reduzem A à identidade.</p>
+              <p>Se \( (E_k \cdots E_2 E_1) A = I \), então...</p>
+              <p>\[ A^{-1} = E_k \cdots E_2 E_1 \]</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: A Justificativa do Método</h2>
+            <div class="compact-solution">
+              <h4>Por que o Algoritmo de Gauss-Jordan Funciona?</h4>
+              <p>O algoritmo \([A|I]\) aplica a mesma sequência de multiplicações por matrizes elementares a ambos os lados:</p>
+              <ol>
+                <li>Começamos com \(A\) e \(I\).</li>
+                <li>Multiplicamos ambos por \(E_1\), depois \(E_2\), etc., até \(E_k\).</li>
+                <li>No final, o lado esquerdo é \( (E_k \cdots E_1)A = I \).</li>
+                <li>O lado direito é \( (E_k \cdots E_1)I = E_k \cdots E_1 = A^{-1} \).</li>
+              </ol>
+              <p>É por isso que a matriz que aparece à direita é exatamente a inversa!</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Você descobriu o código-fonte por trás do algoritmo!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li><b>Matrizes Elementares:</b> A forma matricial das operações de linha.</li>
+                    <li><b>Justificativa do Algoritmo:</b> A inversa \(A^{-1}\) é a composição de todas as operações de linha que transformam A em I.</li>
+                </ul>
+            </div>
+          </section>
+        </section>
+        
+        <!-- ============================================== -->
+        <!-- QUEST 1.7: A REGRA MESTRA -->
+        <!-- ============================================== -->
+        <section>
+          <section>
+            <h2>Regra Mestra: O Teorema da Invertibilidade</h2>
+            <div class="math-section">
+              <p>Para uma matriz A quadrada \(n \times n\), as seguintes afirmações são <strong>equivalentes</strong> (se uma é verdadeira, todas são):</p>
+              <ul>
+                <li class="fragment">1. A é inversível.</li>
+                <li class="fragment">2. O sistema homogêneo \(Ax = 0\) só tem a solução trivial (\(x=0\)).</li>
+                <li class="fragment">3. A forma escalonada reduzida por linhas de A é \(I_n\).</li>
+                <li class="fragment">4. A pode ser expressa como um produto de matrizes elementares.</li>
+              </ul>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Esta é a "skill tree" definitiva. Desbloquear qualquer uma dessas propriedades para uma matriz desbloqueia todas as outras instantaneamente!
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Sem tentar calcular a inversa, use o Teorema da Invertibilidade para determinar se a matriz A abaixo é singular.</p>
+               \[ A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \]
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Vamos testar a afirmação 2: "O sistema \(Ax=0\) só tem a solução trivial".</li>
+                <li>O sistema é \( \begin{cases} x_1 + 2x_2 = 0 \\ 2x_1 + 4x_2 = 0 \end{cases} \).</li>
+                <li>Note que a segunda equação é apenas o dobro da primeira. O sistema se reduz a \(x_1 = -2x_2\).</li>
+                <li>Isso tem infinitas soluções (ex: \(x_2=1, x_1=-2\)). Como existem soluções não-triviais, a afirmação 2 é <strong>falsa</strong>.</li>
+                <li>Pelo Teorema da Invertibilidade, se uma afirmação é falsa, todas são. Logo, a afirmação 1 ("A é inversível") também é <strong>falsa</strong>. A matriz é singular.</li>
+              </ol>
+            </div>
+          </section>
+          
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Você agora entende as conexões profundas do universo matricial!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li><b>Teorema da Invertibilidade:</b> Um conjunto de condições interligadas que definem o que torna uma matriz "bem-comportada" (inversível).</li>
+                    <li><b>Poder de Diagnóstico:</b> A capacidade de usar diferentes propriedades (como soluções de sistemas) para determinar a invertibilidade.</li>
+                </ul>
+            </div>
+          </section>
+        </section>
+
+        <!-- =========================== -->
+        <!-- SLIDE FINAL: EASTER EGG -->
+        <!-- =========================== -->
+        <section>
+            <h2>Easter Egg: Aplicações</h2>
+            <div class="lore-section">
+                <div class="lore-label">EASTER EGG</div>
+                <p><strong>Onde a Álgebra Linear é o "Motor do Jogo" no Mundo Real</strong></p>
+                <p>
+                    O conceito de matriz inversa é a base para "desfazer" ou "decodificar" informações em inúmeras áreas.
+                </p>
+            </div>
+            <div class="math-section">
+                <p>Exemplos de aplicação:</p>
+                <ul>
+                    <li><b>Computação Gráfica 3D:</b> Para retornar um objeto à sua posição original após uma rotação.</li>
+                    <li><b>Criptografia:</b> A matriz inversa pode servir como a "chave" para decodificar uma mensagem criptografada por outra matriz.</li>
+                    <li><b>Resolução de Sistemas:</b> Se \(Ax=b\), então \(x = A^{-1}b\). A inversa resolve o sistema diretamente!</li>
+                </ul>
+            </div>
+        </section>
+
+      </div>
+    </div>
+    
+    <script>
+      // Inicialização do Reveal.js
+      window.onload = function () {
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          center: true,
+          hash: true,
+          plugins: [RevealMath.MathJax3],
+          width: '90%',
+          height: '100%',
+          margin: 0.02,
+          minScale: 0.45,
+          maxScale: 1.5,
+          transition: 'fade',
+        });
+      };
+    </script>
+  </body>
+</html>

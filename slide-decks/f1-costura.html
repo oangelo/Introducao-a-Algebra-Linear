@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fase 1 · a costura — história e matemática no mesmo fio</title>
+<link rel="stylesheet" href="f1-matematica.css">
+</head>
+<body>
+
+<header class="cabeca">
+  <h1>Fase 1 · a costura</h1>
+  <p class="sub">Como o capítulo 1 (o instrumento — como se sabe que algo funciona) entrega a Fase 1
+  (Portão 1 — sistemas e matrizes) sem trocar de assunto. Cinco pontes que sustentam peso, cinco
+  analogias que parecem boas e quebram, e a ordem em que as duas camadas se alternam.</p>
+</header>
+
+<div class="aviso">
+  <h2>A regra da analogia</h2>
+  <ul>
+    <li><b>Analogia é ponte, não piso.</b> Ela carrega o aluno de uma ideia que ele já aceita para
+    uma que ele ainda não aceita — e depois sai de cena. Se ela fica na tela depois da travessia,
+    virou conteúdo, e conteúdo errado.</li>
+    <li><b>Toda analogia tem placa de limite.</b> São três campos, e os três precisam existir:
+    o que liga, <i>onde para de valer</i>, a frase de travessia. Sem o segundo campo, não entra.</li>
+    <li><b>O teste final:</b> apague a analogia. Se nenhuma matemática se perde, ela era enfeite —
+    e enfeite em slide de matemática custa atenção que o quadro precisa.</li>
+    <li><b>Analogia que prevê o resultado errado não é analogia fraca, é erro.</b> "Mais dados
+    melhora" é verdade em estatística e mentira em sistemas lineares: mais equações podem
+    <i>destruir</i> soluções. Isso não se contorna com cuidado na fala — muda-se a formulação.</li>
+  </ul>
+</div>
+
+<main>
+
+<h2 class="parte">Parte 1 · as cinco pontes que sustentam peso</h2>
+
+<p class="intro">Cada ponte liga uma cartela do capítulo 1 a um bloco da matemática, e é julgada por
+um critério só: <i>a mesma frase continua verdadeira do outro lado?</i> As cinco passam. As que não
+passam estão na Parte 2, com o motivo.</p>
+
+<section class="ficha">
+  <h3><span class="num">P1</span>Uma condição satisfeita não é o problema resolvido</h3>
+  <span class="selo">USAR · a ponte principal</span><span class="forma">Q03 · blocos 1.1, 1.5</span>
+  <dl>
+    <dt>O gancho (cena)</dt>
+    <dd>Q03: ele vence uma partida, ergue os braços e conclui que a teoria funciona. "Funcionou uma
+    vez. Isso não é evidência."</dd>
+    <dt>O bloco (matemática)</dt>
+    <dd>\(x = 3, y = 1\) satisfaz a primeira equação do sistema. O aluno acha isso e considera o
+    problema encerrado. Solução, por definição, satisfaz <b>todas</b> — pertence a cada \(S_i\).</dd>
+    <dt>O que liga</dt>
+    <dd>O erro lógico é o mesmo, e é o mesmo aluno cometendo: promover um caso favorável a
+    conclusão. No jogo ele generaliza de uma partida; no quadro, de uma equação.</dd>
+    <dt>Onde para de valer</dt>
+    <dd>No jogo, um sucesso é <b>evidência fraca</b> — o problema é indutivo. Na álgebra não há
+    gradação: satisfazer uma equação e falhar nas outras não é evidência insuficiente, é
+    <b>não pertencer</b>. A frase tem que dizer isso, senão o aluno sai achando que "quase acertou".</dd>
+    <dt>A frase de travessia</dt>
+    <dd>“Ele satisfez uma condição e chamou de vitória. A primeira coisa que a definição de solução
+    faz é tirar isso dele: o 'todas' não é detalhe, é o problema.”</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">P2</span>Para comparar, uma das linhas fica parada</h3>
+  <span class="selo">USAR COM RESSALVA · uma frase</span><span class="forma">Q04 · bloco 1.8</span>
+  <dl>
+    <dt>O gancho (cena)</dt>
+    <dd>Q04: o mesmo salto em dois quadros, separados por uma barra preta. Sem as duas metades lado
+    a lado não existe comparação — a divisória é o instrumento.</dd>
+    <dt>O bloco (matemática)</dt>
+    <dd>Ao eliminar, uma linha é a referência e fica intacta; a outra é reescrita como
+    \(R_2 \leftarrow R_2 - 2R_1\). Sem a linha de referência não há o que subtrair.</dd>
+    <dt>O que liga</dt>
+    <dd>Comparação exige um dos dois lados fixo. Na conta, a linha que não se mexe é o que permite
+    medir a outra.</dd>
+    <dt>Onde para de valer</dt>
+    <dd>Aqui não se comparam <b>resultados</b> para julgar evidência: compara-se duas equações para
+    <b>cancelar</b> uma incógnita. E as operações precisam ser reversíveis — coisa que o capítulo 1
+    não tem. Diga "referência", não "controle experimental".</dd>
+    <dt>A frase de travessia</dt>
+    <dd>“Duas linhas lado a lado para cancelar uma incógnita — uma fica parada, é a régua da
+    subtração. Não é o controle do capítulo 1: aqui o objetivo é zerar, não provar.”</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">P3</span>Uma incógnita por vez</h3>
+  <span class="selo">USAR · a ponte procedural</span><span class="forma">Q05 · blocos 1.9, 1.10</span>
+  <dl>
+    <dt>O gancho (cena)</dt>
+    <dd>Q05: um salto, muitos desfechos; uma trajetória só chega. "Uma coisa de cada vez" — quem
+    mexeu em tudo junto não sabe o que causou o quê.</dd>
+    <dt>O bloco (matemática)</dt>
+    <dd>O escalonamento elimina <b>uma coluna por vez</b>: escolhe-se o pivô, zera-se abaixo dele, e
+    só então se passa à coluna seguinte. E o protocolo de registro é a versão disso no papel: uma
+    linha, uma operação.</dd>
+    <dt>O que liga</dt>
+    <dd>É a mesma disciplina de separação — e é a única ponte que se sustenta como <i>procedimento</i>,
+    não como retórica: o aluno que muda duas coisas num passo, no jogo ou no quadro, perde a
+    possibilidade de saber o que fez.</dd>
+    <dt>Onde para de valer</dt>
+    <dd>No experimento, isolar serve para <b>atribuir causa</b>. Na eliminação não se descobre causa
+    nenhuma: reduz-se um sistema. A ordem das colunas é conveniência de conta, não ordem causal.</dd>
+    <dt>A frase de travessia</dt>
+    <dd>“Uma incógnita por vez. É o mesmo 'uma coisa de cada vez' — só que aqui não estamos
+    descobrindo o que causou; estamos reduzindo.”</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">P4</span>Trinta noites iguais são uma noite</h3>
+  <span class="selo">USAR COM RESSALVA FORTE · inverter o sinal</span><span class="forma">Q08 · bloco 1.12</span>
+  <dl>
+    <dt>O gancho (cena)</dt>
+    <dd>Q08: díptico da mesma mesa — à esquerda uma folha, à direita o papel soterrado. "Uma noite é
+    anedota. Trinta são dados."</dd>
+    <dt>O bloco (matemática)</dt>
+    <dd>Informação <b>nova</b> reduz o conjunto-solução: uma equação deixa infinitos pontos, duas
+    podem deixar um, três podem não deixar nenhum. Informação <b>repetida</b> não reduz nada: a
+    linha que é múltipla de outra vira \(0 = 0\) e sai da conta.</dd>
+    <dt>O que liga</dt>
+    <dd>Quantidade só vale enquanto for informação independente. Trinta noites de sorte são a mesma
+    noite trinta vezes — e a matriz mostra isso literalmente, como linha redundante.</dd>
+    <dt>Onde para de valer</dt>
+    <dd><b>O sinal se inverte e é aqui que a analogia morde.</b> Em estatística, mais dados
+    <i>aumentam</i> a confiança; em sistemas, mais equações <i>encolhem</i> o conjunto-solução e
+    podem esvaziá-lo. O que se transporta é "informação nova reduz possibilidade", não "mais é
+    melhor". Se a frase sair como "quanto mais equações, melhor", o aluno aprende o contrário do
+    que a Fase 2 vai cobrar.</dd>
+    <dt>A frase de travessia</dt>
+    <dd>“Trinta noites iguais são uma noite. Na matriz isso tem nome e aparece na conta: a linha que
+    repete outra vira zero igual a zero. Novidade encolhe o conjunto de soluções; repetição não
+    encolhe nada.”</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">P5</span>As incógnitas andam juntas quando falta pivô</h3>
+  <span class="selo">USAR COMO SEMENTE · sem definir</span><span class="forma">Q10 · bloco 1.12</span>
+  <dl>
+    <dt>O gancho (cena)</dt>
+    <dd>Q10: a linha menor do fecho — "Duas coisas que sempre andam juntas são uma só." É a única
+    antecipação de matemática do capítulo inteiro.</dd>
+    <dt>O bloco (matemática)</dt>
+    <dd>Coluna sem pivô significa incógnita livre. No conjunto-solução, mexer no parâmetro move mais
+    de uma incógnita ao mesmo tempo: elas <b>andam juntas</b>, e por isso o conjunto é uma reta (ou
+    um plano) e não um ponto.</dd>
+    <dt>O que liga</dt>
+    <dd>"Andar junto" no sentido exato: sempre que uma muda, a outra muda na mesma proporção. É a
+    leitura correta da frase do fecho, e ela é verificável na conta — não é metáfora.</dd>
+    <dt>Onde para de valer</dt>
+    <dd>"Juntas no tempo" não é o que está escrito: dependência linear não é coincidência temporal.
+    E <b>não se define dependência aqui</b> — o conceito tem dono, e não é esta fase (regra R1 do
+    MAPA-CAPITULOS). Aqui a palavra fica no ar de propósito: quem cobra é a Fase 5.</dd>
+    <dt>A frase de travessia</dt>
+    <dd>“Quando uma coluna não tem pivô, as incógnitas andam juntas — é a frase do fecho do capítulo,
+    agora com nome na conta. Guardem a palavra: ela volta.”</dd>
+  </dl>
+</section>
+
+<h2 class="parte">Parte 2 · as analogias que parecem boas e quebram</h2>
+
+<p class="intro">Todas foram consideradas — algumas já apareceram em rascunho de fala. Cada uma tem
+um motivo concreto de corte, e o motivo é sempre o mesmo tipo de dano: ensina uma estrutura que a
+matemática não tem.</p>
+
+<section class="conceito">
+  <h3><span class="num">C1</span>"A matriz é o placar"</h3>
+  <p>Placar é <b>resultado acumulado</b> e tem hierarquia: quem está em cima venceu. Matriz é dado
+  bruto reorganizado, e <b>a ordem das linhas não significa nada</b> — trocar duas linhas é operação
+  elementar. A analogia instala exatamente o preconceito que a primeira operação da fase precisa
+  desfazer.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">C2</span>"Eliminar é grindar"</h3>
+  <p>Grindar melhora por <b>repetição</b>; eliminar melhora porque cada passo <b>reduz</b> o problema
+  — e a eliminação é finita, com fim determinado. Aluno que ouve "grindar" tenta repetir a mesma
+  conta esperando progresso, que é o oposto do método.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">C3</span>"Sistema impossível é o jogo travado"</h3>
+  <p>Um sistema impossível não falhou: ele <b>informou</b> que as condições se contradizem. É
+  resultado, e é resultado limpo (\(0 = c\) com \(c \neq 0\)). Chamar de travamento ensina que a
+  resposta vazia é defeito — e é justamente a resposta que a Fase 1 quer que eles saibam escrever.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">C4</span>"O pivô é o truque"</h3>
+  <p>Pivô é <b>escolha estrutural</b>, com critério declarado: existe um \(1\) na coluna, ele é o
+  pivô. Truque é o que funciona por sorte e não se explica. Aqui há uma razão — e ela é o conteúdo
+  do bloco 1.11.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">C5</span>"Solução é o WIN"</h3>
+  <p>WIN é um <b>estado</b>; solução é um <b>conjunto</b>, e pode ser vazio. Além disso a palavra já
+  está queimada: a tela do Q03 mostra WIN! e a frase logo abaixo diz que aquilo não é evidência.
+  Reusar o termo para "solução" reabilita justamente o que o capítulo desmontou.</p>
+</section>
+
+<h2 class="parte">Parte 3 · a ordem em que as duas camadas se alternam</h2>
+
+<p class="intro">A fase não é "história primeiro, matemática depois". É alternância com costura
+declarada: cada bloco matemático abre com uma frase que vem da cena anterior e fecha devolvendo a
+palavra para a fase. As telas abaixo são a sequência mínima — o professor para onde quiser, porque
+o deck é retomável.</p>
+
+<section class="ficha">
+  <h3><span class="num">S1</span>O corredor</h3>
+  <span class="selo">passagem de registro</span><span class="forma">do quarto (arcade) ao gabinete (noir)</span>
+  <dl>
+    <dt>História</dt>
+    <dd>Fecha o capítulo 1 no pódio e abre a porta. Não é tela de conteúdo: é a única em que o
+    gênero muda, e a mudança tem que ser vista como <b>porta</b>, não como gradiente de paleta.</dd>
+    <dt>Matemática</dt>
+    <dd>Nada. Zero fórmula, zero número — é a última tela sem HUD de exercício.</dd>
+    <dt>Costura</dt>
+    <dd>“O instrumento está na mão. O que falta é um caso para investigar.”</dd>
+    <dt>Não dizer</dt>
+    <dd>Nada sobre sistemas ainda. Se aparecer "sistema" aqui, a porta virou sala de aula.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">S2</span>O que é uma solução</h3>
+  <span class="selo">abertura matemática</span><span class="forma">blocos 1.1 a 1.4</span>
+  <dl>
+    <dt>História</dt>
+    <dd>Uma frase, no topo: ele satisfez uma condição e chamou de vitória.</dd>
+    <dt>Matemática</dt>
+    <dd>Equação linear, a reta da Geometria Analítica, o conjunto-solução com notação de conjuntos,
+    e por que desenhar não escala.</dd>
+    <dt>Costura</dt>
+    <dd>P1 na entrada (o "todas"), e a ponte de conjuntos fecha o bloco: a pergunta deixou de ser
+    "quanto vale \(x\)" e passou a ser "quem pertence a \(S\)".</dd>
+    <dt>Não dizer</dt>
+    <dd>Não prometer que a intuição geométrica vai ser abandonada — ela volta como conferência em
+    \(\mathbb{R}^2\). O que se abandona é o desenho como método.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">S3</span>O sistema e as três respostas</h3>
+  <span class="selo">primeiro exercício no quadro</span><span class="forma">blocos 1.5, 1.6 · exemplo A1</span>
+  <dl>
+    <dt>História</dt>
+    <dd>Silêncio. O capítulo 1 já gastou as dez cartelas; daqui em diante a história é HUD.</dd>
+    <dt>Matemática</dt>
+    <dd>Sistema, pertinência a cada \(S_i\), e as três respostas: vazio, unitário, infinito — com a
+    prova de uma linha de que "exatamente duas" não existe.</dd>
+    <dt>Costura</dt>
+    <dd>P1 fecha aqui: o aluno vê o par dele pertencer a \(S_1\) e não necessariamente a \(S_2\).</dd>
+    <dt>Não dizer</dt>
+    <dd>Não antecipar "grau de liberdade" — a ideia entra pela contagem de pivôs, mais adiante.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">S4</span>A matriz e a eliminação</h3>
+  <span class="selo">o método</span><span class="forma">blocos 1.7 a 1.10 · exemplos B1, B2</span>
+  <dl>
+    <dt>História</dt>
+    <dd>Nada novo. O HUD mostra o portão e o exercício — é o que sustenta a atenção.</dd>
+    <dt>Matemática</dt>
+    <dd>Matriz aumentada, as três operações elementares, forma escalonada, pivô, e o protocolo de
+    registro em três regras.</dd>
+    <dt>Costura</dt>
+    <dd>P2 (a linha que fica parada) e P3 (uma incógnita por vez), cada uma em <b>uma frase</b>, na
+    entrada do bloco. O protocolo é a P3 no papel.</dd>
+    <dt>Não dizer</dt>
+    <dd>Não chamar as operações de "regras do jogo" — regra de jogo é arbitrária; essas são
+    reversíveis, e é por isso que valem.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">S5</span>A leitura da forma</h3>
+  <span class="selo">fechamento do método</span><span class="forma">blocos 1.11, 1.12 · exemplos C, D</span>
+  <dl>
+    <dt>História</dt>
+    <dd>Uma frase de retomada ao Q08: as noites que repetiram não ensinaram nada.</dd>
+    <dt>Matemática</dt>
+    <dd>Pivô como escolha; e as quatro leituras da forma — coluna sem pivô, \(0 = 0\),
+    \(0 = c\), pivô em toda coluna.</dd>
+    <dt>Costura</dt>
+    <dd>P4, com o sinal invertido dito em voz alta; e P5 fica só como semente, sem definição.</dd>
+    <dt>Não dizer</dt>
+    <dd>Não definir dependência linear. A palavra "juntas" sai da boca e não é formalizada aqui.</dd>
+  </dl>
+</section>
+
+<section class="ficha">
+  <h3><span class="num">S6</span>A chave</h3>
+  <span class="selo">entrega</span><span class="forma">chave do Portão 1</span>
+  <dl>
+    <dt>História</dt>
+    <dd>A chave na mão, sem chefe — a regra do curso: só a F6 tem confronto.</dd>
+    <dt>Matemática</dt>
+    <dd>Nada novo. A tela de retomada repete uma forma já resolvida: é a terceira passagem.</dd>
+    <dt>Costura</dt>
+    <dd>“O capítulo 1 ensinou como se sabe que algo funciona. Isto aqui é a primeira coisa que
+    funciona.”</dd>
+    <dt>Não dizer</dt>
+    <dd>Não anunciar a Fase 2. Chave entregue, porta seguinte fechada — a não ser no mapa.</dd>
+  </dl>
+</section>
+
+<h2 class="parte">Parte 4 · riscos, com o teste que pega cada um</h2>
+
+<section class="conceito">
+  <h3><span class="num">R1</span>A analogia virar conteúdo</h3>
+  <p>Sintoma: o professor explica a analogia duas vezes e a matemática uma. Teste: apague a frase de
+  travessia. Se o bloco continua ensinando o mesmo, a ponte estava no lugar errado — a travessia é a
+  <b>última</b> frase antes da conta, não a primeira.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">R2</span>"Quase acertei"</h3>
+  <p>O aluno que satisfez uma equação sai achando que errou por pouco. Não errou por pouco: não
+  pertence. A correção tem que ser dita na hora, com a palavra "todas", senão P1 ensina tolerância
+  onde não há.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">R3</span>\(0 = 0\) lido como erro de conta</h3>
+  <p>É o risco mais provável da fase: o aluno chega em \(0 = 0\), apaga tudo e recomeça. A tela de
+  retomada precisa mostrar uma linha redundante <b>antes</b> de o aluno encontrá-la sozinho na
+  lista.</p>
+</section>
+
+<section class="conceito">
+  <h3><span class="num">R4</span>A contagem da ficção contra a contagem do quadro</h3>
+  <p>Trinta noites no capítulo, três equações no sistema. Se o professor disser "trinta" ao lado de
+  uma matriz \(3 \times 3\), a criança procura a trigésima linha. Os números da ficção e os do
+  quadro nunca aparecem na mesma tela — é o que a Camada A/B já garante, e vale para a fala também.</p>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <p><b>Relação com os outros documentos:</b> a matemática está em
+  <a href="f1-matematica.html">f1-matematica.html</a>; a narrativa, em
+  <a href="STORYBOARD-CAP1.md">STORYBOARD-CAP1.md</a> (as dez cartelas) e
+  <a href="CAPITULO-1.md">CAPITULO-1.md</a> (os cinco instrumentos). Este documento não substitui
+  nenhum dos dois: ele só declara onde os dois se encontram.</p>
+  <p><b>Regra de dono de conceito:</b> a fase pode <i>usar</i> uma palavra que ainda não é dela, mas
+  não pode <i>definir</i>. Dependência linear entra como semente (P5) e é definida na Fase 5.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+</body>
+</html>

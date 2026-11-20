@@ -1,0 +1,264 @@
+/* livro-cap1.css — o livro do capítulo 1.
+   Uma coluna, papel claro, tinta escura. Nada de HUD: é livro, não slide.
+   Classes listadas em CONTRATO.md — usar só estas. */
+
+:root {
+  --tinta: #14161b;
+  --fraco: #5a6172;
+  --ambar: #8a5a12;
+  --azul: #2b5f8a;
+  --vermelho: #a3352c;
+  --linha: #cdd0d7;
+  --papel: #f8f6f1;
+  --papel2: #efebe3;
+  --creme: #fbf4e6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.pagina {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1.4rem 6rem;
+}
+
+/* ---- capa ---- */
+.capa {
+  border-bottom: 3px solid var(--tinta);
+  padding: 3.2rem 0 1.6rem;
+  margin-bottom: 0.4rem;
+}
+.capa .selo {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fraco);
+  margin: 0 0 0.9rem;
+}
+.capa h1 {
+  font-size: 2.05rem;
+  line-height: 1.15;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+.capa .sub {
+  margin: 0;
+  color: var(--fraco);
+  font-size: 1.02rem;
+  font-style: italic;
+}
+.capa .autor {
+  margin: 1.4rem 0 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fraco);
+}
+
+/* ---- sumário ---- */
+#sumario {
+  border-bottom: 1px solid var(--linha);
+  padding: 1.3rem 0 1.6rem;
+  margin-bottom: 2.4rem;
+}
+#sumario h2 {
+  font-family: 'Courier New', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fraco);
+  margin: 0 0 0.7rem;
+}
+#sumario ol { list-style: none; margin: 0; padding: 0; }
+#sumario li { margin: 0.3rem 0; }
+#sumario a {
+  color: var(--tinta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+#sumario a:hover { border-bottom-color: var(--ambar); }
+#sumario .num {
+  display: inline-block;
+  min-width: 3.1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--ambar);
+}
+
+/* ---- seções ---- */
+section.sec { margin: 3.4rem 0 0; }
+section.sec > h2 {
+  font-size: 1.34rem;
+  line-height: 1.28;
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--linha);
+}
+h2 .num, h3 .num {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78em;
+  color: var(--ambar);
+  margin-right: 0.55rem;
+  white-space: nowrap;
+}
+section.sec h3 {
+  font-size: 1.06rem;
+  margin: 2rem 0 0.7rem;
+}
+
+p { margin: 0 0 0.95rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.35rem; }
+li { margin: 0.3rem 0; }
+
+/* ---- caixas ---- */
+.def {
+  background: var(--papel2);
+  border-left: 3px solid var(--azul);
+  padding: 0.9rem 1.1rem;
+  margin: 1.3rem 0;
+}
+.ex {
+  background: #fff;
+  border: 1px solid var(--linha);
+  padding: 1rem 1.15rem;
+  margin: 1.5rem 0;
+}
+.def .titulo, .ex .titulo {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--azul);
+  margin-bottom: 0.4rem;
+}
+.ex .titulo { color: var(--ambar); }
+.def p:last-child, .ex p:last-child { margin-bottom: 0; }
+
+.obs {
+  border-left: 3px solid var(--ambar);
+  padding: 0.1rem 0 0.1rem 0.9rem;
+  margin: 1.1rem 0;
+  color: #2c3038;
+}
+.obs b { color: var(--ambar); }
+
+.cuidado {
+  background: var(--creme);
+  border: 1px solid #e5cf9f;
+  padding: 0.85rem 1rem;
+  margin: 1.3rem 0;
+}
+.cuidado .titulo {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vermelho);
+  margin-bottom: 0.35rem;
+}
+
+/* ---- contas ---- */
+.conta {
+  font-family: 'Courier New', monospace;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  background: #fff;
+  border: 1px solid var(--linha);
+  padding: 0.7rem 0.9rem;
+  margin: 0.9rem 0;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 4;
+}
+.passos { list-style: none; padding-left: 1.1rem; counter-reset: passo; }
+.passos li { position: relative; margin: 0.45rem 0; counter-increment: passo; }
+.passos li::before {
+  content: counter(passo) ".";
+  position: absolute;
+  left: -1.1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--fraco);
+}
+
+/* ---- tabelas ---- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.1rem 0;
+  font-size: 0.94rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.4rem 0.55rem;
+  border-bottom: 1px solid var(--linha);
+  vertical-align: top;
+}
+th {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fraco);
+  border-bottom: 1.5px solid var(--tinta);
+}
+tbody tr:last-child td { border-bottom: 1.5px solid var(--tinta); }
+
+/* ---- gabarito ---- */
+details.gabarito {
+  background: #fff;
+  border: 1px solid var(--linha);
+  padding: 0.55rem 0.9rem;
+  margin: 0.7rem 0;
+}
+details.gabarito summary {
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul);
+}
+details.gabarito[open] summary { margin-bottom: 0.6rem; }
+
+/* ---- referências e fim ---- */
+a.ref {
+  color: var(--azul);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--azul);
+}
+a.ref:hover { border-bottom-style: solid; }
+
+.fim {
+  margin-top: 4.5rem;
+  padding-top: 1.4rem;
+  border-top: 3px solid var(--tinta);
+  font-size: 0.94rem;
+  color: #33383f;
+}
+.fim h2 { font-size: 1.12rem; margin: 0 0 0.8rem; }
+.fim ul { padding-left: 1.2rem; }
+
+/* ---- MathJax ---- */
+mjx-container[display="true"] { margin: 1rem 0 !important; }
+
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .pagina { max-width: none; padding: 0; }
+  .ex, .def, .conta, table, details.gabarito { break-inside: avoid; }
+  section.sec { break-before: auto; }
+  a.ref { border-bottom: none; }
+}

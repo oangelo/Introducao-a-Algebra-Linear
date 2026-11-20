@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Fase 4.1: O Primeiro Portal</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 4.1: O Primeiro Portal</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: O Primeiro Portal (Aplicando Matrizes de Transformação)</h3>
+        <p>Bem-vindo à Fase 4! Aqui, cada "portal" no mundo do jogo é, na verdade, uma <strong>Transformação Linear</strong> representada por uma Matriz \(A\). Quando seu avatar, representado por um vetor de posição \(\mathbf{x}\), atravessa um desses portais, sua nova posição \(\mathbf{w}\) é calculada pela multiplicação da matriz pelo vetor. Sua missão é dominar essa operação fundamental.</p>
+        <p>Toda Transformação Linear segue duas regras sagradas: a <strong>Aditividade</strong> (\(T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})\)) e a <strong>Homogeneidade</strong> (\(T(c\mathbf{u}) = cT(\mathbf{u})\)). Vamos explorar como aplicar as matrizes de transformação mais comuns: Dilatação, Reflexão e Rotação.</p>
+        <div class="formula">\[ \mathbf{w} = T(\mathbf{x}) = A\mathbf{x} \]</div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-A: Portal de Teleporte (Multiplicação Matriz-Vetor)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Praticar a operação fundamental \(A\mathbf{x}\) com uma matriz 2x2 simples.
+            </div>
+            <p>Um avatar na posição \(\mathbf{v} = \begin{pmatrix} 3 \\ 5 \end{pmatrix}\) entra em um portal de teleporte. A transformação \(T\) do portal é descrita pela "Matriz de Transformação" \(A\). Calcule a nova posição \(\mathbf{w}\) do avatar após a transformação.</p>
+            \[ A = \begin{pmatrix} 2 & -1 \\ 1 & 1 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Lembre-se da regra de multiplicação de matriz por vetor: cada linha da matriz é multiplicada, elemento a elemento, pela coluna do vetor, e os resultados são somados para formar a nova componente.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique a matriz \(A\) e o vetor \(\mathbf{v}\).</li>
+                    <li>Para encontrar a primeira componente do vetor resultante, multiplique a primeira linha de \(A\) por \(\mathbf{v}\): \((2 \cdot 3) + (-1 \cdot 5)\).</li>
+                    <li>Para encontrar a segunda componente, multiplique a segunda linha de \(A\) por \(\mathbf{v}\): \((1 \cdot 3) + (1 \cdot 5)\).</li>
+                    <li>Monte o novo vetor de posição \(\mathbf{w}\) com os resultados.</li>
+                </ol>
+                <div class="formula">\[ \begin{pmatrix} w_1 \\ w_2 \end{pmatrix} = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} a_{11}v_1 + a_{12}v_2 \\ a_{21}v_1 + a_{22}v_2 \end{pmatrix} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa é a operação mais básica para qualquer tipo de efeito especial: mover, girar, esticar ou distorcer um objeto na tela. A engine do jogo faz esse cálculo milhares de vezes por segundo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-B: Power-up de Aumento (Matriz de Dilatação)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar uma matriz de escala e entender seu efeito de "esticar" um vetor.
+            </div>
+            <p>Em um jogo estilo "Asteroids" (Era Arcade Ouro), o sprite de sua nave é definido por vários pontos. Um desses pontos está na coordenada \(\mathbf{p} = \begin{pmatrix} 8 \\ -6 \end{pmatrix}\) relativa ao centro da nave. Ao coletar um power-up, a nave triplica de tamanho. Calcule a nova posição do ponto \(\mathbf{p}\) usando a matriz de dilatação \(S\) abaixo.</p>
+            \[ S = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Uma matriz de dilatação (ou escala) é uma matriz diagonal. A multiplicação por ela simplesmente multiplica cada componente do vetor pelo fator de escala correspondente.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Configure a multiplicação da matriz de dilatação \(S\) pelo vetor de posição \(\mathbf{p}\).</li>
+                    <li>Calcule a nova coordenada x: \((3 \cdot 8) + (0 \cdot -6)\).</li>
+                    <li>Calcule a nova coordenada y: \((0 \cdot 8) + (3 \cdot -6)\).</li>
+                    <li>O vetor resultante mostrará o ponto do sprite "esticado" para longe do centro.</li>
+                </ol>
+                <div class="formula">\[ \mathbf{p}' = S \mathbf{p} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Efeitos de crescimento e encolhimento de personagens ou objetos são implementados aplicando uma matriz de escala a todos os vértices que compõem o modelo 3D ou sprite 2D do objeto.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (BÁSICO) -->
+        <div class="mission">
+            <h3>MISSÃO 1-C: O Nível Espelhado (Matriz de Reflexão)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar uma matriz de reflexão e observar a inversão de uma das coordenadas.
+            </div>
+            <p>Em um jogo de puzzle da "Era 8-bit", um tesouro está escondido na posição \(\mathbf{t} = \begin{pmatrix} 12 \\ 7 \end{pmatrix}\) em um mapa. Para um desafio extra, você é transportado para uma versão "espelhada" do nível, onde tudo é refletido através do eixo vertical (eixo y). Calcule a nova posição do tesouro usando a matriz de reflexão \(R_y\).</p>
+            \[ R_y = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Refletir através do eixo y significa que a coordenada x de um ponto deve inverter seu sinal, enquanto a coordenada y permanece a mesma. Veja como a matriz \(R_y\) faz exatamente isso.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Multiplique a matriz de reflexão \(R_y\) pelo vetor de posição do tesouro \(\mathbf{t}\).</li>
+                    <li>Observe que a primeira linha da matriz, \((-1, 0)\), multiplicará a coordenada x por -1 e a y por 0.</li>
+                    <li>A segunda linha, \((0, 1)\), preservará o valor original da coordenada y.</li>
+                    <li>Combine os resultados para obter a posição espelhada.</li>
+                </ol>
+                <div class="formula">\[ \mathbf{t}' = R_y \mathbf{t} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A reflexão é usada para criar níveis simétricos, para a mecânica de espelhos em puzzles, ou simplesmente para inverter um sprite de personagem quando ele muda de direção (de olhar para a direita para a esquerda).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-A (MÉDIO) -->
+        <div class="mission">
+            <h3>MISSÃO 2-A: Manobra de Rotação (Matriz de Rotação)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar a matriz de rotação para um ângulo comum (90°) e visualizar o resultado.
+            </div>
+            <p>Uma nave espacial em um jogo da "Era 16-bit" tem seu canhão apontado na direção do vetor \(\mathbf{d} = \begin{pmatrix} 5 \\ 2 \end{pmatrix}\). O jogador ativa um "power-up" que executa uma rotação de 90° no sentido anti-horário. Use a matriz de rotação \(R_{90}\) para encontrar o novo vetor de direção do canhão.</p>
+            \[ R_{90} = \begin{pmatrix} \cos(90^\circ) & -\sin(90^\circ) \\ \sin(90^\circ) & \cos(90^\circ) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Substitua os valores de \(\cos(90^\circ)=0\) e \(\sin(90^\circ)=1\) na matriz de rotação geral. Depois, realize a multiplicação da matriz resultante pelo vetor de direção.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Confirme que a matriz \(R_{90}\) está correta, com os valores de seno e cosseno para 90 graus.</li>
+                    <li>Calcule o produto de \(R_{90}\) pelo vetor \(\mathbf{d}\).</li>
+                    <li>A primeira componente do novo vetor será \((0 \cdot 5) + (-1 \cdot 2)\).</li>
+                    <li>A segunda componente será \((1 \cdot 5) + (0 \cdot 2)\).</li>
+                    <li>O resultado é o novo vetor que aponta 90° à esquerda do original.</li>
+                </ol>
+                <div class="formula">\[ \mathbf{d}' = R_{\theta} \mathbf{d} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A rotação é fundamental. É usada para girar personagens, a câmera, objetos em um inventário (como em "Resident Evil 4"), ou para simular a rotação de planetas e outros corpos celestes.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MÉDIO) -->
+        <div class="mission">
+            <h3>MISSÃO 2-B: Efeito de Distorção (Matriz de Cisalhamento)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar uma transformação menos comum (cisalhamento) para entender seus efeitos de "inclinação".
+            </div>
+            <p>Seu personagem entra em uma "zona de miragem" que causa uma distorção visual. Esse efeito é um <strong>cisalhamento horizontal</strong> (shear) descrito pela matriz \(H\). Calcule a nova posição de um pilar que estava originalmente em \(\mathbf{p} = \begin{pmatrix} 4 \\ 10 \end{pmatrix}\).</p>
+            \[ H = \begin{pmatrix} 1 & 0.5 \\ 0 & 1 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>O cisalhamento horizontal desloca a coordenada x de um ponto em uma quantidade proporcional à sua coordenada y. A coordenada y permanece inalterada. Observe a estrutura da matriz H para ver como isso acontece.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Realize a multiplicação da matriz de cisalhamento \(H\) pelo vetor \(\mathbf{p}\).</li>
+                    <li>A nova coordenada x será \( (1 \cdot 4) + (0.5 \cdot 10) \).</li>
+                    <li>A nova coordenada y será \( (0 \cdot 4) + (1 \cdot 10) \).</li>
+                    <li>Observe como a posição do pilar foi "inclinada" para a direita.</li>
+                </ol>
+                <div class="formula">\[ \mathbf{p}' = H \mathbf{p} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O cisalhamento é usado para efeitos especiais, como a distorção de uma tela de TV antiga, miragens de calor, portais instáveis, ou para criar uma falsa perspectiva isométrica em jogos 2D.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-C (MÉDIO) -->
+        <div class="mission">
+            <h3>MISSÃO 2-C: Combo de Movimentos (Propriedade da Aditividade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar que \(T(\mathbf{u}+\mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})\) em um exemplo prático.
+            </div>
+            <p>Um personagem faz dois movimentos sequenciais: primeiro \(\mathbf{u} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}\) e depois \(\mathbf{v} = \begin{pmatrix} -1 \\ 3 \end{pmatrix}\). Ambos os movimentos são afetados por uma corrente de vento, representada pela transformação \(T\) com matriz \(A = \begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix}\). Mostre que o resultado é o mesmo se você:
+            <br>a) Somar os movimentos primeiro e depois aplicar a transformação.
+            <br>b) Aplicar a transformação a cada movimento e depois somar os resultados.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Para a parte (a), calcule \(\mathbf{w} = \mathbf{u} + \mathbf{v}\) e depois encontre \(T(\mathbf{w}) = A\mathbf{w}\). Para a parte (b), calcule \(T(\mathbf{u}) = A\mathbf{u}\) e \(T(\mathbf{v}) = A\mathbf{v}\) separadamente, e some os dois vetores resultantes.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Parte (a):</strong> Calcule o vetor soma \(\mathbf{w} = \mathbf{u} + \mathbf{v}\). Em seguida, calcule o produto \(A\mathbf{w}\).</li>
+                    <li><strong>Parte (b):</strong> Calcule o vetor transformado \(A\mathbf{u}\). Em seguida, calcule o vetor transformado \(A\mathbf{v}\).</li>
+                    <li>Some os dois vetores resultantes da Parte (b).</li>
+                    <li>Compare o resultado final da Parte (a) com o da Parte (b) para verificar a propriedade da aditividade.</li>
+                </ol>
+                <div class="formula">\[ T(\mathbf{u}+\mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa propriedade garante que as transformações se comportem de maneira previsível. Permite que os desenvolvedores apliquem efeitos (como vento ou gravidade) a um movimento complexo ou a cada uma de suas partes, obtendo o mesmo resultado final, o que simplifica a programação da física do jogo.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (AVANÇADO) -->
+        <div class="mission">
+            <h3>MISSÃO 3-A: Salto para a Terceira Dimensão (Transformação em R³)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Estender a aplicação de \(A\mathbf{x}\) para o espaço 3D usando uma matriz 3x3.
+            </div>
+            <p>Em um jogo da "Era 3D Inicial" (PlayStation, N64), a câmera do jogo está posicionada em \(\mathbf{c} = \begin{pmatrix} 10 \\ -5 \\ 20 \end{pmatrix}\). Uma "cutscene" é ativada, e a câmera se move suavemente para uma nova posição através de uma transformação \(T\) com a matriz \(A\) abaixo. Qual é a nova posição da câmera?</p>
+            \[ A = \begin{pmatrix} 1 & 0 & -0.2 \\ 0 & 1 & 0.1 \\ 0 & 0 & 1 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>O processo é idêntico ao 2D, mas agora cada linha da matriz e o vetor têm três componentes. A nova coordenada x será \((1 \cdot 10) + (0 \cdot -5) + (-0.2 \cdot 20)\).</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Configure a multiplicação da matriz 3x3 \(A\) pelo vetor 3x1 \(\mathbf{c}\).</li>
+                    <li>Calcule a primeira componente do resultado multiplicando a primeira linha de \(A\) por \(\mathbf{c}\).</li>
+                    <li>Calcule a segunda componente multiplicando a segunda linha de \(A\) por \(\mathbf{c}\).</li>
+                    <li>Calcule a terceira componente multiplicando a terceira linha de \(A\) por \(\mathbf{c}\).</li>
+                </ol>
+                <div class="formula">\[ \mathbf{c}' = A \mathbf{c} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos 3D, virtualmente tudo (movimento do jogador, câmera, inimigos, projéteis) é controlado por transformações com matrizes 4x4 (as matrizes 3x3 são um subconjunto para rotação/escala/cisalhamento, e a 4ª dimensão lida com translação).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-B (AVANÇADO) -->
+        <div class="mission">
+            <h3>MISSÃO 3-B: Raio Amplificador (Propriedade da Homogeneidade)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar que \(T(c\mathbf{v}) = cT(\mathbf{v})\) em um exemplo prático.
+            </div>
+            <p>Um canhão dispara um projétil com um vetor de velocidade inicial \(\mathbf{v} = \begin{pmatrix} 15 \\ 20 \end{pmatrix}\). O projétil atravessa um campo de força que altera sua trajetória, descrito pela transformação \(T\) com matriz \(A = \begin{pmatrix} 1 & -0.5 \\ 0.5 & 1 \end{pmatrix}\). O jogador pode "carregar" o canhão para dobrar a velocidade do projétil. Mostre que o ponto de impacto do tiro carregado é o dobro do ponto de impacto do tiro normal.
+            <br>a) Calcule o impacto do tiro carregado: \(T(2\mathbf{v})\).
+            <br>b) Calcule o impacto do tiro normal e dobre o resultado: \(2 \cdot T(\mathbf{v})\).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Para (a), primeiro multiplique o vetor \(\mathbf{v}\) por 2, e depois aplique a transformação \(A\) ao resultado. Para (b), primeiro aplique a transformação \(A\) ao vetor \(\mathbf{v}\), e depois multiplique o vetor resultante por 2.</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li><strong>Parte (a):</strong> Calcule o vetor de velocidade carregada \(2\mathbf{v}\). Em seguida, multiplique a matriz \(A\) por este novo vetor.</li>
+                    <li><strong>Parte (b):</strong> Calcule a trajetória transformada para o tiro normal, \(A\mathbf{v}\). Depois, multiplique cada componente do vetor resultante pelo escalar 2.</li>
+                    <li>Compare os vetores finais de (a) e (b) para confirmar que são idênticos.</li>
+                </ol>
+                <div class="formula">\[ T(c\mathbf{v}) = cT(\mathbf{v}) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta propriedade simplifica muito a física. Se um efeito (como vento) altera uma trajetória, os desenvolvedores sabem que um projétil 3x mais rápido simplesmente seguirá a mesma trajetória curva, mas esticada 3x mais longe.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (AVANÇADO) -->
+        <div class="mission">
+            <h3>MISSÃO 3-C: Projeção da Sombra (Matriz de Projeção)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar uma matriz que projeta um vetor 3D em um plano 2D (plano xy).
+            </div>
+            <p>Um dragão voador na "Era Moderna" está na posição \(\mathbf{p} = \begin{pmatrix} 50 \\ 80 \\ 30 \end{pmatrix}\). A engine do jogo precisa calcular onde desenhar sua sombra no chão (o plano xy). Isso é feito aplicando uma <strong>projeção ortogonal</strong>, cuja matriz \(P\) "achata" a coordenada z para zero. Calcule a posição da sombra \(\mathbf{s}\).</p>
+            \[ P = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} \]
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <p>Observe a terceira linha da matriz. Ao multiplicar por ela, qual será o valor da terceira componente do vetor resultante, não importa qual seja a posição do dragão?</p>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Multiplique a matriz de projeção \(P\) pelo vetor de posição \(\mathbf{p}\).</li>
+                    <li>Calcule a primeira componente do resultado: \((1 \cdot 50) + (0 \cdot 80) + (0 \cdot 30)\).</li>
+                    <li>Calcule a segunda componente: \((0 \cdot 50) + (1 \cdot 80) + (0 \cdot 30)\).</li>
+                    <li>Calcule a terceira componente: \((0 \cdot 50) + (0 \cdot 80) + (0 \cdot 30)\).</li>
+                    <li>O vetor resultante \(\mathbf{s}\) terá as mesmas coordenadas x e y, mas z=0.</li>
+                </ol>
+                <div class="formula">\[ \mathbf{s} = P \mathbf{p} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A projeção é a base de como os gráficos 3D funcionam! O mundo do jogo é 3D, mas sua tela é 2D. A placa de vídeo está constantemente usando matrizes de projeção para "achatar" a cena 3D na tela 2D que você vê.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-A (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-A: Labirinto de Lasers (Aplicação Sequencial)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o resultado de aplicar duas transformações sucessivamente (\(A_2(A_1\mathbf{x})\)).
+            </div>
+            <p>Um feixe de laser é emitido na direção \(\mathbf{v} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\). Ele primeiro atinge um espelho que o reflete através do eixo x (transformação \(T_1\) com matriz \(A_1\)). Em seguida, o feixe refletido passa por uma lente que o distorce (transformação \(T_2\) com matriz \(A_2\)). Calcule a direção final do feixe.</p>
+            \[ A_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad A_2 = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix} \]
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Primeiro, calcule o efeito do espelho. Encontre o vetor intermediário \(\mathbf{w} = A_1 \mathbf{v}\).</li>
+                    <li>Em seguida, use este novo vetor \(\mathbf{w}\) como entrada para a segunda transformação (a lente).</li>
+                    <li>Calcule o vetor final \(\mathbf{z} = A_2 \mathbf{w}\).</li>
+                    <li>Este resultado de duas etapas é a direção final do feixe de laser.</li>
+                </ol>
+                <div class="formula">\[ \mathbf{z} = A_2 (A_1 \mathbf{v}) \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Na animação de personagens, o movimento de um osso (ex: a mão) é afetado por uma transformação local (dobrar os dedos) e pela transformação do osso pai (o braço girando). Essas transformações são aplicadas em sequência, exatamente como neste problema.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-B: Engenharia Reversa do "Glitch" (Análise de Transformações)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Dado um vetor original e um transformado, identificar qual de três matrizes dadas causou o efeito.
+            </div>
+            <p>Um inimigo estava na posição \(\mathbf{x} = \begin{pmatrix} 2 \\ -3 \end{pmatrix}\) e, devido a um "glitch", foi teleportado para a posição \(\mathbf{y} = \begin{pmatrix} -2 \\ -3 \end{pmatrix}\). Os desenvolvedores suspeitam de três portais de debug com as seguintes matrizes de transformação. Qual deles causou o "glitch"?</p>
+            \[ A = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad C = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \]
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Teste a primeira matriz: Calcule o produto \(A\mathbf{x}\).</li>
+                    <li>Compare o resultado de \(A\mathbf{x}\) com o vetor final \(\mathbf{y}\). Se forem iguais, você encontrou a matriz.</li>
+                    <li>Se não forem, teste a segunda matriz: Calcule \(B\mathbf{x}\) e compare com \(\mathbf{y}\).</li>
+                    <li>Continue o processo até encontrar a matriz \(M\) para a qual \(M\mathbf{x} = \mathbf{y}\).</li>
+                </ol>
+                <div class="formula">\[ \text{Encontre } M \text{ tal que } M\mathbf{x} = \mathbf{y} \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Debugar (encontrar e consertar erros) é uma parte crucial do desenvolvimento. Muitas vezes, os programadores veem um resultado inesperado (um "glitch") e precisam fazer engenharia reversa para descobrir qual parte do código ou qual transformação matemática causou o comportamento indesejado.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS) -->
+        <div class="mission">
+            <h3>MISSÃO 4-C: O Ponto Cego da Torre (Interpretação Geométrica)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Aplicar uma transformação a múltiplos pontos para determinar se uma região foi alterada de forma específica.
+            </div>
+            <p>Um abrigo seguro é representado por um quadrado com vértices nos pontos \(\mathbf{p}_1=(2,2)\), \(\mathbf{p}_2=(4,2)\), \(\mathbf{p}_3=(4,4)\) e \(\mathbf{p}_4=(2,4)\). Uma torre de vigia, que não consegue ver o abrigo, sofre uma transformação de rotação de 45° no sentido anti-horário em torno da origem, descrita pela matriz \(R_{45}\). Transforme todos os quatro vértices do abrigo para encontrar sua nova localização. A nova forma ainda é um quadrado?</p>
+            \[ R_{45} = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \approx \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} \]
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Calcule a nova posição para cada um dos quatro vértices separadamente.
+                        <ul>
+                            <li>Calcule \(\mathbf{p}_1' = R_{45}\mathbf{p}_1\).</li>
+                            <li>Calcule \(\mathbf{p}_2' = R_{45}\mathbf{p}_2\).</li>
+                            <li>Calcule \(\mathbf{p}_3' = R_{45}\mathbf{p}_3\).</li>
+                            <li>Calcule \(\mathbf{p}_4' = R_{45}\mathbf{p}_4\).</li>
+                        </ul>
+                    </li>
+                    <li>Analise os novos vértices. Para verificar se a forma ainda é um quadrado, você pode calcular a distância entre os novos pontos adjacentes (ex: \(\mathbf{p}_1'\) e \(\mathbf{p}_2'\)) e verificar se os comprimentos dos lados permanecem iguais e se os ângulos entre os lados adjacentes são de 90°. (Dica: rotações são transformações rígidas, elas preservam formas e distâncias).</li>
+                </ol>
+                <div class="formula">\[ \mathbf{p}'_i = R_{45} \mathbf{p}_i \quad \text{para } i=1,2,3,4 \]</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em jogos de estratégia ou stealth, a "área de efeito" de uma habilidade ou o "campo de visão" de um inimigo são polígonos. Quando o personagem ou a torre se move ou gira, a engine precisa transformar todos os vértices desse polígono para recalcular a área de perigo no mapa.</p>
+            </details>
+        </div>
+
+    </main>
+</body>
+</html>

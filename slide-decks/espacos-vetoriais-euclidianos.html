@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Álgebra Linear: Explorando o Espaço</title>
+    <!-- Links para CDNs e CSS externo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game-theme.css" />
+    <!-- Scripts para Reveal.js e MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="background-grid"></div>
+      <div class="ghost"></div>
+      <div class="ghost"></div>
+
+      <div class="slides">
+        <!-- =========================== -->
+        <!-- SLIDE DE TÍTULO DA FASE -->
+        <!-- =========================== -->
+        <section>
+          <h1>Fase 3: Explorando o Espaço</h1>
+          <h3>Avatares e Direções de Movimento</h3>
+          <p class="press-start">Pressione Enter para começar</p>
+        </section>
+
+        <!-- =========================== -->
+        <!-- SLIDES DE LORE (DIVIDIDOS)-->
+        <!-- =========================== -->
+        <section>
+            <section>
+                <h2>Lore da Fase: Dev Log</h2>
+                <div class="lore-section">
+                    <div class="lore-label">DEV LOG</div>
+                    <p><strong>Desenvolvedores Originais: Euclides (c. 300 a.C.), Descartes (séc. XVII), Hamilton & Grassmann (séc. XIX)</strong></p>
+                    <p>
+                    Os "programadores" originais do nosso universo começaram com a geometria pura. Descartes criou o "grid de jogo" (plano cartesiano), permitindo localizar objetos. Mas foram Hamilton e Grassmann que desenvolveram a linguagem dos **vetores**, a "mecânica" essencial para descrever não apenas a localização, mas também o movimento, a força e a direção.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Lore da Fase: A Mecânica</h2>
+                <div class="lore-section">
+                    <div class="lore-label">A MECÂNICA</div>
+                    <p><strong>Desafio do Jogo</strong></p>
+                    <p>
+                    Como podemos descrever o movimento de um "avatar" no espaço do jogo? Precisamos de uma ferramenta que nos diga simultaneamente **para onde** ele está indo (direção) e **com que intensidade** (magnitude). Os números comuns não são suficientes. Esta fase introduz os **Vetores Euclidianos**, a ferramenta definitiva para navegar e interagir com o espaço do jogo.
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.1: O Avatar do Jogo (Vetores e Operações Básicas) -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Vetores (O Avatar)</h2>
+            <div class="math-section">
+              <p>Um <strong>vetor</strong> em \( \mathbb{R}^n \) é um segmento de reta orientado, definido por um conjunto de \(n\) coordenadas (ou componentes).</p>
+              <p>\[\vec{v} = (v_1, v_2, \dots, v_n)\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Pense em um vetor como o seu **Avatar**. Ele representa uma posição, um deslocamento ou uma direção de movimento no mapa do jogo.
+            </p>
+          </section>
+
+          <section>
+            <h2>Mecânica: Operações Básicas</h2>
+            <div class="math-section">
+              <p><strong>Adição (Combinação de Movimentos):</strong> \(\vec{u} + \vec{v} = (u_1+v_1, u_2+v_2, \dots)\)</p>
+              <p><strong>Multiplicação por Escalar (Amplificar Movimento):</strong> \(k\vec{v} = (kv_1, kv_2, \dots)\)</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Somar vetores é como combinar dois movimentos (ex: "ande para frente" + "ande para a direita"). Multiplicar por um escalar é aumentar ou diminuir a intensidade de um movimento (ex: "correr" é 2x "andar").
+            </p>
+          </section>
+          
+          <section>
+            <h2>Regra Especial: Base Canônica</h2>
+            <div class="math-section">
+              <p>Em \( \mathbb{R}^3 \), os vetores \(\vec{i}=(1,0,0)\), \(\vec{j}=(0,1,0)\) e \(\vec{k}=(0,0,1)\) formam a <strong>base canônica</strong>. Qualquer vetor pode ser escrito como uma combinação deles.</p>
+              <p>\[\vec{v} = (a, b, c) = a\vec{i} + b\vec{j} + c\vec{k}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> \(\vec{i}, \vec{j}, \vec{k}\) são os "movimentos básicos" do jogo: um passo no eixo X, um no eixo Y e um no eixo Z. Qualquer movimento complexo é uma combinação desses passos básicos.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Quest de Treinamento</h2>
+            <div class="problem-section">
+              <h4>🎯 Quest de Treinamento (Fácil)</h4>
+              <p>Dados os avatares \(\vec{u} = (2, -1, 5)\) e \(\vec{v} = (-3, 4, 1)\):</p>
+              <ol>
+                  <li>Calcule o movimento combinado \(\vec{u} + \vec{v}\).</li>
+                  <li>Calcule o movimento amplificado \(3\vec{u}\).</li>
+                  <li>Expresse o avatar \(\vec{v}\) usando os blocos de construção \(\vec{i}, \vec{j}, \vec{k}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Fácil)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Quest de Treinamento:</h4>
+              <ol>
+                <li>Para a soma, some as coordenadas correspondentes de \(\vec{u}\) e \(\vec{v}\).</li>
+                <li>Para a multiplicação, multiplique cada coordenada de \(\vec{u}\) por 3.</li>
+                <li>Para a base canônica, use as coordenadas de \(\vec{v}\) como os coeficientes de \(\vec{i}, \vec{j}, \vec{k}\).</li>
+              </ol>
+            </div>
+          </section>
+          
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Parabéns, jogador!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Definição de Vetor (Avatar)</li>
+                    <li>Adição e Multiplicação por Escalar (Movimentos)</li>
+                    <li>Base Canônica (Blocos de Construção)</li>
+                </ul>
+            </div>
+            <p>Você agora sabe como representar e manipular os avatares no espaço do jogo!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.2: A Régua do Universo (Norma e Distância)             -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Norma (Magnitude do Avatar)</h2>
+            <div class="math-section">
+              <p>A <strong>norma</strong> (ou módulo) de um vetor \(\vec{v}\) é o seu comprimento. É calculada usando o Teorema de Pitágoras generalizado.</p>
+              <p>\[\|\vec{v}\| = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> A norma é a "força" do seu movimento, a "distância" que seu avatar se desloca em uma única ação, ou o seu "tamanho".
+            </p>
+          </section>
+
+          <section>
+            <h2>Mecânica: Distância entre Pontos</h2>
+            <div class="math-section">
+              <p>A distância entre dois pontos (ou as "pontas" de dois vetores) A e B é a norma do vetor que os conecta, \(\vec{AB} = B - A\).</p>
+              <p>\[d(A, B) = \|\vec{AB}\| = \|B - A\|\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Isso calcula a distância em linha reta entre dois locais ou dois avatares no mapa.
+            </p>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Vetor Unitário (Direção Pura)</h2>
+            <div class="math-section">
+              <p>Um <strong>vetor unitário</strong> (ou <strong>versor</strong>) é um vetor com norma igual a 1. Ele representa apenas a direção.</p>
+              <p>\[\hat{v} = \frac{\vec{v}}{\|\vec{v}\|}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> O versor é a "mira" do seu avatar. Ele diz para onde apontar, sem se preocupar com a força ou distância. É a direção pura.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Dado o avatar \(\vec{v} = (3, 0, -4)\) e os pontos \(A=(1, 2, 3)\) e \(B=(3, 4, 2)\):</p>
+              <ol>
+                <li>Calcule a magnitude \(\|\vec{v}\|\).</li>
+                <li>Calcule a distância entre A e B.</li>
+                <li>Encontre o vetor unitário \(\hat{v}\) (a "direção pura" do avatar \(\vec{v}\)).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>Use a fórmula da norma: \(\sqrt{3^2 + 0^2 + (-4)^2}\).</li>
+                <li>Primeiro, calcule \(\vec{AB} = B - A\). Depois, calcule a norma de \(\vec{AB}\).</li>
+                <li>Calcule \(\|\vec{v}\|\) e depois divida cada componente de \(\vec{v}\) por esse valor.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Missão Cumprida!</p>
+            <div class="math-section">
+              <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+              <ul>
+                <li>Norma de um Vetor (Magnitude)</li>
+                <li>Distância entre Pontos</li>
+                <li>Vetor Unitário (Direção Pura)</li>
+              </ul>
+            </div>
+            <p>Agora você pode medir tamanhos e distâncias no universo do jogo!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.3: Sincronia de Movimento (Produto Escalar)            -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Produto Escalar (Teste de Sincronia)</h2>
+            <div class="math-section">
+              <p>O <strong>produto escalar</strong> entre dois vetores resulta em um **número** (um escalar), não em um vetor. Ele mede o "alinhamento" entre eles.</p>
+              <p>\[\vec{u} \cdot \vec{v} = u_1v_1 + u_2v_2 + \dots + u_nv_n\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Se \(\vec{u}\) é a direção que você aponta e \(\vec{v}\) é a direção do vento, o produto escalar diz o quanto o vento está a seu favor ou contra você.
+            </p>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Propriedade Geométrica</h2>
+            <div class="math-section">
+              <p>O produto escalar também se relaciona com o ângulo \(\theta\) entre os vetores:</p>
+              <p>\[\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos \theta\]</p>
+              <p>Isso nos permite calcular o ângulo: \(\cos \theta = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\)</p>
+            </div>
+            <p class="game-interp">
+                <strong>Interpretação no Jogo:</strong> Esta é a "fórmula secreta" para descobrir o ângulo exato entre duas direções de movimento.
+            </p>
+          </section>
+
+          <section>
+            <h2>Mecânica: Projeção Vetorial (A Sombra do Avatar)</h2>
+            <div class="math-section">
+              <p>A <strong>projeção</strong> de \(\vec{u}\) sobre \(\vec{v}\) é o vetor "sombra" que \(\vec{u}\) lança na direção de \(\vec{v}\).</p>
+              <p>\[\text{proj}_{\vec{v}}\vec{u} = \left( \frac{\vec{u} \cdot \vec{v}}{\|\vec{v}\|^2} \right) \vec{v}\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Se \(\vec{u}\) é a força total que você aplica e \(\vec{v}\) é a direção de um trilho, a projeção é a componente da sua força que efetivamente empurra o carrinho no trilho.
+            </p>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Ortogonalidade</h2>
+            <div class="math-section">
+              <p>Dois vetores são <strong>ortogonais</strong> (perpendiculares) se o ângulo entre eles é 90°. Isso acontece exatamente quando seu produto escalar é zero.</p>
+              <p>\[\vec{u} \perp \vec{v} \iff \vec{u} \cdot \vec{v} = 0\]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> "Caminhos Independentes". Se a direção da câmera é ortogonal à direção do seu movimento, mover-se para frente não afeta o que está à sua direita ou esquerda na tela.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Dados os vetores \(\vec{u}=(2, 2, 0)\) e \(\vec{v}=(3, 0, 0)\):</p>
+              <ol>
+                <li>Os vetores \(\vec{a}=(1, -2)\) e \(\vec{b}=(4, 2)\) são ortogonais?</li>
+                <li>Qual o ângulo \(\theta\) entre \(\vec{u}\) e \(\vec{v}\)?</li>
+                <li>Calcule a projeção de \(\vec{u}\) sobre \(\vec{v}\). O que este vetor "sombra" representa?</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Calcule \(\vec{a} \cdot \vec{b}\). Se o resultado for 0, eles são ortogonais.</li>
+                <li>Calcule \(\vec{u} \cdot \vec{v}\), \(\|\vec{u}\|\) e \(\|\vec{v}\|\). Use a fórmula do cosseno para encontrar \(\theta\).</li>
+                <li>Aplique a fórmula da projeção diretamente. O resultado será um vetor na direção de \(\vec{v}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Sincronia estabelecida!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Produto Escalar (Teste de Sincronia)</li>
+                    <li>Cálculo de Ângulo</li>
+                    <li>Projeção Vetorial (Sombra)</li>
+                    <li>Ortogonalidade (Perpendicularidade)</li>
+                </ul>
+            </div>
+            <p>Você agora consegue analisar as relações angulares entre os avatares!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.4: A Dimensão Oculta (Produto Vetorial em R³)          -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Produto Vetorial (Criador de Eixos)</h2>
+            <div class="math-section">
+              <p>O <strong>produto vetorial</strong> \(\vec{u} \times \vec{v}\) é uma operação exclusiva do \( \mathbb{R}^3 \). O resultado é um <strong>novo vetor</strong> que é ortogonal a \(\vec{u}\) e \(\vec{v}\) simultaneamente.</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Se você tem duas direções no chão (\(\vec{u}\) e \(\vec{v}\)), o produto vetorial encontra a direção "para cima", perpendicular ao chão. É a ferramenta para criar um novo eixo a partir de dois existentes.
+            </p>
+          </section>
+
+          <section>
+            <h2>Mecânica: Cálculo via Determinante</h2>
+            <div class="math-section">
+              <p>A forma mais prática de calcular é usando um determinante simbólico com a base canônica na primeira linha.</p>
+              <p>\[ \vec{u} \times \vec{v} = \det \begin{pmatrix} \vec{i} & \vec{j} & \vec{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{pmatrix} \]</p>
+              <p>\[ = (u_2v_3 - u_3v_2)\vec{i} - (u_1v_3 - u_3v_1)\vec{j} + (u_1v_2 - u_2v_1)\vec{k} \]</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Regra Especial: Propriedades Chave</h2>
+            <div class="math-section">
+              <p>O vetor resultante \(\vec{w} = \vec{u} \times \vec{v}\) tem duas propriedades mágicas:</p>
+              <ol>
+                <li><strong>Ortogonalidade:</strong> \(\vec{w}\) é perpendicular a \(\vec{u}\) e a \(\vec{v}\).</li>
+                <li><strong>Magnitude:</strong> \(\|\vec{w}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta\), que é a <strong>área</strong> do paralelogramo formado por \(\vec{u}\) e \(\vec{v}\).</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Dados \(\vec{u} = (1, 2, 0)\) e \(\vec{v} = (0, 3, 1)\):</p>
+              <ol>
+                <li>Calcule o novo eixo \(\vec{w} = \vec{u} \times \vec{v}\).</li>
+                <li>Verifique se \(\vec{w}\) é realmente ortogonal a \(\vec{u}\) (use o produto escalar).</li>
+                <li>Qual a área do paralelogramo formado por \(\vec{u}\) e \(\vec{v}\)?</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Monte e calcule o determinante 3x3 para encontrar \(\vec{w}\).</li>
+                <li>Calcule \(\vec{w} \cdot \vec{u}\). O resultado deve ser 0.</li>
+                <li>Calcule a norma do vetor \(\vec{w}\) que você encontrou no passo 1. O valor é a área.</li>
+              </ol>
+            </div>
+          </section>
+          
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Dimensão desbloqueada!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Produto Vetorial (Criação de Eixo Perpendicular)</li>
+                    <li>Cálculo via Determinante</li>
+                    <li>Área do Paralelogramo via Norma</li>
+                </ul>
+            </div>
+            <p>Você pode criar novas dimensões e calcular áreas no espaço 3D!</p>
+          </section>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- QUEST 3.5: Desenhando o Mapa (Geometria Analítica) -->
+        <!-- ================================================================= -->
+        <section>
+          <section>
+            <h2>Mecânica: Equação da Reta</h2>
+            <div class="math-section">
+              <p>Uma reta é definida por um <strong>ponto</strong> \(A\) por onde passa e um <strong>vetor diretor</strong> \(\vec{v}\) que dá sua inclinação.</p>
+              <p>Equação Vetorial: \( P = A + t\vec{v} \)</p>
+              <p>\[ (x, y, z) = (x_0, y_0, z_0) + t(a, b, c) \]</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> Esta é a "sequência de comandos" para desenhar um caminho infinito. "Comece no ponto A e dê \(t\) passos na direção \(\vec{v}\)".
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Missão Principal</h2>
+            <div class="problem-section">
+              <h4>⚔️ Missão Principal (Médio)</h4>
+              <p>Encontre a equação vetorial da reta que passa pelos pontos \(A=(1, 5, 2)\) e \(B=(3, 1, 6)\).</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Médio)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para a Missão Principal:</h4>
+              <ol>
+                <li>Escolha um dos pontos como seu ponto de partida \(A\).</li>
+                <li>Encontre o vetor diretor calculando \(\vec{v} = \vec{AB} = B - A\).</li>
+                <li>Monte a equação \(P = A + t\vec{v}\) com os valores encontrados.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Mecânica: Equação do Plano</h2>
+            <div class="math-section">
+              <p>Um plano é definido por um <strong>ponto</strong> \(A\) e um <strong>vetor normal</strong> \(\vec{n}\) (perpendicular ao plano).</p>
+              <p>\[ \vec{n} \cdot (P - A) = 0 \]</p>
+              <p>Isso leva à equação geral: \(ax + by + cz + d = 0\), onde \(\vec{n}=(a,b,c)\).</p>
+            </div>
+            <p class="game-interp">
+              <strong>Interpretação no Jogo:</strong> O vetor normal é a "chave de orientação" de uma parede infinita. Qualquer caminho desenhado sobre essa parede será sempre perpendicular ao vetor normal.
+            </p>
+          </section>
+
+          <section>
+            <h2>Desafio: Desafio Avançado</h2>
+            <div class="problem-section">
+              <h4>☠️ Desafio Avançado (Complexo)</h4>
+              <p>Encontre a equação geral do plano que contém os pontos \(A=(1,0,0)\), \(B=(0,1,0)\) e \(C=(0,0,1)\).</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Guia: Estratégia (Avançado)</h2>
+            <div class="compact-solution">
+              <h4>Estratégia para o Desafio Avançado:</h4>
+              <ol>
+                <li>Crie dois vetores que estão no plano: \(\vec{u} = \vec{AB}\) e \(\vec{v} = \vec{AC}\).</li>
+                <li>Calcule o vetor normal \(\vec{n} = \vec{u} \times \vec{v}\). Este vetor é perpendicular ao plano.</li>
+                <li>Escolha um dos pontos (ex: A) e use \(\vec{n}\) e A para montar a equação geral do plano.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Recompensa da Quest</h2>
+            <p>Mapa concluído!</p>
+            <div class="math-section">
+                <p><strong>Itens Adquiridos (Conceitos-Chave):</strong></p>
+                <ul>
+                    <li>Equação Vetorial da Reta</li>
+                    <li>Equação Geral do Plano</li>
+                </ul>
+            </div>
+            <p>Você agora tem as ferramentas para construir as estruturas básicas do mundo do jogo!</p>
+          </section>
+        </section>
+
+        <!-- Slide Final: Easter Egg -->
+        <section>
+            <h2>Easter Egg: Aplicações</h2>
+            <div class="lore-section">
+                <div class="lore-label">EASTER EGG</div>
+                <p><strong>Onde a Álgebra Linear é o "Motor do Jogo" no Mundo Real</strong></p>
+                <p>
+                    Cada ação em um jogo 3D, do movimento da câmera à forma como a luz bate em uma parede, é calculada usando as operações com vetores que você acabou de aprender.
+                </p>
+            </div>
+            <div class="math-section">
+                <p>Exemplos de aplicação:</p>
+                <ul>
+                    <li><strong>Computação Gráfica:</strong> Vetores normais (\(\vec{n}\)) determinam como a luz reflete em uma superfície.</li>
+                    <li><strong>Física de Jogos:</strong> Velocidade, aceleração e força são todos vetores. O produto escalar detecta colisões.</li>
+                    <li><strong>Machine Learning:</strong> Dados complexos (imagens, palavras) são transformados em vetores em espaços de alta dimensão.</li>
+                </ul>
+            </div>
+        </section>
+      </div>
+    </div>
+    
+    <script>
+      window.onload = function () {
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          center: true,
+          hash: true,
+          plugins: [RevealMath.MathJax3],
+          width: '90%',
+          height: '100%',
+          margin: 0.02,
+          minScale: 0.45,
+          maxScale: 1.5,
+          transition: 'fade',
+        });
+      };
+    </script>
+  </body>
+</html>

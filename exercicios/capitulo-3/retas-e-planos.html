@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa no diretório pai -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Geometria Analítica</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 3.4: Desenhando o Mapa</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Equações de Retas e Planos</h3>
+        <p>Chegamos à fase final de construção do nosso universo de jogo. Com todas as ferramentas vetoriais que aprendemos, agora podemos descrever os objetos geométricos mais importantes: <strong>retas</strong> e <strong>planos</strong>. Uma reta, como a trajetória de um laser, é definida por um ponto inicial e uma direção. Um plano, como o chão ou uma parede, é definido por um ponto que ele contém e um vetor normal (perpendicular) que define sua inclinação. Dominar essas equações nos permite construir os "ossos" do mundo do jogo, detectar colisões precisas e programar interações complexas no espaço 3D.</p>
+        <p>Essas equações são a linguagem que usamos para comunicar a geometria do nível para a engine do jogo.</p>
+        <div class="formula">
+            Equação Vetorial da Reta: \( P(t) = P_0 + t \cdot \vec{v} \) <br>
+            Equação Geral do Plano: \( ax + by + cz = d \), onde \( \vec{n}=(a,b,c) \) é o vetor normal.
+        </div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- MISSÃO 1-A (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>A Trajetória Infinita do Laser (Equação Vetorial da Reta)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Escrever a equação vetorial e paramétrica de uma reta a partir de um ponto e um vetor diretor.
+            </div>
+            <p>Um canhão na posição \( P_0 = (1, 5, 3) \) dispara um feixe de laser que viaja indefinidamente na direção do vetor \( \vec{v} = (2, -1, 4) \). Escreva a equação vetorial que descreve a posição de um ponto qualquer na trajetória do feixe. Em seguida, escreva as equações paramétricas correspondentes para x, y e z.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>A equação vetorial de uma reta é \( P(t) = P_0 + t\vec{v} \). Basta substituir o ponto e o vetor dados. Para as equações paramétricas, separe a equação vetorial em três equações, uma para cada componente (x, y, z).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Substitua o ponto \( P_0=(1,5,3) \) e o vetor diretor \( \vec{v}=(2,-1,4) \) na fórmula \( P(t) = P_0 + t\vec{v} \).</li>
+                    <li>Para as equações paramétricas, iguale as componentes: \( (x,y,z) = (1,5,3) + t(2,-1,4) \).</li>
+                    <li>Escreva uma equação para cada coordenada: \( x = 1 + 2t \), \( y = 5 - t \), \( z = 3 + 4t \).</li>
+                </ol>
+                <div class="formula">\( (x,y,z) = (x_0, y_0, z_0) + t(v_x, v_y, v_z) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa equação é usada para calcular a trajetória de projéteis "hitscan" (que atingem o alvo instantaneamente, como lasers), para a IA verificar sua linha de visão ("raycasting") e para posicionar objetos ao longo de um caminho reto.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-B (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>A Parede de Energia Invisível (Equação Geral do Plano)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Escrever a equação de um plano a partir de um ponto e um vetor normal.
+            </div>
+            <p>Uma parede de força invisível em um jogo da <strong>Era 3D Inicial</strong> é um plano infinito. Sabemos que ela passa pelo ponto \( P_0 = (2, 3, 1) \) e sua orientação é perpendicular ao vetor \( \vec{n} = (4, 0, -5) \). Encontre a equação geral do plano, na forma \( ax + by + cz = d \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Os coeficientes \( a, b, c \) da equação do plano são as componentes do vetor normal \( \vec{n} \). Substitua-os na equação. Para achar \( d \), use o fato de que o ponto \( P_0 \) deve satisfazer a equação.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Pegue as componentes do vetor normal \( \vec{n}=(4, 0, -5) \) como os coeficientes: \( 4x + 0y - 5z = d \).</li>
+                    <li>Substitua as coordenadas do ponto \( P_0=(2, 3, 1) \) na equação: \( 4(2) - 5(1) = d \).</li>
+                    <li>Resolva para \( d \).</li>
+                    <li>Escreva a equação completa do plano.</li>
+                </ol>
+                <div class="formula">\( \vec{n} \cdot (X - P_0) = 0 \implies ax + by + cz = ax_0 + by_0 + cz_0 \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Planos são usados como "bounding volumes" para definir limites de níveis, zonas de água, portais e barreiras. A equação do plano permite que o motor do jogo determine rapidamente de que lado de uma superfície um objeto está.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 1-C (TRAINING QUEST) -->
+        <div class="mission">
+            <h3>O Caminho da Patrulha Espacial (Reta a partir de Dois Pontos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar o vetor diretor de uma reta e escrever sua equação.
+            </div>
+            <p>Uma nave de patrulha em um jogo de estratégia viaja em linha reta entre dois waypoints, \( A = (10, 20, 5) \) e \( B = (15, 10, 0) \). Determine a equação vetorial da rota completa da patrulha.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Uma reta precisa de um ponto inicial e um vetor diretor. Você pode usar A como o ponto inicial. O vetor diretor é o vetor que vai de A até B. Calcule \( \vec{v} = \vec{B} - \vec{A} \).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escolha um dos pontos como o ponto inicial, por exemplo, \( P_0 = A \).</li>
+                    <li>Calcule o vetor diretor subtraindo as coordenadas dos pontos: \( \vec{v} = B - A \).</li>
+                    <li>Substitua o ponto \( P_0 \) e o vetor \( \vec{v} \) na equação da reta \( P(t) = P_0 + t\vec{v} \).</li>
+                </ol>
+                <div class="formula">\( P(t) = A + t(B-A) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> É assim que os sistemas de IA baseados em 'waypoints' funcionam. A IA recebe uma lista de pontos e calcula as equações das retas entre eles para navegar pelo cenário do jogo.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 2-A (MAIN MISSION) -->
+        <div class="mission">
+            <h3>O Portal Mágico no Plano (Verificação de Pertença a Plano)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar a equação do plano para verificar se um ponto está contido nele.
+            </div>
+            <p>Uma parede dimensional em seu jogo é descrita pelo plano de equação \( 2x - y + 3z = 6 \). O designer de níveis quer colocar um efeito de portal nas coordenadas \( Q = (3, 3, 1) \). Para evitar glitches visuais, o portal deve estar exatamente sobre a parede. O portal está na posição correta?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Um ponto pertence a um plano se suas coordenadas satisfazem a equação do plano. Substitua as coordenadas x, y e z de Q na equação e verifique se a igualdade é verdadeira.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Pegue a equação do plano: \( 2x - y + 3z = 6 \).</li>
+                    <li>Substitua \( x=3, y=3, z=1 \) na parte esquerda da equação.</li>
+                    <li>Calcule o valor da expressão.</li>
+                    <li>Se o resultado for igual a 6, o ponto pertence ao plano. Caso contrário, não pertence.</li>
+                </ol>
+                <div class="formula">Verificar se \( aq_x + bq_y + cq_z = d \).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a verificação mais básica de colisão com um plano. O jogo substitui as coordenadas do personagem na equação do plano para ver se ele está "atravessando" para o outro lado (o que muda o sinal do resultado).</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-B (MAIN MISSION) -->
+        <div class="mission">
+            <h3>A Plataforma Triangular (Plano a partir de Três Pontos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar o produto vetorial para encontrar o normal e, então, a equação de um plano.
+            </div>
+            <p>Uma plataforma de salto triangular é definida pelos seus três vértices: \( A = (1, 0, 0) \), \( B = (0, 1, 0) \) e \( C = (0, 0, 1) \). Encontre a equação geral do plano que contém esta plataforma.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Este é um problema de dois passos. Primeiro, encontre o vetor normal \( \vec{n} \) ao plano calculando o produto vetorial de dois vetores de aresta (ex: \( \vec{AB} \times \vec{AC} \)). Depois, use \( \vec{n} \) e um dos pontos (ex: A) para encontrar a equação do plano, como na Missão 1-B.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Crie dois vetores no plano: \( \vec{u} = B - A \) e \( \vec{v} = C - A \).</li>
+                    <li>Calcule o vetor normal: \( \vec{n} = \vec{u} \times \vec{v} \). As componentes de \( \vec{n} \) são \( a, b, c \).</li>
+                    <li>Use um dos pontos, como A, para encontrar \( d \): \( d = \vec{n} \cdot A \).</li>
+                    <li>Escreva a equação final \( ax + by + cz = d \).</li>
+                </ol>
+                <div class="formula">\( \vec{n} = (B-A) \times (C-A) \); \( d = \vec{n} \cdot A \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Como os modelos 3D são feitos de triângulos, esta é a forma como o motor de jogo pode determinar a equação do plano para qualquer polígono em uma cena, o que é essencial para colisões e física.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 2-C (MAIN MISSION) -->
+        <div class="mission">
+            <h3>O Ponto de Impacto do Míssil (Interseção de Reta e Plano)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o ponto onde uma reta intercepta um plano.
+            </div>
+            <p>Um míssil teleguiado segue a trajetória reta descrita por \( P(t) = (1, 0, 10) + t(1, 1, -2) \). Ele se aproxima de um escudo de energia infinito, que corresponde ao plano \( x + 3y + z = 15 \). Calcule as coordenadas do ponto de impacto.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O ponto de impacto é o ponto que pertence tanto à reta quanto ao plano. Escreva as equações paramétricas da reta (\( x(t), y(t), z(t) \)) e substitua-as na equação do plano. Isso lhe dará uma equação com apenas uma variável, \( t \). Resolva para \( t \) e depois substitua esse valor de volta na equação da reta para encontrar o ponto.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva as equações paramétricas da reta: \( x = 1+t \), \( y = t \), \( z = 10-2t \).</li>
+                    <li>Substitua essas expressões na equação do plano: \( (1+t) + 3(t) + (10-2t) = 15 \).</li>
+                    <li>Resolva a equação linear para encontrar o valor de \( t \) no momento do impacto.</li>
+                    <li>Substitua o valor de \( t \) encontrado de volta nas equações paramétricas para obter as coordenadas \( (x, y, z) \) do ponto de impacto.</li>
+                </ol>
+                <div class="formula">Substituir \( P_0+t\vec{v} \) em \( \vec{n} \cdot X = d \) e resolver para \( t \).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa é a matemática exata do "raycasting" ou "ray tracing". É usado para tudo: determinar o que o jogador acertou com um tiro, o que um NPC está vendo, onde o mouse está clicando no mundo 3D, e para calcular reflexos e sombras em gráficos avançados.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-A (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>O Ângulo de Ataque da Câmera (Ângulo entre Reta e Plano)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular o ângulo entre o vetor diretor de uma reta e o vetor normal de um plano.
+            </div>
+            <p>Uma câmera de segurança está montada e sua linha de visão é a reta com vetor diretor \( \vec{v} = (1, 1, -4) \). Qual o ângulo \( \alpha \) que sua linha de visão faz com o chão, que é o plano \( z=0 \)? (Dica: o ângulo entre a reta e o plano, \( \alpha \), é o complementar do ângulo \( \theta \) entre o vetor diretor da reta e o vetor normal do plano. Ou seja, \( \alpha = 90^\circ - \theta \)).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, encontre o vetor normal ao plano \( z=0 \). Depois, use a fórmula do produto escalar para encontrar o ângulo \( \theta \) entre \( \vec{v} \) e \( \vec{n} \). O ângulo que você procura é \( 90^\circ - \theta \). (Alternativamente, use uma fórmula com seno: \( \sin(\alpha) = \frac{|\vec{v} \cdot \vec{n}|}{\|\vec{v}\| \|\vec{n}\|} \)).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor diretor da reta: \( \vec{v} = (1, 1, -4) \).</li>
+                    <li>Identifique o vetor normal ao plano \( z=0 \). A equação é \( 0x+0y+1z=0 \), então \( \vec{n} = (0, 0, 1) \).</li>
+                    <li>Calcule o ângulo \( \theta \) entre \( \vec{v} \) e \( \vec{n} \) usando a fórmula do produto escalar com arcocosseno.</li>
+                    <li>O ângulo entre a reta e o plano é \( \alpha = 90^\circ - \theta \).</li>
+                </ol>
+                <div class="formula">\( \alpha = 90^\circ - \arccos\left(\frac{|\vec{v} \cdot \vec{n}|}{\|\vec{v}\| \|\vec{n}\|}\right) \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esse cálculo é importante na física para determinar o ângulo de impacto de um objeto em uma superfície, o que pode afetar se ele ricocheteia, gruda ou quebra. Também é usado em gráficos para efeitos como o brilho especular, que depende do ângulo entre a visão do jogador e a superfície.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 3-B (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>Paralelismo das Frotas Espaciais (Posições entre Planos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Usar os vetores normais para determinar se dois planos são paralelos ou concorrentes.
+            </div>
+            <p>Em um jogo de estratégia espacial, a Frota Alfa se posiciona em uma formação planar descrita por \( 2x - 3y + z = 10 \). A Frota Beta se posiciona no plano \( -4x + 6y - 2z = 5 \). As formações das frotas são paralelas?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Dois planos são paralelos se, e somente se, seus vetores normais forem paralelos. Dois vetores são paralelos se um for um múltiplo escalar do outro. Extraia os vetores normais de cada equação e verifique essa condição.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Identifique o vetor normal do primeiro plano: \( \vec{n_1} = (2, -3, 1) \).</li>
+                    <li>Identifique o vetor normal do segundo plano: \( \vec{n_2} = (-4, 6, -2) \).</li>
+                    <li>Verifique se existe um escalar \( k \) tal que \( \vec{n_2} = k \cdot \vec{n_1} \). Para isso, verifique se a razão entre as componentes correspondentes é constante.</li>
+                    <li>Se sim, os planos são paralelos. Se não, são concorrentes.</li>
+                </ol>
+                <div class="formula">Planos paralelos \( \iff \vec{n_1} = k \cdot \vec{n_2} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em geração procedural de mundos, essa verificação é usada para evitar a criação de geometrias "impossíveis", como dois andares de um prédio que se cruzam. O sistema garante que os planos do chão e do teto sejam paralelos.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 3-C (ELITE CHALLENGE) -->
+        <div class="mission">
+            <h3>A Interseção dos Corredores (Interseção de Duas Retas em R³)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar se duas retas se cruzam e, em caso afirmativo, encontrar o ponto de interseção.
+            </div>
+            <p>No design de um 'dungeon', a rota de patrulha de um guarda é \( r_1(t) = (1, 1, 0) + t(1, 2, 1) \) e a sua rota de fuga planejada é \( r_2(s) = (0, 1, 1) + s(2, 2, 0) \). Os dois caminhos se cruzam em algum ponto, criando um risco de ser visto? Se sim, onde?</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Se as retas se cruzam, deve existir um valor de \( t \) e um valor de \( s \) para os quais \( r_1(t) = r_2(s) \). Isso gera um sistema de três equações lineares (uma para cada coordenada) com duas incógnitas (\( s, t \)). Tente resolver o sistema. Se houver uma solução, elas se cruzam.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Iguale as equações paramétricas das duas retas: <br> \( 1+t = 2s \) <br> \( 1+2t = 1+2s \) <br> \( t = 1+s \) </li>
+                    <li>Você tem um sistema de 3 equações e 2 variáveis. Use duas das equações (por exemplo, a segunda e a terceira) para encontrar os valores de \( s \) e \( t \).</li>
+                    <li>Substitua os valores encontrados na primeira equação. Se a igualdade for satisfeita, o sistema tem solução e as retas se cruzam. Se não, as retas são reversas.</li>
+                    <li>Se houver solução, substitua o valor de \( t \) em \( r_1 \) (ou \( s \) em \( r_2 \)) para encontrar o ponto de interseção.</li>
+                </ol>
+                <div class="formula">Resolver o sistema \( P_1 + t\vec{v_1} = P_2 + s\vec{v_2} \).</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa verificação é usada em sistemas de tráfego de IA para prever colisões entre NPCs, em design de níveis para garantir que corredores e túneis se alinhem corretamente, e em puzzles que envolvem alinhar feixes de luz ou objetos.</p>
+            </details>
+        </div>
+        
+        <!-- MISSÃO 4-A (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Altitude do Drone de Entrega (Distância de Ponto a Plano)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular a menor distância entre um ponto e um plano.
+            </div>
+            <p>Um drone de entrega está pairando na posição \( Q = (10, 8, 12) \). A plataforma de aterrissagem é um grande plano inclinado com equação \( 2x + 2y - z = 5 \). Para iniciar o procedimento de descida, o drone precisa saber sua altitude exata (distância perpendicular) em relação à plataforma. Calcule essa distância.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Use a fórmula da distância de um ponto \( Q=(x_0, y_0, z_0) \) a um plano \( ax+by+cz-d=0 \). A fórmula é \( D = \frac{|ax_0 + by_0 + cz_0 - d|}{\sqrt{a^2+b^2+c^2}} \).</li>
+                    <li>Identifique os valores da equação do plano: \( a=2, b=2, c=-1, d=5 \).</li>
+                    <li>Identifique as coordenadas do ponto Q: \( x_0=10, y_0=8, z_0=12 \).</li>
+                    <li>Substitua todos os valores na fórmula e calcule o resultado. O numerador é o valor absoluto da equação do plano avaliada no ponto. O denominador é a norma do vetor normal.</li>
+                </ol>
+                <div class="formula">\( D = \frac{|ax_0 + by_0 + cz_0 - d|}{\|\vec{n}\|} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa é uma das operações de colisão mais importantes. É usada para determinar a que distância um personagem está do chão (para aplicar gravidade ou permitir um pulo), para "empurrar" objetos para fora de paredes após uma colisão, e para a IA saber a que distância está de uma barreira.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-B (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>O Desvio da Rota do Asteroide (Distância de Ponto a Reta)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Calcular a menor distância entre um ponto e uma reta em R³.
+            </div>
+            <p>Um asteroide está parado na posição \( Q = (1, -1, 5) \). Uma estação espacial de mineração segue uma rota perfeitamente retilínea, descrita pela equação \( r(t) = P_0 + t\vec{v} \), onde \( P_0 = (0, 1, 1) \) e \( \vec{v} = (2, 0, 1) \). Qual será a menor distância entre o asteroide e a rota da estação? (O alerta de colisão soa se for menor que 2 unidades).</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>A fórmula para a distância de um ponto Q a uma reta definida por \( P_0 \) e \( \vec{v} \) usa o produto vetorial: \( D = \frac{\|\vec{P_0Q} \times \vec{v}\|}{\|\vec{v}\|} \).</li>
+                    <li>Primeiro, calcule o vetor que liga o ponto inicial da reta ao ponto do asteroide: \( \vec{P_0Q} = Q - P_0 \).</li>
+                    <li>Calcule o produto vetorial entre \( \vec{P_0Q} \) e o vetor diretor da reta \( \vec{v} \).</li>
+                    <li>Calcule a norma do vetor resultante do produto vetorial. Este é o numerador.</li>
+                    <li>Calcule a norma do vetor diretor \( \vec{v} \). Este é o denominador.</li>
+                    <li>Divida os dois resultados para encontrar a distância.</li>
+                </ol>
+                <div class="formula">\( D = \frac{\|(Q - P_0) \times \vec{v}\|}{\|\vec{v}\|} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Essa geometria é usada em jogos para determinar a que distância um projétil passou de um alvo (para dano em área ou 'near misses'), para a IA decidir se pode ignorar um obstáculo ou se precisa desviar, e em sistemas de mira assistida ('aim assist') para 'puxar' a mira para um inimigo próximo à linha de tiro.</p>
+            </details>
+        </div>
+
+        <!-- MISSÃO 4-C (BOSS FIGHT) -->
+        <div class="mission">
+            <h3>A Viga no Canto da Sala (Interseção de Dois Planos)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Encontrar a equação da reta que representa a interseção de dois planos.
+            </div>
+            <p>No design de um nível, a parede 1 está no plano \( x + y = 3 \) e a parede 2 está no plano \( y + z = 4 \). Onde essas duas paredes se encontram, forma-se um canto. Uma viga de suporte deve ser colocada exatamente ao longo desse canto. Qual é a equação da reta que descreve a posição da viga?</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>O vetor diretor da reta de interseção, \( \vec{v} \), é perpendicular aos vetores normais de ambos os planos. Portanto, ele pode ser encontrado pelo produto vetorial dos normais: \( \vec{v} = \vec{n_1} \times \vec{n_2} \).</li>
+                    <li>Extraia \( \vec{n_1} \) e \( \vec{n_2} \) das equações dos planos e calcule \( \vec{v} \).</li>
+                    <li>Agora, precisamos de um ponto \( P_0 \) que pertença a ambos os planos (ou seja, que esteja na reta). Para encontrá-lo, resolva o sistema de equações dos planos. Como há 2 equações e 3 variáveis, você pode atribuir um valor a uma variável (ex: \( z=0 \)) e resolver para as outras duas.</li>
+                    <li>Com o ponto \( P_0 \) e o vetor diretor \( \vec{v} \), escreva a equação da reta de interseção.</li>
+                </ol>
+                <div class="formula">1. \( \vec{v} = \vec{n_1} \times \vec{n_2} \)<br>2. Encontrar \( P_0 \) resolvendo \( \{ n_1 \cdot X = d_1, n_2 \cdot X = d_2 \} \)</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em geometria computacional e modelagem procedural, a interseção de planos é usada para criar a topologia de malhas 3D. A linha de interseção forma uma aresta no modelo. Essa técnica é a base para a criação de mundos complexos a partir de formas geométricas simples (uma técnica chamada 'Constructive Solid Geometry' ou CSG).</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

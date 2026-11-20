@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    
+    <!-- Link para a folha de estilo externa -->
+    <link rel="stylesheet" href="../game-theme-exercises.css" />
+
+    <title>ÁLGEBRA ARCADE | Sistemas Lineares</title>
+</head>
+<body>
+    <header class="console-header">
+        <h1>ÁLGEBRA ARCADE</h1>
+        <h2>Fase 1: A Lógica dos Puzzles</h2>
+    </header>
+
+    <div class="mission-intro">
+        <h3>Manual da Fase: Sistemas Lineares</h3>
+        <p>Bem-vindo, jogador! Na Era de Ouro dos Arcades, muitos jogos eram, em essência, puzzles lógicos disfarçados de ação. Para vencer, era preciso entender as regras que governavam o jogo. Sistemas lineares são exatamente isso: um conjunto de regras (equações) que descrevem uma situação.</p>
+        <p>Resolver um sistema é como encontrar o "código de cheat" ou a "chave do puzzle" que satisfaz todas as regras ao mesmo tempo. Seja para balancear os atributos de um personagem, calcular os recursos necessários para construir uma base ou prever a rota de colisão de dois projéteis, os sistemas lineares são a lógica por trás do caos pixelado.</p>
+        <div class="formula">\[ \begin{cases} a_1x + b_1y = c_1 \\ a_2x + b_2y = c_2 \end{cases} \]</div>
+    </div>
+
+    <main id="mission-board" style="counter-reset: mission-counter;">
+        <!-- Training Quests (1-3) -->
+        <div class="mission">
+            <h3>1-A: Verificando a Chave do Puzzle (Solução de Sistemas)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Verificar se um par de valores é a solução correta para um sistema de equações.
+            </div>
+            <p>Em um jogo de puzzle, você encontrou uma chave que supostamente abre duas fechaduras ao mesmo tempo. A posição da chave é a coordenada \( (x=3, y=1) \). As "regras" das fechaduras são dadas pelo sistema abaixo. Verifique se esta chave é o "código" correto para destravar o tesouro.</p>
+            <p>Sistema: \( \begin{cases} 2x + y = 7 \\ x - y = 2 \end{cases} \)</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Para verificar a solução, substitua os valores de \(x\) e \(y\) em AMBAS as equações. Se as duas igualdades forem verdadeiras, a chave funciona!</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Pegue os valores propostos, \(x=3\) e \(y=1\), e substitua-os na primeira equação do sistema. Verifique se o resultado do lado esquerdo é igual ao do lado direito.</li>
+                    <li>Agora, faça o mesmo para a segunda equação: substitua os mesmos valores de \(x\) e \(y\) e confira se a igualdade se mantém.</li>
+                    <li>Se ambas as equações se tornaram verdadeiras após a substituição, então o par de valores é a solução do sistema. Caso contrário, não é.</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso é análogo a testar uma senha ou um item em um jogo. Se o item não funciona em todas as condições necessárias (abrir todas as fechaduras, por exemplo), ele não é a solução para aquele puzzle específico.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>1-B: O Ponto de Encontro dos Sprites (Interpretação Gráfica)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Entender que a solução de um sistema 2x2 representa a interseção de duas retas.
+            </div>
+            <p>Dois sprites, um Herói e um Inimigo, movem-se em trajetórias retas no grid do jogo. A trajetória do Herói é descrita por \( y = -x + 5 \) e a do Inimigo por \( y = 2x - 1 \). Em qual coordenada \( (x, y) \) eles irão colidir?</p>
+            <p>Sistema: \( \begin{cases} y = -x + 5 \\ y = 2x - 1 \end{cases} \)</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Se no ponto de colisão as coordenadas \( (x, y) \) são as mesmas para ambos, então os lados direitos das equações também devem ser iguais entre si. Tente igualar as expressões para \(y\).</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Como ambas as equações já isolam a variável \(y\), podemos usar o método da comparação (ou substituição). Se \(y\) é igual a duas coisas diferentes, essas duas coisas devem ser iguais entre si.</li>
+                    <li>Construa uma nova equação igualando as expressões para \(y\): \(-x + 5 = 2x - 1\).</li>
+                    <li>Resolva esta nova equação, que agora possui apenas a variável \(x\), para encontrar a coordenada \(x\) da colisão.</li>
+                    <li>Depois de encontrar o valor de \(x\), substitua-o em QUALQUER uma das duas equações originais para encontrar o valor correspondente de \(y\).</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> A detecção de colisão é fundamental em quase todos os jogos. A solução de um sistema de equações é a base matemática para determinar o ponto exato onde objetos em movimento se encontram.</p>
+            </details>
+        </div>
+        
+        <div class="mission">
+            <h3>1-C: Balanceamento de Atributos (Método da Adição)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver um sistema 2x2 simples usando o método da adição/eliminação.
+            </div>
+            <p>Você está criando um personagem. A soma do seu ataque (\(a\)) e defesa (\(d\)) deve ser 10. A diferença entre o ataque e a defesa deve ser 4, para criar um personagem mais ofensivo. Quais são os valores de ataque e defesa?</p>
+            <p>Sistema: \( \begin{cases} a + d = 10 \\ a - d = 4 \end{cases} \)</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe que os coeficientes da variável \(d\) são opostos (\(+1\) e \(-1\)). O que acontece se você somar as duas equações, termo a termo?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Alinhe as duas equações verticalmente.</li>
+                    <li>Some o lado esquerdo da primeira equação com o lado esquerdo da segunda. Faça o mesmo para o lado direito.</li>
+                    <li>Observe que a variável \(d\) será eliminada no processo de soma, resultando em uma equação com apenas a variável \(a\).</li>
+                    <li>Resolva esta nova equação para encontrar o valor de \(a\).</li>
+                    <li>Substitua o valor de \(a\) encontrado em uma das equações originais para descobrir o valor de \(d\).</li>
+                </ol>
+                <div class="formula">(a + d) + (a - d) = 10 + 4</div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> O balanceamento de jogos (game balancing) usa sistemas de equações para garantir que nenhum personagem, item ou estratégia seja forte ou fraco demais, mantendo o jogo justo e divertido.</p>
+            </details>
+        </div>
+
+        <!-- Main Missions (4-6) -->
+        <div class="mission">
+            <h3>2-A: A Economia do Arcade (Modelagem e Substituição)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Montar e resolver um sistema 2x2 a partir de um problema, usando o método da substituição.
+            </div>
+            <p>No fliperama, 2 fichas (\(f\)) e 3 tickets (\(t\)) custam 13 créditos. Em outra máquina, 1 ficha e 1 ticket custam 5 créditos. Descubra o custo individual de cada ficha e cada ticket para otimizar seus gastos.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Primeiro, traduza cada frase em uma equação. Depois, use a equação mais simples para isolar uma das variáveis (por exemplo, \(f\) em termos de \(t\)) e substitua essa expressão na outra equação.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Traduza o problema em um sistema de duas equações. A primeira frase resulta em uma equação e a segunda, em outra.</li>
+                    <li>Na segunda equação (\(f + t = 5\)), isole uma das variáveis. Por exemplo, escreva \(f\) em função de \(t\).</li>
+                    <li>Pegue a expressão para \(f\) que você encontrou e substitua-a no lugar de \(f\) na primeira equação.</li>
+                    <li>Agora você terá uma equação com apenas a variável \(t\). Resolva-a para encontrar o valor de um ticket.</li>
+                    <li>Com o valor de \(t\) em mãos, substitua-o de volta na equação onde você isolou \(f\) para encontrar o custo de uma ficha.</li>
+                </ol>
+                <div class="formula">
+                    Sistema: \( \begin{cases} 2f + 3t = 13 \\ f + t = 5 \end{cases} \)
+                </div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Jogos de estratégia e RPGs frequentemente têm sistemas econômicos complexos. Entender o valor relativo de cada recurso é crucial para a vitória, e isso pode ser modelado com sistemas de equações.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>2-B: Combo de Power-ups (Método da Adição Avançado)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver um sistema 2x2 onde é necessário multiplicar uma ou ambas as equações antes de somar.
+            </div>
+            <p>Você combina dois power-ups. O primeiro dá 3 pontos de velocidade (\(v\)) e 2 de força (\(s\)), resultando em um bônus total de 18. O segundo, mais fraco, dá 1 de velocidade e 1 de força, para um bônus total de 7. Qual o valor de bônus base de cada ponto de velocidade e força?</p>
+            <p>Sistema: \( \begin{cases} 3v + 2s = 18 \\ v + s = 7 \end{cases} \)</p>
+
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Somar as equações diretamente não elimina nenhuma variável. Tente multiplicar a segunda equação por um número que faça o coeficiente de \(v\) ou \(s\) se tornar o oposto do coeficiente na primeira equação.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Observe que somar as equações diretamente não ajuda. Escolha uma variável para eliminar, por exemplo, \(s\).</li>
+                    <li>Para eliminar \(s\), o coeficiente na segunda equação precisa ser o oposto do coeficiente na primeira (\(2s\)). Portanto, multiplique a segunda equação inteira (ambos os lados) por -2.</li>
+                    <li>Reescreva o sistema com a nova segunda equação.</li>
+                    <li>Agora, some a primeira equação com a nova segunda equação. A variável \(s\) será cancelada.</li>
+                    <li>Resolva a equação resultante para encontrar o valor de \(v\).</li>
+                    <li>Substitua o valor de \(v\) em qualquer uma das equações originais para encontrar \(s\).</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em RPGs, os bônus de status (stats) de equipamentos e habilidades se acumulam. Calcular o efeito final ou o valor base de cada atributo muitas vezes requer a resolução de sistemas como este.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>2-C: Código de Acesso de 3 Dígitos (Sistema 3x3 Simples)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver um sistema de três equações e três variáveis.
+            </div>
+            <p>Para abrir uma porta de segurança, você precisa de um código de 3 dígitos (\(x, y, z\)). O terminal do jogo fornece três dicas:
+            <br>1. A soma dos três dígitos é 9.
+            <br>2. O primeiro dígito é igual ao terceiro.
+            <br>3. A soma do primeiro e do segundo dígito é 5.
+            <br>Encontre o código \( (x, y, z) \).</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Transforme cada dica em uma equação. Use a segunda equação (\(x = z\)) para substituir \(z\) por \(x\) nas outras equações. Isso transformará seu problema 3x3 em um problema 2x2 mais simples.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escreva o sistema de 3 equações com base nas dicas: \(x+y+z=9\), \(x=z\), \(x+y=5\).</li>
+                    <li>Use a equação mais simples, \(x=z\), para fazer uma substituição. Substitua todo \(z\) na primeira equação por \(x\).</li>
+                    <li>A primeira equação se tornará uma equação apenas com \(x\) e \(y\).</li>
+                    <li>Agora você tem um sistema 2x2 com a nova primeira equação e a terceira equação original.</li>
+                    <li>Resolva este novo sistema 2x2 para encontrar os valores de \(x\) e \(y\).</li>
+                    <li>Use a relação \(x=z\) para encontrar o valor de \(z\).</li>
+                </ol>
+                <div class="formula">
+                    \[ \begin{cases} x + y + z = 9 \\ x = z \\ x + y = 5 \end{cases} \]
+                </div>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Puzzles que envolvem encontrar combinações secretas ou alinhar mecanismos são comuns. A lógica por trás deles é, frequentemente, um sistema de equações que precisa ser decifrado.</p>
+            </details>
+        </div>
+
+        <!-- Elite Challenges (7-9) -->
+        <div class="mission">
+            <h3>3-A: O Glitch das Trajetórias Paralelas (Sistema Inconsistente)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar um sistema sem solução e entender sua interpretação gráfica.
+            </div>
+            <p>Um programador novato codificou a rota de dois mísseis. A rota do primeiro é \( x - 2y = 4 \). A rota do segundo é \( 2x - 4y = 10 \). Ele espera que eles colidam. Mostre algebricamente por que isso é um "glitch" no código e os mísseis nunca se encontrarão.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Tente resolver o sistema pelo método da adição. Multiplique a primeira equação por -2 e some com a segunda. Observe o resultado. O que acontece com as variáveis? A igualdade final faz sentido?</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Prepare o sistema para o método da adição. Multiplique a primeira equação por -2.</li>
+                    <li>A nova primeira equação será o resultado dessa multiplicação. A segunda equação permanece a mesma.</li>
+                    <li>Some a nova primeira equação com a segunda equação.</li>
+                    <li>Observe que tanto a variável \(x\) quanto a variável \(y\) serão eliminadas, resultando em 0 no lado esquerdo.</li>
+                    <li>Observe o valor resultante no lado direito. Você chegará a uma afirmação matematicamente impossível (como \(0 = 2\)).</li>
+                    <li>Uma afirmação falsa como essa significa que o sistema não tem solução. É inconsistente.</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Graficamente, isso representa duas linhas paralelas. Em design de jogos, isso pode ser intencional (duas naves voando em formação) ou um bug (um projétil que nunca atinge um alvo que se move em paralelo).</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>3-B: A Patrulha Redundante (Sistema com Infinitas Soluções)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Identificar um sistema com infinitas soluções e entender seu significado.
+            </div>
+            <p>O mestre do jogo deu a dois guardas rotas de patrulha. A rota do Guarda A é \( x + 3y = 6 \). A rota do Guarda B é \( 2x + 6y = 12 \). Em quais pontos eles podem se encontrar? Explique o que há de "redundante" nessas instruções.</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>Observe a segunda equação. O que acontece se você dividir todos os seus termos por 2? Compare o resultado com a primeira equação.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Tente resolver o sistema pelo método da adição. Multiplique a primeira equação por -2.</li>
+                    <li>Some a equação resultante com a segunda equação do sistema.</li>
+                    <li>Você notará que tanto as variáveis quanto os termos constantes se anulam, resultando na identidade \(0 = 0\).</li>
+                    <li>Uma afirmação que é sempre verdadeira, como \(0=0\), indica que as duas equações são, na verdade, a mesma. Uma é apenas um múltiplo da outra.</li>
+                    <li>Isso significa que qualquer solução que funciona para a primeira equação também funcionará para a segunda. Existem infinitos pontos de encontro.</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Isso representa duas retas coincidentes (uma sobre a outra). Os guardas estão patrulhando exatamente o mesmo caminho. Eles podem se encontrar em qualquer ponto de sua rota compartilhada.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>3-C: A Forja dos Três Metais (Sistema 3x3 Complexo)</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver um sistema 3x3 mais geral usando eliminação sucessiva.
+            </div>
+            <p>Para forjar a Lâmina Lendária, um ferreiro precisa de uma liga com quantidades específicas de Ferro (\(f\)), Mithril (\(m\)) e Adamantium (\(a\)). As fórmulas arcanas revelam as seguintes relações:</p>
+            <p>Sistema: \( \begin{cases} f + m + a = 12 \\ 2f - m + a = 7 \\ f + 2m - a = 8 \end{cases} \)</p>
+            
+            <details class="hint-container">
+                <summary>Pedir Dica ao Mestre do Jogo...</summary>
+                <div class="hint">
+                    <p>O objetivo é reduzir o sistema 3x3 para um 2x2. Use duas equações para eliminar uma variável (por exemplo, some a primeira e a terceira para eliminar \(a\)). Depois, use outro par de equações para eliminar a MESMA variável. Agora você terá um sistema 2x2 para resolver.</p>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Escolha uma variável para eliminar. A variável \(a\) é uma boa candidata, pois seus coeficientes são 1, 1, e -1.</li>
+                    <li>Passo A: Some a primeira e a terceira equações. Isso eliminará \(a\) e resultará em uma nova equação com apenas \(f\) e \(m\).</li>
+                    <li>Passo B: Some a segunda e a terceira equações. Isso também eliminará \(a\) e resultará em uma segunda equação com \(f\) e \(m\).</li>
+                    <li>Agora você tem um sistema 2x2 formado pelas duas novas equações geradas nos Passos A e B. Resolva este sistema para encontrar os valores de \(f\) e \(m\).</li>
+                    <li>Finalmente, substitua os valores de \(f\) e \(m\) em qualquer uma das três equações originais para encontrar o valor de \(a\).</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Sistemas de "crafting" em jogos complexos frequentemente envolvem receitas com múltiplos ingredientes e restrições, uma aplicação direta de sistemas de equações para encontrar as quantidades corretas.</p>
+            </details>
+        </div>
+
+        <!-- Boss Fights (10-12) -->
+        <div class="mission">
+            <h3>4-A: Calibragem Fina do Canhão de Íons</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Resolver um sistema 2x2 que resulta em soluções não-inteiras, exigindo precisão nos cálculos.
+            </div>
+            <p>A fase final exige que você calibre o Canhão de Íons da sua nave. A potência é controlada por dois capacitores, \(x\) e \(y\). As especificações do manual técnico são rígidas:</p>
+            <p>Sistema: \( \begin{cases} 5x - 3y = 6 \\ 2x + 4y = 9 \end{cases} \)</p>
+            <p>Encontre os valores exatos de \(x\) e \(y\), que podem não ser inteiros. A precisão é a chave para a vitória!</p>
+            
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Este é um sistema 2x2 padrão, mas os números não se cancelarão facilmente. Escolha o método da adição.</li>
+                    <li>Para eliminar \(x\), encontre o mínimo múltiplo comum dos coeficientes de \(x\) (5 e 2), que é 10.</li>
+                    <li>Multiplique a primeira equação por 2 e a segunda equação por -5 para que os coeficientes de \(x\) se tornem opostos (10 e -10).</li>
+                    <li>Some as duas novas equações resultantes. A variável \(x\) será eliminada.</li>
+                    <li>Resolva a equação restante para encontrar o valor de \(y\). A resposta provavelmente será uma fração.</li>
+                    <li>Substitua o valor fracionário de \(y\) em uma das equações originais e resolva para \(x\). Tenha cuidado com as operações com frações.</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Em simulações de física ou programação de IA, os valores raramente são números inteiros. Posição, velocidade e outras variáveis são representadas por números de ponto flutuante, exigindo cálculos precisos como neste exercício.</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>4-B: O Parâmetro da Instabilidade</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Analisar um sistema com um parâmetro para determinar a condição que causa inconsistência.
+            </div>
+            <p>O "Gerador de Realidade" do chefão final é governado por um sistema que depende de um parâmetro de estabilidade \(k\). Se o sistema se tornar inconsistente (sem solução), o gerador sobrecarrega e o chefão fica vulnerável.</p>
+            <p>Sistema: \( \begin{cases} x + 2y = 5 \\ 3x + 6y = k \end{cases} \)</p>
+            <p>Encontre o valor de \(k\) que causa a sobrecarga, ou seja, o valor que torna o sistema impossível de resolver.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Analise a relação entre os lados esquerdos das duas equações. Observe que o lado esquerdo da segunda equação é exatamente 3 vezes o lado esquerdo da primeira.</li>
+                    <li>Para que o sistema tenha solução (seja consistente), a mesma relação deve se aplicar aos lados direitos.</li>
+                    <li>Um sistema é inconsistente (sem solução) quando os lados esquerdados são múltiplos um do outro, mas os lados direitos não seguem a mesma proporção.</li>
+                    <li>Multiplique a primeira equação inteira por 3. Isso lhe dará uma nova equação.</li>
+                    <li>Compare essa nova equação com a segunda equação original (\(3x + 6y = k\)). Para que o sistema seja inconsistente, os lados esquerdos devem ser idênticos, mas os lados direitos devem ser diferentes.</li>
+                    <li>Determine qual valor de \(k\) faria os lados direitos serem iguais, e conclua que qualquer outro valor de \(k\) tornará o sistema inconsistente.</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Parâmetros são usados constantemente na programação de jogos para ajustar a dificuldade, o comportamento dos inimigos ou as regras da física. Encontrar valores críticos desses parâmetros pode levar a comportamentos inesperados ou "glitches", que às vezes são explorados por jogadores (speedrunners).</p>
+            </details>
+        </div>
+
+        <div class="mission">
+            <h3>4-C: BOSS FINAL: O TRIUNVIRATO ELEMENTAL</h3>
+            <div class="mission-objective">
+                <strong>Objetivo da Missão:</strong> Modelar e resolver um problema complexo do mundo real (jogo) usando um sistema 3x3.
+            </div>
+            <p>O chefe final, um dragão de três cabeças, ataca com Fogo (\(f\)), Gelo (\(g\)) e Trovão (\(t\)). Você observa os padrões de dano de três de seus ataques combinados para descobrir o dano base de cada elemento:</p>
+            <ul>
+                <li>Ataque 1: 1 Fogo, 1 Gelo, 1 Trovão causam 1500 de dano total.</li>
+                <li>Ataque 2: 2 Fogos e 3 Gelos (sem Trovão) causam 2000 de dano total.</li>
+                <li>Ataque 3: 1 Fogo e 2 Trovões (sem Gelo) causam 2500 de dano total.</li>
+            </ul>
+            <p>Monte o sistema de equações e encontre o dano de cada elemento para equipar as defesas corretas.</p>
+
+            <details>
+                <summary>Ver Detonado...</summary>
+                <ol class="solution-steps">
+                    <li>Traduza cada observação de ataque em uma equação linear, formando um sistema 3x3. Por exemplo, a primeira observação se torna \(f + g + t = 1500\).</li>
+                    <li>Observe que a segunda e a terceira equações já possuem uma variável faltando. Isso simplifica o problema.</li>
+                    <li>Use a segunda equação para isolar uma variável em termos da outra (por exemplo, escreva \(f\) em função de \(g\)).</li>
+                    <li>Use a terceira equação para isolar uma variável em termos da outra (por exemplo, escreva \(f\) em função de \(t\)).</li>
+                    <li>Agora você tem duas expressões diferentes para \(f\). Substitua ambas na primeira equação (\(f+g+t=1500\)). Você precisará primeiro expressar \(g\) e \(t\) em função de \(f\) e então substituir na primeira equação.</li>
+                    <li>Um método mais direto: Isole \(g\) da segunda equação e \(t\) da terceira equação, ambas em termos de \(f\).</li>
+                    <li>Substitua essas duas expressões para \(g\) e \(t\) na primeira equação. O resultado será uma equação contendo apenas a variável \(f\). Resolva-a.</li>
+                    <li>Com o valor de \(f\) encontrado, substitua-o de volta nas expressões que você usou para encontrar \(g\) e \(t\).</li>
+                </ol>
+                <p class="game-connection"><strong>Conexão com o Mundo dos Jogos:</strong> Esta é a essência do "theorycrafting" em jogos avançados. Jogadores analisam dados de combate (dano, cura, etc.) para decifrar as fórmulas ocultas do jogo, otimizando seus personagens e estratégias para desafios de alto nível, como chefes de raide.</p>
+            </details>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabarito - Prova 1 (P1)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        // Configuração do MathJax para funcionar com <details>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: {
+                skipHtmlTags: ['details'] // Permite que MathJax renderize dentro de <details>
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .header h1 {
+            text-align: center;
+            font-size: 16pt;
+            font-weight: bold;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+        
+        .question-header {
+            font-weight: bold;
+            font-size: 13pt;
+            color: #000;
+            border-left: 4px solid #000;
+            padding: 8px 10px;
+            background-color: #f0f0f0;
+            margin-bottom: 12px;
+        }
+        
+        .subquestion {
+            margin: 10px 0 10px 20px;
+        }
+        
+        details {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        summary {
+            font-weight: bold;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #e9e9e9;
+            font-size: 10pt;
+            border-radius: 3px;
+        }
+        .answer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .answer p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gabarito - Prova 1 (P1)</h1>
+        </div>
+        <div class="content">
+            
+            <div class="question">
+                <div class="question-header">Questão 1: Sistemas Lineares e Eliminação Gaussiana</div>
+                <p>Considere o sistema:
+                    $$
+                    \begin{cases}
+                    x + y + 2z = 9 \\
+                    2x + 4y - 3z = 1 \\
+                    3x + 6y - 5z = 0
+                    \end{cases}
+                    $$</p>
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Represente o sistema na forma de uma equação matricial \(A\vec{x} = \vec{b}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A equação matricial é formada pela matriz de coeficientes \(A\), o vetor de variáveis \(\vec{x}\) e o vetor de termos independentes \(\vec{b}\).</p>
+                            $$ A = \begin{pmatrix} 1 & 1 & 2 \\ 2 & 4 & -3 \\ 3 & 6 & -5 \end{pmatrix}, \quad \vec{x} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}, \quad \vec{b} = \begin{pmatrix} 9 \\ 1 \\ 0 \end{pmatrix} $$
+                        </div>
+                    </details>
+                </div>
+
+                <div class="subquestion">
+                    <strong>b)</strong> Resolva o sistema utilizando o método da Eliminação Gaussiana.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Montamos a matriz aumentada \([A|\vec{b}]\) e aplicamos as operações elementares:</p>
+                            $$ \left[ \begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 2 & 4 & -3 & 1 \\ 3 & 6 & -5 & 0 \end{array} \right] $$
+                            <p>Aplicando \(L_2 \leftarrow L_2 - 2L_1\) e \(L_3 \leftarrow L_3 - 3L_1\):</p>
+                             $$ \left[ \begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 3 & -11 & -27 \end{array} \right] $$
+                            <p>Aplicando \(L_3 \leftarrow L_3 - \frac{3}{2}L_2\):</p>
+                            $$ \left[ \begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 0 & -0.5 & -1.5 \end{array} \right] $$
+                            <p>O sistema triangular superior resultante é:</p>
+                            $$
+                            \begin{cases}
+                            x + y + 2z = 9 \\
+                            2y - 7z = -17 \\
+                            -0.5z = -1.5
+                            \end{cases}
+                            $$
+                            <p>Resolvendo por substituição retroativa:
+                            <br>- Da terceira equação: \(z = \frac{-1.5}{-0.5} \Rightarrow z = 3\).
+                            <br>- Substituindo em (2): \(2y - 7(3) = -17 \Rightarrow 2y - 21 = -17 \Rightarrow 2y = 4 \Rightarrow y = 2\).
+                            <br>- Substituindo em (1): \(x + 2 + 2(3) = 9 \Rightarrow x + 8 = 9 \Rightarrow x = 1\).
+                            </p>
+                            <p>A solução é \(\vec{x} = [1, 2, 3]^T\).</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Verifique sua solução.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Calculamos o produto \(A\vec{x}\) com a solução encontrada:</p>
+                           $$ A\vec{x} = \begin{pmatrix} 1 & 1 & 2 \\ 2 & 4 & -3 \\ 3 & 6 & -5 \end{pmatrix} \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} = \begin{pmatrix} 1(1) + 1(2) + 2(3) \\ 2(1) + 4(2) - 3(3) \\ 3(1) + 6(2) - 5(3) \end{pmatrix} = \begin{pmatrix} 1+2+6 \\ 2+8-9 \\ 3+12-15 \end{pmatrix} = \begin{pmatrix} 9 \\ 1 \\ 0 \end{pmatrix} $$
+                           <p>Como o resultado é igual a \(\vec{b}\), a solução está correta.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 2: Matriz Inversa e Determinantes</div>
+                <p>Seja a matriz \(A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{pmatrix}\).</p>
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Calcule o determinante de \(A\) e justifique se é invertível.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A matriz \(A\) é uma matriz triangular superior. O determinante de uma matriz triangular é o produto dos elementos da sua diagonal principal.</p>
+                            $$ \det(A) = 1 \cdot 1 \cdot 2 = 2 $$
+                            <p>Uma matriz é invertível se, e somente se, seu determinante for diferente de zero. Como \(\det(A) = 2 \neq 0\), a matriz \(A\) é invertível.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="subquestion">
+                    <strong>b)</strong> Encontre a matriz inversa \(A^{-1}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Usaremos o método de Gauss-Jordan, escalonando a matriz aumentada \([A|I]\):</p>
+                            $$ \left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 4 & 0 & 1 & 0 \\ 0 & 0 & 2 & 0 & 0 & 1 \end{array} \right] $$
+                            <p>\(L_3 \leftarrow \frac{1}{2}L_3\):</p>
+                            $$ \left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 4 & 0 & 1 & 0 \\ 0 & 0 & 1 & 0 & 0 & 1/2 \end{array} \right] $$
+                            <p>\(L_1 \leftarrow L_1 - 3L_3\) e \(L_2 \leftarrow L_2 - 4L_3\):</p>
+                            $$ \left[ \begin{array}{ccc|ccc} 1 & 2 & 0 & 1 & 0 & -3/2 \\ 0 & 1 & 0 & 0 & 1 & -2 \\ 0 & 0 & 1 & 0 & 0 & 1/2 \end{array} \right] $$
+                            <p>\(L_1 \leftarrow L_1 - 2L_2\):</p>
+                            $$ \left[ \begin{array}{ccc|ccc} 1 & 0 & 0 & 1 & -2 & 5/2 \\ 0 & 1 & 0 & 0 & 1 & -2 \\ 0 & 0 & 1 & 0 & 0 & 1/2 \end{array} \right] $$
+                            <p>Portanto, a matriz inversa é:</p>
+                            $$ A^{-1} = \begin{pmatrix} 1 & -2 & 5/2 \\ 0 & 1 & -2 \\ 0 & 0 & 1/2 \end{pmatrix} $$
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Verifique o resultado calculando \(A \cdot A^{-1}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Multiplicamos \(A\) por \(A^{-1}\):</p>
+                           $$ A \cdot A^{-1} = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{pmatrix} \begin{pmatrix} 1 & -2 & 5/2 \\ 0 & 1 & -2 \\ 0 & 0 & 1/2 \end{pmatrix} $$
+                           $$ = \begin{pmatrix} 1(1)+2(0)+3(0) & 1(-2)+2(1)+3(0) & 1(5/2)+2(-2)+3(1/2) \\ 0(1)+1(0)+4(0) & 0(-2)+1(1)+4(0) & 0(5/2)+1(-2)+4(1/2) \\ 0(1)+0(0)+2(0) & 0(-2)+0(1)+2(0) & 0(5/2)+0(-2)+2(1/2) \end{pmatrix} $$
+                           $$ = \begin{pmatrix} 1 & 0 & 2.5 - 4 + 1.5 \\ 0 & 1 & -2 + 2 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = I $$
+                           <p>O resultado é a matriz identidade, confirmando que a inversa está correta.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 3: Vetores, Planos e Retas no R³</div>
+                <p>Considere os pontos \(P(1, 0, 1)\), \(Q(2, 1, 0)\) e \(R(0, 1, 1)\).</p>
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Determine a equação geral do plano \(\pi\) que contém esses três pontos.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Primeiro, encontramos dois vetores contidos no plano:</p>
+                            <p>\(\vec{PQ} = Q - P = (2-1, 1-0, 0-1) = (1, 1, -1)\)</p>
+                            <p>\(\vec{PR} = R - P = (0-1, 1-0, 1-1) = (-1, 1, 0)\)</p>
+                            <p>O vetor normal \(\vec{n}\) ao plano é obtido pelo produto vetorial de \(\vec{PQ}\) e \(\vec{PR}\):</p>
+                             $$ \vec{n} = \vec{PQ} \times \vec{PR} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 1 & 1 & -1 \\ -1 & 1 & 0 \end{vmatrix} = (1(0) - (-1)(1))\mathbf{i} - (1(0) - (-1)(-1))\mathbf{j} + (1(1) - 1(-1))\mathbf{k} = (1, 1, 2) $$
+                             <p>A equação do plano é da forma \(ax+by+cz+d=0\), onde \((a,b,c)=\vec{n}\). Assim, \(1x+1y+2z+d=0\). Para encontrar \(d\), substituímos um dos pontos, como \(P(1,0,1)\):</p>
+                             <p>\(1(1) + 1(0) + 2(1) + d = 0 \Rightarrow 3 + d = 0 \Rightarrow d = -3\).</p>
+                             <p>A equação geral do plano é \(x+y+2z-3=0\).</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="subquestion">
+                    <strong>b)</strong> Encontre as equações paramétricas da reta \(r\) que passa por \(S(1, 2, 3)\) e é perpendicular a \(\pi\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>Se a reta \(r\) é perpendicular ao plano \(\pi\), seu vetor diretor \(\vec{v}_r\) é paralelo ao vetor normal do plano, \(\vec{n}=(1,1,2)\). Podemos usar \(\vec{v}_r = \vec{n}\).</p>
+                            <p>A reta passa pelo ponto \(S(1,2,3)\) e tem vetor diretor \(\vec{v}_r=(1,1,2)\). Suas equações paramétricas são:</p>
+                            $$
+                            \begin{cases}
+                            x = 1 + 1t \\
+                            y = 2 + 1t \\
+                            z = 3 + 2t
+                            \end{cases}
+                            , \quad t \in \mathbb{R}
+                            $$
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> Verifique que o vetor diretor da reta \(r\) é ortogonal a \(\vec{PQ}\) e \(\vec{PR}\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Para verificar a ortogonalidade, o produto escalar deve ser zero. O vetor diretor da reta é \(\vec{v}_r = (1,1,2)\).</p>
+                           <p>Verificação com \(\vec{PQ}=(1,1,-1)\):</p>
+                           $$ \vec{v}_r \cdot \vec{PQ} = (1)(1) + (1)(1) + (2)(-1) = 1 + 1 - 2 = 0 $$
+                           <p>Verificação com \(\vec{PR}=(-1,1,0)\):</p>
+                           $$ \vec{v}_r \cdot \vec{PR} = (1)(-1) + (1)(1) + (2)(0) = -1 + 1 + 0 = 0 $$
+                           <p>Como ambos os produtos escalares são zero, o vetor diretor \(\vec{v}_r\) é ortogonal aos vetores \(\vec{PQ}\) e \(\vec{PR}\), como esperado.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">Questão 4: Transformações Lineares no R³</div>
+                <p>Considere \(T_1\) (rotação de 90° em torno do eixo z) e \(T_2\) (reflexão através do plano xz).</p>
+                
+                <div class="subquestion">
+                    <strong>a)</strong> Encontre as matrizes padrão \(A\) (para \(T_1\)) e \(B\) (para \(T_2\)).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A matriz padrão é formada pelas imagens dos vetores da base canônica.</p>
+                            <p>Para \(T_1\) (rotação de 90° em torno de z):
+                            \(T_1(1,0,0) = (0,1,0)\), \(T_1(0,1,0) = (-1,0,0)\), \(T_1(0,0,1) = (0,0,1)\).</p>
+                            $$ A = \begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+                            <p>Para \(T_2\) (reflexão através do plano xz, o que inverte a coordenada y):
+                            \(T_2(1,0,0) = (1,0,0)\), \(T_2(0,1,0) = (0,-1,0)\), \(T_2(0,0,1) = (0,0,1)\).</p>
+                            $$ B = \begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+                        </div>
+                    </details>
+                </div>
+
+                <div class="subquestion">
+                    <strong>b)</strong> Determine a matriz \(C\) da composta \(T = T_2 \circ T_1\) e aplique-a ao vetor \(\vec{v} = (3, 4, 5)\).
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                            <p>A matriz da composição \(T_2 \circ T_1\) é o produto \(C = B \cdot A\).</p>
+                            $$ C = \begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & -1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+                            <p>Aplicando a transformação ao vetor \(\vec{v}=(3,4,5)\):</p>
+                            $$ T(\vec{v}) = C\vec{v} = \begin{pmatrix} 0 & -1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \\ 5 \end{pmatrix} = \begin{pmatrix} -4 \\ -3 \\ 5 \end{pmatrix} $$
+                        </div>
+                    </details>
+                </div>
+                 <div class="subquestion">
+                    <strong>c)</strong> A composição é comutativa? Justifique.
+                    <details>
+                        <summary>Ver Resposta</summary>
+                        <div class="answer">
+                           <p>Não, a composição de transformações lineares (e a multiplicação de matrizes) em geral não é comutativa. Para justificar, calculamos a transformação na ordem inversa, \(T' = T_1 \circ T_2\), e aplicamos ao mesmo vetor.</p>
+                           <p>A matriz de \(T'\) é \(D = A \cdot B\):</p>
+                           $$ D = \begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+                           <p>Aplicando ao vetor \(\vec{v}=(3,4,5)\):</p>
+                           $$ T'(\vec{v}) = D\vec{v} = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \\ 5 \end{pmatrix} = \begin{pmatrix} 4 \\ 3 \\ 5 \end{pmatrix} $$
+                           <p>Como \(T(\vec{v}) = (-4, -3, 5)\) é diferente de \(T'(\vec{v}) = (4, 3, 5)\), a ordem das operações importa, e a composição não é comutativa.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,239 @@
+/* Documento de revisão das telas do capítulo 1. Não é o deck: é o contrato.
+   Arquivo separado porque o AGENTS proíbe CSS inline; game-theme.css é dos slides. */
+
+:root {
+  --fundo: #0b0c10;
+  --painel: #12141a;
+  --linha: #242833;
+  --texto: #d8dbe2;
+  --fraco: #8b91a0;
+  --ambar: #d8a24a;
+  --azul: #6fa8dc;
+  --vermelho: #d46a6a;
+  --mono: "VT323", "Courier New", monospace;
+  --serif: Georgia, "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 0 6rem;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.cabeca {
+  padding: 3.5rem 1.5rem 2rem;
+  max-width: 1180px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--linha);
+}
+
+.cabeca h1 {
+  font-family: var(--mono);
+  font-size: 2.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ambar);
+  margin: 0 0 0.4rem;
+}
+
+.cabeca .sub {
+  color: var(--fraco);
+  font-size: 1.02rem;
+  max-width: 62ch;
+  margin: 0;
+}
+
+.aviso {
+  max-width: 1180px;
+  margin: 2rem auto 0;
+  padding: 1.2rem 1.5rem;
+  background: var(--painel);
+  border-left: 3px solid var(--azul);
+}
+
+.aviso h2 {
+  font-family: var(--mono);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul);
+  margin: 0 0 0.6rem;
+}
+
+.aviso ul { margin: 0; padding-left: 1.2rem; }
+.aviso li { margin-bottom: 0.35rem; }
+
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.ficha {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 2rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+@media (max-width: 900px) {
+  .ficha { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ---- o mock do slide: imagem + texto, exatamente como vai ao ar ---- */
+
+.mock {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--linha);
+}
+
+.mock img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mock .hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.55rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9ced9;
+  background: rgba(0, 0, 0, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mock .hud .chaves { color: var(--ambar); }
+
+.mock .frase {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 1.6rem 1.6rem 1.2rem;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+}
+
+.mock .menor {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #c9ced9;
+}
+
+.mock .fonte {
+  position: absolute;
+  right: 0.8rem;
+  top: 2.4rem;
+  max-width: 42ch;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: #98a0b0;
+  text-shadow: 0 1px 6px #000;
+}
+
+/* ---- a ficha de texto ao lado ---- */
+
+.doc h3 {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ambar);
+  margin: 0 0 1.1rem;
+}
+
+.doc h3 .num {
+  color: var(--fraco);
+  margin-right: 0.6rem;
+}
+
+.doc dl { margin: 0; }
+
+.doc dt {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--azul);
+  margin-top: 1.1rem;
+}
+
+.doc dt:first-child { margin-top: 0; }
+
+.doc dd {
+  margin: 0.3rem 0 0;
+  font-size: 0.98rem;
+}
+
+.doc dd.citacao {
+  font-size: 0.86rem;
+  color: var(--fraco);
+  border-left: 2px solid var(--linha);
+  padding-left: 0.8rem;
+}
+
+.doc dd.citacao b { color: var(--texto); }
+
+.doc dd.alerta { color: var(--vermelho); }
+
+.doc .selo {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.16rem 0.45rem;
+  border: 1px solid var(--linha);
+  color: var(--fraco);
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.rodape {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 0;
+  color: var(--fraco);
+  font-size: 0.9rem;
+}
+
+.rodape h2 {
+  font-family: var(--mono);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto);
+}
+
+@media print {
+  body { background: #fff; color: #111; }
+  .ficha { break-inside: avoid; }
+  .mock { border: 1px solid #999; }
+}

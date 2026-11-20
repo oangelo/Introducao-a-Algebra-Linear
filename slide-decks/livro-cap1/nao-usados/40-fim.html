@@ -1,0 +1,182 @@
+<!-- fonte: f1-matematica.html §1.1–1.12 (definições e notação); CAPITULO-1.md §3 e §7 (caso e referências). -->
+<section class="sec fim" id="s-fim">
+  <h2>Glossário, notação e fontes</h2>
+
+  <p>Este fecho reúne o que o capítulo usa sem parar para explicar de novo: os símbolos, os termos
+  definidos ao longo do texto e a origem do conteúdo. Serve para consulta durante a leitura e para
+  reconhecer, numa prova, qual objeto está sendo nomeado.</p>
+
+  <h3>Notação</h3>
+
+  <p>A tabela segue a ordem em que os símbolos entram no texto. Na coluna da direita ficam as seções
+  em que cada um aparece pela primeira vez.</p>
+
+  <table>
+    <thead>
+      <tr><th>Símbolo</th><th>Leitura</th><th>Onde aparece</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(x \in A\)</td> <td>o elemento \(x\) pertence ao conjunto \(A\); \(x \notin A\) é a negação</td> <td><a class="ref" href="#s-1-2">1.2</a>, <a class="ref" href="#s-1-3">1.3</a></td>
+      </tr>
+      <tr>
+        <td>\(A \cap B\)</td> <td>interseção: os elementos que pertencem a \(A\) e a \(B\) ao mesmo tempo</td> <td><a class="ref" href="#s-1-3">1.3</a></td>
+      </tr>
+      <tr>
+        <td>\(\varnothing\)</td> <td>conjunto vazio: nenhuma solução</td> <td><a class="ref" href="#s-1-3">1.3</a>, <a class="ref" href="#s-1-6">1.6</a></td>
+      </tr>
+      <tr>
+        <td>\(\mathbb{R}\)</td> <td>conjunto dos números reais; é de onde saem os coeficientes, os termos independentes e os valores das incógnitas</td> <td><a class="ref" href="#s-1-1">1.1</a></td>
+      </tr>
+      <tr>
+        <td>\(\mathbb{R}^2\)</td> <td>pares ordenados de números reais, lidos como pontos do plano</td> <td><a class="ref" href="#s-1-2">1.2</a>, <a class="ref" href="#s-1-4">1.4</a></td>
+      </tr>
+      <tr>
+        <td>\(\mathbb{R}^n\)</td> <td>n-uplas ordenadas de números reais</td> <td><a class="ref" href="#s-1-4">1.4</a></td>
+      </tr>
+      <tr>
+        <td>\(\{(x, y) : x + y = 3\}\)</td> <td>conjunto descrito por uma condição: todos os pares que a satisfazem; sem a condição, os elementos são listados um a um, entre os mesmos delimitadores, separados por vírgulas</td> <td><a class="ref" href="#s-1-3">1.3</a></td>
+      </tr>
+      <tr>
+        <td>\((x_1; x_2; \dots; x_n)\)</td> <td>n-upla ordenada; a ordem importa. O ponto e vírgula separa as coordenadas para não confundir com a vírgula decimal</td> <td><a class="ref" href="#s-1-5">1.5</a>, <a class="ref" href="#s-1-13">1.13</a></td>
+      </tr>
+      <tr>
+        <td>\(a_1x_1 + a_2x_2 + \dots + a_nx_n = b\)</td> <td>forma geral de uma equação linear em \(n\) incógnitas; os \(a_i\) são os coeficientes e \(b\) é o termo independente</td> <td><a class="ref" href="#s-1-1">1.1</a></td>
+      </tr>
+      <tr>
+        <td>\(a_{ij}\)</td> <td>coeficiente que está na linha \(i\) e na coluna \(j\) da matriz</td> <td><a class="ref" href="#s-1-7">1.7</a></td>
+      </tr>
+      <tr>
+        <td>\(x_1, x_2, \dots, x_n\)</td> <td>as incógnitas, numeradas na ordem das colunas da matriz</td> <td><a class="ref" href="#s-1-7">1.7</a></td>
+      </tr>
+      <tr>
+        <td>\(m \times n\)</td> <td>dimensão da matriz: \(m\) linhas e \(n\) colunas; o número de equações vem primeiro</td> <td><a class="ref" href="#s-1-7">1.7</a>, <a class="ref" href="#s-1-12">1.12</a></td>
+      </tr>
+      <tr>
+        <td>\(\left[\begin{array}{cc|c} 1 &amp; 1 &amp; 3 \\ 2 &amp; 2 &amp; 6 \end{array}\right]\)</td> <td>matriz aumentada: coeficientes à esquerda da barra vertical, termos independentes à direita</td> <td><a class="ref" href="#s-1-7">1.7</a></td>
+      </tr>
+      <tr>
+        <td>\(R_i \leftrightarrow R_j\)</td> <td>troca das linhas \(i\) e \(j\)</td> <td><a class="ref" href="#s-1-8">1.8</a></td>
+      </tr>
+      <tr>
+        <td>\(R_i \leftarrow kR_i\), \(k \neq 0\)</td> <td>a linha \(i\) é substituída por ela mesma multiplicada pelo escalar não nulo \(k\)</td> <td><a class="ref" href="#s-1-8">1.8</a></td>
+      </tr>
+      <tr>
+        <td>\(R_i \leftarrow R_i - kR_j\)</td> <td>a linha \(i\) é substituída por ela mesma menos \(k\) vezes a linha \(j\)</td> <td><a class="ref" href="#s-1-8">1.8</a>, <a class="ref" href="#s-1-10">1.10</a></td>
+      </tr>
+      <tr>
+        <td><b>pivô</b></td> <td>primeiro elemento não nulo de uma linha, na forma escalonada; a coluna em que ele está é a coluna pivotada</td> <td><a class="ref" href="#s-1-9">1.9</a>, <a class="ref" href="#s-1-11">1.11</a></td>
+      </tr>
+      <tr>
+        <td>\(0 = 0\)</td> <td>linha redundante: equação que não acrescenta informação</td> <td><a class="ref" href="#s-1-12">1.12</a></td>
+      </tr>
+      <tr>
+        <td>\(0 = c\), \(c \neq 0\)</td> <td>linha incompatível: o sistema é impossível</td> <td><a class="ref" href="#s-1-12">1.12</a></td>
+      </tr>
+      <tr>
+        <td>\(I_n\)</td> <td>matriz identidade de ordem \(n\): 1 na diagonal principal e 0 nas demais posições</td> <td><a class="ref" href="#s-1-17">1.17</a></td>
+      </tr>
+      <tr>
+        <td>\(A^{-1}\)</td> <td>inversa da matriz quadrada \(A\): a matriz que, multiplicada por \(A\), dá a identidade</td> <td><a class="ref" href="#s-1-18">1.18</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="obs"><b>Observação.</b> Duas convenções valem em todo o capítulo: a coluna da esquerda
+  da barra carrega o nome da incógnita, por isso a matriz aumentada dispensa escrever \(x\), \(y\),
+  \(z\); e a numeração das incógnitas segue a ordem das colunas, de modo que \(x_j\) é sempre a
+  incógnita da coluna \(j\).</p>
+
+  <h3>Glossário</h3>
+
+  <p>Os termos estão em ordem alfabética. Cada definição ocupa uma ou duas linhas e usa apenas o
+  vocabulário já fixado nas seções anteriores.</p>
+
+  <dl>
+    <dt>conjunto-solução</dt>
+    <dd>Conjunto de todas as n-uplas que satisfazem simultaneamente todas as equações do sistema.
+    Pode ser vazio, unitário ou infinito; nunca tem exatamente dois elementos.</dd>
+
+    <dt>equação linear</dt>
+    <dd>Equação da forma \(a_1x_1 + a_2x_2 + \dots + a_nx_n = b\), com coeficientes e termo
+    independente reais. Cada incógnita aparece na primeira potência, sem produto entre incógnitas.</dd>
+
+    <dt>forma escalonada</dt>
+    <dd>Forma em que o pivô de cada linha não nula está à direita do pivô da linha anterior e todos
+    os elementos abaixo de um pivô são nulos. As linhas todas nulas, se houver, ficam no fim.</dd>
+
+    <dt>forma escalonada reduzida</dt>
+    <dd>Forma escalonada em que cada pivô é igual a 1 e todos os demais elementos da coluna do pivô
+    são nulos, inclusive os que estão acima dele. É o passo final, não o intermediário.</dd>
+
+    <dt>incógnita livre</dt>
+    <dd>Incógnita cuja coluna não tem pivô. Pode receber qualquer valor real, e as incógnitas
+    determinadas ficam expressas em função dela; cada coluna sem pivô custa um parâmetro.</dd>
+
+    <dt>linha redundante</dt>
+    <dd>Linha que, depois da eliminação, fica toda nula, isto é, \(0 = 0\). A equação correspondente
+    era consequência das outras e não restringe o conjunto-solução.</dd>
+
+    <dt>matriz aumentada</dt>
+    <dd>Matriz formada pela matriz dos coeficientes e pela coluna dos termos independentes, separadas
+    por uma barra vertical. Cada linha corresponde a uma equação do sistema.</dd>
+
+    <dt>matriz identidade</dt>
+    <dd>Matriz quadrada \(I_n\) com 1 em todas as posições da diagonal principal e 0 nas demais.
+    Multiplicar por ela não altera a matriz do outro lado do produto.</dd>
+
+    <dt>operação elementar</dt>
+    <dd>Uma das três: trocar duas linhas; multiplicar uma linha por escalar não nulo; somar a uma
+    linha um múltiplo de outra. Cada uma é reversível, e é isso que preserva o conjunto-solução.</dd>
+
+    <dt>pivô</dt>
+    <dd>Primeiro elemento não nulo de uma linha, na forma escalonada. A coluna em que ele aparece é
+    a coluna pivotada, e a incógnita correspondente fica determinada.</dd>
+
+    <dt>sistema impossível</dt>
+    <dd>Sistema cujo conjunto-solução é vazio. Na forma escalonada, manifesta-se por uma linha
+    \(0 = c\) com \(c \neq 0\).</dd>
+
+    <dt>sistema linear</dt>
+    <dd>Conjunto finito de equações lineares nas mesmas incógnitas. Uma equação só também é um
+    sistema.</dd>
+
+    <dt>sistema possível</dt>
+    <dd>Sistema com pelo menos uma solução, isto é, com conjunto-solução não vazio.</dd>
+
+    <dt>sistema possível e determinado</dt>
+    <dd>Sistema possível com uma única solução. Na forma escalonada, toda coluna tem pivô.</dd>
+
+    <dt>sistema possível e indeterminado</dt>
+    <dd>Sistema possível com infinitas soluções. Na forma escalonada, ao menos uma coluna fica sem
+    pivô, e a incógnita dessa coluna é livre.</dd>
+
+    <dt>solução</dt>
+    <dd>N-upla ordenada que satisfaz todas as equações do sistema ao mesmo tempo. Satisfazer uma
+    parte delas não é solução parcial: é não pertencer ao conjunto-solução.</dd>
+  </dl>
+
+  <h3>Fontes</h3>
+
+  <p>O capítulo segue a ordem e a terminologia do livro adotado:</p>
+
+  <ul>
+    <li><b>ANTON, Howard.</b> <i>Álgebra Linear com Aplicações</i>. Capítulo 1 — sistemas de
+    equações lineares, eliminação gaussiana, matrizes.</li>
+  </ul>
+
+  <p>O caso discutido na abertura, sobre a teoria de 1998 e sua replicação de 2016, está em:</p>
+
+  <ul>
+    <li><b>Baumeister, R. F., Bratslavsky, E., Muraven, M. &amp; Tice, D. M.</b> (1998). Ego
+    depletion: is the active self a limited resource? <i>Journal of Personality and Social
+    Psychology</i> 74, 1252–1265. doi:10.1037/0022-3514.74.5.1252</li>
+    <li><b>Hagger, M. S. et al.</b> (2016). A multilab preregistered replication of the
+    ego-depletion effect. <i>Perspectives on Psychological Science</i> 11, 546–573.
+    doi:10.1177/1745691616652873</li>
+  </ul>
+
+  <p class="obs"><b>Observação.</b> Todos os sistemas e produtos resolvidos no capítulo foram
+  conferidos por eliminação com aritmética exata, em <code>img-gen/grade-f1.py</code>. Nenhum
+  resultado foi obtido por arredondamento.</p>
+</section>

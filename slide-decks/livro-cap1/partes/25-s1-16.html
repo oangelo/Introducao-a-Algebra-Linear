@@ -1,0 +1,125 @@
+<!-- fonte: f1-matematica.html bloco D (fichas D1–D2); resultados conferidos por img-gen/grade-f1.py -->
+<section class="sec" id="s-1-16">
+  <h2><span class="num">1.16</span>Exemplos resolvidos: sistemas 4×4</h2>
+
+  <p>Um sistema 4×4 tem quatro equações e quatro incógnitas. O método é o mesmo de 2×2 e de 3×3:
+  escrever a matriz aumentada, aplicar operações elementares até a forma escalonada, substituir de
+  baixo para cima. Nada de novo precisa ser aprendido para resolvê-lo — e é por isso que ele serve
+  de teste: se o método está firme, o tamanho não atrapalha; se não está, o tamanho só aumenta o
+  prejuízo.</p>
+
+  <p>O que muda é a distância entre o erro e o sintoma. Em 2×2, um sinal trocado na segunda linha
+  aparece na conta seguinte. Em 4×4, o valor de \(x_1\) é o último a sair e depende de três
+  substituições: quando ele sai errado, a operação que o estragou está três linhas acima e já foi
+  coberta por outras contas. Por isso os dois exemplos abaixo são registrados passo a passo, com a
+  operação declarada antes de ser executada, como pede o protocolo de
+  <a class="ref" href="#s-1-10">1.10</a>.</p>
+
+  <p>As duas formas que o 4×4 toma aqui são as mesmas do 3×3. Na primeira, a matriz já vem
+  escalonada e o trabalho é só de leitura. Na segunda, a contradição está na primeira coluna e o
+  sistema morre antes de qualquer escalonamento — o que também é uma resposta, e das mais úteis,
+  porque chega cedo e poupa o resto.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 1</span>
+    <p>Quatro equações, quatro incógnitas, e a matriz aumentada já sai escalonada: há um pivô em
+    cada uma das quatro colunas dos coeficientes, e tudo abaixo da diagonal é zero. Não há
+    eliminação a fazer; resta ler de baixo para cima.</p>
+    <pre class="conta">  1   1   1   1 | 10
+  0   1   2   1 |  8
+  0   0   1   1 |  5
+  0   0   0   2 |  6</pre>
+    <p>Quatro incógnitas e quatro pivôs, um por coluna: nenhuma variável livre. A forma, sozinha,
+    já garante que a solução é única. O que falta é o valor, e ele sai por substituição, sempre da
+    última linha para a primeira.</p>
+    <ol class="passos">
+      <li>Última linha: \(2x_4 = 6\). O pivô \(2\) não é zero, então
+      \(R_4 \leftarrow \tfrac{1}{2}R_4\) é uma operação permitida e dá \(x_4 = 3\).</li>
+      <li>Terceira linha: \(x_3 + x_4 = 5\). Com \(x_4 = 3\), \(x_3 = 5 - 3 = 2\).</li>
+      <li>Segunda linha: \(x_2 + 2x_3 + x_4 = 8\), isto é, \(x_2 + 4 + 3 = 8\), e \(x_2 = 1\).</li>
+      <li>Primeira linha: \(x_1 + x_2 + x_3 + x_4 = 10\), isto é, \(x_1 + 1 + 2 + 3 = 10\), e
+      \(x_1 = 4\).</li>
+    </ol>
+    <p>Resultado: \((x_1; x_2; x_3; x_4) = (4; 1; 2; 3)\).</p>
+    <p>A conferência cobre as três substituições de uma vez. Na primeira linha,
+    \(4 + 1 + 2 + 3 = 10\); na segunda, \(1 + 2 \cdot 2 + 3 = 8\). As duas fecham, e as duas linhas
+    restantes foram usadas para produzir \(x_4\) e \(x_3\) — não há o que conferir nelas. Em 4×4,
+    essa conferência é a única defesa barata: ela custa duas somas e testa o resultado inteiro.</p>
+  </div>
+
+  <div class="obs">
+    <p><b>Observação.</b> Nenhuma fração apareceu neste exemplo, e isso não é sorte: os coeficientes
+    foram escolhidos para que a divisão da última linha fosse exata. Quando o pivô não divide a
+    constante, a conta continua válida, mas passa a carregar fração de uma linha para a outra — e em
+    4×4 ela se propaga por três substituições. Ao montar um exercício, vale preferir o pivô que
+    divide.</p>
+  </div>
+
+  <p>Nas fichas do quadro esse sistema aparece sem os zeros, na forma triangular: a posição vazia já
+  indica coeficiente nulo. Na matriz aumentada os zeros são escritos, e isso não é preciosismo — é o
+  que permite aplicar uma operação a uma linha inteira sem perguntar onde estão as incógnitas. A
+  matriz não guarda só os números; guarda as posições, e é a posição que diz qual incógnita cada
+  coluna representa.</p>
+
+  <p>O segundo exemplo tem o mesmo tamanho e não tem solução. A diferença aparece antes da primeira
+  operação, e reconhecê-la é o que separa a conta curta da conta perdida.</p>
+
+  <div class="ex">
+    <span class="titulo">Exemplo 2</span>
+    <p>Os coeficientes da segunda linha são o dobro dos da primeira. A constante não acompanha.</p>
+    <pre class="conta">  1   1   1   1 | 4
+  2   2   2   2 | 9
+  1  -1   1  -1 | 0
+  1   0   1   0 | 2</pre>
+    <ol class="passos">
+      <li>Comparar as duas primeiras linhas antes de calcular:
+      \((2, 2, 2, 2) = 2 \cdot (1, 1, 1, 1)\), então a constante correspondente deveria ser
+      \(2 \cdot 4 = 8\). Ela é \(9\).</li>
+      <li>Executar a operação mesmo assim, para registrar a contradição por escrito:
+      \(R_2 \leftarrow R_2 - 2R_1\).</li>
+      <li>Os coeficientes da segunda linha zeram e sobra \(0 = 1\), porque \(9 - 2 \cdot 4 = 1\).</li>
+    </ol>
+    <pre class="conta">  1   1   1   1 |  4
+  0   0   0   0 |  1
+  1  -1   1  -1 |  0
+  1   0   1   0 |  2</pre>
+    <p>Resultado: o sistema é impossível. A linha de zeros com constante \(1\) não é uma equação em
+    \(x_4\) — não há incógnita nela para isolar —, é uma afirmação falsa sobre os números. E o
+    veredito já está fechado: as duas últimas linhas não precisam ser tocadas, porque nenhuma
+    operação elementar transforma \(0 = 1\) em igualdade verdadeira. Operações elementares são
+    reversíveis, e uma igualdade falsa não se torna verdadeira por uma transformação que pode ser
+    desfeita.</p>
+  </div>
+
+  <div class="cuidado">
+    <span class="titulo">Cuidado</span>
+    <p>Duas linhas de zeros dizem coisas opostas, e a diferença está só na constante. Uma linha
+    \(0 = 1\) é contradição e encerra o sistema. Uma linha \(0 = 0\) é redundância e não encerra
+    nada: informa apenas que aquela equação era combinação das outras, e a incógnita da coluna sem
+    pivô fica livre. As duas podem aparecer no mesmo escalonamento, e a ordem não importa — a
+    primeira que for do tipo \(0 = 1\) decide o veredito.</p>
+  </div>
+
+  <p>Outro erro de 4×4 é querer "consertar" o número que quebrou a proporção. O \(9\) da segunda
+  linha não é um erro de cópia a ser corrigido para \(8\): ele é o dado do problema, e é ele que
+  produz a resposta "impossível". Corrigir o dado é resolver outro sistema — e o outro sistema,
+  aliás, teria infinitas soluções, porque as duas primeiras linhas seriam a mesma equação.</p>
+
+  <p>Quando a matriz não vem triangular, a primeira coluna oferece quatro candidatos a pivô, e a
+  escolha não é indiferente. Trazer para o topo a linha cujo primeiro coeficiente é \(1\) evita
+  fração nas três operações seguintes; escolher a linha cujo coeficiente é \(3\) produz terços já na
+  segunda linha e os carrega até o fim. A escolha do pivô é o assunto de
+  <a class="ref" href="#s-1-11">1.11</a>, e em 4×4 ela rende mais do que em 2×2, porque a conta que
+  ela simplifica é três vezes maior.</p>
+
+  <p>O tamanho também cobra o número de operações. O trabalho da eliminação cresce com o cubo do
+  número de incógnitas, então passar de 2 para 4 não dobra a conta: multiplica por oito,
+  aproximadamente. É a razão prática de o 4×4 já exigir caderno organizado — não porque o método
+  mudou, mas porque a mesma quantidade de descuido custa muito mais caro.</p>
+
+  <p>Os dois exemplos desta seção resolvem sistemas, e nos dois o veredito sai da forma antes de sair
+  da conta: no primeiro, quatro pivôs anunciam solução única; no segundo, a linha \(0 = 1\) encerra
+  tudo. A próxima seção faz outra coisa com a matriz — em vez de usá-la para guardar um sistema,
+  multiplica duas matrizes entre si, e o produto não se comporta como o produto de números (ver
+  <a class="ref" href="#s-1-17">1.17</a>).</p>
+</section>

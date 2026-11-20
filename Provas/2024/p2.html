@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Algebra Exercises</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            color: #333;
+        }
+        details {
+            background: #f5f5f5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        .matrix {
+            margin: 1rem 0;
+        }
+        p {
+            margin: 1rem 0;
+        }
+        strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Questão 1</h2>
+    <p>Encontre os autovalores e bases dos autoespaços de:</p>
+    
+    \[
+    A = \begin{bmatrix}
+    -2 & 2 & 3 \\
+    -2 & 3 & 2 \\
+    -4 & 2 & 5
+    \end{bmatrix}
+    \]
+    
+    <details>
+        <summary>Gabarito</summary>
+<p>Para encontrar os autovalores e bases dos autoespaços da matriz \( A \), precisamos resolver a equação característica \(\det(A - \lambda I) = 0\), onde \( \lambda \) são os autovalores e \( I \) é a matriz identidade.</p>
+
+<p><strong>Passo 1: Calcular \( A - \lambda I \)</strong></p>
+
+<div class="matrix">
+\[
+A - \lambda I = \begin{bmatrix}
+-2 - \lambda & 2 & 3 \\
+-2 & 3 - \lambda & 2 \\
+-4 & 2 & 5 - \lambda
+\end{bmatrix}
+\]
+</div>
+
+<p><strong>Passo 2: Calcular o determinante \(\det(A - \lambda I)\)</strong></p>
+
+<p>Vamos calcular o determinante usando operações elementares para simplificar a matriz.</p>
+
+<p>Primeiro, escrevemos o determinante:</p>
+
+<div class="matrix">
+\[
+\det(A - \lambda I) = \begin{vmatrix}
+-2 - \lambda & 2 & 3 \\
+-2 & 3 - \lambda & 2 \\
+-4 & 2 & 5 - \lambda
+\end{vmatrix}
+\]
+</div>
+
+<p><strong>Passo 3: Simplificar o determinante usando operações elementares</strong></p>
+
+Desta vez, expandiremos o determinante usando cofactores.</p>
+
+<p><strong>Passo 4: Expandir o determinante usando a primeira linha</strong></p>
+
+<p>Calculamos o determinante usando a expansão em cofactores na primeira linha:</p>
+
+<div class="matrix">
+\[
+\det(A - \lambda I) = (-2 - \lambda) \cdot \begin{vmatrix}
+3 - \lambda & 2 \\
+2 & 5 - \lambda
+\end{vmatrix} - 2 \cdot \begin{vmatrix}
+-2 & 2 \\
+-4 & 5 - \lambda
+\end{vmatrix} + 3 \cdot \begin{vmatrix}
+-2 & 3 - \lambda \\
+-4 & 2
+\end{vmatrix}
+\]
+</div>
+
+<p><strong>Passo 5: Calcular os determinantes menores</strong></p>
+
+<ol>
+    <li>\( D_1 = \begin{vmatrix}
+    3 - \lambda & 2 \\
+    2 & 5 - \lambda
+    \end{vmatrix} = (3 - \lambda)(5 - \lambda) - (2)(2) = \lambda^2 - 8\lambda + 11 \)</li>
+
+    <li>\( D_2 = \begin{vmatrix}
+    -2 & 2 \\
+    -4 & 5 - \lambda
+    \end{vmatrix} = (-2)(5 - \lambda) - (2)(-4) = 2\lambda - 2 \)</li>
+
+    <li>\( D_3 = \begin{vmatrix}
+    -2 & 3 - \lambda \\
+    -4 & 2
+    \end{vmatrix} = (-2)(2) - (3 - \lambda)(-4) = 8 - 4\lambda \)</li>
+</ol>
+
+<p><strong>Passo 6: Substituir os menores na expansão</strong></p>
+
+<div class="matrix">
+\[
+\det(A - \lambda I) = (-2 - \lambda)(\lambda^2 - 8\lambda + 11) - 2(2\lambda - 2) + 3(8 - 4\lambda)
+\]
+</div>
+
+<p><strong>Passo 7: Expandir e simplificar a expressão</strong></p>
+
+<p>Expandindo:</p>
+
+<div class="matrix">
+\[
+\begin{align*}
+\det(A - \lambda I) &= (-2 - \lambda)(\lambda^2 - 8\lambda + 11) - 4\lambda + 4 + 24 - 12\lambda \\
+&= -\lambda^3 + 6\lambda^2 - 11\lambda + 6 \\
+&= 0
+\end{align*}
+\]
+</div>
+
+<p><strong>Passo 8: Encontrar os autovalores resolvendo a equação característica</strong></p>
+
+<div class="matrix">
+\[
+\lambda^3 - 6\lambda^2 + 11\lambda - 6 = 0
+\]
+</div>
+
+<p>Fatorando:</p>
+
+<div class="matrix">
+\[
+(\lambda - 1)(\lambda - 2)(\lambda - 3) = 0
+\]
+</div>
+
+<p>Portanto, os autovalores são \( \lambda_1 = 1 \), \( \lambda_2 = 2 \) e \( \lambda_3 = 3 \).</p>
+
+<p><strong>Passo 9: Encontrar os autovetores associados a cada autovalor</strong></p>
+
+<p><strong>Para \( \lambda = 1 \):</strong></p>
+
+<p>Calcular \( A - I \):</p>
+
+<div class="matrix">
+\[
+A - I = \begin{bmatrix}
+-3 & 2 & 3 \\
+-2 & 2 & 2 \\
+-4 & 2 & 4
+\end{bmatrix}
+\]
+</div>
+
+<p>Resolver \( (A - I)\mathbf{v} = \mathbf{0} \):</p>
+
+<p>Sistema de equações:</p>
+
+<ol>
+    <li>\(-3x + 2y + 3z = 0\)</li>
+    <li>\(-2x + 2y + 2z = 0\)</li>
+    <li>\(-4x + 2y + 4z = 0\)</li>
+</ol>
+
+<p>Simplificando, encontramos:</p>
+
+<ul>
+    <li>De \( y = 0 \)</li>
+    <li>Então \( x = z \)</li>
+</ul>
+
+<p><strong>Base do autoespaço para \( \lambda = 1 \):</strong></p>
+
+<div class="matrix">
+\[
+\mathbf{v} = \begin{bmatrix}
+x \\
+0 \\
+x
+\end{bmatrix} = x \begin{bmatrix}
+1 \\
+0 \\
+1
+\end{bmatrix}
+\]
+</div>
+
+<p>Portanto, a base é \( \left\{ \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \right\} \).</p>
+
+<p><strong>Para \( \lambda = 2 \):</strong></p>
+
+<p>Calcular \( A - 2I \):</p>
+
+<div class="matrix">
+\[
+A - 2I = \begin{bmatrix}
+-4 & 2 & 3 \\
+-2 & 1 & 2 \\
+-4 & 2 & 3
+\end{bmatrix}
+\]
+</div>
+
+<p>Sistema de equações:</p>
+
+<ol>
+    <li>\(-4x + 2y + 3z = 0\)</li>
+    <li>\(-2x + y + 2z = 0\)</li>
+</ol>
+
+<p>Simplificando, encontramos:</p>
+
+<ul>
+    <li>De \( z = 0 \)</li>
+    <li>Então \( y = 2x \)</li>
+</ul>
+
+<p><strong>Base do autoespaço para \( \lambda = 2 \):</strong></p>
+
+<div class="matrix">
+\[
+\mathbf{v} = \begin{bmatrix}
+x \\
+2x \\
+0
+\end{bmatrix} = x \begin{bmatrix}
+1 \\
+2 \\
+0
+\end{bmatrix}
+\]
+</div>
+
+<p>Portanto, a base é \( \left\{ \begin{bmatrix} 1 \\ 2 \\ 0 \end{bmatrix} \right\} \).</p>
+
+<p><strong>Para \( \lambda = 3 \):</strong></p>
+
+<p>Calcular \( A - 3I \):</p>
+
+<div class="matrix">
+\[
+A - 3I = \begin{bmatrix}
+-5 & 2 & 3 \\
+-2 & 0 & 2 \\
+-4 & 2 & 2
+\end{bmatrix}
+\]
+</div>
+
+<p>Sistema de equações:</p>
+
+<ol>
+    <li>\(-5x + 2y + 3z = 0\)</li>
+    <li>\(-2x + 0y + 2z = 0\)</li>
+</ol>
+
+<p>Simplificando, encontramos:</p>
+
+<ul>
+    <li>De \( y = z \)</li>
+    <li>Então \( x = z \)</li>
+</ul>
+
+<p><strong>Base do autoespaço para \( \lambda = 3 \):</strong></p>
+
+<div class="matrix">
+\[
+\mathbf{v} = \begin{bmatrix}
+x \\
+x \\
+x
+\end{bmatrix} = x \begin{bmatrix}
+1 \\
+1 \\
+1
+\end{bmatrix}
+\]
+</div>
+
+<p>Portanto, a base é \( \left\{ \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \right\} \).</p>
+
+<p><strong>Resposta Final:</strong></p>
+
+<ul>
+    <li><strong>Autovalores:</strong>
+        <ul>
+            <li>\( \lambda_1 = 1 \)</li>
+            <li>\( \lambda_2 = 2 \)</li>
+            <li>\( \lambda_3 = 3 \)</li>
+        </ul>
+    </li>
+    <li><strong>Bases dos autoespaços:</strong>
+        <ul>
+            <li>Para \( \lambda = 1 \): \( \left\{ \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \right\} \)</li>
+            <li>Para \( \lambda = 2 \): \( \left\{ \begin{bmatrix} 1 \\ 2 \\ 0 \end{bmatrix} \right\} \)</li>
+            <li>Para \( \lambda = 3 \): \( \left\{ \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \right\} \)</li>
+        </ul>
+    </li>
+</ul>
+    </details>
+
+    <h2>Questão 2</h2>
+    <p>Determine se o espaço solução do sistema \(Ax = 0\) é uma reta pela origem, um plano pela origem ou somente a origem. Se for um plano, obtenha uma equação desse plano; se for uma reta, obtenha equações paramétricas dessa reta.</p>
+
+    <p>(a)</p>
+    \[
+    A = \begin{bmatrix}
+    -1 & 1 & 1 \\
+    3 & -1 & 0 \\
+    2 & -4 & -5
+    \end{bmatrix}
+    \]
+
+    <p>(b)</p>
+    \[
+    A = \begin{bmatrix}
+    1 & -2 & 3 \\
+    -3 & 6 & 9 \\
+    -2 & 4 & -6
+    \end{bmatrix}
+    \]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+           <h3><strong>(a)</strong></h3>
+    <p>Dado o sistema homogêneo $$Ax=0$$ com a matriz:</p>
+    <div class="matrix">
+        $$A = \begin{bmatrix} -1 & 1 & 1 \\ 3 & -1 & 0 \\ 2 & -4 & -5 \end{bmatrix}$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 1: Escrever a matriz aumentada</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} -1 & 1 & 1 & 0 \\ 3 & -1 & 0 & 0 \\ 2 & -4 & -5 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 2: Multiplicar a Linha 1 por $$-1$$ para facilitar os cálculos</strong>
+        <div class="matrix">
+            $$R1 = -R1 \quad \Rightarrow \quad \left[\begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 3 & -1 & 0 & 0 \\ 2 & -4 & -5 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 3: Eliminar $$x_1$$ das Linhas 2 e 3</strong>
+        <ul>
+            <li>Para a Linha 2:<br>
+                $$R2 = R2 - 3 \cdot R1$$<br>
+                $$R2 = [3, -1, 0] - 3 \cdot [1, -1, -1] = [0, 2, 3]$$
+            </li>
+            <li>Para a Linha 3:<br>
+                $$R3 = R3 - 2 \cdot R1$$<br>
+                $$R3 = [2, -4, -5] - 2 \cdot [1, -1, -1] = [0, -2, -3]$$
+            </li>
+        </ul>
+        <strong>A matriz fica assim:</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 0 & 2 & 3 & 0 \\ 0 & -2 & -3 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 4: Eliminar $$x_2$$ da Linha 3</strong>
+        $$R3 = R3 + R2$$<br>
+        $$R3 = [0, -2, -3] + [0, 2, 3] = [0, 0, 0]$$
+        <div class="matrix">
+            <strong>A matriz agora é:</strong><br>
+            $$\left[\begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 0 & 2 & 3 & 0 \\ 0 & 0 & 0 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 5: Resolver para as variáveis</strong>
+        <p>Da Linha 2:</p>
+        $$2x_2 + 3x_3 = 0 \quad \Rightarrow \quad x_2 = -\dfrac{3}{2}x_3$$
+        <p>Da Linha 1:</p>
+        $$x_1 - x_2 - x_3 = 0$$
+        <p>Substituindo $$x_2$$:</p>
+        $$x_1 - \left(-\dfrac{3}{2}x_3\right) - x_3 = 0 \quad \Rightarrow \quad x_1 + \dfrac{3}{2}x_3 - x_3 = 0$$
+        <p>Simplificando:</p>
+        $$x_1 + \dfrac{1}{2}x_3 = 0 \quad \Rightarrow \quad x_1 = -\dfrac{1}{2}x_3$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 6: Parametrizar a solução</strong>
+        <p>Seja $$x_3 = t$$, então:</p>
+        $$\begin{cases} x_1 = -\dfrac{1}{2}t \\ x_2 = -\dfrac{3}{2}t \\ x_3 = t \\ \end{cases}$$
+        <p><strong>Multiplicando por 2 para eliminar frações:</strong></p>
+        $$\begin{cases} x_1 = -t \\ x_2 = -3t \\ x_3 = 2t \\ \end{cases}$$
+    </div>
+
+    <div class="step">
+        <strong>Conclusão:</strong>
+        <p>O espaço solução é uma <strong>reta passando pela origem</strong> com as equações paramétricas:</p>
+        $$x = t \begin{bmatrix} -1 \\ -3 \\ 2 \\ \end{bmatrix}$$
+    </div>
+
+    <h3><strong>(b)</strong></h3>
+    <p>Dado o sistema homogêneo $$Ax=0$$ com a matriz:</p>
+    <div class="matrix">
+        $$A = \begin{bmatrix} 1 & -2 & 3 \\ -3 & 6 & 9 \\ -2 & 4 & -6 \\ \end{bmatrix}$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 1: Escrever a matriz aumentada</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} 1 & -2 & 3 & 0 \\ -3 & 6 & 9 & 0 \\ -2 & 4 & -6 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 2: Eliminar $$x_1$$ das Linhas 2 e 3</strong>
+        <ul>
+            <li>Para a Linha 2:<br>
+                $$R2 = R2 + 3 \cdot R1$$<br>
+                $$R2 = [-3, 6, 9] + 3 \cdot [1, -2, 3] = [0, 0, 18]$$
+            </li>
+            <li>Para a Linha 3:<br>
+                $$R3 = R3 + 2 \cdot R1$$<br>
+                $$R3 = [-2, 4, -6] + 2 \cdot [1, -2, 3] = [0, 0, 0]$$
+            </li>
+        </ul>
+        <strong>A matriz agora é:</strong>
+        <div class="matrix">
+            $$\left[\begin{array}{ccc|c} 1 & -2 & 3 & 0 \\ 0 & 0 & 18 & 0 \\ 0 & 0 & 0 & 0 \\ \end{array}\right]$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>Passo 3: Resolver para $$x_3$$</strong>
+        $$18x_3 = 0 \quad \Rightarrow \quad x_3 = 0$$
+    </div>
+
+    <div class="step">
+        <strong>Passo 4: Encontrar $$x_1$$ e $$x_2$$</strong>
+        <p>Da Linha 1:</p>
+        $$x_1 - 2x_2 + 3x_3 = 0$$
+        <p>Como $$x_3 = 0$$, temos:</p>
+        $$x_1 - 2x_2 = 0 \quad \Rightarrow \quad x_1 = 2x_2$$
+        <p>Seja $$x_2 = t$$, então:</p>
+        $$\begin{cases} x_1 = 2t \\ x_2 = t \\ x_3 = 0 \\ \end{cases}$$
+    </div>
+
+    <div class="step">
+        <strong>Conclusão:</strong>
+        <p>O espaço solução é uma <strong>reta passando pela origem</strong> com as equações paramétricas:</p>
+        $$x = t \begin{bmatrix} 2 \\ 1 \\ 0 \\ \end{bmatrix}$$
+    </div>
+
+    <div class="step">
+        <strong>Resposta Final:</strong>
+        <p><strong>(a)</strong> O espaço solução é uma <strong>reta passando pela origem</strong> com equações paramétricas:</p>
+        $$x = t \begin{bmatrix} -1 \\ -3 \\ 2 \\ \end{bmatrix}$$
+        <p><strong>(b)</strong> O espaço solução é uma <strong>reta passando pela origem</strong> com equações paramétricas:</p>
+        $$x = t \begin{bmatrix} 2 \\ 1 \\ 0 \\ \end{bmatrix}$$
+    </div>
+    </details>
+
+    <h2>Questão 3</h2>
+    <p>Mostre que \( \{A_1, A_2, A_3, A_4\} \) é uma base de \(M_{22}\) e expresse \(A\) como uma combinação linear dos vetores da base.</p>
+
+    \[A_1 = \begin{bmatrix} 1 & 0 \\ 1 & 0 \end{bmatrix}, \quad 
+    A_2 = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}, \quad 
+    A_3 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad 
+    A_4 = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}; \quad 
+    A = \begin{bmatrix} 6 & 2 \\ 5 & 3 \end{bmatrix}\]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+         <div class="section">
+        <p>Para mostrar que $$\{A_1, A_2, A_3, A_4\}$$ é uma base de $$M_{22}$$, precisamos verificar que esses vetores são linearmente independentes e que geram $$M_{22}$$.</p>
+        
+        <p>Primeiro, representamos cada matriz como um vetor em $$\mathbb{R}^4$$:</p>
+        <div class="proof-step">
+            <p>$$A_1 \rightarrow (1, 0, 1, 0)$$</p>
+            <p>$$A_2 \rightarrow (1, 1, 0, 0)$$</p>
+            <p>$$A_3 \rightarrow (1, 0, 0, 1)$$</p>
+            <p>$$A_4 \rightarrow (0, 0, 1, 0)$$</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Independência Linear :</h3>
+        <p>Consideremos a combinação linear:</p>
+        <p>$$c_1A_1 + c_2A_2 + c_3A_3 + c_4A_4 = 0$$</p>
+        
+        <p>Convertendo para vetores:</p>
+        <p>$$c_1(1, 0, 1, 0) + c_2(1, 1, 0, 0) + c_3(1, 0, 0, 1) + c_4(0, 0, 1, 0) = (0, 0, 0, 0)$$</p>
+        
+        <p>Isto nos dá o sistema:</p>
+        <div class="proof-step">
+            <p>1. $c_1 + c_2 + c_3 = 0$</p>
+            <p>2. $c_2 = 0$</p>
+            <p>3. $c_1 + c_4 = 0$</p>
+            <p>4. $c_3 = 0$</p>
+        </div>
+
+        <p>Resolvendo:</p>
+        <div class="proof-step">
+            <p>- De (2): $c_2 = 0$</p>
+            <p>- De (4): $c_3 = 0$</p>
+            <p>- De (1): $c_1 = 0$</p>
+            <p>- De (3): $c_4 = 0$</p>
+        </div>
+        
+        <p>Todos os coeficientes são zero, portanto, os vetores são linearmente independentes.</p>
+    </div>
+
+    <div class="section">
+        <h3>Geração de $$M_{22}$$:</h3>
+        <p>Como $M_{22}$ é um espaço vetorial de dimensão 4 e temos 4 vetores linearmente independentes, eles formam uma base.</p>
+    </div>
+
+    <div class="section">
+        <h3>Expressando $$A$$ como combinação linear:</h3>
+        <p>Queremos encontrar escalares $k_1, k_2, k_3, k_4$ tais que:</p>
+        <p>$A = k_1A_1 + k_2A_2 + k_3A_3 + k_4A_4$</p>
+        
+        <p>Escrevendo em termos de vetores:</p>
+        <p>$(6, 2, 5, 3) = k_1(1, 0, 1, 0) + k_2(1, 1, 0, 0) + k_3(1, 0, 0, 1) + k_4(0, 0, 1, 0)$</p>
+        
+        <p>Isto resulta no sistema:</p>
+        <div class="proof-step">
+            <p>1. $k_1 + k_2 + k_3 = 6$</p>
+            <p>2. $k_2 = 2$</p>
+            <p>3. $k_1 + k_4 = 5$</p>
+            <p>4. $k_3 = 3$</p>
+        </div>
+
+        <p>Resolvendo:</p>
+        <div class="proof-step">
+            <p>- De (2): $k_2 = 2$</p>
+            <p>- De (4): $k_3 = 3$</p>
+            <p>- De (1): $k_1 = 6 - k_2 - k_3 = 6 - 2 - 3 = 1$</p>
+            <p>- De (3): $k_4 = 5 - k_1 = 5 - 1 = 4$</p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusão:</h3>
+        <p>A base $\{A_1, A_2, A_3, A_4\}$ gera $M_{22}$, e podemos expressar $A$ como:</p>
+        <p>$A = 1\cdot A_1 + 2\cdot A_2 + 3\cdot A_3 + 4\cdot A_4$</p>
+    </div>
+    </details>
+
+    <h2>Questão 4</h2>
+    <p>Encontre o vetor de coordenadas de \(A\) em relação à base \(S = \{A_1, A_2, A_3, A_4\}\) de \(M_{22}\).</p>
+
+    \[
+    A = \begin{bmatrix} 2 & 0 \\ -1 & 3 \end{bmatrix}, \quad 
+    A_1 = \begin{bmatrix} -1 & 1 \\ 0 & 0 \end{bmatrix}, \quad 
+    A_2 = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}, \quad 
+    A_3 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}, \quad 
+    A_4 = \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}
+    \]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+          <p>Para encontrar as coordenadas de \(A\) em relação à base \(S=\{A_1, A_2, A_3, A_4\}\), precisamos expressar \(A\) como uma combinação linear dos vetores da base:</p>
+
+    <div class="math-block">
+        \[A = c_1 A_1 + c_2 A_2 + c_3 A_3 + c_4 A_4\]
+    </div>
+
+    <p>Substituindo as matrizes:</p>
+
+    <div class="math-block">
+        \[\begin{bmatrix} 2 & 0 \\ -1 & 3 \end{bmatrix} = c_1 \begin{bmatrix} -1 & 1 \\ 0 & 0 \end{bmatrix} + c_2 \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix} + c_3 \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} + c_4 \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}\]
+    </div>
+
+    <p>Calculando a combinação linear:</p>
+
+    <ul>
+        <li>Elemento (1,1):<br>
+            \[- c_1 + c_2 = 2 \quad \text{(1)}\]
+        </li>
+        <li>Elemento (1,2):<br>
+            \[c_1 + c_2 + c_3 = 0 \quad \text{(2)}\]
+        </li>
+        <li>Elemento (2,1):<br>
+            \[c_3 = -1 \quad \text{(3)}\]
+        </li>
+        <li>Elemento (2,2):<br>
+            \[c_4 = 3 \quad \text{(4)}\]
+        </li>
+    </ul>
+
+    <p>Substituindo \(c_3 = -1\) na equação (2):</p>
+
+    <div class="math-block">
+        \[c_1 + c_2 - 1 = 0 \implies c_1 + c_2 = 1 \quad \text{(5)}\]
+    </div>
+
+    <p>Agora, resolvendo o sistema formado pelas equações (1) e (5):</p>
+
+    <div class="math-block">
+        \[\begin{cases} 
+        - c_1 + c_2 = 2 \\ 
+        c_1 + c_2 = 1 
+        \end{cases}\]
+    </div>
+
+    <p>Somando as duas equações:</p>
+
+    <div class="math-block">
+        \[(- c_1 + c_2) + (c_1 + c_2) = 2 + 1 \implies 2 c_2 = 3 \implies c_2 = \dfrac{3}{2}\]
+    </div>
+
+    <p>Substituindo \(c_2\) na equação (5):</p>
+
+    <div class="math-block">
+        \[c_1 + \dfrac{3}{2} = 1 \implies c_1 = -\dfrac{1}{2}\]
+    </div>
+
+    <p>Portanto, as coordenadas de \(A\) em relação à base \(S\) são:</p>
+
+    <div class="math-block">
+        \[(c_1, c_2, c_3, c_4) = \left(-\dfrac{1}{2}, \dfrac{3}{2}, -1, 3\right)\]
+    </div>
+
+    <p><strong>Resposta:</strong> As coordenadas de \(A\) são \(\left(-\dfrac{1}{2},\ \dfrac{3}{2},\ -1,\ 3\right)\) em relação à base \(S\).</p>
+
+    </details>
+
+    <h2>Questão 5</h2>
+    <p>Encontre um subconjunto dos vetores dados que forma uma base do espaço gerado pelos vetores; em seguida, expresse cada vetor que não está na base como uma combinação linear dos vetores da base.</p>
+
+    <p>(c)</p>
+    \[
+    \mathbf{v}_1 = (1, -1, 5, 2), \quad \mathbf{v}_2 = (-2, 3, 1, 0), \quad \mathbf{v}_3 = (4, -5, 9, 4), \quad \mathbf{v}_4 = (0, 4, 2, -3), \quad \mathbf{v}_5 = (-7, 18, 2, -8)
+    \]
+
+    <details>
+        <summary>Gabarito</summary>
+        <!-- Solution content -->
+          <p>Para resolver este problema, seguimos os passos propostos:</p>
+
+    <div class="step">
+        <strong>1. Colocar os vetores como colunas de uma matriz e escalonar:</strong>
+        <p>Formamos a matriz A com os vetores dados como colunas:</p>
+        <div class="equation">
+            $$A = \begin{bmatrix} 
+            1 & -2 & 4 & 0 & -7 \\ 
+            -1 & 3 & -5 & 4 & 18 \\ 
+            5 & 1 & 9 & 2 & 2 \\ 
+            2 & 0 & 4 & -3 & -8 \\ 
+            \end{bmatrix}$$
+        </div>
+
+        <p>Aplicamos operações elementares de linha para escalonar a matriz:</p>
+        
+        <div class="matrix-step">
+            <strong>Passo 1:</strong> Usamos o elemento $$a_{11} = 1$$ como pivô e zeramos os elementos abaixo dele na coluna 1.
+            $$\begin{align*} 
+            L_2 &= L_2 + L_1 \\ 
+            L_3 &= L_3 - 5L_1 \\ 
+            L_4 &= L_4 - 2L_1 \\ 
+            \end{align*}$$
+
+            <p>A matriz torna-se:</p>
+            $$\begin{bmatrix} 
+            1 & -2 & 4 & 0 & -7 \\ 
+            0 & 1 & -1 & 4 & 11 \\ 
+            0 & 11 & -11 & 2 & 37 \\ 
+            0 & 4 & -4 & -3 & 6 \\ 
+            \end{bmatrix}$$
+        </div>
+
+        <div class="matrix-step">
+            <strong>Passo 2:</strong> Usamos o elemento $$a_{22} = 1$$ como pivô e zeramos os elementos abaixo dele na coluna 2.
+            $$\begin{align*} 
+            L_3 &= L_3 - 11L_2 \\ 
+            L_4 &= L_4 - 4L_2 \\ 
+            \end{align*}$$
+
+            <p>A matriz torna-se:</p>
+            $$\begin{bmatrix} 
+            1 & -2 & 4 & 0 & -7 \\ 
+            0 & 1 & -1 & 4 & 11 \\ 
+            0 & 0 & 0 & -42 & -84 \\ 
+            0 & 0 & 0 & -19 & -38 \\ 
+            \end{bmatrix}$$
+        </div>
+
+        <div class="matrix-step">
+            <strong>Passo 3:</strong> Usamos o elemento $$a_{33} = -42$$ como pivô (após trocar de linha, se necessário) e zeramos os elementos acima e abaixo dele na coluna 4.
+
+            <p>Dividimos $$L_3$$ por $$-42$$:</p>
+            $$L_3 = \frac{1}{-42} L_3$$
+
+            <p>A matriz torna-se:</p>
+            $$\begin{bmatrix} 
+            1 & -2 & 4 & 0 & -7 \\ 
+            0 & 1 & -1 & 4 & 11 \\ 
+            0 & 0 & 0 & 1 & 2 \\ 
+            0 & 0 & 0 & -19 & -38 \\ 
+            \end{bmatrix}$$
+
+            <p>Zeramos o elemento $$a_{42}$$:</p>
+            $$L_4 = L_4 - (-19)L_3$$
+
+            <p>A matriz final escalonada é:</p>
+            $$\begin{bmatrix} 
+            1 & 0 & 2 & 0 & -1 \\ 
+            0 & 1 & -1 & 0 & 3 \\ 
+            0 & 0 & 0 & 1 & 2 \\ 
+            0 & 0 & 0 & 0 & 0 \\ 
+            \end{bmatrix}$$
+        </div>
+    </div>
+
+    <div class="step">
+        <strong>2. Identificar os vetores que formam uma base:</strong>
+        <p>Os pivôs estão nas colunas 1, 2 e 4. Portanto, os vetores correspondentes $$\mathbf{v}_1$$, $$\mathbf{v}_2$$ e $$\mathbf{v}_4$$ formam uma base para o espaço gerado pelos vetores dados.</p>
+    </div>
+
+    <div class="step">
+        <strong>3. Expressar os vetores não básicos como combinações lineares dos vetores da base:</strong>
+        
+        <div class="equation">
+            <strong>Para $$\mathbf{v}_3$$:</strong>
+            <p>Montamos o sistema:</p>
+            $$\begin{cases} 
+            4 = a_1(1) + a_2(-2) + a_4(0) \\ 
+            -5 = a_1(-1) + a_2(3) + a_4(4) \\ 
+            9 = a_1(5) + a_2(1) + a_4(2) \\ 
+            4 = a_1(2) + a_2(0) + a_4(-3) \\ 
+            \end{cases}$$
+
+            <p>Resolvendo, encontramos:</p>
+            $$a_1 = 2, \quad a_2 = -1, \quad a_4 = 0$$
+
+            <p>Portanto:</p>
+            $$\mathbf{v}_3 = 2\mathbf{v}_1 - \mathbf{v}_2$$
+        </div>
+
+        <div class="equation">
+            <strong>Para $$\mathbf{v}_5$$:</strong>
+            <p>Montamos o sistema:</p>
+            $$\begin{cases} 
+            -7 = b_1(1) + b_2(-2) + b_4(0) \\ 
+            18 = b_1(-1) + b_2(3) + b_4(4) \\ 
+            2 = b_1(5) + b_2(1) + b_4(2) \\ 
+            -8 = b_1(2) + b_2(0) + b_4(-3) \\ 
+            \end{cases}$$
+
+            <p>Resolvendo, encontramos:</p>
+            $$b_1 = -1, \quad b_2 = 3, \quad b_4 = 2$$
+
+            <p>Portanto:</p>
+            $$\mathbf{v}_5 = -\mathbf{v}_1 + 3\mathbf{v}_2 + 2\mathbf{v}_4$$
+        </div>
+    </div>
+
+    <div class="final-answer">
+        <strong>Resposta Final:</strong>
+        <p>Os vetores $\mathbf{v}_1$, $\mathbf{v}_2$ e $\mathbf{v}_4$ formam uma base do espaço gerado pelos vetores dados. Os vetores $\mathbf{v}_3$ e $\mathbf{v}_5$ podem ser escritos como combinações lineares dos vetores da base:</p>
+        $$\mathbf{v}_3 = 2\mathbf{v}_1 - \mathbf{v}_2$$
+        $$\mathbf{v}_5 = -\mathbf{v}_1 + 3\mathbf{v}_2 + 2\mathbf{v}_4$$
+    </div>
+    </details>
+
+    <script>
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        });
+    </script>
+</body>
+</html>
